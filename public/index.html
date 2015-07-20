@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title> auth </title>
+</head>
+
+<body>
+    <h1>checking now, please wait...<h1>
+</body>
+
+<script>
+
+    var apiUrl = 'http://api.hizuoye.com/api/v1/';
+    var url = window.location.href;
+    var re = /([?&])(code|next)=(\w+)/g;
+    var query = {}, matches;
+    function createXHR(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+            // Check if the XMLHttpRequest object has a "withCredentials" property.
+            // "withCredentials" only exists on XMLHTTPRequest2 objects.
+            xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+            // Otherwise, check if XDomainRequest.
+            // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        } else {
+            // Otherwise, CORS is not supported by the browser.
+            xhr = null;
+        }
+        return xhr;
+    }
+
+    while (matches = re.exec(url)) {
+        query[matches[2]] = matches[3];
+    }
+
+    var next = query.next;
+    var code = query.code;
+
+    if (code) {
+        var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code);
+        if (!xhr) {
+            alert('CORS not supported');
+        }
+        // Response handlers.
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) { // binded user and qo next...
+                // location.href = next + '.html?token=' + xhr.responseText;
+                if ( localStorage && localStorage.getItem ) {
+                    localStorage.setItem('illy-token', xhr.responseText);
+                    location.href = next + '.html'; // pure url
+                } else {
+                    console.error('不支持本地存储，token获取不到');
+                    alert('localStorage not support, no token');
+                }
+            } else if ( status === 401) { // unbinded user and go login...
+                var openid = xhr.responseText;
+                location.href = 'login.html?openid=' + openid + "&next=" + next;
+            } else {
+                alert("Error Sorry!");
+            }
+        }
+
+        xhr.onerror = function () {
+            alert('Woops, there was an error making the request.');
+        };
+
+        xhr.send(null);
+    }
+
+</script>
+</html>
+

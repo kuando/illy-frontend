@@ -1,0 +1,254 @@
+/*******************************************************
+> File Name: homework.scss 
+> Author: IndexXuan
+> Mail: indexxuan@gmail.com
+> Created Time: 2015年07月13日 星期一 18时01分34秒
+ ******************************************************/
+
+
+@import "../_normalize.scss";
+/*@import "../../Yo/lib/core/variables.scss";*/
+@import "../../Yo/lib/core/reset.scss";
+/*@import "../../Yo/lib/core/classes.scss";*/
+/*@import "../../Yo/lib/fragment/yo-header.scss";*/
+@import "../common.scss";
+
+/* reset vars and vars start */
+$img_width: 20%;
+$img_height: .7rem;
+$answer_panel_height: 1.5rem;
+$next_radius: $answer_panel_height / 2;
+/* reset vars and vars end */
+
+.app {
+	min-height: 4.5rem;
+}
+
+/* common item start */
+.item-wrapper {
+	padding: .10rem .08rem;
+
+	.item {
+		width: 100%;
+		text-align: left;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		-webkit-box-shadow: 0px 0px 5px #9c9c9c;
+		box-shadow: 0px 0px 5px #e5d8d8;
+		padding: .06rem .05rem;
+		margin-bottom: .1rem;
+
+		.list-card {
+			display:  inline-block;
+			position: relative;
+			width: 100%;
+
+			.item-img {
+				width: $img_width;
+				margin-right: .05rem;
+				height: $img_height;
+				border: 1px solid #eee;
+				vertical-align: middle;
+				border: 0;
+				-ms-interpolation-mode: bicubic;
+			}
+
+			// 右侧作业信息
+			.hw-info {
+				width: 75%;
+				height: .22rem;
+				line-height: .22rem;
+				font-size: .14rem;
+				margin-top: -.02rem;
+
+				.item-title {
+					width: 92%;
+					margin-top: .01rem;
+					max-height: $item_title_height;
+					word-break: break-all;
+					color: $g_font_color;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+
+				.time {
+					display: inline-block;
+					width: 92%;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					position: relative;
+					top: .03rem; // fix
+				}
+
+				.finish_count {
+					display: inline-block;
+					vertical-align: bottom;
+					width: 100%;
+
+					.icon-people {
+						width: .16rem;
+						height: .16rem;
+						display: inline-block;
+						vertical-align: middle;
+						/* 下面两条规则适配高分屏 */
+						background: url(../../assets/images/iconfont-xinzengrenshu.png) no-repeat;
+						background-size: 100%;
+						margin-right: .08rem;
+						margin-top: -0.02rem;					
+					}
+
+				}
+
+			}
+
+			.todo {
+				position: absolute;
+				right: 10px;
+				font-size: .14rem;
+				/*bottom: 25px;*/
+				height: $img_height;
+				line-height: $img_height;
+			}
+
+		}
+
+	}
+
+}
+/* common item end */
+
+/* audio player start */
+.play,.pause{position:absolute; left:0; top:0; width:100%;height:100%; background: url(../images/audio_play.png) right center no-repeat}
+.pause{background: url(../images/audio_pause.png) right center no-repeat; display:none}
+.scrubber {position:absolute; bottom:0; height:6px; width:100%; left:0; margin:0; background:#cecece; border:0; display:none}
+.progress{background:#4878b0; width:0; height:6px; position:absolute; left:0; bottom:0; z-index:2}
+.loaded{background:#abc1db; width:0; height:6px; position:absolute; left:0; bottom:0; z-index:1}
+.play-pause{width:100%; height:100%; position:absolute; top:0; left:0}
+.playing .scrubber {display:block}
+.playing {background:url(../images/alpha_black20.png)}
+/* audio player end */
+
+/* detail start */
+.detail {
+	font-size: .18rem;
+	color: hsl(0, 0%, 11%);
+	line-height: 1.5;
+
+	.title {
+		font-size: .20rem;
+		line-height: 3;
+	}
+
+	.content {
+		line-height: 1.6;
+		text-align: left;
+	}
+}
+/* detail end */
+
+/* question start */
+
+.illy-img-list {
+	padding: .09rem;
+	text-align: left;
+
+	label.item {
+		width: 47%;
+		display: inline-block;
+		padding: .05rem;
+		margin: .05rem .05rem;
+		text-align: center;
+
+		img {
+			max-width: 100%;
+			margin-bottom: .1rem;
+			width: 100%;
+			height: auto;
+		}
+		.yo-checked {
+			/*float: left;*/
+			margin-bottom: 5px;
+		}
+	}
+}
+
+.question {
+	padding: .05rem;
+	text-align: left;
+
+	.question-text {
+		padding: .05rem;
+		font-weight: bold;
+		font-size: .16rem;
+	}
+
+	.answer-panel {
+		display: none;
+		position: fixed;
+		top: 100%;
+		width: 100%;
+		min-height: $answer_panel_height;
+		margin-top: -$answer_panel_height;
+		background-color: #f57bf9;
+
+		.answer {
+			word-break: break-all;
+			padding: .1rem;
+			line-height: 1.7;
+			font-size: .14rem;
+			text-align: left;
+
+			.right, .save {
+				font-weight: bold;
+				font-size: .16rem;
+				color: #666;
+				display: inline-block;
+				width: 11%;
+				vertical-align: top;
+			}
+
+			/* 录音已保存 */
+			.save {
+				width: 65%;
+			}
+
+			p {
+				display: inline-block;
+				width: 60%;
+				margin-top: 3px;
+			}
+		}
+	}
+
+	.tap-btn {
+		width: $next_radius;
+		height: $next_radius;
+		border-radius: 50%;
+		background-color: #5d92f4;
+		position: absolute;
+		right: .1rem;
+		bottom: $answer_panel_height - .5rem;
+		text-align: center;
+
+		.icon {
+			display: inline-block;
+			height: $next_radius;
+			line-height: $next_radius;
+			color: white;
+			font-weight: bold;
+			-webkit-transform: scale(3);
+			transform: scale(3);
+		}
+
+		.icon-next {
+			-webkit-transform: rotate(90deg) scale(3);
+			transform: rotate(90deg) scale(3);
+		}
+
+	}
+
+}
+/* question end */
+

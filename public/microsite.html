@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title> 微网站 </title>
+    <link rel="stylesheet" href="build/microsite/layout.css" />
+    <link rel="stylesheet" href="assets/styles/animation.css" />
+    <!--<link rel="stylesheet" href="./assets/styles/Yo/yo-all.css" />-->
+</head>
+
+<body ms-controller="root">
+
+    <!--<div ms-view="splash"></div>-->
+    <div ms-view="loading"></div>
+    <div ms-view="header"></div>
+    <div ms-view=""></div>
+    <div ms-view="footer"></div>
+
+</body>
+
+<script src="assets/scripts/lib/avalon/avalon.mobile.js"></script>
+<script>
+
+    avalon.config({
+        debug: true 
+    });
+
+    require.config({
+        baseUrl: "/assets"
+    });
+
+    require(['./scripts/microsite'], function(app) {
+        app && app.init && app.init();
+    })
+    // rendered and bootstrap the page
+
+    // $('#slider').slider(); 预计放进index.tpl的rendered回调里执行
+
+</script>
+<script src="assets/scripts/lib/gmu/gmu.part.js"></script>
+<script src="http://localhost:35729/livereload.js"></script>
+
+</html>
+

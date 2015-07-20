@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title> 做作业模块 </title>
+		<link rel="stylesheet" href="./assets/styles/Yo/yo-all.css" />
+		<link rel="stylesheet" href="./build/homework/homework.css">
+	</head>
+
+	<body ms-controller="root">
+
+		<div class="yo-list yo-list-group">
+
+			<label class="item item-active">
+
+				<span class="mark flex">Yo</span>
+
+				<div class="yo-checked yo-checked-g">
+
+					<input type="radio" name="project8" checked />
+
+					<span class="type"></span>
+
+				</div>
+
+			</label>
+			<label class="item item-active">
+
+				<span class="mark flex">Yo</span>
+
+				<div class="yo-checked yo-checked-g">
+
+					<input type="radio" name="project8" checked />
+
+					<span class="type"></span>
+
+				</div>
+
+			</label>
+			<label class="item item-active">
+
+				<span class="mark flex">Yo</span>
+
+				<div class="yo-checked yo-checked-g">
+
+					<input type="radio" name="project8" checked />
+
+					<span class="type"></span>
+
+				</div>
+
+			</label>
+		</div>
+
+
+
+</body>
+
+<script>
+	// set the root(html) dpr attribute to deal with each device, for better user experience.
+(function () {
+
+	var win = window,
+		doc = win.document,
+		docEl = doc.documentElement,
+		ua = win.navigator.userAgent,
+		metaA = docEl.querySelector('meta[name="viewport"]'),
+		isIOS = ua.match(/iphone/gi),
+		scale, dpr;
+
+	if (isIOS) {
+
+		dpr = win.devicePixelRatio;
+		dpr = dpr >= 3 ? 3 : dpr >= 2 ? 2 : 1;
+		scale = (1 / dpr).toFixed(2);
+
+		docEl.setAttribute('data-dpr', dpr);
+		docEl.setAttribute('ios', 'true');
+
+		if (!metaA) {
+			metaA = doc.createElement('meta');
+		}
+
+		metaA.setAttribute('name', 'viewport');
+		metaA.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+
+		if (!metaA) {
+			if (docEl.firstElementChild) {
+				docEl.firstElementChild.appendChild(metaA);
+			} else {
+				var div = doc.createElement("div");
+				div.appendChild(metaA);
+				doc.write(div.innerHTML);
+			}
+		}
+
+		win.dpr = dpr;
+	}
+})();
+</script>
+<script src="./assets/scripts/lib/avalon/avalon.modern.js"></script>
+<script src="http://localhost:35729/livereload.js"></script>
+</html>
+

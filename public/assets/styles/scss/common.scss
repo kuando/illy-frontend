@@ -1,0 +1,289 @@
+/*******************************************************
+    > File Name: common.scss
+    > Author: IndexXuan
+    > Mail: indexxuan@gmail.com
+    > Created Time: 2015年07月13日 星期一 18时38分20秒
+ ******************************************************/
+
+/* vars start */
+$g_bgColor: #f9f5f5;
+$main-color: #6ad086;
+$title-line-height: .36rem;
+$img_width: 35%;
+$img_height: .80rem;
+$item_title_height: .45rem;
+$g_font_color: #747070;
+/* vars end */
+
+/* global reset start */ 
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* for root(html) rem, with different dpr attribute */
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  html[ios="true"] {
+    font-size: 200px;
+  }
+}
+@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+  html[ios="true"] {
+    font-size: 300px;
+  }
+}
+img {
+	display: block;
+    max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+	border: 0;
+	page-break-inside: avoid;
+}
+/* a tag glabal set */
+a,
+a:active,
+a:visited,
+a:focus,
+a:hover {
+	text-decoration: none;
+	outline: none;
+	color: $g_font_color;
+	cursor: pointer;
+}
+/* global reset end */
+
+/* util start */
+
+#loading-before-app {
+	font-size: 18px;
+}
+/* ================= loading-with-dot ===================== */
+.loading-with-dot {
+    display: inline-block;
+    width: 10px; 
+    min-height: 2px;
+    padding-right: 2px;
+    border-left: 2px solid currentColor; 
+    border-right: 2px solid currentColor;   
+    background-color: currentColor; 
+    background-clip: content-box;
+    box-sizing: border-box;
+    -webkit-animation: dot 4s infinite step-start both;
+    animation: dot 4s infinite step-start both;
+    *zoom: expression(this.innerHTML = '...'); /* IE7 */
+
+  &:before { content: '...'; } /* IE8 */
+  &::before { content: ''; }
+}
+
+:root .loading-with-dot { margin-left: 2px; padding-left: 2px; } /* IE9+ */
+
+@-webkit-keyframes dot {
+    25% { border-color: transparent; background-color: transparent; }          /* zero point */
+    50% { border-right-color: transparent; background-color: transparent; }    /* one point */
+    75% { border-right-color: transparent; }                                   /* two points */
+}
+
+@keyframes dot {
+    25% { border-color: transparent; background-color: transparent; }          /* zero point */
+    50% { border-right-color: transparent; background-color: transparent; }    /* one point */
+    75% { border-right-color: transparent; }                                   /* two points */
+}
+
+/* ==================== /. loading-with-dot =========================== */
+.area {
+	display: inline-block;
+	vertical-align: top;
+}
+/* float */
+.fl{float: left;}
+.fr{float: right;}
+/* 单行文字溢出省略号显示*/
+.text-overflow{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+/* Fixed */
+.fixed-top{position: fixed;top: 0;bottom: auto;z-index: 99999;}
+.fixed-bottom{position: fixed;top: auto;bottom: 0;margin-bottom: 1px;}
+/*  ul */
+.unstyled {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.hide {
+	display: none !important;
+}
+.show {
+	display: block !important;
+}
+.invisible {
+	visibility: hidden;
+}
+.text-hide, .hide-text {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+/* 块状元素水平居中 */
+.block-center{margin-left: auto; margin-right: auto;}
+
+/* custom page start */
+[ms-controller], .ms-controller, [ms-important], .ms-important {
+	visibility: hidden;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+// html {
+//	font-size: 1px; /* for rem, 100px, now */
+// }
+body {
+	font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; /* 字体优化 */
+	text-align: center;
+	background-color: $g_bgColor;
+	color: $g_font_color;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0;
+}
+
+/* -------------------------------------------------------
+ *  Spinner
+ *-------------------------------------------------------*/
+
+#loader {
+  position: absolute;
+  width: 100%;
+}
+
+#loader p {
+  padding-top: 80px;
+  margin-left: -.04rem;
+}
+
+.spinner {
+  margin: 200px auto;
+  width: .6rem;
+  height: .6rem;
+  position: relative;
+}
+
+.container1 > div, .container2 > div, .container3 > div {
+  width: .14rem;
+  height: .14rem;
+  background-color: #0088cc;
+
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+  animation: bouncedelay 1.2s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.container2 {
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.container3 {
+  -webkit-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
+}
+
+.circle1 { top: 0; left: 0; }
+.circle2 { top: 0; right: 0; }
+.circle3 { right: 0; bottom: 0; }
+.circle4 { left: 0; bottom: 0; }
+
+.container2 .circle1 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.container3 .circle1 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.container1 .circle2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.container2 .circle2 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.container3 .circle2 {
+  -webkit-animation-delay: -0.7s;
+  animation-delay: -0.7s;
+}
+
+.container1 .circle3 {
+  -webkit-animation-delay: -0.6s;
+  animation-delay: -0.6s;
+}
+
+.container2 .circle3 {
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
+
+.container3 .circle3 {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.container1 .circle4 {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.container2 .circle4 {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.container3 .circle4 {
+  -webkit-animation-delay: -0.1s;
+  animation-delay: -0.1s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+

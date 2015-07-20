@@ -1,0 +1,86 @@
+<div class="info" ms-controller="info">
+
+	<p>题目信息面板</p>
+
+	标题： {{title}}
+
+	关键点：{{keyPoint}} <br/>
+
+	<!-- audio start -->
+	<div class="audio" ms-if="keyPointRecord != undefined">
+
+		<audio ms-attr-src="http://oss.hizuoye.com/{{keyPointRecord}}" controls="controls">
+			您的浏览器不支持播放!
+		</audio>	 
+
+		<!--<h2>重点录音：</h2>-->
+		<!--<div class="scrubber"><div class="progress"></div><div class="loaded"></div></div>-->
+		<!--<div class="play-pause">-->
+			<!--    <div class="play"></div>-->
+			<!--    <div class="pause"></div>-->
+			<!--</div>-->
+		<!--<audio ms-attr-src="http://oss.hizuoye.com/{{keyPointRecord}}" preload="metadata" />-->
+
+	</div> 
+	<!-- audio div end -->
+
+	<br/>
+
+	<!--<a ms-attr-href="'#!/detail/' + homeworkId + '/q/1'">去做题</a>-->
+	<a ms-click="goNext(location.href.split('=')[1])">去做题</a>
+
+</div>
+
+<!--<script type="text/javascript" charset="utf-8">-->
+	<!--var $ = function(selector) {-->
+	<!--return document.querySelector(selector);-->
+	<!--}-->
+	<!--//点播放键开始执行function-->
+	<!--$('.play').addEventListener('click', function() {-->
+	<!--//如果已经有音频在播放了，就暂停它-->
+	<!--if($(".playing").length > 0){-->
+	<!--$('audio').pause();-->
+	<!--$('.playing .pause').style.display = 'none';-->
+	<!--$('.scrubber').style.display = 'none';-->
+	<!--$('.playing .play').style.display = 'block';-->
+	<!--$('.play-pause').classList.remove('playing');-->
+	<!--}-->
+	<!--//找到播放按钮所在的音频元素-->
+	<!--var audio = $('audio');-->
+	<!--//把播放按钮隐藏-->
+	<!--$(this).style.display = 'none';-->
+	<!--//显示暂停按钮，同时给父元素加上一个表示正在播放的class-->
+	<!--$('.play-pause').classList.add('playing');-->
+	<!--$('.pause').style.display = 'block';-->
+	<!--//开始播放音频-->
+	<!--audio.play();-->
+	<!--//控制显示播放进度和加载进度-->
+	<!--var time = timefomat(audio.duration);-->
+	<!--$(audio).addEventListener("timeupdate", function() {-->
+	<!--var c_time = timefomat(audio.currentTime);-->
+	<!--var z = audio.buffered.end(audio.buffered.length-1);-->
+	<!--$('.loaded').style.width = z / audio.duration*100 + '%';-->
+	<!--$('.progress').style.width = audio.currentTime / audio.duration * 100 + '%';-->
+	<!--}, false);-->
+	<!--$('.scrubber').style.display = 'block';-->
+	<!--}, false);-->
+
+	<!--//点击暂停按钮后执行的操作-->
+	<!--$('.pause').addEventListener('click', function() {-->
+	<!--var audio = $('audio');-->
+	<!--$(this).style.display = 'none';-->
+	<!--$('.play-pause').classList.remove('playing');-->
+	<!--$('.play').style.display = 'block';-->
+	<!--audio.pause();-->
+	<!--$('.scrubber').style.display = 'none';-->
+
+	<!--}, false);-->
+
+	<!--//一段简单的时间转换js-->
+	<!--function timefomat(time){if (time != null && time != ""){if (time < 60) {var s = Math.round(time);if(s<10){s = '0'+s;}time = '00:'+s;} else if (time > 60 && time < 3600) {var m = parseInt(time/60);var s = parseInt(time % 60);if(m<10){m='0'+m;};if(s<10){s='0'+s;};time = m + ":" + s;} else if (time >= 3600 && time < 86400){-->
+
+	<!--var h = parseInt(time/3600);-->
+	<!--var m = parseInt(time % 3600 / 60);var s = parseInt(time % 3600 % 60 % 60);if(h<10){h='0'+m;};if(m<10){m='0'+m;};if(s<10){s='0'+s;};time = h + ":" + m + ":" + s;}return time;}}-->
+
+<!--</script>-->
+
