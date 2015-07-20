@@ -263,15 +263,6 @@ input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-  border: 0;
-  page-break-inside: avoid;
-}
-
 /* for root(html) rem, with different dpr attribute */
 @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
   html[ios="true"] {
@@ -283,14 +274,96 @@ img {
     font-size: 300px;
   }
 }
-a, a:hover {
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  page-break-inside: avoid;
+}
+
+/* a tag glabal set */
+a,
+a:active,
+a:visited,
+a:focus,
+a:hover {
   text-decoration: none;
+  outline: none;
   color: #747070;
   cursor: pointer;
 }
 
 /* global reset end */
 /* util start */
+#loading-before-app {
+  font-size: 18px;
+}
+
+/* ================= loading-with-dot ===================== */
+.loading-with-dot {
+  display: inline-block;
+  width: 10px;
+  min-height: 2px;
+  padding-right: 2px;
+  border-left: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  background-color: currentColor;
+  background-clip: content-box;
+  box-sizing: border-box;
+  -webkit-animation: dot 4s infinite step-start both;
+  animation: dot 4s infinite step-start both;
+  *zoom: expression(this.innerHTML = '...');
+  /* IE7 */
+  /* IE8 */
+}
+.loading-with-dot:before {
+  content: '...';
+}
+.loading-with-dot::before {
+  content: '';
+}
+
+:root .loading-with-dot {
+  margin-left: 2px;
+  padding-left: 2px;
+}
+
+/* IE9+ */
+@-webkit-keyframes dot {
+  25% {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  /* zero point */
+  50% {
+    border-right-color: transparent;
+    background-color: transparent;
+  }
+  /* one point */
+  75% {
+    border-right-color: transparent;
+  }
+  /* two points */
+}
+@keyframes dot {
+  25% {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  /* zero point */
+  50% {
+    border-right-color: transparent;
+    background-color: transparent;
+  }
+  /* one point */
+  75% {
+    border-right-color: transparent;
+  }
+  /* two points */
+}
+/* ==================== /. loading-with-dot =========================== */
 .area {
   display: inline-block;
   vertical-align: top;
@@ -366,6 +439,10 @@ a, a:hover {
 }
 
 /* custom page start */
+[ms-controller], .ms-controller, [ms-important], .ms-important {
+  visibility: hidden;
+}
+
 html, body {
   width: 100%;
   height: 100%;

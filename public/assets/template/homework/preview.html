@@ -1,85 +1,85 @@
 <!-- 具体一个题目 -->
 <div class="question" ms-controller="question">
 
-	<!-- 公用题干 -->
-	<p class="question-text">
-		题干:{{exercise.question}} <br/>	
-		<span class="description" ms-if="exercise.eType == 0">题目说明:{{exercise.description}}</span>
-	</p>
-	<!-- 公用题干 -->
+    <!-- 公用题干 -->
+    <p class="question-text">
+        题干:{{exercise.question}} <br/>  
+        <span class="description" ms-if="exercise.eType == 0">题目说明:{{exercise.description}}</span>
+    </p>
+    <!-- 公用题干 -->
 
-	<!-- 题目主干渲染区, 依据不同类型 start -->
+    <!-- 题目主干渲染区, 依据不同类型 start -->
 
-	<!-- 文字选择题-->
-	<div class="yo-list yo-list-group" ms-if="exercise.eType == 0">
-		<label class="item item-active" ms-repeat-item="exercise.choices">
-			<span class="mark flex">
-				{{item.title}}.{{item.content}}	
-			</span>
-			<div class="yo-checked yo-checked-g">
-				<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
-				<span class="type"></span>
-			</div>
-		</label>
-	</div>
-	<!-- 文字选择题-->
+    <!-- 文字选择题-->
+    <div class="yo-list yo-list-group" ms-if="exercise.eType == 0">
+        <label class="item item-active" ms-repeat-item="exercise.choices">
+            <span class="mark flex">
+                {{item.title}}.{{item.content}} 
+            </span>
+            <div class="yo-checked yo-checked-g">
+                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
+                <span class="type"></span>
+            </div>
+        </label>
+    </div>
+    <!-- 文字选择题-->
 
-	<!-- 图片选择题-->
-	<div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1">
-		<label class="item item-active" ms-repeat-item="exercise.choices">
-			<span class="mark flex">
-				<img ms-attr-src="item.content" />
-			</span>
-			<div class="yo-checked yo-checked-g">
-				<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
-				<span class="type"></span>
-			</div>
-		</label>
-	</div>
-	<!-- 图片选择题-->
+    <!-- 图片选择题-->
+    <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1">
+        <label class="item item-active" ms-repeat-item="exercise.choices">
+            <span class="mark flex">
+                <img ms-attr-src="item.content" />
+            </span>
+            <div class="yo-checked yo-checked-g">
+                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
+                <span class="type"></span>
+            </div>
+        </label>
+    </div>
+    <!-- 图片选择题-->
 
-	<!-- 填空题 -->
-	<div class="fill-in" ms-if="exercise.eType == 2">
-		<textarea ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
-		ds sd 
-		</textarea>
-		<p ms-visible="localAnswers[currentId - 1]">您填写的答案为：{{localAnswers[currentId - 1]}}</p>
-	</div>
-	<!-- 填空题 -->
+    <!-- 填空题 -->
+    <div class="fill-in" ms-if="exercise.eType == 2">
+        <textarea ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
+        ds sd 
+        </textarea>
+        <p ms-visible="localAnswers[currentId - 1]">您填写的答案为：{{localAnswers[currentId - 1]}}</p>
+    </div>
+    <!-- 填空题 -->
 
-	<!-- 录音题-->
-	<div class="mp3" ms-if="exercise.eType == 3">
+    <!-- 录音题-->
+    <div class="mp3" ms-if="exercise.eType == 3">
 
-	</div>
-	<!-- 录音题-->
+    </div>
+    <!-- 录音题-->
 
-	<!-- 题目主干渲染区, 依据不同类型 end -->
+    <!-- 题目主干渲染区, 依据不同类型 end -->
 
-	<!-- 检查按钮 -->
-	<div ms-click="checkAnswer()" ms-if="right == null" class="tap-btn next">
-			<span class="icon yo-ico">&#xf078;</span>
-	</div>
-	<!-- 检查按钮 -->
+    <!-- 检查按钮 -->
+    <div ms-click="checkAnswer()" ms-if="right == null" class="tap-btn next">
+            <span class="icon yo-ico">&#xf078;</span>
+    </div>
+    <!-- 检查按钮 -->
 
-	<!-- 答案和分析面板 -->
-	<!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
-	<div class="answer-panel" ms-visible=" localAnswers.length >= currentId || right != null ">
-		<div class="answer" ms-if="exercise.eType != 3">
-			<span class="right" ms-if="right == true">正确! </span>
-			<span class="right" ms-if="right != true">错误! </span>
-			<p ms-if="exercise.analysis != ''">解析:{{exercise.analysis}}</p>
-		</div>
-		<div class="answer" ms-if="exercise.eType == 3">
-			<span class="save">录音已保存，请继续操作!</span>
-		</div>
-		<div class="tap-btn" ms-click="next()" ms-if="hasNext">
-			<span class="icon yo-ico icon-next">&#xf079;</span>
-		</div>
-		<div class="tap-btn" ms-click="submit()" ms-if="!hasNext">
-			<span class="icon yo-ico">&#xf078;</span>
-		</div>
-	</div>
-	<!-- 答案和分析面板 -->
+    <!-- 答案和分析面板 -->
+    <!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
+    <div class="answer-panel" ms-visible=" localAnswers.length >= currentId || right != null ">
+        <div class="answer" ms-if="exercise.eType != 3">
+            <span class="right" ms-if="right == true">正确! </span>
+            <span class="right" ms-if="right != true">错误! </span>
+            <p ms-if="exercise.analysis != ''">解析:{{exercise.analysis}}</p>
+        </div>
+        <div class="answer" ms-if="exercise.eType == 3">
+            <span class="save">录音已保存，请继续操作!</span>
+        </div>
+        <div class="tap-btn" ms-click="next()" ms-if="hasNext">
+            <span class="icon yo-ico icon-next">&#xf079;</span>
+        </div>
+        <div class="tap-btn" ms-click="submit()" ms-if="!hasNext">
+            <span class="icon yo-ico">&#xf078;</span>
+        </div>
+    </div>
+    <!-- 答案和分析面板 -->
 
 </div>
 

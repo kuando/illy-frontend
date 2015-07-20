@@ -1,54 +1,54 @@
 define([], function() {
 
-	var limit = 6; // 一次抓取多少数据
+    var limit = 6; // 一次抓取多少数据
 
-	var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcGVuaWQiOiJvUDNYQ3ZqY1VjTUJ1UmVxUkNaUjNEeFY3bVpBIiwiX2lkIjoiNTU2NDRmZjczYTJlMGZlYTI5OTk0ODEwIiwic2Nob29sSWQiOiI1NTYzZWJiNGJkZTU2ZWYyNmQ5N2UzZDMiLCJpYXQiOjE0MzY0OTk3MTd9.IK7vohL_Sc2zTJRPZJJ7uAMHoouBdQ06qCY_sfWz6Vw' || localStorage.getItem('illy-token');
-	var apiUrl = 'http://api.hizuoye.com/';
-	var categoryId = mmState.currentState.name;
+    var token = localStorage.getItem('illy-token');
+    var apiUrl = avalon.illyGlobal && avalon.illyGlobal.token;
+    var categoryId = mmState.currentState.name;
 
     var list = avalon.define({
-		$id: "list",
+        $id: "list",
         lists: [], 
         offset: 0, // inner var, to fetch data with offset and limit
 
-		showMore: function(e) {
-			e.preventDefault();
-			var page = 2;
-			list.offset = list.offset + limit * (page - 1);
-			// fetch more data and rerendered(maybe not good, should append)
-			// ...
-			$http.ajax({
-				method: "",
-				url: "api/list.json",
-				data: {
-					//offset: 6,
-					offset: list.offset
-					//limit: 6
-				},
-				beforeSend: function(xhr) {
+        showMore: function(e) {
+            e.preventDefault();
+            var page = 2;
+            list.offset = list.offset + limit * (page - 1);
+            // fetch more data and rerendered(maybe not good, should append)
+            // ...
+            $http.ajax({
+                method: "",
+                url: "api/list.json",
+                data: {
+                    //offset: 6,
+                    offset: list.offset
+                    //limit: 6
+                },
+                beforeSend: function(xhr) {
 
-				},
-				headers: {
-					'Authorization': 'Bearer ' + token
-				},
-				dataType: "json",
-				success: function(res) {
-					//avalon.log("list.js ajax success" + res);
-					list.lists = list.lists.concat(res);
-					document.body.classList.remove('a-bounceinT');
-					setTimeout(function() {
-						document.body.classList.add('a-bounceinT');
-					}, 1)
-				},
-				error: function(res) {
-					alert("list.js ajax error");
-					console.log("ajax error" + res);
-				},
-				ajaxFail: function(res) {
-					console.log("ajaxFail" + res);
-				}
-			})
-		}
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(res) {
+                    //avalon.log("list.js ajax success" + res);
+                    list.lists = list.lists.concat(res);
+                    document.body.classList.remove('a-bounceinT');
+                    setTimeout(function() {
+                        document.body.classList.add('a-bounceinT');
+                    }, 1)
+                },
+                error: function(res) {
+                    alert("list.js ajax error");
+                    console.log("ajax error" + res);
+                },
+                ajaxFail: function(res) {
+                    console.log("ajaxFail" + res);
+                }
+            })
+        }
     });
 
     //list.$watch("currentPage", function(categories) {
@@ -62,36 +62,36 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-			avalon.log("list.html onEnter");
-			$http.ajax({
-				method: "",
-				url: "api/list.json?limit=6",
-				data: {
-					offset: 6,
-					//limit: 6
-				},
-				beforeSend: function(xhr) {
+            avalon.log("list.html onEnter");
+            $http.ajax({
+                method: "",
+                url: "api/list.json?limit=6",
+                data: {
+                    offset: 6,
+                    //limit: 6
+                },
+                beforeSend: function(xhr) {
 
-				},
-				headers: {
-					'Authorization': 'Bearer ' + token
-				},
-				dataType: "json",
-				success: function(res) {
-					list.lists = res; //first fetch data
-				},
-				error: function(res) {
-					avalon.log("ajax error" + res);
-				},
-				ajaxFail: function(res) {
-					avalon.log("ajaxFail" + res);
-				}
-			})
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(res) {
+                    list.lists = res; //first fetch data
+                },
+                error: function(res) {
+                    avalon.log("ajax error" + res);
+                },
+                ajaxFail: function(res) {
+                    avalon.log("ajaxFail" + res);
+                }
+            })
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-		}
+        }
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = []
     });

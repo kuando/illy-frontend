@@ -53,7 +53,7 @@
                 // location.href = next + '.html?token=' + xhr.responseText;
                 if ( localStorage && localStorage.getItem ) {
                     localStorage.setItem('illy-token', xhr.responseText);
-                    location.href = next + '.html'; // pure url
+                    location.replace(next + '.html'); // pure url
                 } else {
                     console.error('不支持本地存储，token获取不到');
                     alert('localStorage not support, no token');
