@@ -10,6 +10,7 @@ define([], function() {
         startTime: 0,
         endTime: 0,
         localId: '',
+        timeOut: 'timeout',
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
             alert("倒计时10秒！");
@@ -33,7 +34,7 @@ define([], function() {
         },
         startRecord: function() {
             wx.startRecord();
-            var startTime = Date.now; // 记录开始录音时间，便于过长提示或者太短的舍弃
+            var startTime = Date.now(); // 记录开始录音时间，便于过长提示或者太短的舍弃
             record.startTime = startTime;
 
             // 开始录音时就要注册这个函数，走到这就说明超时了，没点停止就自动完成, 2号获取路径
@@ -52,11 +53,11 @@ define([], function() {
         },
         stopRecord: function() {
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
-            clearTimeout(record.timeout);
-            var endTime = Date.now;
+            clearTimeout(record.timeOut);
+            var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
-            if (duration < 5000) { // 小于五秒
+            if (duration < 5) { // 小于五秒
                 alert('对不起，录制时间过短，请重新录制！');
             } else { // 正常结束，取结果, 1号获取路径
                 wx.stopRecord({
@@ -72,8 +73,8 @@ define([], function() {
             var localId = record.localId;
             if (localId == '') {
                 alert("录制不成功，请重试！");
-                console.error('no localId');
-                console.table(record);
+                console.log('no localId');
+                console.log(record);
                 return ;
             }
             wx.playVoice({
@@ -84,8 +85,8 @@ define([], function() {
             var localId = record.localId;
             if (localId == '') {
                 alert('上传失败，没有localId');
-                console.error('上传失败，没有localId, localId为：' + localId);
-                console.table(record); // print global record array
+                console.log('上传失败，没有localId, localId为：' + localId);
+                console.log(record); // print global record array
                 return;
             }
             wx.uploadVoice({
@@ -99,7 +100,7 @@ define([], function() {
         },
         checkAnswer: function() { // check answer and collect info for Collect
             if (question.localAnswers.length >= question.currentId) {
-                console.error("不可更改答案!");
+                console.log("不可更改答案!");
                 return;
             }
             //avalon.log("check answer");
@@ -111,6 +112,7 @@ define([], function() {
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
                 var audioAnswer = question.userAnswer;
                 detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
+                question.localAnswers.push(audioAnswer); // bug fix, also need push
                 return;
             }
             var answers = document.querySelectorAll('.question input[type="radio"]');
@@ -162,10 +164,10 @@ define([], function() {
             question.userAnswer = ''; // 重置用户答案为空，防止影响下一题
             
             // 过场动画
-            setTimeout(function() {
-                rootView && rootView.classList.toggle(question_view_ani);
-                questionView && questionView.classList.toggle(question_view_ani);
-            }, 16)
+            //setTimeout(function() {
+            //    rootView && rootView.classList.toggle(question_view_ani);
+            //    questionView && questionView.classList.toggle(question_view_ani);
+            //}, 16)
             
             question.right = null; // 重置题目对错标记
             //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿
