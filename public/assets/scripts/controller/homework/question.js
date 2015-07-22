@@ -22,7 +22,7 @@ define([], function() {
         $id: "question",
         homeworkId: avalon.vmodels.detail.homeworkId, // 直接取
         exercise: {},
-        total: avalon.vmodels.detail.exercises.length,
+        total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
         currentId: 0, // current exerciseId, 当前题id
         localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了
         hasNext: false,
@@ -59,6 +59,9 @@ define([], function() {
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
             if (duration < 5) { // 小于五秒
                 alert('对不起，录制时间过短，请重新录制！');
+                wx.stopRecord({
+                    // do nothing, just stop, fix bug
+                });
             } else { // 正常结束，取结果, 1号获取路径
                 wx.stopRecord({
                     success: function(res) {
@@ -99,6 +102,7 @@ define([], function() {
             })
         },
         checkAnswer: function() { // check answer and collect info for Collect
+            avalon.log('in check');
             if (question.localAnswers.length >= question.currentId) {
                 console.log("不可更改答案!");
                 return;
@@ -106,7 +110,7 @@ define([], function() {
             //avalon.log("check answer");
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
-            if (question.exercise.eType == 3) {
+            if (question.exercise && question.exercise.eType == 3) {
                 // push and return. (id, answer)
                 question.right = true; // right it for next
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
@@ -123,7 +127,7 @@ define([], function() {
                 }
             }
             // update the right attr, question.right = null for default, 不是null说明这题做过了，直接显示答案（处理后退的）
-            if (question.exercise.answer === question.userAnswer.trim()) {
+            if ( question.exercise && (question.exercise.answer === question.userAnswer.trim()) ) {
                 question.right = true;
                 //alert("答对了");
             } else {
@@ -141,6 +145,7 @@ define([], function() {
             //avalon.log("question submit");
             // 1.通知父vm的submit方法发送统计数据， 
             // removed!!! 2.自身跳转至result页面, removed, put in detail submit success fn to go
+            alert('alert');
             avalon.vmodels.detail.submit();
             //avalon.router.go('app.detail.result', {homeworkId: question.homeworkId});
         } // submit end
@@ -161,6 +166,7 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
+            alert('total' + question.total);
             question.userAnswer = ''; // 重置用户答案为空，防止影响下一题
             
             // 过场动画
@@ -176,12 +182,13 @@ define([], function() {
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             question.exercise = exercises[id]; // yes
-            //question.total = exercises.length; // yes, 直接设置
+            question.total = avalon.vmodels.detail.exercises.length; // yes, 直接设置
             if (params.questionId < question.total) { // key! to next or submit
                 question.hasNext = true;
             } else {
                 question.hasNext = false;
             }
+            alert(question.hasNext);
             //avalon.log(params); 
             //avalon.log(question.exercise);
         }
