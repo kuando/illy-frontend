@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> login </title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    username:<input type="text" class="username" name="username" required />
+    <br/> 
+    password:<input type="password" class="password" name="password" required />
+    <button onclick="toApp()">submit</button>
+
+</body>
+<script>
+function createXHR(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    } else {
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+    }
+    return xhr;
+}
+var url = window.location.href;
+var re = /([?&])(openid|next)=(\w+)/g;
+var query = {},
+    matches;
+
+while (matches = re.exec(url)) {
+    query[matches[2]] = matches[3];
+}
+
+var openid = query.openid;
+var next = query.next; // to describee a state to render spa... maybe need a config map
+
+function toApp() {
+
+    var username = document.querySelector('.username').value;
+    var password = document.querySelector('.password').value;
+
+    var xhr = createXHR("POST", 'http://api.hizuoye.com/api/v1/public/bind');
+    if (!xhr) {
+        alert('CORS not supported');
+    }
+    // Response handlers.
+    xhr.onload = function() {
+        var status = xhr.status;
+        if (status === 200) {
+            // location.href = next + '.html?token=' + xhr.responseText;
+            if (localStorage && localStorage.getItem) {
+                localStorage.setItem('illy-token', xhr.responseText);
+                location.replace(next + '.html'); // pure url
+            }
+        } else {
+            alert("request state error not 200 ok" + xhr.response);
+            alert("status " + status);
+        }
+    };
+
+    xhr.onerror = function() {
+        alert('Woops, there was an error making the request.');
+    };
+
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.send("username=" + username + "&password=" + password + "&openid=" + openid);
+}
+</script>
+
+</html>
