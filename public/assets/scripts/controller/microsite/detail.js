@@ -1,7 +1,12 @@
 define([], function() {
 
+    // get config
+    var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
+    var token = avalon.illyGlobal && avalon.illyGlobal.token;
+    
     var detail = avalon.define({
         $id: "detail",
+        articleId: 1,
         title: "",
         content: "",
         created: "2015-07-09",
@@ -16,18 +21,19 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-            var articleId = params.articleId !== "" ? params.articleId : 0
+            detail.articleId = params.articleId !== "" ? params.articleId : 0;
             return $http.ajax({
-                url: "api/detail.json",
-                //data: {
-                //    action: "detail",
-                //    articleId: articleId
-                //},
+                url: apiBaseUrl + "/api/v1/posts/" + detail.articleId,
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
                 dataType: "json",
                 success: function(json) {
                     detail.title = json.title;
-                    detail.articleId = json.articleId;
                     detail.content = json.content;
+                    detail.created = json.created;
+                    detail.shareCount = json.shareCount;
+                    detail.visitCount = json.visitCount;
                 }
             })
         }

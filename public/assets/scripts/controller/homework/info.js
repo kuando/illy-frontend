@@ -2,7 +2,7 @@ define([], function() {
     
     // review in 201507221010
 
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl ) || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
 
     // 题目要求视图,渲染题目信息面板
@@ -70,7 +70,7 @@ define([], function() {
             //avalon.log("info.js onBeforeUnload fn");
         }
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = ['']
+        $ctrl.$vmodels = []
     });
 
 });

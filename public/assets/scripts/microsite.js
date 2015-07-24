@@ -37,6 +37,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         return avalon.vmodels && avalon.vmodels[vm] && avalon.vmodels[vm].$model; // for strong
     }
 
+    // avalon global static method, get element
+    avalon.$ = function(selector) {
+        return document.querySelector(selector);
+    }
+
     /* global set end */
 
     /* wxsdk start */
@@ -192,14 +197,14 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
     .state("site.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
-        url: "{categoryId}",
+        url: "{categoryName}/Id/{categoryId}",
         views: {
             "": {
                 templateUrl: "assets/template/microsite/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/list.js", // 指定控制器地址
-                ignoreChange: function(changeType) { 
-                    return !!changeType;
-                } // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
+                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址
+                //,ignoreChange: function(changeType) { 
+                //    return !!changeType;
+                //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
             }
         }
     })
@@ -227,14 +232,19 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
     */
 
+    // action bar title map
+    var acTitle = {
+        'index': '首页',
+        'list': '文章列表',
+        'detail': '内容详情'
+    }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("site.index", function() {
-                avalon.log("Error!, Redirect to index!");
-            });
+            avalon.router.go("site.index"); 
+            avalon.log("Error!, Redirect to index!");
         }, // 打开错误配置
         onBeforeUnload: function() {
             // avalon.log("0 onBeforeUnload" + arguments);
@@ -262,6 +272,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         onLoad: function() { 
             // avalon.log("3 onLoad" + root.currentPage);
             root.currentPage = mmState.currentState.stateName.split(".")[1];
+            
+            // set title of action bar
+            var state = root.currentPage;
+            //root.title = acTitle[state];
+            if (state == 'index') {
+                root.title = acTitle.index;
+            } else if (state == 'detail') {
+                root.title = acTitle.detail;
+            }
+
             var loader = document.getElementById('loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()

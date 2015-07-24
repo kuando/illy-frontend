@@ -54,7 +54,9 @@ define([], function() {
                     }, 16)
                 },
                 error: function(res) {
-                    console.error(res);
+                    console.log(res);
+                    alert("系统错误, 请稍后再试!");
+                    avalon.router.go('app.list'); // go list page
                 }
             })
         }, // end of submit

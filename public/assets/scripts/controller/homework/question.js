@@ -10,7 +10,7 @@ define([], function() {
         startTime: 0,
         endTime: 0,
         localId: '',
-        timeOut: 'timeout',
+        timeout: 'timeout',
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
             alert("倒计时10秒！");
@@ -47,13 +47,13 @@ define([], function() {
                 }
             })
             // 同时设置ui来提示快到时间了
-                record.timeOut = setTimeout(function() {
+            record.timeout = setTimeout(function() {
                 record.showTimeOutLayer();
             }, 49000) // 49秒
         },
         stopRecord: function() {
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
-            clearTimeout(record.timeOut);
+            record.timeout && clearTimeout(record.timeout); // for strong
             var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
@@ -87,7 +87,7 @@ define([], function() {
         uploadRecord: function() {
             var localId = record.localId;
             if (localId == '') {
-                alert('上传失败，没有localId');
+                alert('对不起,上传失败!');
                 console.log('上传失败，没有localId, localId为：' + localId);
                 console.log(record); // print global record array
                 return;
@@ -102,7 +102,6 @@ define([], function() {
             })
         },
         checkAnswer: function() { // check answer and collect info for Collect
-            avalon.log('in check');
             if (question.localAnswers.length >= question.currentId) {
                 console.log("不可更改答案!");
                 return;
@@ -111,6 +110,8 @@ define([], function() {
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
             if (question.exercise && question.exercise.eType == 3) {
+                question.stopRecord(); // checkAnswer click, means record must stop
+                // do sth to check record or not
                 // push and return. (id, answer)
                 question.right = true; // right it for next
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
@@ -145,7 +146,6 @@ define([], function() {
             //avalon.log("question submit");
             // 1.通知父vm的submit方法发送统计数据， 
             // removed!!! 2.自身跳转至result页面, removed, put in detail submit success fn to go
-            alert('alert');
             avalon.vmodels.detail.submit();
             //avalon.router.go('app.detail.result', {homeworkId: question.homeworkId});
         } // submit end
@@ -166,8 +166,11 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-            alert('total' + question.total);
             question.userAnswer = ''; // 重置用户答案为空，防止影响下一题
+            // clear local record
+            record.startTime = '';
+            record.endTime = '';
+            record.localId = '';
             
             // 过场动画
             //setTimeout(function() {
@@ -182,13 +185,12 @@ define([], function() {
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             question.exercise = exercises[id]; // yes
-            question.total = avalon.vmodels.detail.exercises.length; // yes, 直接设置
+            question.total = avalon.vmodels.detail.exercises.length; // yes, must动态设置
             if (params.questionId < question.total) { // key! to next or submit
                 question.hasNext = true;
             } else {
                 question.hasNext = false;
             }
-            alert(question.hasNext);
             //avalon.log(params); 
             //avalon.log(question.exercise);
         }

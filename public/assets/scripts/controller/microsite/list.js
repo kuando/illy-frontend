@@ -3,31 +3,24 @@ define([], function() {
     var limit = 6; // 一次抓取多少数据
 
     var token = localStorage.getItem('illy-token');
-    var apiUrl = avalon.illyGlobal && avalon.illyGlobal.token;
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     var categoryId = mmState.currentState.name;
 
     var list = avalon.define({
         $id: "list",
         lists: [], 
+        categoryId: 111111111111111111111111,
+        title: 'title',
         offset: 0, // inner var, to fetch data with offset and limit
-
+        btnShowMore: true,
         showMore: function(e) {
             e.preventDefault();
             var page = 2;
             list.offset = list.offset + limit * (page - 1);
-            // fetch more data and rerendered(maybe not good, should append)
-            // ...
+
             $http.ajax({
                 method: "",
-                url: "api/list.json",
-                data: {
-                    //offset: 6,
-                    offset: list.offset
-                    //limit: 6
-                },
-                beforeSend: function(xhr) {
-
-                },
+                url: apiBaseUrl + '/api/v1/categories/' + list.categoryId + '/posts',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -38,7 +31,7 @@ define([], function() {
                     document.body.classList.remove('a-bounceinT');
                     setTimeout(function() {
                         document.body.classList.add('a-bounceinT');
-                    }, 1)
+                    }, 16)
                 },
                 error: function(res) {
                     alert("list.js ajax error");
@@ -51,10 +44,6 @@ define([], function() {
         }
     });
 
-    //list.$watch("currentPage", function(categories) {
-    //    avalon.router.go("site.list", {categories: categories})
-    //});
-
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
@@ -63,16 +52,32 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
             avalon.log("list.html onEnter");
+            list.categoryId = params.categoryId; // get postId
+            avalon.vmodels.root.title = params.categoryName; // set action bar title
+            if (list.categoryId == 'hots') {
+                list.btnShowMore = false;
+                $http.ajax({
+                    url: apiBaseUrl + '/api/v1/posts/hot?limit=10',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        list.lists = res; //first fetch data
+                    },
+                    error: function(res) {
+                        avalon.log("site list ajax error" + res);
+                    },
+                    ajaxFail: function(res) {
+                        avalon.log("site list ajaxFail" + res);
+                    }
+                })
+                return ;
+            }
+            list.btnShowMore = true; // otherwise, show it
             $http.ajax({
                 method: "",
-                url: "api/list.json?limit=6",
-                data: {
-                    offset: 6,
-                    //limit: 6
-                },
-                beforeSend: function(xhr) {
-
-                },
+                url: apiBaseUrl + "/api/v1/categories/" + list.categoryId + '/posts',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -81,10 +86,10 @@ define([], function() {
                     list.lists = res; //first fetch data
                 },
                 error: function(res) {
-                    avalon.log("ajax error" + res);
+                    avalon.log("site list ajax error" + res);
                 },
                 ajaxFail: function(res) {
-                    avalon.log("ajaxFail" + res);
+                    avalon.log("site list ajaxFail" + res);
                 }
             })
         }

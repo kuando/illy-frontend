@@ -163,7 +163,7 @@ $next_radius: $answer_panel_height / 2;
     text-align: left;
 
     label.item {
-        width: 47%;
+        width: 46%;
         display: inline-block;
         padding: .05rem;
         margin: .05rem .05rem;
@@ -182,9 +182,40 @@ $next_radius: $answer_panel_height / 2;
     }
 }
 
+/* rewrite thumb, remove it */
+.yo-range > input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.0002rem;
+  height: 0.2rem;
+  position: relative;
+  border: 0;
+  border-radius: 50%;
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+}
 .question {
     padding: .05rem;
     text-align: left;
+
+    .yo-range {
+        padding: 0;
+        background-color: transparent;
+
+        input {
+            margin-right: .1rem;
+        }
+
+    }
+    .yo-range > input[type="range"] {
+        background-color: transparent;
+    }
+
+    .yo-range > input[type="range"]::-webkit-slider-thumba {
+        width: .0001rem;
+    }
 
     .question-text {
         padding: .05rem;
@@ -213,7 +244,6 @@ $next_radius: $answer_panel_height / 2;
                 font-size: .16rem;
                 color: #666;
                 display: inline-block;
-                width: 11%;
                 vertical-align: top;
             }
 

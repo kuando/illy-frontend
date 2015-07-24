@@ -900,11 +900,13 @@ a:hover {
 html, body {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  /* 字体优化 */
+  /*font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; [> 字体优化 <]*/
+  font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;
   text-align: center;
   background-color: #f9f5f5;
   color: #747070;
@@ -1238,7 +1240,7 @@ h1, h2, h3, h4, h5, h6, p {
   text-align: left;
 }
 .illy-img-list label.item {
-  width: 47%;
+  width: 46%;
   display: inline-block;
   padding: .05rem;
   margin: .05rem .05rem;
@@ -1255,9 +1257,37 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 5px;
 }
 
+/* rewrite thumb, remove it */
+.yo-range > input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.0002rem;
+  height: 0.2rem;
+  position: relative;
+  border: 0;
+  border-radius: 50%;
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+}
+
 .question {
   padding: .05rem;
   text-align: left;
+}
+.question .yo-range {
+  padding: 0;
+  background-color: transparent;
+}
+.question .yo-range input {
+  margin-right: .1rem;
+}
+.question .yo-range > input[type="range"] {
+  background-color: transparent;
+}
+.question .yo-range > input[type="range"]::-webkit-slider-thumba {
+  width: .0001rem;
 }
 .question .question-text {
   padding: .05rem;
@@ -1286,7 +1316,6 @@ h1, h2, h3, h4, h5, h6, p {
   font-size: .16rem;
   color: #666;
   display: inline-block;
-  width: 11%;
   vertical-align: top;
 }
 .question .answer-panel .answer .save {

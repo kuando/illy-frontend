@@ -41,7 +41,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         return avalon.vmodels && avalon.vmodels[vm] && avalon.vmodels[vm].$model; // for strong
     }
 
-    // avalon global static method, selector !
+    // avalon global static method, get element
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     }
@@ -151,6 +151,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         title: "我是标题，可变", // 每一页action bar的标题    
         back: function() {
             history.go(-1);
+            avalon.$('[avalonctrl="root"]').classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani);
         }
     });
 
@@ -263,9 +264,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     avalon.state.config({ 
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.navigate("app.list", function() {
-                avalon.log("Error!, Redirect to index!");
-            });
+            avalon.router.navigate("app.list");
+            avalon.log("Error!, Redirect to index!");
         }, 
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
             // avalon.log("0 onBeforeUnload" + arguments);
@@ -314,6 +314,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); // for strong
+            avalon.$('[avalonctrl="root"]').classList.remove(avalon.illyGlobal.viewani);
         },
         onViewEnter: function(newNode, oldNode) {
             //avalon(oldNode).animate({
