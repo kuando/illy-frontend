@@ -215,6 +215,7 @@ $next_radius: $answer_panel_height / 2;
     .answer-panel {
         display: none;
         position: fixed;
+        left: 0;
         top: 100%;
         width: 100%;
         min-height: $answer_panel_height;

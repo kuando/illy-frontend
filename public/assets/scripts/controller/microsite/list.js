@@ -14,6 +14,7 @@ define([], function() {
         offset: 0, // inner var, to fetch data with offset and limit
         btnShowMore: true,
         showMore: function(e) {
+            alert(1);
             e.preventDefault();
             var page = 2;
             list.offset = list.offset + limit * (page - 1);
@@ -53,7 +54,7 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
             //avalon.log("list.html onEnter in Time: " + Date.now());
             list.categoryId = params.categoryId; // get postId
-            avalon.vmodels.root.title = params.categoryName; // set action bar title
+            avalon.vmodels.root.title = params.categoryName; // set action bar title again
             if (list.categoryId == 'hots') {
                 list.btnShowMore = false;
                 $http.ajax({

@@ -18,7 +18,8 @@ define([], function() {
             var endTime = Date.now();
             avalon.appRenderedTime = endTime;
             avalon.appTotalTime = avalon.appRenderedTime - avalon.appInitTime;
-            avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime);
+            // only first in will log
+            (avalon.appTotalTime < 15000) && avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime);
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

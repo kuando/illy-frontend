@@ -147,9 +147,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         title: "", // 每一页action bar的标题   
         back: function() {
             history.go(-1);
-            setTimeout(function() { // for strong
-                avalon.router.go('site.index');
-            }, 300)
         }
     });
 
@@ -200,7 +197,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
     .state("site.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
-        url: "{categoryName}/Id/{categoryId}",
+        //url: "{categoryName}/Id/{categoryId}",
+        url: "{categoryId}",
         views: {
             "": {
                 templateUrl: "assets/template/microsite/list.html", // 指定模板地址
@@ -281,6 +279,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             //root.title = acTitle[state];
             if (state == 'index') {
                 root.title = acTitle.index;
+            } else if (state == 'list') {
+                root.title = acTitle.list;
             } else if (state == 'detail') {
                 root.title = acTitle.detail;
             }

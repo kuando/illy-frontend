@@ -1158,70 +1158,6 @@ audio {
 }
 
 /* common item end */
-/* audio player start */
-.play, .pause {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url(../images/audio_play.png) right center no-repeat;
-}
-
-.pause {
-  background: url(../images/audio_pause.png) right center no-repeat;
-  display: none;
-}
-
-.scrubber {
-  position: absolute;
-  bottom: 0;
-  height: 6px;
-  width: 100%;
-  left: 0;
-  margin: 0;
-  background: #cecece;
-  border: 0;
-  display: none;
-}
-
-.progress {
-  background: #4878b0;
-  width: 0;
-  height: 6px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 2;
-}
-
-.loaded {
-  background: #abc1db;
-  width: 0;
-  height: 6px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-}
-
-.play-pause {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.playing .scrubber {
-  display: block;
-}
-
-.playing {
-  background: url(../images/alpha_black20.png);
-}
-
-/* audio player end */
 /* detail start */
 .detail {
   font-size: .18rem;
@@ -1301,6 +1237,7 @@ audio {
 .question .answer-panel {
   display: none;
   position: fixed;
+  left: 0;
   top: 100%;
   width: 100%;
   min-height: 1.5rem;
