@@ -33,23 +33,39 @@ define([], function() {
     });
 
     return avalon.controller(function($ctrl) {
-        // 视图渲染后，意思是avalon.scan完成
-        $ctrl.$onRendered = function() {
-            avalon.log("index.js onRendered fn" + Date.now());
-            avalon.$('#slider').style.display = 'none';
-            setTimeout(function() {
-                $('#slider').slider({
-                    loop: true
-                })
-            }, 300)
-            $('#slider').show();
-        }
         // 进入视图
         $ctrl.$onEnter = function() {
-            avalon.log("index.js onEnter callback" + Date.now());
+            //avalon.log("index.js onEnter callback" + Date.now());
             index.fetchData('/api/v1/posts/slider', {}, 'sliders');
             index.fetchData('/api/v1/posts/hot?limit=3', {}, 'hots'); // three articles
             index.fetchData('/api/v1/categories/posts', {}, 'categories');
+        }
+        // 视图渲染后，意思是avalon.scan完成
+        $ctrl.$onRendered = function() {
+            avalon.log("index.js onRendered in Time: " + Date.now());
+            setTimeout(function() {
+                $('#slider').slider({
+                    loop: true,
+                    ready: function() {
+                        avalon.log('gmu sliders ready in Time: ' + Date.now());
+                        setTimeout(function() {
+                            avalon.$('#slider').style.visibility = 'visible';
+                        }, 16)
+                    },
+                    'done.dom': function() {
+                        avalon.log('gmu sliders done.dom in Time: ' + Date.now());
+                        setTimeout(function() { // 双保险
+                            $('#slider').slider({
+                                loop: true
+                            })
+                        }, 300)
+                    }
+                })
+            }, 300)
+            avalon.log('index page done!!! in Time: ' + Date.now());
+            var endTime = Date.now();
+            avalon.endTime = endTime;
+            avalon.log('total time: ' + (avalon.endTime - avalon.startTime));
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

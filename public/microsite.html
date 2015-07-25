@@ -37,9 +37,13 @@
     });
 
     require(['./scripts/microsite'], function(site) {
+        avalon.log('bootstrap file loaded in Time: ' + Date.now());
+        var startTime = Date.now();
+        avalon.startTime = startTime;
         site && site.init && site.init();
     })
     // rendered and bootstrap the page
+
 
     if ('addEventListener' in document) {
         document.addEventListener('DOMContentLoaded', function() {

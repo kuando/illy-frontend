@@ -147,6 +147,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         title: "", // 每一页action bar的标题   
         back: function() {
             history.go(-1);
+            setTimeout(function() { // for strong
+                avalon.router.go('site.index');
+            }, 300)
         }
     });
 

@@ -1593,6 +1593,7 @@ audio {
 /* slider start */
 #slider {
   font-size: .14rem;
+  visibility: hidden;
 }
 
 .ui-slider {

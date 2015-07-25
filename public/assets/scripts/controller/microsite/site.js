@@ -15,6 +15,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             //avalon.log("site.js says i am in onEnter fn, do some common init stuff...");
+            avalon.log('site.js onEnter and take charge of everything in Time: ' + Date.now());
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

@@ -1,6 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState", "./http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
     
-    // review code at 201507221140
+    // screen splash show time config
+    avalon.splashShowTime = 666; // ms, used in app.js
     
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
@@ -151,7 +152,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         title: "我是标题，可变", // 每一页action bar的标题    
         back: function() {
             history.go(-1);
-            avalon.$('[avalonctrl="root"]').classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani);
+            setTimeout(function() { // for strong
+                avalon.router.go('app.list');
+            }, 300)
         }
     });
 
@@ -256,7 +259,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         'list': "作业列表",
         'detail': '内容详情',
         'question': '题目详情',
-        'resutl': '作业结果'
+        'result': '作业结果'
     }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cachePage = [];
@@ -314,7 +317,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); // for strong
-            avalon.$('[avalonctrl="root"]').classList.remove(avalon.illyGlobal.viewani);
         },
         onViewEnter: function(newNode, oldNode) {
             //avalon(oldNode).animate({
@@ -336,6 +338,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             });
             //go!!!!!!!!!
             avalon.scan();
+
+            // performance listener, avalon take charge of everything and start to init the app
+            var startTime = Date.now(); 
+            avalon.appInitTime = startTime;
         }
     }
 

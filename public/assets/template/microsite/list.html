@@ -4,7 +4,7 @@
     <div class="item-wrapper">
         <div class="item area" ms-repeat-item="lists">
             <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
-            <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
+            <a ms-attr-href="'#!/detail/' + item._id" onClick="location.href = this.href" class="item-title area">{{item.title}}</a>
         </div>
     </div>
     <!-- item end -->
