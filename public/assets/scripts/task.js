@@ -16,15 +16,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com';
 
-    // clear localStorage with spec name
-    function clearLocalStorage(prefix) {
-        for (key in localStorage) {
-            if (key.indexOf(prefix) >= 0) {
-                localStorage.removeItem(key);
-            }
-        }
-    }
-
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
 
@@ -33,8 +24,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         token      : token,
 
         apiBaseUrl : apiBaseUrl,
-
-        clearLocalStorage: clearLocalStorage
 
     }
 
@@ -155,7 +144,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     var root = avalon.define({
         $id: "root",
         currentPage: "",
-        currentIsVisited: false,
         title: "", // 每一页action bar的标题   
         back: function() {
             history.go(-1);
@@ -168,17 +156,17 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
             "splash@": {
-                templateUrl: "assets/template/microsite/splash.html", // 指定模板地址
+                templateUrl: "assets/template/task/splash.html", // 指定模板地址
             },
             "loading@": {
                 templateUrl: "assets/template/loading.html", // 指定模板地址
             },
             "header@": {
-                templateUrl: "assets/template/microsite/header.html", // 指定模板地址
+                templateUrl: "assets/template/task/header.html", // 指定模板地址
             },
             "": {
-                templateUrl: "assets/template/microsite/site.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/site.js", // 指定控制器地址
+                templateUrl: "assets/template/task/site.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/site.js", // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
                 templateUrl: "assets/template/footer.html", // 指定模板地址
@@ -189,8 +177,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "", // "/" will make error, 就没这个页面了
         views: {
             "": {
-                templateUrl: "assets/template/microsite/index.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/index.js", // 指定控制器地址
+                templateUrl: "assets/template/task/index.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/index.js", // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 } // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
@@ -213,8 +201,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "{categoryId}",
         views: {
             "": {
-                templateUrl: "assets/template/microsite/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址
+                templateUrl: "assets/template/task/list.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/list.js" // 指定控制器地址
                 //,ignoreChange: function(changeType) { 
                 //    return !!changeType;
                 //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
@@ -225,8 +213,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "detail/{articleId}",
         views: {
             "": {
-                templateUrl: "assets/template/microsite/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/detail.js", // 指定控制器地址
+                templateUrl: "assets/template/task/detail.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/detail.js", // 指定控制器地址
             }
         }
     })
@@ -247,23 +235,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
     // action bar title map
     var acTitle = {
-        'index': '首页',
-        'list': '文章列表',
-        'detail': '内容详情'
+        'list': '任务列表',
+        'detail': '任务详情'
     }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
-    // deal with bad network condition for wait too long
-    function badNetworkHandler(delay) {
-        var delay = delay || 5000;
-        var badNetworkTimer = setTimeout(function() {
-            alert('Woops, bad network!');
-            history.go(-1);
-            loader && (loader.style.display = 'none'); // for strong, need ()
-        }, delay);
-        avalon.badNetworkTimer = badNetworkTimer;
-    }
-    
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
@@ -286,17 +262,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             for (var i = 0, len = cache.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
                 if (cache[i] === curid) {
                     visited = true;
-                    // not good usage... tested add in 20150727, for list's cache function
-                    //avalon.vmodels.list.visited = true;
                 }
             }
-            if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader, 同时处理网络状况太差的情况
+            if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader
                 loader.style.display = '';
-                badNetworkHandler();
-                // not good usage... tested add in 20150727, for list's cache function 
-                //avalon.vmodels.list && (avalon.vmodels.list.visited = false);  
             }
-            root.currentIsVisited = visited; // 页面是否加载过，挂载在root节点上
         },
         onLoad: function() { 
             // avalon.log("3 onLoad" + root.currentPage);
@@ -305,9 +275,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             // set title of action bar
             var state = root.currentPage;
             //root.title = acTitle[state];
-            if (state == 'index') {
-                root.title = acTitle.index;
-            } else if (state == 'list') {
+            if (state == 'list') {
                 root.title = acTitle.list;
             } else if (state == 'detail') {
                 root.title = acTitle.detail;
@@ -316,7 +284,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             var loader = document.getElementById('loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
-                avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer);
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             view && view.classList.add(g_viewload_animation); // for strong

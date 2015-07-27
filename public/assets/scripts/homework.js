@@ -268,7 +268,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
             avalon.router.navigate("app.list");
-            avalon.log("Error!, Redirect to index!");
         }, 
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
             // avalon.log("0 onBeforeUnload" + arguments);

@@ -27,30 +27,20 @@
     // Pass this if window is not defined yet
 }(typeof window !== "undefined" ? window : this, function(window, noGlobal) {
 
-    // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcGVuaWQiOiJvUDNYQ3ZqY1VjTUJ1UmVxUkNaUjNEeFY3bVpBIiwiX2lkIjoiNTU2NDRmZjczYTJlMGZlYTI5OTk0ODEwIiwic2Nob29sSWQiOiI1NTYzZWJiNGJkZTU2ZWYyNmQ5N2UzZDMiLCJpYXQiOjE0MzY0OTk3MTd9.IK7vohL_Sc2zTJRPZJJ7uAMHoouBdQ06qCY_sfWz6Vw'; 
-
     // inner function 
     function noop() {}
 
-    // inner function to getXHR, can extend to deal with old ie
-    var getXHR = function getXHR() {
-        var xhr = new XMLHttpRequest(); 
-        return xhr;
+    // inner key method, {} === {} is not ok, so must have this method, fuck
+    function isEmptyObject(obj) {
+        for (var name in obj) {
+            if (obj.hasOwnProperty(name)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // inner function, setHeaders from user settings.
-    function setHeaders(xhr, headers) {
-        // set others, if exists.
-        if (headers !== {}) {
-            var keys = Object.keys(headers);
-            for (var x = 0, len = keys.length; x < len; x++) {
-                var key = keys[x];
-                var val = headers[key]; // vars must in '[]' expression... fuck
-                xhr.setRequestHeader(keys[x], val); // key -- val
-            }
-        }
-    }
-
     // as named... ,dropped in 20150718
     //{
     //    key: "val",
@@ -69,16 +59,6 @@
         querystring = str.substring(0, str.length - 1);
 
         return querystring;
-    }
-
-    // inner key method, {} === {} is not ok, so must have this method, fuck
-    function isEmptyObject(obj) {
-        for (var name in obj) {
-            if (obj.hasOwnProperty(name)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     // inner function, deal with GET with data options
@@ -106,6 +86,25 @@
     // can extend to deal with old ie
     function parseJSON(str) {
         return JSON.parse(str + ""); // more safe
+    }
+
+    // set headers
+    function setHeaders(xhr, headers) {
+        // set others, if exists.
+        if ( !isEmptyObject(headers) ) {
+            var keys = Object.keys(headers);
+            for (var x = 0, len = keys.length; x < len; x++) {
+                var key = keys[x];
+                var val = headers[key]; // vars must in '[]' expression... fuck
+                xhr.setRequestHeader(keys[x], val); // key -- val
+            }
+        }
+    }
+
+    // inner function to getXHR, can extend to deal with old ie
+    var getXHR = function getXHR() {
+        var xhr = new XMLHttpRequest(); 
+        return xhr;
     }
 
     // ajax main function
@@ -201,7 +200,8 @@
 //    headers: { // default Authorization Bearer 
 
 //    },
-//    dataType: "json", // the only type
+//    cache: true, // if type get, default do it 
+//    dataType: "json", // the only type for now
 //    success: function(res) {
 //        console.log(res);
 //    },

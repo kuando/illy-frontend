@@ -5,16 +5,14 @@ define([], function() {
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
     if (token == void 0) {
         avalon.log("Error, no token!");
-        alert('对不起，系统错误，请退出重试！');
     }
 
     var index = avalon.define({
         $id: "index",
-        sliders: [], // cached
-        hots: [], // cached
-        categories: [], // cached
-        hasData: false, // first in, no cache
-        fetchRemoteData: function(apiArgs, data, target) {
+        sliders: [],
+        hots: [],
+        categories: [],
+        fetchData: function(apiArgs, data, target) {
             $http.ajax({
                 url: apiBaseUrl + apiArgs + '',
                 headers: {
@@ -31,9 +29,7 @@ define([], function() {
                     alert("Woops, site.index ajax failed!");
                 }
             })
-
-            index.hasData = true;
-        } // end of fetchRemoteData
+        }
     });
 
     // download this ctrl file time
@@ -42,10 +38,9 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 进入视图
         $ctrl.$onEnter = function() {
-            var hasData = index.hasData;
-            !hasData && index.fetchRemoteData('/api/v1/posts/slider', {}, 'sliders');
-            !hasData && index.fetchRemoteData('/api/v1/posts/hot?limit=3', {}, 'hots'); // three articles
-            !hasData && index.fetchRemoteData('/api/v1/categories/posts', {}, 'categories');
+            index.fetchData('/api/v1/posts/slider', {}, 'sliders');
+            index.fetchData('/api/v1/posts/hot?limit=3', {}, 'hots'); // three articles
+            index.fetchData('/api/v1/categories/posts', {}, 'categories');
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
@@ -67,7 +62,7 @@ define([], function() {
                 } else if (avalon.totalTime > 500 && avalon.totalTime < 1500) {
                     renderedDelay = renderedDelay + 500;
                 }
-                renderedDelay += 256; // 16 frame
+                renderedDelay += 96; // 6 frame
             } else { // file in avalon.templateCache, do the some 
                 renderedDelay = 32; // 2 frame
             }

@@ -1,0 +1,15 @@
+<div ms-controller="detail" class="detail">
+    <h2 class="title">{{title}}</h2>
+    <div class="created-time">{{created | date()}}</div>
+    <div class="content">{{content | html}}</div>
+    <ul class="pageinfo">
+        <li class="share"><a class="icon icon-share">{{shareCount}}</a></li>
+        <li class="visit"><a class="icon icon-visit">{{visitCount}}</a></li>
+    </ul>
+
+    <div id="jumphelper" class="hide">
+        <a href="#footer" id="gotop">top</a>
+    </div>
+    
+</div>
+

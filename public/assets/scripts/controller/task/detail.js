@@ -3,9 +3,6 @@ define([], function() {
     // get config
     var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
-
-    // prefix of localStorage
-    var cachedPrefix = 'illy-microsite-detail-';
     
     var detail = avalon.define({
         $id: "detail",
@@ -14,17 +11,18 @@ define([], function() {
         content: "",
         created: "2015-07-09",
         shareCount: 88,
-        visitCount: 88,
-        fetchData: function() {
-            if (detail.visited) {
-                var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
-                detail.title = local.title;
-                detail.content = local.content;
-                detail.created = local.created;
-                detail.shareCount = local.shareCount;
-                detail.visitCount = local.visitCount;
-            }
-            $http.ajax({
+        visitCount: 88
+    });
+
+    return avalon.controller(function($ctrl) {
+        // 视图渲染后，意思是avalon.scan完成
+        $ctrl.$onRendered = function() {
+
+        }
+        // 进入视图
+        $ctrl.$onEnter = function(params) {
+            detail.articleId = params.articleId !== "" ? params.articleId : 0;
+            return $http.ajax({
                 url: apiBaseUrl + "/api/v1/posts/" + detail.articleId,
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -36,22 +34,8 @@ define([], function() {
                     detail.created = json.created;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
-                    localStorage.setItem(cachedPrefix + detail.articleId, JSON.stringify(json));
                 }
             })
-        }
-    });
-
-    return avalon.controller(function($ctrl) {
-        // 视图渲染后，意思是avalon.scan完成
-        $ctrl.$onRendered = function() {
-
-        }
-        // 进入视图
-        $ctrl.$onEnter = function(params) {
-            detail.articleId = params.articleId !== "" ? params.articleId : 0;
-            detail.visited = avalon.vmodels.root.currentIsVisited;
-            detail.fetchData();
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

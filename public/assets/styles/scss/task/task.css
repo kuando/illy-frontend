@@ -30,12 +30,6 @@ $g_font_color: #747070;
     }
 } 
 
-#header {
-    .affirm {
-        color: #fff;
-    }
-}
-
 /* slider start */
 #slider {
     font-size: .14rem;

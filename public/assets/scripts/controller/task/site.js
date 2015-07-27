@@ -8,17 +8,14 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            //avalon.log("site.js onRendered fn");
+            avalon.log("site.js onRendered fn");
             document.querySelector('#splash').style.display = 'none';
             document.querySelector('#loading-before-site').style.display = 'none';
         }
         // 进入视图
         $ctrl.$onEnter = function() {
             //avalon.log("site.js says i am in onEnter fn, do some common init stuff...");
-            //avalon.log('site.js onEnter and take charge of everything in Time: ' + Date.now());
-            avalon.illyGlobal.clearLocalStorage('illy-microsite-index-');
-            avalon.illyGlobal.clearLocalStorage('illy-microsite-list-');
-            avalon.illyGlobal.clearLocalStorage('illy-microsite-detail-');
+            avalon.log('site.js onEnter and take charge of everything in Time: ' + Date.now());
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

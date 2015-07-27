@@ -1590,6 +1590,10 @@ audio {
   font-size: .14rem;
 }
 
+#header .affirm {
+  color: #fff;
+}
+
 /* slider start */
 #slider {
   font-size: .14rem;
@@ -1831,7 +1835,7 @@ a, a:hover {
   border-bottom: 1px solid #ddd;
 }
 .list .item-img, .topN .item-img {
-  width: 35%;
+  width: 30%;
   margin-right: .05rem;
 }
 .list .item-title, .topN .item-title {

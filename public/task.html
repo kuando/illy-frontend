@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title> 微网站 </title>
-    <link rel="stylesheet" href="build/microsite/layout.css" />
+    <title> 积分 & 任务 </title>
+    <link rel="stylesheet" href="build/task/task.css" />
     <link rel="stylesheet" href="assets/styles/animation.css" />
     <!--<link rel="stylesheet" href="./assets/styles/Yo/yo-all.css" />-->
 </head>
@@ -36,11 +36,11 @@
         baseUrl: "/assets"
     });
 
-    require(['./scripts/microsite'], function(site) {
+    require(['./scripts/task'], function(task) {
         avalon.log('bootstrap file loaded in Time: ' + Date.now());
         var startTime = Date.now();
         avalon.startTime = startTime;
-        site && site.init && site.init();
+        task && task.init && task.init();
     })
     // rendered and bootstrap the page
 
@@ -54,7 +54,7 @@
 </script>
 
 <script src="assets/scripts/lib/gmu/gmu.part.js"></script>
-<!--<script src="http://localhost:35729/livereload.js"></script>-->
-<!--<script src="http://192.168.1.104:8080/target/target-script-min.js#anonymous"></script>-->
+<script src="http://localhost:35729/livereload.js"></script>
+<script src="http://192.168.1.104:8080/target/target-script-min.js#anonymous"></script>
 </html>
 
