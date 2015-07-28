@@ -57,9 +57,12 @@
 
     <!-- 录音题-->
     <div class="mp3" ms-if="exercise.eType == 3">
-        <button id="startRecord" ms-click="startRecord()">startRecord</button>
-        <button id="stopRecord" ms-click="stopRecord()">stopRecord</button>
-        <button id="playRecord" ms-click="playRecord()">playRecord</button>
+        <button id="startRecord" ms-click="startRecord()" hidden>startRecord</button>
+        <button id="stopRecord" ms-click="stopRecord()" hidden>stopRecord</button>
+        <button id="playRecord" ms-click="playRecord()" ms-if="showPlayRecordBtn">playRecord</button>
+
+        <span class="test" ms-on-hold="startRecord()">startRecord</span>
+
     </div>
     <!-- 录音题-->
 
@@ -73,7 +76,7 @@
 
     <!-- 答案和分析面板 -->
     <!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
-    <div class="answer-panel" ms-visible=" localAnswers.length >= currentId || right != null ">
+    <div class="answer-panel" ms-visible=" (localAnswers.length >= currentId) || right != null ">
         <div class="answer" ms-if="exercise.eType != 3">
             <span class="right" ms-if="exercise.answer == localAnswers[currentId - 1]">正确! </span>
             <span class="right" ms-if="exercise.answer != localAnswers[currentId - 1]">错误! </span>

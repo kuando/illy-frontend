@@ -1,7 +1,5 @@
 define([], function() {
 
-    // review in 201507221010
-
     var local_question_view_ani = 'a-bounceinL';
     var wx = avalon.wx;
     
@@ -28,6 +26,7 @@ define([], function() {
         hasNext: false,
         userAnswer: '', // 忠实于用户答案
         right: null, // 做对与否, audio question is always right(Em~...)
+        showPlayRecordBtn: false,
         next: function() { // 点击进入下一题
             // 只处理页面跳转进入下一题
             avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
@@ -68,6 +67,7 @@ define([], function() {
                         var localId = res.localId;
                         record.localId = localId;
                         question.uploadRecord();
+                        question.showPlayRecordBtn = true;
                     }
                 })
             }
@@ -77,7 +77,7 @@ define([], function() {
             if (localId == '') {
                 alert("录制不成功，请重试！");
                 console.log('no localId');
-                console.log(record);
+                //console.log(record);
                 return ;
             }
             wx.playVoice({
@@ -89,7 +89,7 @@ define([], function() {
             if (localId == '') {
                 alert('对不起,上传失败!');
                 console.log('上传失败，没有localId, localId为：' + localId);
-                console.log(record); // print global record array
+                //console.log(record); // print global record array
                 return;
             }
             wx.uploadVoice({

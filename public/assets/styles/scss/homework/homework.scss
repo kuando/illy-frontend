@@ -32,6 +32,10 @@ $next_radius: $answer_panel_height / 2;
     min-height: 4.5rem;
 }
 
+/* override the Yo style */
+#header .affirm {
+    color: #fff;
+}
 /* common item start */
 .item-wrapper {
     padding: .10rem .08rem;
