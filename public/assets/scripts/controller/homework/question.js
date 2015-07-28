@@ -15,6 +15,9 @@ define([], function() {
         },
         showTips: function() {
 
+        },
+        cancelTips: function() {
+
         }
     }; 
 
@@ -180,6 +183,9 @@ define([], function() {
             record.startTime = '';
             record.endTime = '';
             record.localId = '';
+            record.cancelTips();
+
+            showPlayRecordBtn = false;
             
             // 过场动画
             //setTimeout(function() {
