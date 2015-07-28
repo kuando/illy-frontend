@@ -102,7 +102,7 @@ define(['avalon'], function(avalon) {
 	    self["clickHook"] = function(data) {
 	        var tapping = false,
 	                element = data.element,
-	                fastclick = avalon.fastclick,
+                    fastclick = avalon.fastclick,
 	                doubleIndex = 0, //用于决定何时重置doubleStartTime
 	                doubleStartTime, //双击开始时间,
 	                startTime, // 单击开始时间

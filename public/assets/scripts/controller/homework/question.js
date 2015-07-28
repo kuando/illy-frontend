@@ -26,6 +26,7 @@ define([], function() {
         hasNext: false,
         userAnswer: '', // 忠实于用户答案
         right: null, // 做对与否, audio question is always right(Em~...)
+        isRecording: false, // whether recording now, for ms-class 
         showPlayRecordBtn: false,
         next: function() { // 点击进入下一题
             // 只处理页面跳转进入下一题
@@ -33,6 +34,7 @@ define([], function() {
         },
         startRecord: function() {
             wx.startRecord();
+            question.isRecording = true;
             var startTime = Date.now(); // 记录开始录音时间，便于过长提示或者太短的舍弃
             record.startTime = startTime;
 
@@ -51,6 +53,7 @@ define([], function() {
             }, 49000) // 49秒
         },
         stopRecord: function() {
+            question.isRecording = false;
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
             record.timeout && clearTimeout(record.timeout); // for strong
             var endTime = Date.now();
@@ -151,6 +154,8 @@ define([], function() {
         } // submit end
     });
 
+
+    var requestAuth = false; // 申请录音权限, do it only once
     return avalon.controller(function($ctrl) {
 
         var rootView = document.querySelector('.app');
@@ -193,6 +198,11 @@ define([], function() {
             }
             //avalon.log(params); 
             //avalon.log(question.exercise);
+            if (!requestAuth) {
+                wx.startRecord();
+                wx.stopRecord();
+                requestAuth = true; // auth done
+            }
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

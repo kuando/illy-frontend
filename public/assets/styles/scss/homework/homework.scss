@@ -216,6 +216,31 @@ $next_radius: $answer_panel_height / 2;
         font-size: .16rem;
     }
 
+    .record-btn {
+        display: inline-block;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 60%;
+        height: .5rem;
+        background: #eee;
+        text-align: center;
+        line-height: .5rem;
+        color: #666;
+        border-radius: 5px;
+    }
+    .record-btn.active {
+        background-color: green;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .playRecord { // image of record to play
+        top: 50%;
+        background: url();
+    }
+
     .answer-panel {
         display: none;
         position: fixed;

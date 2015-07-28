@@ -184,7 +184,7 @@ function createXHR(method, url) {
     return xhr;
 }
 var url = window.location.href;
-var re = /([?&])(openid|next)=(\w+)/g;
+var re = /([?&])(openid|next)=([^?&]+)/g;
 var query = {},
     matches;
 

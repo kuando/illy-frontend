@@ -57,11 +57,11 @@
 
     <!-- 录音题-->
     <div class="mp3" ms-if="exercise.eType == 3">
-        <button id="startRecord" ms-click="startRecord()" hidden>startRecord</button>
-        <button id="stopRecord" ms-click="stopRecord()" hidden>stopRecord</button>
-        <button id="playRecord" ms-click="playRecord()" ms-if="showPlayRecordBtn">playRecord</button>
 
-        <span class="test" ms-on-hold="startRecord()">startRecord</span>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording=true" ms-visible="!showPlayRecordBtn" ms-on-hold="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchleave="stopRecord()" ms-on-touchcancel="stopRecord()">开始录制</div>
+
+        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording=true" ms-visible="showPlayRecordBtn" ms-on-hold="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchleave="stopRecord()" ms-on-touchcancel="stopRecord()">重新录制</div>
+        <div id="playRecord" class="playRecord record-btn" ms-click="playRecord()" ms-if="showPlayRecordBtn">playRecord</div>
 
     </div>
     <!-- 录音题-->

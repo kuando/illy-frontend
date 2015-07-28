@@ -210,7 +210,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     })
     .state("site.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
         //url: "{categoryName}/Id/{categoryId}",
-        url: "{categoryName}/Id/{categoryId}",
+        url: "{categoryId}",
         views: {
             "": {
                 templateUrl: "assets/template/microsite/list.html", // 指定模板地址
