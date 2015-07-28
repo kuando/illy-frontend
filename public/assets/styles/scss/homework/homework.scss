@@ -222,6 +222,7 @@ $next_radius: $answer_panel_height / 2;
         top: 58%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
         width: 60%;
         height: .5rem;
         background: #eee;
@@ -237,7 +238,7 @@ $next_radius: $answer_panel_height / 2;
     }
 
     .playRecord { // image of record to play
-        top: 50%;
+        top: 48%;
         background: url();
     }
 

@@ -1246,6 +1246,7 @@ audio {
   top: 58%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
   width: 60%;
   height: .5rem;
   background: #eee;
@@ -1260,7 +1261,7 @@ audio {
   font-weight: bold;
 }
 .question .playRecord {
-  top: 50%;
+  top: 48%;
   background: url();
 }
 .question .answer-panel {

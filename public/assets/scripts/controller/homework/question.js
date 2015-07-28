@@ -12,6 +12,9 @@ define([], function() {
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
             alert("倒计时10秒！");
+        },
+        showTips: function() {
+
         }
     }; 
 
@@ -60,7 +63,8 @@ define([], function() {
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
             if (duration < 5) { // 小于五秒
-                alert('对不起，录制时间过短，请重新录制！');
+                // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
+                record.showTips();
                 wx.stopRecord({
                     // do nothing, just stop, fix bug
                 });
