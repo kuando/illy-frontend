@@ -136,7 +136,7 @@ h1 {
                 var openid = xhr.responseText;
                 location.href = 'login.html?openid=' + openid + "&next=" + next;
             } else {
-                alert("Error Sorry! status not ok" + status);
+                alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
             }
         }
 

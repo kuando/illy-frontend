@@ -59,11 +59,17 @@
     <div class="mp3" ms-if="exercise.eType == 3">
 
         <div class="record-mask mask" ms-class-1="show: isRecording==true"></div>
+
         <div class="isRecording" ms-class-1="hide: isRecording==false"></div>
+        <div class="timeout-mask">10</div>
+
         <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">开始录制</div>
 
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
+
         <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-on-tap="playRecord()" ms-visible="showPlayRecordBtn">点击试听</div>
+
+        <div class="record-tips">录音时间过短，请重新录制!</div>
 
     </div>
     <!-- 录音题-->

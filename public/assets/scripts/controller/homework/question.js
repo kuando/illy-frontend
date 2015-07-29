@@ -9,15 +9,28 @@ define([], function() {
         endTime: 0,
         localId: '',
         timeout: 'timeout',
+        showTimeoutDelay: 49, // second, define when show the timeout
+        recordTooShortTipsDelay: 1500,
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
-            alert("倒计时10秒！");
+            //alert("倒计时10秒！");
+            var timeoutMask = avalon.$('timeout-mask');
+            timeoutMask && timeoutMask.style.display = 'inline-block'; // show mask
+            avalon.$('.isRecording').classList.add('timeout'); // change some ui for mask
+            // time to show
+            setTimeout(function() {
+                timeoutMask.innerHTML = parseInt(timeoutMask.innerHTML, 10) - 1;
+            }, 1000)
+            // recover the ui when time enough
+            setTimeout(function() {
+                avalon.$('.isRecording').classList.remove('timeout');
+            }, 11000); 
         },
         showTips: function() {
-
+            avalon.$('.record-tips').style.display = 'inline-block';
         },
-        cancelTips: function() {
-
+        hideTips: function() {
+            avalon.$('.record-tips').style.display = 'none';
         }
     }; 
 
@@ -56,7 +69,7 @@ define([], function() {
             // 同时设置ui来提示快到时间了
             record.timeout = setTimeout(function() {
                 record.showTimeOutLayer();
-            }, 49000) // 49秒
+            }, record.showTimeoutDelay) // 49秒
         },
         stopRecord: function() {
             question.isRecording = false;
@@ -68,6 +81,9 @@ define([], function() {
             if (duration < 5) { // 小于五秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
+                setTimeout(function() {
+                    record.hideTips();
+                }, record.recordTooShortTipsDelay)
                 wx.stopRecord({
                     // do nothing, just stop, fix bug
                 });
@@ -183,7 +199,6 @@ define([], function() {
             record.startTime = '';
             record.endTime = '';
             record.localId = '';
-            record.cancelTips();
 
             question.showPlayRecordBtn = false;
             
