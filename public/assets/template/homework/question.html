@@ -49,7 +49,7 @@
     <!-- 填空题 -->
     <div class="fill-in" ms-if="exercise.eType == 2">
         <textarea ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
-        ds sd 
+            aaa 
         </textarea>
         <p ms-visible="localAnswers[currentId - 1]">您填写的答案为：{{localAnswers[currentId - 1]}}</p>
     </div>
@@ -58,10 +58,12 @@
     <!-- 录音题-->
     <div class="mp3" ms-if="exercise.eType == 3">
 
-        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-visible="!showPlayRecordBtn" ms-on-hold="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">开始录制</div>
+        <div class="record-mask mask" ms-class-1="show: isRecording==true"></div>
+        <div class="isRecording" ms-class-1="hide: isRecording==false"></div>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">开始录制</div>
 
-        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-visible="showPlayRecordBtn" ms-on-hold="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
-        <div id="playRecord" class="playRecord record-btn" ms-on-tap="playRecord()" ms-if="showPlayRecordBtn">playRecord</div>
+        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
+        <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-on-tap="playRecord()" ms-visible="showPlayRecordBtn">点击试听</div>
 
     </div>
     <!-- 录音题-->
@@ -69,7 +71,7 @@
     <!-- 题目主干渲染区, 依据不同类型 end -->
 
     <!-- 检查按钮 -->
-    <div ms-click="checkAnswer()" ms-if="right == null" class="tap-btn next">
+    <div ms-click="checkAnswer()" ms-if="right == null" class="tap-btn next" ms-class-1="hide: isRecording==true">
             <span class="icon yo-ico">&#xf078;</span>
     </div>
     <!-- 检查按钮 -->

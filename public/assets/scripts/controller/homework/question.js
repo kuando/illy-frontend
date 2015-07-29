@@ -185,7 +185,7 @@ define([], function() {
             record.localId = '';
             record.cancelTips();
 
-            showPlayRecordBtn = false;
+            question.showPlayRecordBtn = false;
             
             // 过场动画
             //setTimeout(function() {
