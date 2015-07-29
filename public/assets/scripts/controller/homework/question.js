@@ -7,23 +7,54 @@ define([], function() {
     var record = {
         startTime: 0,
         endTime: 0,
-        localId: '',
-        timeout: 'timeout',
+        localId: '', // core!
+        timeout: 'timeout', // timeoutId, just need it, whatever name can do!
+        showTimeoutDelay: 15, // second, define when show the timeout
+        recordTooShortTipsLastTime: 1.5, // 录音时间过短提示信息持续时间
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
-            alert("倒计时10秒！");
+            //alert("倒计时10秒！");
+            var timeoutMask = avalon.$('.timeout-mask');
+            var isRecording = avalon.$('.isRecording'); 
+            record.layerUiChange();
+            // time to show
+            var remainTimeTimer = setInterval(function() {
+			    var time = parseInt(timeoutMask.innerHTML, 10);
+                timeoutMask && ( timeoutMask.innerHTML = time > 0 ? time - 1 : 10);
+				if (time == 0) { clearInterval(remainTimeTimer);  question.stopRecord(); } // core! should stop it.
+            }, 1000)
+            // recover the ui when time enough
+            setTimeout(function() {
+                record.layerUiRecover();
+            }, 11000); 
+        },
+        layerUiChange: function() { // inner fn of showTimeoutLayer
+            var timeoutMask = avalon.$('.timeout-mask');
+            var isRecording = avalon.$('.isRecording'); 
+            // change some ui for mask
+            timeoutMask && (timeoutMask.style.display = 'inline-block'); // show mask
+            isRecording && isRecording.classList.add('timeout');
+        },
+        layerUiRecover: function() { // inner fn of showTimeoutLayer
+            var timeoutMask = avalon.$('.timeout-mask');
+            var isRecording = avalon.$('.isRecording'); 
+			remainTimeTimer && clearInterval(remainTimeTimer);
+            timeoutMask && timeoutMask.innerHTML = '10'; 
+            timeoutMask && ( timeoutMask.style.display = 'none' );
+            isRecording && isRecording.classList.remove('timeout');
         },
         showTips: function() {
-
+            avalon.$('.record-tips').style.display = 'inline-block';
         },
-        cancelTips: function() {
-
+        hideTips: function() {
+            avalon.$('.record-tips').style.display = 'none';
         }
     }; 
 
     // 每一个具体的题目控制器
     var question = avalon.define({
         $id: "question",
+        fn: record.showTimeOutLayer(),
         homeworkId: avalon.vmodels.detail.homeworkId, // 直接取
         exercise: {},
         total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
@@ -40,6 +71,7 @@ define([], function() {
         },
         startRecord: function() {
             wx.startRecord();
+            record.hideTips(); // for strong
             question.isRecording = true;
             var startTime = Date.now(); // 记录开始录音时间，便于过长提示或者太短的舍弃
             record.startTime = startTime;
@@ -56,10 +88,11 @@ define([], function() {
             // 同时设置ui来提示快到时间了
             record.timeout = setTimeout(function() {
                 record.showTimeOutLayer();
-            }, 49000) // 49秒
+            }, record.showTimeoutDelay * 1000) // 秒
         },
         stopRecord: function() {
             question.isRecording = false;
+			avalon.$('.timeout-mask').style.display = 'none';
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
             record.timeout && clearTimeout(record.timeout); // for strong
             var endTime = Date.now();
@@ -68,6 +101,9 @@ define([], function() {
             if (duration < 5) { // 小于五秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
+                setTimeout(function() {
+                    record.hideTips();
+                }, record.recordTooShortTipsLastTime * 1000)
                 wx.stopRecord({
                     // do nothing, just stop, fix bug
                 });
@@ -183,9 +219,9 @@ define([], function() {
             record.startTime = '';
             record.endTime = '';
             record.localId = '';
-            record.cancelTips();
 
             question.showPlayRecordBtn = false;
+            question.isRecording = false;
             
             // 过场动画
             //setTimeout(function() {
