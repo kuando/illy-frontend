@@ -25,7 +25,7 @@
                 {{item.title}}.{{item.content}} 
             </span>
             <div class="yo-checked yo-checked-g">
-                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
+                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] || $index == 0 " />
                 <span class="type"></span>
             </div>
         </label>
