@@ -122,7 +122,7 @@ define([], function() {
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
             record.duration = duration;
             var recordTotalTime = avalon.$('.record-total-time')
-            recordTotalTime && ( recordTotalTime.innerHTML = duration ); // 设置录音时长
+            recordTotalTime && ( recordTotalTime.innerHTML = parseInt(duration, 10) ); // 设置录音时长
             if (duration < 5) { // 小于五秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
