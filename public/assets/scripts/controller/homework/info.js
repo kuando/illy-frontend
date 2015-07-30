@@ -9,6 +9,7 @@ define([], function() {
     var info = avalon.define({
         $id: "info",
         homeworkId: 0,
+        workType: 'homework',
         title: '',
         keyPoint: '',
         keyPointRecord: '',
@@ -61,7 +62,8 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
             //avalon.log("info.js onEnter callback");
-            var type = location.href.split("=")[1];
+            var type = location.href.split("=")[1] || 'homework'; // for strong
+            info.workType = type;
             var _id = params.homeworkId;
             info.fetchDataForDetailCtrl(_id, type); // 分为两种，作业和预习, 更加灵活，便于扩充
         }

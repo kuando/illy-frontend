@@ -9,7 +9,7 @@ define([], function() {
         endTime: 0,
         localId: '', // core!
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
-        showTimeoutDelay: 49, // second, define when show the timeout
+        showTimeoutDelay: 15, // second, define when show the timeout
         recordTooShortTipsLastTime: 1.5, // 录音时间过短提示信息持续时间
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始
@@ -18,8 +18,10 @@ define([], function() {
             var isRecording = avalon.$('.isRecording'); 
             record.layerUiChange();
             // time to show
-            setInterval(function() {
-                timeoutMask && ( timeoutMask.innerHTML = parseInt(timeoutMask.innerHTML, 10) - 1 );
+            var remainTimeTimer = setInterval(function() {
+                var time = parseInt(timeoutMask.innerHTML, 10);
+                timeoutMask && ( timeoutMask.innerHTML = time > 0 ? time - 1 : 10);
+                if (time == 0) { clearInterval(remainTimeTimer);  question.stopRecord(); } // core! should stop it.
             }, 1000)
             // recover the ui when time enough
             setTimeout(function() {
@@ -27,16 +29,17 @@ define([], function() {
             }, 11000); 
         },
         layerUiChange: function() { // inner fn of showTimeoutLayer
-            // change some ui for mask
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
+            // change some ui for mask
             timeoutMask && (timeoutMask.style.display = 'inline-block'); // show mask
             isRecording && isRecording.classList.add('timeout');
         },
         layerUiRecover: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
-            timeoutMask.innerHTML = '10'; 
+            remainTimeTimer && clearInterval(remainTimeTimer);
+            timeoutMask && ( timeoutMask.innerHTML = '10' ); 
             timeoutMask && ( timeoutMask.style.display = 'none' );
             isRecording && isRecording.classList.remove('timeout');
         },
@@ -89,6 +92,7 @@ define([], function() {
         },
         stopRecord: function() {
             question.isRecording = false;
+            avalon.$('.timeout-mask').style.display = 'none';
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
             record.timeout && clearTimeout(record.timeout); // for strong
             var endTime = Date.now();

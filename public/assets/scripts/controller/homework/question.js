@@ -8,7 +8,9 @@ define([], function() {
         startTime: 0,
         endTime: 0,
         localId: '', // core!
+        dropFlag: false, // 是否放弃本录音题的标记
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
+        remainTimeTimer: null, // remain time timer
         showTimeoutDelay: 15, // second, define when show the timeout
         recordTooShortTipsLastTime: 1.5, // 录音时间过短提示信息持续时间
         showTimeOutLayer: function() {
@@ -18,10 +20,10 @@ define([], function() {
             var isRecording = avalon.$('.isRecording'); 
             record.layerUiChange();
             // time to show
-            var remainTimeTimer = setInterval(function() {
-			    var time = parseInt(timeoutMask.innerHTML, 10);
+            record.remainTimeTimer = setInterval(function() {
+                var time = timeoutMask && parseInt(timeoutMask.innerHTML, 10);
                 timeoutMask && ( timeoutMask.innerHTML = time > 0 ? time - 1 : 10);
-				if (time == 0) { clearInterval(remainTimeTimer);  question.stopRecord(); } // core! should stop it.
+                if (time == 0) { clearInterval(record.remainTimeTimer);  question.stopRecord(); } // core! should stop it.
             }, 1000)
             // recover the ui when time enough
             setTimeout(function() {
@@ -38,38 +40,50 @@ define([], function() {
         layerUiRecover: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
-			remainTimeTimer && clearInterval(remainTimeTimer);
-            timeoutMask && timeoutMask.innerHTML = '10'; 
+            var remainTimeTimer = record.remainTimeTimer;
+            remainTimeTimer && clearInterval(remainTimeTimer);
+            timeoutMask && ( timeoutMask.innerHTML = '10' ); 
             timeoutMask && ( timeoutMask.style.display = 'none' );
             isRecording && isRecording.classList.remove('timeout');
         },
         showTips: function() {
-            avalon.$('.record-tips').style.display = 'inline-block';
+            var recordTips = avalon.$('.record-tips');
+            recordTips && ( recordTips.style.display = 'inline-block' );
         },
         hideTips: function() {
-            avalon.$('.record-tips').style.display = 'none';
+            var recordTips = avalon.$('.record-tips');
+            recordTips && ( recordTips.style.display = 'none' );
         }
     }; 
 
     // 每一个具体的题目控制器
     var question = avalon.define({
         $id: "question",
-        fn: record.showTimeOutLayer(),
-        homeworkId: avalon.vmodels.detail.homeworkId, // 直接取
-        exercise: {},
+        homeworkId: avalon.vmodels.detail.homeworkId, // 直接取，这种固定值不需要动态获取
+        exercise: {}, // 本题所有数据
         total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
         currentId: 0, // current exerciseId, 当前题id
-        localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了
-        hasNext: false,
-        userAnswer: '', // 忠实于用户答案
-        right: null, // 做对与否, audio question is always right(Em~...)
+        userAnswer: '', // 忠实于用户答案, 最多加个trim()
+        localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
+        right: null, // 做对与否, 录音题始终设为right(Em~...), 控制一些显隐逻辑(null, true, false)
+        hasNext: false, // 是否有下一题？
         isRecording: false, // whether recording now, for ms-class 
-        showPlayRecordBtn: false,
+        showPlayRecordBtn: false, // 是否显示播放录音按钮
         next: function() { // 点击进入下一题
             // 只处理页面跳转进入下一题
             avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
         },
         startRecord: function() {
+            
+            /** 
+             *  开始微信录音api
+             *  隐藏一些ui
+             *  标记开始录音
+             *  记录开始录音时间
+             *  注册wx超时录音api
+             *  注册超时ui提示timeout
+             */
+
             wx.startRecord();
             record.hideTips(); // for strong
             question.isRecording = true;
@@ -91,8 +105,16 @@ define([], function() {
             }, record.showTimeoutDelay * 1000) // 秒
         },
         stopRecord: function() {
+
+            /**
+             *  停止ui
+             *  停止正在录音标记
+             *  停止时间记录
+             *  判断长短是否合法？
+             */
+
             question.isRecording = false;
-			avalon.$('.timeout-mask').style.display = 'none';
+            avalon.$('.timeout-mask').style.display = 'none';
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
             record.timeout && clearTimeout(record.timeout); // for strong
             var endTime = Date.now();
@@ -119,6 +141,11 @@ define([], function() {
             }
         },
         playRecord: function() {
+
+            /** 
+             *  如果localId有，就播放，没有就提示
+             */
+
             var localId = record.localId;
             if (localId == '') {
                 alert("录制不成功，请重试！");
@@ -130,7 +157,27 @@ define([], function() {
                 localId: localId
             });
         },
+        stopPlayRecord: function() {
+
+            /** 
+             *  没有localId就返回，有就停止
+             */
+
+            var localId = record.localId;
+            if (localId == '') {
+                return ;
+            }
+            wx.stopVoice({
+                localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
+            })
+        },
         uploadRecord: function() {
+
+            /**
+             *  没有localId就提示
+             *  有localId就上传
+             */
+
             var localId = record.localId;
             if (localId == '') {
                 alert('对不起,上传失败!');
@@ -148,31 +195,38 @@ define([], function() {
             })
         },
         checkAnswer: function() { // check answer and collect info for Collect
+
+            /** 
+             *  首先防御后退更改答案
+             *  1. 如果为录音题, 做相关判断和统计
+             *  2. 不是录音题
+             *        如果没做，提示并停止检查
+             *        做了检查对错, 做好相关统计，加入本地答案列表
+             */
+
             if (question.localAnswers.length >= question.currentId) {
                 console.log("不可更改答案!");
                 return;
             }
-            //avalon.log("check answer");
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
             if (question.exercise && question.exercise.eType == 3) {
                 question.stopRecord(); // checkAnswer click, means record must stop
                 // do sth to check record or not
                 // push and return. (id, answer)
-                question.right = true; // right it for next
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
                 var audioAnswer = question.userAnswer;
+                var flag = record.dropFlag;
+                if (audioAnswer == '' && !flag) { alert("本题未保存录音，请继续！"); record.dropFlag = true; return; }
+                if (audioAnswer == '' || flag) { alert("您已放弃本题，请继续！"); }
+                
+                question.right = true; // right it for next
                 detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
                 question.localAnswers.push(audioAnswer); // bug fix, also need push
                 return;
             }
-            var answers = document.querySelectorAll('.question input[type="radio"]');
-            for (var i = 0, len = answers.length; i < len; i++) {
-                if (answers[i].checked) {
-                    question.userAnswer = answers[i].getAttribute('data-answer');
-                    break;
-                }
-            }
+            if (question.userAnswer == '') { alert("请选择至少一个答案！"); return; }
+            
             // update the right attr, question.right = null for default, 不是null说明这题做过了，直接显示答案（处理后退的）
             if ( question.exercise && (question.exercise.answer === question.userAnswer.trim()) ) {
                 question.right = true;
@@ -192,13 +246,12 @@ define([], function() {
             //avalon.log("question submit");
             // 1.通知父vm的submit方法发送统计数据， 
             // removed!!! 2.自身跳转至result页面, removed, put in detail submit success fn to go
-            avalon.vmodels.detail.submit();
+            avalon.vmodels.info.workType == 'homework' ? avalon.vmodels.detail.submit() : alert("恭喜您，完成了本次预习作业，再接再厉！"); avalon.router.go('app.list');
             //avalon.router.go('app.detail.result', {homeworkId: question.homeworkId});
         } // submit end
     });
 
-
-    var requestAuth = false; // 申请录音权限, do it only once
+    var requestAuth = false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
     return avalon.controller(function($ctrl) {
 
         var rootView = document.querySelector('.app');
@@ -212,25 +265,19 @@ define([], function() {
         $ctrl.$onRendered = function() {
 
         }
-        // 进入视图
+        // 进入视图, 对复用的数据进行重置或清空操作！
         $ctrl.$onEnter = function(params) {
-            question.userAnswer = ''; // 重置用户答案为空，防止影响下一题
-            // clear local record
+            // clear some record data
             record.startTime = '';
             record.endTime = '';
             record.localId = '';
-
+            record.remainTimeTimer = null;
+            record.dropFlag = false;
             question.showPlayRecordBtn = false;
             question.isRecording = false;
             
-            // 过场动画
-            //setTimeout(function() {
-            //    rootView && rootView.classList.toggle(question_view_ani);
-            //    questionView && questionView.classList.toggle(question_view_ani);
-            //}, 16)
-            
             question.right = null; // 重置题目对错标记
-            //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿
+            //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿,这个不变的东西，不需要在此处动态获取！
             question.currentId = params.questionId;
             // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
             // 然后双向绑定，渲染
@@ -242,6 +289,8 @@ define([], function() {
             } else {
                 question.hasNext = false;
             }
+            // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
+            question.userAnswer = question.localAnswers[question.currentId - 1] || '';
             //avalon.log(params); 
             //avalon.log(question.exercise);
             if (!requestAuth) {

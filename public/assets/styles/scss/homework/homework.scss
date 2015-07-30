@@ -7,10 +7,10 @@
 
 
 @import "../_normalize.scss";
-/*@import "../../Yo/lib/core/variables.scss";*/
+@import "../../Yo/lib/core/variables.scss";
 @import "../../Yo/lib/core/reset.scss";
-/*@import "../../Yo/lib/core/classes.scss";*/
-/*@import "../../Yo/lib/fragment/yo-header.scss";*/
+@import "../../Yo/lib/core/classes.scss";
+@import "../../Yo/lib/fragment/yo-header.scss";
 @import "../common.scss";
 
 /* reset vars and vars start */
@@ -151,6 +151,15 @@ $next_radius: $answer_panel_height / 2;
 
 /* question start */
 
+/* 去除分割线，恶心的第二条线不显示bug */
+.yo-list > .item {
+    background-image: none; 
+}
+
+.yo-list > .item {
+    background-image: none; 
+}
+
 .illy-img-list {
     padding: .09rem;
     text-align: left;
@@ -242,7 +251,7 @@ $next_radius: $answer_panel_height / 2;
     }
 
     .isRecording.timeout {
-        opacity: .6;
+        opacity: .4;
     }
 
     .timeout-mask {

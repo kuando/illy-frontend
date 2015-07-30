@@ -1449,12 +1449,13 @@ audio {
 }
 
 #loader p {
-  padding-top: 80px;
+  padding-top: .8rem;
   margin-left: -.04rem;
+  font-size: .18rem;
 }
 
 .spinner {
-  margin: 200px auto;
+  margin: 2rem auto;
   width: .6rem;
   height: .6rem;
   position: relative;

@@ -25,7 +25,8 @@
                 {{item.title}}.{{item.content}} 
             </span>
             <div class="yo-checked yo-checked-g">
-                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] || $index == 0 " />
+                <!--<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" userAnswer || localAnswers[currentId - 1] " />-->
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
                 <span class="type"></span>
             </div>
         </label>
@@ -39,7 +40,8 @@
                 <img ms-attr-src="item.content" />
             </span>
             <div class="yo-checked yo-checked-g">
-                <input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" item.title == localAnswers[currentId - 1] " />
+                <!--<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" userAnswer || localAnswers[currentId - 1] " />-->
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
                 <span class="type"></span>
             </div>
         </label>
@@ -76,8 +78,8 @@
 
     <!-- 题目主干渲染区, 依据不同类型 end -->
 
-    <!-- 检查按钮 -->
-    <div ms-click="checkAnswer()" ms-if="right == null" class="tap-btn next" ms-class-1="hide: isRecording==true">
+    <!-- 检查按钮, 仅在没做过这题时渲染 -->
+    <div ms-click="checkAnswer()" ms-if="localAnswers.length < currentId " class="tap-btn next" ms-class-1="hide: isRecording==true">
             <span class="icon yo-ico">&#xf078;</span>
     </div>
     <!-- 检查按钮 -->

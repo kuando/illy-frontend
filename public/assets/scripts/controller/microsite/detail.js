@@ -23,6 +23,7 @@ define([], function() {
                 detail.created = local.created;
                 detail.shareCount = local.shareCount;
                 detail.visitCount = local.visitCount;
+                return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
                 url: apiBaseUrl + "/api/v1/posts/" + detail.articleId,
