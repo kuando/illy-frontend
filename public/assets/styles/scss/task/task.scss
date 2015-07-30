@@ -1,0 +1,100 @@
+/*******************************************************
+> File Name: task.scss 
+> Author: IndexXuan
+> Mail: indexxuan@gmail.com
+> Created Time: 2015年07月30日 星期四16时41分34秒
+ ******************************************************/
+
+/* vars start */
+$g_bgColor: #f9f5f5;
+$main-color: #6ad086;
+$title-line-height: .36rem;
+$img_height: .80rem;
+$item_title_height: .45rem;
+$g_font_color: #747070;
+/* vars end */
+
+@import "../_normalize.scss";
+@import "../../Yo/lib/core/variables.scss";
+@import "../../Yo/lib/core/reset.scss";
+@import "../../Yo/lib/core/classes.scss";
+@import "../../Yo/lib/fragment/yo-header.scss";
+
+@import "../common.scss";
+
+.task {
+    min-height: 450px; /* for layout, footer is footer */
+
+    &, &-footer {
+        font-size: .14rem;
+    }
+} 
+
+a, a:hover {
+    text-decoration: none;
+    color: $g_font_color;
+    cursor: pointer;
+}
+
+.task {
+    padding: .03rem;
+}
+/* shop start */
+.shop-wrapper {
+    text-align: center;
+    margin: .1rem 0;
+
+    .shop-item {
+        display: inline-block;
+        width: 47%;
+        margin: .05rem .02rem;
+        background: #fff;
+        padding: .03rem 0;
+        text-align: left;
+
+        .img-wrapper {
+            position: relative;
+        }
+
+        img {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .title {
+            margin: .02rem;
+            padding: .03rem;
+            line-height: 1.3;
+        }
+
+        .price {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: .12rem;
+            line-height: .16rem;
+            padding: .03rem;
+            background: red;
+            color: #fff;
+            opacity: .7;
+        }
+
+    }
+
+}
+/* shop end */
+
+/* rank start */
+.rank {
+    text-align: left;
+    .name, .score {
+        width: 45%;
+        text-align: center;
+    }
+
+    .rank-symbol {
+        width: 27%;
+    }
+}
+/* rank end */
+

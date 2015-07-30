@@ -152,9 +152,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         title: "我是标题，可变", // 每一页action bar的标题    
         back: function() {
             history.go(-1);
-            //setTimeout(function() { // for strong
-            //    avalon.router.go('app.list');
-            //}, 300)
         }
     });
 
@@ -199,7 +196,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/homework/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/detail.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/detail.js" // 指定控制器地址
             }
         }
     })
@@ -208,7 +205,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/homework/info.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/info.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/info.js" // 指定控制器地址
             }
         }
     })
@@ -218,15 +215,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             "": {
                 templateUrl: "assets/template/homework/question.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/question.js", // 指定控制器地址
-            }
-        }
-    })
-    .state("app.detail.preview", { // 预习视图，url较为复杂，某作业下的某题
-        url: "detail/{previewId}/q/{questionId}", // deal with a spec preview, render it for different type
-        views: {
-            "": {
-                templateUrl: "assets/template/homework/preview.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/preview.js", // 指定控制器地址
+                ignoreChange: function(changeType) {
+                    return !!changeType;
+                }
             }
         }
     })
@@ -235,7 +226,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/homework/result.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/result.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/result.js" // 指定控制器地址
             }
         }
     })

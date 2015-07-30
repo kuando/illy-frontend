@@ -47,9 +47,9 @@ module.exports = function (grunt) {
                 tasks: ['sass:homework']
             },
 
-            scorescss: {
-                files: ['public/assets/styles/scss/score/*.scss'],
-                tasks: ['sass:score']
+            taskscss: {
+                files: ['public/assets/styles/scss/task/*.scss'],
+                tasks: ['sass:task']
             },
                    
             js: {
@@ -138,12 +138,12 @@ module.exports = function (grunt) {
                     ext: '.css'
                 }]
             },
-            score: {
+            task: {
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/styles/scss/score',
+                    cwd: 'public/assets/styles/scss/task',
                     src: ['*.scss'],
-                    dest: 'public/build/score',
+                    dest: 'public/build/task',
                     ext: '.css'
                 }]
             }
@@ -285,7 +285,7 @@ module.exports = function (grunt) {
         ]);
     });
 
-    // temp task... for dev... three sub-project(microsite, homework, score)
+    // temp task... for dev... three sub-project(microsite, homework, task)
     grunt.registerTask('dev', function (target) { // dev task
         grunt.task.run([
             'sass',

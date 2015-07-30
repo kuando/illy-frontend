@@ -7,15 +7,15 @@ define([], function() {
     var record = {
         startTime: 0,
         endTime: 0,
+        duration: 5,
         localId: '', // core!
         dropFlag: false, // 是否放弃本录音题的标记
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
         remainTimeTimer: null, // remain time timer
-        showTimeoutDelay: 15, // second, define when show the timeout
+        showTimeoutDelay: 45, // second, define when show the timeout
         recordTooShortTipsLastTime: 1.5, // 录音时间过短提示信息持续时间
         showTimeOutLayer: function() {
-            // 给个遮罩， 10秒倒计时开始
-            //alert("倒计时10秒！");
+            // 给个遮罩， 10秒倒计时开始, 并会自动停止录音并上传
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
             record.layerUiChange();
@@ -23,12 +23,12 @@ define([], function() {
             record.remainTimeTimer = setInterval(function() {
                 var time = timeoutMask && parseInt(timeoutMask.innerHTML, 10);
                 timeoutMask && ( timeoutMask.innerHTML = time > 0 ? time - 1 : 10);
-                if (time == 0) { clearInterval(record.remainTimeTimer);  question.stopRecord(); } // core! should stop it.
+                if (time == 0) { question.stopRecord(); clearInterval(record.remainTimeTimer); } // core! should stop it.
             }, 1000)
-            // recover the ui when time enough
+            // recover the ui when time enough, 18s is enough
             setTimeout(function() {
                 record.layerUiRecover();
-            }, 11000); 
+            }, 18000); 
         },
         layerUiChange: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
@@ -120,6 +120,9 @@ define([], function() {
             var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
+            record.duration = duration;
+            var recordTotalTime = avalon.$('.record-total-time')
+            recordTotalTime && ( recordTotalTime.innerHTML = duration ); // 设置录音时长
             if (duration < 5) { // 小于五秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
@@ -197,7 +200,7 @@ define([], function() {
         checkAnswer: function() { // check answer and collect info for Collect
 
             /** 
-             *  首先防御后退更改答案
+             *  首先防御后退更改答案, 停止播放录音(执行呗，反正无害...)
              *  1. 如果为录音题, 做相关判断和统计
              *  2. 不是录音题
              *        如果没做，提示并停止检查
@@ -208,6 +211,7 @@ define([], function() {
                 console.log("不可更改答案!");
                 return;
             }
+            question.stopPlayRecord();
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
             if (question.exercise && question.exercise.eType == 3) {
@@ -218,7 +222,7 @@ define([], function() {
                 var audioAnswer = question.userAnswer;
                 var flag = record.dropFlag;
                 if (audioAnswer == '' && !flag) { alert("本题未保存录音，请继续！"); record.dropFlag = true; return; }
-                if (audioAnswer == '' || flag) { alert("您已放弃本题，请继续！"); }
+                if (audioAnswer == '' && flag) { alert("您已放弃本题，请继续！"); }
                 
                 question.right = true; // right it for next
                 detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
@@ -243,12 +247,13 @@ define([], function() {
             //avalon.log(question.localAnswers);
         }, // checkAnswer end
         submit: function() {
-            //avalon.log("question submit");
-            // 1.通知父vm的submit方法发送统计数据， 
-            // removed!!! 2.自身跳转至result页面, removed, put in detail submit success fn to go
+
+            /** 
+             *  作业就通知父vm提交， 预习就提示并跳转到作业列表
+             */
+
             avalon.vmodels.info.workType == 'homework' ? avalon.vmodels.detail.submit() : alert("恭喜您，完成了本次预习作业，再接再厉！"); avalon.router.go('app.list');
-            //avalon.router.go('app.detail.result', {homeworkId: question.homeworkId});
-        } // submit end
+        } 
     });
 
     var requestAuth = false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
@@ -267,6 +272,7 @@ define([], function() {
         }
         // 进入视图, 对复用的数据进行重置或清空操作！
         $ctrl.$onEnter = function(params) {
+
             // clear some record data
             record.startTime = '';
             record.endTime = '';
@@ -277,28 +283,34 @@ define([], function() {
             question.isRecording = false;
             
             question.right = null; // 重置题目对错标记
+
             //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿,这个不变的东西，不需要在此处动态获取！
+            
             question.currentId = params.questionId;
             // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             question.exercise = exercises[id]; // yes
+
             question.total = avalon.vmodels.detail.exercises.length; // yes, must动态设置
             if (params.questionId < question.total) { // key! to next or submit
                 question.hasNext = true;
             } else {
                 question.hasNext = false;
             }
+
             // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
             question.userAnswer = question.localAnswers[question.currentId - 1] || '';
-            //avalon.log(params); 
-            //avalon.log(question.exercise);
+
             if (!requestAuth) {
                 wx.startRecord();
-                wx.stopRecord();
+                setTimeout(function() {
+                    wx.stopRecord();
+                }, 1000)
                 requestAuth = true; // auth done
             }
-        }
+
+        } // onEnter end
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("question.js onBeforeUnload fn");

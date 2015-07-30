@@ -69,9 +69,9 @@
 
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
 
-        <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-on-tap="playRecord()" ms-visible="showPlayRecordBtn">点击试听</div>
+        <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-on-tap="playRecord()" ms-visible="showPlayRecordBtn"><span class="record-total-time">5</span>点击试听</div>
 
-        <div class="record-tips">录音时间过短，请重新录制!</div>
+        <div class="record-tips">录音时间过短，请重新录制</div>
 
     </div>
     <!-- 录音题-->
@@ -93,7 +93,7 @@
             <p ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
         </div>
         <div class="answer" ms-if="exercise.eType == 3">
-            <span class="save">录音已保存，请继续操作!</span>
+            <span class="save">本题完毕， 请继续操作!</span>
         </div>
         <div class="tap-btn btn-next" ms-click="next()" ms-if="hasNext">
             <span class="icon yo-ico icon-next">&#xf079;</span>

@@ -21,7 +21,11 @@
         <div class="item-wrapper">
             <div class="item area" ms-repeat-item="hots">
                 <img class="item-img area" ms-attr-src="item.img" ms-attr-alt="item.title" />
-                <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
+                <div class="right-area">
+                    <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
+                    <div class="count share-count"><i class="icon icon-share"></i>{{item.shareCount}}</div> 
+                    <div class="count visit-count"><i class="icon icon-people"></i>{{item.visitCount}}</div> 
+                </div>
             </div>
         </div>
         <!-- item end -->

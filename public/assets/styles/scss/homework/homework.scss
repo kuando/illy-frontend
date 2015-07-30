@@ -7,12 +7,28 @@
 
 
 @import "../_normalize.scss";
+
 @import "../../Yo/lib/core/variables.scss";
 @import "../../Yo/lib/core/reset.scss";
-@import "../../Yo/lib/core/classes.scss";
-@import "../../Yo/lib/fragment/yo-header.scss";
+/*@import "../../Yo/lib/core/classes.scss";*/
+/*@import "../../Yo/lib/fragment/yo-header.scss";*/
+
+/*@import "../../Yo/lib/layout/yo-flex.scss";*/
+/*@import "../../Yo/lib/layout/yo-align.scss";*/
+/*@import "../../Yo/lib/layout/yo-stacked.scss";*/
+/*@import "../../Yo/lib/fragment/classes.scss";*/
+/*@import "../../Yo/lib/element/classes.scss";*/
+/*@import "../../Yo/lib/element/yo-checked.scss";*/
+/*@import "../../Yo/lib/element/yo-input.scss";*/
+/*@import "../../Yo/lib/element/yo-range.scss";*/
+/*@import "../../Yo/lib/fragment/yo-list.scss";*/
+/*@import "../../Yo/lib/widget/yo-group.scss";*/
 @import "../common.scss";
 
+audio {
+    height: 150px;
+    font-size: 16px;
+}
 /* reset vars and vars start */
 $img_width: 20%;
 $img_height: .7rem;
@@ -151,15 +167,6 @@ $next_radius: $answer_panel_height / 2;
 
 /* question start */
 
-/* 去除分割线，恶心的第二条线不显示bug */
-.yo-list > .item {
-    background-image: none; 
-}
-
-.yo-list > .item {
-    background-image: none; 
-}
-
 .illy-img-list {
     padding: .09rem;
     text-align: left;
@@ -201,6 +208,15 @@ $next_radius: $answer_panel_height / 2;
 .question {
     padding: .05rem;
     text-align: left;
+
+    /* 去除分割线，恶心的第二条线不显示bug */
+    .yo-list > .item {
+        background-image: none; 
+    }
+
+    .yo-list > .item:last-child {
+        background-image: none; 
+    }
 
     .yo-range {
         padding: 0;
@@ -251,7 +267,7 @@ $next_radius: $answer_panel_height / 2;
     }
 
     .isRecording.timeout {
-        opacity: .4;
+        opacity: .2;
     }
 
     .timeout-mask {
@@ -300,8 +316,14 @@ $next_radius: $answer_panel_height / 2;
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: -.08rem 0;
+
+        .record-total-time { /* 录音时长 */
+            position: relative;
+            left: -.48rem;
+        }
     }
 
+    /* record too short tips */
     .record-tips {
         display: none; /* inline-block */
         position: absolute;
@@ -317,6 +339,7 @@ $next_radius: $answer_panel_height / 2;
         font-size: .12rem;
         color: #666;
         border-radius: .05rem;
+        border: 3px solid red;
     }
 
     .answer-panel {
@@ -346,7 +369,7 @@ $next_radius: $answer_panel_height / 2;
 
             /* 录音已保存 */
             .save {
-                width: 65%;
+                width: 72%;
             }
 
             p {

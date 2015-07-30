@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title> 积分 & 任务 </title>
-    <link rel="stylesheet" href="build/task/task.css" />
     <link rel="stylesheet" href="assets/styles/animation.css" />
-    <!--<link rel="stylesheet" href="./assets/styles/Yo/yo-all.css" />-->
+    <link rel="stylesheet" href="./assets/styles/Yo/yo-all.css" />
+    <link rel="stylesheet" href="build/task/task.css" />
 </head>
 
 <body ms-controller="root">
@@ -25,7 +25,6 @@
 // (function(){var win=window,doc=win.document,docEl=doc.documentElement,ua=win.navigator.userAgent,metaA=docEl.querySelector('meta[name="viewport"]'),isIOS=ua.match(/iphone/gi),scale,dpr;if(isIOS){dpr=win.devicePixelRatio;dpr=dpr>=3?3:dpr>=2?2:1;scale=(1/dpr).toFixed(2);docEl.setAttribute("data-dpr",dpr);docEl.setAttribute("ios","true");if(!metaA){metaA=doc.createElement("meta")}metaA.setAttribute("name","viewport");metaA.setAttribute("content","initial-scale="+scale+", maximum-scale="+scale+", minimum-scale="+scale+", user-scalable=no");if(!metaA){if(docEl.firstElementChild){docEl.firstElementChild.appendChild(metaA)}else{var div=doc.createElement("div");div.appendChild(metaA);doc.write(div.innerHTML)}}win.dpr=dpr}})();
 </script>
 <script src="assets/scripts/lib/avalon/avalon.js"></script>
-<script src="./assets/scripts/lib/fastclick.min.js"></script>
 <script>
 
     avalon.config({
@@ -37,23 +36,12 @@
     });
 
     require(['./scripts/task'], function(task) {
-        avalon.log('bootstrap file loaded in Time: ' + Date.now());
-        var startTime = Date.now();
-        avalon.startTime = startTime;
         task && task.init && task.init();
     })
     // rendered and bootstrap the page
 
-
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
-
 </script>
 
-<script src="assets/scripts/lib/gmu/gmu.part.js"></script>
 <script src="http://localhost:35729/livereload.js"></script>
 <script src="http://192.168.1.104:8080/target/target-script-min.js#anonymous"></script>
 </html>

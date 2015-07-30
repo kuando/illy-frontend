@@ -10,7 +10,7 @@ $g_bgColor: #f9f5f5;
 $main-color: #6ad086;
 $title-line-height: .36rem;
 $img_height: .80rem;
-$item_title_height: .45rem;
+$item_title_height: .42rem;
 $g_font_color: #747070;
 /* vars end */
 
@@ -182,6 +182,7 @@ a, a:hover {
     color: $g_font_color;
     cursor: pointer;
 }
+
 /* common item start */
 .item-wrapper {
     padding: .05rem 0;
@@ -232,7 +233,8 @@ a, a:hover {
 
 .categories {
     .item-title {
-        min-height: .15rem;
+        min-height: .42rem;
+        overflow: hidden;
     }
 }
 
@@ -284,9 +286,39 @@ a, a:hover {
         width: 30%;
         margin-right: .05rem;
     }
+    .right-area {
+        width: 60%;
+        display: inline-block;
+        vertical-align: top;
+    }
     .item-title {
-        width: 55%;
+        width: 98%;
         margin-top: .01rem;
+    }
+    .count {
+        width: 46%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .icon {
+        width: .16rem;
+        height: .16rem;
+        display: inline-block;
+        vertical-align: middle;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        margin-right: .08rem;
+        position: relative;
+        top: -.01rem;
+    }
+
+    .icon-share {
+        background-image: url(../../assets/images/iconfont-share.png);
+    }
+
+    .icon-people {
+        background-image: url(../../assets/images/iconfont-xinzengrenshu.png);
     }
 }
 
