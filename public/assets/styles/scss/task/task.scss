@@ -62,9 +62,9 @@ a, a:hover {
         }
 
         .title {
-            margin: .02rem;
-            padding: .03rem;
+            padding: .05rem .08rem .03rem;
             line-height: 1.3;
+            font-size: .12rem;
         }
 
         .price {
@@ -86,14 +86,30 @@ a, a:hover {
 
 /* rank start */
 .rank {
-    text-align: left;
-    .name, .score {
-        width: 45%;
+
+    .rank-li {
         text-align: center;
     }
 
-    .rank-symbol {
-        width: 27%;
+    .rank-div {
+        width: 11%;
+    }
+
+    .name-div {
+    }
+
+    .score-div {
+        width: 15%;
+    }
+    .avatar{
+        width: .2rem;
+        height: .2rem;
+        display: inline-block;
+        margin-right: .05rem;
+    }
+
+    .span {
+        
     }
 }
 /* rank end */

@@ -48,10 +48,6 @@ $next_radius: $answer_panel_height / 2;
     min-height: 4.5rem;
 }
 
-/* override the Yo style */
-#header .affirm {
-    color: #fff;
-}
 /* common item start */
 .item-wrapper {
     padding: .10rem .08rem;
@@ -261,7 +257,7 @@ $next_radius: $answer_panel_height / 2;
         -webkit-transform: translateX(-50%) translateY(-50%);
         width: .84rem;
         height: .79rem;
-        background: url(../../assets/images/record.png) no-repeat center;
+        background: url(../../assets/images/recording.gif) no-repeat center;
         background-size: 100%;
         border-radius: .10rem;
     }
@@ -320,6 +316,7 @@ $next_radius: $answer_panel_height / 2;
         .record-total-time { /* 录音时长 */
             position: relative;
             left: -.48rem;
+            font-size: .18rem;
         }
     }
 
@@ -333,13 +330,13 @@ $next_radius: $answer_panel_height / 2;
         -webkit-transform: translateX(-50%) translateY(-50%);
         width: 1.6rem;
         height: .41rem;
-        line-height: .41rem;
+        line-height: .39rem;
         background: #eee;
         text-align: center;
         font-size: .12rem;
         color: #666;
         border-radius: .05rem;
-        border: 3px solid red;
+        border: 2px solid red;
     }
 
     .answer-panel {

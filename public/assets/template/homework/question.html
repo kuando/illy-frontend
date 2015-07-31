@@ -57,20 +57,26 @@
     </div>
     <!-- 填空题 -->
 
-    <!-- 录音题-->
+    <!-- 录音题,ui状态略混乱 -->
     <div class="mp3" ms-if="exercise.eType == 3">
 
+        <!-- 仅录音时显示 -->
         <div class="record-mask mask" ms-class-1="show: isRecording==true"></div>
 
+        <!-- 仅录音时显示 -->
         <div class="isRecording" ms-class-1="hide: isRecording==false"></div>
         <div class="timeout-mask">10</div>
 
+        <!-- 仅首次进入本题且未成功录制一次录音时显示-->
         <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">开始录制</div>
 
-        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
+        <!-- 后退的页面不应该显示重新录制 -->
+        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length >= currentId) " ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
 
+        <!-- 录音完毕或者后退到本题时显示 -->
         <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-on-tap="playRecord()" ms-visible="showPlayRecordBtn"><span class="record-total-time">5</span>点击试听</div>
 
+        <!-- 仅录音过短显示, 一定时间后消失或录音时消失 -->
         <div class="record-tips">录音时间过短，请重新录制</div>
 
     </div>

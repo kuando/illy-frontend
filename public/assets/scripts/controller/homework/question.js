@@ -121,8 +121,6 @@ define([], function() {
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
             record.duration = duration;
-            var recordTotalTime = avalon.$('.record-total-time')
-            recordTotalTime && ( recordTotalTime.innerHTML = parseInt(duration, 10) ); // 设置录音时长
             if (duration < 5) { // 小于五秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
@@ -141,6 +139,8 @@ define([], function() {
                         question.showPlayRecordBtn = true;
                     }
                 })
+                var recordTotalTime = avalon.$('.record-total-time')
+                recordTotalTime && ( recordTotalTime.innerHTML = parseInt(duration, 10) ); // 设置录音时长
             }
         },
         playRecord: function() {
@@ -243,16 +243,16 @@ define([], function() {
                 //alert(radioAnswer);
                 detailVM.wrongCollect.push({exerciseId: question.currentId, answer: radioAnswer});  
             }
-            question.localAnswers.push(question.userAnswer);
+            question.localAnswers.push(record.localId);
             //avalon.log(question.localAnswers);
         }, // checkAnswer end
         submit: function() {
 
             /** 
-             *  作业就通知父vm提交， 预习就提示并跳转到作业列表
+             *  通知父vm提交(父vm决定提交跳转逻辑，此处简化)
              */
 
-            avalon.vmodels.info.workType == 'homework' ? avalon.vmodels.detail.submit() : alert("恭喜您，完成了本次预习作业，再接再厉！"); avalon.router.go('app.list');
+            avalon.vmodels.detail.submit();
         } 
     });
 
@@ -279,7 +279,6 @@ define([], function() {
             record.localId = '';
             record.remainTimeTimer = null;
             record.dropFlag = false;
-            question.showPlayRecordBtn = false;
             question.isRecording = false;
             
             question.right = null; // 重置题目对错标记
@@ -291,6 +290,13 @@ define([], function() {
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             question.exercise = exercises[id]; // yes
+
+            // play record btn
+            if (question.localAnswers.length < question.currentId) {
+                question.showPlayRecordBtn = false;
+            } else {
+                question.showPlayRecordBtn = true;
+            }
 
             question.total = avalon.vmodels.detail.exercises.length; // yes, must动态设置
             if (params.questionId < question.total) { // key! to next or submit

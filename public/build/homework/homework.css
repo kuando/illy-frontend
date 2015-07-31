@@ -933,6 +933,7 @@ body {
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
+  font-weight: normal;
 }
 
 audio {
@@ -1082,6 +1083,11 @@ audio {
     -webkit-transform: scale(1);
   }
 }
+/* fix for header's back-index */
+#header .affirm {
+  color: #fff;
+}
+
 audio {
   height: 150px;
   font-size: 16px;
@@ -1100,11 +1106,6 @@ audio {
 
 .app {
   min-height: 4.5rem;
-}
-
-/* override the Yo style */
-#header .affirm {
-  color: #fff;
 }
 
 /* common item start */
@@ -1290,7 +1291,7 @@ audio {
   -webkit-transform: translateX(-50%) translateY(-50%);
   width: .84rem;
   height: .79rem;
-  background: url(../../assets/images/record.png) no-repeat center;
+  background: url(../../assets/images/recording.gif) no-repeat center;
   background-size: 100%;
   border-radius: .10rem;
 }
@@ -1346,6 +1347,7 @@ audio {
   /* 录音时长 */
   position: relative;
   left: -.48rem;
+  font-size: .18rem;
 }
 .question .record-tips {
   display: none;
@@ -1357,13 +1359,13 @@ audio {
   -webkit-transform: translateX(-50%) translateY(-50%);
   width: 1.6rem;
   height: .41rem;
-  line-height: .41rem;
+  line-height: .39rem;
   background: #eee;
   text-align: center;
   font-size: .12rem;
   color: #666;
   border-radius: .05rem;
-  border: 3px solid red;
+  border: 2px solid red;
 }
 .question .answer-panel {
   display: none;

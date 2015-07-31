@@ -25,9 +25,10 @@ define([], function() {
         },
         submit: function() { // core!!!
             //avalon.log("detail submit"); // no log, but real here, don't worry
+            var type = avalon.vmodels.info.workType;
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + '/api/v1/homework/' + detail.homeworkId + '/performance',
+                url: apiBaseUrl + '/api/v1/'+ type +'/' + detail.homeworkId + '/performance',
                 headers: {
                     Authorization: 'Bearer ' + avalon.illyGlobal.token
                 },
@@ -38,8 +39,6 @@ define([], function() {
                     numOfExercise: avalon.getPureModel('detail').exercises.length
                 },
                 success: function(res) {
-                    //avalon.log("result res" + res);
-                    //console.table("detail", avalon.vmodels.detail.$model.result);
                     var target = avalon.vmodels.detail.$model.result;
                     target.rightAward = res.rightAward,
                     target.finishAward = res.finishAward,
@@ -48,7 +47,6 @@ define([], function() {
                     target.wrongCount = res.wrongCount,
                     target.totalScore = res.totalScore
                     setTimeout(function() {
-                        //avalon.log("before go" , avalon.vmodels.detail.$model.result);
                         // go result
                         avalon.router.go('app.detail.result', {homeworkId: detail.homeworkId});
                     }, 16)

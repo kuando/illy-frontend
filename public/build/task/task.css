@@ -1584,6 +1584,11 @@ audio {
     -webkit-transform: scale(1);
   }
 }
+/* fix for header's back-index */
+#header .affirm {
+  color: #fff;
+}
+
 .task {
   min-height: 450px;
   /* for layout, footer is footer */
@@ -1623,9 +1628,9 @@ a, a:hover {
   width: 100%;
 }
 .shop-wrapper .shop-item .title {
-  margin: .02rem;
-  padding: .03rem;
+  padding: .05rem .08rem .03rem;
   line-height: 1.3;
+  font-size: .12rem;
 }
 .shop-wrapper .shop-item .price {
   position: absolute;
@@ -1641,15 +1646,20 @@ a, a:hover {
 
 /* shop end */
 /* rank start */
-.rank {
-  text-align: left;
-}
-.rank .name, .rank .score {
-  width: 45%;
+.rank .rank-li {
   text-align: center;
 }
-.rank .rank-symbol {
-  width: 27%;
+.rank .rank-div {
+  width: 11%;
+}
+.rank .score-div {
+  width: 15%;
+}
+.rank .avatar {
+  width: .2rem;
+  height: .2rem;
+  display: inline-block;
+  margin-right: .05rem;
 }
 
 /* rank end */

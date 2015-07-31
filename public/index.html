@@ -116,7 +116,7 @@ h1 {
     var code = query.code;
 
     if (code) {
-        var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + url);
+        var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
         if (!xhr) {
             alert('CORS not supported');
         }
