@@ -7,12 +7,15 @@
 
 /* vars start */
 $g_bgColor: #f9f5f5;
-$main-color: #6ad086;
+$main-color: #6fd801;
 $title-line-height: .36rem;
 $img_width: 35%;
 $img_height: .80rem;
 $item_title_height: .45rem;
 $g_font_color: #747070;
+$main-green: #6fd801;
+$main-red: #e50b23;
+$main-blue: #00abfd;
 /* vars end */
 
 /* global reset start */ 
@@ -293,7 +296,8 @@ audio {
 }
 
 /* fix for header's back-index */
-#header {
+#header, .yo-header {
+    background: $main-blue;
     .affirm {
         color: #fff;
     }

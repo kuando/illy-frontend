@@ -1807,14 +1807,14 @@ a, a:hover {
   height: 100%;
   line-height: 0.36rem;
   font-size: .16rem;
-  border-bottom: 2px solid #6ad086;
+  border-bottom: 2px solid #11e64c;
 }
 .title-line .more {
   float: right;
   height: 100%;
   line-height: 0.36rem;
   font-size: .12rem;
-  color: #6ad086;
+  color: #11e64c;
   padding-top: .03rem;
 }
 .title-line .more:hover {
@@ -1868,10 +1868,10 @@ a, a:hover {
   top: -.01rem;
 }
 .list .icon-share, .topN .icon-share {
-  background-image: url(../../assets/images/iconfont-share.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
 }
 .list .icon-people, .topN .icon-people {
-  background-image: url(../../assets/images/iconfont-xinzengrenshu.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png);
 }
 
 .list .item-wrapper {

@@ -1,14 +1,34 @@
 <div class="result" ms-controller="result">
-	
-	rightAward： {{rightAward}}
-	finishedAward: {{finishedAward}}
-	totalAward: {{totalAward}}
-	rightCount：{{rightCount}}
-	wrongCount: {{wrongCount}}
-	totalScore: {{totalScore}}
-	呵呵！！！
 
-	go <a href="javascript:void(0)">积分商城吧</a>
-	<a ms-attr-href="'#!/'">去首页</a>
+    <ul class="yo-list yo-list-group">
+        <li class="item" ms-if="rightAward != ''">
+            <span class="mark">本次正确奖励:</span>
+            <div class="flex">{{rightAward}}</div>
+        </li>
+        <li class="item" ms-if="finishedAward != ''">
+            <span class="mark">作业完成奖励:</span>
+            <div class="flex">{{finishedAward}}</div>
+        </li>
+        <li class="item" ms-if="totalAward != ''">
+            <span class="mark">总奖励:</span>
+            <div class="flex">{{totalAward}}</div>
+        </li>
+        <li class="item" ms-if="rightCount != ''">
+            <span class="mark">正确题数:</span>
+            <div class="flex">{{rightCount}}</div>
+        </li>
+        <li class="item" ms-if="wrongCount  != ''">
+            <span class="mark">错误题数:</span>
+            <div class="flex">{{wrongCount}}</div>
+        </li>
+        <li class="item" ms-if="totalScore != ''">
+            <span class="mark">总得分:</span>
+            <div class="flex">{{totalScore}}</div>
+        </li>
+    </ul>
+
+    <a href="http://app.hizuoye.com/task.html#!/shop" class="go-shop yo-btn yo-btn-l" >前往积分商城</a>
+    <a href="#!/" class="go-index yo-btn yo-btn-light yo-btn-l" >回到首页</a>
+
 </div>
 

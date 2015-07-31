@@ -13,6 +13,7 @@ define([], function() {
         title: '',
         keyPoint: '',
         keyPointRecord: '',
+        isPlaying: false, // 有录音的作业是否在播放录音
         // core!!! 因为detail为抽象状态，无onEnter的params参数，故延迟到这里获取数据
         fetchDataForDetailCtrl: function(id, type) { // 可以获取多种作业类型的数据了,201507201446
             var _id = id;   
@@ -38,18 +39,37 @@ define([], function() {
                     detail.exercises = json.exercises;
                 },
                 error: function(res) {
-                    console.error(res);
+                    console.log(res);
                 },
                 ajaxFail: function(res) {
-                    console.error(res);
+                    console.log(res);
                 }
             })
         },
         goNext: function(type) { // core!!! 判断跳转到哪种类型的题目
-            if (type == 'preview') {
-                avalon.router.go('app.detail.preview', {homeworkId: info.homeworkId, questionId: 1 });
+            avalon.router.go('app.detail.question', {homeworkId: info.homeworkId, questionId: 1 });
+        },
+        playRecord: function() {
+            var audio = avalon.$('.keyPointAudio');
+            audio.play();
+            info.isPlaying = true;
+            avalon.log('playing');
+            // ui change for playing
+            // ...
+        },
+        stopRecord: function() {
+            var audio = avalon.$('.keyPointAudio');
+            audio.pause();
+            info.isPlaying = false;
+            avalon.log('stop playing');
+            // ui recover
+            // ...
+        },
+        toggleRecord: function() {
+            if (info.isPlaying) {
+                info.stopRecord();
             } else {
-                avalon.router.go('app.detail.question', {homeworkId: info.homeworkId, questionId: 1 });
+                info.playRecord();
             }
         }
     });
@@ -66,6 +86,13 @@ define([], function() {
             info.workType = type;
             var _id = params.homeworkId;
             info.fetchDataForDetailCtrl(_id, type); // 分为两种，作业和预习, 更加灵活，便于扩充
+            setTimeout(function() {
+                // 设置好录音时间
+                var audio = avalon.$('.keyPointAudio');
+                var duration = audio && audio.duration;
+                var time = avalon.$('.record-total-time');
+                time && ( time.innerHTML = parseInt(duration, 10) );
+            }, 2000)
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

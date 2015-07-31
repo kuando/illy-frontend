@@ -41,16 +41,17 @@ $next_radius: $answer_panel_height / 2;
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: yellow;
+    background-color: $main-color;
     font-size: .8rem;
+    color: #fff;
 }
 .app {
     min-height: 4.5rem;
+    padding: .05rem;
 }
 
 /* common item start */
 .item-wrapper {
-    padding: .10rem .08rem;
 
     .item {
         width: 100%;
@@ -117,7 +118,7 @@ $next_radius: $answer_panel_height / 2;
                         display: inline-block;
                         vertical-align: middle;
                         /* 下面两条规则适配高分屏 */
-                        background: url(../../assets/images/iconfont-xinzengrenshu.png) no-repeat;
+                        background: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png) no-repeat;
                         background-size: 100%;
                         margin-right: .08rem;
                         margin-top: -0.02rem;                   
@@ -143,28 +144,53 @@ $next_radius: $answer_panel_height / 2;
 }
 /* common item end */
 
-/* detail start */
-.detail {
-    font-size: .18rem;
-    color: hsl(0, 0%, 11%);
-    line-height: 1.5;
+/* info start */
+.info {
+    text-align: center;
+}
+.panel {
+    text-align: left;
+    display:  inline-block;
+    width: 96%;
 
-    .title {
-        font-size: .20rem;
-        line-height: 3;
+    .mark {
+        width: 23%;
+    }
+    .flex {
+        width: 75%;
     }
 
-    .content {
-        line-height: 1.6;
-        text-align: left;
+    .playRecord { // image of record to play
+        top: 54%;
+        font-size: .14rem;
+        color: #7c7474;
+        background: url(http://app.hizuoye.com/build/images/playing.png);
+        background-size: contain; 
+        background-repeat: no-repeat;
+        background-position: -.08rem 0;
+
+        .record-total-time { /* 录音时长 */
+            position: relative;
+            left: -.48rem;
+            font-size: .18rem;
+        }
+    }
+
+    .go-question {
+        display: block;
+        margin: 0 auto;
+        background: $main-color; 
+        border-color: $main-color;
+        margin-top: .3rem;
+        border-radius: .1rem;
+        font-size: .2rem;
     }
 }
-/* detail end */
+/* info end */
 
 /* question start */
 
 .illy-img-list {
-    padding: .09rem;
     text-align: left;
 
     label.item {
@@ -201,8 +227,8 @@ $next_radius: $answer_panel_height / 2;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
   background-color: #fff;
 }
+
 .question {
-    padding: .05rem;
     text-align: left;
 
     /* 去除分割线，恶心的第二条线不显示bug */
@@ -249,7 +275,7 @@ $next_radius: $answer_panel_height / 2;
     }
 
     .isRecording {
-        display: inline-block;
+        display: none;
         position: absolute;
         top: 42%;
         left: 50%;
@@ -257,7 +283,8 @@ $next_radius: $answer_panel_height / 2;
         -webkit-transform: translateX(-50%) translateY(-50%);
         width: .84rem;
         height: .79rem;
-        background: url(../../assets/images/recording.gif) no-repeat center;
+        background-image: url(http://app.hizuoye.com/build/images/recording.gif);
+        background-repeat: no-repeat;
         background-size: 100%;
         border-radius: .10rem;
     }
@@ -299,7 +326,7 @@ $next_radius: $answer_panel_height / 2;
         border-radius: .05rem;
     }
     .record-btn.active {
-        background-color: #46c246;
+        background-color: $main-green;
         color: #fff;
         font-weight: bold;
     }
@@ -308,7 +335,7 @@ $next_radius: $answer_panel_height / 2;
         top: 54%;
         font-size: .14rem;
         color: #7c7474;
-        background: url(http://www.qqski.com/msoft/img_img1.imgtn.bdimg.comA-AitA-Au=3268728548B-B3613407333@fm=15@gp=0.jpg);
+        background-image: url(http://app.hizuoye.com/build/images/playing.png);
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: -.08rem 0;
@@ -336,7 +363,7 @@ $next_radius: $answer_panel_height / 2;
         font-size: .12rem;
         color: #666;
         border-radius: .05rem;
-        border: 2px solid red;
+        border: 2px solid $main-red;
     }
 
     .answer-panel {
@@ -347,7 +374,10 @@ $next_radius: $answer_panel_height / 2;
         width: 100%;
         min-height: $answer_panel_height;
         margin-top: -$answer_panel_height;
-        background-color: #f57bf9;
+        background-color: $main-color;
+        &.wrong {
+            background-color: $main-red;
+        }
 
         .answer {
             word-break: break-all;
@@ -358,8 +388,8 @@ $next_radius: $answer_panel_height / 2;
 
             .right, .save {
                 font-weight: bold;
-                font-size: .16rem;
-                color: #666;
+                font-size: .18rem;
+                color: #f2eded;
                 display: inline-block;
                 vertical-align: top;
             }
@@ -373,6 +403,7 @@ $next_radius: $answer_panel_height / 2;
                 display: inline-block;
                 width: 60%;
                 margin-top: .03rem;
+                color: #f2eded;
             }
         }
     }
@@ -381,7 +412,7 @@ $next_radius: $answer_panel_height / 2;
         width: $next_radius;
         height: $next_radius;
         border-radius: 50%;
-        background-color: #5d92f4;
+        background-color: $main-blue;
         position: absolute;
         right: .1rem;
         bottom: $answer_panel_height - .5rem;
@@ -393,17 +424,39 @@ $next_radius: $answer_panel_height / 2;
             line-height: $next_radius;
             color: white;
             font-weight: bold;
-            -webkit-transform: scale(3);
-            transform: scale(3);
+            -webkit-transform: scale(6);
+            transform: scale(6);
         }
 
         .icon-next {
-            -webkit-transform: rotate(90deg) scale(3);
-            transform: rotate(90deg) scale(3);
+            -webkit-transform: rotate(90deg) scale(6);
+            transform: rotate(90deg) scale(6);
         }
 
     }
 
 }
 /* question end */
+
+/* result start */
+.result {
+    margin: .1rem;
+
+    .mark {
+        width: 48%;
+    }
+
+    .yo-btn {
+        margin-top: .15rem;
+    }
+
+    .go-shop {
+        color: #fff;
+    }
+
+    .go-index {
+
+    }
+}
+/* result end */
 

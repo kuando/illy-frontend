@@ -25,7 +25,6 @@
                 {{item.title}}.{{item.content}} 
             </span>
             <div class="yo-checked yo-checked-g">
-                <!--<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" userAnswer || localAnswers[currentId - 1] " />-->
                 <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
                 <span class="type"></span>
             </div>
@@ -40,7 +39,6 @@
                 <img ms-attr-src="item.content" />
             </span>
             <div class="yo-checked yo-checked-g">
-                <!--<input type="radio" name="xiaoxuan" ms-attr-data-answer="{{item.title}}" ms-attr-checked=" userAnswer || localAnswers[currentId - 1] " />-->
                 <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
                 <span class="type"></span>
             </div>
@@ -64,7 +62,7 @@
         <div class="record-mask mask" ms-class-1="show: isRecording==true"></div>
 
         <!-- 仅录音时显示 -->
-        <div class="isRecording" ms-class-1="hide: isRecording==false"></div>
+        <div class="isRecording" ms-class-1="show: isRecording==true"></div>
         <div class="timeout-mask">10</div>
 
         <!-- 仅首次进入本题且未成功录制一次录音时显示-->
@@ -86,16 +84,16 @@
 
     <!-- 检查按钮, 仅在没做过这题时渲染 -->
     <div ms-click="checkAnswer()" ms-if="localAnswers.length < currentId " class="tap-btn next" ms-class-1="hide: isRecording==true">
-            <span class="icon yo-ico">&#xf078;</span>
+        <span class="icon yo-ico">&#xf078;</span>
     </div>
     <!-- 检查按钮 -->
 
     <!-- 答案和分析面板 -->
     <!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
-    <div class="answer-panel" ms-visible=" (localAnswers.length >= currentId) || right != null ">
+    <div class="answer-panel" ms-class="wrong:right != true" ms-visible=" (localAnswers.length >= currentId)">
         <div class="answer" ms-if="exercise.eType != 3">
-            <span class="right" ms-if="exercise.answer == localAnswers[currentId - 1]">正确! </span>
-            <span class="right" ms-if="exercise.answer != localAnswers[currentId - 1]">错误! </span>
+            <span class="right" ms-if="right">正确! </span>
+            <span class="right" ms-if="!right">错误! </span>
             <p ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
         </div>
         <div class="answer" ms-if="exercise.eType == 3">

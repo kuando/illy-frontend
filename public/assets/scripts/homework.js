@@ -248,7 +248,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // title Map， 映射各种状态的action bar title
     var acTitle = {
         'list': "作业列表",
-        'detail': '内容详情',
+        'detail': '作业详情',
         'question': '题目详情',
         'result': '作业结果'
     }
