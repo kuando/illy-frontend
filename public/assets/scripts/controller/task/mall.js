@@ -5,7 +5,7 @@ define([], function() {
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
     
     var detail = avalon.define({
-        $id: "shop",
+        $id: "mall",
         lists: []
     });
 

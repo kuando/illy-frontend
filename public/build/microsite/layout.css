@@ -1585,7 +1585,10 @@ audio {
   }
 }
 /* fix for header's back-index */
-#header .affirm {
+#header, .yo-header {
+  background: #00abfd;
+}
+#header .affirm, .yo-header .affirm {
   color: #fff;
 }
 
@@ -1807,14 +1810,14 @@ a, a:hover {
   height: 100%;
   line-height: 0.36rem;
   font-size: .16rem;
-  border-bottom: 2px solid #11e64c;
+  border-bottom: 2px solid #6fd801;
 }
 .title-line .more {
   float: right;
   height: 100%;
   line-height: 0.36rem;
   font-size: .12rem;
-  color: #11e64c;
+  color: #6fd801;
   padding-top: .03rem;
 }
 .title-line .more:hover {

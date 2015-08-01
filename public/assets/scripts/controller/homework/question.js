@@ -10,7 +10,6 @@ define([], function() {
         duration: 5,
         localId: '', // core!
         dropFlag: false, // 是否放弃本录音题的标记
-        isPlaying: false, // 是否正在播放
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
         remainTimeTimer: null, // remain time timer
         showTimeoutDelay: 45, // second, define when show the timeout
@@ -69,6 +68,7 @@ define([], function() {
         right: null, // 做对与否, 录音题始终设为right(Em~...), 控制一些显隐逻辑(null, true, false)
         hasNext: false, // 是否有下一题？
         isRecording: false, // whether recording now, for ms-class 
+        isPlaying: false, // 是否正在播放
         showPlayRecordBtn: false, // 是否显示播放录音按钮
         next: function() { // 点击进入下一题
             // 只处理页面跳转进入下一题
@@ -187,7 +187,7 @@ define([], function() {
             wx.playVoice({
                 localId: localId
             });
-            record.isPlaying = true;
+            question.isPlaying = true;
 
         },
         stopPlayRecord: function() {
@@ -203,7 +203,7 @@ define([], function() {
             wx.stopVoice({
                 localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
             })
-            record.isPlaying = false;
+            question.isPlaying = false;
 
         },
         togglePlayRecord: function() {
@@ -213,7 +213,7 @@ define([], function() {
              *  不在播放就开始
              */
 
-            if (record.isPlaying) {
+            if (question.isPlaying) {
                 stopPlayRecord();
             } else {
                 playRecord();

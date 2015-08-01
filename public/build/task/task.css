@@ -1585,7 +1585,10 @@ audio {
   }
 }
 /* fix for header's back-index */
-#header .affirm {
+#header, .yo-header {
+  background: #00abfd;
+}
+#header .affirm, .yo-header .affirm {
   color: #fff;
 }
 
@@ -1607,12 +1610,12 @@ a, a:hover {
   padding: .03rem;
 }
 
-/* shop start */
-.shop-wrapper {
+/* mall start */
+.mall-wrapper {
   text-align: center;
   margin: .1rem 0;
 }
-.shop-wrapper .shop-item {
+.mall-wrapper .mall-item {
   display: inline-block;
   width: 47%;
   margin: .05rem .02rem;
@@ -1620,19 +1623,19 @@ a, a:hover {
   padding: .03rem 0;
   text-align: left;
 }
-.shop-wrapper .shop-item .img-wrapper {
+.mall-wrapper .mall-item .img-wrapper {
   position: relative;
 }
-.shop-wrapper .shop-item img {
+.mall-wrapper .mall-item img {
   display: inline-block;
   width: 100%;
 }
-.shop-wrapper .shop-item .title {
+.mall-wrapper .mall-item .title {
   padding: .05rem .08rem .03rem;
   line-height: 1.3;
   font-size: .12rem;
 }
-.shop-wrapper .shop-item .price {
+.mall-wrapper .mall-item .price {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1644,7 +1647,7 @@ a, a:hover {
   opacity: .7;
 }
 
-/* shop end */
+/* mall end */
 /* rank start */
 .rank .rank-li {
   text-align: center;
@@ -1656,8 +1659,9 @@ a, a:hover {
   width: 15%;
 }
 .rank .avatar {
-  width: .2rem;
-  height: .2rem;
+  width: .25rem;
+  height: .25rem;
+  border-radius: 50%;
   display: inline-block;
   margin-right: .05rem;
 }

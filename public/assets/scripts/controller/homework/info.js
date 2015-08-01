@@ -53,7 +53,6 @@ define([], function() {
             var audio = avalon.$('.keyPointAudio');
             audio.play();
             info.isPlaying = true;
-            avalon.log('playing');
             // ui change for playing
             // ...
         },
@@ -61,7 +60,6 @@ define([], function() {
             var audio = avalon.$('.keyPointAudio');
             audio.pause();
             info.isPlaying = false;
-            avalon.log('stop playing');
             // ui recover
             // ...
         },

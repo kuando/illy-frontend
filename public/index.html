@@ -115,6 +115,18 @@ h1 {
     var next = query.next;
     var code = query.code;
 
+    var nextMap = {
+        microsite: './microsite.html',
+        homework: './homework.html',
+        report: './homework.html#!/report',
+        mistake: './homework.html#!/mistake',
+        task: './task.html',
+        mall: './task.html#!/mall',
+        rank: './task.html#!/rank'
+    }
+
+    var nextUrl = nextMap[next];
+
     if (code) {
         var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
         if (!xhr) {
@@ -127,14 +139,14 @@ h1 {
                 // location.href = next + '.html?token=' + xhr.responseText;
                 if ( localStorage && localStorage.getItem ) {
                     localStorage.setItem('illy-token', xhr.responseText);
-                    location.replace(next + '.html'); // pure url
+                    location.replace(nextUrl); // pure url
                 } else {
                     console.error('不支持本地存储，token获取不到');
                     alert('localStorage not support, no token');
                 }
             } else if ( status === 401) { // unbinded user and go login...
                 var openid = xhr.responseText;
-                location.href = 'login.html?openid=' + openid + "&next=" + next;
+                location.href = 'login.html?openid=' + openid + "&next=" + nextUrl;
             } else {
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
             }

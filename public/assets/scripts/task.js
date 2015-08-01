@@ -204,12 +204,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.shop", { // 定义一个子状态，对应url是 /detail/{articleId}，比如/detail/1, /detail/2
-        url: "shop",
+    .state("task.mall", { // 定义一个子状态，对应url是 /detail/{articleId}，比如/detail/1, /detail/2
+        url: "mall",
         views: {
             "": {
-                templateUrl: "assets/template/task/shop.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/shop.js" // 指定控制器地址
+                templateUrl: "assets/template/task/mall.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地址
             }
         }
     })

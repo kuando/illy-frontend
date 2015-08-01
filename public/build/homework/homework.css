@@ -1210,16 +1210,21 @@ audio {
   top: 54%;
   font-size: .14rem;
   color: #7c7474;
-  background: url(http://app.hizuoye.com/build/images/playing.png);
+  height: .6rem;
+  line-height: .59rem;
+  background-image: url(http://app.hizuoye.com/build/images/playing.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: -.08rem 0;
+  text-indent: 2em;
 }
 .panel .playRecord .record-total-time {
   /* 录音时长 */
   position: relative;
-  left: -.48rem;
-  font-size: .18rem;
+  left: -.08rem;
+}
+.panel .playRecord.playing {
+  background-image: url(http://app.hizuoye.com/build/images/playing.gif);
 }
 .panel .go-question {
   display: block;
@@ -1305,7 +1310,8 @@ audio {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #322F2F;
+  /*background: #322F2F;*/
+  background: transparent;
   opacity: .7;
 }
 .question .isRecording {
@@ -1333,9 +1339,9 @@ audio {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
-  width: .84rem;
-  height: .79rem;
-  line-height: .79rem;
+  width: .9rem;
+  height: .9rem;
+  line-height: .9rem;
   font-size: .6rem;
   text-align: center;
   color: #444040;
@@ -1368,13 +1374,15 @@ audio {
   background-image: url(http://app.hizuoye.com/build/images/playing.png);
   background-size: 100%;
   background-repeat: no-repeat;
-  background-position: -.08rem 0;
+  background-position: .06rem -.08rem;
+  padding-right: .25rem;
+  line-height: .4rem;
+  background-color: transparent;
 }
 .question .playRecord .record-total-time {
   /* 录音时长 */
   position: relative;
-  left: -.48rem;
-  font-size: .18rem;
+  left: -.4rem;
 }
 .question .playRecord.playing {
   /* playing-state, gif */

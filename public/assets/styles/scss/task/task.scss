@@ -39,12 +39,12 @@ a, a:hover {
 .task {
     padding: .03rem;
 }
-/* shop start */
-.shop-wrapper {
+/* mall start */
+.mall-wrapper {
     text-align: center;
     margin: .1rem 0;
 
-    .shop-item {
+    .mall-item {
         display: inline-block;
         width: 47%;
         margin: .05rem .02rem;
@@ -82,7 +82,7 @@ a, a:hover {
     }
 
 }
-/* shop end */
+/* mall end */
 
 /* rank start */
 .rank {
@@ -96,14 +96,16 @@ a, a:hover {
     }
 
     .name-div {
+
     }
 
     .score-div {
         width: 15%;
     }
     .avatar{
-        width: .2rem;
-        height: .2rem;
+        width: .25rem;
+        height: .25rem;
+        border-radius: 50%;
         display: inline-block;
         margin-right: .05rem;
     }
