@@ -167,7 +167,7 @@ $next_radius: $answer_panel_height / 2;
     .playRecord { // image of record to play
         top: 54%;
         font-size: .14rem;
-        color: #7c7474;
+        color: #9d9292;
         height: .6rem;
         line-height: .59rem;
         background-image: url(http://app.hizuoye.com/build/images/playing.png);
@@ -178,7 +178,7 @@ $next_radius: $answer_panel_height / 2;
 
         .record-total-time { /* 录音时长 */
             position: relative;
-            left: -.08rem;
+            left: -.01rem;
         }
     }
 
@@ -437,6 +437,7 @@ $next_radius: $answer_panel_height / 2;
 
         .icon {
             display: inline-block;
+            width: $next_radius;
             height: $next_radius;
             line-height: $next_radius;
             color: white;

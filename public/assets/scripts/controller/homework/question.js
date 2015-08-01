@@ -187,6 +187,10 @@ define([], function() {
                 localId: localId
             });
             question.isPlaying = true;
+            // 同时播完应该isPlaying = false
+            setTimeout(function() {
+                question.isPlaying = false;
+            }, record.duration)
 
         },
         stopPlayRecord: function() {

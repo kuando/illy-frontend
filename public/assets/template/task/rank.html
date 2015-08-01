@@ -8,7 +8,11 @@
         <li class="rank-li item" ms-repeat-item="ranks">
             <div ms-visible="$index < 3" class="rank-div mark"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
             <div ms-visible="$index >= 3" class="rank-div mark">{{$index + 1}}</div>
-            <div class="name-div flex"><img ms-attr-src="'http://resource.hizuoye.com/' + item.avatar" class="avatar" ms-attr-alt="item.displayName" />{{item.displayName}}</div>
+            <div class="avatar-div flex">
+                <img ms-if="item.avatar != undefined" class="avatar" ms-attr-src="'http://resource.hizuoye.com/' + item.avatar" ms-attr-alt="item.displayName" />
+                <img ms-if="item.avatar == undefined" class="avatar" src="http://app.hizuoye.com/build/images/iconfont-defaultAvatar.png" />
+                {{item.displayName}}
+            </div>
             <div class="score-div">{{item.score}}</div>
         </li>
     </ul>

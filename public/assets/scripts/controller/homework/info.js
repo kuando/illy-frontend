@@ -14,11 +14,12 @@ define([], function() {
         keyPoint: '',
         keyPointRecord: '',
         isPlaying: false, // 有录音的作业是否在播放录音
+        duration: 3, // 知识重点录音时长, 用于播放完毕ui change
         // core!!! 因为detail为抽象状态，无onEnter的params参数，故延迟到这里获取数据
         fetchDataForDetailCtrl: function(id, type) { // 可以获取多种作业类型的数据了,201507201446
             var _id = id;   
             $http.ajax({
-                url: apiBaseUrl + '/api/v1/' + type +'/' + _id,
+                url: apiBaseUrl + '/api/v1/' + type + '/' + _id,
                 data: {
                     
                 },
@@ -53,8 +54,9 @@ define([], function() {
             var audio = avalon.$('.keyPointAudio');
             audio.play();
             info.isPlaying = true;
-            // ui change for playing
-            // ...
+            setTimeout(function() {
+                info.isPlaying = false;
+            }, info.duration); 
         },
         stopRecord: function() {
             var audio = avalon.$('.keyPointAudio');
@@ -88,6 +90,7 @@ define([], function() {
                 // 设置好录音时间
                 var audio = avalon.$('.keyPointAudio');
                 var duration = audio && audio.duration;
+                info.duration = duration;
                 var time = avalon.$('.info .record-total-time');
                 time && ( time.innerHTML = parseInt(duration, 10) || 0 );
             }, 2000)

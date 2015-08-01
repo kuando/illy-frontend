@@ -24,6 +24,7 @@ $g_font_color: #747070;
 
 .task {
     min-height: 450px; /* for layout, footer is footer */
+    padding: .05rem;
 
     &, &-footer {
         font-size: .14rem;
@@ -79,13 +80,17 @@ a, a:hover {
             opacity: .7;
         }
 
-        .ionc {
-
+        .icon {
+            width: .18rem;
+            height: .18rem;
+            position: relative;
+            top: -.01rem;
         }
         .exchangeTimes {
             display: inline-block;
             width: 47%;
             text-align: left;
+            padding-left: .1rem;
 
             .icon-exchangeTimes {
                 background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
@@ -96,8 +101,9 @@ a, a:hover {
             display: inline-block;
             width: 47%;
             text-align: right;
+            padding-right: .1rem;
 
-            .ionc-stock {
+            .icon-stock {
                 background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
             }
         }
@@ -113,14 +119,9 @@ a, a:hover {
     .rank-li {
         text-align: left;
 
-        .topThree {
-            width: .25rem;
-            height: .25rem;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: .05rem;
+        .icon {
+            margin-left: .06rem;
         }
-
         .icon-rank-0 {
             background-image: url(http://app.hizuoye.com/build/images/iconfont-jin.png);
         }
@@ -135,15 +136,17 @@ a, a:hover {
 
     .rank-div {
         width: 38%;
+        padding-left: .15rem;
     }
 
-    .name-div {
-
+    .rank-div:first-child {
+        padding-left: .05rem;
     }
 
     .score-div {
         width: 15%;
     }
+
     .avatar{
         width: .25rem;
         height: .25rem;

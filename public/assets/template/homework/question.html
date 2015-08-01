@@ -72,7 +72,7 @@
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) " ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
 
         <!-- 录音完毕或者后退到本题时显示 -->
-        <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-class-2="playing: isPlaying==true" ms-on-tap="togglePlayRecord()" ms-visible="showPlayRecordBtn"><span class="record-total-time">5</span><span ms-visible="isPlaying!=true">点击试听</span><span ms-visible="isPlaying==true">点击停止</span></div>
+        <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-class-2="playing: isPlaying==true" ms-on-tap="togglePlayRecord()" ms-visible="showPlayRecordBtn"><span class="record-total-time">5</span>&quot<span ms-visible="isPlaying!=true">点击试听</span><span ms-visible="isPlaying==true">点击停止</span></div>
 
         <!-- 仅录音过短显示, 一定时间后消失或录音时消失 -->
         <div class="record-tips">录音时间过短，请重新录制</div>

@@ -940,6 +940,16 @@ audio {
   width: 2rem;
 }
 
+.icon {
+  width: .16rem;
+  height: .16rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: .05rem;
+}
+
 /* -------------------------------------------------------
  *  Spinner
  *-------------------------------------------------------*/
@@ -1212,7 +1222,7 @@ audio {
 .panel .playRecord {
   top: 54%;
   font-size: .14rem;
-  color: #7c7474;
+  color: #9d9292;
   height: .6rem;
   line-height: .59rem;
   background-image: url(http://app.hizuoye.com/build/images/playing.png);
@@ -1224,7 +1234,7 @@ audio {
 .panel .playRecord .record-total-time {
   /* 录音时长 */
   position: relative;
-  left: -.08rem;
+  left: -.01rem;
 }
 .panel .playRecord.playing {
   background-image: url(http://app.hizuoye.com/build/images/playing.gif);
@@ -1458,6 +1468,7 @@ audio {
 }
 .question .tap-btn .icon {
   display: inline-block;
+  width: 0.75rem;
   height: 0.75rem;
   line-height: 0.75rem;
   color: white;

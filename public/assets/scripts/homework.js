@@ -230,6 +230,24 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
+    .state("app.mistake", { // 错题集 
+        url: "mistake", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/mistake.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/mistake.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("app.report", { // 学业报告
+        url: "report", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/report.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/report.js" // 指定控制器地址
+            }
+        }
+    })
 
     /*
      *  @interface avalon.state.config 全局配置
@@ -258,7 +276,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     avalon.state.config({ 
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.navigate("app.list");
+            avalon.router.go("app.list");
         }, 
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
             // avalon.log("0 onBeforeUnload" + arguments);

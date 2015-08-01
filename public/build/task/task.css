@@ -1605,6 +1605,7 @@ audio {
 .task {
   min-height: 450px;
   /* for layout, footer is footer */
+  padding: .05rem;
 }
 .task, .task-footer {
   font-size: .14rem;
@@ -1655,10 +1656,17 @@ a, a:hover {
   color: #fff;
   opacity: .7;
 }
+.mall-wrapper .mall-item .icon {
+  width: .18rem;
+  height: .18rem;
+  position: relative;
+  top: -.01rem;
+}
 .mall-wrapper .mall-item .exchangeTimes {
   display: inline-block;
   width: 47%;
   text-align: left;
+  padding-left: .1rem;
 }
 .mall-wrapper .mall-item .exchangeTimes .icon-exchangeTimes {
   background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
@@ -1667,8 +1675,9 @@ a, a:hover {
   display: inline-block;
   width: 47%;
   text-align: right;
+  padding-right: .1rem;
 }
-.mall-wrapper .mall-item .stock .ionc-stock {
+.mall-wrapper .mall-item .stock .icon-stock {
   background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
 }
 
@@ -1677,12 +1686,8 @@ a, a:hover {
 .rank .rank-li {
   text-align: left;
 }
-.rank .rank-li .topThree {
-  width: .25rem;
-  height: .25rem;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: .05rem;
+.rank .rank-li .icon {
+  margin-left: .06rem;
 }
 .rank .rank-li .icon-rank-0 {
   background-image: url(http://app.hizuoye.com/build/images/iconfont-jin.png);
@@ -1695,6 +1700,10 @@ a, a:hover {
 }
 .rank .rank-div {
   width: 38%;
+  padding-left: .15rem;
+}
+.rank .rank-div:first-child {
+  padding-left: .05rem;
 }
 .rank .score-div {
   width: 15%;
