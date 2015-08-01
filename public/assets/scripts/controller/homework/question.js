@@ -139,9 +139,9 @@ define([], function() {
                         record.localId = localId;
                         question.uploadRecord();
                         question.showPlayRecordBtn = true;
-						
-						var recordTotalTime = avalon.$('.record-total-time')
-						recordTotalTime && ( recordTotalTime.innerHTML = parseInt(record.duration, 10) ); // 设置录音时长
+                        
+                        var recordTotalTime = avalon.$('.record-total-time')
+                        recordTotalTime && ( recordTotalTime.innerHTML = parseInt(record.duration, 10) || 0 ); // 设置录音时长
                     }
                 })
             }
@@ -188,8 +188,6 @@ define([], function() {
                 localId: localId
             });
             record.isPlaying = true;
-            var audio = avalon.$('.playRecord');
-            audio && ( audio.style.backgroundImage = 'http://app.hizuoye.com/build/images/playing.gif' );
 
         },
         stopPlayRecord: function() {
@@ -206,8 +204,6 @@ define([], function() {
                 localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
             })
             record.isPlaying = false;
-            var audio = avalon.$('.playRecord');
-            audio && ( audio.style.backgroundImage = 'http://app.hizuoye.com/build/images/playing.png' );
 
         },
         togglePlayRecord: function() {
@@ -350,7 +346,7 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("question.js onBeforeUnload fn");
-			question.stopPlayRecord(); // 离开就应该停止播放，一种视图隔离
+            question.stopPlayRecord(); // 离开就应该停止播放，一种视图隔离
         }
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = []

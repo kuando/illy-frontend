@@ -1315,8 +1315,8 @@ audio {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
-  width: .84rem;
-  height: .79rem;
+  width: .9rem;
+  height: .9rem;
   background-image: url(http://app.hizuoye.com/build/images/recording.gif);
   background-repeat: no-repeat;
   background-size: 100%;
@@ -1375,6 +1375,10 @@ audio {
   position: relative;
   left: -.48rem;
   font-size: .18rem;
+}
+.question .playRecord.playing {
+  /* playing-state, gif */
+  background-image: url(http://app.hizuoye.com/build/images/playing.gif);
 }
 .question .record-tips {
   display: none;
@@ -1447,12 +1451,11 @@ audio {
   line-height: 0.75rem;
   color: white;
   font-weight: bold;
-  -webkit-transform: scale(6);
-  transform: scale(6);
+  font-size: .54rem;
 }
 .question .tap-btn .icon-next {
-  -webkit-transform: rotate(90deg) scale(6);
-  transform: rotate(90deg) scale(6);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* question end */

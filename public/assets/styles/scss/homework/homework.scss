@@ -281,8 +281,8 @@ $next_radius: $answer_panel_height / 2;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
-        width: .84rem;
-        height: .79rem;
+        width: .9rem;
+        height: .9rem;
         background-image: url(http://app.hizuoye.com/build/images/recording.gif);
         background-repeat: no-repeat;
         background-size: 100%;
@@ -345,6 +345,10 @@ $next_radius: $answer_panel_height / 2;
             left: -.48rem;
             font-size: .18rem;
         }
+    }
+
+    .playRecord.playing { /* playing-state, gif */
+        background-image: url(http://app.hizuoye.com/build/images/playing.gif);
     }
 
     /* record too short tips */
@@ -424,13 +428,12 @@ $next_radius: $answer_panel_height / 2;
             line-height: $next_radius;
             color: white;
             font-weight: bold;
-            -webkit-transform: scale(6);
-            transform: scale(6);
+            font-size: .54rem;
         }
 
         .icon-next {
-            -webkit-transform: rotate(90deg) scale(6);
-            transform: rotate(90deg) scale(6);
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
         }
 
     }
