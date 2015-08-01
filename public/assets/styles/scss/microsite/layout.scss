@@ -367,6 +367,19 @@ a, a:hover {
             height: .3rem;
             line-height: .3rem;
             background-color: #fff;
+
+            .icon {
+                width: .16rem;
+                height: .16rem;
+                display: inline-block;
+            }
+            .icon-share {
+                background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
+            }
+
+            .icon-visit {
+                background-image: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png);
+            }
         }
 
     }

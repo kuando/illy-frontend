@@ -1200,6 +1200,9 @@ audio {
   display: inline-block;
   width: 96%;
 }
+.panel .item {
+  align-items: baseline;
+}
 .panel .mark {
   width: 23%;
 }
@@ -1382,7 +1385,7 @@ audio {
 .question .playRecord .record-total-time {
   /* 录音时长 */
   position: relative;
-  left: -.4rem;
+  left: -.36rem;
 }
 .question .playRecord.playing {
   /* playing-state, gif */

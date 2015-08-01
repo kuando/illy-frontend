@@ -29,7 +29,7 @@ define([], function() {
         visited: false, // first in, no data
         lists: [], 
         categoryId: 111111111111111111111111,
-        title: 'title',
+        title: 'title', // 本来是想这个页面url带来栏目名，重写action上的title，结果url带中文不行。暂时没用，先留着吧
         offset: 0, // inner var, to fetch data with offset and limit
         btnShowMore: true,
         fetchRemoteData: function(apiArgs, data, target, type) { // only ctrl function to fetch data with api
@@ -65,29 +65,6 @@ define([], function() {
                 list.offset = list.offset + limit * (page - 1);
             }
 
-            //$http.ajax({
-            //    method: "",
-            //    url: apiBaseUrl + '/api/v1/categories/' + list.categoryId + '/posts',
-            //    headers: {
-            //        'Authorization': 'Bearer ' + token
-            //    },
-            //    dataType: "json",
-            //    success: function(res) {
-            //        //avalon.log("list.js ajax success" + res);
-            //        list.lists = list.lists.concat(res);
-            //        document.body.classList.remove('a-bounceinT');
-            //        setTimeout(function() {
-            //            document.body.classList.add('a-bounceinT');
-            //        }, 16)
-            //    },
-            //    error: function(res) {
-            //        alert("list.js ajax error");
-            //        console.log("ajax error" + res);
-            //    },
-            //    ajaxFail: function(res) {
-            //        console.log("ajaxFail" + res);
-            //    }
-            //})
             list.fetchRemoteData('/api/v1/categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', 'concat');
         }
     });
@@ -105,44 +82,10 @@ define([], function() {
             //avalon.vmodels.root.title = params.categoryName; // set action bar title again drop in 20150724
             if (list.categoryId == 'hots') {
                 list.btnShowMore = false;
-                //$http.ajax({
-                //    url: apiBaseUrl + '/api/v1/posts/hot?limit=10', // because hots only the topN(top10)
-                //    headers: {
-                //        'Authorization': 'Bearer ' + token
-                //    },
-                //    dataType: "json",
-                //    success: function(res) {
-                //        list.lists = res; //first fetch data
-                //        setCachedData()
-                //    },
-                //    error: function(res) {
-                //        avalon.log("site list ajax error" + res);
-                //    },
-                //    ajaxFail: function(res) {
-                //        avalon.log("site list ajaxFail" + res);
-                //    }
-                //})
                 list.fetchRemoteData('/api/v1/posts/hot?limit=10', {}, 'lists')
                 return ;
             }
             list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; // otherwise, show it
-            //$http.ajax({
-            //    method: "",
-            //    url: apiBaseUrl + "/api/v1/categories/" + list.categoryId + '/posts',
-            //    headers: {
-            //        'Authorization': 'Bearer ' + token
-            //    },
-            //    dataType: "json",
-            //    success: function(res) {
-            //        list.lists = res; //first fetch data
-            //    },
-            //    error: function(res) {
-            //        avalon.log("site list ajax error" + res);
-            //    },
-            //    ajaxFail: function(res) {
-            //        avalon.log("site list ajaxFail" + res);
-            //    }
-            //})
             list.fetchRemoteData('/api/v1/categories/' + list.categoryId + '/posts', {}, 'lists');
         }
         // 视图渲染后，意思是avalon.scan完成

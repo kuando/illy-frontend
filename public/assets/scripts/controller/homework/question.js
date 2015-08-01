@@ -141,7 +141,7 @@ define([], function() {
                         question.showPlayRecordBtn = true;
                         
                         var recordTotalTime = avalon.$('.record-total-time')
-                        recordTotalTime && ( recordTotalTime.innerHTML = parseInt(record.duration, 10) || 0 ); // 设置录音时长
+                        recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); // 设置录音时长
                     }
                 })
             }
@@ -181,7 +181,6 @@ define([], function() {
             if (localId == '') {
                 alert("录制不成功，请重试！");
                 console.log('no localId');
-                //console.log(record);
                 return ;
             }
             wx.playVoice({
@@ -214,9 +213,9 @@ define([], function() {
              */
 
             if (question.isPlaying) {
-                stopPlayRecord();
+                question.stopPlayRecord();
             } else {
-                playRecord();
+                question.playRecord();
             }
 
         },

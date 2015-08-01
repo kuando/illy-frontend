@@ -150,8 +150,12 @@ $next_radius: $answer_panel_height / 2;
 }
 .panel {
     text-align: left;
-    display:  inline-block;
+    display: inline-block;
     width: 96%;
+
+    .item {
+        align-items: baseline;
+    }
 
     .mark {
         width: 23%;
@@ -352,7 +356,7 @@ $next_radius: $answer_panel_height / 2;
 
         .record-total-time { /* 录音时长 */
             position: relative;
-            left: -.4rem;
+            left: -.36rem;
         }
     }
 

@@ -1,46 +1,13 @@
 <div ms-controller="mall" class="mall">
     <div class="mall-wrapper">
-        <div class="mall-item">
+        <div class="mall-item" ms-repeat-item="lists">
             <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
+                <img class="area" ms-attr-src="'http://resource.hizuoye.com/' + item.imageKey" ms-attr-alt="item.productName" />
+                <div class="area price">{{item.score}}积分</div>
             </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
-        </div>
-        <div class="mall-item">
-            <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
-            </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
-        </div>
-        <div class="mall-item">
-            <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
-            </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
-        </div>
-        <div class="mall-item">
-            <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
-            </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
-        </div>
-        <div class="mall-item">
-            <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
-            </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
-        </div>
-        <div class="mall-item">
-            <div class="img-wrapper area">
-                <img class="area" src="http://g-ec4.images-amazon.com/images/G/28/lt/qinzistore/438-300._UX292_SX292_V302887286_.jpg" alt="步步高打火机,哪里不会点哪里" />
-                <div class="area price">1000积分</div>
-            </div>
-            <div class="area title">步步高打火机，哪里不会点哪里</div>
+            <div class="title text-overflow">{{item.productName}}</div>
+            <div class="exchangeTimes"><i class="icon icon-exchangeTimes"></i>{{item.exchangeTimes}}</div>
+            <div class="stock"><i class="icon icon-stock"></i>{{item.stock}}</div>
         </div>
     </div>
 </div>

@@ -36,13 +36,10 @@ a, a:hover {
     cursor: pointer;
 }
 
-.task {
-    padding: .03rem;
-}
 /* mall start */
 .mall-wrapper {
     text-align: center;
-    margin: .1rem 0;
+    margin: .05rem 0;
 
     .mall-item {
         display: inline-block;
@@ -53,6 +50,7 @@ a, a:hover {
         text-align: left;
 
         .img-wrapper {
+            width: 100%;
             position: relative;
         }
 
@@ -62,9 +60,11 @@ a, a:hover {
         }
 
         .title {
-            padding: .05rem .08rem .03rem;
+            display: inline-block;
+            width: 100%;
+            padding: .03rem .08rem .03rem;
             line-height: 1.3;
-            font-size: .12rem;
+            font-size: .14rem;
         }
 
         .price {
@@ -79,6 +79,29 @@ a, a:hover {
             opacity: .7;
         }
 
+        .ionc {
+
+        }
+        .exchangeTimes {
+            display: inline-block;
+            width: 47%;
+            text-align: left;
+
+            .icon-exchangeTimes {
+                background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
+            }
+        }
+
+        .stock {
+            display: inline-block;
+            width: 47%;
+            text-align: right;
+
+            .ionc-stock {
+                background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
+            }
+        }
+
     }
 
 }
@@ -88,11 +111,30 @@ a, a:hover {
 .rank {
 
     .rank-li {
-        text-align: center;
+        text-align: left;
+
+        .topThree {
+            width: .25rem;
+            height: .25rem;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: .05rem;
+        }
+
+        .icon-rank-0 {
+            background-image: url(http://app.hizuoye.com/build/images/iconfont-jin.png);
+        }
+        .icon-rank-1 {
+            background-image: url(http://app.hizuoye.com/build/images/iconfont-yin.png);
+        }
+        .icon-rank-2 {
+            background-image: url(http://app.hizuoye.com/build/images/iconfont-tong.png);
+        }
+
     }
 
     .rank-div {
-        width: 11%;
+        width: 38%;
     }
 
     .name-div {

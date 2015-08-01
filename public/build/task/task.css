@@ -1441,6 +1441,16 @@ audio {
   width: 2rem;
 }
 
+.icon {
+  width: .16rem;
+  height: .16rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: .05rem;
+}
+
 /* -------------------------------------------------------
  *  Spinner
  *-------------------------------------------------------*/
@@ -1606,14 +1616,10 @@ a, a:hover {
   cursor: pointer;
 }
 
-.task {
-  padding: .03rem;
-}
-
 /* mall start */
 .mall-wrapper {
   text-align: center;
-  margin: .1rem 0;
+  margin: .05rem 0;
 }
 .mall-wrapper .mall-item {
   display: inline-block;
@@ -1624,6 +1630,7 @@ a, a:hover {
   text-align: left;
 }
 .mall-wrapper .mall-item .img-wrapper {
+  width: 100%;
   position: relative;
 }
 .mall-wrapper .mall-item img {
@@ -1631,9 +1638,11 @@ a, a:hover {
   width: 100%;
 }
 .mall-wrapper .mall-item .title {
-  padding: .05rem .08rem .03rem;
+  display: inline-block;
+  width: 100%;
+  padding: .03rem .08rem .03rem;
   line-height: 1.3;
-  font-size: .12rem;
+  font-size: .14rem;
 }
 .mall-wrapper .mall-item .price {
   position: absolute;
@@ -1646,14 +1655,46 @@ a, a:hover {
   color: #fff;
   opacity: .7;
 }
+.mall-wrapper .mall-item .exchangeTimes {
+  display: inline-block;
+  width: 47%;
+  text-align: left;
+}
+.mall-wrapper .mall-item .exchangeTimes .icon-exchangeTimes {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
+}
+.mall-wrapper .mall-item .stock {
+  display: inline-block;
+  width: 47%;
+  text-align: right;
+}
+.mall-wrapper .mall-item .stock .ionc-stock {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
+}
 
 /* mall end */
 /* rank start */
 .rank .rank-li {
-  text-align: center;
+  text-align: left;
+}
+.rank .rank-li .topThree {
+  width: .25rem;
+  height: .25rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: .05rem;
+}
+.rank .rank-li .icon-rank-0 {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-jin.png);
+}
+.rank .rank-li .icon-rank-1 {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-yin.png);
+}
+.rank .rank-li .icon-rank-2 {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-tong.png);
 }
 .rank .rank-div {
-  width: 11%;
+  width: 38%;
 }
 .rank .score-div {
   width: 15%;

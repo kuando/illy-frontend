@@ -101,6 +101,7 @@ a:hover {
 }
 
 /* ==================== /. loading-with-dot =========================== */
+
 .area {
   display: inline-block;
   vertical-align: top;
@@ -167,7 +168,15 @@ h1, h2, h3, h4, h5, h6, p {
 audio {
     width: 2rem;
 }
-
+.icon {
+    width: .16rem;
+    height: .16rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    vertical-align: middle;
+    margin-right: .05rem;
+}
 /* -------------------------------------------------------
  *  Spinner
  *-------------------------------------------------------*/

@@ -88,8 +88,8 @@ define([], function() {
                 // 设置好录音时间
                 var audio = avalon.$('.keyPointAudio');
                 var duration = audio && audio.duration;
-                var time = avalon.$('.record-total-time');
-                time && ( time.innerHTML = parseInt(duration, 10) );
+                var time = avalon.$('.info .record-total-time');
+                time && ( time.innerHTML = parseInt(duration, 10) || 0 );
             }, 2000)
         }
         // 对应的视图销毁前

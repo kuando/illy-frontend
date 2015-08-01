@@ -3,11 +3,11 @@
     <div class="panel">
 
         <ul class="yo-list yo-list-group">
-            <li class="item">
+            <li class="item" ms-if="title != ''">
                 <span class="mark">作业名称:</span>
                 <div class="flex">{{title}}</div>
             </li>
-            <li class="item">
+            <li class="item" ms-if="keyPoint != ''">
                 <span class="mark">知识重点:</span>
                 <div class="flex">{{keyPoint}}</div>
             </li>

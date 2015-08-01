@@ -4,8 +4,9 @@ define([], function() {
     var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
     
-    var detail = avalon.define({
-        $id: "rank"
+    var rank = avalon.define({
+        $id: "rank",
+        ranks: []
     });
 
     return avalon.controller(function($ctrl) {
@@ -15,7 +16,21 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-
+            $http.ajax({
+                url: apiBaseUrl + '/api/v1/score/rank/topTen',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+                    rank.ranks = res;
+                },
+                error: function(res) {
+                    console.log('rank ajax error!' + res);
+                },
+                ajaxFail: function(res) {
+                    console.log('rank ajax ajaxFail!' + res);
+                }
+            })
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

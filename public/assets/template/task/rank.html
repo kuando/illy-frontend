@@ -5,20 +5,11 @@
             <div class="name-div flex">姓名</div>
             <div class="score-div">积分</div>
         </li>
-        <li class="rank-li item">
-            <div class="rank-div mark">1</div>
-            <div class="name-div flex"><img src="https://avatars3.githubusercontent.com/u/1207956?v=3&s=40" class="avatar" alt="" />IndexXuan</div>
-            <div class="score-div">1000</div>
-        </li>
-        <li class="rank-li item">
-            <div class="rank-div mark">2</div>
-            <div class="name-div flex"><img src="https://avatars3.githubusercontent.com/u/1207956?v=3&s=40" class="avatar" alt="" />IndexXuan</div>
-            <div class="score-div">800</div>
-        </li>
-        <li class="rank-li item">
-            <div class="rank-div mark">3</div>
-            <div class="name-div flex"><img src="https://avatars3.githubusercontent.com/u/1207956?v=3&s=40" class="avatar" alt="" />IndexXuan</div>
-            <div class="score-div">600</div>
+        <li class="rank-li item" ms-repeat-item="ranks">
+            <div ms-visible="$index < 3" class="rank-div mark"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
+            <div ms-visible="$index >= 3" class="rank-div mark">{{$index + 1}}</div>
+            <div class="name-div flex"><img ms-attr-src="'http://resource.hizuoye.com/' + item.avatar" class="avatar" ms-attr-alt="item.displayName" />{{item.displayName}}</div>
+            <div class="score-div">{{item.score}}</div>
         </li>
     </ul>
 </div>
