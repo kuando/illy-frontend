@@ -956,7 +956,8 @@ audio {
 #loader {
   position: absolute;
   width: 100%;
-  background: #f5ecec;
+  height: 100%;
+  background: #d3cece;
   opacity: .7;
 }
 
@@ -1121,7 +1122,7 @@ audio {
 }
 
 .app {
-  min-height: 4.5rem;
+  min-height: 5.5rem;
   padding: .05rem;
 }
 
@@ -1181,7 +1182,7 @@ audio {
   vertical-align: bottom;
   width: 100%;
   position: relative;
-  top: .03rem;
+  top: .05rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
   width: .16rem;
