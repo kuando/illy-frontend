@@ -6,11 +6,11 @@
 
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="lists">
-            <a ms-attr-href="'#!/detail/' + item._id + '?type=homework'" class="list-card">
+            <a ms-attr-href="'#!/mistake/' + item._id + '/q/1'" class="list-card">
                 <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="time">{{item.finishedTime| date("yyyy.MM.dd")}}</span>
+                    <span class="time">作业完成时间: {{item.finishedTime| date("yyyy.MM.dd")}}</span>
                     <span class="finish_count"><i class="icon-people"></i>错题数: {{item.wrongNumber}}</span>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>

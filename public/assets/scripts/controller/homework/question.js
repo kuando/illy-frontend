@@ -279,6 +279,7 @@ define([], function() {
                 var radioAnswer = question.userAnswer;
                 //alert(radioAnswer);
                 detailVM.wrongCollect.push({exerciseId: question.currentId, answer: radioAnswer});  
+                avalon.log(detailVM.wrongCollect);
             }
             question.localAnswers.push(question.userAnswer); // old-bug, 20150731
 
@@ -294,7 +295,8 @@ define([], function() {
         } 
     });
 
-    var requestAuth = false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
+    var hasRequestRecordAuth= false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
+    var starter = true; // 做题开始计时标记，使得开始仅执行一次
     return avalon.controller(function($ctrl) {
 
         var rootView = document.querySelector('.app');
@@ -306,18 +308,28 @@ define([], function() {
 
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-
+            starter && ( avalon.vmodels.detail.questionStartTime = Date.now() ); // 统计做题开始时间
+            starter = false;
         }
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
 
-            if (!requestAuth) { // check audio auth earlier
-                wx.startRecord();
-                setTimeout(function() {
-                    wx.stopRecord();
-                }, 1000)
-                requestAuth = true; // auth done
+            // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）
+            if( !hasRequestRecordAuth ) {
+
+                var needRequestAuth = avalon.vmodels.detail.exercises.some(function(item) { // bool
+                    return item.eType === 3;
+                })
+
+                if ( needRequestAuth ) { // check audio auth earlier
+                    wx.startRecord();
+                    setTimeout(function() {
+                        wx.stopRecord();
+                    }, 2000) // 2 second, enough??? sucks... wx-sdk
+                    hasRequestRecordAuth = true; // auth done and the only place this var change!!! key!!!
+                }
+
             }
 
             question.currentId = params.questionId;

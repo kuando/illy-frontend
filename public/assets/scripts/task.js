@@ -34,6 +34,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
         apiBaseUrl : apiBaseUrl,
 
+        loadingTimeout: 5, // 单位：秒 进入视图最长加载时间，超时提示并回退
+
         clearLocalStorage: clearLocalStorage
 
     }
@@ -131,18 +133,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
 
-    //wx.ready(function() {
-    //    // do all thing here, except user trigger functions(can put in outside)
-    //    wx.checkJsApi({
-    //        jsApiList: ['startRecord'], // apis to check
-    //            success: function(res) {
-    //                alert(parse(res));
-    //                // key --- value, if usable, true, then false
-    //                // e.g. {"checkResult": {"chooseImage": true}, "errMsg": "checkJsApi:ok"}
-    //            }
-    //    });
-    //});
-
     wx.error(function(res) {
         alert("Woops, error comes..." + res);
     });
@@ -185,8 +175,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
-        //url: "{categoryName}/Id/{categoryId}",
+    .state("task.list", { // 任务列表
         url: "",
         views: {
             "": {
@@ -195,7 +184,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.rank", { // 定义一个子状态，对应url是 /detail/{articleId}，比如/detail/1, /detail/2
+    .state("task.detail", { // 任务详情
+        url: "detail/{taskId}",
+        views: {
+            "": {
+                templateUrl: "assets/template/task/detail.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("task.rank", { // 排行榜
         url: "rank",
         views: {
             "": {
@@ -204,21 +202,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.mall", { // 定义一个子状态，对应url是 /detail/{articleId}，比如/detail/1, /detail/2
+    .state("task.mall", { // 积分商城
         url: "mall",
         views: {
             "": {
                 templateUrl: "assets/template/task/mall.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地址
-            }
-        }
-    })
-    .state("task.detail", { // 定义一个子状态，对应url是 /detail/{articleId}，比如/detail/1, /detail/2
-        url: "detail/{taskId}",
-        views: {
-            "": {
-                templateUrl: "assets/template/task/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
             }
         }
     })
@@ -239,27 +228,28 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
     // action bar title map
     var acTitle = {
-        'index': '首页',
-        'list': '文章列表',
-        'detail': '内容详情'
+        'list': '任务列表',
+        'detail': '内容详情',
+        'rank': '排行榜',
+        'mall': '积分商城'
     }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
     // deal with bad network condition for wait too long
     function badNetworkHandler(delay) {
-        var delay = delay || 5000;
+        var delay = delay || 5;
         var badNetworkTimer = setTimeout(function() {
             alert('Woops, bad network!');
             history.go(-1);
             loader && (loader.style.display = 'none'); // for strong, need ()
-        }, delay);
+        }, delay * 1000);
         avalon.badNetworkTimer = badNetworkTimer;
     }
     
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("site.index"); 
+            avalon.router.go("task.list"); 
         }, // 打开错误配置
         onBeforeUnload: function() {
             // avalon.log("0 onBeforeUnload" + arguments);
@@ -284,7 +274,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader, 同时处理网络状况太差的情况
                 loader.style.display = '';
-                badNetworkHandler();
+                loaderMask.style.display = ''; // 增加loading遮罩，20150803新增
+                badNetworkHandler(avalon.illyGlobal.loadingTimeout);
                 // not good usage... tested add in 20150727, for list's cache function 
                 //avalon.vmodels.list && (avalon.vmodels.list.visited = false);  
             }
@@ -296,14 +287,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             
             // set title of action bar
             var state = root.currentPage;
-            //root.title = acTitle[state];
-            if (state == 'index') {
-                root.title = acTitle.index;
-            } else if (state == 'list') {
-                root.title = acTitle.list;
-            } else if (state == 'detail') {
-                root.title = acTitle.detail;
-            }
+            root.title = acTitle[state];
 
             var loader = document.getElementById('loader');
             setTimeout(function() {
@@ -331,12 +315,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             avalon.history.start({
                 // basepath: "/mmRouter",
                 fireAnchor: false
-                //,routeElementJudger: function(ele, href) {
-                //    avalon.log(arguments);
-                //    //href = '#!/detail/aaaaa';
-                //    //avalon.log(href);
-                //    //return href;
-                //}
             });
             //go!!!!!!!!!
             avalon.scan();

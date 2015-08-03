@@ -240,12 +240,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.mistake.wrong", { // 错题，url较为复杂，某作业下的某题
+    .state("app.wrong", { // 错题，url较为复杂，某作业下的某题
         url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/template/homework/question.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/question.js", // 指定控制器地址
+                templateUrl: "assets/template/homework/wrong.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/wrong.js", // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 }

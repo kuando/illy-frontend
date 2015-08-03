@@ -148,13 +148,13 @@
 
     // export object
     var $http = { // dataType must be json
-        get: function(settings) {
+        'get': function(settings) {
             request('GET', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
         },
-        post: function(settings) {
+        'post': function(settings) {
             request('POST', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
         },
-        ajax: function(settings) {
+        'ajax': function(settings) {
             request(settings.method || "GET", settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
         }
     }

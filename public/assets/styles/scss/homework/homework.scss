@@ -111,6 +111,8 @@ $next_radius: $answer_panel_height / 2;
                     display: inline-block;
                     vertical-align: bottom;
                     width: 100%;
+                    position: relative;
+                    top: .03rem;
 
                     .icon-people {
                         width: .16rem;

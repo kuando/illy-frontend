@@ -1,5 +1,5 @@
-<!-- list start -->
-<div class="list" ms-controller="list">
+<!-- evaluation start -->
+<div class="list" ms-controller="evaluation">
 
     <!-- item start -->
     <div class="item-wrapper">
@@ -10,8 +10,7 @@
                 <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="time">{{item.startTime | date("yyyy.MM.dd")}} - {{item.endTime | date("yyyy.MM.dd")}}</span>
-                    <span class="finish_count"><i class="icon-people"></i>{{item.finishedCount}}人已完成</span>
+                    <span class="finish_count"><i class="icon-comment"></i>教师评价: {{item.comment}}</span>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>
             </a>
@@ -31,5 +30,5 @@
     </div>
 
 </div>
-<!-- list end -->
+<!-- evaluation end -->
 

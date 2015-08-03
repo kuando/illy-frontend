@@ -956,6 +956,8 @@ audio {
 #loader {
   position: absolute;
   width: 100%;
+  background: #f5ecec;
+  opacity: .7;
 }
 
 #loader p {
@@ -1178,6 +1180,8 @@ audio {
   display: inline-block;
   vertical-align: bottom;
   width: 100%;
+  position: relative;
+  top: .03rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
   width: .16rem;

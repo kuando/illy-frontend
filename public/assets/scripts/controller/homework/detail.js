@@ -13,6 +13,7 @@ define([], function() {
         keyPoint: 'detail.js keyPoint', // 知识重点，用于info面板
         keyPointRecord: 'detail.js keyPointRecord', // 知识重点录音
         exercises: [], // 题目列表
+        questionStartTime: '', // 做题开始时间
         wrongCollect: [], // 发送给server的第二个参数，收集错题的列表
         audioAnswers: [], // 发送给server的第三个参数，录音题列表
         result: { // 结果面板数据集, fake data
@@ -25,6 +26,11 @@ define([], function() {
         },
         submit: function() { // core!!!
             //avalon.log("detail submit"); // no log, but real here, don't worry
+            
+            // 统计做题时间
+            var spendSeconds = ( Date.now() - avalon.vmodels.detail.questionStartTime ) / 1000;
+            var IntSpendSeconds = parseInt(spendSeconds, 10) || 0;
+
             var type = avalon.vmodels.info.workType;
             $http.ajax({
                 method: 'PUT',
@@ -34,6 +40,7 @@ define([], function() {
                 },
                 data: {
                     _id: avalon.getPureModel('detail').homeworkId,
+                    spendSeconds: IntSpendSeconds,
                     wrongCollect: avalon.getPureModel('detail').wrongCollect,
                     audioAnswers: avalon.getPureModel('detail').audioAnswers,
                     numOfExercise: avalon.getPureModel('detail').exercises.length
