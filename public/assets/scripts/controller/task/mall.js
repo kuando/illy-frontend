@@ -22,7 +22,7 @@ define([], function() {
     }
 
     var limit = 6; // 一次抓取多少数据
-    var list = avalon.define({
+    var mall = avalon.define({
         $id: "mall",
         visited: false, // first in, no data
         lists: [], 
@@ -39,8 +39,8 @@ define([], function() {
          * @return {undefined}
          */
         fetchRemoteData: function(apiArgs, data, target, type) {
-            if (list.visited) {
-                list.lists = getCachedData(target);
+            if (mall.visited) {
+                mall.lists = getCachedData(target);
                 return;
             }
             $http.ajax({
@@ -50,7 +50,7 @@ define([], function() {
                 },
                 data: data,
                 success: function(res) {
-                    type == 'concat' ? list[target] = list[target].concat(res) : list[target] = res;
+                    type == 'concat' ? mall[target] = mall[target].concat(res) : mall[target] = res;
                     setCachedData(target, res); // illy-task-mall-lists
                 },
                 error: function(res) {
@@ -64,14 +64,14 @@ define([], function() {
         showMore: function(e) {
             e.preventDefault();
             var page = 2;
-            if (list.offset < limit) {
-                list.btnShowMore = false;
+            if (mall.offset < limit) {
+                mall.btnShowMore = false;
                 return;
             } else {
-                list.offset = list.offset + limit * (page - 1);
+                mall.offset = mall.offset + limit * (page - 1);
             }
 
-            list.fetchRemoteData('/api/v1/score/mall', {offset: list.offset}, 'lists', 'concat');
+            mall.fetchRemoteData('/api/v1/score/mall', {offset: mall.offset}, 'lists', 'concat');
         }
     });
 
@@ -82,9 +82,9 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-            list.visited = avalon.vmodels.root.currentIsVisited;
-            list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; // otherwise, show it
-            list.fetchRemoteData('/api/v1/score/mall', {}, 'lists');
+            mall.visited = avalon.vmodels.root.currentIsVisited;
+            mall.offset <= limit ? mall.btnShowMore = false : mall.btnShowMore = true; // otherwise, show it
+            mall.fetchRemoteData('/api/v1/score/mall', {}, 'lists');
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

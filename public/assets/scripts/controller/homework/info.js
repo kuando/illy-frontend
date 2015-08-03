@@ -40,10 +40,10 @@ define([], function() {
                     detail.exercises = json.exercises;
                 },
                 error: function(res) {
-                    console.log(res);
+                    console.log('homework info ajax error' + res);
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    console.log('homework info ajax failed' + res);
                 }
             })
         },
@@ -56,7 +56,7 @@ define([], function() {
             info.isPlaying = true;
             setTimeout(function() {
                 info.isPlaying = false;
-            }, info.duration); 
+            }, info.duration * 1000); 
         },
         stopRecord: function() {
             var audio = avalon.$('.keyPointAudio');

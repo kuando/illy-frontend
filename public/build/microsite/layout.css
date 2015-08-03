@@ -1441,6 +1441,16 @@ audio {
   width: 2rem;
 }
 
+.icon {
+  width: .16rem;
+  height: .16rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: .05rem;
+}
+
 /* -------------------------------------------------------
  *  Spinner
  *-------------------------------------------------------*/

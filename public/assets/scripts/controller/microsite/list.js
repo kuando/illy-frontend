@@ -25,6 +25,7 @@ define([], function() {
     }
 
     var list = avalon.define({
+
         $id: "list",
         visited: false, // first in, no data
         lists: [], 
@@ -67,6 +68,7 @@ define([], function() {
 
             list.fetchRemoteData('/api/v1/categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', 'concat');
         }
+
     });
 
     return avalon.controller(function($ctrl) {

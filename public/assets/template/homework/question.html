@@ -4,8 +4,8 @@
     <!-- progress of question -->
     <ul class="yo-list yo-list-group">
         <li class="item yo-range yo-range-e">
-            <input type="range" min="0" max="100" ms-attr-value="(currentId * 100) / total">
-            <span class="progress-text">{{currentId}} / {{total}}</span>
+            <input type="range" min="0" max="100" ms-attr-value="( (currentId - 1) * 100) / total">
+            <span class="progress-text hide">{{currentId - 1}} / {{total}}</span>
         </li>
     </ul>
 

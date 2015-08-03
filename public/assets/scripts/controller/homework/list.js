@@ -16,7 +16,9 @@ define([], function() {
         homework: [], // 作业数据
         previews: [], // 预习数据
         offset: 0, // inner var, to fetch data with offset and limit
+        //isLoading: false, // 正在加载标记
         fetchData: function(type) {
+            //list.isLoading = true; // 正在加载标记
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
@@ -34,15 +36,20 @@ define([], function() {
                 dataType: "json",
                 success: function(lists) {
                     list[type] = lists; //key ! fetch data
+                    //list.isLoading = false;
                 },
                 error: function(res) {
-                    console.error("homework list ajax error" + res);
+                    console.log("homework list ajax error" + res);
                 },
                 ajaxFail: function(res) {
-                    console.error("homework list ajaxFail" + res);
+                    console.log("homework list ajax failed" + res);
                 }
             })
         } // end of fetchData
+
+        //,showMore: function() { // 目前的设计无法实现很好的加载更多，考虑到作业不会很多，放弃分页
+        //    list.fetchData()
+        //}
 
     });
 

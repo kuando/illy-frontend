@@ -1,7 +1,5 @@
 define([], function() {
 
-    // review in 201507221040
-
     // 本次作业结果反馈页面
     var result = avalon.define({
         $id: "result",

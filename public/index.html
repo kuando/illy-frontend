@@ -146,7 +146,7 @@ h1 {
                 }
             } else if ( status === 401) { // unbinded user and go login...
                 var openid = xhr.responseText;
-                location.href = 'login.html?openid=' + openid + "&next=" + nextUrl;
+                location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
             } else {
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
             }

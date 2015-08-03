@@ -1,6 +1,8 @@
 define([], function() {
 
     var local_question_view_ani = 'a-bounceinL';
+
+    // 获取全局wx-sdk接口
     var wx = avalon.wx;
     
     // 录音对象相关属性和方法, 因为wx的sdk方法都是独立作用域的回调，需要一个全局的存储对象
@@ -11,6 +13,7 @@ define([], function() {
         localId: '', // core!
         dropFlag: false, // 是否放弃本录音题的标记
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
+        playRecordTimeout: 'playRecordTimeout', // 录音播放计时器
         remainTimeTimer: null, // remain time timer
         showTimeoutDelay: 45, // second, define when show the timeout
         recordTooShortTipsLastTime: 1.5, // 录音时间过短提示信息持续时间
@@ -77,6 +80,8 @@ define([], function() {
         startRecord: function() {
             
             /** 
+             ×  首先停止录音(防止录制出错，原则上不会出现正在录音状态)
+             *
              *  开始微信录音api
              *  隐藏一些ui
              *  标记开始录音
@@ -84,6 +89,8 @@ define([], function() {
              *  注册wx超时录音api
              *  注册超时ui提示timeout
              */
+
+            wx.stopRecord(); // 待定！！！ mark!!!
 
             wx.startRecord();
             record.hideTips(); // for strong
@@ -138,10 +145,6 @@ define([], function() {
                         var localId = res.localId;
                         record.localId = localId;
                         question.uploadRecord();
-                        question.showPlayRecordBtn = true;
-                        
-                        var recordTotalTime = avalon.$('.record-total-time')
-                        recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); // 设置录音时长
                     }
                 })
             }
@@ -167,6 +170,11 @@ define([], function() {
                 success: function(res) {
                     var serverId = res.serverId; // 返回音频的服务端ID
                     question.userAnswer = serverId; // 这才是需要往后端发送的数据,供后端下载
+
+                    question.showPlayRecordBtn = true;
+                    
+                    var recordTotalTime = avalon.$('.record-total-time')
+                    recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); // 设置录音时长
                 }
             })
 
@@ -188,9 +196,12 @@ define([], function() {
             });
             question.isPlaying = true;
             // 同时播完应该isPlaying = false
-            setTimeout(function() {
+            
+            //  clear first and add new another timeout
+            clearTimeout(record.playRecordTimeout);
+            record.playRecordTimeout = setTimeout(function() {
                 question.isPlaying = false;
-            }, record.duration)
+            }, record.duration * 1000)
 
         },
         stopPlayRecord: function() {

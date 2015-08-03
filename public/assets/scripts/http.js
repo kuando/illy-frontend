@@ -123,8 +123,15 @@
         xhr.onreadystatechange = function() {
             //console.log(xhr);
             //此函数执行多次，即状态多变就多次进入
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                success(parseJSON(xhr.responseText));
+            //if (xhr.readyState === 4 && xhr.status === 200) {
+            //    success(parseJSON(xhr.responseText));
+            //}
+            if (xhr.readyState == 4) {
+                if (xhr.status === 200) {
+                    success(parseJSON(xhr.responseText));
+                } else {
+                    error(parseJSON(xhr.responseText));
+                }
             }
         }
         beforeSend(xhr); // useful when use

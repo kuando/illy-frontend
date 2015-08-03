@@ -149,6 +149,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     var root = avalon.define({
         $id: "root",
         currentPage: '',
+        currentIsVisited: false,
         title: "我是标题，可变", // 每一页action bar的标题    
         back: function() {
             history.go(-1);
@@ -201,7 +202,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         }
     })
     .state("app.detail.info", { // 作业信息面板，带homeworkId, 用于跳转到相应题目视图
-        url: "detail/{homeworkId}", // 
+        url: "detail/{homeworkId}/info", // 
         views: {
             "": {
                 templateUrl: "assets/template/homework/info.html", // 指定模板地址
@@ -209,7 +210,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.detail.question", { // 作业视图，url较为复杂，某作业下的某题
+    .state("app.detail.question", { // 作业，url较为复杂，某作业下的某题
         url: "detail/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
@@ -221,7 +222,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.detail.result", { // 某次作业的结果视图
+    .state("app.detail.result", { // 某次作业的结果
         url: "detail/{homeworkId}/result", // 
         views: {
             "": {
@@ -239,7 +240,28 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.report", { // 学业报告
+    .state("app.mistake.wrong", { // 错题，url较为复杂，某作业下的某题
+        url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/question.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/question.js", // 指定控制器地址
+                ignoreChange: function(changeType) {
+                    return !!changeType;
+                }
+            }
+        }
+    })
+    .state("app.evaluation", { // 课堂表现评价列表
+        url: "evaluation", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/evaluation.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/evaluation.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("app.report", { // 学业统计报告页面
         url: "report", // 
         views: {
             "": {
@@ -268,7 +290,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         'list': "作业列表",
         'detail': '作业详情',
         'question': '题目详情',
-        'result': '作业结果'
+        'result': '作业结果',
+        'mistake': '错题列表',
+        'wrong': '错题详情',
+        'evaluation': '课堂表现'
     }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cachePage = [];
@@ -294,6 +319,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
                 if (cachePage[i] === pageId) {
                     visited = true;
+                    avalon.vmodels.root.currentIsVisited = true;
                 }
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader
@@ -307,18 +333,19 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
             root.currentPage = state1;
 
-            if (state1 == 'list') {
-                root.title = acTitle.list;
-            } else if (state1 == 'detail') {
-                if (state2 == 'info') {
-                    root.title = acTitle.detail;
-                } else if (state2 == 'question') {
-                    root.title = acTitle.question;
-                } else if (state2 == 'result') {
-                    root.title = acTitle.result;
-                }
-            }
+            //if (state1 == 'list') {
+            //    root.title = acTitle.list;
+            //} else if (state1 == 'detail') {
+            //    if (state2 == 'info') {
+            //        root.title = acTitle.detail;
+            //    } else if (state2 == 'question') {
+            //        root.title = acTitle.question;
+            //    } else if (state2 == 'result') {
+            //        root.title = acTitle.result;
+            //    }
+            //}
             
+            root.title = acTitle[state1 != void 0 ? state1 : state2];
             var loader = document.getElementById('loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()

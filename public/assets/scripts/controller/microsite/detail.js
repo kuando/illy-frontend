@@ -4,6 +4,9 @@ define([], function() {
     var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
 
+    // 获取全局wx-sdk接口
+    var wx = avalon.wx;
+
     // prefix of localStorage
     var cachedPrefix = 'illy-microsite-detail-';
     
@@ -53,6 +56,21 @@ define([], function() {
             detail.articleId = params.articleId !== "" ? params.articleId : 0;
             detail.visited = avalon.vmodels.root.currentIsVisited;
             detail.fetchData();
+
+            wx.onMenuShareTimeline({
+                title: detail.title, // 分享标题
+                link: '', // 分享链接
+                imgUrl: '', // 分享图标
+                success: function () { 
+                    // 用户确认分享后执行的回调函数
+                    alert('用户确实分享了！');
+                },
+                cancel: function () { 
+                    // 用户取消分享后执行的回调函数
+                    alert('用户取消分享了');
+                    // 可以进行下一步
+                }
+            });
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

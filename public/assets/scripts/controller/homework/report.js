@@ -10,15 +10,14 @@ define([], function() {
 
     var limit = 5; // 一次抓取多少数据
 
-    var report = avalon.define({
+    var report = avalon.define({ // 学业统计报告
 
         $id: "report",
         offset: 0, // inner var, to fetch data with offset and limit
         fetchData: function(type) {
             $http.ajax({
                 method: "",
-                //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/homework/comments",
+                url: apiBaseUrl + "/api/v1/",
                 data: {
                     //offset: list.offset
                     //limit: 6
@@ -30,10 +29,10 @@ define([], function() {
                     list[type] = lists; //key ! fetch data
                 },
                 error: function(res) {
-                    console.error("report ajax error" + res);
+                    console.log("report ajax error" + res);
                 },
                 ajaxFail: function(res) {
-                    console.error("report ajaxFail" + res);
+                    console.log("report ajax failed" + res);
                 }
             })
         } // end of fetchData
