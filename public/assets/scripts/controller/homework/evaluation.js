@@ -15,6 +15,7 @@ define([], function() {
     var evaluation = avalon.define({ // 教师评价评语列表
 
         $id: "evaluation",
+        lists: [],
         visited: false,
         offset: 0,
         btnShowMore: true,
@@ -29,14 +30,13 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(lists) {
-                    var list = evaluation.lists;
-                    concat ? list = lists.concat(lists) : list = lists; // 区分showMore还是首次加载!
+                    concat ? evaluation.lists.concat(lists) : evaluation.lists = lists;
                 },
                 error: function(res) {
-                    console.error("evaluation list ajax error" + res);
+                    console.log("evaluation list ajax error" + res);
                 },
                 ajaxFail: function(res) {
-                    console.error("evaluation list ajax failed" + res);
+                    console.log("evaluation list ajax failed" + res);
                 }
             })
         }, // end of fetchData
