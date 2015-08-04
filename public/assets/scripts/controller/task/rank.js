@@ -6,7 +6,9 @@ define([], function() {
     
     var rank = avalon.define({
         $id: "rank",
-        ranks: []
+        ranks: [],
+        myScore: 0,
+        myRank: 0
     });
 
     return avalon.controller(function($ctrl) {
@@ -16,6 +18,22 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
+            $http.ajax({
+                url: apiBaseUrl + '/api/v1/score/rank/me',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+                    rank.myRanks = res.rank;
+                    rank.myScore = res.score;
+                },
+                error: function(res) {
+                    console.log('rank ajax error!' + res);
+                },
+                ajaxFail: function(res) {
+                    console.log('rank ajax ajaxFail!' + res);
+                }
+            })
             $http.ajax({
                 url: apiBaseUrl + '/api/v1/score/rank/topTen',
                 headers: {

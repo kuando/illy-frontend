@@ -98,6 +98,7 @@ define([], function() {
 
             detail.articleId = params.articleId;
             detail.visited = avalon.vmodels.root.currentIsVisited;
+            detail.isShared = false; // overwrite it
             detail.fetchData();
 
         }
