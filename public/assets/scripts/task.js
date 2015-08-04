@@ -274,7 +274,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader, 同时处理网络状况太差的情况
                 loader.style.display = '';
-                loaderMask.style.display = ''; // 增加loading遮罩，20150803新增
                 badNetworkHandler(avalon.illyGlobal.loadingTimeout);
                 // not good usage... tested add in 20150727, for list's cache function 
                 //avalon.vmodels.list && (avalon.vmodels.list.visited = false);  

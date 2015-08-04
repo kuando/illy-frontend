@@ -1455,11 +1455,12 @@ audio {
  *  Spinner
  *-------------------------------------------------------*/
 #loader {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: #d3cece;
   opacity: .7;
+  z-index: 99999;
 }
 
 #loader p {

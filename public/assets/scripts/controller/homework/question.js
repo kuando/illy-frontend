@@ -129,7 +129,7 @@ define([], function() {
             var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
-            record.duration = duration;
+            record.duration = duration || 5; // for strong
             if (duration < 3) { // 小于3秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
@@ -139,7 +139,7 @@ define([], function() {
                 wx.stopRecord({
                     // do nothing, just stop, fix bug
                 });
-            } else { // 正常结束，取结果, 1号获取路径
+            } else if (duration >= 3 && duration <= 60){ // 正常结束，取结果, 1号获取路径, 条件加强
                 wx.stopRecord({
                     success: function(res) {
                         var localId = res.localId;

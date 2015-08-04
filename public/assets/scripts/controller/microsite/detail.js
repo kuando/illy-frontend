@@ -41,6 +41,22 @@ define([], function() {
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
                     localStorage.setItem(cachedPrefix + detail.articleId, JSON.stringify(json));
+
+                    wx.onMenuShareTimeline({
+                        title: detail.title, // 分享标题
+                        link: '', // 分享链接
+                        imgUrl: document.getElementsByTagName('img')[0], // 分享图标
+                        success: function () { 
+                            // 用户确认分享后执行的回调函数
+                            alert('用户确实分享了！');
+                        },
+                        cancel: function () { 
+                            // 用户取消分享后执行的回调函数
+                            alert('用户取消分享了');
+                            // 可以进行下一步
+                        }
+                    });
+
                 }
             })
         }
@@ -53,24 +69,11 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
+
             detail.articleId = params.articleId !== "" ? params.articleId : 0;
             detail.visited = avalon.vmodels.root.currentIsVisited;
             detail.fetchData();
 
-            wx.onMenuShareTimeline({
-                title: detail.title, // 分享标题
-                link: '', // 分享链接
-                imgUrl: '', // 分享图标
-                success: function () { 
-                    // 用户确认分享后执行的回调函数
-                    alert('用户确实分享了！');
-                },
-                cancel: function () { 
-                    // 用户取消分享后执行的回调函数
-                    alert('用户取消分享了');
-                    // 可以进行下一步
-                }
-            });
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

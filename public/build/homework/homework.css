@@ -954,11 +954,12 @@ audio {
  *  Spinner
  *-------------------------------------------------------*/
 #loader {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: #d3cece;
   opacity: .7;
+  z-index: 99999;
 }
 
 #loader p {
@@ -1400,7 +1401,11 @@ audio {
 .question .playRecord .record-total-time {
   /* 录音时长 */
   position: relative;
-  left: -.36rem;
+  left: -.34rem;
+}
+.question .playRecord .second-symbol {
+  position: relative;
+  left: -.34rem;
 }
 .question .playRecord.playing {
   /* playing-state, gif */
@@ -1428,7 +1433,8 @@ audio {
   display: none;
   position: fixed;
   left: 0;
-  top: 100%;
+  /*top: 100%;*/
+  bottom: 0;
   width: 100%;
   min-height: 1.5rem;
   margin-top: -1.5rem;

@@ -358,7 +358,12 @@ $next_radius: $answer_panel_height / 2;
 
         .record-total-time { /* 录音时长 */
             position: relative;
-            left: -.36rem;
+            left: -.34rem;
+        }
+        
+        .second-symbol {
+            position: relative;
+            left: -.34rem;
         }
     }
 
@@ -389,7 +394,8 @@ $next_radius: $answer_panel_height / 2;
         display: none;
         position: fixed;
         left: 0;
-        top: 100%;
+        /*top: 100%;*/
+        bottom: 0;
         width: 100%;
         min-height: $answer_panel_height;
         margin-top: -$answer_panel_height;

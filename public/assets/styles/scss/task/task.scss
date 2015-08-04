@@ -135,12 +135,17 @@ a, a:hover {
     }
 
     .rank-div {
-        width: 38%;
+        width: 34%;
         padding-left: .15rem;
     }
 
     .rank-div:first-child {
         padding-left: .05rem;
+    }
+
+    .name-div {
+        position: relative;
+        left: .2rem;
     }
 
     .score-div {
