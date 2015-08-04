@@ -19,6 +19,24 @@ define([], function() {
         shareCount: 88,
         visitCount: 88,
         isShared: false,
+        updateShare: function() {
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + '/api/v1/posts/' + detail.articleId + '/share',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                ajaxFail: function(res) {
+                    console.log(res);
+                }
+            })
+        },
         fetchData: function() {
             if (detail.visited) {
                 var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
@@ -48,27 +66,14 @@ define([], function() {
                         link: '', // 分享链接
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
-                            // 用户确认分享后执行的回调函数
-                            $http.ajax({
-                                url: apiBaseUrl + '/api/v1/posts/' + detail.articleId + '/share',
-                                headers: {
-                                    Authorization: 'Bearer ' + token
-                                },
-                                success: function() {
-                                    detail.shareCount++;
-                                    detail.isShared = true;
-                                },
-                                error: function(res) {
-                                    console.log(res);
-                                },
-                                ajaxFail: function(res) {
-                                    console.log(res);
-                                }
-                            })
+                            // 不管成功与否，前台界面至少先更新
+                            detail.shareCount++;
+                            detail.isShared = true;
+                            detail.updateShare();
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
-                            alert('用户取消分享了');
+                            alert('差一点就能完成任务拿积分了!');
                             // 可以进行下一步
                         }
                     });

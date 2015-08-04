@@ -1891,7 +1891,7 @@ a, a:hover {
   background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
 }
 .list .icon-people, .topN .icon-people {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-yuedu.png);
 }
 
 .list .item-wrapper {
@@ -1971,8 +1971,8 @@ a, a:hover {
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: 18px 19px;
-  width: 35px;
-  height: 35px;
+  width: .4rem;
+  height: .4rem;
   background-color: rgba(0, 0, 0, 0.25);
   text-indent: 100%;
   overflow: hidden;

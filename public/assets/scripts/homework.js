@@ -350,7 +350,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             // 根据state更新标题
             var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
             var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-            root.currentPage = state1;
+            //root.currentPage = state1;
+            state2 == void 0 ? root.currentPage = state1 : root.currentPage = state2;
 
             //if (state1 == 'list') {
             //    root.title = acTitle.list;

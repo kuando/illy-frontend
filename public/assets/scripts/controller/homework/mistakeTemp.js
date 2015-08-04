@@ -1,7 +1,7 @@
 define([], function() {
-    
-    // review in 201507221010
 
+    // mark!!! global mark this page... bad design
+    
     var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl ) || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
 
@@ -18,9 +18,10 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-                    mistakeTemp.goNext();
                     var mistake = avalon.vmodels.mistake;
                     mistake.exercises = res;
+                    mistakeTemp.goNext();
+                    mistake.inWorking = true;
                 },
                 error: function(res) {
                     console.log('mistakeTemp ajax error' + res);
@@ -31,7 +32,11 @@ define([], function() {
             })
         },
         goNext: function(type) { // core!!! 判断跳转到哪种类型的题目
-            avalon.router.go('app.mistake.wrong', {homeworkId: mistakeTemp.homeworkId, questionId: 1 });
+            //if (localStorage.getItem('msLastPath') == 'mistake/list') { // fix back bad design mark!!!
+                avalon.router.go('app.mistake.wrong', {homeworkId: mistakeTemp.homeworkId, questionId: 1 });
+            //} else {
+                //avalon.router.go('app.mistake.list');
+            //}
         }
     });
 
@@ -46,9 +51,6 @@ define([], function() {
             var _id = params.homeworkId;
             mistakeTemp.homeworkId = params.homeworkId;
             mistakeTemp.fetchDataForMistakeCtrl(_id); // every time enter, do this
-            if (avalon.vmodels.mistake.exercises.length != 0) {
-                history.go(-1);
-            }
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

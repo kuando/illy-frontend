@@ -64,23 +64,21 @@
     // inner function, deal with GET with data options
     function parseUrl(url, data) {
         // 统一追加data到url上（注意data是否为空，且url是否已经有querystring）
-        if ( isEmptyObject(data) ) {
-            //return url.replace(/\?/, ""); // plain url
-            return url + "?cache=" + Math.random();
+        var hasQueryString = url.indexOf("?") >=0;
+        if (hasQueryString) {
+            if (isEmptyObject(data)) {
+                url += '&cache=' + Date.now();
+            } else {
+                url += '&' + jsonToquerystring(data) + '&cache=' + Date.now();
+            }
         } else {
-            var hasQueryString = url.indexOf("?") >= 0 && url.indexOf("=") >= 0;
-            if (hasQueryString) {
-                url = url + "&" + jsonToquerystring(data);
-            } else { // no querystring
-                if (url.indexOf("?") < 0) {
-                    url = url + "?" + jsonToquerystring(data);
-                } else {
-                    url = url + jsonToquerystring(data);
-                }
+            if (isEmptyObject(data)) {
+                url += '?cache=' + Date.now();
+            } else {
+                url += '?' + jsonToquerystring(data) + '&cache=' + Date.now();
             }
         }
-        // default no-cache
-        return url.indexOf("?") < 0 ? url + "?cache=" + Math.random() : url + "&cache=" + Math.random(); // at least return a url
+        return url;
     }
 
     // can extend to deal with old ie
@@ -193,6 +191,11 @@
     return $http;
 
 }))
+
+/** 
+ *  changelog
+ *  20150804 update parseUrl function
+ */
 
 // usage, arguments must be full
 //$http.ajax({

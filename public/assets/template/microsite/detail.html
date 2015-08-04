@@ -4,7 +4,7 @@
     <div class="content">{{content | html}}</div>
     <ul class="pageinfo list">
         <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
-        <li class="share" ms-if="isShared == true">已分享</li>
+        <li class="share" ms-if="isShared == true">已分享 {{shareCount}}</li>
         <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
     </ul>
 

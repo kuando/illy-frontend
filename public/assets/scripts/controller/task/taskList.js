@@ -10,9 +10,9 @@ define([], function() {
 
     // 每页大小
     var limit = 6;
-    var evaluation = avalon.define({ // 教师评价评语列表
+    var taskList = avalon.define({ // 教师评价评语列表
 
-        $id: "evaluation",
+        $id: "taskList",
         lists: [],
         visited: false,
         offset: 0,
@@ -21,34 +21,33 @@ define([], function() {
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/homework/comments",
+                url: apiBaseUrl + "/api/v1/tasks",
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
-                dataType: "json",
                 success: function(lists) {
-                    concat ? evaluation.lists.concat(lists) : evaluation.lists = lists;
+                    concat ? taskList.lists.concat(lists) : taskList.lists = lists;
                 },
                 error: function(res) {
-                    console.log("evaluation list ajax error" + res);
+                    console.log("taskList list ajax error" + res);
                 },
                 ajaxFail: function(res) {
-                    console.log("evaluation list ajax failed" + res);
+                    console.log("taskList list ajax failed" + res);
                 }
             })
         }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
             var page = 2;
-            if (evaluation.offset < limit) {
-                evaluation.btnShowMore = false;
+            if (taskList.offset < limit) {
+                taskList.btnShowMore = false;
                 return;
             } else {
-                evaluation.offset = evaluation.offset + limit * (page - 1);
+                taskList.offset = taskList.offset + limit * (page - 1);
             }
 
-            evaluation.fetchRemoteData({offset: evaluation.offset}, 'concat');
+            taskList.fetchRemoteData({offset: taskList.offset}, 'concat');
         }
 
 
@@ -62,9 +61,9 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
-            evaluation.visited = avalon.vmodels.root.currentIsVisited;
-            evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; // otherwise, show it
-            evaluation.fetchData();
+            taskList.visited = avalon.vmodels.root.currentIsVisited;
+            taskList.offset <= limit ? taskList.btnShowMore = false : taskList.btnShowMore = true; // otherwise, show it
+            taskList.fetchData();
 
         }
         // 视图渲染后，意思是avalon.scan完成

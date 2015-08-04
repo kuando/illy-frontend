@@ -8,8 +8,10 @@ define([], function() {
         $id: "mistake",
         homeworkId: 1, // 作业id，用于发送给server的第一个参数
         exercises: [], // 题目列表
+        inWorking: false,
         submit: function() { // core!!!
             mistake.exercises = [];
+            alert("恭喜您，本次作业复习完毕!");
             avalon.router.go('app.mistake.list');   
         } // end of submit
     });
@@ -23,6 +25,8 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
             avalon.vmodels.wrong && (avalon.vmodels.wrong.localAnswers = []);
+            mistake.exercises = [];
+            mistake.inWorking = false;
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
