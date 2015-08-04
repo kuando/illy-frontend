@@ -1,26 +1,6 @@
-<!-- list start -->
-<div class="list" ms-controller="mistake">
+<div ms-controller="mistake" class="detail">
 
-    <!-- item start -->
-    <div class="item-wrapper">
-
-        <!-- 作业列表 start -->
-        <div class="item area" ms-repeat-item="lists">
-            <a ms-attr-href="'#!/mistake/' + item._id + '/q/1'" class="list-card">
-                <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
-                <div class="hw-info area">
-                    <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="time">作业完成时间: {{item.finishedTime| date("yyyy.MM.dd")}}</span>
-                    <span class="finish_count"><i class="icon-people"></i>错题数: {{item.wrongNumber}}</span>
-                </div>
-                <span class="todo yo-ico">&#xf07f;</span>
-            </a>
-        </div>
-        <!-- 作业列表 end -->
-
-    </div>
-    <!-- item end -->
+    <div ms-view></div>
 
 </div>
-<!-- list end -->
 

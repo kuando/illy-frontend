@@ -953,7 +953,7 @@ audio {
 /* -------------------------------------------------------
  *  Spinner
  *-------------------------------------------------------*/
-#loader {
+.loader {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -962,7 +962,7 @@ audio {
   z-index: 99999;
 }
 
-#loader p {
+.loader p {
   padding-top: .8rem;
   margin-left: -.04rem;
   font-size: .18rem;

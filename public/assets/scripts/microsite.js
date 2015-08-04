@@ -280,7 +280,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             // 缓存来过的页面，不再显示loader
             var pageId = location.href.split("!")[1];
             cache.push(pageId);
-            var loader = document.getElementById('loader');
+            var loader = document.querySelector('.loader');
             var visited = false;
             var curid = location.href.split("!")[1];
             for (var i = 0, len = cache.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
@@ -313,7 +313,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 root.title = acTitle.detail;
             }
 
-            var loader = document.getElementById('loader');
+            var loader = document.querySelector('.loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
                 avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer);

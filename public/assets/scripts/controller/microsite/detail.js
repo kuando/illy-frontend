@@ -18,6 +18,7 @@ define([], function() {
         created: "2015-07-09",
         shareCount: 88,
         visitCount: 88,
+        isShared: false,
         fetchData: function() {
             if (detail.visited) {
                 var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
@@ -45,10 +46,25 @@ define([], function() {
                     wx.onMenuShareTimeline({
                         title: detail.title, // 分享标题
                         link: '', // 分享链接
-                        imgUrl: document.getElementsByTagName('img')[0], // 分享图标
+                        imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 用户确认分享后执行的回调函数
-                            alert('用户确实分享了！');
+                            $http.ajax({
+                                url: apiBaseUrl + '/api/v1/posts/' + detail.articleId + '/share',
+                                headers: {
+                                    Authorization: 'Bearer ' + token
+                                },
+                                success: function() {
+                                    detail.shareCount++;
+                                    detail.isShared = true;
+                                },
+                                error: function(res) {
+                                    console.log(res);
+                                },
+                                ajaxFail: function(res) {
+                                    console.log(res);
+                                }
+                            })
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
@@ -66,11 +82,16 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
+            avalon.$('.gotop').onclick = function() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
-            detail.articleId = params.articleId !== "" ? params.articleId : 0;
+            detail.articleId = params.articleId;
             detail.visited = avalon.vmodels.root.currentIsVisited;
             detail.fetchData();
 

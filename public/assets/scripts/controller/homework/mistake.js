@@ -1,59 +1,36 @@
 define([], function() {
-    
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
-    var token = avalon.illyGlobal.token;
 
-    if (!token) {
-        alert("no token error");
-        return;
-    }
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
 
+    // 作业详情控制器
     var mistake = avalon.define({
 
         $id: "mistake",
-        lists: [],
-        fetchData: function() {
-            $http.ajax({
-                method: "",
-                //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/homework/mistake",
-                data: {
-
-                },
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                dataType: "json",
-                success: function(lists) {
-                    mistake.lists = lists; //key ! fetch data
-                },
-                error: function(res) {
-                    console.log("mistake list ajax error" + res);
-                },
-                ajaxFail: function(res) {
-                    console.log("mistake list ajax failed" + res);
-                }
-            })
-        } // end of fetchData
-
+        homeworkId: 1, // 作业id，用于发送给server的第一个参数
+        exercises: [], // 题目列表
+        submit: function() { // core!!!
+            mistake.exercises = [];
+            avalon.router.go('app.mistake.list');   
+        } // end of submit
     });
 
     return avalon.controller(function($ctrl) {
-        // 对应的视图销毁前
-        $ctrl.$onBeforeUnload = function() {
-            //avalon.log("leave list");
-        }
-        // 进入视图
-        $ctrl.$onEnter = function(params) {
-            // remove cache in detail ctrl
-            mistake.fetchData();
-        }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
         }
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
+        // 进入视图
+        $ctrl.$onEnter = function(params) {
+            // 抽象视图，啥也不做,放到具体视图里做,但会执行
+            avalon.vmodels.wrong && (avalon.vmodels.wrong.localAnswers = []);
+        }
+        // 对应的视图销毁前
+        $ctrl.$onBeforeUnload = function() {
+
+        }
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
         $ctrl.$vmodels = []
     });
+
 });
 

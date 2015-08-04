@@ -3,12 +3,13 @@
     <div class="created-time">{{created | date()}}</div>
     <div class="content">{{content | html}}</div>
     <ul class="pageinfo list">
-        <li class="share"><i class="icon icon-share"></i>{{shareCount}}</li>
+        <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
+        <li class="share" ms-if="isShared == true">已分享</li>
         <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
     </ul>
 
-    <div id="jumphelper" class="hide">
-        <a href="#footer" id="gotop">top</a>
+    <div id="jumphelper" class="gotop">
+        <a href="javascript:void(0)" id="gotop">top</a>
     </div>
     
 </div>

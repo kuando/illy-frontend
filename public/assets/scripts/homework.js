@@ -231,8 +231,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.mistake", { // 错题集 
-        url: "mistake", // 
+    .state("app.mistake", { // 用来作为错题ctrl，抽象状态,加载完资源后会立即绘制 mistakeList
+        //url: "", // a homework with info and result panel, ms-view to render question one by one
+        abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
                 templateUrl: "assets/template/homework/mistake.html", // 指定模板地址
@@ -240,7 +241,25 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.wrong", { // 错题，url较为复杂，某作业下的某题
+    .state("app.mistake.list", { // mistake list
+        url: "mistake/list", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/mistakeList.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/mistakeList.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("app.mistake.fetchData", { 
+        url: "mistake/{homeworkId}/fetchData", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/homework/mistakeTemp.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/mistakeTemp.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("app.mistake.wrong", { // mistake question
         url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
@@ -261,15 +280,15 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.report", { // 学业统计报告页面
-        url: "report", // 
-        views: {
-            "": {
-                templateUrl: "assets/template/homework/report.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/report.js" // 指定控制器地址
-            }
-        }
-    })
+    //.state("app.report", { // 学业统计报告页面
+    //    url: "report", // 
+    //    views: {
+    //        "": {
+    //            templateUrl: "assets/template/homework/report.html", // 指定模板地址
+    //            controllerUrl: "scripts/controller/homework/report.js" // 指定控制器地址
+    //        }
+    //    }
+    //})
 
     /*
      *  @interface avalon.state.config 全局配置
@@ -314,7 +333,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             // 缓存来过的页面，不在显示loader
             var pageId = location.href.split("!")[1];
             cachePage.push(pageId);
-            var loader = document.getElementById('loader');
+            var loader = document.querySelector('.loader');
             var visited = false;
             for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
                 if (cachePage[i] === pageId) {
@@ -346,7 +365,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             //}
             
             root.title = acTitle[state1 != void 0 ? state1 : state2];
-            var loader = document.getElementById('loader');
+            var loader = document.querySelector('.loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
             }, 200);
