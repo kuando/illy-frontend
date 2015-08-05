@@ -1,5 +1,5 @@
 <!-- evaluation start -->
-<div class="list" ms-controller="evaluation">
+<div class="list evaluation" ms-controller="evaluation">
 
     <!-- item start -->
     <div class="item-wrapper">
@@ -10,7 +10,8 @@
                 <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="finish_count"><i class="icon-comment"></i>教师评价: {{item.comment}}</span>
+                    <div class="comments comments-overflow text-overflow"><i class="icon-comment"></i>教师评价: {{item.comment}}</div>
+                    <div class="comments comments-full"><i class="icon-comment"></i>教师评价: {{item.comment}}</div>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>
             </a>

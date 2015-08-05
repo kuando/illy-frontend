@@ -65,10 +65,21 @@ define([], function() {
             evaluation.visited = avalon.vmodels.root.currentIsVisited;
             evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; // otherwise, show it
             evaluation.fetchData();
-
+            
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
+
+            setTimeout(function() {
+                $('.comments-overflow').on('click', function() { 
+                    $(this).hide();
+                    $(this).parent().find('.comments-full')[0].style.display = 'inline-block';
+                })
+                $('.comments-full').on('click', function() { 
+                    $(this).hide();
+                    $(this).parent().find('.comments-overflow')[0].style.display = 'inline-block';
+                })
+            }, 500)
 
         }
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)

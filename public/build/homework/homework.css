@@ -1507,5 +1507,15 @@ audio {
 }
 
 /* result end */
+/* evaluation start */
+.evaluation .comments {
+  display: inline-block;
+  width: 92%;
+}
+.evaluation .comments-full {
+  display: none;
+}
+
+/* evaluation end */
 
 /*# sourceMappingURL=homework.css.map */

@@ -485,3 +485,15 @@ $next_radius: $answer_panel_height / 2;
 }
 /* result end */
 
+/* evaluation start */
+.evaluation {
+    .comments {
+        display: inline-block;
+        width: 92%;
+    }
+    .comments-full {
+        display: none;
+    }
+}
+/* evaluation end */
+

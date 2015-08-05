@@ -1636,8 +1636,7 @@ a, a:hover {
   vertical-align: top;
   margin-right: .05rem;
 }
-.task-list jkk
-.task-content {
+.task-list .task-content {
   width: 74%;
   display: inline-block;
   vertical-align: top;

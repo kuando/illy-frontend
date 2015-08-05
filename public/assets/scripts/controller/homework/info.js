@@ -94,6 +94,17 @@ define([], function() {
                 var time = avalon.$('.info .record-total-time');
                 time && ( time.innerHTML = parseInt(duration, 10) || 0 );
             }, 2000)
+
+            setTimeout(function() {
+                if (info.keyPointRecord != '' || info.keyPointRecord != undefined) {
+                    var keyPointAudio = avalon.$('.info .keyPointAudio');
+                    keyPointAudio && keyPointAudio.setAttribute('src', info.keyPointRecord);
+                } 
+                //else {
+                //    avalon.$('.info .keyPointAudio').getAttribute('src');
+                //    avalon.$('.keyPointAudio').getAttribute('src');
+                //}
+            }, 500)
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
