@@ -341,7 +341,7 @@ a, a:hover {
 }
 /* list end */
 
-/* custom page end */
+/* detail start */
 .detail {
     color: hsl(0, 0%, 11%);
     padding: 0 .16rem;
@@ -387,6 +387,9 @@ a, a:hover {
     .pageinfo {
         text-align: center;
 
+        .isShared {
+            color: $main-blue;
+        }
         .share, .visit {
             display: inline-block;
             width: 45%;
@@ -442,4 +445,4 @@ a, a:hover {
     }
 
 }
-
+/* detail end */

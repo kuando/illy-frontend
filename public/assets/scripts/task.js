@@ -179,13 +179,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "",
         views: {
             "": {
-                templateUrl: "assets/template/task/taskList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/taskList.js" // 指定控制器地址
+                templateUrl: "assets/template/task/list.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/list.js" // 指定控制器地址
             }
         }
     })
     .state("task.detail", { // 任务详情
-        url: "detail/{taskId}",
+        url: "task/{taskId}",
         views: {
             "": {
                 templateUrl: "assets/template/task/detail.html", // 指定模板地址

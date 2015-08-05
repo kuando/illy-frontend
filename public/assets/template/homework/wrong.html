@@ -33,8 +33,8 @@
     <!-- 文字选择题-->
 
     <!-- 图片选择题-->
-    <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1">
-        <label class="item item-active" ms-repeat-item="exercise.choices">
+    <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
+        <label class="item item-active" ms-repeat-item="exercise.choices" >
             <span class="mark flex">
                 <img ms-attr-src="item.content" />
             </span>
@@ -47,11 +47,8 @@
     <!-- 图片选择题-->
 
     <!-- 填空题 -->
-    <div class="fill-in" ms-if="exercise.eType == 2">
-        <textarea ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
-            aaa 
-        </textarea>
-        <p ms-visible="localAnswers[currentId - 1]">您填写的答案为：{{localAnswers[currentId - 1]}}</p>
+    <div class="fill-in wrong-fill-in" ms-if="exercise.eType == 2">
+        <p>您填写的答案为：{{localAnswers[currentId - 1]}}</p>
     </div>
     <!-- 填空题 -->
 

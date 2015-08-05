@@ -202,12 +202,6 @@ $next_radius: $answer_panel_height / 2;
 
 /* question start */
 
-.yo-list {
-    .item.wrong-answer {
-        border: 2px solid $main-red;
-        border-radius: .05rem;
-    }
-}
 .illy-img-list {
     text-align: left;
 
@@ -280,6 +274,17 @@ $next_radius: $answer_panel_height / 2;
         padding: .05rem;
         font-weight: bold;
         font-size: .16rem;
+    }
+
+    .wrong-fill-in { /* 错误的文字填空题 */
+        color: $main-red;
+    }
+
+    .yo-list {
+        .item.wrong-answer { /* 错误的选择题 */
+            border: 2px solid $main-red;
+            border-radius: .05rem;
+        }
     }
 
     .mask {

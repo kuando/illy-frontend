@@ -1,8 +1,12 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
-    var token = avalon.illyGlobal && avalon.illyGlobal.token;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
+    var token = avalon.illyGlobal.token;
+    if (token == void 0) {
+        avalon.log("Error, no token!");
+        alert('对不起，系统错误，请退出重试！');
+    }
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
@@ -22,7 +26,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + '/api/v1/posts/' + detail.articleId + '/share',
+                url: apiBaseUrl + 'posts/' + detail.articleId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -39,7 +43,8 @@ define([], function() {
         },
         fetchData: function() {
             if (detail.visited) {
-                var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
+                //var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
+                var local = avalon.getLocalCache(cachedPrefix + detail.articleId);
                 detail.title = local.title;
                 detail.content = local.content;
                 detail.created = local.created;
@@ -48,7 +53,7 @@ define([], function() {
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
-                url: apiBaseUrl + "/api/v1/posts/" + detail.articleId,
+                url: apiBaseUrl + "posts/" + detail.articleId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -59,7 +64,7 @@ define([], function() {
                     detail.created = json.created;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
-                    localStorage.setItem(cachedPrefix + detail.articleId, JSON.stringify(json));
+                    avalon.setLocalCache(cachedPrefix + detail.articleId, json);
 
                     wx.onMenuShareTimeline({
                         title: detail.title, // 分享标题
@@ -74,7 +79,6 @@ define([], function() {
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             alert('差一点就能完成任务拿积分了!');
-                            // 可以进行下一步
                         }
                     });
 

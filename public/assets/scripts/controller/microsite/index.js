@@ -1,8 +1,8 @@
 define([], function() {
-
-    // get apiBaseUrl
-    var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl ) || 'http://api.hizuo.com';
-    var token = avalon.illyGlobal && avalon.illyGlobal.token;
+ 
+    // get config
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
+    var token = avalon.illyGlobal.token;
     if (token == void 0) {
         avalon.log("Error, no token!");
         alert('对不起，系统错误，请退出重试！');
@@ -10,11 +10,14 @@ define([], function() {
 
     var index = avalon.define({
         $id: "index",
-        sliders: [], // cached
-        hots: [], // cached
-        categories: [], // cached
-        hasData: false, // first in, no cache
+        sliders: [], // auto-nature-cached
+        hots: [], // auto-nature-cached
+        categories: [], // auto-nature-cached
+        visited: false, // first in, no cache
         fetchRemoteData: function(apiArgs, data, target) {
+            var hasData = index.visited; // has cached
+            if (hasData) { return; }
+
             $http.ajax({
                 url: apiBaseUrl + apiArgs + '',
                 headers: {
@@ -32,7 +35,6 @@ define([], function() {
                 }
             })
 
-            index.hasData = true;
         } // end of fetchRemoteData
     });
 
@@ -42,10 +44,12 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 进入视图
         $ctrl.$onEnter = function() {
-            var hasData = index.hasData;
-            !hasData && index.fetchRemoteData('/api/v1/posts/slider', {}, 'sliders');
-            !hasData && index.fetchRemoteData('/api/v1/posts/hot?limit=3', {}, 'hots'); // three articles
-            !hasData && index.fetchRemoteData('/api/v1/categories/posts', {}, 'categories');
+
+            index.visited = avalon.vmodels.root.currentIsVisited;
+            index.fetchRemoteData('posts/slider', {}, 'sliders');
+            index.fetchRemoteData('posts/hot?limit=3', {}, 'hots'); // three articles
+            index.fetchRemoteData('categories/posts', {}, 'categories');
+
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

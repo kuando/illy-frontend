@@ -6,7 +6,7 @@
 
         <!-- task列表 start -->
         <div class="item area" ms-repeat-item="lists">
-            <a ms-attr-href="" class="list-card">
+            <a ms-attr-href="'#!/task/' + item._id" class="list-card">
                 <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.name">
                 <div class="task-content area">
                     <h2 class="item-title task-info">{{item.name}}</h2>

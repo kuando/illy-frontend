@@ -56,7 +56,7 @@ define([], function() {
             wrong.right = true;
             setTimeout(function() {
                 wrong.right = false;
-            }, 2000)
+            }, 1700) // magic...  en..... bad design and i don't know why in low android
 
             wrong.total = avalon.vmodels.mistake.exercises.length; // yes, must动态设置
             if (params.questionId < wrong.total) { // key! to next or submit

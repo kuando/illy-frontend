@@ -1257,11 +1257,6 @@ audio {
 
 /* info end */
 /* question start */
-.yo-list .item.wrong-answer {
-  border: 2px solid #e50b23;
-  border-radius: .05rem;
-}
-
 .illy-img-list {
   text-align: left;
 }
@@ -1328,6 +1323,15 @@ audio {
   padding: .05rem;
   font-weight: bold;
   font-size: .16rem;
+}
+.question .wrong-fill-in {
+  /* 错误的文字填空题 */
+  color: #e50b23;
+}
+.question .yo-list .item.wrong-answer {
+  /* 错误的选择题 */
+  border: 2px solid #e50b23;
+  border-radius: .05rem;
 }
 .question .mask {
   display: none;

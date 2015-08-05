@@ -1,7 +1,7 @@
 /* animation */
 .a-bounce,.a-flip,.a-flash,.a-shake,.a-swing,.a-wobble,.a-ring {-webkit-animation:1s ease;-moz-animation:1s ease;-ms-animation:1s ease;animation:1s ease;}
 .a-fadein,.a-fadeinT,.a-fadeinR,.a-fadeinB,.a-fadeinL,.a-bouncein,.a-bounceinT,.a-bounceinR,.a-bounceinB,.a-bounceinL,.a-rotatein,.a-rotateinLT,.a-rotateinLB,.a-rotateinRT,.a-rotateinRB,.a-flipin,.a-flipinX,.a-flipinY {-webkit-animation:1s ease-out backwards;-moz-animation:1s ease-out backwards;-ms-animation:1s ease-out backwards;animation:1s ease-out backwards;}
-.a-fadeout,.a-fadeoutT,.a-fadeoutR,.a-fadeoutB,.a-fadeoutL,.a-bounceout,.a-bounceoutT,.a-bounceoutR,.a-bounceoutB,.a-bounceoutL,.a-rotateout,.a-rotateoutLT,.a-rotateoutLB,.a-rotateoutRT,.a-rotateoutRB,.a-flipout,.a-flipoutX,.a-flipoutY {-webkit-animation:1s ease-in forwards;-moz-animation:1s ease-in forwards;-ms-animation:1s ease-in forwards;animation:1s ease-in forwards;}
+.a-fadeout,.a-fadeoutT,.a-fadeoutR,.a-fadeoutB,.a-fadeoutL,.a-bounceout,.a-bounceoutT,.a-bounceoutR,.a-bounceoutB,.a-bounceoutL,.a-rotateout,.a-rotateoutLT,.a-rotateoutLB,.a-rotateoutRT,.a-rotateoutRB,.a-flipout,.a-flipoutX,.a-flipoutY {-moz-animation:1s ease-in forwards;-ms-animation:1s ease-in forwards;-webkit-animation:.1s ease-in forwards;animation:.1s ease-in forwards;}
 /* 淡入 */
 .a-fadein {-webkit-animation-name:fadein;-moz-animation-name:fadein;-ms-animation-name:fadein;animation-name:fadein;}
 /* 淡入-从上 */
@@ -327,12 +327,6 @@
     100% {transform:translateY(0);}
 }
 /* 弹入-从右 */
-@-webkit-keyframes bounceinR {
-    0% {opacity:0;-webkit-transform:translateX(100px);}
-    60% {opacity:1;-webkit-transform:translateX(-30px);}
-    80% {-webkit-transform:translateX(10px);}
-    100% {-webkit-transform:translateX(0);}
-}
 @-moz-keyframes bounceinR {
     0% {opacity:0;-moz-transform:translateX(100px);}
     60% {opacity:1;-moz-transform:translateX(-30px);}
@@ -345,9 +339,15 @@
     80% {-ms-transform:translateX(10px);}
     100% {-ms-transform:translateX(0);}
 }
+@-webkit-keyframes bounceinR {
+    0% {opacity:0;-webkit-transform:translateX(60px);}
+    60% {opacity:1;-webkit-transform:translateX(-20px);}
+    80% {-webkit-transform:translateX(10px);}
+    100% {-webkit-transform:translateX(0);}
+}
 @keyframes bounceinR {
-    0% {opacity:0;transform:translateX(100px);}
-    60% {opacity:1;transform:translateX(-30px);}
+    0% {opacity:0;transform:translateX(60px);}
+    60% {opacity:1;transform:translateX(-20px);}
     80% {transform:translateX(10px);}
     100% {transform:translateX(0);}
 }

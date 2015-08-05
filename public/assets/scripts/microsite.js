@@ -3,7 +3,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
 
-    // splash show time
+    // splash show time config
     var splash_show_time = 6; // ms
     avalon.splashShowTime = splash_show_time;
 
@@ -17,11 +17,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         'detail': '内容详情'
     }
 
-    // deal with bad network condition for wait too long
-    function badNetworkHandler(delay) {
+    // deal with bad network condition for wait too long, auto-back when time enough with tip
+    var handleBadNetwork = function handleBadNetwork(delay) {
         var delay = global_loading_timeout * 1000 || 5000;
+        var loader = document.querySelector('.loader');
         var badNetworkTimer = setTimeout(function() {
-            alert('Woops, bad network!');
+            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
+            // even can invoke the wx-sdk to close the page
             history.go(-1);
             loader && (loader.style.display = 'none'); // for strong, need ()
         }, delay);
@@ -39,28 +41,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     var token = localStorage.getItem('illy-token');
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com';
-
-    // clear localStorage with spec name
-    function clearLocalStorage(prefix) {
-        for (key in localStorage) {
-            if (key.indexOf(prefix) >= 0) {
-                localStorage.removeItem(key);
-            }
-        }
-    }
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
-
         viewani    : g_viewload_animation,
-
         token      : token,
-
-        apiBaseUrl : apiBaseUrl,
-
-        clearLocalStorage: clearLocalStorage
-
+        apiBaseUrl : apiBaseUrl
     }
 
     // avalon global static method, get vm-object with vm-name
@@ -77,6 +64,43 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     }
+
+    /**
+     * clearLocalCache
+     * @param prefix {string}
+     * clear the cache item includes the given prefix
+    */
+    var clearLocalCache = function clearLocalCache(prefix) {
+        for (key in localStorage) {
+            if (key.indexOf(prefix) >= 0) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+
+    /**
+     * setLocalCache
+     * @param itemName {String}
+     * @param source   {String} (json-like)
+    */
+    var setLocalCache = function setLocalCache(itemName, source) {
+        var source = JSON.stringify(source);
+        localStorage.setItem && localStorage.setItem( itemName, source );
+    }
+
+    /**
+     * getLocalCache
+     * @param itemName {String}
+     * return result   {Object} (json-from-api)
+    */
+    var getLocalCache = function getLocalCache(itemName) {
+        return localStorage.getItem && JSON.parse( '' + localStorage.getItem(itemName) );
+    }
+
+    // 挂载
+    avalon.clearLocalCache = clearLocalCache;
+    avalon.setLocalCache = setLocalCache;
+    avalon.getLocalCache = getLocalCache;
 
     /* global set end */
 
@@ -169,7 +193,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     //});
 
     wx.error(function(res) {
-        alert("Woops, error comes..." + res);
+        alert("Woops, error comes when WeChat-sdk signature..." + res);
     });
 
     /* wxsdk end */
@@ -179,8 +203,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 定义一个顶层的vmodel，用来放置全局共享数据
     var root = avalon.define({
         $id: "root",
-        currentPage: "",
-        currentIsVisited: false,
+        currentPage: "", // spec-stateName
+        currentIsVisited: false, // useful for most child view
         title: "", // 每一页action bar的标题   
         back: function() {
             history.go(-1);
@@ -224,13 +248,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         onBeforeEnter: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
             //avalon.log("site.index onBeforeEnter fn");
             //return false;
-            // 加入一个淡入的class，营造进场效果 
         },
         onBeforeExit: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
             //avalon.log("site.index onBeforeExit fn");
             //return false;
-            //document.querySelector('[avalonctrl="index"]').style.backgroundColor = "red";
-            // 加入一个淡出的class，营造出场的效果
         }
     })
     .state("site.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
@@ -239,10 +260,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/microsite/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址
-                //,ignoreChange: function(changeType) { 
-                //    return !!changeType;
-                //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
+                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址              
             }
         }
     })
@@ -294,15 +312,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             for (var i = 0, len = cache.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
                 if (cache[i] === curid) {
                     visited = true;
-                    // not good usage... tested add in 20150727, for list's cache function
-                    //avalon.vmodels.list.visited = true;
                 }
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader, 同时处理网络状况太差的情况
                 loader.style.display = '';
-                badNetworkHandler();
-                // not good usage... tested add in 20150727, for list's cache function 
-                //avalon.vmodels.list && (avalon.vmodels.list.visited = false);  
+                handleBadNetwork();
             }
             root.currentIsVisited = visited; // 页面是否加载过，挂载在root节点上
         },
@@ -314,6 +328,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             var state = root.currentPage;
             root.title = acTitle[state];
 
+            // next view loaded, remove loader && badNetworkHandler && add view-in animation
             var loader = document.querySelector('.loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
@@ -328,7 +343,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             //}, 500, "easein", function() {
             //    oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
             //})
-            // alert(1);
         } // 不建议使用动画，因此实际使用的时候，最好去掉onViewEnter和ms-view元素上的oni-mmRouter-slide
     });
 
