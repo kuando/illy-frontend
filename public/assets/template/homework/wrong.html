@@ -20,7 +20,7 @@
 
     <!-- 文字选择题-->
     <div class="yo-list yo-list-group" ms-if="exercise.eType == 0">
-        <label class="item item-active" ms-repeat-item="exercise.choices">
+        <label class="item item-active" ms-repeat-item="exercise.choices" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
             <span class="mark flex">
                 {{item.title}}. {{item.content}} 
             </span>
@@ -59,14 +59,10 @@
 
     <!-- 答案和分析面板 -->
     <!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
-    <div class="answer-panel" ms-class="wrong:right != true" ms-visible=" (localAnswers.length >= currentId)">
-        <div class="answer" ms-if="exercise.eType != 3">
-            <span class="right" ms-if="right">正确! </span>
-            <span class="right" ms-if="!right">错误! </span>
+    <div class="answer-panel wrong" ms-visible="right == false">
+        <div class="answer">
+            <span class="right" ms-if="!right">正确答案为：{{exercise.answer}}</span>
             <p ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
-        </div>
-        <div class="answer" ms-if="exercise.eType == 3">
-            <span class="save">本题完毕， 请继续操作!</span>
         </div>
         <div class="tap-btn btn-next" ms-click="next()" ms-if="hasNext">
             <span class="icon yo-ico icon-next">&#xf079;</span>

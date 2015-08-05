@@ -46,7 +46,7 @@ $next_radius: $answer_panel_height / 2;
     color: #fff;
 }
 .app {
-    min-height: 3.5rem;
+    min-height: 5.5rem;
     padding: .05rem;
 }
 
@@ -202,6 +202,12 @@ $next_radius: $answer_panel_height / 2;
 
 /* question start */
 
+.yo-list {
+    .item.wrong-answer {
+        border: 2px solid $main-red;
+        border-radius: .05rem;
+    }
+}
 .illy-img-list {
     text-align: left;
 
@@ -242,6 +248,7 @@ $next_radius: $answer_panel_height / 2;
 
 .question {
     text-align: left;
+    margin-top: .1rem; /* question state will no header element */
 
     /* 去除分割线，恶心的第二条线不显示bug */
     .yo-list > .item {
@@ -394,11 +401,9 @@ $next_radius: $answer_panel_height / 2;
         display: none;
         position: fixed;
         left: 0;
-        /*top: 100%;*/
         bottom: 0;
         width: 100%;
         min-height: $answer_panel_height;
-        margin-top: -$answer_panel_height;
         background-color: $main-color;
         &.wrong {
             background-color: $main-red;

@@ -9,7 +9,9 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             //avalon.log("site.js onRendered fn");
-            document.querySelector('#splash').style.display = 'none';
+            setTimeout(function() {
+                document.querySelector('#splash').style.display = 'none';
+            }, avalon.splashShowTime)
             document.querySelector('#loading-before-site').style.display = 'none';
         }
         // 进入视图

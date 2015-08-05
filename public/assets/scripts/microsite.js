@@ -3,6 +3,31 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
 
+    // splash show time
+    var splash_show_time = 6; // ms
+    avalon.splashShowTime = splash_show_time;
+
+    // global loading timeout
+    var global_loading_timeout = 5; // second, abort the loading when timeout, auto back
+
+    // global action bar title map
+    var acTitle = {
+        'index': '首页',
+        'list': '文章列表',
+        'detail': '内容详情'
+    }
+
+    // deal with bad network condition for wait too long
+    function badNetworkHandler(delay) {
+        var delay = global_loading_timeout * 1000 || 5000;
+        var badNetworkTimer = setTimeout(function() {
+            alert('Woops, bad network!');
+            history.go(-1);
+            loader && (loader.style.display = 'none'); // for strong, need ()
+        }, delay);
+        avalon.badNetworkTimer = badNetworkTimer;
+    }
+
     //================= main to bootstrap the app =======================//
 
     /* global set start */
@@ -245,25 +270,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
     */
 
-    // action bar title map
-    var acTitle = {
-        'index': '首页',
-        'list': '文章列表',
-        'detail': '内容详情'
-    }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
-    // deal with bad network condition for wait too long
-    function badNetworkHandler(delay) {
-        var delay = delay || 5000;
-        var badNetworkTimer = setTimeout(function() {
-            alert('Woops, bad network!');
-            history.go(-1);
-            loader && (loader.style.display = 'none'); // for strong, need ()
-        }, delay);
-        avalon.badNetworkTimer = badNetworkTimer;
-    }
-    
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
@@ -304,14 +312,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             
             // set title of action bar
             var state = root.currentPage;
-            //root.title = acTitle[state];
-            if (state == 'index') {
-                root.title = acTitle.index;
-            } else if (state == 'list') {
-                root.title = acTitle.list;
-            } else if (state == 'detail') {
-                root.title = acTitle.detail;
-            }
+            root.title = acTitle[state];
 
             var loader = document.querySelector('.loader');
             setTimeout(function() {

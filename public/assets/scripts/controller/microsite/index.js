@@ -67,9 +67,9 @@ define([], function() {
                 } else if (avalon.totalTime > 500 && avalon.totalTime < 1500) {
                     renderedDelay = renderedDelay + 500;
                 }
-                renderedDelay += 256; // 16 frame
+                renderedDelay += 384; // 24 frame
             } else { // file in avalon.templateCache, do the some 
-                renderedDelay = 32; // 2 frame
+                renderedDelay = 64; // 4 frame
             }
             setTimeout(function() {
                 $('#slider').slider({

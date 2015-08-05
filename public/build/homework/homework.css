@@ -1123,7 +1123,7 @@ audio {
 }
 
 .app {
-  min-height: 3.5rem;
+  min-height: 5.5rem;
   padding: .05rem;
 }
 
@@ -1257,6 +1257,11 @@ audio {
 
 /* info end */
 /* question start */
+.yo-list .item.wrong-answer {
+  border: 2px solid #e50b23;
+  border-radius: .05rem;
+}
+
 .illy-img-list {
   text-align: left;
 }
@@ -1295,6 +1300,8 @@ audio {
 
 .question {
   text-align: left;
+  margin-top: .1rem;
+  /* question state will no header element */
   /* 去除分割线，恶心的第二条线不显示bug */
   /* record too short tips */
 }
@@ -1433,11 +1440,9 @@ audio {
   display: none;
   position: fixed;
   left: 0;
-  /*top: 100%;*/
   bottom: 0;
   width: 100%;
   min-height: 1.5rem;
-  margin-top: -1.5rem;
   background-color: #6fd801;
 }
 .question .answer-panel.wrong {

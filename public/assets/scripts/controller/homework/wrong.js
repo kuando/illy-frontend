@@ -53,7 +53,10 @@ define([], function() {
 
             // 重置题目对错标记
             //question.right = (question.exercise.answer == question.userAnswer);
-            wrong.right = false;
+            wrong.right = true;
+            setTimeout(function() {
+                wrong.right = false;
+            }, 2000)
 
             wrong.total = avalon.vmodels.mistake.exercises.length; // yes, must动态设置
             if (params.questionId < wrong.total) { // key! to next or submit

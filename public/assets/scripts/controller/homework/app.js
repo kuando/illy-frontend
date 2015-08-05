@@ -26,7 +26,7 @@ define([], function() {
             //avalon.log("app.js onRendered fn");
             
             // if rendered fast and less than 888ms, will show completely, else, show 1s
-            var splashShowTime = avalon.appTotalTime < 888 ? (avalon.splashShowTime) : 400;
+            var splashShowTime = avalon.appTotalTime < 888 ? (avalon.splashShowTime) : 666;
             setTimeout(function() { // 公共总控制器渲染完成，此时取消全局splash
                 document.querySelector('#splash').style.display = 'none';
                 //alert(1);
