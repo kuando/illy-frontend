@@ -250,15 +250,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.mistake.fetchData", { 
-        url: "mistake/{homeworkId}/fetchData", // 
-        views: {
-            "": {
-                templateUrl: "assets/template/homework/mistakeTemp.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistakeTemp.js" // 指定控制器地址
-            }
-        }
-    })
     .state("app.mistake.wrong", { // mistake question
         url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {

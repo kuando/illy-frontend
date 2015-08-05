@@ -14,7 +14,7 @@ define([], function() {
         keyPoint: '',
         keyPointRecord: '',
         isPlaying: false, // 有录音的作业是否在播放录音
-        duration: 3, // 知识重点录音时长, 用于播放完毕ui change
+        duration: 0, // 知识重点录音时长, 用于播放完毕ui change
         // core!!! 因为detail为抽象状态，无onEnter的params参数，故延迟到这里获取数据
         fetchDataForDetailCtrl: function(id, type) { // 可以获取多种作业类型的数据了,201507201446
             var _id = id;   
@@ -98,7 +98,7 @@ define([], function() {
             setTimeout(function() {
                 if (info.keyPointRecord != '' || info.keyPointRecord != undefined) {
                     var keyPointAudio = avalon.$('.info .keyPointAudio');
-                    keyPointAudio && keyPointAudio.setAttribute('src', info.keyPointRecord);
+                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord);
                 } 
                 //else {
                 //    avalon.$('.info .keyPointAudio').getAttribute('src');

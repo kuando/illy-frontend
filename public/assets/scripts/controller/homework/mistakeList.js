@@ -32,7 +32,32 @@ define([], function() {
                     console.log("mistakeList ajax failed" + res);
                 }
             })
-        } // end of fetchData
+        }, // end of fetchData
+        fetchDataForExercises: function(homeworkId) {
+            console.log(homeworkId)
+            $http.ajax({
+                url: apiBaseUrl + '/api/v1/homework/mistake/' + homeworkId,
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+                    var mistake = avalon.vmodels.mistake;
+                    mistake.exercises = res;
+                    avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
+                },
+                error: function(res) {
+                    console.log('mistakeTemp ajax error' + res);
+                },
+                ajaxFail: function(res) {
+                    console.log('mistakeTemp ajax failed' + res);
+                }
+            })
+        },
+        goWrong: function() { // 前往具体错误题目
+            var homeworkId = arguments[0].getAttribute('data-homeworkId');
+            mistakeList.fetchDataForExercises(homeworkId);
+            //avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
+        }
 
     });
 

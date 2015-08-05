@@ -8,7 +8,9 @@ define([], function() {
         $id: "rank",
         ranks: [],
         myScore: 0,
-        myRank: 0
+        myRank: 0,
+        displayName: '',
+        avatar: ''
     });
 
     return avalon.controller(function($ctrl) {
@@ -24,6 +26,8 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
+                    rank.displayName = res.displayName;
+                    rank.avatar = res.avatar;
                     rank.myRanks = res.rank;
                     rank.myScore = res.score;
                 },
