@@ -73,7 +73,7 @@ define([], function() {
             // 清除题目页面缓存的统计数据
             var questionVM = avalon.getVM('question'); // bug!!! $model不统一于vm本身
             questionVM && (questionVM.localAnswers = []);
-            //avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
+            avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
         }
     });
 
@@ -89,7 +89,7 @@ define([], function() {
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-
+            // tip user whether drop current done! todo!
         }
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
         $ctrl.$vmodels = []

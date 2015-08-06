@@ -8,15 +8,17 @@ define([], function() {
         alert('对不起，系统错误，请退出重试！');
     }
 
+    // cache the view data
+    var needCache = true;
+
     var index = avalon.define({
         $id: "index",
-        sliders: [], // auto-nature-cached
-        hots: [], // auto-nature-cached
-        categories: [], // auto-nature-cached
+        sliders: [], // auto-nature-cached key!!!
+        hots: [], // auto-nature-cached key!!!
+        categories: [], // auto-nature-cached key!!!
         visited: false, // first in, no cache
         fetchRemoteData: function(apiArgs, data, target) {
-            var hasData = index.visited; // has cached
-            if (hasData) { return; }
+            if (index.visited && needCache) { return; }
 
             $http.ajax({
                 url: apiBaseUrl + apiArgs + '',

@@ -5,16 +5,16 @@
     <div class="item-wrapper">
 
         <!-- task列表 start -->
-        <div class="item area" ms-repeat-item="lists">
-            <a ms-attr-href="'#!/task/' + item._id" class="list-card">
+        <div class="item area list-card" ms-repeat-item="lists">
+            <div ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
                 <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.name">
                 <div class="task-content area">
                     <h2 class="item-title task-info">{{item.name}}</h2>
                     <div class="task-info">内容: 2015秋季招生好礼送不停</div>
                     <div class="task-info"><i class="icon-visit"></i>浏览量: {{item.visitCount}}</div>
                 </div>
-                <div class="goGetIt yo-btn yo-btn-s">赚积分+10</div>
-            </a>
+                <div class="goGetIt yo-btn yo-btn-s">赚积分+{{item.scoreAward}}</div>
+            </div>
         </div>
         <!-- task列表 end -->
 

@@ -1,16 +1,6 @@
 <div ms-controller="detail" class="detail">
-    <h2 class="title">{{title}}</h2>
-    <div class="created-time">{{created | date()}}</div>
-    <div class="content">{{content | html}}</div>
-    <ul class="pageinfo list">
-        <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
-        <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
-        <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
-    </ul>
 
-    <div id="jumphelper" class="gotop">
-        <a href="javascript:void(0)" id="gotop">top</a>
-    </div>
-    
+    <div ms-view></div>
+
 </div>
 

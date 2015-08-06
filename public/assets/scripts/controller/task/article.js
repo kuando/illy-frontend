@@ -1,26 +1,19 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
     var token = avalon.illyGlobal.token;
-    if (token == void 0) {
-        avalon.log("Error, no token!");
-        alert('对不起，系统错误，请退出重试！');
-    }
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
 
     // prefix of localStorage
-    var cachedPrefix = 'illy-microsite-detail-';
-
-    // cache the view data
-    var needCache = true;
+    var cachedPrefix = 'illy-task-article-';
     
-    var detail = avalon.define({
-        $id: "detail",
-        visited: false,
-        articleId: 1,
+    var article = avalon.define({
+        $id: "article",
+        taskId: 1,
+        scoreAward: 0,
         title: "",
         content: "",
         created: "2015-07-09",
@@ -30,12 +23,12 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'posts/' + detail.articleId + '/share',
+                url: apiBaseUrl + '/api/v1/tasks/' + article.taskId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-
+                    //console.log(res);
                 },
                 error: function(res) {
                     console.log(res);
@@ -46,39 +39,38 @@ define([], function() {
             })
         },
         fetchData: function() {
-            if (detail.visited && needCache) {
-                //var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
-                var localCache = avalon.getLocalCache(cachedPrefix + detail.articleId);
-                detail.title = localCache.title;
-                detail.content = localCache.content;
-                detail.created = localCache.created;
-                detail.shareCount = localCache.shareCount;
-                detail.visitCount = localCache.visitCount;
-                return; // core!!! key!!! forget this will getCache and request which is the worst way!
+            if (article.visited) {
+                var local = JSON.parse(localStorage.getItem(cachedPrefix + article.taskId));
+                article.title = local.title;
+                article.content = local.content;
+                article.created = local.created;
+                article.shareCount = local.shareCount;
+                article.visitCount = local.visitCount;
+                return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
-                url: apiBaseUrl + "posts/" + detail.articleId,
+                url: apiBaseUrl + "/api/v1/tasks/" + article.taskId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(json) {
-                    detail.title = json.title;
-                    detail.content = json.content;
-                    detail.created = json.created;
-                    detail.shareCount = json.shareCount;
-                    detail.visitCount = json.visitCount;
-                    avalon.setLocalCache(cachedPrefix + detail.articleId, json);
+                    article.title = json.title;
+                    article.content = json.content;
+                    article.created = json.created;
+                    article.shareCount = json.shareCount;
+                    article.visitCount = json.visitCount;
+                    localStorage.setItem(cachedPrefix + article.taskId, JSON.stringify(json));
 
                     wx.onMenuShareTimeline({
-                        title: detail.title, // 分享标题
+                        title: article.title, // 分享标题
                         link: '', // 分享链接
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新
-                            detail.shareCount++;
-                            detail.isShared = true;
-                            detail.updateShare();
+                            article.shareCount++;
+                            article.isShared = true;
+                            article.updateShare();
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
@@ -104,10 +96,11 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
-            detail.articleId = params.articleId;
-            detail.visited = avalon.vmodels.root.currentIsVisited;
-            detail.isShared = false; // overwrite it
-            detail.fetchData();
+            article.taskId = params.taskId;
+            article.scoreAward = params.scoreAward;
+            article.visited = avalon.vmodels.root.currentIsVisited;
+            article.isShared = false; // overwrite it
+            article.fetchData();
 
         }
         // 对应的视图销毁前

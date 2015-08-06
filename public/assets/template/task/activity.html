@@ -1,0 +1,32 @@
+<div ms-controller="activity" class="detail">
+    <h2 class="title">{{name}}</h2>
+    <div class="created-time">开始时间: {{startTime | date()}}</div>
+    <div class="created-time">结束时间: {{endTime | date()}}</div>
+    <div class="content">{{content | html}}</div>
+
+    <div class='yo-btn' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">i want</div>
+    <div class='yo-btn' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点点就能报名成功了...click me again~~~</div>
+    <div class='yo-btn' ms-if="isDone">报名成功</div>
+
+    <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling" style="margin-bottom: .1rem;">
+        <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
+            <span class="hide">{{CopyinfoCollect[$index]}}</span>
+            <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
+        </label>
+        <div class="yo-btn" ms-click="pushInfo()">save</div>
+        <div class="yo-btn" ms-click="cancel()">cancel</div>
+    </div>
+
+    <ul class="pageinfo list">
+        <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
+        <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
+        <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
+        <div class="yo-btn" ms-visible="isShared">积分+{{scoreAward}}</div>
+    </ul>
+
+    <div id="jumphelper" class="gotop">
+        <a href="javascript:void(0)" id="gotop">top</a>
+    </div>
+    
+</div>
+

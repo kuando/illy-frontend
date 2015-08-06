@@ -176,6 +176,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
     .state("task.list", { // 任务列表
+        //url: "list",
         url: "",
         views: {
             "": {
@@ -184,12 +185,43 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.detail", { // 任务详情
-        url: "task/{taskId}",
+    //.state("task.detail", { // 任务详情
+    //    url: "task/{taskId}",
+    //    views: {
+    //        "": {
+    //            templateUrl: "assets/template/task/detail.html", // 指定模板地址
+    //            controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
+    //        }
+    //    }
+    //})
+    .state("task.detail", { // 用来作为错题ctrl，抽象状态,加载完资源后会立即绘制 taskList
+        //url: "", // a homework with info and result panel, ms-view to render question one by one
+        abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
                 templateUrl: "assets/template/task/detail.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("task.detail.article", { // task list
+        url: "article/{taskId}/score/{scoreAward}", // 
+        views: {
+            "": {
+                templateUrl: "assets/template/task/article.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/article.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("task.detail.activity", { // task question
+        url: "activity/{taskId}/score/{scoreAward}", // deal with a spec question, render it for different type
+        views: {
+            "": {
+                templateUrl: "assets/template/task/activity.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/activity.js", // 指定控制器地址
+                ignoreChange: function(changeType) {
+                    return !!changeType;
+                }
             }
         }
     })
@@ -229,9 +261,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // action bar title map
     var acTitle = {
         'list': '任务列表',
-        'detail': '内容详情',
         'rank': '排行榜',
-        'mall': '积分商城'
+        'mall': '积分商城',
+        'article': '活动详情',
+        'activity': '活动详情'
     }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
@@ -282,11 +315,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         },
         onLoad: function() { 
             // avalon.log("3 onLoad" + root.currentPage);
-            root.currentPage = mmState.currentState.stateName.split(".")[1];
-            
+            var state  = mmState.currentState.stateName.split(".");
             // set title of action bar
-            var state = root.currentPage;
-            root.title = acTitle[state];
+            var state1 = state[1];
+            var state2 = state[2];
+            if (state2 !== void 0) state1 = state2;
+            root.currentPage = state1;
+            root.title = acTitle[state1];
 
             var loader = document.querySelector('.loader');
             setTimeout(function() {

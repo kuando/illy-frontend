@@ -82,8 +82,12 @@
     }
 
     // can extend to deal with old ie
-    function parseJSON(str) {
-        return JSON.parse(str + ""); // more safe
+    function parseJSON(str) { // meet some problem with simple string like server response 'ok' string...
+        try {
+            return JSON.parse(str + ""); // more safe
+        } catch (e) {
+            return str; 
+        }
     }
 
     // set headers
@@ -126,7 +130,7 @@
             //}
             if (xhr.readyState == 4) {
                 if (xhr.status === 200) {
-                    success(parseJSON(xhr.responseText));
+                    success( parseJSON( xhr.responseText ) );
                 } else {
                     error(parseJSON(xhr.responseText));
                 }

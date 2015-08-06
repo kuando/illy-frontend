@@ -82,6 +82,11 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
             //avalon.log("info.js onEnter callback");
+            
+            // clear localAnswers here to fix bug in low Andriod
+            var questionVM = avalon.vmodels.question;
+            questionVM && ( questionVM.localAnswers = [] );
+
             var type = location.href.split("=")[1] || 'homework'; // for strong
             info.workType = type;
             var _id = params.homeworkId;
@@ -95,7 +100,7 @@ define([], function() {
                 time && ( time.innerHTML = parseInt(duration, 10) || 0 );
             }, 2000)
 
-            setTimeout(function() {
+            setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
                 if (info.keyPointRecord != '' || info.keyPointRecord != undefined) {
                     var keyPointAudio = avalon.$('.info .keyPointAudio');
                     keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord);

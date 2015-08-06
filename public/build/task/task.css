@@ -1623,6 +1623,8 @@ a, a:hover {
 
 /* taskList start */
 .task-list .list-card {
+  width: 100%;
+  margin-bottom: .05rem;
   text-align: left;
   position: relative;
   display: inline-block;
@@ -1645,12 +1647,14 @@ a, a:hover {
   width: 99%;
   display: inline-block;
   vertical-align: top;
-  line-height: 2;
+  line-height: 1.9;
 }
 .task-list .goGetIt {
+  width: .9rem;
   position: absolute;
   right: .05rem;
   bottom: .05rem;
+  padding: 0;
 }
 
 /* taskList end */

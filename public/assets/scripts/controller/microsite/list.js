@@ -8,7 +8,11 @@ define([], function() {
         alert('对不起，系统错误，请退出重试！');
     }
     
+    // prefix of localStorage
     var cachedPrefix = 'illy-microsite-list-';
+    // cache the view data
+    
+    var needCache = true;
 
     var limit = 6; // 一次抓取多少数据
     var list = avalon.define({
@@ -21,7 +25,7 @@ define([], function() {
         offset: 0, // inner var, to fetch data with offset and limit
         btnShowMore: true,
         fetchRemoteData: function(apiArgs, data, target, type) { // only ctrl function to fetch data with api
-            if (list.visited) {
+            if (list.visited && needCache) {
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
                 return;
             }

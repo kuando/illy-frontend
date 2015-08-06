@@ -10,7 +10,7 @@ define([], function() {
 
     // 每页大小
     var limit = 6;
-    var taskList = avalon.define({ // 教师评价评语列表
+    var taskList = avalon.define({ // 
 
         $id: "taskList",
         lists: [],
@@ -18,16 +18,18 @@ define([], function() {
         offset: 0,
         btnShowMore: true,
         fetchData: function(data, concat) {
+
+            if (taskList.visited) { return ; }
+
             $http.ajax({
                 method: "",
-                //url: "api/list.json?limit=6",
                 url: apiBaseUrl + "/api/v1/tasks",
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 success: function(lists) {
-                    concat ? taskList.lists.concat(lists) : taskList.lists = lists;
+                    concat ? taskList.lists.concat(lists) : taskList.lists = lists; // mark!!! concat work?
                 },
                 error: function(res) {
                     console.log("taskList list ajax error" + res);
@@ -36,6 +38,7 @@ define([], function() {
                     console.log("taskList list ajax failed" + res);
                 }
             })
+
         }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
@@ -48,8 +51,19 @@ define([], function() {
             }
 
             taskList.fetchRemoteData({offset: taskList.offset}, 'concat');
+        },
+        taskTypeMap: { // for future extension
+            0: 'article',
+            1: 'activity'
+        },
+        goSpecTask: function() {
+            // get info from target you click and then do dispatch
+            var taskType = arguments[0].getAttribute('data-taskType');
+            var taskId = arguments[0].getAttribute('data-taskId');
+            var taskScoreAward = arguments[0].getAttribute('data-taskScoreAward');
+            var state = 'task.detail.' + taskList.taskTypeMap[taskType];
+            avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
         }
-
 
     });
 
