@@ -4,41 +4,46 @@
     <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == true">done</div>
     <div class="yo-btn" ms-click="resetAll()" ms-if="editing == true">resetAll</div>
 
-    <div class="yo-list yo-list-group">
+    <div class="yo-list yo-list-group update-profile-list">
         <div class="user-avatar">
             <img style="border: 1px; width: .5rem; height: .5rem;" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
         </div>
         <h3 class="label" ms-if="editing == false">username: {{username}}</h3>
-        <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="username" placeholder="..." />
+        <label class="item item-input hide" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="username" placeholder="用户名" />
         </label>
         <h3 class="label" ms-if="editing == false">displayName: {{displayName}}</h3>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="..." />
+            <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="昵称" />
         </label>
         <h3 class="label" ms-if="editing == false">gender: {{gender}}</h3>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="..." />
+            <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />
+        </label>
+        <h3 class="label" ms-if="editing == false">parent: {{parent}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="parent" placeholder="家长姓名" />
         </label>
         <h3 class="label" ms-if="editing == false">phone: {{phone}}</h3>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="..." />
+            <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="用户电话" />
         </label>
         <h3 class="label" ms-if="editing == false">onSchool: {{onSchool}}</h3>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="..." />
+            <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="学校名称" />
         </label>
         <h3 class="label" ms-if="editing == false">grade: {{grade}}</h3>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="..." />
+            <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="年级" />
         </label>
         <h3 class="label" ms-if="editing == false">finishedHomeworkCount: {{finishedHomeworkCount}}</h3>
-        <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="finishedHomeworkCount" placeholder="..." />
+        <label class="item item-input hide" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="finishedHomeworkCount" placeholder="完成作业数" />
         </label>
         <h3 class="label" ms-if="editing == false">finishedPreviewsCount: {{finishedPreviewsCount}}</h3>
-        <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="finishedPreviewsCount" placeholder="..." />
+        <label class="item item-input hide" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="finishedPreviewsCount" placeholder="完成预习数" />
         </label>
+        <div class="yo-btn" ms-click="save()">save</div>
     </div>
 </div>
