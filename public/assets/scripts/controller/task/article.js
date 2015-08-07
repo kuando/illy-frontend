@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
     // 获取全局wx-sdk接口
@@ -23,7 +23,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + '/api/v1/tasks/' + article.taskId + '/share',
+                url: apiBaseUrl + 'tasks/' + article.taskId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -40,7 +40,8 @@ define([], function() {
         },
         fetchData: function() {
             if (article.visited) {
-                var local = JSON.parse(localStorage.getItem(cachedPrefix + article.taskId));
+                //var local = JSON.parse(localStorage.getItem(cachedPrefix + article.taskId));
+                var local = avalon.getLocalCache(cachedPrefix + article.taskId);
                 article.title = local.title;
                 article.content = local.content;
                 article.created = local.created;
@@ -49,7 +50,7 @@ define([], function() {
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
-                url: apiBaseUrl + "/api/v1/tasks/" + article.taskId,
+                url: apiBaseUrl + "tasks/" + article.taskId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -60,7 +61,8 @@ define([], function() {
                     article.created = json.created;
                     article.shareCount = json.shareCount;
                     article.visitCount = json.visitCount;
-                    localStorage.setItem(cachedPrefix + article.taskId, JSON.stringify(json));
+                    //localStorage.setItem(cachedPrefix + article.taskId, JSON.stringify(json));
+                    avalon.setLocalCache(cachedPrefix + article.taskId, json);
 
                     wx.onMenuShareTimeline({
                         title: article.title, // 分享标题
@@ -91,6 +93,10 @@ define([], function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
             }
+
+            setTimeout(function() {
+                avalon.$('#gotop').style.display = 'block';
+            }, 3000)
 
         }
         // 进入视图

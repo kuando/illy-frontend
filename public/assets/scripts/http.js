@@ -86,6 +86,7 @@
         try {
             return JSON.parse(str + ""); // more safe
         } catch (e) {
+            console.error('JSON PARSE ERROR! ' + str);
             return str; 
         }
     }

@@ -1,0 +1,41 @@
+<div class="me" ms-controller="me">
+
+    <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == false">edit</div>
+    <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == true">done</div>
+    <div class="yo-btn" ms-click="resetAll()" ms-if="editing == false && hasEdited == true">resetAll</div>
+
+    <div class="yo-list yo-list-group">
+        <h3 class="label" ms-if="editing == false">username: {{username}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="username" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">displayName: {{displayName}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">gender: {{gender}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">phone: {{phone}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">onSchool: {{onSchool}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">grade: {{grade}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">finishedHomeworkCount: {{finishedHomeworkCount}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="finishedHomeworkCount" placeholder="..." />
+        </label>
+        <h3 class="label" ms-if="editing == false">finishedPreviewsCount: {{finishedPreviewsCount}}</h3>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="finishedPreviewsCount" placeholder="..." />
+        </label>
+    </div>
+</div>

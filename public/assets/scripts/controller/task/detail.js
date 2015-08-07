@@ -1,6 +1,6 @@
 define([], function() {
     
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
 
     var detail = avalon.define({
 

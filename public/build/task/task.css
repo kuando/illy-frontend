@@ -1730,7 +1730,7 @@ a, a:hover {
   z-index: 10;
 }
 .detail #jumphelper > a {
-  display: block;
+  display: none;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: 18px 19px;

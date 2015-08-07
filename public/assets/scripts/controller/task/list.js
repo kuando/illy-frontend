@@ -1,6 +1,6 @@
 define([], function() {
     
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
     if (!token) {
@@ -23,7 +23,7 @@ define([], function() {
 
             $http.ajax({
                 method: "",
-                url: apiBaseUrl + "/api/v1/tasks",
+                url: apiBaseUrl + "tasks",
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token

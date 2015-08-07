@@ -100,6 +100,10 @@ define([], function() {
                 document.documentElement.scrollTop = 0;
             }
 
+            setTimeout(function() {
+                avalon.$('#gotop').style.display = 'block';
+            }, 3000)
+
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {

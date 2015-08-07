@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
     // 获取全局wx-sdk接口
@@ -32,7 +32,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + '/api/v1/tasks/' + activity.taskId + '/share',
+                url: apiBaseUrl + 'tasks/' + activity.taskId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -49,7 +49,8 @@ define([], function() {
         },
         fetchData: function() {
             if (activity.visited && activity.hasData) {
-                var localCache = localCache.parse(localStorage.getItem(cachedPrefix + activity.taskId));
+                //var localCache = localCache.parse(localStorage.getItem(cachedPrefix + activity.taskId));
+                var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId)
                     acTitle.taskId = localCache._id;
                     activity.address = localCache.address;
                     activity.content = localCache.content;
@@ -64,7 +65,7 @@ define([], function() {
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
-                url: apiBaseUrl + "/api/v1/tasks/" + activity.taskId,
+                url: apiBaseUrl + "tasks/" + activity.taskId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -84,8 +85,9 @@ define([], function() {
                     }
                     activity.CopyinfoCollect = json.infoCollect[0].split(",");
                     activity.theme = json.theme;
-                    localStorage.setItem(cachedPrefix + activity.taskId, JSON.stringify(json));
-                    avalon.log(activity.collectResult);
+                    //localStorage.setItem(cachedPrefix + activity.taskId, JSON.stringify(json));
+                    avalon.setLocalCache(cachedPrefix + activity.taskId, json);
+                    //avalon.log(activity.collectResult);
 
                     wx.onMenuShareTimeline({
                         title: activity.title, // 分享标题
@@ -114,7 +116,7 @@ define([], function() {
 
             $http.ajax({
                 method: 'POST',
-                url: apiBaseUrl + '/api/v1/activities/' + activity.taskId + '/info',
+                url: apiBaseUrl + 'activities/' + activity.taskId + '/info',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -150,6 +152,10 @@ define([], function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
             }
+
+            setTimeout(function() {
+                avalon.$('#gotop').style.display = 'block';
+            }, 3000)
 
         }
         // 进入视图

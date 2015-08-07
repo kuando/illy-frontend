@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = ( avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl) || 'http://api.hizuoye.com';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
     
     var rank = avalon.define({
@@ -21,7 +21,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
             $http.ajax({
-                url: apiBaseUrl + '/api/v1/score/rank/me',
+                url: apiBaseUrl + 'score/rank/me',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -39,7 +39,7 @@ define([], function() {
                 }
             })
             $http.ajax({
-                url: apiBaseUrl + '/api/v1/score/rank/topTen',
+                url: apiBaseUrl + 'score/rank/topTen',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },

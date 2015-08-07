@@ -113,10 +113,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         method: "",
         url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
         data: {
-            url: url
-        },
-        beforeSend: function(xhr) {
-
+        url: url
         },
         headers: {
             'Authorization': 'Bearer ' + token

@@ -1,25 +1,25 @@
 define([], function() {
 
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = localStorage.getItem('illy-token');
     
     var cachedPrefix = 'illy-task-mall-';
 
-    function setCachedData(itemName, data) {
-        var strData = JSON.stringify(data);
-        localStorage.setItem(cachedPrefix + itemName, strData);
-    }
+    //function setCachedData(itemName, data) {
+    //    var strData = JSON.stringify(data);
+    //    localStorage.setItem(cachedPrefix + itemName, strData);
+    //}
     
-    function getCachedData(itemName) {
-        var data = localStorage.getItem(cachedPrefix + itemName);
-        return JSON.parse(data + '');
-    }
+    //function getCachedData(itemName) {
+    //    var data = localStorage.getItem(cachedPrefix + itemName);
+    //    return JSON.parse(data + '');
+    //}
 
-    function clearCachedData(targetNameArr) {
-        for (var i = 0, len = targetNameArr.length; i < len; i++) {
-            localStorage.removeItem(cachedPrefix + targetNameArr[i]);
-        }
-    }
+    //function clearCachedData(targetNameArr) {
+    //    for (var i = 0, len = targetNameArr.length; i < len; i++) {
+    //        localStorage.removeItem(cachedPrefix + targetNameArr[i]);
+    //    }
+    //}
 
     var limit = 6; // 一次抓取多少数据
     var mall = avalon.define({
@@ -40,7 +40,8 @@ define([], function() {
          */
         fetchRemoteData: function(apiArgs, data, target, type) {
             if (mall.visited) {
-                mall.lists = getCachedData(target);
+                //mall.lists = getCachedData(target);
+                mall.lists = avalon.getLocalCache(cachedPrefix + target);
                 return;
             }
             $http.ajax({
@@ -51,7 +52,8 @@ define([], function() {
                 data: data,
                 success: function(res) {
                     type == 'concat' ? mall[target] = mall[target].concat(res) : mall[target] = res;
-                    setCachedData(target, res); // illy-task-mall-lists
+                    //setCachedData(target, res); // illy-task-mall-lists
+                    setLocalCache(cachedPrefix + target, res); // illy-task-mall-lists
                 },
                 error: function(res) {
                     avalon.log('mall ajax error when fetch data');
@@ -71,7 +73,7 @@ define([], function() {
                 mall.offset = mall.offset + limit * (page - 1);
             }
 
-            mall.fetchRemoteData('/api/v1/score/mall', {offset: mall.offset}, 'lists', 'concat');
+            mall.fetchRemoteData('score/mall', {offset: mall.offset}, 'lists', 'concat');
         }
     });
 
@@ -84,7 +86,7 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
             mall.visited = avalon.vmodels.root.currentIsVisited;
             mall.offset <= limit ? mall.btnShowMore = false : mall.btnShowMore = true; // otherwise, show it
-            mall.fetchRemoteData('/api/v1/score/mall', {}, 'lists');
+            mall.fetchRemoteData('score/mall', {}, 'lists');
         }
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

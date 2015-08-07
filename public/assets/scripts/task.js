@@ -3,6 +3,35 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
 
+    // splash show time config
+    var splash_show_time = 6; // ms
+    avalon.splashShowTime = splash_show_time;
+
+    // global loading timeout
+    var global_loading_timeout = 5; // second, abort the loading when timeout, auto back
+
+    // global action bar title map
+    var acTitle = {
+        'list': '任务列表',
+        'rank': '排行榜',
+        'mall': '积分商城',
+        'article': '活动详情',
+        'activity': '活动详情'
+    }
+
+    // deal with bad network condition for wait too long, auto-back when time enough with tip
+    var handleBadNetwork = function handleBadNetwork(delay) {
+        var delay = global_loading_timeout * 1000 || 5000;
+        var loader = document.querySelector('.loader');
+        var badNetworkTimer = setTimeout(function() {
+            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
+            // even can invoke the wx-sdk to close the page
+            history.go(-1);
+            loader && (loader.style.display = 'none'); // for strong, need ()
+        }, delay);
+        avalon.badNetworkTimer = badNetworkTimer;
+    }
+
     //================= main to bootstrap the app =======================//
 
     /* global set start */
@@ -14,30 +43,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     var token = localStorage.getItem('illy-token');
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com';
-
-    // clear localStorage with spec name
-    function clearLocalStorage(prefix) {
-        for (key in localStorage) {
-            if (key.indexOf(prefix) >= 0) {
-                localStorage.removeItem(key);
-            }
-        }
-    }
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
-
         viewani    : g_viewload_animation,
-
         token      : token,
-
-        apiBaseUrl : apiBaseUrl,
-
-        loadingTimeout: 5, // 单位：秒 进入视图最长加载时间，超时提示并回退
-
-        clearLocalStorage: clearLocalStorage
-
+        apiBaseUrl : apiBaseUrl
     }
 
     // avalon global static method, get vm-object with vm-name
@@ -55,6 +67,43 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         return document.querySelector(selector);
     }
 
+    /**
+     * clearLocalCache
+     * @param prefix {string}
+     * clear the cache item includes the given prefix
+    */
+    var clearLocalCache = function clearLocalCache(prefix) {
+        for (key in localStorage) {
+            if (key.indexOf(prefix) >= 0) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+
+    /**
+     * setLocalCache
+     * @param itemName {String}
+     * @param source   {String} (json-like)
+    */
+    var setLocalCache = function setLocalCache(itemName, source) {
+        var source = JSON.stringify(source);
+        localStorage.setItem && localStorage.setItem( itemName, source );
+    }
+
+    /**
+     * getLocalCache
+     * @param itemName {String}
+     * return result   {Object} (json-from-api)
+    */
+    var getLocalCache = function getLocalCache(itemName) {
+        return localStorage.getItem && JSON.parse( '' + localStorage.getItem(itemName) );
+    }
+
+    // 挂载
+    avalon.clearLocalCache = clearLocalCache;
+    avalon.setLocalCache = setLocalCache;
+    avalon.getLocalCache = getLocalCache;
+
     /* global set end */
 
     /* wxsdk start */
@@ -67,9 +116,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
         data: {
             url: url
-        },
-        beforeSend: function(xhr) {
-
         },
         headers: {
             'Authorization': 'Bearer ' + token
@@ -133,8 +179,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
 
+    //wx.ready(function() {
+    //    // do all thing here, except user trigger functions(can put in outside)
+    //    wx.checkJsApi({
+    //        jsApiList: ['startRecord'], // apis to check
+    //            success: function(res) {
+    //                alert(parse(res));
+    //                // key --- value, if usable, true, then false
+    //                // e.g. {"checkResult": {"chooseImage": true}, "errMsg": "checkJsApi:ok"}
+    //            }
+    //    });
+    //});
+
     wx.error(function(res) {
-        alert("Woops, error comes..." + res);
+        alert("Woops, error comes when WeChat-sdk signature..." + res);
     });
 
     /* wxsdk end */
@@ -144,8 +202,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 定义一个顶层的vmodel，用来放置全局共享数据
     var root = avalon.define({
         $id: "root",
-        currentPage: "",
-        currentIsVisited: false,
+        currentPage: "", // spec-stateName
+        currentIsVisited: false, // useful for most child view
         title: "", // 每一页action bar的标题   
         back: function() {
             history.go(-1);
@@ -185,15 +243,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    //.state("task.detail", { // 任务详情
-    //    url: "task/{taskId}",
-    //    views: {
-    //        "": {
-    //            templateUrl: "assets/template/task/detail.html", // 指定模板地址
-    //            controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
-    //        }
-    //    }
-    //})
     .state("task.detail", { // 用来作为错题ctrl，抽象状态,加载完资源后会立即绘制 taskList
         //url: "", // a homework with info and result panel, ms-view to render question one by one
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
@@ -239,7 +288,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/task/mall.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地r
+            }
+        }
+    })
+    .state("task.me", { // 积分商城
+        url: "me",
+        views: {
+            "": {
+                templateUrl: "assets/template/task/me.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/me.js" // 指定控制器地址
             }
         }
     })
@@ -258,31 +316,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
     */
 
-    // action bar title map
-    var acTitle = {
-        'list': '任务列表',
-        'rank': '排行榜',
-        'mall': '积分商城',
-        'article': '活动详情',
-        'activity': '活动详情'
-    }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cache = [];
-    // deal with bad network condition for wait too long
-    function badNetworkHandler(delay) {
-        var delay = delay || 5;
-        var badNetworkTimer = setTimeout(function() {
-            alert('Woops, bad network!');
-            history.go(-1);
-            loader && (loader.style.display = 'none'); // for strong, need ()
-        }, delay * 1000);
-        avalon.badNetworkTimer = badNetworkTimer;
-    }
-    
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("task.list"); 
+            avalon.router.go("site.index"); 
         }, // 打开错误配置
         onBeforeUnload: function() {
             // avalon.log("0 onBeforeUnload" + arguments);
@@ -301,28 +340,28 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             for (var i = 0, len = cache.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
                 if (cache[i] === curid) {
                     visited = true;
-                    // not good usage... tested add in 20150727, for list's cache function
-                    //avalon.vmodels.list.visited = true;
                 }
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader, 同时处理网络状况太差的情况
                 loader.style.display = '';
-                badNetworkHandler(avalon.illyGlobal.loadingTimeout);
-                // not good usage... tested add in 20150727, for list's cache function 
-                //avalon.vmodels.list && (avalon.vmodels.list.visited = false);  
+                handleBadNetwork();
             }
             root.currentIsVisited = visited; // 页面是否加载过，挂载在root节点上
         },
         onLoad: function() { 
             // avalon.log("3 onLoad" + root.currentPage);
-            var state  = mmState.currentState.stateName.split(".");
-            // set title of action bar
+            var state = mmState.currentState.stateName.split(".");
             var state1 = state[1];
             var state2 = state[2];
             if (state2 !== void 0) state1 = state2;
+
+            // set root current state
             root.currentPage = state1;
+            
+            // set title of action bar
             root.title = acTitle[state1];
 
+            // next view loaded, remove loader && badNetworkHandler && add view-in animation
             var loader = document.querySelector('.loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
@@ -337,7 +376,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             //}, 500, "easein", function() {
             //    oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
             //})
-            // alert(1);
         } // 不建议使用动画，因此实际使用的时候，最好去掉onViewEnter和ms-view元素上的oni-mmRouter-slide
     });
 
@@ -349,6 +387,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             avalon.history.start({
                 // basepath: "/mmRouter",
                 fireAnchor: false
+                //,routeElementJudger: function(ele, href) {
+                //    avalon.log(arguments);
+                //    //href = '#!/detail/aaaaa';
+                //    //avalon.log(href);
+                //    //return href;
+                //}
             });
             //go!!!!!!!!!
             avalon.scan();
