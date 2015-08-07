@@ -2,9 +2,12 @@
 
     <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == false">edit</div>
     <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == true">done</div>
-    <div class="yo-btn" ms-click="resetAll()" ms-if="editing == false && hasEdited == true">resetAll</div>
+    <div class="yo-btn" ms-click="resetAll()" ms-if="editing == true">resetAll</div>
 
     <div class="yo-list yo-list-group">
+        <div class="user-avatar">
+            <img style="border: 1px; width: .5rem; height: .5rem;" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+        </div>
         <h3 class="label" ms-if="editing == false">username: {{username}}</h3>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="username" placeholder="..." />

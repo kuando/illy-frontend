@@ -8,7 +8,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.splashShowTime = splash_show_time;
 
     // global loading timeout
-    var global_loading_timeout = 5; // second, abort the loading when timeout, auto back
+    var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
 
     // global action bar title map
     var acTitle = {
@@ -16,7 +16,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         'rank': '排行榜',
         'mall': '积分商城',
         'article': '活动详情',
-        'activity': '活动详情'
+        'activity': '活动详情',
+        'me': '个人中心'
     }
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip

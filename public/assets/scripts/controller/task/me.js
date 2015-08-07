@@ -21,7 +21,7 @@ define([], function() {
     
     var me = avalon.define({
         $id: "me",
-        hasEdited: false,
+        //hasEdited: false,
         editing: false,
         copyOfJSON: '',
         username: '',
@@ -51,6 +51,7 @@ define([], function() {
             })
        },
        chooseImage: function() {
+           alert(1)
            wx.chooseImage({
                count: 1, // 默认9
                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -58,9 +59,9 @@ define([], function() {
                success: function (res) {
                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                    avatar.localId = localIds && localIds[0];
-                   alert('choose ' + localIds.length + ' images!');
-                   me.avatar = avatar.localId; // change it now 
+                   //alert('choose ' + localIds.length + ' images!');
                    me.uploadImage();
+                   me.avatar = avatar.localId; // change it now 
                }
            });
        },
