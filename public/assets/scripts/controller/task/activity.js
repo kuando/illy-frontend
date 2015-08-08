@@ -9,6 +9,31 @@ define([], function() {
 
     // prefix of localStorage
     var cachedPrefix = 'illy-task-activity-';
+
+    // inner function 
+    // copy the array and return
+    var copyArr = function copyArr(arr) {
+        var brr = [];
+        for (var i = 0, len = arr.length; i < len; i++) {
+            brr[i] = arr[i];
+        }
+        return brr;
+    }
+
+    // inner function 
+    // arr = ['name', 'age'];
+    // ==>
+    // arr = [ {key: 'xxx', value: 'xxx'}, {key: 'xxx', value: 'xxx'} ]; 
+    var arrayToJSON = function arrayToJSON(source) {
+        var arr = copyArr(source);
+        for (var i = 0, len = arr.length; i < len; i++) {
+            arr[i] = {
+                key: activity.CopyinfoCollect[i], 
+                value: arr[i]
+            }
+        }
+        return arr;
+    }
     
     var activity = avalon.define({
         $id: "activity",
@@ -49,7 +74,6 @@ define([], function() {
         },
         fetchData: function() {
             if (activity.visited && activity.hasData) {
-                //var localCache = localCache.parse(localStorage.getItem(cachedPrefix + activity.taskId));
                 var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId)
                     acTitle.taskId = localCache._id;
                     activity.address = localCache.address;
@@ -79,15 +103,13 @@ define([], function() {
                     activity.deadline = json.deadline;
                     activity.shareCount = json.shareCount;
                     activity.visitCount = json.visitCount;
-                    activity.infoCollect = json.infoCollect[0].split(",");
+                    activity.infoCollect = json.infoCollect; // array
                     for (var i = 0, len = activity.infoCollect.length; i < len; i++) {
                         activity.infoCollect[i] = '';
                     }
-                    activity.CopyinfoCollect = json.infoCollect[0].split(",");
+                    activity.CopyinfoCollect = json.infoCollect;
                     activity.theme = json.theme;
-                    //localStorage.setItem(cachedPrefix + activity.taskId, JSON.stringify(json));
                     avalon.setLocalCache(cachedPrefix + activity.taskId, json);
-                    //avalon.log(activity.collectResult);
 
                     wx.onMenuShareTimeline({
                         title: activity.title, // 分享标题
@@ -121,7 +143,7 @@ define([], function() {
                     'Authorization': 'Bearer ' + token
                 },
                 data: {
-                    info: activity.infoCollect // ordered-array   
+                    info: arrayToJSON(activity.infoCollect) // array(key-string) to a array({key-value})
                 },
                 success: function(res) {
                     activity.isDone = true;
@@ -129,6 +151,7 @@ define([], function() {
                 },
                 error: function(res) {
                     console.log(res);
+                    //activity.infoCollect = act
                 },
                 ajaxFail: function(res) {
                     console.log(res);

@@ -21,7 +21,7 @@ define([], function() {
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/homework/comments",
+                url: apiBaseUrl + "homework/comments",
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -36,7 +36,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log("evaluation list ajax failed" + res);
                 }
-            })
+            });
         }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
@@ -58,7 +58,7 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
@@ -66,7 +66,7 @@ define([], function() {
             evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; // otherwise, show it
             evaluation.fetchData();
             
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
@@ -74,16 +74,16 @@ define([], function() {
                 $('.comments-overflow').on('click', function() { 
                     $(this).hide();
                     $(this).parent().find('.comments-full')[0].style.display = 'inline-block';
-                })
+                });
                 $('.comments-full').on('click', function() { 
                     $(this).hide();
                     $(this).parent().find('.comments-overflow')[0].style.display = 'inline-block';
-                })
-            }, 500)
+                });
+            }, 500);
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

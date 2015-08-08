@@ -19,7 +19,7 @@ define([], function() {
         fetchDataForDetailCtrl: function(id, type) { // 可以获取多种作业类型的数据了,201507201446
             var _id = id;   
             $http.ajax({
-                url: apiBaseUrl + '/api/v1/' + type + '/' + _id,
+                url: apiBaseUrl + type + '/' + _id,
                 data: {
                     
                 },
@@ -45,9 +45,9 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log('homework info ajax failed' + res);
                 }
-            })
+            });
         },
-        goNext: function(type) { // core!!! 判断跳转到哪种类型的题目
+        goNext: function() { // core!!! 判断跳转到哪种类型的题目
             avalon.router.go('app.detail.question', {homeworkId: info.homeworkId, questionId: 1 });
         },
         playRecord: function() {
@@ -78,14 +78,14 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             //avalon.log("info.js onRendered fn");
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
             //avalon.log("info.js onEnter callback");
             
-            // clear localAnswers here to fix bug in low Andriod
-            var questionVM = avalon.vmodels.question;
-            questionVM && ( questionVM.localAnswers = [] );
+            //clear localAnswers here to fix bug in low Andriod, drop in 20150808
+            //var questionVM = avalon.vmodels.question;
+            //questionVM && ( questionVM.localAnswers = [] );
 
             var type = location.href.split("=")[1] || 'homework'; // for strong
             info.workType = type;
@@ -98,7 +98,7 @@ define([], function() {
                 info.duration = duration;
                 var time = avalon.$('.info .record-total-time');
                 time && ( time.innerHTML = parseInt(duration, 10) || 0 );
-            }, 2000)
+            }, 2000);
 
             setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
                 if (info.keyPointRecord != '' || info.keyPointRecord != undefined) {
@@ -109,14 +109,14 @@ define([], function() {
                 //    avalon.$('.info .keyPointAudio').getAttribute('src');
                 //    avalon.$('.keyPointAudio').getAttribute('src');
                 //}
-            }, 500)
-        }
+            }, 500);
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("info.js onBeforeUnload fn");
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

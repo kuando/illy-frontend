@@ -15,11 +15,6 @@ $g_font_color: #747070;
 /* vars end */
 
 @import "../_normalize.scss";
-@import "../../Yo/lib/core/variables.scss";
-@import "../../Yo/lib/core/reset.scss";
-@import "../../Yo/lib/core/classes.scss";
-@import "../../Yo/lib/fragment/yo-header.scss";
-
 @import "../common.scss";
 
 #splash {
@@ -386,6 +381,19 @@ a, a:hover {
 
     .pageinfo {
         text-align: center;
+
+        .like {
+            width: .4rem;
+            height: .4rem;
+            border-radius: 50%;
+            color: $g_font_color;
+            margin: .2rem auto;
+        }
+
+        hasLiked {
+            color: $main-blue;
+            /*background: $main-green;*/
+        }
 
         .isShared {
             color: $main-blue;

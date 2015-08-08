@@ -5,22 +5,6 @@ define([], function() {
     
     var cachedPrefix = 'illy-task-mall-';
 
-    //function setCachedData(itemName, data) {
-    //    var strData = JSON.stringify(data);
-    //    localStorage.setItem(cachedPrefix + itemName, strData);
-    //}
-    
-    //function getCachedData(itemName) {
-    //    var data = localStorage.getItem(cachedPrefix + itemName);
-    //    return JSON.parse(data + '');
-    //}
-
-    //function clearCachedData(targetNameArr) {
-    //    for (var i = 0, len = targetNameArr.length; i < len; i++) {
-    //        localStorage.removeItem(cachedPrefix + targetNameArr[i]);
-    //    }
-    //}
-
     var limit = 6; // 一次抓取多少数据
     var mall = avalon.define({
         $id: "mall",
@@ -36,7 +20,7 @@ define([], function() {
          * @param data ajax请求查询参数
          * @param target success得到的数据赋值目标变量名
          * @param type 数据赋值是直接赋值还是追加方式
-         * @return {undefined}
+         *
          */
         fetchRemoteData: function(apiArgs, data, target, type) {
             if (mall.visited) {
@@ -52,7 +36,6 @@ define([], function() {
                 data: data,
                 success: function(res) {
                     type == 'concat' ? mall[target] = mall[target].concat(res) : mall[target] = res;
-                    //setCachedData(target, res); // illy-task-mall-lists
                     setLocalCache(cachedPrefix + target, res); // illy-task-mall-lists
                 },
                 error: function(res) {

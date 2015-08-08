@@ -6,6 +6,33 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
         
+    // global loading timeout
+    var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
+
+    // title Map， 映射各种状态的action bar title
+    var acTitle = {
+        'list': "作业列表",
+        'detail': '作业详情',
+        'question': '题目详情',
+        'result': '作业结果',
+        'mistake': '错题列表',
+        'wrong': '错题详情',
+        'evaluation': '课堂表现'
+    }
+
+    // deal with bad network condition for wait too long, auto-back when time enough with tip
+    var handleBadNetwork = function handleBadNetwork(delay) {
+        var delay = global_loading_timeout * 1000 || 5000;
+        var loader = document.querySelector('.loader');
+        var badNetworkTimer = setTimeout(function() {
+            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
+            // even can invoke the wx-sdk to close the page
+            history.go(-1);
+            loader && (loader.style.display = 'none'); // for strong, need ()
+        }, delay);
+        avalon.badNetworkTimer = badNetworkTimer;
+    }
+
     //================= bootstrap the app =======================//
 
     /* global set start */
@@ -17,7 +44,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     var token = localStorage.getItem('illy-token');
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com';
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
@@ -55,7 +82,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     var url = encodeURIComponent(uri);
 
     $http.ajax({
-        method: "",
         url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
         data: {
             url: url
@@ -118,10 +144,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             })
         },
         error: function(res) {
-            console.error("wx ajax error" + res);
+            console.log("wx ajax error" + res);
         },
         ajaxFail: function(res) {
-            console.error("wx ajaxFial" + res);
+            console.log("wx ajaxFial" + res);
         }
     })
 
@@ -150,7 +176,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         $id: "root",
         currentPage: '',
         currentIsVisited: false,
-        title: "我是标题，可变", // 每一页action bar的标题    
+        title: "标题", // 每一页action bar的标题    
         back: function() {
             history.go(-1);
         }
@@ -295,16 +321,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
     */
 
-    // title Map， 映射各种状态的action bar title
-    var acTitle = {
-        'list': "作业列表",
-        'detail': '作业详情',
-        'question': '题目详情',
-        'result': '作业结果',
-        'mistake': '错题列表',
-        'wrong': '错题详情',
-        'evaluation': '课堂表现'
-    }
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cachePage = [];
     // 每次view载入都会执行的回调，适合来做一些统一操作
@@ -334,6 +350,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
             if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader
                 loader.style.display = '';
+                handleBadNetwork();
             }
         },
         onLoad: function() { // 切换完成并成功
@@ -344,22 +361,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             //root.currentPage = state1;
             state2 == void 0 ? root.currentPage = state1 : root.currentPage = state2;
 
-            //if (state1 == 'list') {
-            //    root.title = acTitle.list;
-            //} else if (state1 == 'detail') {
-            //    if (state2 == 'info') {
-            //        root.title = acTitle.detail;
-            //    } else if (state2 == 'question') {
-            //        root.title = acTitle.question;
-            //    } else if (state2 == 'result') {
-            //        root.title = acTitle.result;
-            //    }
-            //}
-            
             root.title = acTitle[state1 != void 0 ? state1 : state2];
+
+            // next view loaded, remove loader && badNetworkHandler && add view-in animation
             var loader = document.querySelector('.loader');
             setTimeout(function() {
                 loader && (loader.style.display = 'none'); // for strong, need ()
+                avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer);
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); // for strong

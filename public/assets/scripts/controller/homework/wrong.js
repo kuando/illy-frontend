@@ -1,7 +1,7 @@
 define([], function() {
 
     // 获取全局wx-sdk接口
-    var wx = avalon.wx;
+    //var wx = avalon.wx;
     
     // 每一个具体的题目控制器
     var wrong = avalon.define({
@@ -36,7 +36,13 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+            var question = avalon.$('.question');
+            var win_height = document.documentElement.clientHeight;
+            setTimeout(function() {
+                question && (question.style.height = win_height + 'px');
+            }, 16);
+
+        };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
@@ -53,10 +59,12 @@ define([], function() {
 
             // 重置题目对错标记
             //question.right = (question.exercise.answer == question.userAnswer);
-            wrong.right = true;
-            setTimeout(function() {
-                wrong.right = false;
-            }, 1700) // magic...  en..... bad design and i don't know why in low android
+            wrong.right = false;
+
+            //wrong.right = true; // drop in 20150808, fix reflow bug... deal with .question
+            //setTimeout(function() {
+            //    wrong.right = false;
+            //}, 1700) // magic...  en..... bad design and i don't know why in low android
 
             wrong.total = avalon.vmodels.mistake.exercises.length; // yes, must动态设置
             if (params.questionId < wrong.total) { // key! to next or submit
@@ -65,13 +73,13 @@ define([], function() {
                 wrong.hasNext = false;
             }
 
-        } // onEnter end
+        }; // onEnter end
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("question.js onBeforeUnload fn");
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

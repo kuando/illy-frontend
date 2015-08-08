@@ -22,13 +22,10 @@ define([], function() {
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/" + type,
+                url: apiBaseUrl + type,
                 data: {
                     //offset: list.offset
                     //limit: 6
-                },
-                beforeSend: function(xhr) {
-
                 },
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -44,7 +41,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log("homework list ajax failed" + res);
                 }
-            })
+            });
         } // end of fetchData
 
         //,showMore: function() { // 目前的设计无法实现很好的加载更多，考虑到作业不会很多，放弃分页
@@ -57,19 +54,19 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("leave list");
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
             // remove cache in detail ctrl
             list.fetchData('homework');
             list.fetchData('previews');
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

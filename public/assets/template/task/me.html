@@ -1,7 +1,6 @@
 <div class="me" ms-controller="me">
 
     <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == false">edit</div>
-    <div class="yo-btn" ms-click="toggleEditState()" ms-if="editing == true">done</div>
     <div class="yo-btn" ms-click="resetAll()" ms-if="editing == true">resetAll</div>
 
     <div class="yo-list yo-list-group update-profile-list">
@@ -44,6 +43,7 @@
         <label class="item item-input hide" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="finishedPreviewsCount" placeholder="完成预习数" />
         </label>
-        <div class="yo-btn" ms-click="save()">save</div>
+        <div class="yo-btn" ms-if="editing == true" ms-click="save()">save</div>
+        <div class="yo-btn" ms-if="editing == true" ms-click="cancel()">cancel</div>
     </div>
 </div>

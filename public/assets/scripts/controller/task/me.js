@@ -7,9 +7,6 @@ define([], function() {
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
 
-    // prefix of localStorage
-    //var cachedPrefix = 'illy-task-article-';
-
     // prefix of resource
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
@@ -22,7 +19,7 @@ define([], function() {
 
     var me = avalon.define({
         $id: "me",
-        infoProfile: ['displayName', 'gender', 'phone', 'parent', 'onSchool', 'grade'],
+        infoProfile: ['displayName', 'gender', 'phone', 'parent', 'onSchool', 'grade'], // profile item can be update
         editing: false,
         copyProfile: '',
         username: '',
@@ -35,18 +32,11 @@ define([], function() {
         grade: '',
         finishedHomeworkCount: '',
         finishedPreviewsCount: '',
-        //infoCollect: {
-        //    'displayName': '',
-        //    'gender': '',
-        //    'phone': '',
-        //    'parent': '',
-        //    'onSchool': '',
-        //    'grade': ''
-        //},
+        resetData: function() {
+            avatar.localId = '';
+            avatar.serverId = '';
+        },
         fetchData: function() {
-            //if (me.visited) {
-            //    return; // core!!! key!!! forget this will getCache and request!!!
-            //}
             $http.ajax({
                 url: apiBaseUrl + "profile",
                 headers: {
@@ -80,6 +70,10 @@ define([], function() {
                 success: function (res) {
                     var serverId = res.serverId; // 返回图片的服务器端ID
                     avatar.serverId = serverId;
+                    
+                    setTimeout(function() { // then, update avatar
+                        me.updateAvatar();
+                    }, 200)
                 }
             });
         },
@@ -146,10 +140,37 @@ define([], function() {
                 }
             })
         },
+        updateAvatar: function() { // tell server-side to fetch new avatar from wx-server
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + 'avatar',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                data: {
+                    avatar: avatar.serverId
+                },
+                success: function(res) {
+                    alert('上传成功!');    
+                },
+                error: function(res) {
+                    console.log(res);
+                    alert('对不起，头像上传失败，请重试！');
+                },
+                ajaxFail: function(res) {
+                    console.log(res);
+                    alert('对不起，头像上传失败，请重试！');
+                } 
+            })
+        },
         save: function() { // diff will update and no-diff will just local save
             if(me.hasDiff()) {
                 me.updateProfile();
             }
+        },
+        cancel: function() {
+            me.resetAll();
+            me.editing = false;
         }
     });
 
@@ -160,9 +181,10 @@ define([], function() {
         }
         // 进入视图
         $ctrl.$onEnter = function(params) {
-            avatar.localId = '';
-            avatar.serverId = '';
+
+            me.resetData();
             me.fetchData();
+
         }
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

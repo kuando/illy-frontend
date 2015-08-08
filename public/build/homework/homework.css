@@ -239,6 +239,12 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0;
 }
 
+/*******************************************************
+    > File Name: common.scss
+    > Author: IndexXuan
+    > Mail: indexxuan@gmail.com
+    > Created Time: 2015年07月13日 星期一 18时38分20秒
+ ******************************************************/
 /**
  * Yo框架全局Variables
  -----------------------
@@ -701,24 +707,517 @@ a {
   vertical-align: middle;
 }
 
-/*@import "../../Yo/lib/core/classes.scss";*/
-/*@import "../../Yo/lib/fragment/yo-header.scss";*/
-/*@import "../../Yo/lib/layout/yo-flex.scss";*/
-/*@import "../../Yo/lib/layout/yo-align.scss";*/
-/*@import "../../Yo/lib/layout/yo-stacked.scss";*/
-/*@import "../../Yo/lib/fragment/classes.scss";*/
-/*@import "../../Yo/lib/element/classes.scss";*/
-/*@import "../../Yo/lib/element/yo-checked.scss";*/
-/*@import "../../Yo/lib/element/yo-input.scss";*/
-/*@import "../../Yo/lib/element/yo-range.scss";*/
-/*@import "../../Yo/lib/fragment/yo-list.scss";*/
-/*@import "../../Yo/lib/widget/yo-group.scss";*/
-/*******************************************************
-    > File Name: common.scss
-    > Author: IndexXuan
-    > Mail: indexxuan@gmail.com
-    > Created Time: 2015年07月13日 星期一 18时38分20秒
- ******************************************************/
+/**
+ * Yo框架全局基础方法
+ -----------------------
+ * Yo内置了包括响应式方案，CSS3兼容性方案，厂商前缀方案，iconfont方案，flex布局等全局方法
+ *
+ * @class classes
+ * @module Yo
+ */
+/**
+ * 给需要的属性加厂家前缀
+ * @method prefix
+ * @param {String} $property 指定属性
+ * @param {String} $value 指定属性值
+ */
+/**
+ * 四则运算
+ * @method calc
+ * @param {String} $property 指定需要进行计算的CSS属性
+ * @param {String} $value 与原生CSS语法一致，使用方式如：@include calc(width, 100% - 0.1rem);
+ */
+/**
+ * 定义渐变色值
+ * @method gradient
+ * @param {String} $type 指定渐变的4种类型：linear, repeating-linear, radial, repeating-radial
+ * @param {String} $gradient 指定渐变取值，与原生语法一致
+ */
+/**
+ * 定义响应式方案
+ * @method responsive
+ * @param {String} $media 指定媒体查询条件
+ */
+/**
+ * 定义字体图标
+ * @method yofont
+ */
+/**
+ * 滤镜
+ * @method filter
+ * @param {String} $filter 取值与原生语法一致
+ */
+/**
+ * 定义UA默认外观
+ * @method appearance
+ * @param {String} $appearance 指定UA外观类型
+ */
+/**
+ * 定义是否可以选中元素
+ * @method user-select
+ * @param {String} $user-select 指定是否可以选中
+ */
+/**
+ * 定义背景图像缩放（Android Browser2.3.*还需要厂商前缀）
+ * @method background-size
+ * @param {String | Length} $background-size 指定背景图缩放值
+ */
+/**
+ * 定义背景裁减（Android Browser2.3.*还需要厂商前缀）
+ * @method background-clip
+ * @param {String} $background-clip 指定背景图缩放值
+ */
+/**
+ * 定义背景显示区域（Android Browser2.3.*还需要厂商前缀）
+ * @method background-origin
+ * @param {String} $background-origin 指定背景图缩放值
+ */
+/**
+ * 定义盒模型
+ * @method box-sizing
+ * @param {String} $box-sizing 的2个值分别为：content-box(标准盒模型) | border-box(怪异盒模型)
+ */
+/**
+ * 定义圆角
+ * @method border-radius
+ * @param {String} $border-radius 取值与原生语法一致
+ */
+/**
+ * 定义简单变换
+ * @method transform
+ * @param {String} $transform 取值与原生语法一致
+ */
+/**
+ * 定义变换原点
+ * @method transform-origin
+ * @param {String} $transform-origin 取值与原生语法一致
+ */
+/**
+ * 定义动画
+ * @method animation
+ * @param {String} $animation 取值与原生语法一致
+ */
+/**
+ * 定义补间
+ * @method transition
+ * @param {String} $transition 取值与原生语法一致
+ */
+/**
+ * 定义显示类型为伸缩盒
+ * @method flexbox
+ * @param {String} $flexbox 默认值：flex，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素如何分配空间
+ * @method flex
+ * @param {String} $flex 默认值：1，取值与最新原生语法一致
+ * @param {String} $direction 默认值: row
+ */
+/**
+ * 定义伸缩盒子元素的排版顺序
+ * @method order
+ * @param {String} $order 默认值：1，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的流动方向
+ * @method flex-direction
+ * @param {String} $flex-direction 默认值：row，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素溢出排版
+ * @method flex-wrap
+ * @param {String} $flex-wrap 默认值：nowrap，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的水平对齐方式
+ * @method justify-content
+ * @param {String} $justify-content 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的垂直对齐方式
+ * @method align-items
+ * @param {String} $align-items 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素自身的垂直对齐方式
+ * @method align-self
+ * @param {String} $align-self 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义root root-scroll
+ * @method root-scroll
+ * @param {String} $root-scroll 指定scroll类型，取值overflow属性的标准值
+ */
+/**
+ * 定义是否有滚动条
+ * @method overflow
+ * @param {String} $overflow 默认值：auto，取值与最新原生语法一致
+ */
+/**
+ * 生成矩形方法
+ * @method rect
+ * @param {Length} $width 定义矩形的长度
+ * @param {Length} $height 定义矩形的高度
+ */
+/**
+ * 生成正方形方法
+ * @method square
+ * @param {Length} $size 定义正方形的边长
+ */
+/**
+ * 生成圆形方法
+ * @method circle
+ * @param {Length} $size 定义圆的半径长度
+ * @param {Length} $radius 定义圆的圆角半径长度
+ */
+/**
+ * 生成全屏方法
+ * @method fullscreen
+ * @param {Integer} $z-index 定义层叠级别
+ */
+/**
+ * 清除浮动方案
+ * @method clearfix
+ */
+/**
+ * 链接处理方法
+ * @method link
+ * @param {Color} $color 定义链接颜色
+ */
+/**
+ * 强制换行方案
+ * @method wrap
+ */
+/**
+ * 单行文本溢出显示方案
+ * @method ellipsis
+ * @param {Boolen} $ellipsis 定义是否需要省略号
+ */
+/**
+ * 文字隐藏方案
+ * @method texthide
+ */
+/**
+ * 清除间隙方案-容器
+ * @method killspace
+ */
+/**
+ * 清除间隙方案-子级
+ * @method killspace-item
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-容器
+ * @method valign
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-子级
+ * @method valign-item
+ */
+/**
+ * 已经尺寸元素垂直居中解决方案
+ * @method alignment
+ * @param {Length} $width 居中元素的宽度
+ * @param {Length} $height 居中元素的高度
+ */
+/**
+ * Yo框架全局Variables
+ -----------------------
+ * Yo基础变量map，如果不想定义某属性，将其value设置为null；
+ * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
+ *
+ * @class variables
+ * @module Yo
+ */
+/**
+ * Yo框架全局基础方法
+ -----------------------
+ * Yo内置了包括响应式方案，CSS3兼容性方案，厂商前缀方案，iconfont方案，flex布局等全局方法
+ *
+ * @class classes
+ * @module Yo
+ */
+/**
+ * 给需要的属性加厂家前缀
+ * @method prefix
+ * @param {String} $property 指定属性
+ * @param {String} $value 指定属性值
+ */
+/**
+ * 四则运算
+ * @method calc
+ * @param {String} $property 指定需要进行计算的CSS属性
+ * @param {String} $value 与原生CSS语法一致，使用方式如：@include calc(width, 100% - 0.1rem);
+ */
+/**
+ * 定义渐变色值
+ * @method gradient
+ * @param {String} $type 指定渐变的4种类型：linear, repeating-linear, radial, repeating-radial
+ * @param {String} $gradient 指定渐变取值，与原生语法一致
+ */
+/**
+ * 定义响应式方案
+ * @method responsive
+ * @param {String} $media 指定媒体查询条件
+ */
+/**
+ * 定义字体图标
+ * @method yofont
+ */
+/**
+ * 滤镜
+ * @method filter
+ * @param {String} $filter 取值与原生语法一致
+ */
+/**
+ * 定义UA默认外观
+ * @method appearance
+ * @param {String} $appearance 指定UA外观类型
+ */
+/**
+ * 定义是否可以选中元素
+ * @method user-select
+ * @param {String} $user-select 指定是否可以选中
+ */
+/**
+ * 定义背景图像缩放（Android Browser2.3.*还需要厂商前缀）
+ * @method background-size
+ * @param {String | Length} $background-size 指定背景图缩放值
+ */
+/**
+ * 定义背景裁减（Android Browser2.3.*还需要厂商前缀）
+ * @method background-clip
+ * @param {String} $background-clip 指定背景图缩放值
+ */
+/**
+ * 定义背景显示区域（Android Browser2.3.*还需要厂商前缀）
+ * @method background-origin
+ * @param {String} $background-origin 指定背景图缩放值
+ */
+/**
+ * 定义盒模型
+ * @method box-sizing
+ * @param {String} $box-sizing 的2个值分别为：content-box(标准盒模型) | border-box(怪异盒模型)
+ */
+/**
+ * 定义圆角
+ * @method border-radius
+ * @param {String} $border-radius 取值与原生语法一致
+ */
+/**
+ * 定义简单变换
+ * @method transform
+ * @param {String} $transform 取值与原生语法一致
+ */
+/**
+ * 定义变换原点
+ * @method transform-origin
+ * @param {String} $transform-origin 取值与原生语法一致
+ */
+/**
+ * 定义动画
+ * @method animation
+ * @param {String} $animation 取值与原生语法一致
+ */
+/**
+ * 定义补间
+ * @method transition
+ * @param {String} $transition 取值与原生语法一致
+ */
+/**
+ * 定义显示类型为伸缩盒
+ * @method flexbox
+ * @param {String} $flexbox 默认值：flex，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素如何分配空间
+ * @method flex
+ * @param {String} $flex 默认值：1，取值与最新原生语法一致
+ * @param {String} $direction 默认值: row
+ */
+/**
+ * 定义伸缩盒子元素的排版顺序
+ * @method order
+ * @param {String} $order 默认值：1，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的流动方向
+ * @method flex-direction
+ * @param {String} $flex-direction 默认值：row，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素溢出排版
+ * @method flex-wrap
+ * @param {String} $flex-wrap 默认值：nowrap，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的水平对齐方式
+ * @method justify-content
+ * @param {String} $justify-content 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的垂直对齐方式
+ * @method align-items
+ * @param {String} $align-items 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素自身的垂直对齐方式
+ * @method align-self
+ * @param {String} $align-self 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义root root-scroll
+ * @method root-scroll
+ * @param {String} $root-scroll 指定scroll类型，取值overflow属性的标准值
+ */
+/**
+ * 定义是否有滚动条
+ * @method overflow
+ * @param {String} $overflow 默认值：auto，取值与最新原生语法一致
+ */
+/**
+ * 生成矩形方法
+ * @method rect
+ * @param {Length} $width 定义矩形的长度
+ * @param {Length} $height 定义矩形的高度
+ */
+/**
+ * 生成正方形方法
+ * @method square
+ * @param {Length} $size 定义正方形的边长
+ */
+/**
+ * 生成圆形方法
+ * @method circle
+ * @param {Length} $size 定义圆的半径长度
+ * @param {Length} $radius 定义圆的圆角半径长度
+ */
+/**
+ * 生成全屏方法
+ * @method fullscreen
+ * @param {Integer} $z-index 定义层叠级别
+ */
+/**
+ * 清除浮动方案
+ * @method clearfix
+ */
+/**
+ * 链接处理方法
+ * @method link
+ * @param {Color} $color 定义链接颜色
+ */
+/**
+ * 强制换行方案
+ * @method wrap
+ */
+/**
+ * 单行文本溢出显示方案
+ * @method ellipsis
+ * @param {Boolen} $ellipsis 定义是否需要省略号
+ */
+/**
+ * 文字隐藏方案
+ * @method texthide
+ */
+/**
+ * 清除间隙方案-容器
+ * @method killspace
+ */
+/**
+ * 清除间隙方案-子级
+ * @method killspace-item
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-容器
+ * @method valign
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-子级
+ * @method valign-item
+ */
+/**
+ * 已经尺寸元素垂直居中解决方案
+ * @method alignment
+ * @param {Length} $width 居中元素的宽度
+ * @param {Length} $height 居中元素的高度
+ */
+/**
+ * Yo框架fragment基础构造
+ -----------------------
+ * Yo内置了包括：dialog, popup, tip, tab, switch, rating等基础组件
+ *
+ * @class fragment
+ * @module Yo
+ */
+/**
+ * @class fragment
+ */
+/**
+ * 构造头的自定义使用方法
+ -----------------------
+ * 使用方法，详见 [Demo](http://doyoe.github.io/Yo/demo/fragment/yo-header.html)
+ * @method yo-header
+ * @param {String} $name 定义yo-header名称
+ * @param {Length} $height 定义yo-header高度
+ * @param {Length} $item-width 定义yo-header两侧子项宽度
+ * @param {Length} $item-space 定义yo-header两侧子项离边界的间隙
+ * @param {Color} $bordercolor 定义yo-header边框色
+ * @param {Color} $bgcolor 定义yo-header背景色
+ * @param {Color} $color 定义yo-header文本色
+ * @param {Length} $font-size 定义yo-header文本大小
+ * @param {Color} $item-color 定义yo-header两侧的子项文本色
+ * @param {Color} $item-ico-color 定义yo-header两侧的ico色
+ * @param {Length} $item-font-size 定义yo-header两侧的子项文本大小
+ * @param {Length} $item-ico-size 定义yo-header两侧的ico大小
+ */
+.yo-header {
+  position: relative;
+  height: 0.44rem;
+  line-height: 0.44rem;
+  border-bottom: 1px solid #1ba9ba;
+  background-color: #1ba9ba;
+  color: #fff;
+  font-size: 0.18rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.yo-header > .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 0.6rem;
+}
+.yo-header > .regret,
+.yo-header > .affirm {
+  position: absolute;
+  top: 0;
+  width: 0.6rem;
+  cursor: pointer;
+  font-size: 0.14rem;
+}
+.yo-header > .regret:active,
+.yo-header > .affirm:active {
+  opacity: .5;
+}
+.yo-header > .regret.yo-ico,
+.yo-header > .regret > .yo-ico,
+.yo-header > .affirm.yo-ico,
+.yo-header > .affirm > .yo-ico {
+  color: #7ff;
+  font-size: 0.2rem;
+}
+.yo-header > .regret {
+  left: 0;
+  padding-left: 0.15rem;
+  text-align: left;
+}
+.yo-header > .affirm {
+  right: 0;
+  padding-right: 0.15rem;
+  text-align: right;
+}
+
 /* vars start */
 /* vars end */
 /* global reset start */
@@ -917,13 +1416,14 @@ a:hover {
 
 html, body {
   width: 100%;
+  font-size: .14rem;
   /*height: 100%;*/
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 body {
-  /*font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; [> 字体优化 <]*/
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;
   text-align: center;
   background-color: #f9f5f5;
@@ -934,10 +1434,6 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
   font-weight: normal;
-}
-
-audio {
-  width: 2rem;
 }
 
 .icon {
@@ -1105,13 +1601,9 @@ audio {
   color: #fff;
 }
 
-audio {
-  height: 150px;
-  font-size: 16px;
-}
-
 /* reset vars and vars start */
 /* reset vars and vars end */
+/* global start */
 #splash {
   z-index: 99999;
   width: 100%;
@@ -1127,7 +1619,8 @@ audio {
   padding: .05rem;
 }
 
-/* common item start */
+/* global end */
+/* list-item start */
 .item-wrapper .item {
   width: 100%;
   text-align: left;
@@ -1205,16 +1698,22 @@ audio {
   line-height: 0.7rem;
 }
 
-/* common item end */
+/* list-item end */
 /* info start */
 .info {
   text-align: center;
+}
+.info audio {
+  width: 2rem;
+  height: 150px;
+  font-size: 16px;
 }
 
 .panel {
   text-align: left;
   display: inline-block;
   width: 96%;
+  margin-top: .15rem;
 }
 .panel .item {
   align-items: baseline;
@@ -1250,7 +1749,7 @@ audio {
   margin: 0 auto;
   background: #6fd801;
   border-color: #6fd801;
-  margin-top: .3rem;
+  margin-top: .2rem;
   border-radius: .1rem;
   font-size: .2rem;
 }
@@ -1300,29 +1799,31 @@ audio {
   /* 去除分割线，恶心的第二条线不显示bug */
   /* record too short tips */
 }
+.question .pregress-wrapper {
+  height: 0.1rem;
+  background-color: grey;
+  width: 87%;
+  display: inline-block;
+}
+.question .pregress-wrapper .progress {
+  height: 0.1rem;
+  background-color: #6fd801;
+}
+.question .progress-text {
+  float: right;
+}
 .question .yo-list > .item {
   background-image: none;
 }
 .question .yo-list > .item:last-child {
   background-image: none;
 }
-.question .yo-range {
-  padding: 0;
-  background-color: transparent;
-}
-.question .yo-range input {
-  margin-right: .1rem;
-}
-.question .yo-range > input[type="range"] {
-  background-color: transparent;
-}
-.question .yo-range > input[type="range"]::-webkit-slider-thumba {
-  width: .0001rem;
-}
 .question .question-text {
   padding: .05rem;
   font-weight: bold;
   font-size: .16rem;
+  margin-top: .1rem;
+  margin-bottom: .2rem;
 }
 .question .wrong-fill-in {
   /* 错误的文字填空题 */
@@ -1346,7 +1847,7 @@ audio {
 }
 .question .isRecording {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 42%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -1378,7 +1879,7 @@ audio {
 }
 .question .record-btn {
   display: inline-block;
-  position: absolute;
+  position: fixed;
   top: 63%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -1425,7 +1926,7 @@ audio {
 .question .record-tips {
   display: none;
   /* inline-block */
-  position: absolute;
+  position: fixed;
   top: 54%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -1481,7 +1982,7 @@ audio {
   height: 0.75rem;
   border-radius: 50%;
   background-color: #00abfd;
-  position: absolute;
+  position: fixed;
   right: .1rem;
   bottom: 1rem;
   text-align: center;

@@ -20,7 +20,7 @@ define([], function() {
             avalon.appTotalTime = avalon.appRenderedTime - avalon.appInitTime;
             // only first in will log
             (avalon.appTotalTime < 15000) && avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime);
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             //avalon.log("app.js onRendered fn");
@@ -30,13 +30,13 @@ define([], function() {
             setTimeout(function() { // 公共总控制器渲染完成，此时取消全局splash
                 document.querySelector('#splash').style.display = 'none';
                 //alert(1);
-            }, splashShowTime) // 太短了？？？ 要不要弄固定时长？
+            }, splashShowTime); // 太短了？？？ 要不要弄固定时长？
             //avalon.log("splash 消失！首页渲染基本完成 --> " + Date.now());
-        }
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("app.js says i am in onBeforeUnload fn"); // 貌似到不了这里，因为是抽象视图
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });

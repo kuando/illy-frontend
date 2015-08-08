@@ -34,7 +34,7 @@ define([], function() {
             var type = avalon.vmodels.info.workType;
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + '/api/v1/'+ type +'/' + detail.homeworkId + '/performance',
+                url: apiBaseUrl + type + '/' + detail.homeworkId + '/performance',
                 headers: {
                     Authorization: 'Bearer ' + avalon.illyGlobal.token
                 },
@@ -47,23 +47,23 @@ define([], function() {
                 },
                 success: function(res) {
                     var target = avalon.vmodels.detail.$model.result;
-                    target.rightAward = res.rightAward,
-                    target.finishAward = res.finishAward,
-                    target.totalAward = res.totalAward,
-                    target.rightCount = res.rightCount,
-                    target.wrongCount = res.wrongCount,
-                    target.totalScore = res.totalScore
+                    target.rightAward = res.rightAward;
+                    target.finishAward = res.finishAward;
+                    target.totalAward = res.totalAward;
+                    target.rightCount = res.rightCount;
+                    target.wrongCount = res.wrongCount;
+                    target.totalScore = res.totalScore;
                     setTimeout(function() {
                         // go result
                         avalon.router.go('app.detail.result', {homeworkId: detail.homeworkId});
-                    }, 16)
+                    }, 16);
                 },
                 error: function(res) {
                     console.log(res);
                     alert("系统错误, 请稍后再试!");
                     avalon.router.go('app.list'); // go list page
                 }
-            })
+            });
         }, // end of submit
         clearCachedData: function() { // 清除缓存数据
             // 清除detail控制器缓存的统计数据
@@ -81,18 +81,19 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
             detail.clearCachedData(); // 对付后退又进入，最多后退到info页面(还在detail控制范围内)还保存数据
-        }
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             // tip user whether drop current done! todo!
-        }
+            alert("drop the current done???");
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

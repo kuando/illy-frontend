@@ -2,12 +2,17 @@
 <div class="question" ms-controller="question">
 
     <!-- progress of question -->
-    <ul class="yo-list yo-list-group">
-        <li class="item yo-range yo-range-e">
-            <input type="range" min="0" max="100" ms-attr-value="( (currentId - 1) * 100) / total">
-            <span class="progress-text">{{currentId}} / {{total}}</span>
-        </li>
-    </ul>
+    <div class="pregress-wrapper">
+        <div class="progress" ms-css-width="( (currentId - 1) * 100 ) / total + '%' "></div> 
+    </div>
+    <span class="progress-text">{{currentId}} / {{total}}</span>
+
+    <!--<ul class="yo-list yo-list-group">-->
+    <!--    <li class="item yo-range yo-range-e">-->
+    <!--        <input type="range" min="0" max="100" ms-attr-value="( (currentId - 1) * 100) / total">-->
+    <!--        <span class="progress-text">{{currentId}} / {{total}}</span>-->
+    <!--    </li>-->
+    <!--</ul>-->
 
     <!-- 公用题干 -->
     <p class="question-text">

@@ -3,7 +3,7 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
     var token = avalon.illyGlobal.token;
-    if (token == void 0) {
+    if (token === void 0) {
         avalon.log("Error, no token!");
         alert('对不起，系统错误，请退出重试！');
     }
@@ -30,12 +30,12 @@ define([], function() {
                     index[target] = res;
                 },
                 error: function(res) {
-                    avalon.log(res);
+                    console.log(res);
                 },
                 ajaxFail: function(res) {
-                    alert("Woops, site.index ajax failed!");
+                    alert("Woops, site.index ajax failed!" + res);
                 }
-            })
+            });
 
         } // end of fetchRemoteData
     });
@@ -52,10 +52,11 @@ define([], function() {
             index.fetchRemoteData('posts/hot?limit=3', {}, 'hots'); // three articles
             index.fetchRemoteData('categories/posts', {}, 'categories');
 
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
+        var renderedDelay;
         $ctrl.$onRendered = function() {
-            if (avalon.endTime == void 0) { // first in 
+            if (avalon.endTime === void 0) { // first in 
                 var endTime = Date.now();
                 avalon.endTime = endTime;
                 avalon.totalTime = avalon.endTime - avalon.startTime;
@@ -67,7 +68,12 @@ define([], function() {
                  *  2g   650 +/-
                  *
                  */
-                renderedDelay = avalon.endTime - avalon.indexEnterTime;
+                if (avalon.getVM('detail') === void 0 && avalon.getVM('list') === void 0) { // fix slider render to delay when not first in index condition
+                    renderedDelay = avalon.endTime - avalon.indexEnterTime;
+                } else {
+                    alert(1);
+                    renderedDelay = 500;
+                }
                 if (avalon.totalTime > 1500) {
                     renderedDelay += 2500;
                 } else if (avalon.totalTime > 500 && avalon.totalTime < 1500) {
@@ -84,20 +90,20 @@ define([], function() {
                         //avalon.log('gmu sliders ready in Time: ' + Date.now());
                         setTimeout(function() {
                             avalon.$('#slider').style.visibility = 'visible';
-                        }, 16) // 1 frame
+                        }, 16); // 1 frame
                     },
                     'done.dom': function() {
                         //avalon.log('gmu sliders done.dom in Time: ' + Date.now());
                     }
-                })
-            }, renderedDelay)
-        }
+                });
+            }, renderedDelay);
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("index.js onBeforeUnload fn");
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

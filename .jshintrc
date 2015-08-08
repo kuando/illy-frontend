@@ -41,5 +41,13 @@
     "browser"       : true,     // Web Browser (window, document, etc)
 
     // Custom Globals
-    "globals"       : {}        // additional predefined global variables
+    "globals"       : {
+        "define" : true,
+        "avalon" : true,
+        "$"      : true,
+        "console": true,
+        "alert"  : true,
+        "$http"  : true,
+        "wx"     : true
+    }        // additional predefined global variables
 }

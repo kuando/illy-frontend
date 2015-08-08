@@ -27,6 +27,7 @@ define([], function() {
         shareCount: 88,
         visitCount: 88,
         isShared: false,
+        hasLiked: false,
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
@@ -35,7 +36,7 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-
+                    avalon.log(res);
                 },
                 error: function(res) {
                     console.log(res);
@@ -43,11 +44,28 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log(res);
                 }
-            })
+            });
+        },
+        updateLike: function() {
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + 'posts/' + detail.articleId + '/like',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+                    avalon.log(res);
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                ajaxFail: function(res) {
+                    console.log(res);
+                }
+            });
         },
         fetchData: function() {
             if (detail.visited && needCache) {
-                //var local = JSON.parse(localStorage.getItem(cachedPrefix + detail.articleId));
                 var localCache = avalon.getLocalCache(cachedPrefix + detail.articleId);
                 detail.title = localCache.title;
                 detail.content = localCache.content;
@@ -87,24 +105,35 @@ define([], function() {
                     });
 
                 }
-            })
+            });
+        }, // end of fetch data
+        like: function() {
+            // http 
+            detail.updateLike();
+            // local
+            avalon.setLocalCache(cachedPrefix + detail.articleId + '-like', 'hasLiked');     
+            // ui
+            detail.hasLiked = true;
         }
     });
 
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
+            
+            // outer user will no header to go in inner system
+            if (avalon.getVM('index') == void 0) { avalon.$('.yo-header').style.display = 'none'; }
 
             avalon.$('.gotop').onclick = function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
-            }
+            };
 
             setTimeout(function() {
                 avalon.$('#gotop').style.display = 'block';
-            }, 3000)
+            }, 3000);
 
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
@@ -113,13 +142,20 @@ define([], function() {
             detail.isShared = false; // overwrite it
             detail.fetchData();
 
-        }
+            var isLiked = avalon.getLocalCache(cachedPrefix + detail.articleId + '-like');
+            if (isLiked === 'hasLiked') {
+                detail.hasLiked = true;
+            } else {
+                detail.hasLiked = false;
+            }
+
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

@@ -40,7 +40,6 @@ define([], function() {
         },
         fetchData: function() {
             if (article.visited) {
-                //var local = JSON.parse(localStorage.getItem(cachedPrefix + article.taskId));
                 var local = avalon.getLocalCache(cachedPrefix + article.taskId);
                 article.title = local.title;
                 article.content = local.content;

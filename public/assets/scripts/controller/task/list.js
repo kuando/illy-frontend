@@ -10,7 +10,7 @@ define([], function() {
 
     // 每页大小
     var limit = 6;
-    var taskList = avalon.define({ // 
+    var taskList = avalon.define({ 
 
         $id: "taskList",
         lists: [],

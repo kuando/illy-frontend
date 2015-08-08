@@ -18,7 +18,7 @@ define([], function() {
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "/api/v1/homework/mistake",
+                url: apiBaseUrl + "homework/mistake",
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -31,12 +31,11 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log("mistakeList ajax failed" + res);
                 }
-            })
+            });
         }, // end of fetchData
         fetchDataForExercises: function(homeworkId) {
-            console.log(homeworkId)
             $http.ajax({
-                url: apiBaseUrl + '/api/v1/homework/mistake/' + homeworkId,
+                url: apiBaseUrl + 'homework/mistake/' + homeworkId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -51,7 +50,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log('mistakeTemp ajax failed' + res);
                 }
-            })
+            });
         },
         goWrong: function() { // 前往具体错误题目
             var homeworkId = arguments[0].getAttribute('data-homeworkId');
@@ -65,18 +64,18 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("leave list");
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
             // remove cache in detail ctrl
             mistakeList.fetchData();
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

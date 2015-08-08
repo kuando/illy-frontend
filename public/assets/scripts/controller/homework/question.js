@@ -1,6 +1,6 @@
 define([], function() {
 
-    var local_question_view_ani = 'a-bounceinL';
+    //var local_question_view_ani = 'a-bounceinL';
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
@@ -20,14 +20,14 @@ define([], function() {
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始, 并会自动停止录音并上传
             var timeoutMask = avalon.$('.timeout-mask');
-            var isRecording = avalon.$('.isRecording'); 
+            //var isRecording = avalon.$('.isRecording'); 
             record.layerUiChange();
             // time to show
             record.remainTimeTimer = setInterval(function() {
                 var time = timeoutMask && parseInt(timeoutMask.innerHTML, 10);
-                timeoutMask && ( timeoutMask.innerHTML = time > 0 ? time - 1 : 10);
+                timeoutMask && ( timeoutMask.innerHTML = ( time > 0 ? time - 1 : 10) );
                 if (time == 0) { question.stopRecord(); clearInterval(record.remainTimeTimer); } // core! should stop it.
-            }, 1000)
+            }, 1000);
             // recover the ui when time enough, 18s is enough
             setTimeout(function() {
                 record.layerUiRecover();
@@ -106,11 +106,11 @@ define([], function() {
                     record.localId = localId;
                     question.uploadRecord(); // 上传录音，得到serverId
                 }
-            })
+            });
             // 同时设置ui来提示快到时间了
             record.timeout = setTimeout(function() {
                 record.showTimeOutLayer();
-            }, record.showTimeoutDelay * 1000) // 秒
+            }, record.showTimeoutDelay * 1000); // 秒
 
         },
         stopRecord: function() {
@@ -135,7 +135,7 @@ define([], function() {
                 record.showTips();
                 setTimeout(function() {
                     record.hideTips();
-                }, record.recordTooShortTipsLastTime * 1000)
+                }, record.recordTooShortTipsLastTime * 1000);
                 wx.stopRecord({
                     // do nothing, just stop, fix bug
                 });
@@ -146,7 +146,7 @@ define([], function() {
                         record.localId = localId;
                         question.uploadRecord();
                     }
-                })
+                });
             }
             
         },
@@ -173,10 +173,10 @@ define([], function() {
 
                     question.showPlayRecordBtn = true;
                     
-                    var recordTotalTime = avalon.$('.record-total-time')
+                    var recordTotalTime = avalon.$('.record-total-time');
                     recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); // 设置录音时长
                 }
-            })
+            });
 
         },
         playRecord: function() {
@@ -201,7 +201,7 @@ define([], function() {
             clearTimeout(record.playRecordTimeout);
             record.playRecordTimeout = setTimeout(function() {
                 question.isPlaying = false;
-            }, record.duration * 1000)
+            }, record.duration * 1000);
 
         },
         stopPlayRecord: function() {
@@ -216,7 +216,7 @@ define([], function() {
             }
             wx.stopVoice({
                 localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
-            })
+            });
             question.isPlaying = false;
 
         },
@@ -269,7 +269,7 @@ define([], function() {
             if (question.userAnswer == '') { alert("请选择至少一个答案！"); return; }
             
             // update the right attr, question.right = null for default, 不是null说明这题做过了，直接显示答案（处理后退的）
-            if ( question.exercise && (question.exercise.answer === question.userAnswer.trim()) ) {
+            if ( question.exercise && (question.exercise.answer == question.userAnswer.trim()) ) {
                 question.right = true;
                 //alert("答对了");
             } else {
@@ -299,10 +299,10 @@ define([], function() {
     var starter = true; // 做题开始计时标记，使得开始仅执行一次
     return avalon.controller(function($ctrl) {
 
-        var rootView = document.querySelector('.app');
-        var questionView = document.querySelector('.question');
+        //var rootView = document.querySelector('.app');
+        //var questionView = document.querySelector('.question');
 
-        var question_view_ani = local_question_view_ani || (avalon.illyGlobal && avalon.illyGlobal.question_view_ani); // question视图切换动画配置
+        //var question_view_ani = local_question_view_ani || (avalon.illyGlobal && avalon.illyGlobal.question_view_ani); // question视图切换动画配置
         var detailModel = avalon.getPureModel('detail');
         var exercises = detailModel.exercises;
 
@@ -310,7 +310,13 @@ define([], function() {
         $ctrl.$onRendered = function() {
             starter && ( avalon.vmodels.detail.questionStartTime = Date.now() ); // 统计做题开始时间
             starter = false;
-        }
+
+            var question = avalon.$('.question');
+            var win_height = document.documentElement.clientHeight;
+            setTimeout(function() {
+                question && (question.style.height = win_height + 'px');
+            }, 16);
+        };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
@@ -320,13 +326,13 @@ define([], function() {
 
                 var needRequestAuth = avalon.vmodels.detail.exercises.some(function(item) { // bool
                     return item.eType === 3;
-                })
+                });
 
                 if ( needRequestAuth ) { // check audio auth earlier
                     wx.startRecord();
                     setTimeout(function() {
                         wx.stopRecord();
-                    }, 2000) // 2 second, enough??? sucks... wx-sdk
+                    }, 2000); // 2 second, enough??? sucks... wx-sdk
                     hasRequestRecordAuth = true; // auth done and the only place this var change!!! key!!!
                 }
 
@@ -352,7 +358,7 @@ define([], function() {
             question.exercise = exercises[id]; // yes
 
             // 重置题目对错标记
-            question.right = (question.exercise.answer == question.userAnswer);
+            question.right = (question.exercise.answer ==  question.userAnswer);
 
             // play record btn
             if (question.localAnswers.length < question.currentId) {
@@ -368,14 +374,14 @@ define([], function() {
                 question.hasNext = false;
             }
 
-        } // onEnter end
+        }; // onEnter end
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("question.js onBeforeUnload fn");
             question.stopPlayRecord(); // 离开就应该停止播放，一种视图隔离
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

@@ -241,6 +241,12 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0;
 }
 
+/*******************************************************
+    > File Name: common.scss
+    > Author: IndexXuan
+    > Mail: indexxuan@gmail.com
+    > Created Time: 2015年07月13日 星期一 18时38分20秒
+ ******************************************************/
 /**
  * Yo框架全局Variables
  -----------------------
@@ -1214,12 +1220,6 @@ a {
   text-align: right;
 }
 
-/*******************************************************
-    > File Name: common.scss
-    > Author: IndexXuan
-    > Mail: indexxuan@gmail.com
-    > Created Time: 2015年07月13日 星期一 18时38分20秒
- ******************************************************/
 /* vars start */
 /* vars end */
 /* global reset start */
@@ -1424,21 +1424,18 @@ html, body {
 }
 
 body {
-  /*font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; [> 字体优化 <]*/
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;
   text-align: center;
   background-color: #f9f5f5;
   color: #747070;
+  font-size: .14rem;
 }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
   font-weight: normal;
-}
-
-audio {
-  width: 2rem;
 }
 
 .icon {
@@ -1802,7 +1799,7 @@ a, a:hover {
 }
 .item-wrapper .item-title {
   margin-top: .03rem;
-  max-height: 0.45rem;
+  max-height: 0.42rem;
   min-height: .52rem;
   font-size: .14rem;
   word-break: break-all;
@@ -1950,6 +1947,17 @@ a, a:hover {
 }
 .detail .pageinfo {
   text-align: center;
+}
+.detail .pageinfo .like {
+  width: .4rem;
+  height: .4rem;
+  border-radius: 50%;
+  color: #747070;
+  margin: .2rem auto;
+}
+.detail .pageinfo hasLiked {
+  color: #00abfd;
+  /*background: $main-green;*/
 }
 .detail .pageinfo .isShared {
   color: #00abfd;

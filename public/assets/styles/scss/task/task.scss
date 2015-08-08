@@ -6,24 +6,14 @@
  ******************************************************/
 
 /* vars start */
-$g_bgColor: #f9f5f5;
-$main-color: #6ad086;
-$title-line-height: .36rem;
-$img_height: .80rem;
-$item_title_height: .45rem;
-$g_font_color: #747070;
+
 /* vars end */
 
 @import "../_normalize.scss";
-@import "../../Yo/lib/core/variables.scss";
-@import "../../Yo/lib/core/reset.scss";
-@import "../../Yo/lib/core/classes.scss";
-@import "../../Yo/lib/fragment/yo-header.scss";
-
 @import "../common.scss";
 
 .task {
-    min-height: 450px; /* for layout, footer is footer */
+    min-height: 450px; 
     padding: .05rem;
 
     &, &-footer {

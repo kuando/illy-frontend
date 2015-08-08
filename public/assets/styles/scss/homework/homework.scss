@@ -7,35 +7,21 @@
 
 
 @import "../_normalize.scss";
-
-@import "../../Yo/lib/core/variables.scss";
-@import "../../Yo/lib/core/reset.scss";
-/*@import "../../Yo/lib/core/classes.scss";*/
-/*@import "../../Yo/lib/fragment/yo-header.scss";*/
-
-/*@import "../../Yo/lib/layout/yo-flex.scss";*/
-/*@import "../../Yo/lib/layout/yo-align.scss";*/
-/*@import "../../Yo/lib/layout/yo-stacked.scss";*/
-/*@import "../../Yo/lib/fragment/classes.scss";*/
-/*@import "../../Yo/lib/element/classes.scss";*/
-/*@import "../../Yo/lib/element/yo-checked.scss";*/
-/*@import "../../Yo/lib/element/yo-input.scss";*/
-/*@import "../../Yo/lib/element/yo-range.scss";*/
-/*@import "../../Yo/lib/fragment/yo-list.scss";*/
-/*@import "../../Yo/lib/widget/yo-group.scss";*/
 @import "../common.scss";
 
-audio {
-    height: 150px;
-    font-size: 16px;
-}
 /* reset vars and vars start */
 $img_width: 20%;
 $img_height: .7rem;
 $answer_panel_height: 1.5rem;
+$item_title_height: .45rem;
 $next_radius: $answer_panel_height / 2;
+
+$progress-bgcolor: grey;
+$progress-color: $main-green;
+$progress-height: .1rem;
 /* reset vars and vars end */
 
+/* global start */
 #splash {
     z-index: 99999;
     width: 100%;
@@ -49,8 +35,9 @@ $next_radius: $answer_panel_height / 2;
     min-height: 5.5rem;
     padding: .05rem;
 }
+/* global end */
 
-/* common item start */
+/* list-item start */
 .item-wrapper {
 
     .item {
@@ -144,16 +131,24 @@ $next_radius: $answer_panel_height / 2;
     }
 
 }
-/* common item end */
+/* list-item end */
 
 /* info start */
 .info {
     text-align: center;
+
+    audio {
+        width: 2rem;
+        height: 150px;
+        font-size: 16px;
+    }
+
 }
 .panel {
     text-align: left;
     display: inline-block;
     width: 96%;
+    margin-top: .15rem;
 
     .item {
         align-items: baseline;
@@ -193,7 +188,7 @@ $next_radius: $answer_panel_height / 2;
         margin: 0 auto;
         background: $main-color; 
         border-color: $main-color;
-        margin-top: .3rem;
+        margin-top: .2rem;
         border-radius: .1rem;
         font-size: .2rem;
     }
@@ -227,22 +222,38 @@ $next_radius: $answer_panel_height / 2;
 
 /* rewrite thumb, remove it */
 .yo-range > input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.0002rem;
-  height: 0.2rem;
-  position: relative;
-  border: 0;
-  border-radius: 50%;
-  -webkit-background-clip: padding-box !important;
-  background-clip: padding-box !important;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.0002rem;
+    height: 0.2rem;
+    position: relative;
+    border: 0;
+    border-radius: 50%;
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
 }
 
 .question {
     text-align: left;
     margin-top: .1rem; /* question state will no header element */
+
+    .pregress-wrapper {
+        height: $progress-height;
+        background-color: $progress-bgcolor;
+        width: 87%;
+        display: inline-block;
+
+        .progress {
+            height: $progress-height;
+            background-color: $progress-color;
+        }
+    }
+
+    .progress-text {
+        float: right;
+    }
 
     /* 去除分割线，恶心的第二条线不显示bug */
     .yo-list > .item {
@@ -253,27 +264,12 @@ $next_radius: $answer_panel_height / 2;
         background-image: none; 
     }
 
-    .yo-range {
-        padding: 0;
-        background-color: transparent;
-
-        input {
-            margin-right: .1rem;
-        }
-
-    }
-    .yo-range > input[type="range"] {
-        background-color: transparent;
-    }
-
-    .yo-range > input[type="range"]::-webkit-slider-thumba {
-        width: .0001rem;
-    }
-
     .question-text {
         padding: .05rem;
         font-weight: bold;
         font-size: .16rem;
+        margin-top: .1rem;
+        margin-bottom: .2rem;
     }
 
     .wrong-fill-in { /* 错误的文字填空题 */
@@ -301,7 +297,7 @@ $next_radius: $answer_panel_height / 2;
 
     .isRecording {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 42%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -336,7 +332,7 @@ $next_radius: $answer_panel_height / 2;
 
     .record-btn {
         display: inline-block;
-        position: absolute;
+        position: fixed;
         top: 63%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -372,7 +368,7 @@ $next_radius: $answer_panel_height / 2;
             position: relative;
             left: -.34rem;
         }
-        
+
         .second-symbol {
             position: relative;
             left: -.34rem;
@@ -386,7 +382,7 @@ $next_radius: $answer_panel_height / 2;
     /* record too short tips */
     .record-tips {
         display: none; /* inline-block */
-        position: absolute;
+        position: fixed;
         top: 54%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -448,7 +444,7 @@ $next_radius: $answer_panel_height / 2;
         height: $next_radius;
         border-radius: 50%;
         background-color: $main-blue;
-        position: absolute;
+        position: fixed;
         right: .1rem;
         bottom: $answer_panel_height - .5rem;
         text-align: center;
