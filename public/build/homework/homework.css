@@ -1416,7 +1416,6 @@ a:hover {
 
 html, body {
   width: 100%;
-  font-size: .14rem;
   /*height: 100%;*/
   overflow-x: hidden;
   overflow-y: auto;
@@ -1428,6 +1427,7 @@ body {
   text-align: center;
   background-color: #f9f5f5;
   color: #747070;
+  font-size: .14rem;
 }
 
 h1, h2, h3, h4, h5, h6, p {
