@@ -8,6 +8,8 @@ define([], function() {
     var detail = avalon.define({
 
         $id: "detail",
+        isDone: false, // for check, drop the current done use
+        isDoing: false,
         homeworkId: 1, // 作业id，用于发送给server的第一个参数
         title: 'detail.js title', // 作业标题，用于info面板
         keyPoint: 'detail.js keyPoint', // 知识重点，用于info面板
@@ -74,6 +76,9 @@ define([], function() {
             var questionVM = avalon.getVM('question'); // bug!!! $model不统一于vm本身
             questionVM && (questionVM.localAnswers = []);
             avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
+
+            detail.isDone = false;
+            detail.isDoing = false;
         }
     });
 
@@ -90,7 +95,9 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             // tip user whether drop current done! todo!
-            alert("drop the current done???");
+            if ( !detail.isDone && detail.isDoing ) {
+                alert("drop the current done???");
+            }
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

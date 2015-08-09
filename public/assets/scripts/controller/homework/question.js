@@ -237,12 +237,15 @@ define([], function() {
         checkAnswer: function() { // check answer and collect info for Collect
 
             /** 
-             *  首先防御后退更改答案, 停止播放录音(执行呗，反正无害...)
+             *  首先设置状态为正在做题，防御后退更改答案, 停止播放录音(执行呗，反正无害...)
              *  1. 如果为录音题, 做相关判断和统计
              *  2. 不是录音题
              *        如果没做，提示并停止检查
              *        做了检查对错, 做好相关统计，加入本地答案列表
              */
+
+            // is doing the question
+            avalon.vmodels.detail.isDoing = true;
 
             if (question.localAnswers.length >= question.currentId) {
                 console.log("不可更改答案!");
@@ -313,9 +316,14 @@ define([], function() {
 
             var question = avalon.$('.question');
             var win_height = document.documentElement.clientHeight;
+            var answerPanel = avalon.$('.answer-panel');
             setTimeout(function() {
                 question && (question.style.height = win_height + 'px');
             }, 16);
+            answerPanel && (answerPanel.style.left = '1px');
+            setTimeout(function() {
+                answerPanel && (answerPanel.style.left = '0');
+            }, 1600);
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的

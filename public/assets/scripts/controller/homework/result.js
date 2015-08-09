@@ -19,6 +19,8 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
             //avalon.log("result.js onEnter callback");
+            // this homwork is done and for drop check, 20150809
+            avalon.vmodels.detail.isDone = true;
             //avalon.log(params); 
             var source = avalon.getPureModel('detail').result;
             result.rightAward = source.rightAward;
