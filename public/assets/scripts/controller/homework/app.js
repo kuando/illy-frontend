@@ -2,7 +2,29 @@ define([], function() {
 
     // app ctrl take charge of everything...
     var app = avalon.define({
-        $id: "app"
+        $id: "app",
+        yesOrNo: null,
+        appMessage: 'I am message from app ctrl',
+        gMaskShow: false,
+        gConfirmShow: false,
+        showConfirm: function(message) {
+            app.appMessage = message; // set message
+            app.gMaskShow = true;
+            app.gConfirmShow = true;
+        },
+        hideConfirm: function() {
+            app.yesOrNo = null;
+            app.gMaskShow = false;
+            app.gConfirmShow = false;
+        },
+        yesClick: function() {
+            app.yesOrNo = true;
+            app.hideConfirm();
+        },
+        noClick: function() {
+            app.yesOrNo = false;
+            app.hideConfirm();
+        }
     });
 
     return avalon.controller(function($ctrl) {
@@ -19,7 +41,7 @@ define([], function() {
             avalon.appRenderedTime = endTime;
             avalon.appTotalTime = avalon.appRenderedTime - avalon.appInitTime;
             // only first in will log
-            (avalon.appTotalTime < 15000) && avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime);
+            (avalon.appTotalTime < 15000) && avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime); /* jshint ignore:line */
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

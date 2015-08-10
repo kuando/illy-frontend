@@ -22,10 +22,12 @@ define([], function() {
         visited: false,
         articleId: 1,
         title: "",
+        image: '',
         content: "",
         created: "2015-07-09",
         shareCount: 88,
         visitCount: 88,
+        likecount: 88,
         isShared: false,
         hasLiked: false,
         updateShare: function() {
@@ -68,10 +70,12 @@ define([], function() {
             if (detail.visited && needCache) {
                 var localCache = avalon.getLocalCache(cachedPrefix + detail.articleId);
                 detail.title = localCache.title;
+                detail.image = localCache.image;
                 detail.content = localCache.content;
                 detail.created = localCache.created;
                 detail.shareCount = localCache.shareCount;
                 detail.visitCount = localCache.visitCount;
+                detail.likeCount = localCache.likeCount;
                 return; // core!!! key!!! forget this will getCache and request which is the worst way!
             }
             $http.ajax({
@@ -82,10 +86,12 @@ define([], function() {
                 dataType: "json",
                 success: function(json) {
                     detail.title = json.title;
+                    detail.image = json.image;
                     detail.content = json.content;
                     detail.created = json.created;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
+                    detail.likeCount = json.likeCount;
                     avalon.setLocalCache(cachedPrefix + detail.articleId, json);
 
                     wx.onMenuShareTimeline({
@@ -122,7 +128,7 @@ define([], function() {
         $ctrl.$onRendered = function() {
             
             // outer user will no header to go in inner system
-            if (avalon.getVM('index') == void 0) { avalon.$('.yo-header').style.display = 'none'; }
+            //if (avalon.getVM('index') == void 0) { avalon.$('.yo-header').style.display = 'none'; }
 
             avalon.$('.gotop').onclick = function() {
                 document.body.scrollTop = 0;

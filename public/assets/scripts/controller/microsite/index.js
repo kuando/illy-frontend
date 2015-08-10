@@ -71,7 +71,6 @@ define([], function() {
                 if (avalon.getVM('detail') === void 0 && avalon.getVM('list') === void 0) { // fix slider render to delay when not first in index condition
                     renderedDelay = avalon.endTime - avalon.indexEnterTime;
                 } else {
-                    alert(1);
                     renderedDelay = 500;
                 }
                 if (avalon.totalTime > 1500) {

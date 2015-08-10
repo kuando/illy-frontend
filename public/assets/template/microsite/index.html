@@ -1,10 +1,11 @@
 <!-- index start -->
 <div class="index" ms-controller="index">
 
+
     <!-- slider start -->
     <div id="slider">
         <div ms-repeat-slider="sliders"> <!-- repeat point -->
-            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="slider.image" /></a>
+            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="slider.image + '?imageView2/1/w/400/h/200/interlace/1'" /></a>
             <p>{{slider.title}}</p>
         </div>
     </div>
@@ -19,14 +20,18 @@
         </div>
         <!-- item start -->
         <div class="item-wrapper">
-            <div class="item area" ms-repeat-item="hots">
-                <img class="item-img area" ms-attr-src="item.img" ms-attr-alt="item.title" />
+            <a ms-attr-href="'#!/detail/' + item._id" class="item area" ms-repeat-item="hots">
+                <img class="item-img area" ms-attr-src="item.image+ '?imageView2/1/w/90/h/80/interlace/1'" ms-attr-alt="item.title" />
                 <div class="right-area">
-                    <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
-                    <div class="count share-count"><i class="icon icon-share"></i>{{item.shareCount}}</div> 
-                    <div class="count visit-count"><i class="icon icon-people"></i>{{item.visitCount}}</div> 
+                    <div class="created-time">{{created}}</div>
+                    <h3 class="item-title area">{{item.title}}</h3>
+                    <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
+                    <i class="yo-ico gap-point">&#xf083</i>
+                    <div class="count share-count"><span>分享</span>{{item.shareCount}}</div> 
+                    <i class="yo-ico gap-point">&#xf083</i>
+                    <div class="count like-count"><span>喜欢</span>{{item.likeCount}}</div> 
                 </div>
-            </div>
+            </a>
         </div>
         <!-- item end -->
     </div>
@@ -47,8 +52,13 @@
         <div class="item-wrapper">
             <div class="item area" ms-repeat-item="category.posts">
                 <a ms-attr-href="'#!/detail/' + item._id">
-                    <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title" />
-                    <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
+                    <img class="item-img area" ms-attr-src="item.image + '?imageView2/1/w/160/h/90/interlace/1'" ms-attr-alt="item.title" />
+                    <div class="info-area list">
+                        <h3 class="item-title text-overflow area">{{item.title}}</h3>
+                        <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
+                        <i class="yo-ico gap-point">&#xf083</i>
+                        <div class="count like-count"><span>喜欢</span>{{item.likeCount}}</div> 
+                    </div>
                 </a>
             </div>
         </div>

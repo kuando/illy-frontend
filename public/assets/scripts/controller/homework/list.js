@@ -60,6 +60,8 @@ define([], function() {
             // remove cache in detail ctrl
             list.fetchData('homework');
             list.fetchData('previews');
+
+            avalon.vmodels.app.hideConfirm(); // for strong
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

@@ -11,7 +11,6 @@ define([], function() {
         endTime: 0,
         duration: 5,
         localId: '', // core!
-        dropFlag: false, // 是否放弃本录音题的标记
         timeout: 'timeout', // timeoutId, just need it, whatever name can do!
         playRecordTimeout: 'playRecordTimeout', // 录音播放计时器
         remainTimeTimer: null, // remain time timer
@@ -24,9 +23,9 @@ define([], function() {
             record.layerUiChange();
             // time to show
             record.remainTimeTimer = setInterval(function() {
-                var time = timeoutMask && parseInt(timeoutMask.innerHTML, 10);
-                timeoutMask && ( timeoutMask.innerHTML = ( time > 0 ? time - 1 : 10) );
-                if (time == 0) { question.stopRecord(); clearInterval(record.remainTimeTimer); } // core! should stop it.
+                var time = timeoutMask && parseInt(timeoutMask.innerHTML, 10) || 0;
+                timeoutMask && ( timeoutMask.innerHTML = ( time > 0 ? time - 1 : 10) ); /* jshint ignore:line */
+                if (time === 0) { question.stopRecord(); clearInterval(record.remainTimeTimer); } // core! should stop it.
             }, 1000);
             // recover the ui when time enough, 18s is enough
             setTimeout(function() {
@@ -36,26 +35,26 @@ define([], function() {
         layerUiChange: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
-            // change some ui for mask
-            timeoutMask && (timeoutMask.style.display = 'inline-block'); // show mask
-            isRecording && isRecording.classList.add('timeout');
+            // change some ui for mask, show mask 
+            timeoutMask && (timeoutMask.style.display = 'inline-block'); /* jshint ignore:line */
+            isRecording && isRecording.classList.add('timeout'); /* jshint ignore:line */
         },
         layerUiRecover: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
             var isRecording = avalon.$('.isRecording'); 
             var remainTimeTimer = record.remainTimeTimer;
-            remainTimeTimer && clearInterval(remainTimeTimer);
-            timeoutMask && ( timeoutMask.innerHTML = '10' ); 
-            timeoutMask && ( timeoutMask.style.display = 'none' );
-            isRecording && isRecording.classList.remove('timeout');
+            remainTimeTimer && clearInterval(remainTimeTimer); /* jshint ignore:line */
+            timeoutMask && ( timeoutMask.innerHTML = '10' );  /* jshint ignore:line */
+            timeoutMask && ( timeoutMask.style.display = 'none' ); /* jshint ignore:line */
+            isRecording && isRecording.classList.remove('timeout'); /* jshint ignore:line */
         },
         showTips: function() {
             var recordTips = avalon.$('.record-tips');
-            recordTips && ( recordTips.style.display = 'inline-block' );
+            recordTips && ( recordTips.style.display = 'inline-block' ); /* jshint ignore:line */
         },
         hideTips: function() {
             var recordTips = avalon.$('.record-tips');
-            recordTips && ( recordTips.style.display = 'none' );
+            recordTips && ( recordTips.style.display = 'none' ); /* jshint ignore:line */
         }
     }; 
 
@@ -70,6 +69,7 @@ define([], function() {
         localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
         right: null, // 做对与否, 录音题始终设为right(Em~...), 控制一些显隐逻辑(null, true, false)
         hasNext: false, // 是否有下一题？
+        isDroped: false, // drop the record question flag 
         isRecording: false, // whether recording now, for ms-class 
         isPlaying: false, // 是否正在播放
         showPlayRecordBtn: false, // 是否显示播放录音按钮
@@ -125,7 +125,7 @@ define([], function() {
             question.isRecording = false;
             avalon.$('.timeout-mask').style.display = 'none';
             // 能到这一步就该先清理ui上的倒计时，再统计时间来做相应操作
-            record.timeout && clearTimeout(record.timeout); // for strong
+            record.timeout && clearTimeout(record.timeout); /* jshint ignore:line  */
             var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
@@ -158,7 +158,7 @@ define([], function() {
              */
 
             var localId = record.localId;
-            if (localId == '') {
+            if (localId === '') {
                 alert('对不起,上传失败!');
                 console.log('上传失败，没有localId, localId为：' + localId);
                 //console.log(record); // print global record array
@@ -173,8 +173,9 @@ define([], function() {
 
                     question.showPlayRecordBtn = true;
                     
-                    var recordTotalTime = avalon.$('.record-total-time');
-                    recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); // 设置录音时长
+                    var recordTotalTime = avalon.$('.record-total-time'); 
+                    // 设置录音时长
+                    recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); /* jshint ignore:line */
                 }
             });
 
@@ -186,7 +187,7 @@ define([], function() {
              */
 
             var localId = record.localId;
-            if (localId == '') {
+            if (localId === '') {
                 alert("录制不成功，请重试！");
                 console.log('no localId');
                 return ;
@@ -211,7 +212,7 @@ define([], function() {
              */
 
             var localId = record.localId;
-            if (localId == '') {
+            if (localId === '') {
                 return ;
             }
             wx.stopVoice({
@@ -254,25 +255,29 @@ define([], function() {
             question.stopPlayRecord();
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
-            if (question.exercise && question.exercise.eType == 3) {
+            if (question.exercise && question.exercise.eType === 3) {
                 question.stopRecord(); // checkAnswer click, means record must stop
                 // do sth to check record or not
                 // push and return. (id, answer)
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
                 var audioAnswer = question.userAnswer;
-                var flag = record.dropFlag;
-                if (audioAnswer == '' && !flag) { alert("本题未保存录音，请继续！"); record.dropFlag = true; return; }
-                if (audioAnswer == '' && flag) { alert("您已放弃本题，请继续！"); }
+                if (audioAnswer === '') {
+                    //question.dropRecordQuestionConfirm();
+                    //return;
+                }
                 
                 question.right = true; // right it for next
                 detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
                 question.localAnswers.push(record.localId); // bug fix, also need push
                 return;
             }
-            if (question.userAnswer == '') { alert("请选择至少一个答案！"); return; }
+            if (question.userAnswer === '') {
+                alert("请选择至少一个答案！"); 
+                return; 
+            }
             
             // update the right attr, question.right = null for default, 不是null说明这题做过了，直接显示答案（处理后退的）
-            if ( question.exercise && (question.exercise.answer == question.userAnswer.trim()) ) {
+            if ( question.exercise && (question.exercise.answer === question.userAnswer.trim()) ) {
                 question.right = true;
                 //alert("答对了");
             } else {
@@ -282,7 +287,6 @@ define([], function() {
                 var radioAnswer = question.userAnswer;
                 //alert(radioAnswer);
                 detailVM.wrongCollect.push({exerciseId: question.currentId, answer: radioAnswer});  
-                avalon.log(detailVM.wrongCollect);
             }
             question.localAnswers.push(question.userAnswer); // old-bug, 20150731
 
@@ -295,7 +299,24 @@ define([], function() {
 
             avalon.vmodels.detail.submit();
 
-        } 
+        },
+        dropRecordQuestionConfirm: function() {
+            var app = avalon.vmodels.app;
+            if (!question.isDroped ) {
+
+                app.showConfirm('是否放弃本录音题?');
+                app.$watch('yesOrNo', function(value) {
+                    if (value === true) {
+                        question.right = true; // right it for next
+                        avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
+                        question.localAnswers.push(''); // bug fix, also need push
+                        question.isDroped = true;
+                        question.next();
+                    }
+                });
+
+            }
+        }
     });
 
     var hasRequestRecordAuth= false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
@@ -310,24 +331,27 @@ define([], function() {
         var exercises = detailModel.exercises;
 
         // 视图渲染后，意思是avalon.scan完成
-        $ctrl.$onRendered = function() {
-            starter && ( avalon.vmodels.detail.questionStartTime = Date.now() ); // 统计做题开始时间
+        $ctrl.$onRendered = function() { 
+            // 统计做题开始时间
+            starter && ( avalon.vmodels.detail.questionStartTime = Date.now() ); /* jshint ignore:line */
             starter = false;
 
             var question = avalon.$('.question');
             var win_height = document.documentElement.clientHeight;
             var answerPanel = avalon.$('.answer-panel');
             setTimeout(function() {
-                question && (question.style.height = win_height + 'px');
+                question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
             }, 16);
-            answerPanel && (answerPanel.style.left = '1px');
+            answerPanel && (answerPanel.style.left = '1px'); /* jshint ignore:line */
             setTimeout(function() {
-                answerPanel && (answerPanel.style.left = '0');
+                answerPanel && (answerPanel.style.left = '0'); /* jshint ignore:line */
             }, 1600);
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
+
+            question.isDroped = false;
 
             // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）
             if( !hasRequestRecordAuth ) {
@@ -353,7 +377,6 @@ define([], function() {
             record.endTime = '';
             record.localId = question.localAnswers[question.currentId - 1] || '';
             record.remainTimeTimer = null;
-            record.dropFlag = false;
             question.isRecording = false;
             // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
             question.userAnswer = question.localAnswers[question.currentId - 1] || '';
@@ -366,7 +389,7 @@ define([], function() {
             question.exercise = exercises[id]; // yes
 
             // 重置题目对错标记
-            question.right = (question.exercise.answer ==  question.userAnswer);
+            question.right = (question.exercise.answer ===  question.userAnswer);
 
             // play record btn
             if (question.localAnswers.length < question.currentId) {

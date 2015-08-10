@@ -1,19 +1,24 @@
-<!-- list start -->
-<div class="list" ms-controller="list">
+<!-- topN start -->
+<div class="topN" ms-controller="list">
     <!-- item start -->
     <div class="item-wrapper">
-        <div class="item area" ms-repeat-item="lists">
-            <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
+        <a ms-attr-href="'#!/detail/' + item._id" class="item area" ms-repeat-item="lists">
+            <img class="item-img area" ms-attr-src="item.image+ '?imageView2/1/w/90/h/80/interlace/1'" ms-attr-alt="item.title" />
             <div class="right-area">
-                <a ms-attr-href="'#!/detail/' + item._id" class="item-title area">{{item.title}}</a>
-                <div class="count share-count"><i class="icon icon-share"></i>{{item.shareCount}}</div> 
-                <div class="count visit-count"><i class="icon icon-people"></i>{{item.visitCount}}</div> 
+                <div class="created-time">{{created}}</div>
+                <h3 class="item-title area">{{item.title}}</h3>
+                <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
+                <i class="yo-ico gap-point">&#xf083</i>
+                <div class="count share-count"><span>分享</span>{{item.shareCount}}</div> 
+                <i class="yo-ico gap-point">&#xf083</i>
+                <div class="count like-count"><span>喜欢</span>{{item.likeCount}}</div> 
             </div>
-        </div>
+        </a>
     </div>
     <!-- item end -->
+
     <div ms-if="lists == ''">本栏目暂时没有收录文章，请稍后再来关注哦！</div>
     <a href="javascript:void(0)" class="show-more-btn" ms-visible="btnShowMore" ms-click="showMore()">加载更多</a>
 </div>
-<!-- list end -->
+<!-- topN end -->
 

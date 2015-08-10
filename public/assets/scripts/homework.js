@@ -178,7 +178,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         currentIsVisited: false,
         title: "标题", // 每一页action bar的标题    
         back: function() {
-            history.go(-1);
+            var state = root.currentPage;
+            if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围
+                state = 'detail';
+            }
+            state = avalon.vmodels[state];
+            if (state.back) {
+                state.back();
+            } else {
+                history.go(-1);
+            }
         }
     });
 
@@ -371,8 +380,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); // for strong
+
+            // deal with exception... for strong
+            //avalon.vmodels.app.hideDialog();
         },
-        onViewEnter: function(newNode, oldNode) {
+        onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({
             //    marginLeft: "-100%"
             //}, 500, "easein", function() {

@@ -1,8 +1,33 @@
 define([], function() {
 
-    // review in 201507221009 
-    
     var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+
+    // override the global back method, only with btn in header
+    var back = function back() {
+
+        // tip user whether drop current done! every view change condition should put flag and return
+        if ( !detail.isDone && detail.isDoing ) {
+
+            detail.dropCurrentDoneComfirm();
+
+            var app = avalon.vmodels.app; 
+            app.$watch("yesOrNo", function(value) { /* [, oldValue] */
+                if (value === true) {
+                    //history.go(-1);
+                    avalon.router.go('app.list');
+                    detail.isBack = true;
+                    return ;
+                }
+            });
+
+        } else {
+            detail.isBack = true;
+            //history.go(-1);
+            avalon.router.go('app.list');
+            return ;
+        }
+
+    };
 
     // 作业详情控制器
     var detail = avalon.define({
@@ -70,16 +95,23 @@ define([], function() {
         clearCachedData: function() { // 清除缓存数据
             // 清除detail控制器缓存的统计数据
             var detailVM = avalon.getPureModel('detail');
-            detailVM && (detailVM.wrongCollect = []);
-            detailVM && (detailVM.audioAnswers = []);
+            detailVM && (detailVM.wrongCollect = []); /* jshint ignore:line */
+            detailVM && (detailVM.audioAnswers = []); /* jshint ignore:line */
             // 清除题目页面缓存的统计数据
             var questionVM = avalon.getVM('question'); // bug!!! $model不统一于vm本身
-            questionVM && (questionVM.localAnswers = []);
-            avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
+            questionVM && (questionVM.localAnswers = []); /* jshint ignore:line */
+            //avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
 
             detail.isDone = false;
             detail.isDoing = false;
-        }
+            detail.isBack = false;
+        },
+        dropCurrentDoneComfirm: function() { // confirm 
+            var app = avalon.vmodels.app; 
+            app.showConfirm('message from detail ctrl');
+        },
+        back: back,
+        isBack: false // 防止重复执行back函数，因为点击会调用，同时页面销毁回调也注册了back方法(对付手机原生后退)，重复执行了
     });
 
     return avalon.controller(function($ctrl) {
@@ -94,12 +126,9 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            // tip user whether drop current done! todo!
-            if ( !detail.isDone && detail.isDoing ) {
-                alert("drop the current done???");
-            }
+            !detail.isBack && detail.back(); /* jshint ignore:line */ 
         };
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
 
