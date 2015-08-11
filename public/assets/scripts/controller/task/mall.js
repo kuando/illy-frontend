@@ -3,7 +3,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = localStorage.getItem('illy-token');
     
-    var cachedPrefix = 'illy-task-mall-';
+    //var cachedPrefix = 'illy-task-mall-';
 
     var limit = 6; // 一次抓取多少数据
     var mall = avalon.define({
@@ -23,11 +23,11 @@ define([], function() {
          *
          */
         fetchRemoteData: function(apiArgs, data, target, type) {
-            if (mall.visited) {
-                //mall.lists = getCachedData(target);
-                mall.lists = avalon.getLocalCache(cachedPrefix + target);
-                return;
-            }
+            //if (mall.visited) {
+            //    //mall.lists = getCachedData(target);
+            //    mall.lists = avalon.getLocalCache(cachedPrefix + target);
+            //    return;
+            //}
             $http.ajax({
                 url: apiBaseUrl + apiArgs,
                 headers: {
@@ -35,16 +35,15 @@ define([], function() {
                 },
                 data: data,
                 success: function(res) {
-                    type == 'concat' ? mall[target] = mall[target].concat(res) : mall[target] = res;
-                    setLocalCache(cachedPrefix + target, res); // illy-task-mall-lists
+                    type === 'concat' ? mall[target] = mall[target].concat(res) : mall[target] = res; /* jshint ignore:line */
                 },
                 error: function(res) {
-                    avalon.log('mall ajax error when fetch data');
+                    avalon.log('mall ajax error when fetch data' + res);
                 },
                 ajaxFail: function(res) {
-                    avalon.log('mall ajax failed when fetch data');
+                    avalon.log('mall ajax failed when fetch data' + res);
                 }
-            })
+            });
         },
         showMore: function(e) {
             e.preventDefault();
@@ -64,19 +63,20 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function(params) { /* jshint ignore:line */
             mall.visited = avalon.vmodels.root.currentIsVisited;
-            mall.offset <= limit ? mall.btnShowMore = false : mall.btnShowMore = true; // otherwise, show it
+            // otherwise, show it
+            mall.offset <= limit ? mall.btnShowMore = false : mall.btnShowMore = true; /* jshint ignore:line */
             mall.fetchRemoteData('score/mall', {}, 'lists');
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             //avalon.log('list.js onRendered in Time: ' + Date.now());
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

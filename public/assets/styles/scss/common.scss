@@ -311,8 +311,18 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* fix for header's back-index */
 #header, .yo-header {
-    background: $main-blue;
+    background: $main-green;
+
     .affirm {
         color: #fff;
     }
+
+    .title {
+        font-weight: bold;
+    }
 }
+
+.yo-header > .regret.yo-ico, .yo-header > .regret > .yo-ico, .yo-header > .affirm.yo-ico, .yo-header > .affirm > .yo-ico {
+    color: #fff;
+}
+

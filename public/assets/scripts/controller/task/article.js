@@ -28,7 +28,7 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-                    //console.log(res);
+                    avalon.log(res);
                 },
                 error: function(res) {
                     console.log(res);
@@ -36,7 +36,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log(res);
                 }
-            })
+            });
         },
         fetchData: function() {
             if (article.visited) {
@@ -80,7 +80,7 @@ define([], function() {
                     });
 
                 }
-            })
+            });
         }
     });
 
@@ -91,13 +91,13 @@ define([], function() {
             avalon.$('.gotop').onclick = function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
-            }
+            };
 
             setTimeout(function() {
                 avalon.$('#gotop').style.display = 'block';
-            }, 3000)
+            }, 3000);
 
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
@@ -107,13 +107,13 @@ define([], function() {
             article.isShared = false; // overwrite it
             article.fetchData();
 
-        }
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

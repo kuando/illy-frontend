@@ -10,8 +10,9 @@
 @import "../common.scss";
 
 /* reset vars and vars start */
-$img_width: 20%;
-$img_height: .7rem;
+$img_width: 21%;
+$img_height: .5rem;
+$hw-info-height: .7rem;
 $answer_panel_height: 1.5rem;
 $item_title_height: .45rem;
 $next_radius: $answer_panel_height / 2;
@@ -20,6 +21,10 @@ $progress-bgcolor: grey;
 $progress-color: $main-green;
 $progress-height: .1rem;
 /* reset vars and vars end */
+
+.yo-header {
+    background-color: $main-green;
+}
 
 /* global start */
 #splash {
@@ -171,6 +176,7 @@ background-image: url("../../icons-36-white.png");
 
 /* list-item start */
 .item-wrapper {
+    margin: .03rem;
 
     .item {
         width: 100%;
@@ -181,6 +187,7 @@ background-image: url("../../icons-36-white.png");
         box-shadow: 0px 0px 5px #e5d8d8;
         padding: .06rem .05rem;
         margin-bottom: .1rem;
+        border-left: 5px solid $main-green;
 
         .list-card {
             display:  inline-block;
@@ -199,10 +206,10 @@ background-image: url("../../icons-36-white.png");
 
             // 右侧作业信息
             .hw-info {
-                width: 75%;
-                height: .22rem;
+                width: 72%;
+                height: $hw-info-height;
                 line-height: .22rem;
-                font-size: .14rem;
+                font-size: .12rem;
                 margin-top: -.02rem;
 
                 .item-title {
@@ -210,7 +217,8 @@ background-image: url("../../icons-36-white.png");
                     margin-top: .01rem;
                     max-height: $item_title_height;
                     word-break: break-all;
-                    color: $g_font_color;
+                    color: #373434;
+                    font-size: .15rem;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
@@ -218,6 +226,7 @@ background-image: url("../../icons-36-white.png");
 
                 .time {
                     display: inline-block;
+                    vertical-align: top;
                     width: 92%;
                     overflow: hidden;
                     white-space: nowrap;
@@ -228,7 +237,7 @@ background-image: url("../../icons-36-white.png");
 
                 .finish_count {
                     display: inline-block;
-                    vertical-align: bottom;
+                    vertical-align: top;
                     width: 100%;
                     position: relative;
                     top: .05rem;
@@ -252,10 +261,11 @@ background-image: url("../../icons-36-white.png");
             .todo {
                 position: absolute;
                 right: 10px;
-                font-size: .14rem;
+                font-size: .22rem;
                 /*bottom: 25px;*/
-                height: $img_height;
-                line-height: $img_height;
+                height: $hw-info-height;
+                line-height: $hw-info-height;
+                color: #A99D9D;
             }
 
         }

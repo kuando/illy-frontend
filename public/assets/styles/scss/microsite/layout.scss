@@ -441,7 +441,7 @@ a, a:hover {
             height: .64rem;
             /*border-radius: 50%;*/
             color: $g_font_color;
-            margin: .2rem auto;
+            margin: .05rem auto;
             background-size: 100%;
             background-repeat: no-repeat;
             background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
@@ -450,7 +450,12 @@ a, a:hover {
         .hasLiked {
             color: $main-blue;
             background-image: url(http://app.hizuoye.com/build/images/iconfont-hasLiked.png);
-            /*background: $main-green;*/
+        }
+        .like-num-wrapper {
+            margin: .1rem auto;
+        }
+        .like-num-update {
+            color: $main-green;
         }
 
         .isShared {

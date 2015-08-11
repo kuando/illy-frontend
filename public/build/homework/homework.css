@@ -1219,6 +1219,7 @@ a {
 }
 
 /* vars start */
+/*$g_bgColor: #f9f5f5;*/
 /* vars end */
 /* global reset start */
 * {
@@ -1425,7 +1426,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;
   text-align: center;
-  background-color: #f9f5f5;
+  background-color: #fff;
   color: #747070;
   font-size: .14rem;
 }
@@ -1595,14 +1596,25 @@ h1, h2, h3, h4, h5, h6, p {
 }
 /* fix for header's back-index */
 #header, .yo-header {
-  background: #00abfd;
+  background: #6fd801;
 }
 #header .affirm, .yo-header .affirm {
+  color: #fff;
+}
+#header .title, .yo-header .title {
+  font-weight: bold;
+}
+
+.yo-header > .regret.yo-ico, .yo-header > .regret > .yo-ico, .yo-header > .affirm.yo-ico, .yo-header > .affirm > .yo-ico {
   color: #fff;
 }
 
 /* reset vars and vars start */
 /* reset vars and vars end */
+.yo-header {
+  background-color: #6fd801;
+}
+
 /* global start */
 #splash {
   z-index: 99999;
@@ -1755,6 +1767,9 @@ background-image: url("../../icons-36-white.png");
 }
 /* global end */
 /* list-item start */
+.item-wrapper {
+  margin: .03rem;
+}
 .item-wrapper .item {
   width: 100%;
   text-align: left;
@@ -1764,6 +1779,7 @@ background-image: url("../../icons-36-white.png");
   box-shadow: 0px 0px 5px #e5d8d8;
   padding: .06rem .05rem;
   margin-bottom: .1rem;
+  border-left: 5px solid #6fd801;
 }
 .item-wrapper .item .list-card {
   display: inline-block;
@@ -1771,19 +1787,19 @@ background-image: url("../../icons-36-white.png");
   width: 100%;
 }
 .item-wrapper .item .list-card .item-img {
-  width: 20%;
+  width: 21%;
   margin-right: .05rem;
-  height: 0.7rem;
+  height: 0.5rem;
   border: 1px solid #eee;
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
 .item-wrapper .item .list-card .hw-info {
-  width: 75%;
-  height: .22rem;
+  width: 72%;
+  height: 0.7rem;
   line-height: .22rem;
-  font-size: .14rem;
+  font-size: .12rem;
   margin-top: -.02rem;
 }
 .item-wrapper .item .list-card .hw-info .item-title {
@@ -1791,13 +1807,15 @@ background-image: url("../../icons-36-white.png");
   margin-top: .01rem;
   max-height: 0.45rem;
   word-break: break-all;
-  color: #747070;
+  color: #373434;
+  font-size: .15rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .item-wrapper .item .list-card .hw-info .time {
   display: inline-block;
+  vertical-align: top;
   width: 92%;
   overflow: hidden;
   white-space: nowrap;
@@ -1807,7 +1825,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .hw-info .finish_count {
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: top;
   width: 100%;
   position: relative;
   top: .05rem;
@@ -1826,10 +1844,11 @@ background-image: url("../../icons-36-white.png");
 .item-wrapper .item .list-card .todo {
   position: absolute;
   right: 10px;
-  font-size: .14rem;
+  font-size: .22rem;
   /*bottom: 25px;*/
   height: 0.7rem;
   line-height: 0.7rem;
+  color: #A99D9D;
 }
 
 /* list-item end */

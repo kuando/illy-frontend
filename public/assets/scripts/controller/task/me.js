@@ -15,7 +15,7 @@ define([], function() {
         defaultFullUrl: '',
         localId: '',
         serverId: ''
-    }
+    };
 
     var me = avalon.define({
         $id: "me",
@@ -47,7 +47,7 @@ define([], function() {
                     me.copyProfile = json;
                     me.setVM(json, true);
                 }
-            })
+            });
         },
         chooseImage: function() {
             wx.chooseImage({
@@ -73,7 +73,7 @@ define([], function() {
                     
                     setTimeout(function() { // then, update avatar
                         me.updateAvatar();
-                    }, 200)
+                    }, 200);
                 }
             });
         },
@@ -85,14 +85,14 @@ define([], function() {
             }
         },
         setVM: function(source, avatar) {
-            if (avatar != false) avatar = true; // default
+            if (avatar !== false) { avatar = true; }// default
             me.username = source.username;
             me.displayName = source.displayName;
             me.gender = source.gender;
             me.phone = source.phone;
             me.parent = source.parent;
             if (avatar) {
-                if (source.avatar != void 0) {
+                if (source.avatar !== void 0) {
                     me.avatar = resourcePrefix + source.avatar;
                 } else {
                     me.avatar = avatar.defaultFullUrl; // default avatar of user
@@ -109,7 +109,7 @@ define([], function() {
         hasDiff: function() {
             var diff = me.infoProfile.every(function(item) {
                 return me[item] === me.copyProfile[item];
-            })
+            });
             return !diff;
         },
         updateProfile: function() {
@@ -128,17 +128,17 @@ define([], function() {
                     grade: me.grade
                 },
                 success: function(res) {
-
+                    avalon.log(res);
                 },
                 error: function(res) {
-                    alert('对不起，账户信息更新失败...');
+                    alert('对不起，账户信息更新失败...' + res);
                     me.resetAll(); // 回滚页面ui中账户信息，做到更新失败的回滚
                 },
                 ajaxFail: function(res) {
-                    alert('对不起，账户信息更新失败...');
+                    alert('对不起，账户信息更新失败...' + res);
                     me.resetAll(); // 回滚页面ui中账户信息，做到更新失败的回滚
                 }
-            })
+            });
         },
         updateAvatar: function() { // tell server-side to fetch new avatar from wx-server
             $http.ajax({
@@ -151,7 +151,7 @@ define([], function() {
                     avatar: avatar.serverId
                 },
                 success: function(res) {
-                    alert('上传成功!');    
+                    alert('上传成功!' + res);    
                 },
                 error: function(res) {
                     console.log(res);
@@ -161,7 +161,7 @@ define([], function() {
                     console.log(res);
                     alert('对不起，头像上传失败，请重试！');
                 } 
-            })
+            });
         },
         save: function() { // diff will update and no-diff will just local save
             if(me.hasDiff()) {
@@ -178,20 +178,20 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function(params) { /* jshint ignore:line */
 
             me.resetData();
             me.fetchData();
 
-        }
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

@@ -18,7 +18,7 @@ define([], function() {
             brr[i] = arr[i];
         }
         return brr;
-    }
+    };
 
     // inner function 
     // arr = ['name', 'age'];
@@ -30,10 +30,10 @@ define([], function() {
             arr[i] = {
                 key: activity.CopyinfoCollect[i], 
                 value: arr[i]
-            }
+            };
         }
         return arr;
-    }
+    };
     
     var activity = avalon.define({
         $id: "activity",
@@ -62,7 +62,7 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-                    //console.log(res);
+                    avalon.log(res);
                 },
                 error: function(res) {
                     console.log(res);
@@ -70,12 +70,12 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log(res);
                 }
-            })
+            });
         },
         fetchData: function() {
             if (activity.visited && activity.hasData) {
-                var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId)
-                    acTitle.taskId = localCache._id;
+                var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId);
+                    activity.taskId = localCache._id;
                     activity.address = localCache.address;
                     activity.content = localCache.content;
                     activity.startTime = localCache.startTime;
@@ -128,12 +128,12 @@ define([], function() {
                     });
 
                 }
-            })
+            });
         }, // end of fetch data
         pushInfo: function() {
             var invalid = activity.infoCollect.some(function(item) {
                 return item === '';
-            })
+            });
             if (invalid) { alert('请完整填写报名信息'); return; }
 
             $http.ajax({
@@ -145,7 +145,7 @@ define([], function() {
                 data: {
                     info: arrayToJSON(activity.infoCollect) // array(key-string) to a array({key-value})
                 },
-                success: function(res) {
+                success: function(res) { /* jshint ignore:line */
                     activity.isDone = true;
                     activity.isFilling = false;
                 },
@@ -156,7 +156,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log(res);
                 }
-            })
+            });
         },
         filling: function() {
             activity.isFilling = true;
@@ -174,13 +174,13 @@ define([], function() {
             avalon.$('.gotop').onclick = function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
-            }
+            };
 
             setTimeout(function() {
                 avalon.$('#gotop').style.display = 'block';
-            }, 3000)
+            }, 3000);
 
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
@@ -190,13 +190,13 @@ define([], function() {
             activity.isShared = false; // overwrite it
             activity.fetchData();
 
-        }
+        };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 
 });

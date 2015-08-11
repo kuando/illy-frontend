@@ -7,7 +7,8 @@
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="homework">
             <a ms-attr-href="'#!/detail/' + item._id + '/info/?type=homework'" class="list-card">
-                <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
+                <!--<img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">-->
+                <img class="item-img area" src="http://www.iconpng.com/png/small-flat-master/book-icon.png" ms-attr-alt="item.title">
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
                     <span class="time">{{item.startTime | date("yyyy.MM.dd")}} - {{item.endTime | date("yyyy.MM.dd")}}</span>

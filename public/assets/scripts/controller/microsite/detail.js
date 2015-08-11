@@ -56,7 +56,8 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
-                    avalon.log(res);
+                    var likeCount = detail.likeCount || 0;
+                    detail.likeCount = ++likeCount;
                 },
                 error: function(res) {
                     console.log(res);
@@ -75,7 +76,7 @@ define([], function() {
                 detail.created = localCache.created;
                 detail.shareCount = localCache.shareCount;
                 detail.visitCount = localCache.visitCount;
-                detail.likeCount = localCache.likeCount;
+                detail.likeCount = localCache.like;
                 return; // core!!! key!!! forget this will getCache and request which is the worst way!
             }
             $http.ajax({
@@ -91,7 +92,7 @@ define([], function() {
                     detail.created = json.created;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
-                    detail.likeCount = json.likeCount;
+                    detail.likeCount = json.like;
                     avalon.setLocalCache(cachedPrefix + detail.articleId, json);
 
                     wx.onMenuShareTimeline({
