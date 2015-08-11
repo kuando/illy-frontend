@@ -18,24 +18,25 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         'mistake': '错题列表',
         'wrong': '错题详情',
         'evaluation': '课堂表现'
-    }
+    };
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var handleBadNetwork = function handleBadNetwork(delay) {
-        var delay = global_loading_timeout * 1000 || 5000;
+        delay = global_loading_timeout * 1000 || 5000;
         var loader = document.querySelector('.loader');
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
             // even can invoke the wx-sdk to close the page
             history.go(-1);
-            loader && (loader.style.display = 'none'); // for strong, need ()
+            // for strong, need ()
+            loader && (loader.style.display = 'none'); /* jshint ignore:line */
         }, delay);
         avalon.badNetworkTimer = badNetworkTimer;
-    }
+    };
 
     //================= bootstrap the app =======================//
 
-    /* global set start */
+    /* global-set start */
     
     // global view change animation, animation.css
     var g_viewload_animation = "a-bounceinR"; 
@@ -57,24 +58,24 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
         question_view_ani: 'a-bounceinL'
 
-    }
+    };
 
     // avalon global static method, get vm-object with vm-name
     avalon.getVM = function(vm) {
         return avalon.vmodels[vm];
-    }
+    };
 
     // avalon global static method, get pure $model for server
     avalon.getPureModel = function(vm) {
         return avalon.vmodels && avalon.vmodels[vm] && avalon.vmodels[vm].$model; // for strong
-    }
+    };
 
     // avalon global static method, get element
     avalon.$ = function(selector) {
         return document.querySelector(selector);
-    }
+    };
 
-    /* global set end */
+    /* global-set end */
 
     /* wxsdk start */
 
@@ -85,9 +86,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
         data: {
             url: url
-        },
-        beforeSend: function(xhr) {
-
         },
         headers: {
             'Authorization': 'Bearer ' + token
@@ -141,7 +139,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                     'chooseCard',
                     'openCard'
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-            })
+            });
         },
         error: function(res) {
             console.log("wx ajax error" + res);
@@ -149,7 +147,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         ajaxFail: function(res) {
             console.log("wx ajaxFial" + res);
         }
-    })
+    });
 
     //wx.ready(function() {
     //    // do all thing here, except user trigger functions(can put in outside)
@@ -305,7 +303,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                 controllerUrl: "scripts/controller/homework/evaluation.js" // 指定控制器地址
             }
         }
-    })
+    });
     //.state("app.report", { // 学业统计报告页面
     //    url: "report", // 
     //    views: {
@@ -363,23 +361,29 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         },
         onLoad: function() { // 切换完成并成功
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
             //avalon.log("3 onLoad" + root.currentPage);
             // 根据state更新标题
             var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
             var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
             //root.currentPage = state1;
-            state2 == void 0 ? root.currentPage = state1 : root.currentPage = state2;
+            state2 === void 0 ? root.currentPage = state1 : root.currentPage = state2; /* jshint ignore:line */
 
-            root.title = acTitle[state1 != void 0 ? state1 : state2];
+            root.title = acTitle[state1 !== void 0 ? state1 : state2];
 
             // next view loaded, remove loader && badNetworkHandler && add view-in animation
             var loader = document.querySelector('.loader');
             setTimeout(function() {
-                loader && (loader.style.display = 'none'); // for strong, need ()
-                avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer);
+                // for strong, need ()
+                loader && (loader.style.display = 'none'); /* jshint ignore:line */
+                avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer); /* jshint ignore:line */
             }, 200);
             var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
-            view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); // for strong
+            // for strong
+            view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
 
             // deal with exception... for strong
             //avalon.vmodels.app.hideDialog();
@@ -409,7 +413,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             var startTime = Date.now(); 
             avalon.appInitTime = startTime;
         }
-    }
+    };
 
-})
+});
 

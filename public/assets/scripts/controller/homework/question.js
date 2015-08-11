@@ -313,6 +313,7 @@ define([], function() {
                 app.$watch('yesOrNo', function(value) {
                     if (value === true) {
                         question.right = true; // right it for next
+                        // key!!! mark!!!
                         avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
                         question.localAnswers.push({localId: '', duration: 0}); // bug fix, also need push
                         question.isDroped = true;

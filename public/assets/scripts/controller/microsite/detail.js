@@ -24,16 +24,16 @@ define([], function() {
         title: "",
         image: '',
         content: "",
-        created: "2015-07-09",
+        created: "2015-07-03",
         shareCount: 88,
         visitCount: 88,
-        likecount: 88,
+        likeCount: 0,
         isShared: false,
         hasLiked: false,
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'posts/' + detail.articleId + '/share',
+                url: apiBaseUrl + 'public/posts/' + detail.articleId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -51,7 +51,7 @@ define([], function() {
         updateLike: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'posts/' + detail.articleId + '/like',
+                url: apiBaseUrl + 'public/posts/' + detail.articleId + '/like',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -79,7 +79,7 @@ define([], function() {
                 return; // core!!! key!!! forget this will getCache and request which is the worst way!
             }
             $http.ajax({
-                url: apiBaseUrl + "posts/" + detail.articleId,
+                url: apiBaseUrl + "public/posts/" + detail.articleId,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -106,7 +106,9 @@ define([], function() {
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
-                            alert('差一点就能完成任务拿积分了!');
+                            if (!detail.isShared) {
+                                alert('差一点就分享成功了!');
+                            }
                         }
                     });
 

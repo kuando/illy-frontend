@@ -1631,6 +1631,7 @@ h1, h2, h3, h4, h5, h6, p {
   width: 100%;
   height: 2px;
   background-color: #6fd801;
+  z-index: 9999;
 }
 
 /* slider start */
@@ -1999,14 +2000,18 @@ a, a:hover {
   text-align: center;
 }
 .detail .pageinfo .like {
-  width: .4rem;
-  height: .4rem;
-  border-radius: 50%;
+  width: .64rem;
+  height: .64rem;
+  /*border-radius: 50%;*/
   color: #747070;
   margin: .2rem auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
 }
-.detail .pageinfo hasLiked {
+.detail .pageinfo .hasLiked {
   color: #00abfd;
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-hasLiked.png);
   /*background: $main-green;*/
 }
 .detail .pageinfo .isShared {

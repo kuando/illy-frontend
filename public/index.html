@@ -129,7 +129,11 @@ h1 {
     var nextUrl = nextMap[next];
 
     if (code) {
-        var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
+        if (next === 'microsite') {
+            var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url) + "&authType=visitor");
+        } else {
+            var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
+        }
         if (!xhr) {
             alert('CORS not supported');
         }

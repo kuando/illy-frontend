@@ -47,6 +47,7 @@ $content-color: #444242;
     width: 100%;
     height: 2px;
     background-color: $main-green;
+    z-index: 9999;
 }
 
 /* slider start */
@@ -436,15 +437,19 @@ a, a:hover {
         text-align: center;
 
         .like {
-            width: .4rem;
-            height: .4rem;
-            border-radius: 50%;
+            width: .64rem;
+            height: .64rem;
+            /*border-radius: 50%;*/
             color: $g_font_color;
             margin: .2rem auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
         }
 
-        hasLiked {
+        .hasLiked {
             color: $main-blue;
+            background-image: url(http://app.hizuoye.com/build/images/iconfont-hasLiked.png);
             /*background: $main-green;*/
         }
 
