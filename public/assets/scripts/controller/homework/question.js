@@ -66,6 +66,7 @@ define([], function() {
         total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
         currentId: 0, // current exerciseId, 当前题id
         userAnswer: '', // 忠实于用户答案, 最多加个trim()
+        duration: 3, // record duration
         localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
         right: null, // 做对与否, 录音题始终设为right(Em~...), 控制一些显隐逻辑(null, true, false)
         hasNext: false, // 是否有下一题？
@@ -129,7 +130,9 @@ define([], function() {
             var endTime = Date.now();
             record.endTime = endTime;
             var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
-            record.duration = duration || 5; // for strong
+            duration = parseInt(duration, 10) || 1;
+            //record.duration = duration || 5; // for strong
+            record.duration = duration; // for strong
             if (duration < 3) { // 小于3秒
                 // alert('对不起，录制时间过短，请重新录制！'); // ios 点击穿透bug... fuck
                 record.showTips();
@@ -173,9 +176,10 @@ define([], function() {
 
                     question.showPlayRecordBtn = true;
                     
-                    var recordTotalTime = avalon.$('.record-total-time'); 
+                    //var recordTotalTime = avalon.$('.record-total-time'); 
                     // 设置录音时长
-                    recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); /* jshint ignore:line */
+                    //recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); [> jshint ignore:line <]
+                    question.duration = record.duration; 
                 }
             });
 
@@ -252,7 +256,7 @@ define([], function() {
                 console.log("不可更改答案!");
                 return;
             }
-            question.stopPlayRecord();
+            question.isRecording && question.stopPlayRecord(); /* jshint ignore:line */
             var detailVM = avalon.getPureModel('detail');
             // if map3, collect info and push to the AudioCollect
             if (question.exercise && question.exercise.eType === 3) {
@@ -268,7 +272,8 @@ define([], function() {
                 
                 question.right = true; // right it for next
                 detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
-                question.localAnswers.push(record.localId); // bug fix, also need push
+                //question.localAnswers.push(record.localId); // bug fix, also need push
+                question.localAnswers.push( {localId: record.localId, duration: question.duration} ); // bug fix, also need push
                 return;
             }
             if (question.userAnswer === '') {
@@ -309,7 +314,7 @@ define([], function() {
                     if (value === true) {
                         question.right = true; // right it for next
                         avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
-                        question.localAnswers.push(''); // bug fix, also need push
+                        question.localAnswers.push({localId: '', duration: 0}); // bug fix, also need push
                         question.isDroped = true;
                         if (question.hasNext) {
                             question.next();
@@ -378,15 +383,6 @@ define([], function() {
             }
 
             question.currentId = params.questionId;
-
-            // clear some record data
-            record.startTime = '';
-            record.endTime = '';
-            record.localId = question.localAnswers[question.currentId - 1] || '';
-            record.remainTimeTimer = null;
-            question.isRecording = false;
-            // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
-            question.userAnswer = question.localAnswers[question.currentId - 1] || '';
             
             //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿,这个不变的东西，不需要在此处动态获取！
             
@@ -394,6 +390,25 @@ define([], function() {
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             question.exercise = exercises[id]; // yes
+
+            // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
+            if (question.exercise.eType === 3) {
+                var localAnswerObj = question.localAnswers[question.currentId - 1] || {localId: '', duration: 0};
+                question.userAnswer = localAnswerObj.localId;
+                question.duration = localAnswerObj.duration;
+
+                // clear some record data
+                record.startTime = '';
+                record.endTime = '';
+                record.localId = question.userAnswer;
+                record.duration = question.duration;
+                record.remainTimeTimer = null;
+                question.isRecording = false;
+
+            } else {
+                question.userAnswer = question.localAnswers[question.currentId - 1] || '';
+            }
+            //question.userAnswer = question.localAnswers[question.currentId - 1] || '';
 
             // 重置题目对错标记
             question.right = (question.exercise.answer ===  question.userAnswer);
