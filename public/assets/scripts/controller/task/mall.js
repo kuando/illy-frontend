@@ -1,7 +1,7 @@
 define([], function() {
 
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
-    var token = localStorage.getItem('illy-token');
+    var token = avalon.illyGlobal.token || localStorage.getItem('illy-token');
     
     //var cachedPrefix = 'illy-task-mall-';
 
@@ -23,11 +23,6 @@ define([], function() {
          *
          */
         fetchRemoteData: function(apiArgs, data, target, type) {
-            //if (mall.visited) {
-            //    //mall.lists = getCachedData(target);
-            //    mall.lists = avalon.getLocalCache(cachedPrefix + target);
-            //    return;
-            //}
             $http.ajax({
                 url: apiBaseUrl + apiArgs,
                 headers: {

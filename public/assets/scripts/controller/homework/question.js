@@ -62,6 +62,7 @@ define([], function() {
     var question = avalon.define({
         $id: "question",
         homeworkId: avalon.vmodels.detail.homeworkId, // 直接取，这种固定值不需要动态获取
+        starter: true, // start answer the question flag
         exercise: {}, // 本题所有数据
         total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
         currentId: 0, // current exerciseId, 当前题id
@@ -268,10 +269,12 @@ define([], function() {
                 if (audioAnswer === '') {
                     question.dropRecordQuestionConfirm();
                     return;
+                } else {
+                    question.right = true; // right it for next
+                    alert(audioAnswer);
+                    detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
                 }
                 
-                question.right = true; // right it for next
-                detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
                 //question.localAnswers.push(record.localId); // bug fix, also need push
                 question.localAnswers.push( {localId: record.localId, duration: question.duration} ); // bug fix, also need push
                 return;
@@ -314,7 +317,7 @@ define([], function() {
                     if (value === true) {
                         question.right = true; // right it for next
                         // key!!! mark!!!
-                        avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
+                        // avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
                         question.localAnswers.push({localId: '', duration: 0}); // bug fix, also need push
                         question.isDroped = true;
                         if (question.hasNext) {
@@ -333,7 +336,6 @@ define([], function() {
     });
 
     var hasRequestRecordAuth= false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
-    var starter = true; // 做题开始计时标记，使得开始仅执行一次
     return avalon.controller(function($ctrl) {
 
         //var rootView = document.querySelector('.app');
@@ -345,9 +347,11 @@ define([], function() {
 
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() { 
-            // 统计做题开始时间
-            starter && ( avalon.vmodels.detail.questionStartTime = Date.now() ); /* jshint ignore:line */
-            starter = false;
+
+            if (avalon.vmodels.question.starter) {
+                avalon.vmodels.detail.questionStartTime = Date.now(); 
+                avalon.vmodels.question.starter = false; // 重置为true的时候只有到列表页,为了保险。
+            }  
 
             var question = avalon.$('.question');
             var win_height = document.documentElement.clientHeight;
@@ -359,11 +363,13 @@ define([], function() {
             setTimeout(function() {
                 answerPanel && (answerPanel.style.left = '0'); /* jshint ignore:line */
             }, 1600);
+
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
 
+            //question.starter = true; // 做题开始计时标记，使得开始仅执行一次
             question.isDroped = false;
 
             // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）

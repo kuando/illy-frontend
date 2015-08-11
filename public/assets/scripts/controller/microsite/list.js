@@ -3,7 +3,7 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
     var token = avalon.illyGlobal.token;
-    if (token == void 0) {
+    if (token === void 0) {
         avalon.log("Error, no token!");
         alert('对不起，系统错误，请退出重试！');
     }
@@ -35,17 +35,17 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 data: data,
-                success: function(res) {
-                    type == 'concat' ? list[target] = list[target].concat(res) : list[target] = res;
+                success: function(res) { /* jshint ignore:line */
+                    type === 'concat' ? list[target] = list[target].concat(res) : list[target] = res; /* jshint ignore:line */
                     avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, res); // illy-microsite-11111-lists
                 },
-                error: function(res) {
+                error: function(res) { /* jshint ignore:line */
                     console.log('list.js ajax error when fetch data');
                 },
-                ajaxFail: function(res) {
+                ajaxFail: function(res) { /* jshint ignore:line */
                     console.log('list.js ajax failed when fetch data');
                 }
-            })
+            });
         },
         showMore: function(e) {
             e.preventDefault();
@@ -66,27 +66,28 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 进入视图
         $ctrl.$onEnter = function(params) {
             list.visited = avalon.vmodels.root.currentIsVisited;
 
             list.categoryId = params.categoryId; // get postId
             //avalon.vmodels.root.title = params.categoryName; // set action bar title again drop in 20150724
-            if (list.categoryId == 'hots') {
+            if (list.categoryId === 'hots') {
                 list.btnShowMore = false;
-                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists')
+                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists');
                 return ;
             }
-            list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; // otherwise, show it
+            // otherwise, show it
+            list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; /* jshint ignore:line */
             list.fetchRemoteData('categories/' + list.categoryId + '/posts', {}, 'lists');
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

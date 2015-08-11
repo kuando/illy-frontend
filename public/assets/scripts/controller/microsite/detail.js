@@ -3,7 +3,7 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
     var token = avalon.illyGlobal.token;
-    if (token == void 0) {
+    if (token === void 0) {
         avalon.log("Error, no token!");
         alert('对不起，系统错误，请退出重试！');
     }
@@ -55,7 +55,7 @@ define([], function() {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function(res) {
+                success: function(res) { /* jshint ignore:line */
                     var likeCount = detail.likeCount || 0;
                     detail.likeCount = ++likeCount;
                 },
@@ -154,6 +154,7 @@ define([], function() {
             var isLiked = avalon.getLocalCache(cachedPrefix + detail.articleId + '-like');
             if (isLiked === 'hasLiked') {
                 detail.hasLiked = true;
+                ++detail.likeCount; // 既然已经点过赞，那么就不用缓存的原始数据，而要加1
             } else {
                 detail.hasLiked = false;
             }
@@ -163,7 +164,7 @@ define([], function() {
         $ctrl.$onBeforeUnload = function() {
 
         };
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
 

@@ -38,9 +38,14 @@ define([], function() {
 
             var question = avalon.$('.question');
             var win_height = document.documentElement.clientHeight;
+            var answerPanel = avalon.$('.answer-panel');
             setTimeout(function() {
-                question && (question.style.height = win_height + 'px');
+                question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
             }, 16);
+            answerPanel && (answerPanel.style.left = '1px'); /* jshint ignore:line */
+            setTimeout(function() {
+                answerPanel && (answerPanel.style.left = '0'); /* jshint ignore:line */
+            }, 1600);
 
         };
         // 进入视图, 对复用的数据进行重置或清空操作！

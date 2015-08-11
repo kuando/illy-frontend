@@ -75,7 +75,7 @@ define([], function() {
                 success: function(res) {
                     var target = avalon.vmodels.detail.$model.result;
                     target.rightAward = res.rightAward;
-                    target.finishAward = res.finishAward;
+                    target.finishedAward = res.finishedAward;
                     target.totalAward = res.totalAward;
                     target.rightCount = res.rightCount;
                     target.wrongCount = res.wrongCount;
@@ -108,7 +108,7 @@ define([], function() {
         },
         dropCurrentDoneComfirm: function() { // confirm 
             var app = avalon.vmodels.app; 
-            app.showConfirm('message from detail ctrl');
+            app.showConfirm('您确定放弃本次作业？');
         },
         back: back,
         isBack: false // 防止重复执行back函数，因为点击会调用，同时页面销毁回调也注册了back方法(对付手机原生后退)，重复执行了
