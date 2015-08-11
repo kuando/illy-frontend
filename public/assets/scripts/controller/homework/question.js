@@ -262,8 +262,8 @@ define([], function() {
                 // mark!!! set the question.userAnswer!!!!!!!!!!!!
                 var audioAnswer = question.userAnswer;
                 if (audioAnswer === '') {
-                    //question.dropRecordQuestionConfirm();
-                    //return;
+                    question.dropRecordQuestionConfirm();
+                    return;
                 }
                 
                 question.right = true; // right it for next
@@ -311,7 +311,14 @@ define([], function() {
                         avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
                         question.localAnswers.push(''); // bug fix, also need push
                         question.isDroped = true;
-                        question.next();
+                        if (question.hasNext) {
+                            question.next();
+                        } else {
+                            question.submit();
+                        }
+                    } else {
+                        app.$unwatch("yesOrNo");
+                        //avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId});
                     }
                 });
 
@@ -391,9 +398,9 @@ define([], function() {
             // 重置题目对错标记
             question.right = (question.exercise.answer ===  question.userAnswer);
 
-            // play record btn
-            if (question.localAnswers.length < question.currentId) {
-                question.showPlayRecordBtn = false;
+            // play record btn, 至少一定是后退才能看到
+            if ( question.localAnswers.length < question.currentId ) {
+                question.showPlayRecordBtn = false; 
             } else {
                 question.showPlayRecordBtn = true;
             }

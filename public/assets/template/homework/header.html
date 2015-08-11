@@ -1,6 +1,6 @@
-<div class="yo-header" id="header" ms-class-1="hide: currentPage == 'question' || currentPage == 'wrong' || currentPage == 'result'">
+<div class="yo-header" id="header" ms-class-1="hide: currentPage == 'question' || currentPage == 'wrong'">
     <h2 class="title">{{title}}</h2>
-    <span class="regret yo-ico" ms-if=" currentPage != 'list' " ms-click="back()">&#xf07d;</span>
+    <span class="regret yo-ico" ms-if=" currentPage != 'list' && currentPage != 'result' " ms-click="back()">&#xf07d;</span>
     <a class="affirm" href="#!/" ms-if=" currentPage != 'list' ">首页</a>
 </div>
 
