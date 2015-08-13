@@ -7,7 +7,7 @@
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="lists">
             <div ms-click="goWrong(this)" ms-attr-data-homeworkId="item._id" class="list-card">
-                <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">
+                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image" ms-attr-alt="item.title">
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
                     <span class="time">作业完成时间: {{item.finishedTime| date("yyyy.MM.dd")}}</span>
