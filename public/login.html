@@ -222,7 +222,7 @@ function toApp() {
             // location.href = next + '.html?token=' + xhr.responseText;
             if (localStorage && localStorage.getItem) {
                 localStorage.setItem('illy-token', xhr.responseText);
-                location.replace(next + '.html'); // pure url
+                location.replace(next); // pure url
             }
         } else {
             alert("request state error not 200 ok" + xhr.response + "status is: " + status);

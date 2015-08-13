@@ -5,7 +5,20 @@
     > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
 
-@import "../Yo/lib/core/reset.scss";
+/*@import "../Yo/lib/core/reset.scss";*/
+
+@font-face {
+  font-family: yofont;
+  src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
+}
+.yo-ico {
+  font-family: yofont !important; 
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
@@ -152,8 +165,8 @@ ul, .unstyled {
 }
 html, body {
     width: 100%;
-    /*height: 100%;*/
     font-size: 100px; /* for global rem */
+    line-height: 1.5;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -175,6 +188,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: .16rem;
     display: inline-block;
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: 100%;
     vertical-align: middle;
     margin-right: .05rem;

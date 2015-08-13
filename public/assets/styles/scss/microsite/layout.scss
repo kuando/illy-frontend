@@ -40,11 +40,12 @@ $content-color: #444242;
         display: none;
         margin: .1rem 0 0 0;
         width: 100%;
-        height: .44rem;
-        line-height: .44rem;
+        height: .50rem;
+        line-height: .50rem;
         bottom: 0;
         left: 0;
         background-color: #060606;
+        opacity: .9;
         color: whitesmoke;
         font-weight: bold;
     }
@@ -401,7 +402,7 @@ a, a:hover {
 
     .title {
         font-size: .22rem;
-        margin: .12rem 0 .12rem 0;
+        padding: .12rem 0 .12rem 0; /* fix top-striped first in render bug, should not use margin, 20150813 */
         line-height: 1.3;
     }
 
@@ -448,13 +449,13 @@ a, a:hover {
         text-align: center;
 
         .like {
-            width: .64rem;
-            height: .64rem;
-            /*border-radius: 50%;*/
+            width: .48rem;
+            height: .48rem;
             color: $g_font_color;
             margin: .05rem auto;
-            background-size: 100%;
+            background-size: 75%;
             background-repeat: no-repeat;
+            background-position: center center;
             background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
         }
 
@@ -466,7 +467,7 @@ a, a:hover {
             margin: .1rem auto;
         }
         .like-num-update {
-            color: $main-green;
+            /*color: $main-green;*/
         }
 
         .isShared {
