@@ -2,8 +2,8 @@ define([], function() {
 
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
+    var token = avalon.illyGlobal.token;
 
-    //var token = avalon.illyGlobal.token;
     //if (token === void 0) {
     //    avalon.log("Error, no token!");
     //    alert('对不起，系统错误，请退出重试！');
@@ -56,7 +56,7 @@ define([], function() {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function(res) { /* jshint ignore:line */
+                success: function() { 
                     var likeCount = detail.likeCount || 0;
                     detail.likeCount = ++likeCount;
                 },
@@ -131,16 +131,14 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             
-            // outer user will no header to go in inner system
-            //if (avalon.getVM('index') == void 0) { avalon.$('.yo-header').style.display = 'none'; }
-
             avalon.$('.gotop').onclick = function() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
             };
 
             setTimeout(function() {
-                avalon.$('#gotop').style.display = 'block';
+                var gotop = avalon.$('#gotop');
+                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
             }, 3000);
 
         };

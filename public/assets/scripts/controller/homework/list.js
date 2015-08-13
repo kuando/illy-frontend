@@ -56,12 +56,13 @@ define([], function() {
             //avalon.log("leave list");
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) { /* jshint ignore:line */
+        $ctrl.$onEnter = function() {
+            //avalon.vmodels.app.hideConfirm(); // for strong
+            
             // remove cache in detail ctrl
             list.fetchData('homework');
             list.fetchData('previews');
 
-            avalon.vmodels.app.hideConfirm(); // for strong
             if (avalon.vmodels.question !== void 0) { // fix in 20150811
                 // 可以开启做题时间统计的标记, 自己第一次进入是true，同时唯一在此处开启
                 avalon.vmodels.question.starter = true;

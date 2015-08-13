@@ -30,20 +30,31 @@ $content-color: #444242;
 }
 
 .site {
-    min-height: 450px; /* for layout, footer is footer */
+    min-height: 5.5rem; /* for layout */
 
     &, &-footer {
         font-size: .14rem;
     }
 
     &-footer {
-        margin: .2rem;
+        display: none;
+        margin: .1rem 0 0 0;
+        width: 100%;
+        height: .44rem;
+        line-height: .44rem;
+        bottom: 0;
+        left: 0;
+        background-color: #060606;
+        color: whitesmoke;
+        font-weight: bold;
     }
 } 
 
 /* global striped */
 .top-striped {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 2px;
     background-color: $main-green;

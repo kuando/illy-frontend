@@ -12,6 +12,7 @@ define([], function() {
     var cachedPrefix = 'illy-microsite-list-';
     // cache the view data
     
+    // cache flag
     var needCache = true;
 
     var limit = 6; // 一次抓取多少数据

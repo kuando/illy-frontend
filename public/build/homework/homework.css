@@ -911,7 +911,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
-  background-color: #fff;
+  background-color: #f6f6f6;
   color: #747070;
   font-size: .14rem;
 }
@@ -1127,7 +1127,7 @@ h1, h2, h3, h4, h5, h6, p {
   left: 0;
   background: #888;
   opacity: 0.5;
-  z-index: 99999;
+  z-index: 10000;
   -webkit-transform: translateZ(0);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
@@ -1138,15 +1138,15 @@ h1, h2, h3, h4, h5, h6, p {
   display: block;
   position: fixed;
   overflow: hidden;
-  z-index: 100000;
-  width: 2.5rem;
+  z-index: 99999;
+  width: 80%;
   height: auto;
-  top: 1.5rem;
+  top: 40%;
   left: 50%;
-  margin-left: -1.25rem;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  background-color: white;
-  -webkit-transform: translateZ(0);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-tap-highlight-color: #fff;
+  background-color: #fff;
   -webkit-user-select: none;
   -webkit-user-drag: none;
 }
@@ -1199,8 +1199,12 @@ background-image: url("../../icons-36-white.png");
 }
 
 .ui-dialog .ui-dialog-content {
-  padding: .1rem;
+  padding: .05rem;
   position: relative;
+}
+
+.ui-dialog .ui-dialog-content p {
+  font-size: .16rem;
 }
 
 .ui-dialog-btns {

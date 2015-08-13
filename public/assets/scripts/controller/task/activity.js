@@ -23,8 +23,8 @@ define([], function() {
     // inner function 
     // arr = ['name', 'age'];
     // ==>
-    // arr = [ {key: 'xxx', value: 'xxx'}, {key: 'xxx', value: 'xxx'} ]; 
-    var arrayToJSON = function arrayToJSON(source) {
+    // arr = [ {key: 'name', value: 'xxx'}, {key: 'age', value: 'xxx'} ]; 
+    var dataAdapter= function dataAdapter(source) {
         var arr = copyArr(source);
         for (var i = 0, len = arr.length; i < len; i++) {
             arr[i] = {
@@ -32,7 +32,11 @@ define([], function() {
                 value: arr[i]
             };
         }
-        return arr;
+        return {
+            name: source[0],
+            phone: source[1],
+            others: arr
+        };
     };
     
     var activity = avalon.define({
@@ -103,7 +107,8 @@ define([], function() {
                     activity.deadline = json.deadline;
                     activity.shareCount = json.shareCount;
                     activity.visitCount = json.visitCount;
-                    activity.infoCollect = json.infoCollect; // array
+                    json.infoCollect.unshift('姓名', '电话'); // array
+                    activity.infoCollect = json.infoCollect;
                     for (var i = 0, len = activity.infoCollect.length; i < len; i++) {
                         activity.infoCollect[i] = '';
                     }
@@ -143,7 +148,7 @@ define([], function() {
                     'Authorization': 'Bearer ' + token
                 },
                 data: {
-                    info: arrayToJSON(activity.infoCollect) // array(key-string) to a array({key-value})
+                    info: dataAdapter(activity.infoCollect) // array([key1, key2]) to a array({key1: value1}, {key2, value2})
                 },
                 success: function(res) { /* jshint ignore:line */
                     activity.isDone = true;

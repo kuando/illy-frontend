@@ -15,13 +15,16 @@ define([], function() {
                 if (value === true) {
                     //history.go(-1);
                     avalon.router.go('app.list');
-                    detail.isBack = true;
+                    //detail.isBack = true;
                     return ;
+                } 
+                else {
+                    app.$unwatch("yesOrNo");
                 }
             });
 
         } else {
-            detail.isBack = true;
+            //detail.isBack = true;
             //history.go(-1);
             avalon.router.go('app.list');
             return ;
@@ -104,14 +107,14 @@ define([], function() {
 
             detail.isDone = false;
             detail.isDoing = false;
-            detail.isBack = false;
+            //detail.isBack = false;
         },
         dropCurrentDoneComfirm: function() { // confirm 
             var app = avalon.vmodels.app; 
             app.showConfirm('您确定放弃本次作业？');
         },
-        back: back,
-        isBack: false // 防止重复执行back函数，因为点击会调用，同时页面销毁回调也注册了back方法(对付手机原生后退)，重复执行了
+        back: back
+        //isBack: false // 防止重复执行back函数，因为点击会调用，同时页面销毁回调也注册了back方法(对付手机原生后退)，重复执行了
     });
 
     return avalon.controller(function($ctrl) {
@@ -126,7 +129,8 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            !detail.isBack && detail.back(); /* jshint ignore:line */ 
+            // 此处虽然可以同样监听到浏览器原生后退，但一定后退，无法阻止(除了alert), 就显得鸡肋了
+            // !detail.isBack && detail.back(); /* jshint ignore:line */ 
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
