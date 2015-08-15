@@ -7,7 +7,7 @@
         <!-- task列表 start -->
         <div class="item area list-card" ms-repeat-item="lists">
             <div ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
-                <img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.name">
+                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image" ms-attr-alt="item.name">
                 <div class="task-content area">
                     <h2 class="item-title task-info">{{item.name}}</h2>
                     <div class="task-info">内容: 2015秋季招生好礼送不停</div>

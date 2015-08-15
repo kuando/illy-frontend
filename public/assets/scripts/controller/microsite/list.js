@@ -21,12 +21,14 @@ define([], function() {
         $id: "list",
         visited: false, // first in, no data
         lists: [], 
+        categories: [], // 分类列表，用于栏目间快速跳转
         categoryId: 111111111111111111111111,
         title: 'title', // 本来是想这个页面url带来栏目名，重写action上的title，结果url带中文不行。暂时没用，先留着吧
         offset: 0, // inner var, to fetch data with offset and limit
         btnShowMore: true,
-        fetchRemoteData: function(apiArgs, data, target, type) { // only ctrl function to fetch data with api
-            if (list.visited && needCache) {
+        fetchRemoteData: function(apiArgs, data, target, type, cached) { // only ctrl function to fetch data with api
+            if (cached === void 0) { cached = true; }
+            if (list.visited && needCache && cached) {
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
                 return;
             }
@@ -38,7 +40,9 @@ define([], function() {
                 data: data,
                 success: function(res) { /* jshint ignore:line */
                     type === 'concat' ? list[target] = list[target].concat(res) : list[target] = res; /* jshint ignore:line */
-                    avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, res); // illy-microsite-11111-lists
+                    if (cached) {
+                        avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, res); // illy-microsite-11111-lists
+                    }
                 },
                 error: function(res) { /* jshint ignore:line */
                     console.log('list.js ajax error when fetch data');
@@ -61,7 +65,10 @@ define([], function() {
             list.fetchRemoteData('categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', 'concat');
         }
 
-    });
+    }); // end of define
+
+    // fetch data just once...
+    list.fetchRemoteData('categories/', {}, 'categories', false); // no cached
 
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
@@ -70,6 +77,11 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function(params) {
+
+            setTimeout(function() {
+                $('#nav').navigator();
+            }, 1000);
+
             list.visited = avalon.vmodels.root.currentIsVisited;
 
             list.categoryId = params.categoryId; // get postId
@@ -77,11 +89,14 @@ define([], function() {
             if (list.categoryId === 'hots') {
                 list.btnShowMore = false;
                 list.fetchRemoteData('posts/hot?limit=10', {}, 'lists');
+                list.fetchRemoteData('categories', {}, 'categories');
                 return ;
             }
             // otherwise, show it
             list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; /* jshint ignore:line */
+
             list.fetchRemoteData('categories/' + list.categoryId + '/posts', {}, 'lists');
+
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

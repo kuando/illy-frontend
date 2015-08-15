@@ -24,11 +24,11 @@ define([], function() {
     // arr = ['name', 'age'];
     // ==>
     // arr = [ {key: 'name', value: 'xxx'}, {key: 'age', value: 'xxx'} ]; 
-    var dataAdapter = function dataAdapter(source) {
+    var dataAdapter= function dataAdapter(source) {
         var arr = copyArr(source);
         for (var i = 2, len = arr.length; i < len; i++) {
             arr[i] = {
-                key: activity.CopyinfoCollect[i],
+                key: activity.CopyinfoCollect[i], 
                 value: arr[i]
             };
         }
@@ -39,18 +39,16 @@ define([], function() {
         return {
             name: source[0],
             phone: source[1],
-            others: infoJSON
+            others: infoJSON 
         };
     };
-
+    
     var activity = avalon.define({
         $id: "activity",
         visited: false,
-
         isDone: false,
         isCancel: false,
         isFilling: false,
-        
         taskId: 1,
         scoreAward: 10,
         address: '',
@@ -58,20 +56,16 @@ define([], function() {
         startTime: '',
         endTime: '',
         deadline: '',
-
         shareCount: 88,
         visitCount: 88,
-        likeCount: 0,
-
         infoCollect: [],
         CopyinfoCollect: [],
         theme: '',
-
         isShared: false,
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/activities/' + activity.taskId + '/share',
+                url: apiBaseUrl + 'tasks/' + activity.taskId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -86,96 +80,23 @@ define([], function() {
                 }
             });
         },
-
-        hasLiked: false,
-        updateLike: function() {
-            $http.ajax({
-                method: 'PUT',
-                url: apiBaseUrl + 'public/posts/' + activity.taskId+ '/like',
-                headers: {
-                    Authorization: 'Bearer ' + token
-                },
-                success: function() {
-                    var likeCount = activity.likeCount || 0;
-                    activity.likeCount = ++likeCount;
-                },
-                error: function(res) {
-                    console.log(res);
-                },
-                ajaxFail: function(res) {
-                    console.log(res);
-                }
-            });
-        },
-        like: function() {
-            // http 
-            activity.updateLike();
-            // local
-            avalon.setLocalCache(cachedPrefix + activity.taskId+ '-like', 'hasLiked');
-            // ui
-            activity.hasLiked = true;
-        },
-
-        filling: function() {
-            activity.isFilling = true;
-        },
-        cancel: function() {
-            activity.isCancel = true;
-            activity.isFilling = false;
-        },
-        pushInfo: function() {
-            var validPhone = function invalidPhone(phone) {
-                return /^\d{3,}$/.test(phone); // mark!!! 
-            };
-
-            var valid = activity.infoCollect[0] !== '' && validPhone(activity.infoCollect[1]);
-            if (!valid) {
-                alert('请填写信息完整，格式正确的报名信息，谢谢!');
-                return;
-            }
-
-            $http.ajax({
-                method: 'POST',
-                url: apiBaseUrl + 'public/activities/' + activity.taskId + '/info',
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: dataAdapter(activity.infoCollect), // array([key1, key2]) to a array({key1: value1}, {key2, value2})
-                success: function(res) { /* jshint ignore:line */
-                    activity.isDone = true;
-                    activity.isFilling = false;
-                    // 缓存报名信息
-                    avalon.setLocalCache(cachedPrefix + activity.taskId + '-isSignUp', 'signUp');
-                },
-                error: function(res) {
-                    console.log(res);
-                    //activity.infoCollect = act
-                },
-                ajaxFail: function(res) {
-                    console.log(res);
-                }
-            });
-        },
-
         fetchData: function() {
             if (activity.visited && activity.hasData) {
                 var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId);
-                activity.taskId = localCache._id;
-                activity.address = localCache.address;
-                activity.content = localCache.content;
-                activity.startTime = localCache.startTime;
-                activity.endTime = localCache.endTime;
-                activity.deadline = localCache.deadline;
-                activity.shareCount = localCache.shareCount;
-                activity.visitCount = localCache.visitCount;
-                activity.infoCollect = localCache.infoCollect[0];
-                activity.CopyinfoCollect = localCache.infoCollect[0];
-                activity.theme = localCache;
-
+                    activity.taskId = localCache._id;
+                    activity.address = localCache.address;
+                    activity.content = localCache.content;
+                    activity.startTime = localCache.startTime;
+                    activity.endTime = localCache.endTime;
+                    activity.deadline = localCache.deadline;
+                    activity.shareCount = localCache.shareCount;
+                    activity.visitCount = localCache.visitCount;
+                    activity.infoCollect = localCache.infoCollect[0];
+                    activity.CopyinfoCollect = localCache.infoCollect[0];
+                    activity.theme = localCache;
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
-                //url: apiBaseUrl + "public/activities/" + activity.taskId,
                 url: apiBaseUrl + "tasks/" + activity.taskId,
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -203,13 +124,13 @@ define([], function() {
                         title: activity.title, // 分享标题
                         link: '', // 分享链接
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
-                        success: function() {
+                        success: function () { 
                             // 不管成功与否，前台界面至少先更新
                             activity.shareCount++;
                             activity.isShared = true;
                             activity.updateShare();
                         },
-                        cancel: function() {
+                        cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             alert('差一点就能完成任务拿积分了!');
                         }
@@ -217,9 +138,46 @@ define([], function() {
 
                 }
             });
-        } // end of fetch data
+        }, // end of fetch data
+        pushInfo: function() {
 
-    }); // end of define
+            var validPhone = function invalidPhone(phone) {
+                return /^\d{3,}$/.test(phone); // mark!!! 
+            };
+
+            var valid = activity.infoCollect[0] !== '' && validPhone(activity.infoCollect[1]);
+            if (!valid) { alert('请填写信息完整，格式正确的报名信息，谢谢!'); return; }
+
+            $http.ajax({
+                method: 'POST',
+                url: apiBaseUrl + 'activities/' + activity.taskId + '/info',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: dataAdapter(activity.infoCollect), // array([key1, key2]) to a array({key1: value1}, {key2, value2})
+                success: function(res) { /* jshint ignore:line */
+                    activity.isDone = true;
+                    activity.isFilling = false;
+                    // 缓存报名信息
+                    avalon.setLocalCache(cachedPrefix + activity.taskId + '-isSignUp', 'signUp');
+                },
+                error: function(res) {
+                    console.log(res);
+                    //activity.infoCollect = act
+                },
+                ajaxFail: function(res) {
+                    console.log(res);
+                }
+            });
+        },
+        filling: function() {
+            activity.isFilling = true;
+        },
+        cancel: function() {
+            activity.isCancel = true;
+            activity.isFilling = false;
+        } 
+    });
 
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成

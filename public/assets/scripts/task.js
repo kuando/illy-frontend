@@ -207,6 +207,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         currentPage: "", // spec-stateName
         currentIsVisited: false, // useful for most child view
         title: "", // 每一页action bar的标题   
+        footerInfo: 'kuando Inc', // first in get the info, rendered in page footer
         back: function() {
             history.go(-1);
         }

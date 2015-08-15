@@ -13,7 +13,8 @@ define([], function() {
             setTimeout(function() {
                 document.querySelector('#splash').style.display = 'none';
             }, avalon.splashShowTime);
-            document.querySelector('#loading-before-site').style.display = 'none';
+            // drop in 20150815
+            //document.querySelector('#loading-before-site').style.display = 'none';
 
         };
         // 进入视图

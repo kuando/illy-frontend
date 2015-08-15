@@ -15,6 +15,9 @@ define([], function() {
     // prefix of localStorage
     var cachedPrefix = 'illy-microsite-detail-';
 
+    // resource prefix
+    var resourcePrefix = 'http://resource.hizuoye.com/';
+
     // cache the view data
     var needCache = true;
     
@@ -26,11 +29,12 @@ define([], function() {
         image: '',
         content: "",
         created: "2015-07-03",
+
         shareCount: 88,
         visitCount: 88,
         likeCount: 0,
+
         isShared: false,
-        hasLiked: false,
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
@@ -49,6 +53,8 @@ define([], function() {
                 }
             });
         },
+        
+        hasLiked: false,
         updateLike: function() {
             $http.ajax({
                 method: 'PUT',
@@ -68,11 +74,20 @@ define([], function() {
                 }
             });
         },
+        like: function() {
+            // http 
+            detail.updateLike();
+            // local
+            avalon.setLocalCache(cachedPrefix + detail.articleId + '-like', 'hasLiked');     
+            // ui
+            detail.hasLiked = true;
+        },
+
         fetchData: function() {
             if (detail.visited && needCache) {
                 var localCache = avalon.getLocalCache(cachedPrefix + detail.articleId);
                 detail.title = localCache.title;
-                detail.image = localCache.image;
+                detail.image = resourcePrefix + localCache.image;
                 detail.content = localCache.content;
                 detail.created = localCache.created;
                 detail.shareCount = localCache.shareCount;
@@ -88,7 +103,7 @@ define([], function() {
                 dataType: "json",
                 success: function(json) {
                     detail.title = json.title;
-                    detail.image = json.image;
+                    detail.image = resourcePrefix + json.image;
                     detail.content = json.content;
                     detail.created = json.created;
                     detail.shareCount = json.shareCount;
@@ -116,16 +131,9 @@ define([], function() {
 
                 }
             });
-        }, // end of fetch data
-        like: function() {
-            // http 
-            detail.updateLike();
-            // local
-            avalon.setLocalCache(cachedPrefix + detail.articleId + '-like', 'hasLiked');     
-            // ui
-            detail.hasLiked = true;
-        }
-    });
+        } // end of fetch data
+
+    }); // end of define
 
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
@@ -160,7 +168,7 @@ define([], function() {
 
         };
         // 对应的视图销毁前
-        $ctrl.$onBeforeUnload = function() {
+        $ctrl.$onBeforeUnload = function() {  
 
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)

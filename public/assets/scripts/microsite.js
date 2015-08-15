@@ -4,7 +4,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.wx = wx;
 
     // splash show time config
-    var splash_show_time = 6; // ms
+    var splash_show_time = 1; // ms
     avalon.splashShowTime = splash_show_time;
 
     // global loading timeout

@@ -484,6 +484,21 @@ h1, h2, h3, h4, h5, h6, p {
   font-weight: normal;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+big,
+input,
+textarea,
+button,
+select {
+  font-size: inherit;
+}
+
 .icon {
   width: .16rem;
   height: .16rem;
@@ -773,7 +788,7 @@ h1, h2, h3, h4, h5, h6, p {
   /*bottom: 6px;*/
   /*right: 0;*/
   position: relative;
-  top: -.3rem;
+  top: -.25rem;
   padding: 0 .06rem;
   /*text-align: right;*/
 }
@@ -852,6 +867,121 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 /* slider end */
+/* navigator start */
+/** 一级导航样式 */
+.left-fixed {
+  display: -webkit-box;
+}
+
+.left-fixed > div {
+  display: -webkit-box;
+  -webkit-box-flex: 1;
+}
+
+.left-fixed > div.left {
+  padding: 0 .1rem;
+  -webkit-box-flex: 0;
+  line-height: .34rem;
+  background-color: #efeded;
+}
+
+.left-fixed > div.left a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  font-size: .16rem;
+}
+
+.left-fixed > div.left a.ui-state-active {
+  background: #0c4da8;
+}
+
+.ui-scroller {
+  float: left;
+}
+
+.ui-navigator {
+  background: #efeded;
+  height: .34rem;
+}
+
+.ui-navigator-list {
+  width: 100%;
+  display: -webkit-box;
+}
+
+.ui-navigator-list li {
+  line-height: 34px;
+  font-size: 16px;
+  /*font-weight: bold;*/
+  text-align: center;
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.ui-navigator-list li a {
+  text-decoration: none;
+  color: #838383;
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.ui-navigator-list li.ui-state-hover,
+.ui-navigator-list li.ui-state-active {
+  background: #efeded;
+}
+.ui-navigator-list li.ui-state-hover a,
+.ui-navigator-list li.ui-state-active a {
+  color: #98D289;
+}
+
+.ui-scroller {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  /*重要，靠他让宽度由子节点撑开*/
+}
+
+.ui-scroller .ui-navigator-list {
+  display: table;
+  table-layout: fixed;
+  /*宽度可控*/
+  white-space: nowrap;
+  /*内容不换行*/
+  width: auto;
+}
+
+.ui-scroller .ui-navigator-list:after {
+  content: '';
+  clear: both;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.ui-scroller .ui-navigator-list li {
+  display: inline-block;
+  /*float: left;*/
+}
+
+.ui-navigator-list,
+.ui-navigator-list li {
+  list-style: none;
+}
+
+.ui-navigator-list li {
+  display: inline-block;
+  white-space: nowrap;
+  /*内容不换行*/
+}
+
+/* navigator start */
 a, a:hover {
   text-decoration: none;
   color: #747070;
@@ -1017,6 +1147,8 @@ a, a:hover {
 
 /* list end */
 /* detail start */
+/* vars start */
+/* vars end */
 .detail {
   color: #1c1c1c;
   padding: 0 .16rem;

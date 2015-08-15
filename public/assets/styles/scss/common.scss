@@ -183,6 +183,21 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0;
     font-weight: normal;
 }
+// 1. 为不继承的元素设定继承父级字号
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+big,
+input,
+textarea,
+button,
+select {
+    font-size: inherit;
+}
 .icon {
     width: .16rem;
     height: .16rem;
