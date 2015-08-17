@@ -94,7 +94,6 @@ define([], function() {
                     article.shareCount = json.shareCount;
                     article.visitCount = json.visitCount;
                     article.likeCount = json.like || 0;
-                    //localStorage.setItem(cachedPrefix + article.taskId, JSON.stringify(json));
                     avalon.setLocalCache(cachedPrefix + article.taskId, json);
 
                     wx.onMenuShareTimeline({
@@ -109,7 +108,9 @@ define([], function() {
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
-                            alert('差一点就能完成任务拿积分了!');
+                            if (!article.isShared) {
+                                alert('差一点就分享成功了!');
+                            }
                         }
                     });
 
@@ -141,6 +142,14 @@ define([], function() {
             article.visited = avalon.vmodels.root.currentIsVisited;
             article.isShared = false; // overwrite it
             article.fetchData();
+
+            var isLiked = avalon.getLocalCache(cachedPrefix + article.taskId+ '-like');
+            if (isLiked === 'hasLiked') {
+                article.hasLiked = true;
+                ++article.likeCount; // 既然已经点过赞，那么就不用缓存的原始数据，而要加1
+            } else {
+                article.hasLiked = false;
+            }
 
         };
         // 对应的视图销毁前

@@ -46,6 +46,7 @@ define([], function() {
     var activity = avalon.define({
         $id: "activity",
         visited: false,
+        theme: '',
 
         isDone: false,
         isCancel: false,
@@ -65,7 +66,6 @@ define([], function() {
 
         infoCollect: [],
         CopyinfoCollect: [],
-        theme: '',
 
         isShared: false,
         updateShare: function() {
@@ -160,7 +160,8 @@ define([], function() {
         fetchData: function() {
             if (activity.visited && activity.hasData) {
                 var localCache = avalon.getLocalCache(cachedPrefix + activity.taskId);
-                activity.taskId = localCache._id;
+                //activity.taskId = localCache._id;
+                activity.theme = localCache.theme;
                 activity.address = localCache.address;
                 activity.content = localCache.content;
                 activity.startTime = localCache.startTime;
@@ -171,7 +172,6 @@ define([], function() {
                 activity.likeCount = localCache.like || 0;
                 activity.infoCollect = localCache.infoCollect[0];
                 activity.CopyinfoCollect = localCache.infoCollect[0];
-                activity.theme = localCache;
 
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
@@ -183,7 +183,8 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(json) {
-                    activity.taskId = json._id;
+                    //activity.taskId = json._id;
+                    activity.theme = json.theme;
                     activity.address = json.address;
                     activity.content = json.content;
                     activity.startTime = json.startTime;
@@ -202,7 +203,7 @@ define([], function() {
                     avalon.setLocalCache(cachedPrefix + activity.taskId, json);
 
                     wx.onMenuShareTimeline({
-                        title: activity.title, // 分享标题
+                        title: activity.theme, // 分享标题
                         link: '', // 分享链接 
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function() {
@@ -213,7 +214,9 @@ define([], function() {
                         },
                         cancel: function() {
                             // 用户取消分享后执行的回调函数
-                            alert('差一点就能完成任务拿积分了!');
+                            if (!activity.isShared) {
+                                alert('差一点就分享成功了!');
+                            }
                         }
                     });
 
@@ -258,6 +261,14 @@ define([], function() {
             activity.visited = avalon.vmodels.root.currentIsVisited;
             activity.isShared = false; // overwrite it
             activity.fetchData();
+
+            var isLiked = avalon.getLocalCache(cachedPrefix + activity.taskId+ '-like');
+            if (isLiked === 'hasLiked') {
+                activity.hasLiked = true;
+                ++activity.likeCount; // 既然已经点过赞，那么就不用缓存的原始数据，而要加1
+            } else {
+                activity.hasLiked = false;
+            }
 
         };
         // 对应的视图销毁前

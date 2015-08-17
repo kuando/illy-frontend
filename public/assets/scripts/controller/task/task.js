@@ -15,6 +15,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             //avalon.log('task.js onEnter and take charge of everything in Time: ' + Date.now());
+            avalon.clearLocalCache('illy-task');
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

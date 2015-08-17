@@ -310,6 +310,11 @@ a:hover {
   cursor: pointer;
 }
 
+/* remove touch outline */
+a, button, input {
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+
 /* global reset end */
 /* util start */
 #loading-before-app {
@@ -1017,14 +1022,14 @@ background-image: url("../../icons-36-white.png");
   /* record too short tips */
 }
 .question .progress-wrapper {
-  height: 7px;
+  height: 0.07rem;
   background-color: grey;
   width: 87%;
   display: inline-block;
   vertical-align: middle;
 }
 .question .progress-wrapper .progress {
-  height: 7px;
+  height: 0.07rem;
   background-color: #6fd801;
 }
 .question .progress-text {

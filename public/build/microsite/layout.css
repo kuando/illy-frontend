@@ -312,6 +312,11 @@ a:hover {
   cursor: pointer;
 }
 
+/* remove touch outline */
+a, button, input {
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+
 /* global reset end */
 /* util start */
 #loading-before-app {
@@ -901,7 +906,7 @@ select {
 .ui-navigator {
   background: #efeded;
   height: .34rem;
-  margin-left: .4rem;
+  margin-left: .5rem;
 }
 
 .ui-navigator-list {
@@ -926,7 +931,7 @@ select {
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .ui-navigator-list li.ui-state-hover,
@@ -1046,6 +1051,7 @@ a, a:hover {
 }
 
 [avalonctrl].topN {
+  /* list */
   margin-top: 0;
 }
 
@@ -1075,6 +1081,10 @@ a, a:hover {
 }
 .title-line .more:hover {
   /*text-decoration: none;*/
+}
+.title-line .icon-more {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-more.png);
+  margin-right: 0;
 }
 
 .line {
@@ -1123,7 +1133,6 @@ a, a:hover {
   vertical-align: middle;
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-right: .08rem;
   position: relative;
   top: -.01rem;
 }

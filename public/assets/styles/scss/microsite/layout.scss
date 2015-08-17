@@ -242,7 +242,7 @@ $navigator-text-color: #838383;
 .ui-navigator {
     background: $navigator-color;
     height: .34rem;
-    margin-left: .4rem;
+    margin-left: .5rem;
 }
 .ui-navigator-list {
     width: 100%;
@@ -264,7 +264,7 @@ $navigator-text-color: #838383;
     display: block;
     width: 100%;
     -webkit-box-sizing:border-box;
-    padding: 0 15px;
+    padding: 0 10px;
 }
 .ui-navigator-list li.ui-state-hover,
 .ui-navigator-list li.ui-state-active {
@@ -379,7 +379,8 @@ a, a:hover {
     margin-top: .05rem;
     background-color: $categories-bgColor;
 }
-[avalonctrl].topN {
+
+[avalonctrl].topN { /* list */
     margin-top: 0;
 }
 
@@ -413,6 +414,11 @@ a, a:hover {
         &:hover {
             /*text-decoration: none;*/
         }
+    }
+
+    .icon-more {
+        background-image: url(#{$img-dir}/iconfont-more.png);
+        margin-right: 0;
     }
 }
 
@@ -465,7 +471,6 @@ a, a:hover {
         vertical-align: middle;
         background-size: 100%;
         background-repeat: no-repeat;
-        margin-right: .08rem;
         position: relative;
         top: -.01rem;
     }
