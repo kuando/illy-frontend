@@ -946,7 +946,11 @@ a, a:hover {
   height: .25rem;
   border-radius: 50%;
   display: inline-block;
+  vertical-align: top;
   margin-right: .05rem;
+}
+.rank .avatar-default {
+  background: url(http://app.hizuoye.com/build/images/iconfont-defaultAvatar.png) no-repeat center;
 }
 
 /* rank end */

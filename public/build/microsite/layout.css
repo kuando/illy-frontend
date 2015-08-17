@@ -827,7 +827,6 @@ select {
   position: absolute;
   width: 20px;
   height: 40px;
-  background: rgba(0, 0, 0, 0.3) url(ui-slider-arrow.png) no-repeat;
   background-size: 35px 15px;
   outline: none;
   content: '\0020';
@@ -879,6 +878,8 @@ select {
 }
 
 .left-fixed > div.left {
+  position: absolute;
+  z-index: 9999;
   padding: 0 .1rem;
   -webkit-box-flex: 0;
   line-height: .34rem;
@@ -893,10 +894,6 @@ select {
   font-size: .16rem;
 }
 
-.left-fixed > div.left a.ui-state-active {
-  background: #0c4da8;
-}
-
 .ui-scroller {
   float: left;
 }
@@ -904,6 +901,7 @@ select {
 .ui-navigator {
   background: #efeded;
   height: .34rem;
+  margin-left: .4rem;
 }
 
 .ui-navigator-list {
@@ -1043,7 +1041,8 @@ a, a:hover {
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
-  margin-top: .15rem;
+  margin-top: .05rem;
+  background-color: white;
 }
 
 [avalonctrl].topN {

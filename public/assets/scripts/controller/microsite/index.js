@@ -56,10 +56,11 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         var renderedDelay;
         $ctrl.$onRendered = function() {
+
             if (avalon.endTime === void 0) { // first in 
                 var endTime = Date.now();
                 avalon.endTime = endTime;
-                avalon.totalTime = avalon.endTime - avalon.startTime;
+                avalon.totalTime = avalon.endTime - avalon.startTime; // this var in bootstrap file
                 avalon.log('total time: ' + avalon.totalTime);
                 /* 
                  *
@@ -73,15 +74,22 @@ define([], function() {
                 } else {
                     renderedDelay = 500;
                 }
-                if (avalon.totalTime > 1500) {
-                    renderedDelay += 2500;
-                } else if (avalon.totalTime > 500 && avalon.totalTime < 1500) {
-                    renderedDelay = renderedDelay + 500;
+
+                if (avalon.getVM('detail') !== void 0 || avalon.getVM('list') !== void 0) { // not first in index condition
+                    renderedDelay = 1000;
+                } else {
+                    if (avalon.totalTime > 1500) {
+                        renderedDelay += 2500;
+                    } else if (avalon.totalTime > 500 && avalon.totalTime < 1500) {
+                        renderedDelay = renderedDelay + 500;
+                    } else {
+                        renderedDelay += 384; // 24 frame
+                    }
                 }
-                renderedDelay += 384; // 24 frame
             } else { // file in avalon.templateCache, do the some 
                 renderedDelay = 64; // 4 frame
             }
+
             setTimeout(function() {
                 $('#slider').slider({
                     loop: true,

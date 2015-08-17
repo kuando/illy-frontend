@@ -801,7 +801,8 @@ background-image: url("../../icons-36-white.png");
   height: .44rem;
   line-height: .44rem;
   color: #0079FF;
-  border: 1px solid #B1B1B1;
+  border: .01rem solid #B1B1B1;
+  /* mark!!!, px will not show border in high-dpr device */
   background-color: #f7f7f7;
   border-bottom: 0 none;
   cursor: pointer;
@@ -1012,19 +1013,18 @@ background-image: url("../../icons-36-white.png");
 
 .question {
   text-align: left;
-  margin-top: .1rem;
-  /* question state will no header element */
   /* 去除分割线，恶心的第二条线不显示bug */
   /* record too short tips */
 }
-.question .pregress-wrapper {
-  height: 0.1rem;
+.question .progress-wrapper {
+  height: 7px;
   background-color: grey;
   width: 87%;
   display: inline-block;
+  vertical-align: middle;
 }
-.question .pregress-wrapper .progress {
-  height: 0.1rem;
+.question .progress-wrapper .progress {
+  height: 7px;
   background-color: #6fd801;
 }
 .question .progress-text {

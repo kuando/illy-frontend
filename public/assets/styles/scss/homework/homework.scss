@@ -6,7 +6,7 @@
  ******************************************************/
 
 @import "../_normalize.scss";
-@import "../common.scss";
+@import "../_common.scss";
 
 /* reset vars and vars start */
 $img_width: 21%;
@@ -18,14 +18,7 @@ $next_radius: $answer_panel_height / 2;
 
 $progress-bgcolor: grey;
 $progress-color: $main-green;
-$progress-height: .1rem;
-
-$zIndex1: 1;
-$zIndex2: 10;
-$zIndex3: 100;
-$zIndex4: 1000;
-$zIndex5: 10000;
-$zIndex6: 99999;
+$progress-height: 7px;
 /* reset vars and vars end */
 
 .yo-header {
@@ -152,7 +145,7 @@ background-image: url("../../icons-36-white.png");
     height: .44rem;
     line-height: .44rem;
     color: #0079FF;
-    border: 1px solid #B1B1B1;
+    border: .01rem solid #B1B1B1; /* mark!!!, px will not show border in high-dpr device */
     background-color: #f7f7f7;
     border-bottom: 0 none;
     cursor: pointer;
@@ -258,7 +251,7 @@ background-image: url("../../icons-36-white.png");
                         display: inline-block;
                         vertical-align: middle;
                         /* 下面两条规则适配高分屏 */
-                        background: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png) no-repeat;
+                        background: url(#{$img-dir}/iconfont-xinzengrenshu.png) no-repeat;
                         background-size: 100%;
                         margin-right: .08rem;
                         margin-top: -0.02rem;                   
@@ -318,7 +311,7 @@ background-image: url("../../icons-36-white.png");
         color: #9d9292;
         height: .6rem;
         line-height: .59rem;
-        background-image: url(http://app.hizuoye.com/build/images/playing.png);
+        background-image: url(#{$img-dir}/playing.png);
         background-size: contain; 
         background-repeat: no-repeat;
         background-position: -.08rem 0;
@@ -331,7 +324,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord.playing {
-        background-image: url(http://app.hizuoye.com/build/images/playing.gif);
+        background-image: url(#{$img-dir}/playing.gif);
     }
 
     .go-question {
@@ -388,13 +381,13 @@ background-image: url("../../icons-36-white.png");
 
 .question {
     text-align: left;
-    margin-top: .1rem; /* question state will no header element */
 
-    .pregress-wrapper {
+    .progress-wrapper {
         height: $progress-height;
         background-color: $progress-bgcolor;
         width: 87%;
         display: inline-block;
+        vertical-align: middle;
 
         .progress {
             height: $progress-height;
@@ -455,7 +448,7 @@ background-image: url("../../icons-36-white.png");
         -webkit-transform: translateX(-50%) translateY(-50%);
         width: .9rem;
         height: .9rem;
-        background-image: url(http://app.hizuoye.com/build/images/recording.gif);
+        background-image: url(#{$img-dir}/recording.gif);
         background-repeat: no-repeat;
         background-size: 100%;
         border-radius: .10rem;
@@ -507,7 +500,7 @@ background-image: url("../../icons-36-white.png");
         top: 54%;
         font-size: .14rem;
         color: #7c7474;
-        background-image: url(http://app.hizuoye.com/build/images/playing.png);
+        background-image: url(#{$img-dir}/playing.png);
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: .06rem -.08rem;
@@ -527,7 +520,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord.playing { /* playing-state, gif */
-        background-image: url(http://app.hizuoye.com/build/images/playing.gif);
+        background-image: url(#{$img-dir}/playing.gif);
     }
 
     /* record too short tips */

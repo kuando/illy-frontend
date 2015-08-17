@@ -237,7 +237,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     })
     .state("task.list", { // 任务列表
-        //url: "list",
         url: "",
         views: {
             "": {
@@ -246,8 +245,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.detail", { // 用来作为错题ctrl，抽象状态,加载完资源后会立即绘制 taskList
-        //url: "", // a homework with info and result panel, ms-view to render question one by one
+    .state("task.detail", { // 
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
@@ -256,7 +254,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.detail.article", { // task list
+    .state("task.detail.article", { // task, typeof article 
         url: "article/{taskId}/score/{scoreAward}", // 
         views: {
             "": {
@@ -265,15 +263,21 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             }
         }
     })
-    .state("task.detail.activity", { // task question
+    .state("task.detail.activity", { // task, typeof activity 
         url: "activity/{taskId}/score/{scoreAward}", // deal with a spec question, render it for different type
         views: {
             "": {
                 templateUrl: "assets/template/task/activity.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/activity.js", // 指定控制器地址
-                ignoreChange: function(changeType) {
-                    return !!changeType;
-                }
+                controllerUrl: "scripts/controller/task/activity.js" // 指定控制器地址
+            }
+        }
+    })
+    .state("task.detail.staticActivity", { // static version of activity for outer user
+        url: "staticActivity/{taskId}",
+        views: {
+            "": {
+                templateUrl: "assets/template/task/static-activity.html", // 指定模板地址
+                controllerUrl: "scripts/controller/task/static-activity.js" // 指定控制器地址
             }
         }
     })

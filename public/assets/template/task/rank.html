@@ -1,21 +1,23 @@
 <div ms-controller="rank" class="rank">
+
+    <div class="my-info-panel">
+        name : {{displayName}}
+        rank : {{myRank + 1}}
+        score: {{myScore}}
+    </div>
+
     <ul class="rank-ul yo-list">
         <li class="rank-li item">
             <div class="rank-div mark">排名</div>
             <div class="name-div flex">姓名</div>
             <div class="score-div">积分</div>
         </li>
-        <li class="rank-li item">
-            <div class="rank-div mark">{{myRank + 1}}</div>
-            <div class="name-div flex">{{displayName}}</div>
-            <div class="score-div">{{myScore}}</div>
-        </li>
         <li class="rank-li item" ms-repeat-item="ranks">
             <div ms-visible="$index < 3" class="rank-div mark"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
             <div ms-visible="$index >= 3" class="rank-div mark">{{$index + 1}}</div>
             <div class="avatar-div flex">
                 <img ms-if="item.avatar != undefined" class="avatar" ms-attr-src="'http://resource.hizuoye.com/' + item.avatar" ms-attr-alt="item.displayName" />
-                <img ms-if="item.avatar == undefined" class="avatar" src="http://app.hizuoye.com/build/images/iconfont-defaultAvatar.png" />
+                <div ms-if="item.avatar == undefined" class="avatar avatar-default"></div>
                 {{item.displayName}}
             </div>
             <div class="score-div">{{item.score}}</div>

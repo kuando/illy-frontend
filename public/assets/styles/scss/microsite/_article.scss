@@ -64,12 +64,12 @@ $content-color: #444242;
             background-size: 75%;
             background-repeat: no-repeat;
             background-position: center center;
-            background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
+            background-image: url(#{$img-dir}/iconfont-like.png);
         }
 
         .hasLiked {
             color: $main-blue;
-            background-image: url(http://app.hizuoye.com/build/images/iconfont-hasLiked.png);
+            background-image: url(#{$img-dir}/iconfont-hasLiked.png);
         }
         .like-num-wrapper {
             margin: .1rem auto;
@@ -95,11 +95,11 @@ $content-color: #444242;
                 display: inline-block;
             }
             .icon-share {
-                background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
+                background-image: url(#{$img-dir}/iconfont-share.png);
             }
 
             .icon-visit {
-                background-image: url(http://app.hizuoye.com/build/images/iconfont-yuedu.png);
+                background-image: url(#{$img-dir}/iconfont-yuedu.png);
             }
         }
 

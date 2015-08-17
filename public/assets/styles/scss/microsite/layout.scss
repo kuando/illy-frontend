@@ -14,14 +14,17 @@ $item_title_height: .45rem;
 $g_font_color: #747070;
 $dark-font-color: #494646;
 
+$categories-bgColor: white;
+
 $navigator-color: #efeded;
 $navigator-current-bgColor: #efeded;
 $navigator-current-text-color: #98D289;
 $navigator-text-color: #838383;
+
 /* vars end */
 
 @import "../_normalize.scss";
-@import "../common.scss";
+@import "../_common.scss";
 
 #splash {
     z-index: 99999;
@@ -170,7 +173,6 @@ $navigator-text-color: #838383;
     position: absolute;
     width: 20px;
     height: 40px;
-    background: rgba(0, 0, 0, 0.3) url(ui-slider-arrow.png) no-repeat;
     background-size: 35px 15px;
     outline: none;
     content: '\0020';
@@ -219,6 +221,8 @@ $navigator-text-color: #838383;
     -webkit-box-flex: 1;
 }
 .left-fixed>div.left {
+    position: absolute;
+    z-index: 9999;
     padding: 0 .1rem;
     -webkit-box-flex: 0;
     line-height: .34rem;
@@ -231,9 +235,6 @@ $navigator-text-color: #838383;
     height: 100%;
     font-size: .16rem;
 }
-.left-fixed>div.left a.ui-state-active {
-    background: #0c4da8;
-}
 .ui-scroller {
     float: left;
 }
@@ -241,6 +242,7 @@ $navigator-text-color: #838383;
 .ui-navigator {
     background: $navigator-color;
     height: .34rem;
+    margin-left: .4rem;
 }
 .ui-navigator-list {
     width: 100%;
@@ -374,7 +376,8 @@ a, a:hover {
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    margin-top: .15rem;
+    margin-top: .05rem;
+    background-color: $categories-bgColor;
 }
 [avalonctrl].topN {
     margin-top: 0;
@@ -468,11 +471,11 @@ a, a:hover {
     }
 
     .icon-share {
-        background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
+        background-image: url(#{$img-dir}/iconfont-share.png);
     }
 
     .icon-people {
-        background-image: url(http://app.hizuoye.com/build/images/iconfont-yuedu.png);
+        background-image: url(#{$img-dir}/iconfont-yuedu.png);
     }
 }
 

@@ -25,6 +25,8 @@
 
 /* vars start */
 /*$g_bgColor: #f9f5f5;*/
+$img-dir: 'http://app.hizuoye.com/build/images';
+
 $g_bgColor: #f6f6f6;
 $main-color: #6fd801;
 $g_font_color: #747070;
@@ -32,6 +34,13 @@ $g_font_color: #747070;
 $main-green: #6fd801;
 $main-red: #e50b23;
 $main-blue: #00abfd;
+
+$zIndex1: 1;
+$zIndex2: 10;
+$zIndex3: 100;
+$zIndex4: 1000;
+$zIndex5: 10000;
+$zIndex6: 99999;
 /* vars end */
 
 /* global reset start */ 

@@ -7,6 +7,13 @@ define([], function() {
         $id: "detail",
         taskId: 1, // 作业id，用于发送给server的第一个参数
         scoreAward: 0,
+        outer: false,
+        hideTaskInfo: function(infoArr) { // 同时模板里做好无值隐藏
+            infoArr === void 0 ? [] : infoArr; /* jshint ignore:line */
+            infoArr.forEach(function(item) {
+                item = '';
+            });
+        },
         clearCachedData: function() { // 清除缓存数据
             // 清除detail控制器缓存的数据
         }
@@ -20,7 +27,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) { /* jshint ignore:line */
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
-            detail.clearCachedData(); // 对付后退又进入，最多后退到info页面(还在detail控制范围内)还保存数据
+             detail.clearCachedData();
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

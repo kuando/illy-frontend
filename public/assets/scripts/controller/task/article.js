@@ -19,6 +19,8 @@ define([], function() {
         created: "2015-07-09",
         shareCount: 88,
         visitCount: 88,
+        likeCount: 88,
+
         isShared: false,
         updateShare: function() {
             $http.ajax({
@@ -27,8 +29,8 @@ define([], function() {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function(res) {
-                    avalon.log(res);
+                success: function() {
+
                 },
                 error: function(res) {
                     console.log(res);
@@ -38,6 +40,36 @@ define([], function() {
                 }
             });
         },
+
+        hasLiked: false,
+        updateLike: function() {
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + 'public/posts/' + article.taskId+ '/like',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function() {
+                    var likeCount = article.likeCount || 0;
+                    article.likeCount = ++likeCount;
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                ajaxFail: function(res) {
+                    console.log(res);
+                }
+            });
+        },
+        like: function() {
+            // http 
+            article.updateLike();
+            // local
+            avalon.setLocalCache(cachedPrefix + article.taskId+ '-like', 'hasLiked');
+            // ui
+            article.hasLiked = true;
+        },
+
         fetchData: function() {
             if (article.visited) {
                 var local = avalon.getLocalCache(cachedPrefix + article.taskId);
@@ -46,6 +78,7 @@ define([], function() {
                 article.created = local.created;
                 article.shareCount = local.shareCount;
                 article.visitCount = local.visitCount;
+                article.likeCount = local.like || 0;
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
             $http.ajax({
@@ -60,6 +93,7 @@ define([], function() {
                     article.created = json.created;
                     article.shareCount = json.shareCount;
                     article.visitCount = json.visitCount;
+                    article.likeCount = json.like || 0;
                     //localStorage.setItem(cachedPrefix + article.taskId, JSON.stringify(json));
                     avalon.setLocalCache(cachedPrefix + article.taskId, json);
 
@@ -81,7 +115,7 @@ define([], function() {
 
                 }
             });
-        }
+        } // fetch data end
     });
 
     return avalon.controller(function($ctrl) {
@@ -94,7 +128,8 @@ define([], function() {
             };
 
             setTimeout(function() {
-                avalon.$('#gotop').style.display = 'block';
+                var gotop = avalon.$('#gotop');
+                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
             }, 3000);
 
         };

@@ -75,8 +75,8 @@ define([], function() {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function(res) {
-                    avalon.log(res);
+                success: function() {
+
                 },
                 error: function(res) {
                     console.log(res);
@@ -168,6 +168,7 @@ define([], function() {
                 activity.deadline = localCache.deadline;
                 activity.shareCount = localCache.shareCount;
                 activity.visitCount = localCache.visitCount;
+                activity.likeCount = localCache.like || 0;
                 activity.infoCollect = localCache.infoCollect[0];
                 activity.CopyinfoCollect = localCache.infoCollect[0];
                 activity.theme = localCache;
@@ -190,6 +191,7 @@ define([], function() {
                     activity.deadline = json.deadline;
                     activity.shareCount = json.shareCount;
                     activity.visitCount = json.visitCount;
+                    activity.likeCount = json.like || 0;
                     json.infoCollect.unshift('姓名', '电话'); // array
                     activity.infoCollect = json.infoCollect;
                     for (var i = 0, len = activity.infoCollect.length; i < len; i++) {
@@ -201,7 +203,7 @@ define([], function() {
 
                     wx.onMenuShareTimeline({
                         title: activity.title, // 分享标题
-                        link: '', // 分享链接
+                        link: '', // 分享链接 
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
@@ -238,12 +240,18 @@ define([], function() {
             };
 
             setTimeout(function() {
-                avalon.$('#gotop').style.display = 'block';
+                var gotop = avalon.$('#gotop');
+                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
             }, 3000);
 
         };
         // 进入视图
         $ctrl.$onEnter = function(params) {
+
+            // check if inner user or outer user, outer user will not see the task info, only content itself
+            var detail = avalon.vmodels.detail;
+            var outer = detail.outer;
+            outer && detail.hideTaskInfo(); /* jshint ignore:line */
 
             activity.taskId = params.taskId;
             activity.scoreAward = params.scoreAward; // get activity score award
