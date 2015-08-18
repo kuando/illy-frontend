@@ -83,7 +83,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/activities/' + activity.activityId + '/share',
+                url: apiBaseUrl + 'tasks/' + activity.taskId + '/done',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },

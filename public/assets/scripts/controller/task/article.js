@@ -35,7 +35,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/posts/' + article.articleId + '/share',
+                url: apiBaseUrl + 'tasks/' + article.taskId + '/done',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },

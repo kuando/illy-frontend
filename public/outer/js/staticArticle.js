@@ -5,7 +5,7 @@ alert(location.href);
 
 var article = avalon.define({
     $id: "article",
-    articleId: location.href.split('=')[1],
+    articleId: location.href.split('?')[1].split('&')[0].split('=')[1],
     title: "",
     content: "",
     created: "2015-07-09",

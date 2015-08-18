@@ -13,7 +13,7 @@
 <body>
 
     <div ms-controller="activity" class="detail">
-        <h2 class="title">{{name}}</h2>
+        <h2 class="title">{{theme}}</h2>
         <div class="created-time">开始时间: {{startTime | date()}}</div>
         <div class="created-time">结束时间: {{endTime | date()}}</div>
         <div class="content">{{content | html}}</div>
@@ -56,9 +56,25 @@
 
 </body>
 
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="../assets/scripts/http.js"></script>
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <!--<script src="../assets/scripts/http.js"></script>-->
+    <!--<script src="./js/staticActivity.js"></script>-->
     <script src="../assets/scripts/lib/avalon/avalon.js"></script>
-    <script src="./js/staticActivity.js"></script>
+    <script>
+
+        avalon.config({
+            debug: true 
+        });
+
+        require.config({
+            baseUrl: "./js"
+        });
+
+        require(['./staticActivity'], function(page) {
+            page && page.init && page.init(); 
+        })
+        // rendered and bootstrap the page
+
+    </script>
 </html>
 
