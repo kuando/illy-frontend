@@ -307,7 +307,13 @@ a:hover {
   text-decoration: none;
   outline: none;
   color: #747070;
-  cursor: pointer;
+}
+
+a:active,
+a:visited,
+a:focus,
+a:hover {
+  color: inherit;
 }
 
 /* remove touch outline */
@@ -970,11 +976,12 @@ background-image: url("../../icons-36-white.png");
 }
 .panel .go-question {
   display: block;
+  width: 98%;
   margin: 0 auto;
   background: #6fd801;
   border-color: #6fd801;
   margin-top: .2rem;
-  border-radius: .1rem;
+  border-radius: .05rem;
   font-size: .2rem;
 }
 
@@ -1022,17 +1029,22 @@ background-image: url("../../icons-36-white.png");
   /* record too short tips */
 }
 .question .progress-wrapper {
-  height: 0.07rem;
+  height: .3rem;
+  line-height: .3rem;
+}
+.question .progress-wrapper .progress-outer {
+  height: 0.03rem;
   background-color: grey;
   width: 87%;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
+  margin-top: 0.135rem;
 }
-.question .progress-wrapper .progress {
-  height: 0.07rem;
+.question .progress-wrapper .progress-outer .progress-inner {
+  height: 0.03rem;
   background-color: #6fd801;
 }
-.question .progress-text {
+.question .progress-wrapper .progress-text {
   float: right;
 }
 .question .yo-list > .item {

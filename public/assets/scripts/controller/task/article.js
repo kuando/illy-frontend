@@ -1,5 +1,14 @@
 define([], function() {
 
+    /** 
+     *  任务分享文章控制器，仅供内部用户做任务使用，先不要想对外部用户的兼容，就是做任务，
+     *  点赞分享也是针对内容本身（文章？活动？），唯一需要注意的是分享的时候替换
+     *  链接，到一个极简页面（staticArticle.html?id=activityId, 这个页面同样需要监听用户分享，点赞，但本处不关注！）
+     *
+     *  taskId用于local,　获取内容，完成任务api（初期只是分享方式)
+     *  articleId是后期获取的，用于点赞，替换url(最重要的),
+     */  
+
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
@@ -13,6 +22,7 @@ define([], function() {
     var article = avalon.define({
         $id: "article",
         taskId: 1,
+        articleId: 1,
         scoreAward: 0,
         title: "",
         content: "",
@@ -25,7 +35,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'tasks/' + article.taskId + '/share',
+                url: apiBaseUrl + 'public/posts/' + article.articleId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -45,7 +55,7 @@ define([], function() {
         updateLike: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/posts/' + article.taskId+ '/like',
+                url: apiBaseUrl + 'public/posts/' + article.articleId + '/like',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -98,7 +108,7 @@ define([], function() {
 
                     wx.onMenuShareTimeline({
                         title: article.title, // 分享标题
-                        link: '', // 分享链接
+                        link: 'http://app.hizuoye.com/outer/staticArticle.html?id=' + article.articleId, // 分享链接
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新
@@ -161,4 +171,6 @@ define([], function() {
     });
 
 });
+
+
 

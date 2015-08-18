@@ -10,7 +10,7 @@ define([], function() {
         $ctrl.$onRendered = function() {
             avalon.log("task.js onRendered fn");
             document.querySelector('#splash').style.display = 'none';
-            document.querySelector('#loading-before-site').style.display = 'none';
+            //document.querySelector('#loading-before-site').style.display = 'none';
         };
         // 进入视图
         $ctrl.$onEnter = function() {

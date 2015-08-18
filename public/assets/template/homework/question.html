@@ -3,9 +3,12 @@
 
     <!-- progress of question -->
     <div class="progress-wrapper">
-        <div class="progress" ms-css-width="( localAnswers.length * 100 ) / total + '%' "></div> 
+        <div class="progress-outer">
+            <div class="progress-inner" ms-css-width="( localAnswers.length * 100 ) / total + '%' "></div> 
+        </div>
+        <span class="progress-text">{{currentId}} / {{total}}</span>
     </div>
-    <span class="progress-text">{{currentId}} / {{total}}</span>
+    <!-- progress of question -->
 
     <!--<ul class="yo-list yo-list-group">-->
     <!--    <li class="item yo-range yo-range-e">-->

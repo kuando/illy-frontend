@@ -309,7 +309,13 @@ a:hover {
   text-decoration: none;
   outline: none;
   color: #747070;
-  cursor: pointer;
+}
+
+a:active,
+a:visited,
+a:focus,
+a:hover {
+  color: inherit;
 }
 
 /* remove touch outline */

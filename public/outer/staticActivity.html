@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title ms-text="title"></title>
+    <link rel="stylesheet" href="../build/task/task.css" />
+    <link rel="stylesheet" href="../assets/styles/animation.css" />
+    <link rel="stylesheet" href="../assets/styles/Yo/yo-all.css" />
+
+</head>
+
+<body>
+
+    <div ms-controller="activity" class="detail">
+        <h2 class="title">{{name}}</h2>
+        <div class="created-time">开始时间: {{startTime | date()}}</div>
+        <div class="created-time">结束时间: {{endTime | date()}}</div>
+        <div class="content">{{content | html}}</div>
+
+        <div class="infoCollect-wrapper">
+            <div class="sign-up-btn-wrapper">
+                <div class='yo-btn' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
+                <div class='yo-btn' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就能报名成功了...<br/>点我添加报名信息</div>
+                <div class='yo-btn' ms-if="isDone">报名成功</div>
+            </div>
+
+            <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling" style="margin-bottom: .1rem;">
+                <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
+                    <span class="hide">{{CopyinfoCollect[$index]}}</span>
+                    <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
+                </label>
+                <div class="yo-btn" ms-click="pushInfo()">save</div>
+                <div class="yo-btn" ms-click="cancel()">cancel</div>
+            </div>
+        </div>
+
+        <ul class="pageinfo list">
+
+            <div class="like" ms-if="hasLiked == false" ms-click="like()"></div>
+            <div class="like" ms-class-1="hasLiked: hasLiked == true" ms-if="hasLiked == true"></div>
+            <div class="like-num-wrapper"><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span>位朋友点了赞</div>
+
+            <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
+            <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
+            <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
+
+            <div class="yo-btn" ms-visible="isShared">积分+{{scoreAward}}</div>
+        </ul>
+
+        <div id="jumphelper" class="gotop">
+            <a href="javascript:void(0)" id="gotop"></a>
+        </div>
+
+    </div>
+
+</body>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../assets/scripts/http.js"></script>
+    <script src="../assets/scripts/lib/avalon/avalon.js"></script>
+    <script src="./js/staticActivity.js"></script>
+</html>
+

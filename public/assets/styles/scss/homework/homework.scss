@@ -18,7 +18,7 @@ $next_radius: $answer_panel_height / 2;
 
 $progress-bgcolor: grey;
 $progress-color: $main-green;
-$progress-height: .07rem;
+$progress-height: .03rem;
 /* reset vars and vars end */
 
 .yo-header {
@@ -329,11 +329,12 @@ background-image: url("../../icons-36-white.png");
 
     .go-question {
         display: block;
+        width: 98%;
         margin: 0 auto;
         background: $main-color; 
         border-color: $main-color;
         margin-top: .2rem;
-        border-radius: .1rem;
+        border-radius: .05rem;
         font-size: .2rem;
     }
 }
@@ -383,20 +384,27 @@ background-image: url("../../icons-36-white.png");
     text-align: left;
 
     .progress-wrapper {
-        height: $progress-height;
-        background-color: $progress-bgcolor;
-        width: 87%;
-        display: inline-block;
-        vertical-align: middle;
+        height: .3rem;
+        line-height: .3rem;
 
-        .progress {
+        .progress-outer {
             height: $progress-height;
-            background-color: $progress-color;
-        }
-    }
+            background-color: $progress-bgcolor;
+            width: 87%;
+            display: inline-block;
+            vertical-align: top; // key!
+            margin-top: (0.3 - $progress-height) / 2; // for vertical center
 
-    .progress-text {
-        float: right;
+            .progress-inner {
+                height: $progress-height;
+                background-color: $progress-color;
+            }
+        }
+
+        .progress-text {
+            float: right;
+        }
+
     }
 
     /* 去除分割线，恶心的第二条线不显示bug */

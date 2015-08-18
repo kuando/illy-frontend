@@ -32,8 +32,8 @@ define([], function() {
         $ctrl.$onEnter = function() {
             //avalon.log("app.js says i am in onEnter fn, do some common init stuff...");
             // now, remove the loading tip  before bootstrap the app
-            var before_app_loader = '#loading-before-app';
-            document.querySelector(before_app_loader).style.display = 'none';
+            //var before_app_loader = '#loading-before-app';
+            //document.querySelector(before_app_loader).style.display = 'none';
             //avalon.log("文字提示消失，页面开始由app ctrl接管 --> " + Date.now());
             
             // performance listener, almost rendered the page...
