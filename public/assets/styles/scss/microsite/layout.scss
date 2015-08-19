@@ -8,6 +8,8 @@
 @import "../_normalize.scss";
 @import "../_common.scss";
 
+$ms-navigator-height: .44rem;
+
 #splash {
     z-index: 99999;
     width: 100%;
@@ -26,7 +28,7 @@
     }
 
     &-footer {
-        margin: .1rem 0 0 0;
+        margin: .2rem 0 0 0;
         width: 100%;
         height: .40rem;
         line-height: .44rem;
@@ -54,7 +56,7 @@
 #slider {
     font-size: .14rem;
     visibility: hidden;
-    height: 1.45rem;
+    height: 1.8rem;
     margin-bottom: .1rem;
 }
 .ui-slider {
@@ -83,11 +85,12 @@
 }
 
 .ui-slider-item {
-    height: 1.48rem;
+    height: $ms-slider-height;
 }
 
 .ui-slider-item img {
     background:#E7E7E7 center center no-repeat;
+    height: $ms-slider-height;
 }
 
 .ui-slider-item > a {
@@ -207,16 +210,16 @@
     z-index: 9999;
     padding: 0 .1rem;
     -webkit-box-flex: 0;
-    line-height: .34rem;
+    line-height: .44rem;
     background-color: $navigator-color;
     color: $navigator-text-color;
     width: .5rem;
-    height: .34rem;
+    height: .44rem;
 }
 .left-fixed>div.left a {
     display: block;
-    width: .22rem;
-    height: .32rem;
+    width: .26rem;
+    height: $ms-navigator-height;
     text-align: center;
     font-size: .16rem;
     background: url(#{$img-dir}/iconfont-home.png) no-repeat center;
@@ -228,8 +231,9 @@
 
 .ui-navigator {
     background: $navigator-color;
-    height: .34rem;
-    margin-left: .4rem;
+    height: $ms-navigator-height;
+    line-height: $ms-navigator-height;
+    margin-left: $ms-navigator-height;
 }
 .ui-navigator-list {
     width: 100%;
@@ -315,7 +319,7 @@ a, a:hover {
 
     .item-img {
         width: 100%;
-        height: $ms-img_height;
+        height: $ms-img-height;
         border: 1px solid #eee;
         vertical-align: middle;
         border: 0;
@@ -366,18 +370,24 @@ a, a:hover {
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    margin-top: .05rem;
+    margin-top: .15rem;
     background-color: $categories-bgColor;
+    padding: 0 .05rem;
 }
 
 [avalonctrl].topN { /* list */
     margin-top: 0;
+    padding: 0; /* key for width 100% navigator */
 }
 
 .categories {
     .item-title {
         min-height: .42rem;
         overflow: hidden;
+    }
+    .icon {
+        position: relative;
+        top: -.01rem;
     }
 }
 
@@ -425,6 +435,7 @@ a, a:hover {
 .list, .topN {
     .item-wrapper {
         border-top: 1px solid #ddd;
+        margin-bottom: -.10rem; /* key! remove last item border-bottom */
     }
     .item {
         width: 100%;

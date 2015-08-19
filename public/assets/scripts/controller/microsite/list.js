@@ -80,7 +80,8 @@ define([], function() {
 
             setTimeout(function() {
                 $('#nav').navigator();
-            }, 1000);
+            }, 200);
+            // key!!!
 
             list.visited = avalon.vmodels.root.currentIsVisited;
 

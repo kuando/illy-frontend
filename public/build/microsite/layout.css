@@ -637,7 +637,7 @@ select {
   font-size: .14rem;
 }
 .site-footer {
-  margin: .1rem 0 0 0;
+  margin: .2rem 0 0 0;
   width: 100%;
   height: .40rem;
   line-height: .44rem;
@@ -664,7 +664,7 @@ select {
 #slider {
   font-size: .14rem;
   visibility: hidden;
-  height: 1.45rem;
+  height: 1.8rem;
   margin-bottom: .1rem;
 }
 
@@ -695,11 +695,12 @@ select {
 }
 
 .ui-slider-item {
-  height: 1.48rem;
+  height: 1.8rem;
 }
 
 .ui-slider-item img {
   background: #E7E7E7 center center no-repeat;
+  height: 1.8rem;
 }
 
 .ui-slider-item > a {
@@ -827,17 +828,17 @@ select {
   z-index: 9999;
   padding: 0 .1rem;
   -webkit-box-flex: 0;
-  line-height: .34rem;
+  line-height: .44rem;
   background-color: #323436;
   color: #999999;
   width: .5rem;
-  height: .34rem;
+  height: .44rem;
 }
 
 .left-fixed > div.left a {
   display: block;
-  width: .22rem;
-  height: .32rem;
+  width: .26rem;
+  height: 0.44rem;
   text-align: center;
   font-size: .16rem;
   background: url(http://app.hizuoye.com/build/images/iconfont-home.png) no-repeat center;
@@ -850,8 +851,9 @@ select {
 
 .ui-navigator {
   background: #323436;
-  height: .34rem;
-  margin-left: .4rem;
+  height: 0.44rem;
+  line-height: 0.44rem;
+  margin-left: 0.44rem;
 }
 
 .ui-navigator-list {
@@ -993,18 +995,25 @@ a, a:hover {
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
-  margin-top: .05rem;
+  margin-top: .15rem;
   background-color: white;
+  padding: 0 .05rem;
 }
 
 [avalonctrl].topN {
   /* list */
   margin-top: 0;
+  padding: 0;
+  /* key for width 100% navigator */
 }
 
 .categories .item-title {
   min-height: .42rem;
   overflow: hidden;
+}
+.categories .icon {
+  position: relative;
+  top: -.01rem;
 }
 
 .title-line {
@@ -1045,6 +1054,8 @@ a, a:hover {
 /* list start, just small modify for list */
 .list .item-wrapper, .topN .item-wrapper {
   border-top: 1px solid #ddd;
+  margin-bottom: -.10rem;
+  /* key! remove last item border-bottom */
 }
 .list .item, .topN .item {
   width: 100%;
