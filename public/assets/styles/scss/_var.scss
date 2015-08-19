@@ -1,0 +1,57 @@
+/* common vars start */
+$loader-bgColor: #F5F9F4;
+$img-dir: 'http://app.hizuoye.com/build/images';
+
+$g_bgColor: #f1f1f1;
+$main-color: #64c400;
+$g_font_color: #adaeae;
+
+$main-green: #64c400;
+$main-red: #e50b23;
+$main-blue: #00abfd;
+
+$zIndex1: 1;
+$zIndex2: 10;
+$zIndex3: 100;
+$zIndex4: 1000;
+$zIndex5: 10000;
+$zIndex6: 99999;
+/* common vars end */
+
+/* layout vars start */
+$g_font_color: #aeadad;
+$light-grey: #999999;
+$dark-grey: #333438;
+
+$categories-bgColor: white;
+$category-title-color: #333438;
+$item-title-color: #333438;
+$created-time-color: $light-grey;
+$like-color: $light-grey;
+
+$title-line-height: .36rem;
+$ms-img_height: .80rem;
+$item_title_height: .45rem;
+
+
+$wx-bar-bgColor: #323436;
+$navigator-color: $wx-bar-bgColor;
+$navigator-current-bgColor: $wx-bar-bgColor;
+$navigator-current-text-color: #fff;
+$navigator-text-color: $light-grey;
+
+$content-color: #444242;
+/* layout vars end */
+
+/* homework vars start */
+$img_width: 21%;
+$hw_img_height: .5rem;
+$hw-info-height: .7rem;
+$answer_panel_height: 1.5rem;
+$item_title_height: .45rem;
+$next_radius: $answer_panel_height / 2;
+
+$progress-bgcolor: grey;
+$progress-color: $main-green;
+$progress-height: .03rem;
+/* homework vars end */

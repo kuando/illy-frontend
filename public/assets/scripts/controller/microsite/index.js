@@ -101,6 +101,7 @@ define([], function() {
                     },
                     'done.dom': function() {
                         //avalon.log('gmu sliders done.dom in Time: ' + Date.now());
+                        $('#nav').navigator();
                     }
                 });
             }, renderedDelay);

@@ -328,15 +328,19 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             root.title = acTitle[state];
 
             // next view loaded, remove loader && badNetworkHandler && add view-in animation
-            var loader = document.querySelector('.loader');
             setTimeout(function() {
+
+                var loader = document.querySelector('.loader');
                 // for strong, need ()
                 loader && (loader.style.display = 'none'); /* jshint ignore:line */
                 avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer); /* jshint ignore:line */
-            }, 200);
-            var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
-            // for strong
-            view && view.classList.add(g_viewload_animation); /* jshint ignore:line */
+
+                var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
+                // for strong
+                view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
+
+            }, 300); // time enough for not see last view cache
+
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({

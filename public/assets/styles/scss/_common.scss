@@ -5,8 +5,6 @@
     > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
 
-/*@import "../Yo/lib/core/reset.scss";*/
-
 @font-face {
   font-family: yofont;
   src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
@@ -19,29 +17,14 @@
   vertical-align: middle;
 }
 
+/*@import "../Yo/lib/core/reset.scss";*/
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
 
-/* vars start */
-/*$g_bgColor: #f9f5f5;*/
-$img-dir: 'http://app.hizuoye.com/build/images';
-
-$g_bgColor: #f6f6f6;
-$main-color: #6fd801;
-$g_font_color: #747070;
-
-$main-green: #6fd801;
-$main-red: #e50b23;
-$main-blue: #00abfd;
-
-$zIndex1: 1;
-$zIndex2: 10;
-$zIndex3: 100;
-$zIndex4: 1000;
-$zIndex5: 10000;
-$zIndex6: 99999;
-/* vars end */
+/* common vars start */
+@import "./var.scss";
+/* common vars end */
 
 /* global reset start */ 
 * {
@@ -96,44 +79,6 @@ a,button,input{-webkit-tap-highlight-color:rgba(255, 0, 0, 0);}
 /* global reset end */
 
 /* util start */
-
-#loading-before-app {
-  font-size: 18px;
-}
-/* ================= loading-with-dot ===================== */
-.loading-with-dot {
-    display: inline-block;
-    width: 10px; 
-    min-height: 2px;
-    padding-right: 2px;
-    border-left: 2px solid currentColor; 
-    border-right: 2px solid currentColor;   
-    background-color: currentColor; 
-    background-clip: content-box;
-    box-sizing: border-box;
-    -webkit-animation: dot 4s infinite step-start both;
-    animation: dot 4s infinite step-start both;
-    *zoom: expression(this.innerHTML = '...'); /* IE7 */
-
-    &:before { content: '...'; } /* IE8 */
-    &::before { content: ''; }
-}
-
-:root .loading-with-dot { margin-left: 2px; padding-left: 2px; } /* IE9+ */
-
-@-webkit-keyframes dot {
-    25% { border-color: transparent; background-color: transparent; }          /* zero point */
-    50% { border-right-color: transparent; background-color: transparent; }    /* one point */
-    75% { border-right-color: transparent; }                                   /* two points */
-}
-
-@keyframes dot {
-    25% { border-color: transparent; background-color: transparent; }          /* zero point */
-    50% { border-right-color: transparent; background-color: transparent; }    /* one point */
-    75% { border-right-color: transparent; }                                   /* two points */
-}
-
-/* ==================== /. loading-with-dot =========================== */
 
 .area {
     display: inline-block;
@@ -233,8 +178,7 @@ select {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #d3cece;
-    opacity: .7;
+    background: $loader-bgColor;
     z-index: 99999;
 }
 

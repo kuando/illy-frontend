@@ -247,7 +247,6 @@ input[type="checkbox"], input[type="radio"] {
     > Mail: indexxuan@gmail.com
     > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
-/*@import "../Yo/lib/core/reset.scss";*/
 @font-face {
   font-family: yofont;
   src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
@@ -260,12 +259,18 @@ input[type="checkbox"], input[type="radio"] {
   vertical-align: middle;
 }
 
+/*@import "../Yo/lib/core/reset.scss";*/
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
-/* vars start */
-/*$g_bgColor: #f9f5f5;*/
-/* vars end */
+/* common vars start */
+/* common vars start */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
+/* common vars end */
 /* global reset start */
 * {
   -webkit-box-sizing: border-box;
@@ -308,7 +313,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  color: #747070;
+  color: #aeadad;
 }
 
 a:active,
@@ -325,73 +330,6 @@ a, button, input {
 
 /* global reset end */
 /* util start */
-#loading-before-app {
-  font-size: 18px;
-}
-
-/* ================= loading-with-dot ===================== */
-.loading-with-dot {
-  display: inline-block;
-  width: 10px;
-  min-height: 2px;
-  padding-right: 2px;
-  border-left: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  background-color: currentColor;
-  background-clip: content-box;
-  box-sizing: border-box;
-  -webkit-animation: dot 4s infinite step-start both;
-  animation: dot 4s infinite step-start both;
-  *zoom: expression(this.innerHTML = '...');
-  /* IE7 */
-  /* IE8 */
-}
-.loading-with-dot:before {
-  content: '...';
-}
-.loading-with-dot::before {
-  content: '';
-}
-
-:root .loading-with-dot {
-  margin-left: 2px;
-  padding-left: 2px;
-}
-
-/* IE9+ */
-@-webkit-keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-@keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-/* ==================== /. loading-with-dot =========================== */
 .area {
   display: inline-block;
   vertical-align: top;
@@ -484,8 +422,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
-  background-color: #f6f6f6;
-  color: #747070;
+  background-color: #f1f1f1;
+  color: #aeadad;
   font-size: .14rem;
 }
 
@@ -528,8 +466,7 @@ select {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #d3cece;
-  opacity: .7;
+  background: #F5F9F4;
   z-index: 99999;
 }
 
@@ -670,7 +607,7 @@ select {
 }
 /* fix for header's back-index */
 #header, .yo-header {
-  background: #6fd801;
+  background: #64c400;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -694,7 +631,7 @@ select {
 
 a, a:hover {
   text-decoration: none;
-  color: #747070;
+  color: #aeadad;
   cursor: pointer;
 }
 
@@ -737,6 +674,12 @@ a, a:hover {
 /* taskList end */
 /* detail-import start */
 /* vars start */
+/* common vars start */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
 /* vars end */
 .detail {
   color: #1c1c1c;
@@ -751,21 +694,19 @@ a, a:hover {
   line-height: 1.3;
 }
 .detail .count {
-  font-size: .12rem;
+  font-size: .14rem;
   display: inline-block;
   vertical-align: top;
+  color: #999999;
 }
 .detail .count span {
   padding-right: .05rem;
 }
 .detail .gap-point {
-  font-size: .08rem;
+  font-size: .04rem;
   position: relative;
   top: -.02rem;
-}
-.detail .count {
-  color: #747070;
-  font-size: .14rem;
+  color: #999999;
 }
 .detail .cover-img {
   margin: .18rem 0;
@@ -803,7 +744,7 @@ a, a:hover {
 .detail .pageinfo .like {
   width: .48rem;
   height: .48rem;
-  color: #747070;
+  color: #aeadad;
   margin: .05rem auto;
   background-size: 75%;
   background-repeat: no-repeat;
@@ -871,7 +812,73 @@ a, a:hover {
 
 /* detail-import end */
 /* mall start */
-@import　 "./mall.scss";
+.mall-wrapper {
+  text-align: center;
+  margin: .05rem 0;
+}
+.mall-wrapper .mall-item {
+  display: inline-block;
+  width: 46%;
+  margin: .05rem .06rem;
+  background: #fff;
+  padding: .03rem 0;
+  text-align: left;
+}
+.mall-wrapper .mall-item .img-wrapper {
+  width: 100%;
+  position: relative;
+}
+.mall-wrapper .mall-item img {
+  display: inline-block;
+  width: 100%;
+  height: 1rem;
+}
+.mall-wrapper .mall-item .title {
+  display: inline-block;
+  width: 100%;
+  padding: .03rem .08rem .03rem;
+  line-height: 1.3;
+  font-size: .14rem;
+}
+.mall-wrapper .mall-item .price {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: .7rem;
+  max-width: .7rem;
+  text-align: center;
+  font-size: .12rem;
+  line-height: .16rem;
+  padding: .03rem;
+  background: red;
+  color: #fff;
+  opacity: .6;
+}
+.mall-wrapper .mall-item .icon {
+  width: .18rem;
+  height: .18rem;
+  position: relative;
+  top: -.01rem;
+}
+.mall-wrapper .mall-item .exchangeTimes {
+  display: inline-block;
+  width: 47%;
+  text-align: left;
+  padding-left: .1rem;
+}
+.mall-wrapper .mall-item .exchangeTimes .icon-exchangeTimes {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
+}
+.mall-wrapper .mall-item .stock {
+  display: inline-block;
+  width: 47%;
+  text-align: right;
+  padding-right: .1rem;
+}
+.mall-wrapper .mall-item .stock .icon-stock {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
+}
+
 /* mall end */
 /* rank start */
 .rank .rank-li {

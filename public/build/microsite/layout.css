@@ -5,8 +5,6 @@
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月08日 星期三 09时21分34秒
  ******************************************************/
-/* vars start */
-/* vars end */
 article,
 aside,
 details,
@@ -247,7 +245,6 @@ input[type="checkbox"], input[type="radio"] {
     > Mail: indexxuan@gmail.com
     > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
-/*@import "../Yo/lib/core/reset.scss";*/
 @font-face {
   font-family: yofont;
   src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
@@ -260,12 +257,18 @@ input[type="checkbox"], input[type="radio"] {
   vertical-align: middle;
 }
 
+/*@import "../Yo/lib/core/reset.scss";*/
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
-/* vars start */
-/*$g_bgColor: #f9f5f5;*/
-/* vars end */
+/* common vars start */
+/* common vars start */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
+/* common vars end */
 /* global reset start */
 * {
   -webkit-box-sizing: border-box;
@@ -308,7 +311,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  color: #747070;
+  color: #aeadad;
 }
 
 a:active,
@@ -325,73 +328,6 @@ a, button, input {
 
 /* global reset end */
 /* util start */
-#loading-before-app {
-  font-size: 18px;
-}
-
-/* ================= loading-with-dot ===================== */
-.loading-with-dot {
-  display: inline-block;
-  width: 10px;
-  min-height: 2px;
-  padding-right: 2px;
-  border-left: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  background-color: currentColor;
-  background-clip: content-box;
-  box-sizing: border-box;
-  -webkit-animation: dot 4s infinite step-start both;
-  animation: dot 4s infinite step-start both;
-  *zoom: expression(this.innerHTML = '...');
-  /* IE7 */
-  /* IE8 */
-}
-.loading-with-dot:before {
-  content: '...';
-}
-.loading-with-dot::before {
-  content: '';
-}
-
-:root .loading-with-dot {
-  margin-left: 2px;
-  padding-left: 2px;
-}
-
-/* IE9+ */
-@-webkit-keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-@keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-/* ==================== /. loading-with-dot =========================== */
 .area {
   display: inline-block;
   vertical-align: top;
@@ -484,8 +420,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
-  background-color: #f6f6f6;
-  color: #747070;
+  background-color: #f1f1f1;
+  color: #aeadad;
   font-size: .14rem;
 }
 
@@ -528,8 +464,7 @@ select {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #d3cece;
-  opacity: .7;
+  background: #F5F9F4;
   z-index: 99999;
 }
 
@@ -670,7 +605,7 @@ select {
 }
 /* fix for header's back-index */
 #header, .yo-header {
-  background: #6fd801;
+  background: #64c400;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -689,7 +624,7 @@ select {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #6fd801;
+  background-color: #64c400;
   font-size: .8rem;
   color: #fff;
 }
@@ -702,14 +637,13 @@ select {
   font-size: .14rem;
 }
 .site-footer {
-  display: none;
   margin: .1rem 0 0 0;
   width: 100%;
-  height: .50rem;
-  line-height: .50rem;
+  height: .40rem;
+  line-height: .44rem;
   bottom: 0;
   left: 0;
-  background-color: #060606;
+  background-color: #323436;
   opacity: .9;
   color: whitesmoke;
   font-weight: bold;
@@ -722,7 +656,7 @@ select {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #6fd801;
+  background-color: #64c400;
   z-index: 9999;
 }
 
@@ -731,6 +665,7 @@ select {
   font-size: .14rem;
   visibility: hidden;
   height: 1.45rem;
+  margin-bottom: .1rem;
 }
 
 .ui-slider {
@@ -776,8 +711,6 @@ select {
 }
 
 .ui-slider-item > p {
-  display: none;
-  /* no need 20150708 */
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -798,6 +731,7 @@ select {
   /*position: absolute;*/
   /*bottom: 6px;*/
   /*right: 0;*/
+  display: none;
   position: relative;
   top: -.25rem;
   padding: 0 .06rem;
@@ -894,15 +828,20 @@ select {
   padding: 0 .1rem;
   -webkit-box-flex: 0;
   line-height: .34rem;
-  background-color: #efeded;
+  background-color: #323436;
+  color: #999999;
+  width: .4rem;
+  height: .34rem;
 }
 
 .left-fixed > div.left a {
   display: block;
-  width: 100%;
+  width: .20rem;
+  height: .32rem;
   text-align: center;
-  height: 100%;
   font-size: .16rem;
+  background: url(http://app.hizuoye.com/build/images/iconfont-home.png) no-repeat center;
+  background-size: 100%;
 }
 
 .ui-scroller {
@@ -910,9 +849,9 @@ select {
 }
 
 .ui-navigator {
-  background: #efeded;
+  background: #323436;
   height: .34rem;
-  margin-left: .5rem;
+  margin-left: .3rem;
 }
 
 .ui-navigator-list {
@@ -921,8 +860,8 @@ select {
 }
 
 .ui-navigator-list li {
-  line-height: 34px;
-  font-size: 16px;
+  line-height: .34rem;
+  font-size: .14rem;
   /*font-weight: bold;*/
   text-align: center;
   -webkit-box-flex: 1;
@@ -933,7 +872,7 @@ select {
 
 .ui-navigator-list li a {
   text-decoration: none;
-  color: #838383;
+  color: #999999;
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -942,11 +881,11 @@ select {
 
 .ui-navigator-list li.ui-state-hover,
 .ui-navigator-list li.ui-state-active {
-  background: #efeded;
+  background: #323436;
 }
 .ui-navigator-list li.ui-state-hover a,
 .ui-navigator-list li.ui-state-active a {
-  color: #98D289;
+  color: #fff;
 }
 
 .ui-scroller {
@@ -993,7 +932,7 @@ select {
 /* navigator start */
 a, a:hover {
   text-decoration: none;
-  color: #747070;
+  color: #aeadad;
   cursor: pointer;
 }
 
@@ -1002,9 +941,10 @@ a, a:hover {
   padding: .05rem 0;
 }
 .item-wrapper .item {
-  width: 48%;
+  width: 46%;
   padding: .06rem 0;
-  margin: .03rem;
+  margin: .03rem .06rem;
+  text-align: left;
 }
 .item-wrapper .item-img {
   width: 100%;
@@ -1020,7 +960,7 @@ a, a:hover {
   min-height: 0.45rem;
   font-size: .14rem;
   word-break: break-all;
-  color: #747070;
+  color: #333438;
 }
 
 /* index use */
@@ -1028,13 +968,14 @@ a, a:hover {
   font-size: .12rem;
   display: inline-block;
   vertical-align: top;
+  color: #999999;
 }
 .count span {
   padding-right: .05rem;
 }
 
 .gap-point {
-  font-size: .08rem;
+  font-size: .04rem;
   position: relative;
   top: -.02rem;
 }
@@ -1074,15 +1015,16 @@ a, a:hover {
   height: 100%;
   line-height: 0.36rem;
   font-size: .16rem;
-  color: #494646;
-  border-bottom: 2px solid #6fd801;
+  color: #333438;
+  border-bottom: 2px solid #64c400;
+  padding: 0 .06rem;
 }
 .title-line .more {
   float: right;
   height: 100%;
   line-height: 0.36rem;
   font-size: .12rem;
-  color: #6fd801;
+  color: #333438;
   padding-top: .03rem;
 }
 .title-line .more:hover {
@@ -1122,13 +1064,14 @@ a, a:hover {
 }
 .list .created-time, .topN .created-time {
   font-size: .12rem;
+  color: #999999;
 }
 .list .item-title, .topN .item-title {
   width: 98%;
   font-size: .16rem;
-  line-height: 1.4;
+  line-height: 1.3;
   height: .45rem;
-  color: #494646;
+  color: #333438;
   overflow: hidden;
   text-align: justify;
 }
@@ -1157,11 +1100,19 @@ a, a:hover {
   height: .25rem;
   min-height: .25rem;
   margin-top: .05rem;
+  font-size: .14rem;
+  line-height: 1.8;
 }
 
 /* list end */
 /* detail start */
 /* vars start */
+/* common vars start */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
 /* vars end */
 .detail {
   color: #1c1c1c;
@@ -1176,21 +1127,19 @@ a, a:hover {
   line-height: 1.3;
 }
 .detail .count {
-  font-size: .12rem;
+  font-size: .14rem;
   display: inline-block;
   vertical-align: top;
+  color: #999999;
 }
 .detail .count span {
   padding-right: .05rem;
 }
 .detail .gap-point {
-  font-size: .08rem;
+  font-size: .04rem;
   position: relative;
   top: -.02rem;
-}
-.detail .count {
-  color: #747070;
-  font-size: .14rem;
+  color: #999999;
 }
 .detail .cover-img {
   margin: .18rem 0;
@@ -1228,7 +1177,7 @@ a, a:hover {
 .detail .pageinfo .like {
   width: .48rem;
   height: .48rem;
-  color: #747070;
+  color: #aeadad;
   margin: .05rem auto;
   background-size: 75%;
   background-repeat: no-repeat;

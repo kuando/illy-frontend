@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$img-dir".
-        on line 60 of public/assets/styles/scss/task/mall.scss
+        on line 56 of public/assets/styles/scss/task/testmall.scss
 
-55:             width: 47%;
-56:             text-align: left;
-57:             padding-left: .1rem;
-58: 
-59:             .icon-exchangeTimes {
-60:                 background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);
-61:             }
-62:         }
-63: 
-64:         .stock {
-65:             display: inline-block;
+51:             width: 47%;
+52:             text-align: left;
+53:             padding-left: .1rem;
+54: 
+55:             .icon-exchangeTimes {
+56:                 background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);
+57:             }
+58:         }
+59: 
+60:         .stock {
+61:             display: inline-block;
 
 Backtrace:
-public/assets/styles/scss/task/mall.scss:60
+public/assets/styles/scss/task/testmall.scss:56
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/script/tree/variable.rb:49:in `_perform'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/script/tree/string_interpolation.rb:83:in `_perform'
@@ -86,13 +86,8 @@ public/assets/styles/scss/task/mall.scss:60
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/engine.rb:368:in `_render_with_sourcemap'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/engine.rb:285:in `render_with_sourcemap'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `each'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/plugin.rb:82:in `update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:361:in `watch_or_update'
-/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:407:in `run'
+/var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:63:in `process_result'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/base.rb:52:in `parse'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/lib/sass/exec/base.rb:19:in `parse!'
 /var/lib/gems/1.9.1/gems/sass-3.4.13/bin/sass:13:in `<top (required)>'
@@ -102,4 +97,4 @@ public/assets/styles/scss/task/mall.scss:60
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$img-dir\".\A         on line 60 of public/assets/styles/scss/task/mall.scss\A \A 55:             width: 47%;\A 56:             text-align: left;\A 57:             padding-left: .1rem;\A 58: \A 59:             .icon-exchangeTimes {\A 60:                 background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);\A 61:             }\A 62:         }\A 63: \A 64:         .stock {\A 65:             display: inline-block;"; }
+  content: "Error: Undefined variable: \"$img-dir\".\A         on line 56 of public/assets/styles/scss/task/testmall.scss\A \A 51:             width: 47%;\A 52:             text-align: left;\A 53:             padding-left: .1rem;\A 54: \A 55:             .icon-exchangeTimes {\A 56:                 background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);\A 57:             }\A 58:         }\A 59: \A 60:         .stock {\A 61:             display: inline-block;"; }

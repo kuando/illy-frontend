@@ -3,85 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title> auth </title>
+<title> 认证中... </title>
 <style>
-    /* ================= loading-with-dot ===================== */
-.loading-with-dot {
-  display: inline-block;
-  width: 10px;
-  min-height: 2px;
-  padding-right: 2px;
-  border-left: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  background-color: currentColor;
-  background-clip: content-box;
-  box-sizing: border-box;
-  -webkit-animation: dot 4s infinite step-start both;
-  animation: dot 4s infinite step-start both;
-  *zoom: expression(this.innerHTML = '...');
-  /* IE7 */
-  /* IE8 */
-}
-.loading-with-dot:before {
-  content: '...';
-}
-.loading-with-dot::before {
-  content: '';
-}
-
-:root .loading-with-dot {
-  margin-left: 2px;
-  padding-left: 2px;
-}
-
-/* IE9+ */
-@-webkit-keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-@keyframes dot {
-  25% {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  /* zero point */
-  50% {
-    border-right-color: transparent;
-    background-color: transparent;
-  }
-  /* one point */
-  75% {
-    border-right-color: transparent;
-  }
-  /* two points */
-}
-h1 {
-    padding: 0;
-    margin: 0;
-    height: 300px; 
-    line-height: 300px;
-    text-align: center;
-    font-size: 20px;
-}
 </style>
 </head>
 
 <body>
-    <div style="position:fixed; margin:auto; left:0; right: 0; top: 0; bottom: 0; width: 300px; height: 300px;">
-        <h1>身份认证中<span class="loading-with-dot"></span></h1>
-    </div>
+
 </body>
 
 <script>

@@ -1,5 +1,5 @@
 /* vars start */
-$content-color: #444242;
+@import "../_var.scss";
 /* vars end */
 
 .detail {
@@ -15,23 +15,20 @@ $content-color: #444242;
     }
      
     .count {
-        font-size: .12rem;
+        font-size: .14rem;
         display: inline-block;
         vertical-align: top;
+        color: $like-color;
 
         span {
             padding-right: .05rem;
         }
     }
     .gap-point {
-        font-size: .08rem;
+        font-size: .04rem;
         position: relative;
         top: -.02rem;
-    }
-
-    .count {
-        color: $g_font_color;
-        font-size: .14rem;
+        color: $like-color;
     }
 
     .cover-img {

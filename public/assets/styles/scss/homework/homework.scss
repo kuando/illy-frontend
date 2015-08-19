@@ -8,19 +8,6 @@
 @import "../_normalize.scss";
 @import "../_common.scss";
 
-/* reset vars and vars start */
-$img_width: 21%;
-$img_height: .5rem;
-$hw-info-height: .7rem;
-$answer_panel_height: 1.5rem;
-$item_title_height: .45rem;
-$next_radius: $answer_panel_height / 2;
-
-$progress-bgcolor: grey;
-$progress-color: $main-green;
-$progress-height: .03rem;
-/* reset vars and vars end */
-
 .yo-header {
     background-color: $main-green;
 }
@@ -200,7 +187,7 @@ background-image: url("../../icons-36-white.png");
             .item-img {
                 width: $img_width;
                 margin-right: .05rem;
-                height: $img_height;
+                height: $hw_img_height;
                 border: 1px solid #eee;
                 vertical-align: middle;
                 border: 0;
