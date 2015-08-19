@@ -335,9 +335,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 loader && (loader.style.display = 'none'); /* jshint ignore:line */
                 avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer); /* jshint ignore:line */
 
-                var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
+                // var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
                 // for strong
-                view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
+                // view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
 
             }, 300); // time enough for not see last view cache
 

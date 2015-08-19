@@ -830,13 +830,13 @@ select {
   line-height: .34rem;
   background-color: #323436;
   color: #999999;
-  width: .4rem;
+  width: .5rem;
   height: .34rem;
 }
 
 .left-fixed > div.left a {
   display: block;
-  width: .20rem;
+  width: .22rem;
   height: .32rem;
   text-align: center;
   font-size: .16rem;
@@ -851,7 +851,7 @@ select {
 .ui-navigator {
   background: #323436;
   height: .34rem;
-  margin-left: .3rem;
+  margin-left: .4rem;
 }
 
 .ui-navigator-list {
@@ -989,7 +989,7 @@ a, a:hover {
   font-size: .14rem;
   /* normalize the fs*/
   text-align: left;
-  width: 97%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
@@ -1069,7 +1069,7 @@ a, a:hover {
 .list .item-title, .topN .item-title {
   width: 98%;
   font-size: .16rem;
-  line-height: 1.3;
+  line-height: 1.35;
   height: .45rem;
   color: #333438;
   overflow: hidden;
