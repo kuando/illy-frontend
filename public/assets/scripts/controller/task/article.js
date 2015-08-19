@@ -83,6 +83,7 @@ define([], function() {
         fetchData: function() {
             if (article.visited) {
                 var local = avalon.getLocalCache(cachedPrefix + article.taskId);
+                article.articleId = local._id;
                 article.title = local.title;
                 article.content = local.content;
                 article.created = local.created;
@@ -98,6 +99,7 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(json) {
+                    article.articleId = json._id;
                     article.title = json.title;
                     article.content = json.content;
                     article.created = json.created;

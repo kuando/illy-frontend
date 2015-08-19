@@ -1023,9 +1023,9 @@ a, a:hover {
   color: #747070;
 }
 
+/* index use */
 .count {
   font-size: .12rem;
-  /*width: 22%;*/
   display: inline-block;
   vertical-align: top;
 }
@@ -1174,6 +1174,19 @@ a, a:hover {
   padding: .12rem 0 .12rem 0;
   /* fix top-striped first in render bug, should not use margin, 20150813 */
   line-height: 1.3;
+}
+.detail .count {
+  font-size: .12rem;
+  display: inline-block;
+  vertical-align: top;
+}
+.detail .count span {
+  padding-right: .05rem;
+}
+.detail .gap-point {
+  font-size: .08rem;
+  position: relative;
+  top: -.02rem;
 }
 .detail .count {
   color: #747070;

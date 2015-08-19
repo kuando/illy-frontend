@@ -685,7 +685,7 @@ select {
 }
 
 .task {
-  min-height: 450px;
+  min-height: 5.5rem;
   padding: .05rem;
 }
 .task, .task-footer {
@@ -749,6 +749,19 @@ a, a:hover {
   padding: .12rem 0 .12rem 0;
   /* fix top-striped first in render bug, should not use margin, 20150813 */
   line-height: 1.3;
+}
+.detail .count {
+  font-size: .12rem;
+  display: inline-block;
+  vertical-align: top;
+}
+.detail .count span {
+  padding-right: .05rem;
+}
+.detail .gap-point {
+  font-size: .08rem;
+  position: relative;
+  top: -.02rem;
 }
 .detail .count {
   color: #747070;
@@ -858,69 +871,7 @@ a, a:hover {
 
 /* detail-import end */
 /* mall start */
-.mall-wrapper {
-  text-align: center;
-  margin: .05rem 0;
-}
-.mall-wrapper .mall-item {
-  display: inline-block;
-  width: 47%;
-  margin: .05rem .02rem;
-  background: #fff;
-  padding: .03rem 0;
-  text-align: left;
-}
-.mall-wrapper .mall-item .img-wrapper {
-  width: 100%;
-  position: relative;
-}
-.mall-wrapper .mall-item img {
-  display: inline-block;
-  width: 100%;
-}
-.mall-wrapper .mall-item .title {
-  display: inline-block;
-  width: 100%;
-  padding: .03rem .08rem .03rem;
-  line-height: 1.3;
-  font-size: .14rem;
-}
-.mall-wrapper .mall-item .price {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  font-size: .12rem;
-  line-height: .16rem;
-  padding: .03rem;
-  background: red;
-  color: #fff;
-  opacity: .7;
-}
-.mall-wrapper .mall-item .icon {
-  width: .18rem;
-  height: .18rem;
-  position: relative;
-  top: -.01rem;
-}
-.mall-wrapper .mall-item .exchangeTimes {
-  display: inline-block;
-  width: 47%;
-  text-align: left;
-  padding-left: .1rem;
-}
-.mall-wrapper .mall-item .exchangeTimes .icon-exchangeTimes {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
-}
-.mall-wrapper .mall-item .stock {
-  display: inline-block;
-  width: 47%;
-  text-align: right;
-  padding-right: .1rem;
-}
-.mall-wrapper .mall-item .stock .icon-stock {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
-}
-
+@import　 "./mall.scss";
 /* mall end */
 /* rank start */
 .rank .rank-li {
@@ -965,5 +916,13 @@ a, a:hover {
 }
 
 /* rank end */
+/* me start */
+/*******************************************************
+    > File Name: me.scss
+    > Author: IndexXuan
+    > Mail: indexxuan@gmail.com
+    > Created Time: 2015年08月19日 星期三 10时13分24秒
+ ******************************************************/
+/* me end */
 
 /*# sourceMappingURL=task.css.map */

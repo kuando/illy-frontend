@@ -1,0 +1,43 @@
+.task-list {
+
+    .list-card {
+        width: 100%;
+        margin-bottom: .05rem;
+        text-align: left;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        box-shadow: 0px 0px 5px #e5d8d8;
+        padding: .05rem;
+    }
+
+    .item-img {
+        width: 22%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: .05rem;
+    }
+
+    .task-content {
+        width: 74%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .task-info {
+        width: 99%;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 1.9;
+    }
+
+    .goGetIt {
+        width: .9rem;
+        position: absolute;
+        right: .05rem;
+        bottom: .05rem;
+        padding: 0;
+    }
+
+}
+

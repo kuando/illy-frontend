@@ -13,6 +13,21 @@ $content-color: #444242;
         padding: .12rem 0 .12rem 0; /* fix top-striped first in render bug, should not use margin, 20150813 */
         line-height: 1.3;
     }
+     
+    .count {
+        font-size: .12rem;
+        display: inline-block;
+        vertical-align: top;
+
+        span {
+            padding-right: .05rem;
+        }
+    }
+    .gap-point {
+        font-size: .08rem;
+        position: relative;
+        top: -.02rem;
+    }
 
     .count {
         color: $g_font_color;

@@ -116,10 +116,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         data: {
         url: url
         },
-        headers: {
-            'Authorization': 'Bearer ' + token
-        },
-        dataType: "json",
         success: function(jsonobj) {
             var appId = jsonobj.appid;
             var timestamp = jsonobj.timestamp;
@@ -171,10 +167,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             });
         },
         error: function(res) {
-            console.error("wx ajax error" + res);
+            console.log("wx ajax error" + res);
         },
         ajaxFail: function(res) {
-            console.error("wx ajaxFial" + res);
+            console.log("wx ajaxFail" + res);
         }
     });
 

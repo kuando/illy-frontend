@@ -18,9 +18,17 @@ define([], function() {
     };
 
     var me = avalon.define({
+
         $id: "me",
-        infoProfile: ['displayName', 'gender', 'phone', 'parent', 'onSchool', 'grade'], // profile item can be update
+
+        // profile item can be update
+        infoProfile: ['displayName', 'gender', 'phone', 'parent', 'onSchool', 'grade'],
+
+        /* state prop start */
         editing: false,
+        /* state prop end */
+
+        /* page data start */
         copyProfile: '',
         username: '',
         displayName: '',
@@ -32,9 +40,37 @@ define([], function() {
         grade: '',
         finishedHomeworkCount: '',
         finishedPreviewsCount: '',
+        /* page data end */
+
+        /* 内部功能函数 */
         resetData: function() {
             avatar.localId = '';
             avatar.serverId = '';
+        },
+        hasDiff: function() {
+            var diff = me.infoProfile.every(function(item) {
+                return me[item] === me.copyProfile[item];
+            });
+            return !diff;
+        },
+        setVM: function(source, avatar) {
+            if (avatar !== false) { avatar = true; }// default
+            me.username = source.username;
+            me.displayName = source.displayName;
+            me.gender = source.gender;
+            me.phone = source.phone;
+            me.parent = source.parent;
+            if (avatar) {
+                if (source.avatar !== void 0) {
+                    me.avatar = resourcePrefix + source.avatar;
+                } else {
+                    me.avatar = avatar.defaultFullUrl; // default avatar of user
+                }
+            }
+            me.onSchool = source.onSchool;
+            me.grade = source.grade;
+            me.finishedHomeworkCount = source.finishedHomeworkCount;
+            me.finishedPreviewsCount = source.finishedPreviewsCount;
         },
         fetchData: function() {
             $http.ajax({
@@ -49,6 +85,9 @@ define([], function() {
                 }
             });
         },
+        /* 内部功能函数 */
+
+        /* 对微信sdk进行简单封装的功能函数 */
         chooseImage: function() {
             wx.chooseImage({
                 count: 1, // 默认9
@@ -77,41 +116,9 @@ define([], function() {
                 }
             });
         },
-        toggleEditState: function() {
-            if (me.editing === true) {
-                me.editing = false;
-            } else {
-                me.editing = true;
-            }
-        },
-        setVM: function(source, avatar) {
-            if (avatar !== false) { avatar = true; }// default
-            me.username = source.username;
-            me.displayName = source.displayName;
-            me.gender = source.gender;
-            me.phone = source.phone;
-            me.parent = source.parent;
-            if (avatar) {
-                if (source.avatar !== void 0) {
-                    me.avatar = resourcePrefix + source.avatar;
-                } else {
-                    me.avatar = avatar.defaultFullUrl; // default avatar of user
-                }
-            }
-            me.onSchool = source.onSchool;
-            me.grade = source.grade;
-            me.finishedHomeworkCount = source.finishedHomeworkCount;
-            me.finishedPreviewsCount = source.finishedPreviewsCount;
-        },
-        resetAll: function() {
-            me.setVM(me.copyProfile, false);
-        },
-        hasDiff: function() {
-            var diff = me.infoProfile.every(function(item) {
-                return me[item] === me.copyProfile[item];
-            });
-            return !diff;
-        },
+        /* 对微信sdk进行简单封装的功能函数 */
+
+        /* 对api进行简单封装的功能函数 */
         updateProfile: function() {
             $http.ajax({
                 method: 'PUT',
@@ -163,16 +170,28 @@ define([], function() {
                 } 
             });
         },
+        /* 对api进行简单封装的功能函数 */
+
+        /* 对工具函数进行浅封装的直接用户交互函数 */
+        edit: function() {
+            me.editing = true;
+        },
+        resetAll: function() {
+            me.setVM(me.copyProfile, false);
+        },
         save: function() { // diff will update and no-diff will just local save
             if(me.hasDiff()) {
                 me.updateProfile();
             }
+            me.editing = false;
         },
         cancel: function() {
             me.resetAll();
             me.editing = false;
         }
-    });
+        /* 对工具函数进行浅封装的直接用户交互函数 */
+
+    }); // end of define 
 
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
@@ -180,7 +199,7 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) { /* jshint ignore:line */
+        $ctrl.$onEnter = function() {
 
             me.resetData();
             me.fetchData();
@@ -190,7 +209,7 @@ define([], function() {
         $ctrl.$onBeforeUnload = function() {
 
         };
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
 

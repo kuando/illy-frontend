@@ -1,0 +1,54 @@
+.rank {
+
+    .rank-li {
+        text-align: left;
+
+        .icon {
+            margin-left: .06rem;
+        }
+        .icon-rank-0 {
+            background-image: url(#{$img-dir}/iconfont-jin.png);
+        }
+        .icon-rank-1 {
+            background-image: url(#{$img-dir}/iconfont-yin.png);
+        }
+        .icon-rank-2 {
+            background-image: url(#{$img-dir}/iconfont-tong.png);
+        }
+
+    }
+
+    .rank-div {
+        width: 34%;
+        padding-left: .15rem;
+    }
+
+    .rank-div:first-child {
+        padding-left: .05rem;
+    }
+
+    .name-div {
+        position: relative;
+        left: .2rem;
+    }
+
+    .score-div {
+        width: 15%;
+    }
+
+    .avatar{
+        width: .25rem;
+        height: .25rem;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: .05rem;
+    }
+    .avatar-default {
+        background: url(#{$img-dir}/iconfont-defaultAvatar.png) no-repeat center;
+    }
+
+    .span {
+        
+    }
+}

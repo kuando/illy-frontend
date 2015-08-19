@@ -1,5 +1,6 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/http'], function(wx) {
-    // get config
+
+    // global config 
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     /* wxsdk start */
@@ -64,24 +65,33 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
             });
         },
         error: function(res) {
-            console.error("wx ajax error" + res);
+            console.log("wx ajax error" + res);
         },
         ajaxFail: function(res) {
-            console.error("wx ajaxFial" + res);
+            console.log("wx ajaxFail" + res);
         }
     });
 
-    //wx.ready(function() {
-    //    // do all thing here, except user trigger functions(can put in outside)
-    //    wx.checkJsApi({
-    //        jsApiList: ['startRecord'], // apis to check
-    //            success: function(res) {
-    //                alert(parse(res));
-    //                // key --- value, if usable, true, then false
-    //                // e.g. {"checkResult": {"chooseImage": true}, "errMsg": "checkJsApi:ok"}
-    //            }
-    //    });
-    //});
+    wx.ready(function() {
+        // do all thing here, except user trigger functions(can put in outside)
+
+        wx.onMenuShareTimeline({
+            title: activity.theme, // 分享标题
+            link: '', // 分享链接 
+            imgUrl: document.getElementsByTagName('img')[0].src || '', // 分享图标
+            success: function() {
+                // 不管成功与否，前台界面至少先更新
+                activity.shareCount++;
+                activity.isShared = true;
+                activity.updateShare();
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+                alert('差一点就分享成功了!');
+            }
+        });
+
+    });
 
     wx.error(function(res) {
         alert("Woops, error comes when WeChat-sdk signature..." + res);
@@ -248,25 +258,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
                     }
                     activity.CopyinfoCollect = json.infoCollect;
                     activity.theme = json.theme;
-
-                    wx.onMenuShareTimeline({
-                        title: activity.theme, // 分享标题
-                        link: '', // 分享链接 
-                        imgUrl: document.getElementsByTagName('img')[0].src || '', // 分享图标
-                        success: function() {
-                            // 不管成功与否，前台界面至少先更新
-                            activity.shareCount++;
-                            activity.isShared = true;
-                            activity.updateShare();
-                        },
-                        cancel: function() {
-                            // 用户取消分享后执行的回调函数
-                            if (!activity.isShared) {
-                                alert('差一点就分享成功了!');
-                            }
-                        }
-                    });
-
                 }
             });
         } // end of fetch data

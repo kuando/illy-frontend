@@ -13,7 +13,7 @@
 @import "../_common.scss";
 
 .task {
-    min-height: 450px; 
+    min-height: 5.5rem; 
     padding: .05rem;
 
     &, &-footer {
@@ -28,184 +28,22 @@ a, a:hover {
 }
 
 /* taskList start */
-.task-list {
-
-    .list-card {
-        width: 100%;
-        margin-bottom: .05rem;
-        text-align: left;
-        position: relative;
-        display: inline-block;
-        overflow: hidden;
-        box-shadow: 0px 0px 5px #e5d8d8;
-        padding: .05rem;
-    }
-
-    .item-img {
-        width: 22%;
-        display: inline-block;
-        vertical-align: top;
-        margin-right: .05rem;
-    }
-
-    .task-content {
-        width: 74%;
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .task-info {
-        width: 99%;
-        display: inline-block;
-        vertical-align: top;
-        line-height: 1.9;
-    }
-
-    .goGetIt {
-        width: .9rem;
-        position: absolute;
-        right: .05rem;
-        bottom: .05rem;
-        padding: 0;
-    }
-
-}
+@import "./taskList.scss";
 /* taskList end */
 
 /* detail-import start */
-@import "../microsite/article.scss";
+@import "../microsite/_article.scss";
 /* detail-import end */
 
 /* mall start */
-.mall-wrapper {
-    text-align: center;
-    margin: .05rem 0;
-
-    .mall-item {
-        display: inline-block;
-        width: 47%;
-        margin: .05rem .02rem;
-        background: #fff;
-        padding: .03rem 0;
-        text-align: left;
-
-        .img-wrapper {
-            width: 100%;
-            position: relative;
-        }
-
-        img {
-            display: inline-block;
-            width: 100%;
-        }
-
-        .title {
-            display: inline-block;
-            width: 100%;
-            padding: .03rem .08rem .03rem;
-            line-height: 1.3;
-            font-size: .14rem;
-        }
-
-        .price {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            font-size: .12rem;
-            line-height: .16rem;
-            padding: .03rem;
-            background: red;
-            color: #fff;
-            opacity: .7;
-        }
-
-        .icon {
-            width: .18rem;
-            height: .18rem;
-            position: relative;
-            top: -.01rem;
-        }
-        .exchangeTimes {
-            display: inline-block;
-            width: 47%;
-            text-align: left;
-            padding-left: .1rem;
-
-            .icon-exchangeTimes {
-                background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);
-            }
-        }
-
-        .stock {
-            display: inline-block;
-            width: 47%;
-            text-align: right;
-            padding-right: .1rem;
-
-            .icon-stock {
-                background-image: url(#{$img-dir}/iconfont-stock.png);
-            }
-        }
-
-    }
-
-}
+@import　"./mall.scss";
 /* mall end */
 
 /* rank start */
-.rank {
-
-    .rank-li {
-        text-align: left;
-
-        .icon {
-            margin-left: .06rem;
-        }
-        .icon-rank-0 {
-            background-image: url(#{$img-dir}/iconfont-jin.png);
-        }
-        .icon-rank-1 {
-            background-image: url(#{$img-dir}/iconfont-yin.png);
-        }
-        .icon-rank-2 {
-            background-image: url(#{$img-dir}/iconfont-tong.png);
-        }
-
-    }
-
-    .rank-div {
-        width: 34%;
-        padding-left: .15rem;
-    }
-
-    .rank-div:first-child {
-        padding-left: .05rem;
-    }
-
-    .name-div {
-        position: relative;
-        left: .2rem;
-    }
-
-    .score-div {
-        width: 15%;
-    }
-
-    .avatar{
-        width: .25rem;
-        height: .25rem;
-        border-radius: 50%;
-        display: inline-block;
-        vertical-align: top;
-        margin-right: .05rem;
-    }
-    .avatar-default {
-        background: url(#{$img-dir}/iconfont-defaultAvatar.png) no-repeat center;
-    }
-
-    .span {
-        
-    }
-}
+@import "./rank.scss";
 /* rank end */
+
+/* me start */
+@import "./me.scss";
+/* me end */
 
