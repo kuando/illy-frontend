@@ -344,7 +344,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             if (root.currentPage === 'index') {
                 setTimeout(function() {
                     $('#nav li').removeClass('ui-state-active');
-                }, 200);
+                }, 400); // enough time
             }
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */

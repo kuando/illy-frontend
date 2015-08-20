@@ -25,6 +25,7 @@ $me-column-wrapper-color: #5c5454;
 
         img {
             width: $me-avatar-height; 
+            max-height: $me-avatar-height;
             height: auto;
             border-radius: 50%;
             border: none;
@@ -52,6 +53,8 @@ $me-column-wrapper-color: #5c5454;
                 height: .16rem;
                 background: url(#{$img-dir}/iconfont-updateProfile.png) no-repeat center;
                 background-size: 100%;
+                position: relative;
+                top: -1px;
             }
         }
     }
@@ -77,8 +80,8 @@ $me-column-wrapper-color: #5c5454;
         width: 1px;
         height: .4rem;
         background-color: $me-gap-line-color;
-        position: relative;
-        top: 3px;
+        /*position: relative;*/
+        /*top: 3px;*/
     }
 
 }
@@ -90,12 +93,13 @@ $me-column-wrapper-color: #5c5454;
 
     .item {
         padding: .15rem .3rem; /* rewrite to make height higher */
+        font-size: .16rem;
     }
 
     .icon {
         position: relative;
         top: -.01rem;
-        margin-right: .1rem;
+        margin-right: .15rem;
         width: .2rem;
         height: .2rem;
     }

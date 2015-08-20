@@ -937,6 +937,7 @@ select {
 }
 .profile-wrapper .avatar-wrapper img {
   width: 100px;
+  max-height: 100px;
   height: auto;
   border-radius: 50%;
   border: none;
@@ -956,6 +957,8 @@ select {
   height: .16rem;
   background: url(http://app.hizuoye.com/build/images/iconfont-updateProfile.png) no-repeat center;
   background-size: 100%;
+  position: relative;
+  top: -1px;
 }
 
 .column-wrapper {
@@ -977,8 +980,8 @@ select {
   width: 1px;
   height: .4rem;
   background-color: #dedede;
-  position: relative;
-  top: 3px;
+  /*position: relative;*/
+  /*top: 3px;*/
 }
 
 .editing-tips {
@@ -988,11 +991,12 @@ select {
 .update-profile-list .item {
   padding: .15rem .3rem;
   /* rewrite to make height higher */
+  font-size: .16rem;
 }
 .update-profile-list .icon {
   position: relative;
   top: -.01rem;
-  margin-right: .1rem;
+  margin-right: .15rem;
   width: .2rem;
   height: .2rem;
 }
