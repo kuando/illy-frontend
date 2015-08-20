@@ -339,8 +339,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 // for strong
                 // view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
 
-            }, 300); // time enough for not see last view cache
+            }, 400); // time enough for not see last view cache
 
+            if (root.currentPage === 'index') {
+                setTimeout(function() {
+                    $('#nav li').removeClass('ui-state-active');
+                }, 200);
+            }
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({

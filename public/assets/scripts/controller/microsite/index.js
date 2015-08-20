@@ -51,8 +51,8 @@ define([], function() {
             index.fetchRemoteData('posts/slider', {}, 'sliders');
             index.fetchRemoteData('posts/hot?limit=3', {}, 'hots'); // three articles
             index.fetchRemoteData('categories/posts', {}, 'categories');
-
-        };
+            
+       };
         // 视图渲染后，意思是avalon.scan完成
         var renderedDelay;
         $ctrl.$onRendered = function() {
@@ -100,10 +100,9 @@ define([], function() {
                         }, 16); // 1 frame
                     },
                     'done.dom': function() {
-                        //avalon.log('gmu sliders done.dom in Time: ' + Date.now());
-                        $('#nav').navigator();
                     }
                 });
+                //avalon.log('gmu sliders done.dom in Time: ' + Date.now());
             }, renderedDelay);
         };
         // 对应的视图销毁前

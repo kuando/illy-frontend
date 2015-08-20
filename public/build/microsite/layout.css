@@ -666,6 +666,7 @@ select {
   visibility: hidden;
   height: 1.8rem;
   margin-bottom: .1rem;
+  margin-top: 0.34rem;
 }
 
 .ui-slider {
@@ -814,6 +815,14 @@ select {
 /* slider end */
 /* navigator start */
 /** 一级导航样式 */
+.fixed-navigator {
+  /* async added, wrapper */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+
 .left-fixed {
   display: -webkit-box;
 }
@@ -825,24 +834,18 @@ select {
 
 .left-fixed > div.left {
   position: absolute;
-  z-index: 9999;
+  top: 0;
+  left: 0;
   padding: 0 .1rem;
   -webkit-box-flex: 0;
-  line-height: .44rem;
+  line-height: 0.34rem;
   background-color: #323436;
   color: #999999;
-  width: .5rem;
-  height: .44rem;
 }
 
 .left-fixed > div.left a {
   display: block;
-  width: .26rem;
-  height: 0.44rem;
   text-align: center;
-  font-size: .16rem;
-  background: url(http://app.hizuoye.com/build/images/iconfont-home.png) no-repeat center;
-  background-size: 100%;
 }
 
 .ui-scroller {
@@ -851,9 +854,9 @@ select {
 
 .ui-navigator {
   background: #323436;
-  height: 0.44rem;
-  line-height: 0.44rem;
-  margin-left: 0.44rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  margin-left: 0.42rem;
 }
 
 .ui-navigator-list {
@@ -1002,7 +1005,7 @@ a, a:hover {
 
 [avalonctrl].topN {
   /* list */
-  margin-top: 0;
+  margin-top: 0.39rem;
   padding: 0;
   /* key for width 100% navigator */
 }
@@ -1025,8 +1028,10 @@ a, a:hover {
   line-height: 0.36rem;
   font-size: .16rem;
   color: #333438;
-  border-bottom: 2px solid #64c400;
+  border-bottom: 1px solid #64c400;
   padding: 0 .06rem;
+  position: relative;
+  top: 1px;
 }
 .title-line .more {
   float: right;

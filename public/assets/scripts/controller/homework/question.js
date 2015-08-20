@@ -271,7 +271,6 @@ define([], function() {
                     return;
                 } else {
                     question.right = true; // right it for next
-                    alert(audioAnswer);
                     detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
                 }
                 
