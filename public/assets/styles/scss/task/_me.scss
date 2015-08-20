@@ -1,0 +1,130 @@
+/*******************************************************
+    > File Name: me.scss
+    > Author: IndexXuan
+    > Mail: indexxuan@gmail.com
+    > Created Time: 2015年08月19日 星期三 10时13分24秒
+ ******************************************************/
+
+$me-main-color: #fff;
+$me-avatar-height: 100px;
+$me-column-item-height: .8rem;
+$me-column-wrapper-bgColor: #f6f6f6;
+$me-gap-line-color: #dedede;
+$me-column-wrapper-color: #5c5454;
+
+.me {
+    text-align: left;
+}
+
+.profile-wrapper {
+    background-color: $me-main-color;
+
+    .avatar-wrapper {
+        width: 40%;
+        padding: .15rem .20rem;
+
+        img {
+            width: $me-avatar-height; 
+            height: auto;
+            border-radius: 50%;
+            border: none;
+        }
+    }
+    .profile-info-wrapper {
+        position: relative;
+        width: 58%;
+        padding: .35rem 0;
+
+        ul {
+
+            li {
+
+            }
+        }
+
+        .update {
+            position: absolute;
+            right: .1rem;
+            top: .2rem;
+            
+            .icon-update {
+                width: .16rem;
+                height: .16rem;
+                background: url(#{$img-dir}/iconfont-updateProfile.png) no-repeat center;
+                background-size: 100%;
+            }
+        }
+    }
+}
+
+.column-wrapper {
+    text-align: center;
+    background-color: $me-column-wrapper-bgColor;
+    margin-bottom: .1rem;
+    padding: .05rem;
+    color: $me-column-wrapper-color;
+
+    .column-item {
+        width: 22%;
+        line-height: 1.8;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .gap-line {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1px;
+        height: .4rem;
+        background-color: $me-gap-line-color;
+        position: relative;
+        top: 3px;
+    }
+
+}
+
+.editing-tips {
+    padding: .08rem .01rem .1rem .01rem;
+}
+.update-profile-list {
+
+    .item {
+        padding: .15rem .3rem; /* rewrite to make height higher */
+    }
+
+    .icon {
+        position: relative;
+        top: -.01rem;
+        margin-right: .1rem;
+        width: .2rem;
+        height: .2rem;
+    }
+
+    .icon-name {
+        background-image: url(#{$img-dir}/iconfont-name.png);
+        background-size: 100%;
+    }
+    .icon-gender {
+        background-image: url(#{$img-dir}/iconfont-gender.png);
+        background-size: 100%;
+    }
+    .icon-parent {
+        background-image: url(#{$img-dir}/iconfont-parent.png);
+        background-size: 100%;
+    }
+    .icon-phone {
+        background-image: url(#{$img-dir}/iconfont-phone.png);
+        background-size: 100%;
+    }
+    .icon-school {
+        background-image: url(#{$img-dir}/iconfont-school.png);
+        background-size: 100%;
+    }
+
+    .editing-btn-wrapper {
+        text-align: center;
+        margin: .2rem;
+    }
+
+}
+

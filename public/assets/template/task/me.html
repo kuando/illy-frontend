@@ -1,49 +1,107 @@
 <div class="me" ms-controller="me">
 
-    <div class="yo-btn" ms-click="edit()" ms-if="editing == false">edit</div>
-    <div class="yo-btn" ms-click="resetAll()" ms-if="editing == true">resetAll</div>
+    <!--<div class="yo-btn hide" ms-click="resetAll()" ms-if="editing == true">resetAll</div>-->
 
-    <div class="yo-list yo-list-group update-profile-list">
-        <div class="user-avatar">
-            <img style="border: 1px; width: .5rem; height: .5rem;" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+    <!-- bg & avatar & info & update-profile area start -->
+    <div class="profile-wrapper" ms-if="editing === false">
+        <div class="avatar-wrapper area">
+            <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
         </div>
-        <h3 class="label" ms-if="editing == false">username: {{username}}</h3>
-        <label class="item item-input hide" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="username" placeholder="用户名" />
-        </label>
-        <h3 class="label" ms-if="editing == false">displayName: {{displayName}}</h3>
+        <div class="profile-info-wrapper area">
+            <ul>
+                <li>{{displayName}}</li>
+                <li>{{grade}}</li>
+            </ul>
+
+            <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
+        </div>
+    </div>
+    <!-- bg & avatar & info & update-profile area end -->
+
+    <!-- 几个小栏目 start -->
+    <div class="column-wrapper" ms-if="editing === false">
+        <div class="column-item area">
+            <div class="icon-wrapper"><i class="icon">{{finishedHomeworkCount}}</i></div>
+            <div class="item-name">作业</div>
+        </div>
+        <div class="gap-line"></div>
+        <div class="column-item area">
+            <div class="icon-wrapper"><i class="icon">{{finishedPreviewsCount}}</i></div>
+            <div class="item-name">预习</div>
+        </div>
+        <div class="gap-line"></div>
+        <div class="column-item area">
+            <div class="icon-wrapper"><i class="icon">{{score}}</i></div>
+            <div class="item-name">积分</div>
+        </div>
+        <div class="gap-line"></div>
+        <div class="column-item area">
+            <div class="icon-wrapper"><i class="icon">0</i></div>
+            <div class="item-name">消息</div>
+        </div>
+    </div>
+    <!-- 几个小栏目 end -->
+
+    <!-- editable form start -->
+    <p class="editing-tips" ms-if="editing === true">修改您想要变更的信息: </p>
+    <ul class="update-profile-list yo-list yo-list-group">
+        <!--<h3 class="label hide" ms-if="editing == false">username: {{username}}</h3>-->
+        <!--<label class="item item-input hide" ms-if="editing == true">-->
+            <!--<input type="text" class="yo-input" ms-duplex-string="username" placeholder="用户名" />-->
+        <!--</label>-->
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-name"></i>
+            <div class="flex">{{displayName}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="昵称" />
         </label>
-        <h3 class="label" ms-if="editing == false">gender: {{gender}}</h3>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-gender"></i>
+            <div class="flex" ms-if="editing == false">{{gender}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />
         </label>
-        <h3 class="label" ms-if="editing == false">parent: {{parent}}</h3>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-parent"></i>
+            <div class="flex" ms-if="editing == false">{{parent}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="parent" placeholder="家长姓名" />
         </label>
-        <h3 class="label" ms-if="editing == false">phone: {{phone}}</h3>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-phone"></i>
+            <div class="flex" ms-if="editing == false">{{phone}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="用户电话" />
         </label>
-        <h3 class="label" ms-if="editing == false">onSchool: {{onSchool}}</h3>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-school"></i>
+            <div class="flex" ms-if="editing == false">{{onSchool}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="学校名称" />
         </label>
-        <h3 class="label" ms-if="editing == false">grade: {{grade}}</h3>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-school"></i>
+            <div class="flex" ms-if="editing == false">{{grade}}</div>
+        </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="年级" />
         </label>
-        <h3 class="label" ms-if="editing == false">finishedHomeworkCount: {{finishedHomeworkCount}}</h3>
-        <label class="item item-input hide" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="finishedHomeworkCount" placeholder="完成作业数" />
-        </label>
-        <h3 class="label" ms-if="editing == false">finishedPreviewsCount: {{finishedPreviewsCount}}</h3>
-        <label class="item item-input hide" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="finishedPreviewsCount" placeholder="完成预习数" />
-        </label>
-        <div class="yo-btn" ms-if="editing == true" ms-click="save()">save</div>
-        <div class="yo-btn" ms-if="editing == true" ms-click="cancel()">cancel</div>
-    </div>
+
+        <div class="editing-btn-wrapper">
+            <div class="yo-btn yo-btn-light yo-btn-m" ms-if="editing == true" ms-click="save()">保存</div>
+            <div class="yo-btn yo-btn-light yo-btn-m" ms-if="editing == true" ms-click="cancel()">取消</div>
+        </div>
+    </ul>
+    <!-- editable form end -->
+
 </div>

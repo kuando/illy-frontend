@@ -313,7 +313,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  color: #aeadad;
+  color: #dark-grey;
 }
 
 a:active,
@@ -423,7 +423,7 @@ body {
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
-  color: #aeadad;
+  color: #dark-grey;
   font-size: .14rem;
 }
 
@@ -629,12 +629,6 @@ select {
   font-size: .14rem;
 }
 
-a, a:hover {
-  text-decoration: none;
-  color: #aeadad;
-  cursor: pointer;
-}
-
 /* taskList start */
 .task-list .list-card {
   width: 100%;
@@ -744,7 +738,7 @@ a, a:hover {
 .detail .pageinfo .like {
   width: .48rem;
   height: .48rem;
-  color: #aeadad;
+  color: #333438;
   margin: .05rem auto;
   background-size: 75%;
   background-repeat: no-repeat;
@@ -930,6 +924,103 @@ a, a:hover {
     > Mail: indexxuan@gmail.com
     > Created Time: 2015年08月19日 星期三 10时13分24秒
  ******************************************************/
+.me {
+  text-align: left;
+}
+
+.profile-wrapper {
+  background-color: #fff;
+}
+.profile-wrapper .avatar-wrapper {
+  width: 40%;
+  padding: .15rem .20rem;
+}
+.profile-wrapper .avatar-wrapper img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  border: none;
+}
+.profile-wrapper .profile-info-wrapper {
+  position: relative;
+  width: 58%;
+  padding: .35rem 0;
+}
+.profile-wrapper .profile-info-wrapper .update {
+  position: absolute;
+  right: .1rem;
+  top: .2rem;
+}
+.profile-wrapper .profile-info-wrapper .update .icon-update {
+  width: .16rem;
+  height: .16rem;
+  background: url(http://app.hizuoye.com/build/images/iconfont-updateProfile.png) no-repeat center;
+  background-size: 100%;
+}
+
+.column-wrapper {
+  text-align: center;
+  background-color: #f6f6f6;
+  margin-bottom: .1rem;
+  padding: .05rem;
+  color: #5c5454;
+}
+.column-wrapper .column-item {
+  width: 22%;
+  line-height: 1.8;
+  text-align: center;
+  vertical-align: middle;
+}
+.column-wrapper .gap-line {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1px;
+  height: .4rem;
+  background-color: #dedede;
+  position: relative;
+  top: 3px;
+}
+
+.editing-tips {
+  padding: .08rem .01rem .1rem .01rem;
+}
+
+.update-profile-list .item {
+  padding: .15rem .3rem;
+  /* rewrite to make height higher */
+}
+.update-profile-list .icon {
+  position: relative;
+  top: -.01rem;
+  margin-right: .1rem;
+  width: .2rem;
+  height: .2rem;
+}
+.update-profile-list .icon-name {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-name.png);
+  background-size: 100%;
+}
+.update-profile-list .icon-gender {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-gender.png);
+  background-size: 100%;
+}
+.update-profile-list .icon-parent {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-parent.png);
+  background-size: 100%;
+}
+.update-profile-list .icon-phone {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-phone.png);
+  background-size: 100%;
+}
+.update-profile-list .icon-school {
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-school.png);
+  background-size: 100%;
+}
+.update-profile-list .editing-btn-wrapper {
+  text-align: center;
+  margin: .2rem;
+}
+
 /* me end */
 
 /*# sourceMappingURL=task.css.map */

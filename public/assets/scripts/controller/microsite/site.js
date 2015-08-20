@@ -51,7 +51,7 @@ define([], function() {
             setTimeout(function() {
                 $('#nav').navigator();
                 $('.left-fixed').addClass('fixed-navigator');
-            }, 300);
+            }, 500); // enough time
             // clear old local cache
             avalon.clearLocalCache('illy-microsite-');
 

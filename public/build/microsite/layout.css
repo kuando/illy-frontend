@@ -311,7 +311,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  color: #aeadad;
+  color: #dark-grey;
 }
 
 a:active,
@@ -421,7 +421,7 @@ body {
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
-  color: #aeadad;
+  color: #dark-grey;
   font-size: .14rem;
 }
 
@@ -833,6 +833,8 @@ select {
 }
 
 .left-fixed > div.left {
+  z-index: 10000;
+  /* key! for mobile */
   position: absolute;
   top: 0;
   left: 0;
@@ -937,7 +939,7 @@ select {
 /* navigator start */
 a, a:hover {
   text-decoration: none;
-  color: #aeadad;
+  color: #dark-grey;
   cursor: pointer;
 }
 
@@ -1193,7 +1195,7 @@ a, a:hover {
 .detail .pageinfo .like {
   width: .48rem;
   height: .48rem;
-  color: #aeadad;
+  color: #333438;
   margin: .05rem auto;
   background-size: 75%;
   background-repeat: no-repeat;

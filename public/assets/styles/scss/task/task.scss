@@ -21,29 +21,23 @@
     }
 } 
 
-a, a:hover {
-    text-decoration: none;
-    color: $g_font_color;
-    cursor: pointer;
-}
-
 /* taskList start */
-@import "./taskList.scss";
+@import "./_taskList.scss";
 /* taskList end */
 
 /* detail-import start */
-@import "../microsite/_article.scss";
+@import "../microsite/article.scss";
 /* detail-import end */
 
 /* mall start */
-@import "./mall.scss";
+@import "./_mall.scss";
 /* mall end */
 
 /* rank start */
-@import "./rank.scss";
+@import "./_rank.scss";
 /* rank end */
 
 /* me start */
-@import "./me.scss";
+@import "./_me.scss";
 /* me end */
 

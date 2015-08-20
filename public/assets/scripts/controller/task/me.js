@@ -12,7 +12,7 @@ define([], function() {
 
     // avatar manage
     var avatar = {
-        defaultFullUrl: '',
+        defaultFullUrl: 'http://resource.hizuoye.com/images/avatar/children/default1.png',
         localId: '',
         serverId: ''
     };
@@ -40,6 +40,7 @@ define([], function() {
         grade: '',
         finishedHomeworkCount: '',
         finishedPreviewsCount: '',
+        score: '',
         /* page data end */
 
         /* 内部功能函数 */
@@ -53,24 +54,25 @@ define([], function() {
             });
             return !diff;
         },
-        setVM: function(source, avatar) {
-            if (avatar !== false) { avatar = true; }// default
+        setVM: function(source, setAvatar) {
+            if (setAvatar !== false) { setAvatar = true; }// default
             me.username = source.username;
             me.displayName = source.displayName;
             me.gender = source.gender;
             me.phone = source.phone;
             me.parent = source.parent;
-            if (avatar) {
-                if (source.avatar !== void 0) {
+            if (setAvatar) {
+                if (source.setAvatar !== void 0) {
                     me.avatar = resourcePrefix + source.avatar;
                 } else {
-                    me.avatar = avatar.defaultFullUrl; // default avatar of user
+                    me.avatar = avatar.defaultFullUrl; // default setAvatar of user
                 }
             }
             me.onSchool = source.onSchool;
             me.grade = source.grade;
             me.finishedHomeworkCount = source.finishedHomeworkCount;
             me.finishedPreviewsCount = source.finishedPreviewsCount;
+            me.score = source.score;
         },
         fetchData: function() {
             $http.ajax({

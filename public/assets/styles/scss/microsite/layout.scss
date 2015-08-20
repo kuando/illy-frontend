@@ -211,6 +211,7 @@
     -webkit-box-flex: 1;
 }
 .left-fixed>div.left {
+    z-index: $zIndex5; /* key! for mobile */
     position: absolute;
     top: 0;
     left: 0;
@@ -510,6 +511,6 @@ a, a:hover {
 /* list end */
 
 /* detail start */
-@import "./_article.scss";
+@import "./article.scss";
 /* detail end */
 
