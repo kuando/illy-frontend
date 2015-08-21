@@ -1052,6 +1052,12 @@ select {
   text-align: center;
 }
 
+.update-profile-list {
+  background-color: #fff;
+  padding-right: .10rem;
+  /* for right border-padding, balance with left */
+  padding-bottom: .1rem;
+}
 .update-profile-list .avatar-wrapper {
   position: relative;
   text-align: left;
@@ -1070,11 +1076,15 @@ select {
   font-size: .16rem;
   color: #575151;
 }
-.update-profile-list .item .fr {
+.update-profile-list .item .fl, .update-profile-list .item .fr {
   /* too long name or other info */
   max-width: 150px;
   overflow: hidden;
   height: 24px;
+  width: 49%;
+}
+.update-profile-list .item .fr {
+  text-align: right;
 }
 .update-profile-list .info-gap {
   height: .3rem;
@@ -1083,8 +1093,8 @@ select {
   position: relative;
   top: -.01rem;
   margin-right: .15rem;
-  width: .2rem;
-  height: .2rem;
+  width: .28rem;
+  height: .28rem;
   background-size: 100%;
 }
 .update-profile-list .icon-name {

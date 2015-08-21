@@ -96,6 +96,9 @@ $me-profile-color: #FFF;
     text-align: center;
 }
 .update-profile-list {
+    background-color: #fff;
+    padding-right: .10rem; /* for right border-padding, balance with left */
+    padding-bottom: .1rem;
 
     .avatar-wrapper {
         position: relative;
@@ -114,10 +117,14 @@ $me-profile-color: #FFF;
         font-size: .16rem;
         color: #575151;
     
-        .fr { /* too long name or other info */
+        .fl, .fr { /* too long name or other info */
             max-width: 150px;
             overflow: hidden;
             height: 24px;
+            width: 49%;
+        }
+        .fr {
+            text-align: right;
         }
     }
 
@@ -129,8 +136,8 @@ $me-profile-color: #FFF;
         position: relative;
         top: -.01rem;
         margin-right: .15rem;
-        width: .2rem;
-        height: .2rem;
+        width: .28rem;
+        height: .28rem;
         background-size: 100%;
     }
 

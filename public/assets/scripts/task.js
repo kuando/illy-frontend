@@ -177,7 +177,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         }
     });
 
-    //wx.ready(function() {
+    wx.ready(function() {
     //    // do all thing here, except user trigger functions(can put in outside)
     //    wx.checkJsApi({
     //        jsApiList: ['startRecord'], // apis to check
@@ -187,7 +187,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     //                // e.g. {"checkResult": {"chooseImage": true}, "errMsg": "checkJsApi:ok"}
     //            }
     //    });
-    //});
+        wx.hideOptionMenu();
+        wx.showMenuItems({
+            menuList: ["menuItem:share:timeline", "menuItem:share:appMessage"]
+        });
+    });
 
     wx.error(function(res) {
         alert("Woops, error comes when WeChat-sdk signature..." + res);

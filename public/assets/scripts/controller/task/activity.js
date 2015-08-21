@@ -13,7 +13,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
-    var resourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/";
+    var resourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images";
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
 
@@ -80,7 +80,7 @@ define([], function() {
         infoCollect: [],
         CopyinfoCollect: [],
 
-        isShared: false,
+        isShared: false, // true, false, 'isShared' default:false
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
@@ -222,7 +222,9 @@ define([], function() {
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
                             activity.shareCount++;
-                            activity.isShared = true;
+                            if (activity.isShared === false) {
+                                activity.isShared = true;
+                            }
                             activity.updateShare();
                         },
                         cancel: function() {
@@ -281,7 +283,6 @@ define([], function() {
             activity.$watch("isShared", function(newVal, oldVal) {
 
                 if (newVal) {
-
                     (genClips = function () {
                         $t = $('.item1');
                         var amount = 5;
@@ -291,7 +292,7 @@ define([], function() {
                         var y = 0;
                         var index = 1;
                         for (var z = 0; z <= (amount * width) ; z = z + width) {
-                            $('<img class="clipped" src="' + resourcePrefix +'images/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
+                            $('<img class="clipped" src="' + resourcePrefix +'/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
                             if (z === (amount * width) - width) {
                                 y = y + height;
                                 z = -width;
@@ -312,6 +313,14 @@ define([], function() {
                         clicked = false;
                     // On click
                     $('.item1 div.kodai').on('click', function () {
+
+                        setTimeout(function() {
+                            alert("任务完成，恭喜获得" + activity.scoreAward + "积分！快去兑大奖吧~")
+                        }, 3000);
+                        setTimeout(function() {
+                            activity.isShared = 'isShared'; // key! mark!
+                        }, 4000); // disappeared after 1 second
+
 
                         if (clicked === false) {
                             $('.full').css({
