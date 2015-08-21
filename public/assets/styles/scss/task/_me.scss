@@ -5,6 +5,8 @@
     > Created Time: 2015年08月19日 星期三 10时13分24秒
  ******************************************************/
 
+$img-dir: "../../build/images/";
+
 $me-main-color: #fff;
 $me-avatar-height: 90px;
 $me-column-item-height: .8rem;
@@ -12,72 +14,24 @@ $me-column-wrapper-bgColor: #f6f6f6;
 $me-gap-line-color: #dedede;
 $me-column-wrapper-color: #5c5454;
 
-$me-profile-color: #615a5a;
+$me-profile-color: #FFF;
 
 .me {
     text-align: left;
 }
 
 .profile-wrapper {
-    /*background-color: $me-main-color;*/
     position: relative;
     background-color:  rbga(79, 74, 74, .1);   
     color: $me-profile-color;
     background-size: 100%;
     background-position: center;
-    background-image: url(../../build/images/me-colorful-profile-bg.jpg);
-
-    /*.blur-bg-img {*/
-    /*    display: none;*/
-    /*    background-image: url(../../build/images/me-colorful-profile-bg.jpg);*/
-    /*    -webkit-filter: blur(10px); [> Chrome, Opera <]*/
-    /*    -moz-filter: blur(10px);*/
-    /*    -ms-filter: blur(10px);    */
-    /*    filter: blur(10px);*/
-    /*    background-size: 110%;*/
-    /*    background-position: center;*/
-    /*    width: 100%;*/
-    /*    height: $me-avatar-height + 20px;*/
-    /*    position: relative;*/
-    /*    top: -7px;*/
-    /*}*/
+    background-image: url(#{$img-dir}/me-colorful-profile-bg.jpg);
 
     .inner-wrapper {
         width: 100%;
         height: $me-avatar-height + 70px;
-        /*position: absolute;*/
-        /*top: 0;*/
-        /*left: 0;*/
     }
-    .avatar-wrapper {
-        /*width: 40%;*/
-        width: 100%;
-        padding: .15rem .20rem;
-        text-align: center;
-
-        img {
-            display: inline-block;
-            width: $me-avatar-height; 
-            max-height: $me-avatar-height;
-            height: auto;
-            border-radius: 50%;
-            border: 2px solid #fff;
-        }
-    }
-
-    /*.profile-info-wrapper {*/
-    /*    position: relative;*/
-    /*    width: 58%;*/
-    /*    padding: .35rem 0;*/
-
-    /*    ul {*/
-
-    /*        li {*/
-
-    /*        }*/
-    /*    }*/
-
-    /*}*/
 
     .update {
         position: absolute;
@@ -94,6 +48,21 @@ $me-profile-color: #615a5a;
         }
     }
 }
+
+    .avatar-wrapper {
+        width: 100%;
+        padding: .15rem .20rem;
+        text-align: center;
+
+        img {
+            display: inline-block;
+            width: $me-avatar-height; 
+            max-height: $me-avatar-height;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+    }
 
 .column-wrapper {
     position: relative;
@@ -124,12 +93,36 @@ $me-profile-color: #615a5a;
 
 .editing-tips {
     padding: .08rem .01rem .1rem .01rem;
+    text-align: center;
 }
 .update-profile-list {
+
+    .avatar-wrapper {
+        position: relative;
+        text-align: left;
+        border-bottom: 1px solid #ddd; /* mark! */
+        background-color: #fff;
+    }
+    .update-avatar-tip {
+        position: absolute;
+        left: 120px;
+        bottom: 48px;
+    }
 
     .item {
         padding: .15rem .3rem; /* rewrite to make height higher */
         font-size: .16rem;
+        color: #575151;
+    
+        .fr { /* too long name or other info */
+            max-width: 150px;
+            overflow: hidden;
+            height: 24px;
+        }
+    }
+
+    .info-gap {
+        height: .3rem;
     }
 
     .icon {
@@ -138,27 +131,26 @@ $me-profile-color: #615a5a;
         margin-right: .15rem;
         width: .2rem;
         height: .2rem;
+        background-size: 100%;
     }
 
     .icon-name {
         background-image: url(#{$img-dir}/iconfont-name.png);
-        background-size: 100%;
     }
     .icon-gender {
         background-image: url(#{$img-dir}/iconfont-gender.png);
-        background-size: 100%;
     }
     .icon-parent {
         background-image: url(#{$img-dir}/iconfont-parent.png);
-        background-size: 100%;
     }
     .icon-phone {
         background-image: url(#{$img-dir}/iconfont-phone.png);
-        background-size: 100%;
     }
     .icon-school {
         background-image: url(#{$img-dir}/iconfont-school.png);
-        background-size: 100%;
+    }
+    .icon-grade {
+        background-image: url(#{$img-dir}/iconfont-grade.png);
     }
 
     .editing-btn-wrapper {

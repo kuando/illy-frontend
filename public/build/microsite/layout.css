@@ -311,7 +311,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  color: #dark-grey;
+  color: #333438;
 }
 
 a:active,
@@ -421,7 +421,7 @@ body {
   /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
-  color: #dark-grey;
+  color: #333438;
   font-size: .14rem;
 }
 
@@ -606,6 +606,7 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
   background: #64c400;
+  z-index: 10000;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -939,7 +940,7 @@ select {
 /* navigator start */
 a, a:hover {
   text-decoration: none;
-  color: #dark-grey;
+  color: #333438;
   cursor: pointer;
 }
 

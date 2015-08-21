@@ -4,22 +4,14 @@
 
     <!-- bg & avatar & info & update-profile area start -->
     <div class="profile-wrapper" ms-if="editing === false">
-        <!-- mask layer -->
-        <!--<div class="blur-bg-img" ms-css-background-image="'url(' + avatar + ')'"></div>-->
-        <div class="blur-bg-img"></div>
-        <!-- mask layer -->
         <div class="inner-wrapper">
+
             <div class="avatar-wrapper area">
                 <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
             </div>
-            <div class="profile-info-wrapper area">
-                <ul>
-                    <li>{{displayName}}</li>
-                    <li>{{grade}}</li>
-                </ul>
 
-                <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
-            </div>
+            <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
+
         </div>
     </div>
     <!-- bg & avatar & info & update-profile area end -->
@@ -50,14 +42,18 @@
 
     <!-- editable form start -->
     <p class="editing-tips" ms-if="editing === true">修改您想要变更的信息: </p>
+
     <ul class="update-profile-list yo-list yo-list-group">
-        <!--<h3 class="label hide" ms-if="editing == false">username: {{username}}</h3>-->
-        <!--<label class="item item-input hide" ms-if="editing == true">-->
-            <!--<input type="text" class="yo-input" ms-duplex-string="username" placeholder="用户名" />-->
-        <!--</label>-->
+
+        <div class="avatar-wrapper area" ms-if="editing === true">
+            <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+            <p class="update-avatar-tip">点击头像上传</p>
+        </div>
+
         <li class="item" ms-if="editing == false">
             <i class="icon icon-name"></i>
-            <div class="flex">{{displayName}}</div>
+            <div class="flex">姓名</div>
+            <div class="fr">{{displayName}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="昵称" />
@@ -65,15 +61,37 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-gender"></i>
-            <div class="flex" ms-if="editing == false">{{gender}}</div>
+            <div class="flex">性别</div>
+            <div class="fr" ms-if="editing == false">{{gender}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />
         </label>
 
         <li class="item" ms-if="editing == false">
+            <i class="icon icon-school"></i>
+            <div class="flex">学校</div>
+            <div class="fr" ms-if="editing == false">{{onSchool}}</div>
+        </li>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="学校名称" />
+        </label>
+
+        <li class="item" ms-if="editing == false">
+            <i class="icon icon-grade"></i>
+            <div class="flex">年级</div>
+            <div class="fr" ms-if="editing == false">{{grade}}</div>
+        </li>
+        <label class="item item-input" ms-if="editing == true">
+            <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="年级" />
+        </label>
+
+        <li class="info-gap"></li>
+
+        <li class="item" ms-if="editing == false">
             <i class="icon icon-parent"></i>
-            <div class="flex" ms-if="editing == false">{{parent}}</div>
+            <div class="flex">家长</div>
+            <div class="fr" ms-if="editing == false">{{parent}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="parent" placeholder="家长姓名" />
@@ -81,26 +99,11 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-phone"></i>
-            <div class="flex" ms-if="editing == false">{{phone}}</div>
+            <div class="flex">电话</div>
+            <div class="fr" ms-if="editing == false">{{phone}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="用户电话" />
-        </label>
-
-        <li class="item" ms-if="editing == false">
-            <i class="icon icon-school"></i>
-            <div class="flex" ms-if="editing == false">{{onSchool}}</div>
-        </li>
-        <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="学校名称" />
-        </label>
-
-        <li class="item" ms-if="editing == false">
-            <i class="icon icon-school"></i>
-            <div class="flex" ms-if="editing == false">{{grade}}</div>
-        </li>
-        <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="年级" />
         </label>
 
         <div class="editing-btn-wrapper">
