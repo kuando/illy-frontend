@@ -1086,6 +1086,9 @@ select {
 .update-profile-list .item .fr {
   text-align: right;
 }
+.update-profile-list .item .left-item {
+  text-align: left;
+}
 .update-profile-list .info-gap {
   height: .3rem;
 }
