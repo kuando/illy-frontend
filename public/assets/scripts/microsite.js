@@ -341,11 +341,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
             }, 400); // time enough for not see last view cache
 
-            if (root.currentPage === 'index') {
-                setTimeout(function() {
-                    $('#nav li').removeClass('ui-state-active');
-                }, 400); // enough time
-            }
+            //if (root.currentPage === 'index') {
+            //    setTimeout(function() {
+            //        $('#nav li').removeClass('ui-state-active');
+            //    }, 400); // enough time
+            //}
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({

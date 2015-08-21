@@ -608,6 +608,7 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
   background: #64c400;
+  z-index: 10000;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -623,7 +624,6 @@ select {
 
 .task {
   min-height: 5.5rem;
-  padding: .05rem;
 }
 .task, .task-footer {
   font-size: .14rem;
@@ -929,30 +929,64 @@ select {
 }
 
 .profile-wrapper {
-  background-color: #fff;
+  /*background-color: $me-main-color;*/
+  position: relative;
+  background-color: rbga(79, 74, 74, 0.1);
+  color: #615a5a;
+  background-size: 100%;
+  background-position: center;
+  background-image: url(../../build/images/me-colorful-profile-bg.jpg);
+  /*.blur-bg-img {*/
+  /*    display: none;*/
+  /*    background-image: url(../../build/images/me-colorful-profile-bg.jpg);*/
+  /*    -webkit-filter: blur(10px); [> Chrome, Opera <]*/
+  /*    -moz-filter: blur(10px);*/
+  /*    -ms-filter: blur(10px);    */
+  /*    filter: blur(10px);*/
+  /*    background-size: 110%;*/
+  /*    background-position: center;*/
+  /*    width: 100%;*/
+  /*    height: $me-avatar-height + 20px;*/
+  /*    position: relative;*/
+  /*    top: -7px;*/
+  /*}*/
+  /*.profile-info-wrapper {*/
+  /*    position: relative;*/
+  /*    width: 58%;*/
+  /*    padding: .35rem 0;*/
+  /*    ul {*/
+  /*        li {*/
+  /*        }*/
+  /*    }*/
+  /*}*/
+}
+.profile-wrapper .inner-wrapper {
+  width: 100%;
+  height: 160px;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
 }
 .profile-wrapper .avatar-wrapper {
-  width: 40%;
+  /*width: 40%;*/
+  width: 100%;
   padding: .15rem .20rem;
+  text-align: center;
 }
 .profile-wrapper .avatar-wrapper img {
-  width: 100px;
-  max-height: 100px;
+  display: inline-block;
+  width: 90px;
+  max-height: 90px;
   height: auto;
   border-radius: 50%;
-  border: none;
+  border: 2px solid #fff;
 }
-.profile-wrapper .profile-info-wrapper {
-  position: relative;
-  width: 58%;
-  padding: .35rem 0;
-}
-.profile-wrapper .profile-info-wrapper .update {
+.profile-wrapper .update {
   position: absolute;
   right: .1rem;
   top: .2rem;
 }
-.profile-wrapper .profile-info-wrapper .update .icon-update {
+.profile-wrapper .update .icon-update {
   width: .16rem;
   height: .16rem;
   background: url(http://app.hizuoye.com/build/images/iconfont-updateProfile.png) no-repeat center;
@@ -962,6 +996,7 @@ select {
 }
 
 .column-wrapper {
+  position: relative;
   text-align: center;
   background-color: #f6f6f6;
   margin-bottom: .1rem;

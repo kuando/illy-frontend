@@ -220,9 +220,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             "loading@": {
                 templateUrl: "assets/template/loading.html", // 指定模板地址
             },
-            "header@": {
-                templateUrl: "assets/template/task/header.html", // 指定模板地址
-            },
+            //"header@": {
+                //templateUrl: "assets/template/task/header.html", // 指定模板地址
+            //},
             "": {
                 templateUrl: "assets/template/task/task.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/task.js", // 指定控制器地址

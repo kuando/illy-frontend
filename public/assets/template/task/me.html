@@ -4,16 +4,22 @@
 
     <!-- bg & avatar & info & update-profile area start -->
     <div class="profile-wrapper" ms-if="editing === false">
-        <div class="avatar-wrapper area">
-            <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
-        </div>
-        <div class="profile-info-wrapper area">
-            <ul>
-                <li>{{displayName}}</li>
-                <li>{{grade}}</li>
-            </ul>
+        <!-- mask layer -->
+        <!--<div class="blur-bg-img" ms-css-background-image="'url(' + avatar + ')'"></div>-->
+        <div class="blur-bg-img"></div>
+        <!-- mask layer -->
+        <div class="inner-wrapper">
+            <div class="avatar-wrapper area">
+                <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+            </div>
+            <div class="profile-info-wrapper area">
+                <ul>
+                    <li>{{displayName}}</li>
+                    <li>{{grade}}</li>
+                </ul>
 
-            <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
+                <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
+            </div>
         </div>
     </div>
     <!-- bg & avatar & info & update-profile area end -->

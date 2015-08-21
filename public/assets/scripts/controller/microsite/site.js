@@ -46,14 +46,31 @@ define([], function() {
         site.fetchAllCategoriesNames();
 
         // 进入视图
+        var navigatorInitDelay = 800;
         $ctrl.$onEnter = function() {
 
             setTimeout(function() {
+
+                // 0. init
                 $('#nav').navigator();
+                // 1 add fixed
                 $('.left-fixed').addClass('fixed-navigator');
-            }, 500); // enough time
+                // reset delay for not first time in
+                navigatorInitDelay = 50;
+
+            }, navigatorInitDelay); // enough time
+
             // clear old local cache
             avalon.clearLocalCache('illy-microsite-');
+
+            // add listener for index view's navigator
+            avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { /* jshint ignore:line */
+                if (newVal === 'index') {
+                    setTimeout(function() {
+                        $('#nav li').removeClass('ui-state-active');
+                    }, navigatorInitDelay + 100 );
+                }
+            });
 
         };
         // 对应的视图销毁前

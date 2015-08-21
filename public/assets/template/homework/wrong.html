@@ -1,11 +1,14 @@
 <!-- 具体一个题目 -->
 <div class="question" ms-controller="wrong">
 
-    <!-- progress of wrong question -->
+    <!-- progress of question -->
     <div class="progress-wrapper">
-        <div class="progress" ms-css-width="( currentId * 100 ) / total + '%' "></div> 
+        <div class="progress-outer">
+            <div class="progress-inner" ms-css-width="( localAnswers.length * 100 ) / total + '%' "></div> 
+        </div>
+        <span class="progress-text">{{currentId}} / {{total}}</span>
     </div>
-    <span class="progress-text">{{currentId}} / {{total}}</span>
+    <!-- progress of question -->
 
     <!-- 公用题干 -->
     <p class="question-text">

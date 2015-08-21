@@ -303,6 +303,7 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
     background: $main-green;
+    z-index: $zIndex5;
 
     .affirm {
         color: #fff;

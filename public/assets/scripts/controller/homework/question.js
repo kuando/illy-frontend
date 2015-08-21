@@ -60,21 +60,114 @@ define([], function() {
 
     // 每一个具体的题目控制器
     var question = avalon.define({
+
         $id: "question",
+
+        /* 通信量 start */
         homeworkId: avalon.vmodels.detail.homeworkId, // 直接取，这种固定值不需要动态获取
         starter: true, // start answer the question flag
+        /* 通信量 end */
+
+        /* state flag start */
+        isDroped: false, // drop the record question flag 
+        isRecording: false, // whether recording now, for ms-class 
+        isPlaying: false, // 是否正在播放
+        hasNext: false, // 是否有下一题？
+        showPlayRecordBtn: false, // 是否显示播放录音按钮
+        /* state flag end */
+
+        /* helper data start */
+        duration: 3, // record duration
+        localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
+        /* helper data end */
+
+        /* core data start */
         exercise: {}, // 本题所有数据
         total: 0, // 直接取不行,fuck bug... waste much time... 201507222006
         currentId: 0, // current exerciseId, 当前题id
         userAnswer: '', // 忠实于用户答案, 最多加个trim()
-        duration: 3, // record duration
-        localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
         right: null, // 做对与否, 录音题始终设为right(Em~...), 控制一些显隐逻辑(null, true, false)
-        hasNext: false, // 是否有下一题？
-        isDroped: false, // drop the record question flag 
-        isRecording: false, // whether recording now, for ms-class 
-        isPlaying: false, // 是否正在播放
-        showPlayRecordBtn: false, // 是否显示播放录音按钮
+        /* core data end */
+
+        /* tool fn start */
+
+        uploadRecord: function() {
+
+            /**
+             *  没有localId就提示
+             *  有localId就上传
+             */
+
+            var localId = record.localId;
+            if (localId === '') {
+                alert('对不起,上传失败!');
+                console.log('上传失败，没有localId, localId为：' + localId);
+                //console.log(record); // print global record array
+                return;
+            }
+            wx.uploadVoice({
+                localId: localId,
+                isShowProgressTips: 1,
+                success: function(res) {
+                    var serverId = res.serverId; // 返回音频的服务端ID
+                    question.userAnswer = serverId; // 这才是需要往后端发送的数据,供后端下载
+
+                    question.showPlayRecordBtn = true;
+                    
+                    //var recordTotalTime = avalon.$('.record-total-time'); 
+                    // 设置录音时长
+                    //recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); [> jshint ignore:line <]
+                    question.duration = record.duration; 
+                }
+            });
+
+        },
+        playRecord: function() {
+
+            /** 
+             *  如果localId有，就播放，没有就提示
+             */
+
+            var localId = record.localId;
+            if (localId === '') {
+                alert("录制不成功，请重试！");
+                console.log('no localId');
+                return ;
+            }
+            wx.playVoice({
+                localId: localId
+            });
+            question.isPlaying = true;
+            // 同时播完应该isPlaying = false
+            
+            //  clear first and add new another timeout
+            clearTimeout(record.playRecordTimeout);
+            record.playRecordTimeout = setTimeout(function() {
+                question.isPlaying = false;
+            }, record.duration * 1000);
+
+        },
+        stopPlayRecord: function() {
+
+            /** 
+             *  没有localId就返回，有就停止
+             */
+
+            var localId = record.localId;
+            if (localId === '') {
+                return ;
+            }
+            wx.stopVoice({
+                localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
+            });
+            question.isPlaying = false;
+
+        },
+
+        /* tool fn end */
+
+        /* interactive fn start */
+
         next: function() { // 点击进入下一题
             // 只处理页面跳转进入下一题
             avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
@@ -153,78 +246,6 @@ define([], function() {
                 });
             }
             
-        },
-        uploadRecord: function() {
-
-            /**
-             *  没有localId就提示
-             *  有localId就上传
-             */
-
-            var localId = record.localId;
-            if (localId === '') {
-                alert('对不起,上传失败!');
-                console.log('上传失败，没有localId, localId为：' + localId);
-                //console.log(record); // print global record array
-                return;
-            }
-            wx.uploadVoice({
-                localId: localId,
-                isShowProgressTips: 1,
-                success: function(res) {
-                    var serverId = res.serverId; // 返回音频的服务端ID
-                    question.userAnswer = serverId; // 这才是需要往后端发送的数据,供后端下载
-
-                    question.showPlayRecordBtn = true;
-                    
-                    //var recordTotalTime = avalon.$('.record-total-time'); 
-                    // 设置录音时长
-                    //recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); [> jshint ignore:line <]
-                    question.duration = record.duration; 
-                }
-            });
-
-        },
-        playRecord: function() {
-
-            /** 
-             *  如果localId有，就播放，没有就提示
-             */
-
-            var localId = record.localId;
-            if (localId === '') {
-                alert("录制不成功，请重试！");
-                console.log('no localId');
-                return ;
-            }
-            wx.playVoice({
-                localId: localId
-            });
-            question.isPlaying = true;
-            // 同时播完应该isPlaying = false
-            
-            //  clear first and add new another timeout
-            clearTimeout(record.playRecordTimeout);
-            record.playRecordTimeout = setTimeout(function() {
-                question.isPlaying = false;
-            }, record.duration * 1000);
-
-        },
-        stopPlayRecord: function() {
-
-            /** 
-             *  没有localId就返回，有就停止
-             */
-
-            var localId = record.localId;
-            if (localId === '') {
-                return ;
-            }
-            wx.stopVoice({
-                localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
-            });
-            question.isPlaying = false;
-
         },
         togglePlayRecord: function() {
             
@@ -308,6 +329,16 @@ define([], function() {
 
         },
         dropRecordQuestionConfirm: function() {
+
+            /**
+             *  获取顶层vm app 
+             *  根据放弃标记，调用app全局确认对话框并根据选择进行响应行为
+             *　　　是则添加统计信息，进入下一题或提交
+             *      不是则解绑本次添加的监听，让页面什么也没有变化(其实最好的方法是重新载入本视图，不过这里就手工处理了，没啥变化)
+             *
+             *  key!　全局组件调用，单一实例，记得解绑，否则多个监听器在满足条件时一起触发...
+             */
+
             var app = avalon.vmodels.app;
             if (!question.isDroped ) {
 
@@ -331,7 +362,10 @@ define([], function() {
                 });
 
             }
-        }
+        } // end of dropRecordQuestionConfirm
+
+        /* interactive fn end */
+
     });
 
     var hasRequestRecordAuth= false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
@@ -369,6 +403,8 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
 
             //question.starter = true; // 做题开始计时标记，使得开始仅执行一次
+            
+            // drop the question flag
             question.isDroped = false;
 
             // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）
@@ -417,7 +453,7 @@ define([], function() {
             //question.userAnswer = question.localAnswers[question.currentId - 1] || '';
 
             // 重置题目对错标记
-            question.right = (question.exercise.answer ===  question.userAnswer);
+            question.right = (question.exercise.answer ===  question.userAnswer) || (question.exercise.eType === 3);
 
             // play record btn, 至少一定是后退才能看到
             if ( question.localAnswers.length < question.currentId ) {
