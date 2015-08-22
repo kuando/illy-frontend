@@ -1,27 +1,39 @@
 <div ms-controller="rank" class="rank">
 
+    <div class="rank-top-bg"></div>
+
     <div class="my-info-panel">
-        name : {{displayName}}
-        rank : {{myRank + 1}}
-        score: {{myScore}}
+        <div class="my-info-panel-top-bg"></div>
+        <div class="my-rank-score">积分 {{myScore}}</div>
+        <div class="my-rank-rank">总排名  {{myRank + 1}}</div>
     </div>
 
-    <ul class="rank-ul yo-list">
-        <li class="rank-li item">
-            <div class="rank-div mark">排名</div>
-            <div class="name-div flex">姓名</div>
-            <div class="score-div">积分</div>
-        </li>
-        <li class="rank-li item" ms-repeat-item="ranks">
-            <div ms-visible="$index < 3" class="rank-div mark"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
-            <div ms-visible="$index >= 3" class="rank-div mark">{{$index + 1}}</div>
-            <div class="avatar-div flex">
-                <img ms-if="item.avatar != undefined" class="avatar" ms-attr-src="'http://resource.hizuoye.com/' + item.avatar" ms-attr-alt="item.displayName" />
-                <div ms-if="item.avatar == undefined" class="avatar avatar-default"></div>
-                {{item.displayName}}
-            </div>
-            <div class="score-div">{{item.score}}</div>
-        </li>
-    </ul>
+    <div class="rank-wrapper">
+
+        <ul class="rank-list">
+
+            <div class="rank-list-top-bg"></div>
+            <li class="rank-title">
+                <div class="rank-div"><i class="title-icon-rank"></i> 排名</div>
+                <div class="name-div"><i class="title-icon-name"></i> 姓名</div>
+                <div class="score-div"><i class="title-icon-score"></i> 积分</div>
+            </li>
+
+            <li class="rank-common-line" ms-repeat-item="ranks">
+                <div class="rank-div mark" ms-visible="$index < 3"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
+                <div class="rank-div mark" ms-visible="$index >= 3">{{$index + 1}}</div>
+                <div class="name-div flex">
+                    <img ms-if="item.avatar != undefined" class="avatar rank-body-avatar" ms-attr-src="item.avatar" ms-attr-alt="item.displayName" />
+                    <div ms-if="item.avatar == undefined" class="avatar avatar-default rank-body-avatar"></div>
+                    {{item.displayName}}
+                </div>
+                <div class="score-div">{{item.score}}</div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="rank-bottom-bg"></div>
+
 </div>
 

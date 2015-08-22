@@ -11,7 +11,7 @@
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
-  src: url("http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
+  src: url(#{$font-face-src}/yofont.woff) format("woff"), url(#{$font-face-src}/yofont.ttf) format("truetype");
 }
 
 .yo-ico {

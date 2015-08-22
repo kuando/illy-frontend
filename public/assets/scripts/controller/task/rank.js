@@ -3,6 +3,7 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal && avalon.illyGlobal.token;
+    var resourcePrefix = 'http://resource.hizuoye.com';
     
     var rank = avalon.define({
         $id: "rank",
@@ -27,7 +28,11 @@ define([], function() {
                 },
                 success: function(res) {
                     rank.displayName = res.displayName;
-                    rank.avatar = res.avatar;
+                    if (res.avatar) {
+                        rank.avatar = resourcePrefix + res.avatar;
+                    } else {
+                        rank.avatar = 'http://resource.hizuoye.com/images/avatar/children/default1.png';
+                    }
                     rank.myRanks = res.rank;
                     rank.myScore = res.score;
                 },

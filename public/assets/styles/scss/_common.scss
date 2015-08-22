@@ -364,8 +364,16 @@ a:hover {
     color: inherit;
 }
 
-/* remove touch outline */
-a,button,input{-webkit-tap-highlight-color:rgba(255, 0, 0, 0);}
+input,
+textarea,
+button,
+select
+a {
+    outline: 0 none; /* mark! key! remove outline */
+    -webkit-tap-highlight-color: transparent;
+    /* remove touch outline */
+}
+
 /* global reset end */
 
 /* util start */

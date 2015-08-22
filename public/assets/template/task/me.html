@@ -65,7 +65,23 @@
             <div class="right-item" ms-if="editing == false">{{gender}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />
+            <!--<input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />-->
+            <!--<input type="radio" ms-duplex-string="gender" value="男" />-->
+            <!--<input type="radio" ms-duplex-string="gender" value="女" />-->
+            <label class="profile-gender-label">
+                <span class="mark flex">男</span>
+                <div class="yo-checked yo-checked-c">
+                    <input type="radio" name="sex" ms-duplex-string="gender" checked="" />
+                    <span class="type"></span>
+                </div>
+            </label>
+            <label class="profile-gender-label">
+                <span class="mark flex">女</span>
+                <div class="yo-checked yo-checked-c">
+                    <input type="radio" name="sex" ms-duplex-string="gender" />
+                    <span class="type"></span>
+                </div>
+            </label>
         </label>
 
         <li class="item" ms-if="editing == false">

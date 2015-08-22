@@ -5,6 +5,8 @@
 /* layout vars end */
 /* homework vars start */
 /* homework vars end */
+/* task me start */
+/* task me end */
 /* vars end */
 .detail {
   color: #1c1c1c;
@@ -145,6 +147,9 @@
 
 .activity-info-form {
   text-align: center;
+  background-color: #fff;
+  padding: .1rem;
+  border-radius: 3px;
 }
 .activity-info-form-title {
   text-align: center;
@@ -156,9 +161,12 @@
 }
 
 .btn-scoreAward {
+  border: none;
+  /* overwrite */
   display: block;
   width: 92%;
   height: .3rem;
+  line-height: .30rem;
   margin: 0 auto;
   margin-top: .1rem;
   background-color: #F25454;

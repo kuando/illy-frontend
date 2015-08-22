@@ -19,12 +19,21 @@
             body {
                 font-size: .14rem;
             }
+            [ms-controller] {
+                visibility: hidden;
+            }
             img {
                 max-width: 100%;
                 height: auto;
             }
             .hide {
                 display: none;
+            }
+            .icon {
+                background-size: 100%;
+                position: relative;
+                top: 5px;
+                margin-right: 3px;
             }
 
             /* import yo: list & btn & input start */
@@ -354,6 +363,11 @@
 
         <div ms-controller="activity" class="detail">
             <h2 class="title">{{theme}}</h2>
+
+            <div class="count visit-count"><span>阅读</span>{{visitCount}}</div> 
+            <div class="count share-count"><span>分享</span>{{shareCount}}</div> 
+            <div class="count like-count"><span>喜欢</span>{{likeCount}}</div> 
+
             <div class="created-time">开始时间: {{startTime | date()}}</div>
             <div class="created-time">结束时间: {{endTime | date()}}</div>
             <div class="content">{{content | html}}</div>

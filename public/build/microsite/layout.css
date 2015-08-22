@@ -556,6 +556,8 @@ input[type="checkbox"], input[type="radio"] {
 /* layout vars end */
 /* homework vars start */
 /* homework vars end */
+/* task me start */
+/* task me end */
 /* common vars end */
 /* global reset start */
 * {
@@ -609,9 +611,15 @@ a:hover {
   color: inherit;
 }
 
-/* remove touch outline */
-a, button, input {
-  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+input,
+textarea,
+button,
+select
+a {
+  outline: 0 none;
+  /* mark! key! remove outline */
+  -webkit-tap-highlight-color: transparent;
+  /* remove touch outline */
 }
 
 /* global reset end */
@@ -1422,6 +1430,8 @@ a, a:hover {
 /* layout vars end */
 /* homework vars start */
 /* homework vars end */
+/* task me start */
+/* task me end */
 /* vars end */
 .detail {
   color: #1c1c1c;
@@ -1562,6 +1572,9 @@ a, a:hover {
 
 .activity-info-form {
   text-align: center;
+  background-color: #fff;
+  padding: .1rem;
+  border-radius: 3px;
 }
 .activity-info-form-title {
   text-align: center;
@@ -1573,9 +1586,12 @@ a, a:hover {
 }
 
 .btn-scoreAward {
+  border: none;
+  /* overwrite */
   display: block;
   width: 92%;
   height: .3rem;
+  line-height: .30rem;
   margin: 0 auto;
   margin-top: .1rem;
   background-color: #F25454;

@@ -1,5 +1,11 @@
 <div ms-controller="activity" class="detail">
+
     <h2 class="title">{{theme}}</h2>
+
+    <div class="count visit-count"><span>阅读</span>{{visitCount}}</div> 
+    <div class="count share-count"><span>分享</span>{{shareCount}}</div> 
+    <div class="count like-count"><span>喜欢</span>{{likeCount}}</div> 
+
     <div class="created-time">开始时间: {{startTime | date()}}</div>
     <div class="created-time">结束时间: {{endTime | date()}}</div>
     <div class="content">{{content | html}}</div>
@@ -7,7 +13,7 @@
     <div class="infoCollect-wrapper">
         <div class="sign-up-btn-wrapper">
             <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
-            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就能报名成功了...<br/>点我添加报名信息</div>
+            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就成功了, 点我报名!</div>
             <div class='yo-btn yo-btn-m' ms-if="isDone">报名成功</div>
         </div>
 
