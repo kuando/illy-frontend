@@ -342,9 +342,10 @@ a, a:hover {
     display: inline-block;
     vertical-align: top;
     color: $like-color;
+    margin-right: .05rem;
 
     span {
-        padding-right: .05rem;
+        padding-right: .02rem;
     }
 }
 .gap-point {

@@ -245,18 +245,17 @@ input[type="checkbox"], input[type="radio"] {
     > Mail: indexxuan@gmail.com
     > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
-@font-face {
-  font-family: yofont;
-  src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");
-}
-.yo-ico {
-  font-family: yofont !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  vertical-align: middle;
-}
-
+/*@font-face {*/
+/*font-family: yofont;*/
+/*src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");*/
+/*}*/
+/*.yo-ico {*/
+/*font-family: yofont !important; */
+/*font-style: normal;*/
+/*-webkit-font-smoothing: antialiased;*/
+/*-moz-osx-font-smoothing: grayscale;*/
+/*vertical-align: middle;*/
+/*}*/
 /*@import "../Yo/lib/core/reset.scss";*/
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
@@ -977,9 +976,10 @@ a, a:hover {
   display: inline-block;
   vertical-align: top;
   color: #999999;
+  margin-right: .05rem;
 }
 .count span {
-  padding-right: .05rem;
+  padding-right: .02rem;
 }
 
 .gap-point {

@@ -52,17 +52,17 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-name"></i>
-            <div class="fr left-item">姓名</div>
-            <div class="fr">{{displayName}}</div>
+            <div class="left-item">姓名</div>
+            <div class="right-item">{{displayName}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
-            <input type="text" class="yo-input" ms-duplex-string="displayName" placeholder="昵称" />
+            <input type="text" class="yo-input g-input" ms-duplex-string="displayName" placeholder="昵称" />
         </label>
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-gender"></i>
-            <div class="fr left-item">性别</div>
-            <div class="fr" ms-if="editing == false">{{gender}}</div>
+            <div class="left-item">性别</div>
+            <div class="right-item" ms-if="editing == false">{{gender}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />
@@ -70,8 +70,8 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-school"></i>
-            <div class="fr left-item">学校</div>
-            <div class="fr" ms-if="editing == false">{{onSchool}}</div>
+            <div class="left-item">学校</div>
+            <div class="right-item" ms-if="editing == false">{{onSchool}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="onSchool" placeholder="学校名称" />
@@ -79,8 +79,8 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-grade"></i>
-            <div class="fr left-item">年级</div>
-            <div class="fr" ms-if="editing == false">{{grade}}</div>
+            <div class="left-item">年级</div>
+            <div class="right-item" ms-if="editing == false">{{grade}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="grade" placeholder="年级" />
@@ -90,8 +90,8 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-parent"></i>
-            <div class="fr left-item">家长</div>
-            <div class="fr" ms-if="editing == false">{{parent}}</div>
+            <div class="left-item">家长</div>
+            <div class="right-item" ms-if="editing == false">{{parent}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="parent" placeholder="家长姓名" />
@@ -99,8 +99,8 @@
 
         <li class="item" ms-if="editing == false">
             <i class="icon icon-phone"></i>
-            <div class="fr left-item">电话</div>
-            <div class="fr" ms-if="editing == false">{{phone}}</div>
+            <div class="left-item">电话</div>
+            <div class="right-item" ms-if="editing == false">{{phone}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
             <input type="text" class="yo-input" ms-duplex-string="phone" placeholder="用户电话" />

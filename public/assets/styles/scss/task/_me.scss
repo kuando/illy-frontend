@@ -116,18 +116,22 @@ $me-profile-color: #FFF;
         padding: .15rem .3rem; /* rewrite to make height higher */
         font-size: .16rem;
         color: #575151;
+        width: 100%;
+        display: inline-block;
     
-        .fl, .fr { /* too long name or other info */
+        .left-item, .right-item{ /* too long name or other info */
+            display: inline-block;
+            vertical-align: middle; /* key! */
             max-width: 150px;
             overflow: hidden;
             height: 24px;
-            width: 49%;
-        }
-        .fr {
-            text-align: right;
+            width: 39%;
         }
         .left-item {
             text-align: left;
+        }
+        .right-item {
+            text-align: right;
         }
     }
 
