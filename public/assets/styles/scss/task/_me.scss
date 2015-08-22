@@ -97,6 +97,8 @@ $me-profile-color: #FFF;
     background-color: #fff;
     padding-right: .10rem; /* for right border-padding, balance with left */
     padding-bottom: .1rem;
+    padding-left: .15rem;
+    padding-right: 0;
 
     .avatar-wrapper {
         position: relative;
@@ -110,23 +112,31 @@ $me-profile-color: #FFF;
         bottom: 48px;
     }
 
-    .item {
+    .item { 
         padding: .15rem .3rem; /* rewrite to make height higher */
         font-size: .16rem;
         color: #575151;
         width: 100%;
         display: inline-block;
-    
+
+        .icon { /* overwrite it */
+            position: absolute;
+            top: .14rem;
+            left: .1rem;
+        }
+
         .left-item, .right-item{ /* too long name or other info */
             display: inline-block;
             vertical-align: middle; /* key! */
             max-width: 150px;
             overflow: hidden;
             height: 24px;
-            width: 39%;
+            width: 49%;
         }
         .left-item {
             text-align: left;
+            position: relative;
+            left: .2rem;
         }
         .right-item {
             text-align: right;
@@ -134,7 +144,12 @@ $me-profile-color: #FFF;
     }
 
     .info-gap {
-        height: .3rem;
+        width: 1500px;
+        height: .1rem;
+        position: relative;
+        top: -1px;
+        left: -500px;
+        background-color: $g_bgColor;
     }
 
     .icon {

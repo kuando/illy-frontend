@@ -6,18 +6,19 @@
 
     <div class="infoCollect-wrapper">
         <div class="sign-up-btn-wrapper">
-            <div class='yo-btn' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
-            <div class='yo-btn' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就能报名成功了...<br/>点我添加报名信息</div>
-            <div class='yo-btn' ms-if="isDone">报名成功</div>
+            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
+            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就能报名成功了...<br/>点我添加报名信息</div>
+            <div class='yo-btn yo-btn-m' ms-if="isDone">报名成功</div>
         </div>
 
         <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling" style="margin-bottom: .1rem;">
+            <p class="activity-info-form-title">请填写报名信息</p>
             <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
                 <span class="hide">{{CopyinfoCollect[$index]}}</span>
                 <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
             </label>
-            <div class="yo-btn" ms-click="pushInfo()">save</div>
-            <div class="yo-btn" ms-click="cancel()">cancel</div>
+            <div class="yo-btn yo-btn-info yo-btn-m" ms-click="pushInfo()">确定</div>
+            <div class="yo-btn yo-btn-light yo-btn-m" ms-click="cancel()">取消</div>
         </div>
     </div>
 
@@ -31,7 +32,8 @@
         <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
         <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
 
-        <div class="yo-btn" ms-visible="isShared">积分+{{scoreAward}}</div>
+        <div class="yo-btn btn-scoreAward" ms-visible="isShared">积分+{{scoreAward}}</div>
+
     </ul>
 
     <!-- koudai jinbi start -->

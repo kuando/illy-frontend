@@ -44,6 +44,10 @@
     }
 } 
 
+#footer {
+    margin: .15rem;
+}
+
 /* koudai jinbi start */
 .koudai-wrapper {
     position: fixed;
@@ -96,9 +100,9 @@
 @import "./_taskList.scss";
 /* taskList end */
 
-/* detail-import start */
+/* detail start */
 @import "../microsite/article.scss";
-/* detail-import end */
+/* detail end */
 
 /* mall start */
 @import "./_mall.scss";

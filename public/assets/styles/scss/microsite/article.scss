@@ -53,6 +53,9 @@
         h1, h2, h3, h4, h5, h6 {
             margin: .1rem 0;
         }
+        dd, dl, dt {
+            margin: 0;
+        }
     }
 
     .content p {
@@ -148,3 +151,32 @@
     }
 
 }
+
+/* activity start */
+
+.infoCollect-wrapper {
+    text-align: center;
+}
+.activity-info-form {
+    text-align: center;
+
+    &-title {
+        text-align: center;
+        margin: .1rem;
+    }
+
+    .yo-btn {
+        margin-top: .1rem;
+        margin-bottom: .1rem;
+    }
+}
+.btn-scoreAward {
+    display: block;
+    width: 92%;
+    height: .3rem;
+    margin: 0 auto;
+    margin-top: .1rem;
+    background-color: #F25454;
+    color: #fff;
+}
+/* activity end */
