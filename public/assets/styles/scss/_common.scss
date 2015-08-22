@@ -421,6 +421,7 @@ html, body {
     line-height: 1.5;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-tap-highlight-color: transparent;
 }
 body {
     font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;  // 字体优化 

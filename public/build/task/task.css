@@ -704,6 +704,7 @@ html, body {
   line-height: 1.5;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -1301,7 +1302,7 @@ select {
   color: #FFF;
   background-size: 100%;
   background-position: center;
-  background-image: url(../../build/images//me-colorful-profile-bg.jpg);
+  background-image: url(http://app.hizuoye.com/build/images/me-colorful-profile-bg.jpg);
 }
 .profile-wrapper .inner-wrapper {
   width: 100%;
@@ -1315,7 +1316,7 @@ select {
 .profile-wrapper .update .icon-update {
   width: .16rem;
   height: .16rem;
-  background: url(../../build/images//iconfont-updateProfile.png) no-repeat center;
+  background: url(http://app.hizuoye.com/build/images/iconfont-updateProfile.png) no-repeat center;
   background-size: 100%;
   position: relative;
   top: -1px;
@@ -1418,22 +1419,22 @@ select {
   background-size: 100%;
 }
 .update-profile-list .icon-name {
-  background-image: url(../../build/images//iconfont-name.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-name.png);
 }
 .update-profile-list .icon-gender {
-  background-image: url(../../build/images//iconfont-gender.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-gender.png);
 }
 .update-profile-list .icon-parent {
-  background-image: url(../../build/images//iconfont-parent.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-parent.png);
 }
 .update-profile-list .icon-phone {
-  background-image: url(../../build/images//iconfont-phone.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-phone.png);
 }
 .update-profile-list .icon-school {
-  background-image: url(../../build/images//iconfont-school.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-school.png);
 }
 .update-profile-list .icon-grade {
-  background-image: url(../../build/images//iconfont-grade.png);
+  background-image: url(http://app.hizuoye.com/build/images/iconfont-grade.png);
 }
 .update-profile-list .editing-btn-wrapper {
   text-align: center;

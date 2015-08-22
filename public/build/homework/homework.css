@@ -702,6 +702,7 @@ html, body {
   line-height: 1.5;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
