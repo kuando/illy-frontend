@@ -218,12 +218,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
-            "splash@": {
-                templateUrl: "assets/template/task/splash.html", // 指定模板地址
-            },
-            "loading@": {
-                templateUrl: "assets/template/loading.html", // 指定模板地址
-            },
+            //"splash@": {
+                //templateUrl: "assets/template/task/splash.html", // 指定模板地址
+            //},
+            //"loading@": {
+                //templateUrl: "assets/template/loading.html", // 指定模板地址
+            //},
             //"header@": {
                 //templateUrl: "assets/template/task/header.html", // 指定模板地址
             //},

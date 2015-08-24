@@ -34,9 +34,9 @@ define([], function() {
         $ctrl.$onRendered = function() {
             
             // text-loading && splash done...
-            setTimeout(function() {
-                document.querySelector('#splash').style.display = 'none';
-            }, avalon.splashShowTime);
+            //setTimeout(function() {
+                //document.querySelector('#splash').style.display = 'none';
+            //}, avalon.splashShowTime);
             // drop in 20150815
             //document.querySelector('#loading-before-site').style.display = 'none';
             

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title> 账户注销 </title>
+        <style>
+        </style>
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+
+        var apiUrl = 'http://api.hizuoye.com/api/v1/unbind';
+        var token = localStorage.getItem('illy-token');
+        var url = window.location.href;
+        function createXHR(method, url) {
+            var xhr = new XMLHttpRequest();
+            if ("withCredentials" in xhr) {
+                // Check if the XMLHttpRequest object has a "withCredentials" property.
+                // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                xhr.open(method, url, true);
+            } else if (typeof XDomainRequest != "undefined") {
+                // Otherwise, check if XDomainRequest.
+                // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+            } else {
+                // Otherwise, CORS is not supported by the browser.
+                xhr = null;
+            }
+            return xhr;
+        }
+
+        var xhr = createXHR("GET", apiUrl);
+        if (!xhr) {
+            alert('CORS not supported');
+        }
+        // Response handlers.
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) { // binded user and qo next...
+                localStorage.removeItem('illy-token');
+                location.replace('http://app.hizuoye.com/login.html');
+            } else if ( status === 401) { // unbinded user and go login...
+                alert('账户注销失败!');
+            } else {
+                alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
+            }
+        }
+
+        xhr.onerror = function () {
+            alert('Woops, there was an error making the request.');
+        };
+
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        xhr.send(null);
+
+    </script>
+</html>
+

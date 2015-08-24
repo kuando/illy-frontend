@@ -193,9 +193,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             //"splash@": {
                 //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
             //},
-            "loading@": {
-                templateUrl: "assets/template/loading.html", // 指定模板地址
-            },
+            //"loading@": {
+                //templateUrl: "assets/template/loading.html", // 指定模板地址
+            //},
             "header@": {
                 templateUrl: "assets/template/homework/header.html", // 指定模板地址
             },

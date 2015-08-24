@@ -8,8 +8,8 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            avalon.log("task.js onRendered fn");
-            document.querySelector('#splash').style.display = 'none';
+            //avalon.log("task.js onRendered fn");
+            //document.querySelector('#splash').style.display = 'none';
             //document.querySelector('#loading-before-site').style.display = 'none';
         };
         // 进入视图
