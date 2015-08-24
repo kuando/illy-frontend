@@ -57,7 +57,7 @@
 
         var nextUrl = nextMap[next];
 
-        if (localStorage.getItem('illy-token') !== '') {
+        if (typeof localStorage.getItem('illy-token') === 'string') {
             location.replace(nextUrl); // pure url
         } else {
 

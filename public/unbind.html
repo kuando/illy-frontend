@@ -9,11 +9,13 @@
     </head>
 
     <body>
-
+        <div class="comfirm-btn" onClick="unbind()" style="height: 100px;">comfirm</div>
     </body>
 
     <script>
 
+    function unbind() {
+    
         var apiUrl = 'http://api.hizuoye.com/api/v1/unbind';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
@@ -58,7 +60,7 @@
 
         xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         xhr.send(null);
-
+    }
     </script>
 </html>
 
