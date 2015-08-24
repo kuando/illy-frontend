@@ -1,7 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState", "./http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
     
     // screen splash show time config
-    avalon.splashShowTime = 666; // ms, used in app.js
+    //avalon.splashShowTime = 666; // ms, used in app.js
 
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
@@ -190,9 +190,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
-            "splash@": {
-                templateUrl: "assets/template/homework/splash.html", // 指定模板地址
-            },
+            //"splash@": {
+                //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
+            //},
             "loading@": {
                 templateUrl: "assets/template/loading.html", // 指定模板地址
             },

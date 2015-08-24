@@ -16,7 +16,8 @@
             <div class="exchangeTimes">
                 <!--<i class="icon icon-exchangeTimes"></i>-->
                 <span>兑换</span>
-                {{item.exchangeTimes}}
+                <!--{{item.exchangeTimes}}-->
+                {{parseInt(item.stock/5, 10)}}
             </div>
             <div class="stock">
                 <!--<i class="icon icon-stock"></i>-->
@@ -28,9 +29,9 @@
 
     <div class="mall-rules">
         <div class="silk-common mall-rules-silk">兑换规则</div>
-        <p class="rules-text">
-            {{rules}}
-        </p>
+        <pre class="rules-text">
+            {{rules | html}}
+        </pre>
     </div>
 
 </div>

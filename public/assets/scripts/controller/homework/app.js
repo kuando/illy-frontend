@@ -48,11 +48,11 @@ define([], function() {
             //avalon.log("app.js onRendered fn");
             
             // if rendered fast and less than 888ms, will show completely, else, show 1s
-            var splashShowTime = avalon.appTotalTime < 888 ? (avalon.splashShowTime) : 666;
-            setTimeout(function() { // 公共总控制器渲染完成，此时取消全局splash
-                document.querySelector('#splash').style.display = 'none';
-                //alert(1);
-            }, splashShowTime); // 太短了？？？ 要不要弄固定时长？
+            //var splashShowTime = avalon.appTotalTime < 888 ? (avalon.splashShowTime) : 666;
+            //setTimeout(function() { // 公共总控制器渲染完成，此时取消全局splash
+            //    document.querySelector('#splash').style.display = 'none';
+            //    //alert(1);
+            //}, splashShowTime); // 太短了？？？ 要不要弄固定时长？
             //avalon.log("splash 消失！首页渲染基本完成 --> " + Date.now());
         };
         // 对应的视图销毁前

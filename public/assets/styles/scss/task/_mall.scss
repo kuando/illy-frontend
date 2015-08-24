@@ -35,12 +35,12 @@ $main-yellow: yellow;
 
     .mall-item {
         display: inline-block;
-        background-color: whiteSmoke;
         width: 45%; /* mark! */
         margin-top: .05rem;
         margin-left: .10rem;
         background: #fff;
         padding: .03rem 0;
+        padding-top: 0;
         text-align: left;
         border-radius: 3px;
         color: $light-grey;
@@ -75,9 +75,8 @@ $main-yellow: yellow;
             font-size: .12rem;
             line-height: .16rem;
             padding: .03rem;
-            background: red;
+            background: rgba(249, 47, 47, 0.7);
             color: #fff;
-            opacity: .6;
         }
 
         /*.icon {*/
@@ -132,7 +131,7 @@ $main-yellow: yellow;
         width: 100%;
         min-height: $mall-rules-height - $silk-height;
         color: #fff;
-        font-size: .16rem;
+        font-size: .14rem;
         white-space: normal;
         word-break: break-all;
         padding: .2rem;
