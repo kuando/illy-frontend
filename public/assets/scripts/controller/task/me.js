@@ -62,7 +62,7 @@ define([], function() {
             me.phone = source.phone;
             me.parent = source.parent;
             if (setAvatar) {
-                if (source.setAvatar !== void 0) {
+                if (source.avatar !== void 0) {
                     me.avatar = resourcePrefix + source.avatar;
                 } else {
                     me.avatar = avatar.defaultFullUrl; // default setAvatar of user

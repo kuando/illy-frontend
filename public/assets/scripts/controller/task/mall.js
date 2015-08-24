@@ -10,6 +10,7 @@ define([], function() {
         $id: "mall",
         visited: false, // first in, no data
         lists: [], 
+        rules: '', // 兑换规则
         offset: 0, // inner var, to fetch data with offset and limit
         btnShowMore: true,
         /**
@@ -65,6 +66,8 @@ define([], function() {
             // otherwise, show it
             mall.offset <= limit ? mall.btnShowMore = false : mall.btnShowMore = true; /* jshint ignore:line */
             mall.fetchRemoteData('score/mall', {}, 'lists');
+
+            mall.fetchRemoteData('score/exchangeInstruction', {}, 'rules');
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

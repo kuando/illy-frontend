@@ -44,6 +44,22 @@
     }
 } 
 
+/* common silk style */
+.silk-common {
+    width: 100%;
+    height: $silk-height;
+    line-height: .32rem;
+    background-repeat: no-repeat;
+    background-size: 98%;
+    background-position: center top;
+    position: absolute;
+    left: 0;
+    top: -($silk-height / 2);
+    text-align: center;
+    color: #fff;
+    font-size: .18rem;
+}
+
 #footer {
     margin: .15rem;
 }

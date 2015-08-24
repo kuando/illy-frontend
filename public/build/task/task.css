@@ -553,6 +553,7 @@ input[type="checkbox"], input[type="radio"] {
 /* yo-btn end */
 /* common vars start */
 /* common vars start */
+/* global silk height */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -950,6 +951,22 @@ select {
   font-size: .14rem;
 }
 
+/* common silk style */
+.silk-common {
+  width: 100%;
+  height: 0.5rem;
+  line-height: .32rem;
+  background-repeat: no-repeat;
+  background-size: 98%;
+  background-position: center top;
+  position: absolute;
+  left: 0;
+  top: -0.25rem;
+  text-align: center;
+  color: #fff;
+  font-size: .18rem;
+}
+
 #footer {
   margin: .15rem;
 }
@@ -1049,6 +1066,7 @@ select {
 /* detail start */
 /* vars start */
 /* common vars start */
+/* global silk height */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -1225,17 +1243,50 @@ select {
 /* activity end */
 /* detail end */
 /* mall start */
+.mall {
+  background-color: #ea68a2;
+  padding-bottom: .3rem;
+}
+
+.mall-top-bg {
+  background: url(../../build/images/mall-top.png) no-repeat center top;
+  background-size: 100%;
+  height: 185px;
+}
+
 .mall-wrapper {
-  text-align: center;
-  margin: .05rem 0;
+  text-align: left;
+  width: 94%;
+  margin: 0.5rem auto;
+  background-color: #f8d95d;
+  position: relative;
+  padding-top: 0.4rem;
+  padding-bottom: 0.25rem;
+  padding-left: .06rem;
+  padding-right: .06rem;
+  /* mall item end */
+}
+.mall-wrapper .mall-wrapper-silk {
+  background-image: url(../../build/images/silk-red.png);
 }
 .mall-wrapper .mall-item {
   display: inline-block;
-  width: 46%;
-  margin: .05rem .06rem;
+  background-color: whiteSmoke;
+  width: 45%;
+  /* mark! */
+  margin-top: .05rem;
+  margin-left: .10rem;
   background: #fff;
   padding: .03rem 0;
   text-align: left;
+  border-radius: 3px;
+  color: #999999;
+  /*.icon {*/
+  /*width: .18rem;*/
+  /*height: .18rem;*/
+  /*position: relative;*/
+  /*top: -.01rem;*/
+  /*}*/
 }
 .mall-wrapper .mall-item .img-wrapper {
   width: 100%;
@@ -1244,7 +1295,7 @@ select {
 .mall-wrapper .mall-item img {
   display: inline-block;
   width: 100%;
-  height: 1rem;
+  height: 0.9rem;
 }
 .mall-wrapper .mall-item .title {
   display: inline-block;
@@ -1252,6 +1303,7 @@ select {
   padding: .03rem .08rem .03rem;
   line-height: 1.3;
   font-size: .14rem;
+  color: #333438;
 }
 .mall-wrapper .mall-item .price {
   position: absolute;
@@ -1267,29 +1319,49 @@ select {
   color: #fff;
   opacity: .6;
 }
-.mall-wrapper .mall-item .icon {
-  width: .18rem;
-  height: .18rem;
-  position: relative;
-  top: -.01rem;
-}
 .mall-wrapper .mall-item .exchangeTimes {
   display: inline-block;
   width: 47%;
   text-align: left;
   padding-left: .1rem;
-}
-.mall-wrapper .mall-item .exchangeTimes .icon-exchangeTimes {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-exchangeTimes.png);
+  font-size: .12rem;
+  /*.icon-exchangeTimes {*/
+  /*background-image: url(../../build/images/iconfont-exchangeTimes.png);*/
+  /*}*/
 }
 .mall-wrapper .mall-item .stock {
   display: inline-block;
   width: 47%;
   text-align: right;
   padding-right: .1rem;
+  font-size: .12rem;
+  /*.icon-stock {*/
+  /*background-image: url(../../build/images/iconfont-stock.png);*/
+  /*}*/
 }
-.mall-wrapper .mall-item .stock .icon-stock {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-stock.png);
+
+/* mall-wrapper end */
+.mall-rules {
+  width: 94%;
+  margin: 0 auto;
+  background-color: #f77d65;
+  min-height: 1.5rem;
+  position: relative;
+}
+.mall-rules .mall-rules-silk {
+  background-image: url(../../build/images/silk-blue.png);
+}
+.mall-rules .rules-text {
+  width: 100%;
+  min-height: 1rem;
+  color: #fff;
+  font-size: .16rem;
+  white-space: normal;
+  word-break: break-all;
+  padding: .2rem;
+  padding-top: .35rem;
+  line-height: 1.7;
+  text-align: left;
 }
 
 /* mall end */
@@ -1300,12 +1372,11 @@ select {
 }
 .rank .rank-top-bg {
   width: 100%;
-  height: 260px;
+  height: 269px;
   background: url(../../build/images/rank-top.png) no-repeat center top;
   background-size: 100%;
 }
 .rank .my-info-panel {
-  background-color: #ffcc03;
   height: 1rem;
   color: #666;
   font-size: .16rem;
@@ -1317,30 +1388,21 @@ select {
   margin-left: auto;
   margin-right: auto;
   margin-top: .4rem;
-  background-color: #fff;
-  /*.my-rank-avatar {*/
-  /*width: .9rem;*/
-  /*height: .9rem;*/
-  /*display: inline-block;*/
-  /*position: absolute;*/
-  /*top: .1rem;*/
-  /*left: .2rem;*/
-  /*border: 2px solid #fff;*/
-  /*border-radius: 50%;*/
-  /*}*/
+  background-color: #ff9933;
+  /* extend silk-common */
 }
 .rank .my-info-panel .my-info-panel-top-bg {
-  width: 100%;
-  height: 0.5rem;
-  background: url(../../build/images/silk-green.png) no-repeat center top;
-  background-size: 98%;
-  position: absolute;
-  left: 0;
-  top: -.29rem;
+  background-image: url(../../build/images/silk-blue.png);
 }
-.rank .my-info-panel .my-rank-name, .rank .my-info-panel .my-rank-score, .rank .my-info-panel .my-rank-rank {
-  line-height: 2.3;
-  text-align: left;
+.rank .my-info-panel .my-rank-rank {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
 }
 .rank .rank-wrapper {
   background-color: #ffcc03;
@@ -1350,22 +1412,23 @@ select {
 }
 .rank .rank-wrapper .rank-list-top-bg {
   width: 100%;
-  height: 0.5rem;
-  background: url(../../build/images/silk-blue.png) no-repeat center top;
-  background-size: 97%;
-  position: absolute;
-  top: -.21rem;
-  left: 0;
+  color: #615C5C;
+  text-shadow: 1px 1px #d7e8f9,  1px 1px #d7e8f9,  1px 1px #d7e8f9,  1px 2px #d7e8f9,  2px 2px #d7e8f9,  2px 2px #d7e8f9;
+  font-size: .20rem;
+  position: relative;
+  top: -.14rem;
 }
 .rank .rank-wrapper .rank-list {
   width: 97%;
   margin: 0 auto;
-  background-color: #fff;
+  /*background-color: #E75B5B;*/
+  background-color: #fa7a7a;
   padding-bottom: .65rem;
   padding-left: .15rem;
   padding-right: .15rem;
   font-size: .16rem;
   text-align: center;
+  color: #fff;
   /* common item */
   /* common item */
   /* rank common line end */
@@ -1387,7 +1450,6 @@ select {
   height: 0.4rem;
   line-height: 0.4rem;
   text-align: left;
-  font-size: .14rem;
   overflow: hidden;
   /*position: relative;*/
   /*left: .2rem;*/
@@ -1402,7 +1464,7 @@ select {
 }
 .rank .rank-wrapper .rank-list .rank-title {
   padding: .15rem .05rem;
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
 }
 .rank .rank-wrapper .rank-list .rank-title .name-div {
   position: relative;
@@ -1426,7 +1488,10 @@ select {
 .rank .rank-wrapper .rank-list .rank-common-line {
   padding: .15rem .05rem;
   /* along with above rank-title-line */
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
+}
+.rank .rank-wrapper .rank-list .rank-common-line .name-div {
+  font-size: .14rem;
 }
 .rank .rank-wrapper .rank-list .rank-common-line .icon {
   margin-left: .03rem;
@@ -1589,7 +1654,8 @@ select {
   display: inline-block;
   vertical-align: middle;
   /* key! */
-  max-width: 150px;
+  max-width: 50%;
+  /* key! great set! avoid text-overflow */
   overflow: hidden;
   height: 24px;
   width: 49%;

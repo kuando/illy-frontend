@@ -125,7 +125,7 @@
         .left-item, .right-item{ /* too long name or other info */
             display: inline-block;
             vertical-align: middle; /* key! */
-            max-width: 150px;
+            max-width: 50%; /* key! great set! avoid text-overflow */
             overflow: hidden;
             height: 24px;
             width: 49%;
