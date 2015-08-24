@@ -58,7 +58,7 @@ define([], function() {
             if (setAvatar !== false) { setAvatar = true; }// default
             me.username = source.username;
             me.displayName = source.displayName;
-            me.gender = source.gender;
+            me.gender = source.gender || '男';
             me.phone = source.phone;
             me.parent = source.parent;
             if (setAvatar) {
@@ -136,8 +136,8 @@ define([], function() {
                     onSchool: me.onSchool,
                     grade: me.grade
                 },
-                success: function(res) {
-                    avalon.log(res);
+                success: function() {
+                    //avalon.log(res);
                 },
                 error: function(res) {
                     alert('对不起，账户信息更新失败...' + res);
@@ -159,8 +159,8 @@ define([], function() {
                 data: {
                     avatar: avatar.serverId
                 },
-                success: function(res) {
-                    alert('上传成功!' + res);    
+                success: function() {
+                    //alert('上传成功!' + res);    
                 },
                 error: function(res) {
                     console.log(res);

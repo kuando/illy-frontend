@@ -139,16 +139,6 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
             
-            avalon.$('.gotop').onclick = function() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            };
-
-            setTimeout(function() {
-                var gotop = avalon.$('#gotop');
-                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
-            }, 3000);
-
         };
         // 进入视图
         $ctrl.$onEnter = function(params) {

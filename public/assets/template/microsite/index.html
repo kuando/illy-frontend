@@ -4,7 +4,7 @@
     <!-- slider start -->
     <div id="slider">
         <div ms-repeat-slider="sliders"> <!-- repeat point -->
-            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="'http://resource.hizuoye.com/' + slider.image + '?imageView2/1/w/400/h/200/interlace/1'" /></a>
+            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="'http://resource.hizuoye.com/' + slider.image + '?imageView2/1/w/640/h/320/interlace/1'" /></a>
             <p>{{slider.title}}</p>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <!-- item start -->
         <div class="item-wrapper">
             <a ms-attr-href="'#!/detail/' + item._id" class="item area" ms-repeat-item="hots">
-                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image+ '?imageView2/1/w/180/h/160/interlace/1'" ms-attr-alt="item.title" />
+                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image+ '?imageView2/1/w/200/h/200/interlace/1'" ms-attr-alt="item.title" />
                 <div class="right-area">
                     <div class="created-time">{{item.created | date()}}</div>
                     <h3 class="item-title area">{{item.title}}</h3>

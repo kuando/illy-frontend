@@ -7,7 +7,7 @@
         <div class="inner-wrapper">
 
             <div class="avatar-wrapper area">
-                <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+                <img ms-attr-src="avatar + '?imageView2/1/w/200/h/200'" ms-attr-alt="username" ms-click="chooseImage()" />
             </div>
 
             <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
@@ -71,14 +71,14 @@
             <label class="profile-gender-label">
                 <span class="mark flex">男</span>
                 <div class="yo-checked yo-checked-c">
-                    <input type="radio" name="sex" ms-duplex-string="gender" checked="" />
+                    <input type="radio" name="sex" ms-duplex-string="gender" value="男" ms-attr-checked="gender" />
                     <span class="type"></span>
                 </div>
             </label>
             <label class="profile-gender-label">
                 <span class="mark flex">女</span>
                 <div class="yo-checked yo-checked-c">
-                    <input type="radio" name="sex" ms-duplex-string="gender" />
+                    <input type="radio" name="sex" ms-duplex-string="gender" value="女" ms-attr-checked="gender" />
                     <span class="type"></span>
                 </div>
             </label>

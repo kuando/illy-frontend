@@ -1,5 +1,6 @@
 /* vars start */
 /* common vars start */
+/* global silk height */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -112,32 +113,6 @@
 }
 .detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit {
   background-image: url(http://app.hizuoye.com/build/images/iconfont-yuedu.png);
-}
-.detail #jumphelper {
-  position: fixed;
-  width: 35px;
-  bottom: 38px;
-  right: 10px;
-  z-index: 10;
-}
-.detail #jumphelper > a {
-  display: none;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-background-size: 18px 19px;
-  width: .4rem;
-  height: .4rem;
-  background-color: rgba(0, 0, 0, 0.25);
-  text-indent: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.detail #gotop {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAmCAMAAACbFsmhAAAA+VBMVEV6enpNTU1sbGympqbq6urJycnT09Pj4+Pj4+Oenp5ZWVnu7u7f39/n5+epqanp6enk5OSDg4Pi4uLb29vJycmPj4/q6urMzMzQ0NC3t7fs7Oxvb2/i4uLr6+vu7u5xcXHt7e1ra2vc3Ny8vLxra2vf39+ysrLm5ubi4uLZ2dnKysrOzs5NTU25ublsbGyjo6O+vr6hoaFNTU3r6+vX19dNTU3v7+9NTU1NTU3j4+Pe3t5NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0AAADs7Oz19fX8/Pzd3d3k5OTv7+/m5ub+/v75+fnx8fH///88zryfAAAASHRSTlMnEyMetzRJ0tchD5ZfeR240BRtUzsbiD89L4UQ04axBbYG/S0S6SXJ2VRAPgYuER8sIA2HVQqlCwhs9AcFDAQJAQMCEQ8QDgCcqP6hAAABr0lEQVR42qXSB1PbMBgGYJUWaMtuaUvLDnunCR6JtZeBLPv7/z8GmejqnEtw7tD5bMt+pO+VbISDlrbWuGN80VYr4w5rjFGuazQTiPShpvVjFNUjhgRxRZR+ORl3crW0tsqaorwqAjCJ0kqjUUSrz6oINxuNI/o2ol+6AN2/4i0kjxfBtc/HYjoSJIQzgE8QkqmIkzacIIC5c2iTaSjojHqnHwDUx+6ok/DXkEwusod5bAEMPhpm9/FrCF/mjws4dUjz5CrPL6//R7Q5fFp2oxWATSW7yIY317yCxGoXVgLukVOdkd+uEsnbdVgKirsiUzEoasPONp1EohXC2ldZ3JoxSnkUQtgSE4j9hPMNmXpkxwNvz6DN/iGZTASwHjn142T0jUmP8H02bFK/FAWgUq9Oe9n3mL+gZCvPf2Hp32ifqYhFN/P8KpEp4vS32143a4l8OV/jBnMk7tyHisfGlzPlpwpc2juJ9vcGfyIf2q9Olz3OdgcHh0gmraQ0VZTSmDCOyn5lC6b9mX4mVYuUL/d+ZOvLlat7f3AzyxboGVdn6meaJRMZDEgtoozI6rNnqWNwOoglrpkAAAAASUVORK5CYII=);
-  margin-bottom: 6px;
-}
-.detail #gobottom {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAmCAMAAACbFsmhAAAA/FBMVEXt7e3BwcHt7e16enpNTU1NTU1sbGy5ubnV1dXr6+vd3d13d3fv7+/u7u7u7u7n5+ehoaFcXFzZ2dlra2uDg4PKysq+vr6Xl5fs7Oypqanr6+tsbGzy8vJra2vy8vJ1dXXs7Oy8vLyenp6jo6PGxsavr6/v7+/u7u7t7e3v7+/v7+/b29vOzs6AgICmpqbx8fHs7Ozs7OzMzMzi4uK3t7dNTU1NTU3j4+PX19fq6uru7u5NTU3t7e1NTU3t7e1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0AAADu7u7y8vL8/Pz5+fn+/v7v7+////93HL7gAAAATXRSTlP+K/QoFRIjLkiHYBGnlc15IAxUEhRALBiFHYYRtQa4CestIR81JrPZ7qXBUz4VHqPx9j9tLw0MbFWIzgb3B+QFAwsKCQgEARECDxAOADxjXooAAAGpSURBVHjapZMJT9wwEIVdaCmFlrZcpYVy39ACu+yd047tsY1Cwvz//8LAUkLCLkHFlizF+jRv/OaFXVVWlPCwevcMap+fi1rIItpaSCOaWsgUld4Omdf0pF9TydVCrpB7eyX7f3LAYxGVXleSA7/tS/Z77WaFwzgoSn7drG8w+TPIO4ka3RPwTh78Babkspd1k9Ep8LuZdxkpanxwmqZLgwIq5MJdljZCdf+65IT4sJBz/5i9Q9KABwsEKe/I6uyiHwd504dHn+Ie9hejclTU6jH2OBRmQusI97+r0lhaZ3gWw1PH5cIcfrm/0sNKilPxP7I8luhbgF/F8HWGGL9JBsnq7MJL73omUQ+QP595W1JVoKFd04OhBX4jTRsDeJ4CEN2M7UqqpMOPXnYi1KioqKSTH+69R/ywHeTNZEyelPiEB5OIU33sxWNDB+0jPEbcx88tOT6Z0WwfEckg9VJ8YTtADHbg5YzLrc3Nd2HNj6Bk3JZQhWRsjdPOOaONts5qZ6w1xllHp7H0zYGJC6xZEzGLa6ELzoBbp0lA6zsNEqF9d9AtbUNbyFv47IS+9oBI4AAAAABJRU5ErkJggg==);
 }
 
 /* activity start */

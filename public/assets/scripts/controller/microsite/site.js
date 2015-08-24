@@ -39,6 +39,16 @@ define([], function() {
             }, avalon.splashShowTime);
             // drop in 20150815
             //document.querySelector('#loading-before-site').style.display = 'none';
+            
+            avalon.$('.gotop').onclick = function() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            };
+
+            setTimeout(function() {
+                var gotop = avalon.$('#gotop');
+                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
+            }, 3000);
 
         };
 
