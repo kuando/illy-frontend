@@ -4,8 +4,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.wx = wx;
 
     // splash show time config
-    var splash_show_time = 6; // ms
-    avalon.splashShowTime = splash_show_time;
+    // var splash_show_time = 6; // ms
+    // avalon.splashShowTime = splash_show_time;
 
     // global loading timeout
     var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
@@ -22,7 +22,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var handleBadNetwork = function handleBadNetwork(delay) {
-        delay = global_loading_timeout * 1000 || 5000;
+        delay = global_loading_timeout * 1000 || 8000;
         var loader = document.querySelector('.loader');
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');

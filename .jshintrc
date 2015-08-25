@@ -49,6 +49,7 @@
         "alert"  : true,
         "$http"  : true,
         "wx"     : true,
-        "mmState": true
+        "mmState": true,
+        "module" : true
     }        // additional predefined global variables
 }

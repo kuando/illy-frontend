@@ -57,16 +57,13 @@
 
         var nextUrl = nextMap[next];
 
-        if (typeof localStorage.getItem('illy-token') === 'string') {
-
+        // enough auth, go anywhere
+        if (typeof localStorage.getItem('illy-token') === 'string') { // enough auth, go
             location.replace(nextUrl); // pure url
-            return ;
-
         }
+        // microsite only auth
         if (nextUrl === 'microsite' && typeof localStorage.getItem('illy-token-microsite') === 'string') {
-
             location.replace(nextUrl); // pure url
-            return ;
         }
         // local
 
@@ -85,7 +82,7 @@
                 if (status === 200) { // binded user and qo next...
                     // location.href = next + '.html?token=' + xhr.responseText;
                     if ( localStorage && localStorage.getItem ) {
-                        if (nextUrl === 'microsite') {
+                        if (next === 'microsite') {
                             localStorage.setItem('illy-token-microsite', xhr.responseText);
                         } else {
                             localStorage.setItem('illy-token', xhr.responseText);

@@ -260,6 +260,50 @@ input[type="checkbox"], input[type="radio"] {
 /*@import "../Yo/lib/core/variables.scss";*/
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
+/* global-animation start 弹入-从右 */
+.a-bounceinR {
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
+}
+
+.a-bounceinR {
+  -webkit-animation-name: bounceinR;
+  animation-name: bounceinR;
+}
+
+@-webkit-keyframes bounceinR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  80% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+@keyframes bounceinR {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* global-animation end   弹入-从右 */
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -756,7 +800,7 @@ select {
 }
 
 /* -------------------------------------------------------
- *  Spinner
+ * loader 
  *-------------------------------------------------------*/
 .loader {
   position: fixed;
@@ -1234,7 +1278,6 @@ select {
 
 .app {
   min-height: 5.5rem;
-  padding: .05rem;
 }
 
 /** mask */
@@ -1477,6 +1520,8 @@ background-image: url("../../icons-36-white.png");
   display: inline-block;
   width: 96%;
   margin-top: .15rem;
+  padding-bottom: .3rem;
+  overflow: hidden;
 }
 .panel .item {
   align-items: baseline;
@@ -1520,6 +1565,11 @@ background-image: url("../../icons-36-white.png");
 
 /* info end */
 /* question start */
+.yo-list {
+  padding-left: .1rem;
+  padding-right: .1rem;
+}
+
 .illy-img-list {
   text-align: left;
 }
@@ -1529,6 +1579,9 @@ background-image: url("../../icons-36-white.png");
   padding: .05rem;
   margin: .05rem .05rem;
   text-align: center;
+}
+.illy-img-list label.item div.flex {
+  width: 100%;
 }
 .illy-img-list label.item img {
   max-width: 100%;
@@ -1590,8 +1643,6 @@ background-image: url("../../icons-36-white.png");
   padding: .05rem;
   font-weight: bold;
   font-size: .16rem;
-  margin-top: .1rem;
-  margin-bottom: .2rem;
 }
 .question .wrong-fill-in {
   /* 错误的文字填空题 */
@@ -1715,7 +1766,7 @@ background-image: url("../../icons-36-white.png");
   left: 0;
   bottom: 0;
   width: 100%;
-  min-height: 1.5rem;
+  min-height: 1.1rem;
   background-color: #64c400;
 }
 .question .answer-panel.wrong {
@@ -1746,23 +1797,23 @@ background-image: url("../../icons-36-white.png");
   color: #f2eded;
 }
 .question .tap-btn {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.65rem;
+  height: 0.65rem;
   border-radius: 50%;
   background-color: #00abfd;
   position: fixed;
   right: .1rem;
-  bottom: 1rem;
+  bottom: 0.75rem;
   text-align: center;
 }
 .question .tap-btn .icon {
   display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  line-height: 0.75rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  line-height: 0.65rem;
   color: white;
   font-weight: bold;
-  font-size: .54rem;
+  font-size: .42rem;
 }
 .question .tap-btn .icon-next {
   -webkit-transform: rotate(90deg);

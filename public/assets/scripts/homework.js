@@ -22,7 +22,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var handleBadNetwork = function handleBadNetwork(delay) {
-        delay = global_loading_timeout * 1000 || 5000;
+        delay = global_loading_timeout * 1000 || 8000;
         var loader = document.querySelector('.loader');
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');

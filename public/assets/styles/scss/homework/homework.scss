@@ -270,7 +270,6 @@
 }
 .app {
     min-height: 5.5rem;
-    padding: .05rem;
 }
 
 /** mask */
@@ -526,6 +525,8 @@ background-image: url("../../icons-36-white.png");
     display: inline-block;
     width: 96%;
     margin-top: .15rem;
+    padding-bottom: .3rem;
+    overflow: hidden;
 
     .item {
         align-items: baseline;
@@ -574,7 +575,10 @@ background-image: url("../../icons-36-white.png");
 /* info end */
 
 /* question start */
-
+.yo-list {
+    padding-left: .1rem;
+    padding-right: .1rem;
+}
 .illy-img-list {
     text-align: left;
 
@@ -584,6 +588,10 @@ background-image: url("../../icons-36-white.png");
         padding: .05rem;
         margin: .05rem .05rem;
         text-align: center;
+
+        div.flex {
+            width: 100%;
+        }
 
         img {
             max-width: 100%;
@@ -653,8 +661,6 @@ background-image: url("../../icons-36-white.png");
         padding: .05rem;
         font-weight: bold;
         font-size: .16rem;
-        margin-top: .1rem;
-        margin-bottom: .2rem;
     }
 
     .wrong-fill-in { /* 错误的文字填空题 */
@@ -831,7 +837,7 @@ background-image: url("../../icons-36-white.png");
         background-color: $main-blue;
         position: fixed;
         right: .1rem;
-        bottom: $answer_panel_height - .5rem;
+        bottom: $answer_panel_height - .35rem;
         text-align: center;
 
         .icon {
@@ -841,7 +847,7 @@ background-image: url("../../icons-36-white.png");
             line-height: $next_radius;
             color: white;
             font-weight: bold;
-            font-size: .54rem;
+            font-size: .42rem;
         }
 
         .icon-next {

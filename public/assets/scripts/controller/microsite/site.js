@@ -26,6 +26,14 @@ define([], function() {
                     console.log('site fetchAllCategoriesNames failed!' + res);
                 }
             });
+        },
+        renderNavigator: function() {
+            setTimeout(function() {
+                // 0. init
+                $('#nav').navigator();
+                // 1 add fixed
+                $('.left-fixed').addClass('fixed-navigator');
+            }, 32); // enough time for strong
         }
     });
 
@@ -59,16 +67,16 @@ define([], function() {
         var navigatorInitDelay = 800;
         $ctrl.$onEnter = function() {
 
-            setTimeout(function() {
+            //setTimeout(function() {
 
-                // 0. init
-                $('#nav').navigator();
-                // 1 add fixed
-                $('.left-fixed').addClass('fixed-navigator');
-                // reset delay for not first time in
-                navigatorInitDelay = 50;
+            //    // 0. init
+            //    $('#nav').navigator();
+            //    // 1 add fixed
+            //    $('.left-fixed').addClass('fixed-navigator');
+            //    // reset delay for not first time in
+            //    navigatorInitDelay = 50;
 
-            }, navigatorInitDelay); // enough time
+            //}, navigatorInitDelay); // enough time
 
             // clear old local cache
             avalon.clearLocalCache('illy-microsite-');

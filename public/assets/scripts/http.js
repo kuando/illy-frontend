@@ -16,12 +16,12 @@
         // e.g. var $http = require("$http")(window);
         module.exports = global.document ? factory(global, true) : function(w) {
             if (!w.document) {
-                throw new Error("$http requires a window with a document")
+                throw new Error("$http requires a window with a document");
             }
-            return factory(w)
-        }
+            return factory(w);
+        };
     } else {
-        factory(global)
+        factory(global);
     }
 
     // Pass this if window is not defined yet
@@ -108,7 +108,7 @@
     var getXHR = function getXHR() {
         var xhr = new XMLHttpRequest(); 
         return xhr;
-    }
+    };
 
     // ajax main function
     var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail) {
@@ -129,14 +129,14 @@
             //if (xhr.readyState === 4 && xhr.status === 200) {
             //    success(parseJSON(xhr.responseText));
             //}
-            if (xhr.readyState == 4) {
+            if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     success( parseJSON( xhr.responseText ) );
                 } else {
                     error(parseJSON(xhr.responseText));
                 }
             }
-        }
+        };
         beforeSend(xhr); // useful when use
         //xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
         xhr.setRequestHeader('Content-Type', "application/json"); // update in 20150718
@@ -145,9 +145,9 @@
         xhr.send(method !== "GET" ? JSON.stringify(data) : null); // update in 20150718
         xhr.onerror = function() {
             ajaxFail(xhr.response);
-        }
+        };
 
-    }
+    };
 
     // export object
     var $http = { // dataType must be json
@@ -160,7 +160,7 @@
         'ajax': function(settings) {
             request(settings.method || "GET", settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
         }
-    }
+    };
 
     // Register as a named AMD module, since $http can be concatenated with other
     // files that may use define, but not via a proper concatenation script that
@@ -177,7 +177,7 @@
     if (typeof define === "function" && define.amd) {
         define("$http", [], function() {
             return $http;
-        })
+        });
     }
     // Map over $http in case of overwrite
     var _http = window.$http;
@@ -186,7 +186,7 @@
             window.$http = _http;
         }
         return $http;
-    }
+    };
     // Expose $http identifiers, even in AMD
     // and CommonJS for browser emulators
     if (noGlobal === void 0) {
@@ -195,7 +195,7 @@
     //console.table($http);
     return $http;
 
-}))
+}));
 
 /** 
  *  changelog

@@ -37,7 +37,7 @@
             return xhr;
         }
 
-        var xhr = createXHR("GET", apiUrl);
+        var xhr = createXHR("POST", apiUrl);
         if (!xhr) {
             alert('CORS not supported');
         }

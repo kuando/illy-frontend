@@ -159,8 +159,8 @@ define([], function() {
                 data: {
                     avatar: avatar.serverId
                 },
-                success: function() {
-                    //alert('上传成功!' + res);    
+                success: function(res) {
+                    alert('上传成功!' + res);    
                 },
                 error: function(res) {
                     console.log(res);

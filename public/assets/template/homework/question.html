@@ -43,9 +43,9 @@
     <!-- 图片选择题-->
     <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1">
         <label class="item item-active" ms-repeat-item="exercise.choices">
-            <span class="mark flex">
-                <img ms-attr-src="'http://resource.hizouye.com/' + item.content" />
-            </span>
+            <div class="mark flex">
+                <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
+            </div>
             <div class="yo-checked yo-checked-c">
                 <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
                 <span class="type"></span>

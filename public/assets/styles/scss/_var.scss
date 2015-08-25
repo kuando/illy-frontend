@@ -57,9 +57,9 @@ $content-color: #444242;
 $img_width: 21%;
 $hw_img_height: .5rem;
 $hw-info-height: .7rem;
-$answer_panel_height: 1.5rem;
+$answer_panel_height: 1.1rem;
 $item_title_height: .45rem;
-$next_radius: $answer_panel_height / 2;
+$next_radius: $answer_panel_height / 2 + .1rem;
 
 $progress-bgcolor: grey;
 $progress-color: $main-green;

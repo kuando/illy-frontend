@@ -22,6 +22,9 @@
 /*@import "../Yo/lib/core/classes.scss";*/
 /*@import "../Yo/lib/fragment/yo-header.scss";*/
 
+/* global-animation start 弹入-从右 */
+.a-bounceinR{-webkit-animation:.4s ease-in forwards;animation:.4s ease-in forwards}.a-bounceinR{-webkit-animation-name:bounceinR;animation-name:bounceinR}@-webkit-keyframes bounceinR{0%{opacity:0;-webkit-transform:translateX(60px)}60%{opacity:1;-webkit-transform:translateX(0)}80%{-webkit-transform:translateX(0)}100%{-webkit-transform:translateX(0)}}@keyframes bounceinR{0%{opacity:0;transform:translateX(60px)}60%{opacity:1;transform:translateX(0)}80%{transform:translateX(0)}100%{transform:translateX(0)}}
+/* global-animation end   弹入-从右 */
 
 /* yo-list start */
 .yo-stacked {

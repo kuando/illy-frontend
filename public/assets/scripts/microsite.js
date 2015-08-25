@@ -3,9 +3,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
 
-    // splash show time config
-    var splash_show_time = 1; // ms
-    avalon.splashShowTime = splash_show_time;
+    //  show time config
+    //var splash_show_time = 1; // ms
+    //avalon.splashShowTime = splash_show_time;
 
     // global loading timeout
     var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
@@ -19,7 +19,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var handleBadNetwork = function handleBadNetwork(delay) {
-        delay = global_loading_timeout * 1000 || 5000;
+        delay = global_loading_timeout * 1000 || 8000; // default delay
         var loader = document.querySelector('.loader');
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
@@ -38,7 +38,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     // global view change animation, animation.css
     var g_viewload_animation = "a-bounceinR"; 
 
-    // get the token and ready to cache
+    // get the token and ready to cache, update 20150825
     var token = localStorage.getItem('illy-token-microsite') || localStorage.getItem('illy-token');
 
     // global apiBaseUrl
@@ -48,7 +48,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.illyGlobal = {
         viewani    : g_viewload_animation,
         token      : token,
-        apiBaseUrl : apiBaseUrl
+        apiBaseUrl : apiBaseUrl,
+        noTokenTips: '对不起，本系统仅供内部使用！请联系学校索取账户~' // update 20150825
     };
 
     // avalon global static method, get vm-object with vm-name
@@ -211,9 +212,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
-            "splash@": {
-                templateUrl: "assets/template/microsite/splash.html", // 指定模板地址
-            },
+            //"splash@": {
+                //templateUrl: "assets/template/microsite/splash.html", // 指定模板地址
+            //},
             //"loading@": {
                 //templateUrl: "assets/template/loading.html", // 指定模板地址
             //},
@@ -297,13 +298,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             avalon.router.go("site.index"); 
         }, // 打开错误配置
         onBeforeUnload: function() {
-            // avalon.log("0 onBeforeUnload" + arguments);
+
         },
         onUnload: function() { 
-            // avalon.log("1 onUnload" + arguments);
+
         },
         onBegin: function() {
-            // avalon.log("2 onBegin" + root.currentPage);
             // 缓存来过的页面，不再显示loader
             var pageId = location.href.split("!")[1];
             cache.push(pageId);
@@ -323,10 +323,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         },
         onLoad: function() { 
 
+            // global set, always scroll to top when enter
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
 
-            // avalon.log("3 onLoad" + root.currentPage);
             root.currentPage = mmState.currentState.stateName.split(".")[1];
             
             // set title of action bar
