@@ -58,45 +58,57 @@
         var nextUrl = nextMap[next];
 
         if (typeof localStorage.getItem('illy-token') === 'string') {
+
             location.replace(nextUrl); // pure url
-        } else {
+            return ;
 
-            if (code) {
-                if (next === 'microsite') {
-                    var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url) + "&authType=visitor");
-                } else {
-                    var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
-                }
-                if (!xhr) {
-                    alert('CORS not supported');
-                }
-                // Response handlers.
-                xhr.onload = function () {
-                    var status = xhr.status;
-                    if (status === 200) { // binded user and qo next...
-                        // location.href = next + '.html?token=' + xhr.responseText;
-                        if ( localStorage && localStorage.getItem ) {
-                            localStorage.setItem('illy-token', xhr.responseText);
-                            location.replace(nextUrl); // pure url
-                        } else {
-                            console.error('不支持本地存储，token获取不到');
-                            alert('localStorage not support, no token');
-                        }
-                    } else if ( status === 401) { // unbinded user and go login...
-                        var openid = xhr.responseText;
-                        location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
-                    } else {
-                        alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
-                    }
-                }
+        }
+        if (nextUrl === 'microsite' && typeof localStorage.getItem('illy-token-microsite') === 'string') {
 
-                xhr.onerror = function () {
-                    alert('Woops, there was an error making the request.');
-                };
+            location.replace(nextUrl); // pure url
+            return ;
+        }
+        // local
 
-                xhr.send(null);
+        if (code) {
+            if (next === 'microsite') {
+                var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url) + "&authType=visitor");
+            } else {
+                var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
             }
-        } // no token 
+            if (!xhr) {
+                alert('CORS not supported');
+            }
+            // Response handlers.
+            xhr.onload = function () {
+                var status = xhr.status;
+                if (status === 200) { // binded user and qo next...
+                    // location.href = next + '.html?token=' + xhr.responseText;
+                    if ( localStorage && localStorage.getItem ) {
+                        if (nextUrl === 'microsite') {
+                            localStorage.setItem('illy-token-microsite', xhr.responseText);
+                        } else {
+                            localStorage.setItem('illy-token', xhr.responseText);
+                        }
+                        location.replace(nextUrl); // pure url
+                    } else {
+                        console.error('不支持本地存储，token获取不到');
+                        alert('localStorage not support, no token');
+                    }
+                } else if ( status === 401) { // unbinded user and go login...
+                    var openid = xhr.responseText;
+                    location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
+                } else {
+                    alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
+                }
+            }
+
+            xhr.onerror = function () {
+                alert('Woops, there was an error making the request.');
+            };
+
+            xhr.send(null);
+        }
 
     </script>
 </html>

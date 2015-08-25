@@ -39,7 +39,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     var g_viewload_animation = "a-bounceinR"; 
 
     // get the token and ready to cache
-    var token = localStorage.getItem('illy-token');
+    var token = localStorage.getItem('illy-token-microsite') || localStorage.getItem('illy-token');
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
