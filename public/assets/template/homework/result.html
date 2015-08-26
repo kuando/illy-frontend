@@ -1,5 +1,7 @@
 <div class="result" ms-controller="result">
 
+    <div class="result-silk-bg">作业小结</div>
+
     <ul class="yo-list yo-list-group">
         <li class="item">
             <span class="mark">正确题数:</span>
@@ -9,11 +11,11 @@
             <span class="mark">错误题数:</span>
             <div class="flex">{{wrongCount}}</div>
         </li>
-        <li class="item" ms-if="rightAward != ''">
+        <li class="item hide" ms-if="rightAward != ''">
             <span class="mark">本次正确奖励:</span>
             <div class="flex">{{rightAward}}</div>
         </li>
-        <li class="item" ms-if="finishedAward != ''">
+        <li class="item hide" ms-if="finishedAward != ''">
             <span class="mark">作业完成奖励:</span>
             <div class="flex">{{finishedAward}}</div>
         </li>

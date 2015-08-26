@@ -60,7 +60,7 @@
     <div class="answer-panel wrong" ms-visible="right == false">
         <div class="answer">
             <span class="right" ms-if="!right">正确答案为：{{exercise.answer}}</span>
-            <p ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
+            <p class="analysis-text" ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
         </div>
         <div class="tap-btn btn-next" ms-click="next()" ms-if="hasNext">
             <span class="icon yo-ico icon-next">&#xf079;</span>

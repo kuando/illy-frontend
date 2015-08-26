@@ -416,6 +416,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper {
     margin: .03rem;
+    margin-top: .15rem;
 
     .item {
         width: 100%;
@@ -427,7 +428,7 @@ background-image: url("../../icons-36-white.png");
         box-shadow: 0px 0px 5px #e5d8d8;
         padding: .06rem .05rem;
         margin-bottom: .1rem;
-        border-left: 5px solid $main-green;
+        border-left: 3px solid $main-green;
 
         .list-card {
             display:  inline-block;
@@ -435,8 +436,9 @@ background-image: url("../../icons-36-white.png");
             width: 100%;
 
             .item-img {
-                width: $img_width;
-                margin-right: .05rem;
+                width: $homework-list-icon-img-width;
+                margin-left: .02rem;
+                margin-right: .10rem;
                 height: $hw_img_height;
                 border: 1px solid #eee;
                 vertical-align: middle;
@@ -458,7 +460,7 @@ background-image: url("../../icons-36-white.png");
                     max-height: $item_title_height;
                     word-break: break-all;
                     color: #373434;
-                    font-size: .15rem;
+                    font-size: .16rem;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
@@ -587,7 +589,7 @@ background-image: url("../../icons-36-white.png");
 .illy-img-list {
     text-align: left;
     position: relative;
-    top: -8px;
+    top: -8px; /* mark, not good */
 
     label.item {
         width: 46.5%;
@@ -605,6 +607,7 @@ background-image: url("../../icons-36-white.png");
             margin-bottom: .1rem;
             width: 100%;
             height: auto;
+            max-height: 120px; /* mark! */
         }
         .yo-checked {
             /*float: left;*/
@@ -630,6 +633,7 @@ background-image: url("../../icons-36-white.png");
 
 .question {
     text-align: left;
+    background-color: whiteSmoke;
 
     .progress-wrapper {
         height: .3rem;
@@ -670,6 +674,9 @@ background-image: url("../../icons-36-white.png");
         padding: .05rem;
         font-weight: bold;
         font-size: .16rem;
+        margin-left: .1rem;
+        position: relative;
+        top: -8px; /* mark, not good */
     }
 
     .fill-in {
@@ -850,7 +857,7 @@ background-image: url("../../icons-36-white.png");
         height: $next_radius;
         border-radius: 50%;
         background-color: $main-blue;
-        position: fixed;
+        position: absolute;
         right: .1rem;
         bottom: $answer_panel_height - .35rem;
         text-align: center;
@@ -878,6 +885,19 @@ background-image: url("../../icons-36-white.png");
 /* result start */
 .result {
     margin: .1rem;
+
+    .result-silk-bg {
+        width: 100%;
+        height: $silk-height;
+        background-size: 100%; 
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-image: url(#{$img-dir}/silk-red.png);
+        margin-top: .2rem;
+        line-height: .32rem;
+        color: #fff;
+        font-size: .16rem;
+    }
 
     .mark {
         width: 48%;

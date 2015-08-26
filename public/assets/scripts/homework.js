@@ -1,18 +1,38 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState", "./http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
     
+    //====================== global config area start **********************//
+
     // screen splash show time config
     //avalon.splashShowTime = 666; // ms, used in app.js
-
-    // 挂载微信sdk到avalon以供全局调用
-    avalon.wx = wx;
+    
+    // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
+    var cachePage = [];
         
+    // global apiBaseUrl
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+
+    // get the token and ready to cache
+    var token = localStorage.getItem('illy-token');
+
+    // global view change animation, from animation.css, the custom one
+    var global_viewload_animation_name = "a-bounceinR"; 
+
+    // global config, always show loader when enter the view 
+    var global_always_show_loader = true;
+
     // global loading timeout
-    var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
+    var global_loading_timeout = 8000; // ms, abort the loading when timeout, then auto goback
+
+    // loading delay
+    var global_loading_duration = 300; // ms
+
+    // loader className
+    var global_loader_className = '.loader';
 
     // title Map， 映射各种状态的action bar title
     var acTitle = {
         'list': "作业列表",
-        'detail': '作业详情',
+        'info': '作业详情',
         'question': '题目详情',
         'result': '作业结果',
         'mistake': '错题列表',
@@ -20,46 +40,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         'evaluation': '课堂表现'
     };
 
-    // deal with bad network condition for wait too long, auto-back when time enough with tip
-    var handleBadNetwork = function handleBadNetwork(delay) {
-        delay = global_loading_timeout * 1000 || 8000;
-        var loader = document.querySelector('.loader');
-        var badNetworkTimer = setTimeout(function() {
-            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
-            // even can invoke the wx-sdk to close the page
-            history.go(-1);
-            // for strong, need ()
-            loader && (loader.style.display = 'none'); /* jshint ignore:line */
-        }, delay);
-        avalon.badNetworkTimer = badNetworkTimer;
-    };
-
-    //================= bootstrap the app =======================//
-
-    /* global-set start */
-    
-    // global view change animation, animation.css
-    var g_viewload_animation = "a-bounceinR"; 
-
-    // get the token and ready to cache
-    var token = localStorage.getItem('illy-token');
-
-    // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
-
-    // avalon global cache stuff when app init
+    // avalon global stuff when app init
     avalon.illyGlobal = {
 
-        viewani    : g_viewload_animation,
-
-        token      : token,
-
-        apiBaseUrl : apiBaseUrl,
-
-        question_view_ani: 'a-bounceinL'
+        viewani           : global_viewload_animation_name,
+        token             : token,
+        apiBaseUrl        : apiBaseUrl,
+        question_view_ani : 'a-bounceinL',
+        noTokenHandler    : function() {
+            alert("对不起，本系统仅供内部使用！");
+        }
 
     };
 
+    /***** static method start *****/
     // avalon global static method, get vm-object with vm-name
     avalon.getVM = function(vm) {
         return avalon.vmodels[vm];
@@ -74,10 +68,26 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     };
+    /***** static method area end *****/
 
-    /* global-set end */
+    // deal with bad network condition for wait too long, auto-back when time enough with tip
+    var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
+        delay = global_loading_timeout || 8000;
+        var loader = document.querySelector('.loader');
+        var badNetworkTimer = setTimeout(function() {
+            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
+            // even can invoke the wx-sdk to close the page
+            history.go(-1);
+            // for strong, need ()
+            loader && (loader.style.display = 'none'); /* jshint ignore:line */
+        }, delay);
+        avalon.badNetworkTimer = badNetworkTimer;
+    };
 
     /* wxsdk start */
+
+    // 挂载微信sdk到avalon以供全局调用
+    avalon.wx = wx;
 
     var uri = location.href.split("#")[0];
     var url = encodeURIComponent(uri);
@@ -163,6 +173,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
     /* wxsdk end */
 
+    //========================= global config area end =========================//
+
+    //========================= bootstrap the app =========================// 
+
     /* router start */
 
     // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在body元素上
@@ -171,7 +185,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         currentPage: '',
         currentIsVisited: false,
         title: "标题", // 每一页action bar的标题    
-        back: function() {
+        back: function() { // has default back and can custom it
             var state = root.currentPage;
             if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围
                 state = 'detail';
@@ -324,65 +338,141 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
     */
 
-    // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
-    var cachePage = [];
     // 每次view载入都会执行的回调，适合来做一些统一操作
     avalon.state.config({ 
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("app.list");
+            avalon.router.go("/");
         }, 
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
-            // avalon.log("0 onBeforeUnload" + arguments);
+
         },
         onUnload: function() { // url变化时触发
-            // avalon.log("1 onUnload" + arguments);
+
         },
         onBegin: function() {
-            // avalon.log("2 onBegin" + root.currentPage);
-            // 缓存来过的页面，不在显示loader
-            var pageId = location.href.split("!")[1];
-            cachePage.push(pageId);
-            var loader = document.querySelector('.loader');
-            var visited = false;
-            for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-                if (cachePage[i] === pageId) {
-                    visited = true;
-                    avalon.vmodels.root.currentIsVisited = true;
+
+            // ====== view visit statistical ====== //
+            function doIsVisitedCheck(cacheContainer, callback) { 
+
+                if (typeof cacheContainer === 'function') {
+                    callback = cacheContainer;
+                    cacheContainer = void 0;
+                }
+
+                var pageId = location.href.split("!")[1];
+                cacheContainer = cacheContainer || cachePage
+                cacheContainer.push(pageId);
+                // var loader = document.querySelector('.loader');
+                var isVisited = false;
+                for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
+                    if (cachePage[i] === pageId) {
+                        // visited = true;
+                        isVisited = true;
+                    }
+                }
+                if (callback && typeof callback === 'function') {
+                    callback();
+                }
+                // avalon.vmodels.root[vmProptoSet] = isVisited;
+                return isVisited;
+            }
+            avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
+            // ====== view visit statistical ====== // 
+             
+            // ====== loader show and bind network handler ====== //
+            function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
+
+                if (typeof loader === 'function') { // deal with only one arguments and is callback
+                    callback = loader;
+                    loader = void 0;
+                }
+                var loader = document.querySelector(loader || global_loader_className);
+                var showLoader = function () { loader && (loader.style.display = ''); }
+                var always_show_loader = global_always_show_loader === true ? true : false;
+                 // loader show logic
+                if (loader && always_show_loader) {
+                    showLoader();
+                } else if (loader && !always_show_loader && !root.currentIsVisited) {
+                    showLoader();
+                }
+                if (callback && typeof callback === 'function') {
+                    callback();
                 }
             }
-            if (loader && !visited) { // 存在loader并且为未访问过得页面则show loader
-                loader.style.display = '';
-                handleBadNetwork();
-            }
+            loadingBeginHandler(bindBadNetworkHandler);
+            // ====== loader show and bind network handler ====== //
+            
         },
         onLoad: function() { // 切换完成并成功
 
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+            // ====== reset scroll bar ====== //
+            function resetScrollWhenViewEnter() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            resetScrollWhenViewEnter();
+            // ====== reset scroll bar ====== //
 
-            //avalon.log("3 onLoad" + root.currentPage);
-            // 根据state更新标题
-            var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
-            var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-            //root.currentPage = state1;
-            state2 === void 0 ? root.currentPage = state1 : root.currentPage = state2; /* jshint ignore:line */
+            // update current state ====== //
+            function getCurrentState() {
+                var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
+                var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
+                if (state2 === void 0) {
+                    return state1;
+                } else {
+                    return state2;
+                }
+            }
+            root.currentPage = getCurrentState();
+            // state2 === void 0 ? root.currentPage = state1 : root.currentPage = state2; /* jshint ignore:line */
+            // update current state ====== //
 
-            root.title = acTitle[state1 !== void 0 ? state1 : state2];
+            // ====== set action bar title in page ====== //
+            function setPageTitle() {
+                var currentState = root.currentPage;
+                root.title = acTitle[currentState];
+            }
+            setPageTitle();
+            // ====== set action bar title in page ====== //
 
-            // next view loaded, remove loader && badNetworkHandler && add view-in animation
-            var loader = document.querySelector('.loader');
-            setTimeout(function() {
-                // for strong, need ()
-                loader && (loader.style.display = 'none'); /* jshint ignore:line */
-                avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer); /* jshint ignore:line */
-            }, 200);
-            var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
+            // ====== remove loader and unbind bad network handler ====== //
+            // next view loaded, remove loader && badNetworkHandler
+            function unbindBadNetworkHandler(timer) {
+                timer = timer || avalon.badNetworkTimer
+                timer && clearTimeout(timer); /* jshint ignore:line */ 
+            }
+            function loadingEndHandler(loader, callback) {
+                if (typeof loader === 'function') { // deal with only one arguments and is callback
+                    callback = loader;
+                    loader = void 0;
+                }
+                var loader = document.querySelector(loader || global_loader_className);
+                var hideLoader = function() {
+                    // for strong, need ()
+                    loader && (loader.style.display = 'none'); /* jshint ignore:line */
+                }
+                if (global_loading_duration === void 0) {
+                    global_loading_duration = 500;
+                    console.log('WARNING: no global_loading_duration set!');
+                }
+                setTimeout(function() {
+                    hideLoader();
+                    if (callback && typeof callback === 'function') {
+                        callback();
+                    }
+                }, global_loading_duration);   
+            }
+            loadingEndHandler(unbindBadNetworkHandler);
+
+            // ====== remove loader and unbind bad network handler ====== //
+
+            // ====== add view enter animation ====== //
+            // var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
             // for strong
-            view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
+            // view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
+            // ====== add view enter animation ====== //
 
-            // deal with exception... for strong
-            //avalon.vmodels.app.hideDialog();
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({
@@ -401,13 +491,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             avalon.history.start({
                 // basepath: "/mmRouter",
                 fireAnchor: false
+                //,routeElementJudger: function(ele, href) {
+                //    avalon.log(arguments);
+                //    //return href;
+                //}
             });
             //go!!!!!!!!!
             avalon.scan();
 
-            // performance listener, avalon take charge of everything and start to init the app
-            var startTime = Date.now(); 
-            avalon.appInitTime = startTime;
+            // APP inner performance listener start, avalon take charge of everything and start to init the app
+            avalon.appInitTime = Date.now();
         }
     };
 

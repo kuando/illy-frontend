@@ -386,16 +386,18 @@ define([], function() {
                 avalon.vmodels.question.starter = false; // 重置为true的时候只有到列表页,为了保险。
             }  
 
+            /* bad hack */
             var question = avalon.$('.question');
             var win_height = document.documentElement.clientHeight;
             var answerPanel = avalon.$('.answer-panel');
             setTimeout(function() {
                 question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
             }, 16);
-            answerPanel && (answerPanel.style.left = '1px'); /* jshint ignore:line */
-            setTimeout(function() {
-                answerPanel && (answerPanel.style.left = '0'); /* jshint ignore:line */
-            }, 1600);
+            //answerPanel && (answerPanel.style.left = '1px'); [> jshint ignore:line <]
+            //setTimeout(function() {
+            //    answerPanel && (answerPanel.style.left = '0'); [> jshint ignore:line <]
+            //}, 1600);
+            /* bad hack */
 
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
@@ -450,12 +452,12 @@ define([], function() {
             } else {
                 setTimeout(function() { // mark! 20150826
                     question.userAnswer = question.localAnswers[question.currentId - 1] || '';
-                }, 16);
+                    // 重置题目对错标记
+                    question.right = (question.exercise.answer ===  question.userAnswer) || (question.exercise.eType === 3);
+                }, 0);
             }
             //question.userAnswer = question.localAnswers[question.currentId - 1] || '';
 
-            // 重置题目对错标记
-            question.right = (question.exercise.answer ===  question.userAnswer) || (question.exercise.eType === 3);
 
             // play record btn, 至少一定是后退才能看到
             if ( question.localAnswers.length < question.currentId ) {

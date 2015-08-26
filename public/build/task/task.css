@@ -750,9 +750,16 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+html.native-scrolling {
+  /* 系统原生滚动效果 */
+  height: 100%;
+  overflow-x: hidde;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
   color: #333438;
@@ -1120,139 +1127,123 @@ select {
 
 /* koudai jinbi end */
 /* taskList start */
+.top-area-common {
+  width: 30%;
+  height: 100px;
+  background-size: 64%;
+  background-repeat: no-repeat;
+}
+
+.top-left-area {
+  background-image: url("../../build/images/taskList-top-icon.png");
+}
+
 .top-score-area {
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
   background-image: url("../../build/images/rank-nb.png");
+  width: 33%;
   height: 100px;
 }
+.top-score-area .top-score-text {
+  margin-top: 8px;
+  margin-left: 24px;
+  color: #fff;
+}
 
-.top-win-area {
-  height: 100px;
-  background-size: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-image: url("../../build/images/ranking-png");
+.top-me-area {
+  background-position: right top;
+  background-image: url("../../build/images/taskList-top-icon.png");
 }
 
 .task-list {
   width: 100%;
-  height: 1000px;
+  min-height: 600px;
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  background-image: url("../../build/images/task-bg.png");
+  background-image: url("../../build/images/taskList-bg.png");
   color: #333438;
+  padding-top: 15px;
 }
 .task-list .item-wrapper {
-  border: 5px solid #d6a770;
-  padding: .06rem;
-  padding-top: .4rem;
-  padding-bottom: .2rem;
-  margin-left: .05rem;
-  margin-right: .05rem;
-  background-color: #f1db9e;
-  position: relative;
-}
-.task-list .item-wrapper .title-img {
-  background-size: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-image: url("../../build/images/task-title.png");
-  width: 100%;
-  height: 70px;
-  position: absolute;
-  top: -45px;
+  background: rgba(0, 69, 99, 0.5);
+  overflow: hidden;
+  width: 92%;
+  margin: 0 auto;
+  margin-top: 70px;
+  /* overwrite */
+  padding: .08rem .06rem;
 }
 .task-list .list-card {
   width: 100%;
-  margin-bottom: .05rem;
+  margin-bottom: .10rem;
   text-align: left;
   position: relative;
   display: inline-block;
   overflow: hidden;
-  padding: .05rem;
-  position: relative;
-  border: 3px solid #dbb37f;
-  border-radius: 5px;
+  padding: .08rem;
+  border-radius: 10px;
+  background-color: #ffefb5;
 }
-.task-list .item-img {
-  width: 22%;
-  height: 90px;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: .05rem;
+.task-list .list-card .left-icon {
+  width: 25%;
+  height: 67px;
+  border-radius: 15px;
+  background-image: url("../../build/images/taskList-item-icon.png");
+  border: 2px solid #bdd3ad;
   background-size: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
-  position: relative;
-  top: .05rem;
 }
-.task-list .item-img.taskNo0 {
-  background-image: url("../../build/images/number-1.png");
+.task-list .list-card .right-area {
+  width: 72%;
 }
-.task-list .item-img.taskNo1 {
-  background-image: url("../../build/images/number-2.png");
+.task-list .list-card .right-area .title {
+  width: 100%;
+  font-size: .14rem;
 }
-.task-list .item-img.taskNo2 {
-  background-image: url("../../build/images/number-3.png");
+.task-list .list-card .right-area .right-bottom-area {
+  width: 100%;
+  height: 50px;
 }
-.task-list .item-img.taskNo3 {
-  background-image: url("../../build/images/number-4.png");
+.task-list .list-card .right-area .right-bottom-area .progress-area {
+  width: 62%;
+  height: 41px;
 }
-.task-list .big-icon-wrapper {
-  width: 0.62rem;
-  height: 0.62rem;
-  float: right;
-  position: relative;
-  top: .12rem;
+.task-list .list-card .right-area .right-bottom-area .progress-area .progress-text {
+  font-size: .14rem;
+  color: orange;
+  padding-left: .05rem;
+  padding-top: .05rem;
+  letter-spacing: 1px;
 }
-.task-list .big-icon-wrapper .goGetIt {
-  width: .6rem;
-  height: .6rem;
-  background-size: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-image: url("../../build/images/task-play.png");
+.task-list .list-card .right-area .right-bottom-area .progress-area .progress-wrapper {
+  height: .3rem;
+  line-height: .3rem;
+  padding-left: .05rem;
+  padding-right: .05rem;
 }
-.task-list .big-icon-wrapper .goGetIt3 {
-  background-image: url("../../build/images/task-play-disabled.png");
-}
-.task-list .task-content {
-  width: 50%;
-  display: inline-block;
-  vertical-align: top;
-}
-.task-list .task-info {
+.task-list .list-card .right-area .right-bottom-area .progress-area .progress-wrapper .progress-outer {
+  height: 0.1rem;
+  background-color: #fff;
   width: 99%;
   display: inline-block;
   vertical-align: top;
-  position: relative;
-  top: .05rem;
-  height: .55rem;
+  margin-top: 0.05rem;
+  border-radius: 10px;
 }
-.task-list .item-bottom .participants-wrapper, .task-list .item-bottom .score-wrapper {
-  width: 48%;
-  color: #D3683A;
-  line-height: .20rem;
-  font-size: .14rem;
+.task-list .list-card .right-area .right-bottom-area .progress-area .progress-wrapper .progress-outer .progress-inner {
+  height: 0.1rem;
+  background-color: #EF7549;
+  border-radius: 10px;
 }
-.task-list .item-bottom .icon-participants, .task-list .item-bottom .icon-score {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: .08rem;
-  width: 0.24rem;
-  height: 0.24rem;
-  background-size: 100%;
-  background-position: center top;
+.task-list .list-card .right-area .right-bottom-area .go {
+  width: 35%;
+  height: 41px;
+  background-image: url("../../build/images/taskList-btn.png");
+  background-size: 99%;
+  background-position: right bottom;
   background-repeat: no-repeat;
-}
-.task-list .item-bottom .icon-participants {
-  background-image: url("../../build/images/task-people.png");
-}
-.task-list .item-bottom .icon-score {
-  background-image: url("../../build/images/task-score.png");
 }
 
 /* taskList end */

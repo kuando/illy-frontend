@@ -1,153 +1,140 @@
-$big-icon-wrapper-height: .62rem;
-$small-icon-size: .24rem;
+$taskList-left-width: 25%;
+$task-progress-height: .1rem;
+$task-progress-bgcolor: #fff;
+$task-progress-inner-bgColor: #EF7549;
+$task-progress-radius: 10px;
+
+
+.top-area-common {
+    width: 30%;
+    height: 100px;
+    background-size: 64%;
+    background-repeat: no-repeat;
+}
+.top-left-area {
+    background-image: url("../../build/images/taskList-top-icon.png");
+}
 
 .top-score-area {
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
     background-image: url("../../build/images/rank-nb.png");
+    width: 33%;
     height: 100px;
+    
+    .top-score-text {
+        margin-top: 8px;
+        margin-left: 24px;
+        color: #fff;
+    }
 }
 
-.top-win-area {
-    height: 100px;
-    background-size: 100%;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-image: url("../../build/images/ranking-png");
+.top-me-area {
+    background-position: right top;
+    background-image: url("../../build/images/taskList-top-icon.png");
 }
 
 .task-list {
     width: 100%;
-    height: 1000px;
+    min-height: 600px;
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
-    background-image: url("../../build/images/task-bg.png");
+    background-image: url("../../build/images/taskList-bg.png");
     color: $dark-grey;
+    padding-top: 15px;
 
     .item-wrapper {
-        border: 5px solid #d6a770;
-        padding: .06rem;
-        padding-top: .4rem;
-        padding-bottom: .2rem;
-        margin-left: .05rem;
-        margin-right: .05rem;
-        background-color: #f1db9e;
-        position: relative;
-
-        .title-img {
-            background-size: 100%;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-image: url("../../build/images/task-title.png");
-            width: 100%;
-            height: 70px;
-            position: absolute;
-            top: -45px;
-        }
+        background: rgba(0, 69, 99, .5);
+        overflow: hidden;
+        width: 92%;
+        margin: 0 auto;
+        margin-top: 70px; /* overwrite */
+        padding: .08rem .06rem;
     }
 
     .list-card {
         width: 100%;
-        margin-bottom: .05rem;
+        margin-bottom: .10rem;
         text-align: left;
         position: relative;
         display: inline-block;
         overflow: hidden;
-        padding: .05rem;
-        position: relative;
-        border: 3px solid #dbb37f;
-        border-radius: 5px;
-    }
+        padding: .08rem;
+        border-radius: 10px;
+        background-color: #ffefb5;
 
-    .item-img {
-        width: 22%;
-        height: 90px;
-        display: inline-block;
-        vertical-align: top;
-        margin-right: .05rem;
-        background-size: 100%;
-        background-position: center top;
-        background-repeat: no-repeat;
-        position: relative;
-        top: .05rem;
-    }
-    .item-img.taskNo0 {
-        background-image: url('../../build/images/number-1.png');
-    }
-    .item-img.taskNo1 {
-        background-image: url('../../build/images/number-2.png');
-    }
-    .item-img.taskNo2 {
-        background-image: url('../../build/images/number-3.png');
-    }
-    .item-img.taskNo3 {
-        background-image: url('../../build/images/number-4.png');
-    }
-
-    .big-icon-wrapper {
-        width: $big-icon-wrapper-height; 
-        height: $big-icon-wrapper-height;
-        float: right;
-        position: relative;
-        top: .12rem;
-        
-        .goGetIt {
-            width: .6rem;
-            height: .6rem;
+        .left-icon {
+            width: $taskList-left-width;
+            height: 67px;
+            border-radius: 15px;
+            background-image: url("../../build/images/taskList-item-icon.png");
+            border: 2px solid #bdd3ad;
             background-size: 100%;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-image: url("../../build/images/task-play.png");
         }
-        .goGetIt3 {
-            background-image: url("../../build/images/task-play-disabled.png");
+
+        .right-area {
+            width: 97% - $taskList-left-width;
+
+            .title {
+                width: 100%;
+                font-size: .14rem;
+            }
+
+            .right-bottom-area {
+                width: 100%;
+                height: 50px;
+
+                .progress-area {
+                    width: 62%;
+                    height: 41px;
+
+                    .progress-text {
+                        font-size: .14rem;
+                        color: orange;
+                        padding-left: .05rem;
+                        padding-top: .05rem;
+                        letter-spacing: 1px;
+                    }
+
+                    .progress-wrapper {
+                        height: .3rem;
+                        line-height: .3rem;
+                        padding-left: .05rem;
+                        padding-right: .05rem;
+
+                        .progress-outer {
+                            height: $task-progress-height;
+                            background-color: $task-progress-bgcolor;
+                            width: 99%;
+                            display: inline-block;
+                            vertical-align: top; // key!
+                            margin-top: (0.2 - $task-progress-height) / 2; // for vertical center
+                            border-radius: $task-progress-radius;
+
+                            .progress-inner {
+                                height: $task-progress-height;
+                                background-color: $task-progress-inner-bgColor;
+                                border-radius: $task-progress-radius;
+                            }
+                        }
+
+                    } // end of progress-wrapper
+                }
+
+                .go {
+                    width: 35%;
+                    height: 41px;
+                    background-image: url("../../build/images/taskList-btn.png");
+                    background-size: 99%;
+                    background-position: right bottom;
+                    background-repeat: no-repeat;
+                }
+            }
         }
     }
 
-    .task-content {
-        width: 50%;
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .task-info {
-        width: 99%;
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        top: .05rem;
-        height: .55rem;
-    }
-
-    .item-bottom {
-
-        .participants-wrapper, .score-wrapper {
-            width: 48%;
-            color: #D3683A;
-            line-height: .20rem;
-            font-size: .14rem;
-        }
-
-        .icon-participants, .icon-score {
-            display: inline-block;
-            vertical-align: top;
-            margin-right: .08rem;
-            width: $small-icon-size;
-            height: $small-icon-size;
-            background-size: 100%;
-            background-position: center top;
-            background-repeat: no-repeat;
-        }
-        .icon-participants {
-            background-image: url("../../build/images/task-people.png");
-        }
-        .icon-score {
-            background-image: url("../../build/images/task-score.png");
-        }
-
-    }
 
 }
 

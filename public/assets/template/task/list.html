@@ -1,32 +1,47 @@
 <!-- taskList start -->
 <div class="task-list" ms-controller="taskList">
 
-    <div class="top-score-area area"></div>
-    <div class="top-win-area area"></div>
+    <div class="top-area-common top-left-area area"></div>
+    <div class="top-score-area area"><div class="top-score-text">9999</div></div>
+    <div class="top-area-common top-me-area area"></div>
+
     <!-- item start -->
     <div class="item-wrapper">
-        <div class="title-img"></div>
 
         <!-- task列表 start -->
         <div class="item area list-card" ms-repeat-item="lists">
-            <div ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
+            <div class="inner-box" ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
+                <div class="left-icon area">
+                    <div class="scoreAward">{{item.scoreAward}}</div>
+                </div>
+                <div class="right-area area">
 
-                <div ms-attr-class="'item-img area taskNo' + $index"></div> 
-
-                <div class="task-content area">
-                    <h2 class="item-title task-info">{{item.name}}</h2>
-                    <div class="item-bottom">
-                        <div class="participants-wrapper area"><i class="icon-participants"></i>: {{item.participants}}</div>
-                        <div class="score-wrapper area"><i class="icon-score"></i>: {{item.scoreAward}}</div>
+                    <div class="title area">
+                        {{item.name}} 
                     </div>
-                </div>
 
-                <div class="big-icon-wrapper area">
-                    <div ms-attr-class="'goGetIt goGetIt' + $index"></div>
-                </div>
+                    <div class="right-bottom-area area">
+                        <div class="progress-area area">
+                            <div class="progress-text area">以完成 : {{item.participants}}人</div>
+                            <!-- progress of task -->
+                            <div class="progress-wrapper">
+                                <div class="progress-outer">
+                                    <div class="progress-inner" ms-css-width="( item.participants * 100 ) / item.total + '%' "></div> 
+                                </div>
+                            </div>
+                            <!-- progress of task -->
+                        </div>
+                        <div class="go area">
+                        
+                        </div>
+                    </div> <!-- end of right-bottom-area -->
 
-            </div>
-        </div>
+                </div> <!-- end of right-area -->
+
+            </div> <!-- end of inner-box -->
+
+        </div> <!-- end of item -->
+
         <!-- task列表 end -->
 
     </div>

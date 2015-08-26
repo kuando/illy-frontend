@@ -422,9 +422,14 @@ html, body {
     overflow-y: auto;
     -webkit-tap-highlight-color: transparent;
 }
+html.native-scrolling { /* 系统原生滚动效果 */
+    height: 100%;
+    overflow-x: hidde;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
 body {
     font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;  // 字体优化 
-    /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
     text-align: center;
     background-color: $g_bgColor;
     color: $g_font_color;

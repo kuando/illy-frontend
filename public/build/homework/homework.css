@@ -748,9 +748,16 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+html.native-scrolling {
+  /* 系统原生滚动效果 */
+  height: 100%;
+  overflow-x: hidde;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
   color: #333438;
@@ -1413,6 +1420,7 @@ background-image: url("../../icons-36-white.png");
 /* list-item start */
 .item-wrapper {
   margin: .03rem;
+  margin-top: .15rem;
 }
 .item-wrapper .item {
   width: 100%;
@@ -1424,7 +1432,7 @@ background-image: url("../../icons-36-white.png");
   box-shadow: 0px 0px 5px #e5d8d8;
   padding: .06rem .05rem;
   margin-bottom: .1rem;
-  border-left: 5px solid #64c400;
+  border-left: 3px solid #64c400;
 }
 .item-wrapper .item .list-card {
   display: inline-block;
@@ -1432,9 +1440,10 @@ background-image: url("../../icons-36-white.png");
   width: 100%;
 }
 .item-wrapper .item .list-card .item-img {
-  width: 21%;
-  margin-right: .05rem;
-  height: 0.5rem;
+  width: 17%;
+  margin-left: .02rem;
+  margin-right: .10rem;
+  height: 0.45rem;
   border: 1px solid #eee;
   vertical-align: middle;
   border: 0;
@@ -1453,7 +1462,7 @@ background-image: url("../../icons-36-white.png");
   max-height: 0.45rem;
   word-break: break-all;
   color: #373434;
-  font-size: .15rem;
+  font-size: .16rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1565,6 +1574,7 @@ background-image: url("../../icons-36-white.png");
   text-align: left;
   position: relative;
   top: -8px;
+  /* mark, not good */
 }
 .illy-img-list label.item {
   width: 46.5%;
@@ -1581,6 +1591,8 @@ background-image: url("../../icons-36-white.png");
   margin-bottom: .1rem;
   width: 100%;
   height: auto;
+  max-height: 120px;
+  /* mark! */
 }
 .illy-img-list label.item .yo-checked {
   /*float: left;*/
@@ -1604,6 +1616,7 @@ background-image: url("../../icons-36-white.png");
 
 .question {
   text-align: left;
+  background-color: whiteSmoke;
   /* 去除分割线，恶心的第二条线不显示bug */
   /* record too short tips */
 }
@@ -1638,6 +1651,10 @@ background-image: url("../../icons-36-white.png");
   padding: .05rem;
   font-weight: bold;
   font-size: .16rem;
+  margin-left: .1rem;
+  position: relative;
+  top: -8px;
+  /* mark, not good */
 }
 .question .fill-in .yo-input {
   width: 100%;
@@ -1800,7 +1817,7 @@ background-image: url("../../icons-36-white.png");
   height: 0.65rem;
   border-radius: 50%;
   background-color: #00abfd;
-  position: fixed;
+  position: absolute;
   right: .1rem;
   bottom: 0.75rem;
   text-align: center;
@@ -1823,6 +1840,18 @@ background-image: url("../../icons-36-white.png");
 /* result start */
 .result {
   margin: .1rem;
+}
+.result .result-silk-bg {
+  width: 100%;
+  height: 0.5rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-image: url(http://app.hizuoye.com/build/images/silk-red.png);
+  margin-top: .2rem;
+  line-height: .32rem;
+  color: #fff;
+  font-size: .16rem;
 }
 .result .mark {
   width: 48%;

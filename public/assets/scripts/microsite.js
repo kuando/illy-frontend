@@ -1,57 +1,42 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState', './http'], function(wx) {
 
-    // 挂载微信sdk到avalon以供全局调用
-    avalon.wx = wx;
-
+    //====================== global config area start **********************//
+    
     //  show time config
     //var splash_show_time = 1; // ms
     //avalon.splashShowTime = splash_show_time;
-
-    // global loading timeout
-    var global_loading_timeout = 5; // second, abort the loading when timeout, then auto back
-
-    // global action bar title map
-    var acTitle = {
-        'index': '首页',
-        'list': '文章列表',
-        'detail': '内容详情'
-    };
-
-    // deal with bad network condition for wait too long, auto-back when time enough with tip
-    var handleBadNetwork = function handleBadNetwork(delay) {
-        delay = global_loading_timeout * 1000 || 8000; // default delay
-        var loader = document.querySelector('.loader');
-        var badNetworkTimer = setTimeout(function() {
-            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
-            // even can invoke the wx-sdk to close the page
-            history.go(-1); 
-            // for strong, need ()
-            loader && (loader.style.display = 'none'); /* jshint ignore:line */
-        }, delay);
-        avalon.badNetworkTimer = badNetworkTimer;
-    };
-
-    //================= main to bootstrap the app =======================//
-
-    /* global-set start */
     
-    // global view change animation, animation.css
-    var g_viewload_animation = "a-bounceinR"; 
-
-    // get the token and ready to cache, update 20150825
-    var token = localStorage.getItem('illy-token-microsite') || localStorage.getItem('illy-token');
+    // 挂载微信sdk到avalon以供全局调用
+    avalon.wx = wx;
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
+    // get the token and ready to cache, update 20150825
+    var token = localStorage.getItem('illy-token-microsite') || localStorage.getItem('illy-token');
+
+    // global view change animation, animation.css
+    var g_viewload_animation = "a-bounceinR"; 
+
+    // global loading timeout
+    var global_loading_timeout = 8; // second, abort the loading when timeout, then auto back
+
+    // loading delay
+    var global_loading_duration = 300; // ms
+
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
+
         viewani    : g_viewload_animation,
         token      : token,
         apiBaseUrl : apiBaseUrl,
-        noTokenTips: '对不起，本系统仅供内部使用！请联系学校索取账户~' // update 20150825
+        noTokenHandler: function() {
+            alert("对不起，本系统仅供内部使用！");
+        }
+
     };
 
+    /***** static method start *****/
     // avalon global static method, get vm-object with vm-name
     avalon.getVM = function(vm) {
         return avalon.vmodels[vm];
@@ -103,8 +88,32 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.clearLocalCache = clearLocalCache;
     avalon.setLocalCache = setLocalCache;
     avalon.getLocalCache = getLocalCache;
+    /***** static method area end *****/
 
-    /* global-set end */
+    // global action bar title map
+    var acTitle = {
+        'index': '首页',
+        'list': '文章列表',
+        'detail': '内容详情'
+    };
+
+    // deal with bad network condition for wait too long, auto-back when time enough with tip
+    var handleBadNetwork = function handleBadNetwork(delay) {
+        delay = global_loading_timeout * 1000 || 8000; // default delay
+        var loader = document.querySelector('.loader');
+        var badNetworkTimer = setTimeout(function() {
+            alert('对不起，您的网络状态暂时不佳，请稍后重试！');
+            // even can invoke the wx-sdk to close the page
+            history.go(-1); 
+            // for strong, need ()
+            loader && (loader.style.display = 'none'); /* jshint ignore:line */
+        }, delay);
+        avalon.badNetworkTimer = badNetworkTimer;
+    };
+
+    //========================= global config area end =========================//
+
+    //========================= bootstrap the app =========================// 
 
     /* wxsdk start */
 
@@ -240,15 +249,15 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 //    return !!changeType;
                 //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
             }
-        },
-        onBeforeEnter: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
+        }
+        //,onBeforeEnter: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
             //avalon.log("site.index onBeforeEnter fn");
             //return false;
-        },
-        onBeforeExit: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
+        //},
+        //onBeforeExit: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
             //avalon.log("site.index onBeforeExit fn");
             //return false;
-        }
+        //}
     })
     .state("site.list", { // 定义一个子状态，对应url是 /{categoryId}，比如/1，/2
         //url: "{categoryName}/Id/{categoryId}",
@@ -295,7 +304,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     avalon.state.config({ // common callback, every view renderd will listenTo and do something.
         onError: function() {
             avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("site.index"); 
+            avalon.router.go("/"); 
         }, // 打开错误配置
         onBeforeUnload: function() {
 
@@ -341,17 +350,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 loader && (loader.style.display = 'none'); /* jshint ignore:line */
                 avalon.badNetworkTimer && clearTimeout(avalon.badNetworkTimer); /* jshint ignore:line */
 
-                // var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
-                // for strong
-                // view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
+            }, global_loading_duration); // time enough for not see last view cache
 
-            }, 400); // time enough for not see last view cache
+            // var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
+            // for strong
+            // view && view.classList.add(g_viewload_animation); /* jshint ignore:line */ 
 
-            //if (root.currentPage === 'index') {
-            //    setTimeout(function() {
-            //        $('#nav li').removeClass('ui-state-active');
-            //    }, 400); // enough time
-            //}
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
             //avalon(oldNode).animate({
@@ -372,8 +376,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
                 fireAnchor: false
                 //,routeElementJudger: function(ele, href) {
                 //    avalon.log(arguments);
-                //    //href = '#!/detail/aaaaa';
-                //    //avalon.log(href);
                 //    //return href;
                 //}
             });

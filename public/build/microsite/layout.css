@@ -748,9 +748,16 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+html.native-scrolling {
+  /* 系统原生滚动效果 */
+  height: 100%;
+  overflow-x: hidde;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
   text-align: center;
   background-color: #f1f1f1;
   color: #333438;
