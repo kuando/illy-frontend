@@ -86,7 +86,7 @@ define([], function() {
             //clear localAnswers here to fix bug in low Andriod, drop in 20150808
             //var questionVM = avalon.vmodels.question;
             //questionVM && ( questionVM.localAnswers = [] );
-
+           
             var type = location.href.split("=")[1] || 'homework'; // for strong
             info.workType = type;
             var _id = params.homeworkId;

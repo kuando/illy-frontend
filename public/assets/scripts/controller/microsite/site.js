@@ -27,7 +27,7 @@ define([], function() {
                 }
             });
         },
-        renderNavigator: function() {
+        renderNavigator: function() { // only invoke once
             setTimeout(function() {
                 // 0. init
                 $('#nav').navigator();

@@ -289,6 +289,7 @@
     -webkit-user-drag: none;
 }
 .ui-dialog{
+    max-width: 4.2rem;
     display: block; 
     position: fixed;
     overflow: hidden;
@@ -399,9 +400,9 @@ background-image: url("../../icons-36-white.png");
 
 /*css for pad*/
 @media all and (min-device-width:768px) and (max-device-width: 1024px){
-    .ui-dialog{
-        min-width: 5rem;
-    }
+    /*.ui-dialog{*/
+        /*min-width: 5rem;*/
+    /*}*/
     .ui-dialog .ui-dialog-title{
         min-height: 1.1em;
     }
@@ -410,12 +411,16 @@ background-image: url("../../icons-36-white.png");
 /* global end */
 
 /* list-item start */
+.homework-list {
+
+}
 .item-wrapper {
     margin: .03rem;
 
     .item {
         width: 100%;
         text-align: left;
+        margin-left: .02rem;
         border-top: 1px solid #ddd;
         border-bottom: 1px solid #ddd;
         -webkit-box-shadow: 0px 0px 5px #9c9c9c;
@@ -581,9 +586,11 @@ background-image: url("../../icons-36-white.png");
 }
 .illy-img-list {
     text-align: left;
+    position: relative;
+    top: -8px;
 
     label.item {
-        width: 46%;
+        width: 46.5%;
         display: inline-block;
         padding: .05rem;
         margin: .05rem .05rem;
@@ -627,6 +634,8 @@ background-image: url("../../icons-36-white.png");
     .progress-wrapper {
         height: .3rem;
         line-height: .3rem;
+        padding-left: .05rem;
+        padding-right: .05rem;
 
         .progress-outer {
             height: $progress-height;
@@ -661,6 +670,13 @@ background-image: url("../../icons-36-white.png");
         padding: .05rem;
         font-weight: bold;
         font-size: .16rem;
+    }
+
+    .fill-in {
+        .yo-input {
+            width: 100%; /* overwrite to normal */
+            min-height: 1.5rem;
+        }
     }
 
     .wrong-fill-in { /* 错误的文字填空题 */
@@ -821,8 +837,7 @@ background-image: url("../../icons-36-white.png");
                 width: 72%;
             }
 
-            p {
-                display: inline-block;
+            p.analysis-text {
                 width: 60%;
                 margin-top: .03rem;
                 color: #f2eded;

@@ -5,26 +5,18 @@
 > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
 
-/*@font-face {*/
-/*font-family: yofont;*/
-/*src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");*/
-/*}*/
-/*.yo-ico {*/
-/*font-family: yofont !important; */
-/*font-style: normal;*/
-/*-webkit-font-smoothing: antialiased;*/
-/*-moz-osx-font-smoothing: grayscale;*/
-/*vertical-align: middle;*/
-/*}*/
-
-/*@import "../Yo/lib/core/reset.scss";*/
-/*@import "../Yo/lib/core/variables.scss";*/
-/*@import "../Yo/lib/core/classes.scss";*/
-/*@import "../Yo/lib/fragment/yo-header.scss";*/
+/* common vars start */
+@import "./var.scss";
+/* common vars end */
 
 /* global-animation start 弹入-从右 */
 .a-bounceinR{-webkit-animation:.4s ease-in forwards;animation:.4s ease-in forwards}.a-bounceinR{-webkit-animation-name:bounceinR;animation-name:bounceinR}@-webkit-keyframes bounceinR{0%{opacity:0;-webkit-transform:translateX(60px)}60%{opacity:1;-webkit-transform:translateX(0)}80%{-webkit-transform:translateX(0)}100%{-webkit-transform:translateX(0)}}@keyframes bounceinR{0%{opacity:0;transform:translateX(60px)}60%{opacity:1;transform:translateX(0)}80%{transform:translateX(0)}100%{transform:translateX(0)}}
 /* global-animation end   弹入-从右 */
+
+.illy-container {
+    max-width: $illy-container-width;
+    margin: 0 auto;
+}
 
 /* yo-list start */
 .yo-stacked {
@@ -315,10 +307,6 @@
 
 /* yo-btn end */
 
-/* common vars start */
-@import "./var.scss";
-/* common vars end */
-
 /* global reset start */ 
 * {
     -webkit-box-sizing: border-box;
@@ -326,156 +314,156 @@
     box-sizing: border-box;
 }
 *:before,
-    *:after {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* for root(html) rem, with different dpr attribute */
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    html[ios="true"] {
+        font-size: 200px;
     }
-    /* for root(html) rem, with different dpr attribute */
-    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-        html[ios="true"] {
-            font-size: 200px;
-        }
+}
+@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+    html[ios="true"] {
+        font-size: 300px;
     }
-    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-        html[ios="true"] {
-            font-size: 300px;
-        }
-    }
-    img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-        vertical-align: middle;
-        border: 0;
-        page-break-inside: avoid;
-    }
-    /* a tag glabal set */
-    a,
-    a:active,
-    a:visited,
-    a:focus,
-    a:hover {
-        text-decoration: none;
-        outline: none;
-        color: $g_font_color;
-    }
-    a:active,
-    a:visited,
-    a:focus,
-    a:hover {
-        color: inherit;
-    }
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    page-break-inside: avoid;
+}
+/* a tag glabal set */
+a,
+a:active,
+a:visited,
+a:focus,
+a:hover {
+    text-decoration: none;
+    outline: none;
+    color: $g_font_color;
+}
+a:active,
+a:visited,
+a:focus,
+a:hover {
+    color: inherit;
+}
 
-    input,
-    textarea,
-    button,
-    select
-    a {
-        outline: 0 none; /* mark! key! remove outline */
-        -webkit-tap-highlight-color: transparent;
-        /* remove touch outline */
-    }
+input,
+textarea,
+button,
+select
+a {
+    outline: 0 none; /* mark! key! remove outline */
+    -webkit-tap-highlight-color: transparent;
+    /* remove touch outline */
+}
 
-    /* global reset end */
+/* global reset end */
 
-    /* util start */
+/* util start */
 
-    .area {
-        display: inline-block;
-        vertical-align: top;
-    }
-    /* float */
-    .fl{float: left;}
-    .fr{float: right;}
-    /* 单行文字溢出省略号显示*/
-    .text-overflow{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-    /* Fixed */
-    .fixed-top{position: fixed;top: 0;bottom: auto;z-index: 99999;}
-    .fixed-bottom{position: fixed;top: auto;bottom: 0;margin-bottom: 1px;}
-    /*  ul */
-    ul, .unstyled {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .hide {
-        display: none !important;
-    }
-    .show {
-        display: block !important;
-    }
-    .invisible {
-        visibility: hidden;
-    }
-    .text-hide, .hide-text {
-        font: 0/0 a;
-        color: transparent;
-        text-shadow: none;
-        background-color: transparent;
-        border: 0;
-    }
-    .hidden {
-        display: none !important;
-        visibility: hidden !important;
-    }
-    /* 块状元素水平居中 */
-    .block-center{margin-left: auto; margin-right: auto;}
+.area {
+    display: inline-block;
+    vertical-align: top;
+}
+/* float */
+.fl{float: left;}
+.fr{float: right;}
+/* 单行文字溢出省略号显示*/
+.text-overflow{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+/* Fixed */
+.fixed-top{position: fixed;top: 0;bottom: auto;z-index: 99999;}
+.fixed-bottom{position: fixed;top: auto;bottom: 0;margin-bottom: 1px;}
+/*  ul */
+ul, .unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}
+.invisible {
+    visibility: hidden;
+}
+.text-hide, .hide-text {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+/* 块状元素水平居中 */
+.block-center{margin-left: auto; margin-right: auto;}
 
-    /* custom page start */
-    [ms-controller], .ms-controller, [ms-important], .ms-important {
-        visibility: hidden;
-    }
-    html, body {
-        width: 100%;
-        font-size: 100px; /* for global rem */
-        line-height: 1.5;
-        overflow-x: hidden;
-        overflow-y: auto;
-        -webkit-tap-highlight-color: transparent;
-    }
-    body {
-        font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;  // 字体优化 
-        /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
-        text-align: center;
-        background-color: $g_bgColor;
-        color: $g_font_color;
-        font-size: .14rem;
-    }
-    h1, h2, h3, h4, h5, h6, p {
-        margin: 0;
-        padding: 0;
-        font-weight: normal;
-    }
-    // 1. 为不继承的元素设定继承父级字号
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    small,
-    big,
-    input,
-    textarea,
-    button,
-    select {
-        font-size: inherit;
-    }
-    .icon {
-        width: .16rem;
-        height: .16rem;
-        display: inline-block;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 100%;
-        vertical-align: middle;
-        margin-right: .05rem;
-    }
+/* custom page start */
+[ms-controller], .ms-controller, [ms-important], .ms-important {
+    visibility: hidden;
+}
+html, body {
+    width: 100%;
+    font-size: 100px; /* for global rem */
+    line-height: 1.5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;  // 字体优化 
+    /*font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial;*/
+    text-align: center;
+    background-color: $g_bgColor;
+    color: $g_font_color;
+    font-size: .14rem;
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+// 1. 为不继承的元素设定继承父级字号
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+big,
+input,
+textarea,
+button,
+select {
+    font-size: inherit;
+}
+.icon {
+    width: .16rem;
+    height: .16rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    vertical-align: middle;
+    margin-right: .05rem;
+}
 
-    /* -------------------------------------------------------
-     * loader 
-     *-------------------------------------------------------*/
+/* -------------------------------------------------------
+    * loader 
+    *-------------------------------------------------------*/
 .loader {
     position: fixed;
     width: 100%;

@@ -245,21 +245,66 @@ input[type="checkbox"], input[type="radio"] {
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
-/*@font-face {*/
-/*font-family: yofont;*/
-/*src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");*/
-/*}*/
-/*.yo-ico {*/
-/*font-family: yofont !important; */
-/*font-style: normal;*/
-/*-webkit-font-smoothing: antialiased;*/
-/*-moz-osx-font-smoothing: grayscale;*/
-/*vertical-align: middle;*/
-/*}*/
-/*@import "../Yo/lib/core/reset.scss";*/
-/*@import "../Yo/lib/core/variables.scss";*/
-/*@import "../Yo/lib/core/classes.scss";*/
-/*@import "../Yo/lib/fragment/yo-header.scss";*/
+/* common vars start */
+/* common vars start */
+/* global silk height */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
+/* task me start */
+/* task me end */
+/* common vars end */
+/* global-animation start 弹入-从右 */
+.a-bounceinR {
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
+}
+
+.a-bounceinR {
+  -webkit-animation-name: bounceinR;
+  animation-name: bounceinR;
+}
+
+@-webkit-keyframes bounceinR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  80% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+@keyframes bounceinR {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* global-animation end   弹入-从右 */
+.illy-container {
+  max-width: 5rem;
+  margin: 0 auto;
+}
+
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -549,17 +594,6 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 /* yo-btn end */
-/* common vars start */
-/* common vars start */
-/* global silk height */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/* common vars end */
 /* global reset start */
 * {
   -webkit-box-sizing: border-box;
@@ -756,8 +790,8 @@ select {
 }
 
 /* -------------------------------------------------------
- *  Spinner
- *-------------------------------------------------------*/
+    * loader 
+    *-------------------------------------------------------*/
 .loader {
   position: fixed;
   width: 100%;
@@ -1180,6 +1214,8 @@ select {
 
 .left-fixed {
   display: -webkit-box;
+  min-width: 100%;
+  /* mark! */
 }
 
 .left-fixed > div {

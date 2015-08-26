@@ -7,7 +7,7 @@
         <div class="inner-wrapper">
 
             <div class="avatar-wrapper area">
-                <img ms-attr-src="avatar + '?imageView2/1/w/200/h/200'" ms-attr-alt="username" ms-click="chooseImage()" />
+                <img width="90px" height="90px" ms-attr-src="avatar + '?imageView2/1/w/200/h/200'" ms-attr-alt="username" ms-click="chooseImage()" />
             </div>
 
             <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
@@ -46,7 +46,7 @@
     <ul class="update-profile-list yo-list yo-list-group">
 
         <div class="avatar-wrapper area" ms-if="editing === true">
-            <img ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+            <img ms-attr-src="avatar + '?imageView2/1/w/200/h/200'" width="90px" height="90px" ms-attr-alt="username" ms-click="chooseImage()" />
             <p class="update-avatar-tip">点击头像上传</p>
         </div>
 

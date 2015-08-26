@@ -448,7 +448,9 @@ define([], function() {
                 question.isRecording = false;
 
             } else {
-                question.userAnswer = question.localAnswers[question.currentId - 1] || '';
+                setTimeout(function() { // mark! 20150826
+                    question.userAnswer = question.localAnswers[question.currentId - 1] || '';
+                }, 16);
             }
             //question.userAnswer = question.localAnswers[question.currentId - 1] || '';
 
@@ -474,6 +476,7 @@ define([], function() {
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("question.js onBeforeUnload fn");
             question.stopPlayRecord(); // 离开就应该停止播放，一种视图隔离
+            avalon.vmodels.app.hideConfirm(); // for strong, mark!
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

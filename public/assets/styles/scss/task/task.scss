@@ -12,6 +12,10 @@
 @import "../_normalize.scss";
 @import "../_common.scss";
 
+.img-bg {
+    width: 100%;
+}
+
 /* yo-input start */
 .yo-input {
   width: 100%;
@@ -112,6 +116,7 @@
     transition: transform 1.4s ease-in;
 }
 /* koudai jinbi end */
+
 /* taskList start */
 @import "./_taskList.scss";
 /* taskList end */

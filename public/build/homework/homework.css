@@ -245,21 +245,17 @@ input[type="checkbox"], input[type="radio"] {
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月13日 星期一 18时38分20秒
  ******************************************************/
-/*@font-face {*/
-/*font-family: yofont;*/
-/*src: url("http://source.qunar.com/fonts/yo/1.0.0/yofont.woff") format("woff"), url("http://source.qunar.com/fonts/yo/1.0.0/yofont.ttf") format("truetype");*/
-/*}*/
-/*.yo-ico {*/
-/*font-family: yofont !important; */
-/*font-style: normal;*/
-/*-webkit-font-smoothing: antialiased;*/
-/*-moz-osx-font-smoothing: grayscale;*/
-/*vertical-align: middle;*/
-/*}*/
-/*@import "../Yo/lib/core/reset.scss";*/
-/*@import "../Yo/lib/core/variables.scss";*/
-/*@import "../Yo/lib/core/classes.scss";*/
-/*@import "../Yo/lib/fragment/yo-header.scss";*/
+/* common vars start */
+/* common vars start */
+/* global silk height */
+/* common vars end */
+/* layout vars start */
+/* layout vars end */
+/* homework vars start */
+/* homework vars end */
+/* task me start */
+/* task me end */
+/* common vars end */
 /* global-animation start 弹入-从右 */
 .a-bounceinR {
   -webkit-animation: .4s ease-in forwards;
@@ -304,6 +300,11 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 /* global-animation end   弹入-从右 */
+.illy-container {
+  max-width: 5rem;
+  margin: 0 auto;
+}
+
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -593,17 +594,6 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 /* yo-btn end */
-/* common vars start */
-/* common vars start */
-/* global silk height */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/* common vars end */
 /* global reset start */
 * {
   -webkit-box-sizing: border-box;
@@ -800,8 +790,8 @@ select {
 }
 
 /* -------------------------------------------------------
- * loader 
- *-------------------------------------------------------*/
+    * loader 
+    *-------------------------------------------------------*/
 .loader {
   position: fixed;
   width: 100%;
@@ -1298,6 +1288,7 @@ select {
 }
 
 .ui-dialog {
+  max-width: 4.2rem;
   display: block;
   position: fixed;
   overflow: hidden;
@@ -1411,10 +1402,9 @@ background-image: url("../../icons-36-white.png");
 
 /*css for pad*/
 @media all and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .ui-dialog {
-    min-width: 5rem;
-  }
-
+  /*.ui-dialog{*/
+  /*min-width: 5rem;*/
+  /*}*/
   .ui-dialog .ui-dialog-title {
     min-height: 1.1em;
   }
@@ -1427,6 +1417,7 @@ background-image: url("../../icons-36-white.png");
 .item-wrapper .item {
   width: 100%;
   text-align: left;
+  margin-left: .02rem;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   -webkit-box-shadow: 0px 0px 5px #9c9c9c;
@@ -1572,9 +1563,11 @@ background-image: url("../../icons-36-white.png");
 
 .illy-img-list {
   text-align: left;
+  position: relative;
+  top: -8px;
 }
 .illy-img-list label.item {
-  width: 46%;
+  width: 46.5%;
   display: inline-block;
   padding: .05rem;
   margin: .05rem .05rem;
@@ -1617,6 +1610,8 @@ background-image: url("../../icons-36-white.png");
 .question .progress-wrapper {
   height: .3rem;
   line-height: .3rem;
+  padding-left: .05rem;
+  padding-right: .05rem;
 }
 .question .progress-wrapper .progress-outer {
   height: 0.03rem;
@@ -1643,6 +1638,11 @@ background-image: url("../../icons-36-white.png");
   padding: .05rem;
   font-weight: bold;
   font-size: .16rem;
+}
+.question .fill-in .yo-input {
+  width: 100%;
+  /* overwrite to normal */
+  min-height: 1.5rem;
 }
 .question .wrong-fill-in {
   /* 错误的文字填空题 */
@@ -1790,8 +1790,7 @@ background-image: url("../../icons-36-white.png");
 .question .answer-panel .answer .save {
   width: 72%;
 }
-.question .answer-panel .answer p {
-  display: inline-block;
+.question .answer-panel .answer p.analysis-text {
   width: 60%;
   margin-top: .03rem;
   color: #f2eded;

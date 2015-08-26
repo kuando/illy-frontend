@@ -1,19 +1,30 @@
 <!-- taskList start -->
 <div class="task-list" ms-controller="taskList">
 
+    <div class="top-score-area area"></div>
+    <div class="top-win-area area"></div>
     <!-- item start -->
     <div class="item-wrapper">
+        <div class="title-img"></div>
 
         <!-- task列表 start -->
         <div class="item area list-card" ms-repeat-item="lists">
             <div ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
-                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image" ms-attr-alt="item.name">
+
+                <div ms-attr-class="'item-img area taskNo' + $index"></div> 
+
                 <div class="task-content area">
                     <h2 class="item-title task-info">{{item.name}}</h2>
-                    <div class="task-info">内容: 2015秋季招生好礼送不停</div>
-                    <div class="task-info"><i class="icon-visit"></i>浏览量: {{item.visitCount}}</div>
+                    <div class="item-bottom">
+                        <div class="participants-wrapper area"><i class="icon-participants"></i>: {{item.participants}}</div>
+                        <div class="score-wrapper area"><i class="icon-score"></i>: {{item.scoreAward}}</div>
+                    </div>
                 </div>
-                <div class="goGetIt yo-btn yo-btn-s">赚积分+{{item.scoreAward}}</div>
+
+                <div class="big-icon-wrapper area">
+                    <div ms-attr-class="'goGetIt goGetIt' + $index"></div>
+                </div>
+
             </div>
         </div>
         <!-- task列表 end -->

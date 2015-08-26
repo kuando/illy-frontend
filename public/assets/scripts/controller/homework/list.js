@@ -57,7 +57,6 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
-            //avalon.vmodels.app.hideConfirm(); // for strong
             
             // remove cache in detail ctrl
             list.fetchData('homework');
@@ -67,6 +66,7 @@ define([], function() {
                 // 可以开启做题时间统计的标记, 自己第一次进入是true，同时唯一在此处开启
                 avalon.vmodels.question.starter = true;
             }
+
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

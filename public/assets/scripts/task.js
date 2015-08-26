@@ -187,10 +187,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     //                // e.g. {"checkResult": {"chooseImage": true}, "errMsg": "checkJsApi:ok"}
     //            }
     //    });
-        wx.hideOptionMenu();
-        wx.showMenuItems({
-            menuList: ["menuItem:share:timeline", "menuItem:share:appMessage"]
-        });
+        
+        //wx.hideOptionMenu();
+        //wx.showMenuItems({
+        //    menuList: ["menuItem:share:timeline", "menuItem:share:appMessage"]
+        //});
+        
     });
 
     wx.error(function(res) {

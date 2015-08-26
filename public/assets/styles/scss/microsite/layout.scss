@@ -208,6 +208,7 @@ $navigator-home-width: .5rem;
 }
 .left-fixed {
     display: -webkit-box;
+    min-width: 100%; /* mark! */
 }
 .left-fixed>div {
     display: -webkit-box;
