@@ -257,7 +257,9 @@ input[type="checkbox"], input[type="radio"] {
 /* task me end */
 /* common vars end */
 /* global-animation start 弹入-从右 */
-.a-bounceinR {
+.a-bounceinR,
+.a-bounceoutB,
+.a-bounceinB {
   -webkit-animation: .4s ease-in forwards;
   animation: .4s ease-in forwards;
 }
@@ -1047,6 +1049,82 @@ select {
   color: #fff;
 }
 
+/* 弹入-从下 */
+.a-bounceinB {
+  -webkit-animation-name: bounceinB;
+  -moz-animation-name: bounceinB;
+  -ms-animation-name: bounceinB;
+  animation-name: bounceinB;
+}
+
+/* 弹入-从下 */
+@-webkit-keyframes bounceinB {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80% {
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceinB {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* 弹出-向下 */
+.a-bounceoutB {
+  -webkit-animation-name: bounceoutB;
+  -moz-animation-name: bounceoutB;
+  -ms-animation-name: bounceoutB;
+  animation-name: bounceoutB;
+}
+
+/* 弹出-向下 */
+@-webkit-keyframes bounceoutB {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+}
+@keyframes bounceoutB {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
