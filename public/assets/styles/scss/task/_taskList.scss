@@ -99,6 +99,7 @@ $taskList-img-height: 67px;
 
         .left-icon {
             width: $taskList-left-width;
+            max-width: 67px;
             height: 67px;
             border-radius: 15px;
             background-image: url("../../build/images/taskList-item-icon.png");
