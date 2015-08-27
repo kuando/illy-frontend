@@ -5,11 +5,39 @@
         <meta name="viewport" content="width=device-width">
         <title> 账户注销 </title>
         <style>
+            .center {
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            .comfirm-btn {
+                width: 60%;
+                height: 44px;
+                line-height: 44px;
+                text-align: center;
+                background-color: #64c400;
+                color: #fff;
+                font-size: 20px;
+                font-weight: bold;
+                border-radius: 3px;
+            }
+
+            .tip {
+                color: #F54F4F;
+                margin-top: 14px;
+                font-size: 14px;
+            }
         </style>
     </head>
 
     <body>
-        <div class="comfirm-btn" onClick="unbind()" style="height: 100px;">comfirm</div>
+        <div class="comfirm-btn center" onClick="unbind()">
+            确认解绑
+            <p class="tip">账户无价，请谨慎操作！</p>
+        </div>
     </body>
 
     <script>

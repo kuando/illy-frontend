@@ -18,7 +18,7 @@ define([], function() {
 
     // prefix of localStorage
     var cachedPrefix = 'illy-task-article-';
-    
+
     var article = avalon.define({
         $id: "article",
         taskId: 1,
@@ -49,6 +49,35 @@ define([], function() {
                     console.log(res);
                 }
             });
+        },
+
+        scrollTop: 0, // remember the scrollTop position
+        showShareMask: function() {
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            article.scrollTop = scrollTop; // remember the scrollTop position
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
+            var mask = document.querySelector('.shareMask');
+            setTimeout(function() {
+                mask && (mask.style.display = 'block');
+                mask && mask.classList.add('a-bounceinB'); /* jshint ignore:line */
+            }, 16);
+        },
+        hideShareMask: function() {
+            document.body.scrollTop = article.scrollTop;
+            document.documentElement.scrollTop = article.scrollTop;
+
+            var mask = document.querySelector('.shareMask');
+            mask && mask.classList.remove('a-bounceinB'); /* jshint ignore:line */
+            setTimeout(function() {
+                mask && mask.classList.add('a-bounceoutB'); /* jshint ignore:line */
+            }, 16);
+            setTimeout(function() {
+                mask && (mask.style.display =  'none'); /* jshint ignore:line */
+                mask && mask.classList.remove('a-bounceoutB'); /* jshint ignore:line */
+            }, 500);
         },
 
         hasLiked: false,
@@ -135,15 +164,15 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-            avalon.$('.gotop').onclick = function() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            };
+            //avalon.$('.gotop').onclick = function() {
+            //document.body.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
+            //};
 
-            setTimeout(function() {
-                var gotop = avalon.$('#gotop');
-                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
-            }, 3000);
+            //setTimeout(function() {
+            //var gotop = avalon.$('#gotop');
+            //gotop && (gotop.style.display = 'block'); [> jshint ignore:line <]
+            //}, 3000);
 
         };
         // 进入视图

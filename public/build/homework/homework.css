@@ -659,6 +659,38 @@ a {
 
 /* global reset end */
 /* util start */
+/* empty content tip */
+.global-noContent-tip-light {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #fff;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.global-noContent-tip-dark {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #333438;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+/* empty content tip */
 .area {
   display: inline-block;
   vertical-align: top;
@@ -999,7 +1031,8 @@ select {
 /* new loader pacman end */
 /* fix for header's back-index */
 #header, .yo-header {
-  background: #64c400;
+  background-color: #323436;
+  color: #light-grey;
   z-index: 10000;
 }
 #header .affirm, .yo-header .affirm {
@@ -1839,21 +1872,55 @@ background-image: url("../../icons-36-white.png");
 /* question end */
 /* result start */
 .result {
-  margin: .1rem;
-}
-.result .result-silk-bg {
-  width: 100%;
-  height: 0.5rem;
+  margin-top: 0;
+  padding-top: .5rem;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(http://app.hizuoye.com/build/images/silk-red.png);
-  margin-top: .2rem;
-  line-height: .32rem;
+  background-image: url(http://app.hizuoye.com/build/images/result-bg.png);
+  min-height: 600px;
+}
+.result .result-silk-bg {
+  width: 100%;
+  height: 0.6rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-image: url(http://app.hizuoye.com/build/images/silk-yellow-green.png);
+  line-height: .38rem;
   color: #fff;
+  font-size: .18rem;
+  position: relative;
+  top: .2rem;
+}
+.result .yo-list {
+  padding-top: .2rem;
+  background-color: #fff;
+}
+.result .item {
+  padding: .15rem 0 .15rem .44rem;
   font-size: .16rem;
 }
-.result .mark {
+.result .icon {
+  width: .24rem;
+  height: .24rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+.result .icon-right {
+  background-image: url(http://app.hizuoye.com/build/images/result-right.png);
+}
+.result .icon-wrong {
+  background-image: url(http://app.hizuoye.com/build/images/result-wrong.png);
+}
+.result .icon-score {
+  background-image: url(http://app.hizuoye.com/build/images/result-score.png);
+}
+.result .icon-totalScore {
+  background-image: url(http://app.hizuoye.com/build/images/result-totalScore.png);
+}
+.result .area {
   width: 48%;
 }
 .result .yo-btn {

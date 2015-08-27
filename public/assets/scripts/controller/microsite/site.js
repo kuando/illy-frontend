@@ -4,6 +4,9 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
+    // defaultAvatarUrl
+    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
+
     // site ctrl take charge of everything...
     var site = avalon.define({ 
         $id: "site",
@@ -33,7 +36,41 @@ define([], function() {
                 $('#nav').navigator();
                 // 1 add fixed
                 $('.left-fixed').addClass('fixed-navigator');
+                $('#nav li').removeClass('ui-state-active');
             }, 32); // enough time for strong
+        },
+        displayName: '',
+        avatar: defaultAvatarUrl,
+        schoolName: '',
+        score: 88,
+        studentCount: 100,
+        getUserInfo: function() {
+            $http.ajax({
+                url: apiBaseUrl + "profile",
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(json) {
+                    site.avatar = json.avatar !== void 0 ? json.avatar : defaultAvatarUrl;
+                    site.displayName = json.displayName;
+                    site.score = json.score;
+                }
+            });
+        },
+        getSchoolInfo: function() {
+            $http.ajax({
+                url: apiBaseUrl + "school",
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(json) {
+                    site.schoolName = json.school;
+                    avalon.vmodels.root.footerInfo = json.school + ' © ' + new Date().getFullYear();
+                    site.studentCount = json.studentCount || 100;
+                }
+            });
         }
     });
 
@@ -64,7 +101,7 @@ define([], function() {
         site.fetchAllCategoriesNames();
 
         // 进入视图
-        var navigatorInitDelay = 800;
+        var navigatorInitDelay = 80;
         $ctrl.$onEnter = function() {
 
             //setTimeout(function() {
@@ -82,13 +119,16 @@ define([], function() {
             avalon.clearLocalCache('illy-microsite-');
 
             // add listener for index view's navigator
-            avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { /* jshint ignore:line */
-                if (newVal === 'index') {
-                    setTimeout(function() {
-                        $('#nav li').removeClass('ui-state-active');
-                    }, navigatorInitDelay + 100 );
-                }
-            });
+            //avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { [> jshint ignore:line <]
+            //    if (newVal === 'index') {
+            //        setTimeout(function() {
+            //            $('#nav li').removeClass('ui-state-active');
+            //        }, navigatorInitDelay + 100 );
+            //    }
+            //});
+
+            site.getUserInfo();
+            site.getSchoolInfo();
 
         };
         // 对应的视图销毁前

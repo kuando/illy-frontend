@@ -884,7 +884,13 @@ background-image: url("../../icons-36-white.png");
 
 /* result start */
 .result {
-    margin: .1rem;
+    margin-top: 0;
+    padding-top: .5rem;
+    background-size: 100%; 
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-image: url(#{$img-dir}/result-bg.png);
+    min-height: 600px;
 
     .result-silk-bg {
         width: 100%;
@@ -892,14 +898,45 @@ background-image: url("../../icons-36-white.png");
         background-size: 100%; 
         background-repeat: no-repeat;
         background-position: center top;
-        background-image: url(#{$img-dir}/silk-red.png);
-        margin-top: .2rem;
-        line-height: .32rem;
+        background-image: url(#{$img-dir}/silk-yellow-green.png);
+        line-height: .38rem;
         color: #fff;
+        font-size: .18rem;
+        position: relative;
+        top: .2rem;
+    }
+
+    .yo-list {
+        padding-top: .2rem;
+        background-color: #fff;
+    }
+
+    .item {
+        padding: .15rem 0 .15rem .44rem;
         font-size: .16rem;
     }
 
-    .mark {
+    .icon {
+        width: .24rem;
+        height: .24rem;
+        background-size: 100%; 
+        background-repeat: no-repeat;
+        background-position: center top;
+    }
+    .icon-right {
+        background-image: url(#{$img-dir}/result-right.png);
+    }
+    .icon-wrong {
+        background-image: url(#{$img-dir}/result-wrong.png);
+    }
+    .icon-score {
+        background-image: url(#{$img-dir}/result-score.png);
+    }
+    .icon-totalScore {
+        background-image: url(#{$img-dir}/result-totalScore.png);
+    }
+
+    .area {
         width: 48%;
     }
 

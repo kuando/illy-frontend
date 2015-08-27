@@ -244,10 +244,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/microsite/index.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/index.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/index.js", // 指定控制器地址
                 //ignoreChange: function(changeType) {
                 //    return !!changeType;
                 //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
+                viewCache: true // add in 20150827 very powerful and useful
             }
         }
         //,onBeforeEnter: function() { // return false则退出整个状态机，且总config报onError错误，打印错误信息
@@ -278,6 +279,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
             "": {
                 templateUrl: "assets/template/microsite/detail.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/detail.js", // 指定控制器地址
+                viewCache: true,
                 ignoreChange: function(type) {
                     return !!type;
                 }

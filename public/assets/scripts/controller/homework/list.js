@@ -13,6 +13,8 @@ define([], function() {
     var list = avalon.define({
 
         $id: "list",
+        noContent: true,
+        noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         homework: [], // 作业数据
         previews: [], // 预习数据
         offset: 0, // inner var, to fetch data with offset and limit
@@ -34,6 +36,9 @@ define([], function() {
                 success: function(lists) {
                     list[type] = lists; //key ! fetch data
                     //list.isLoading = false;
+                    if (lists.length !== 0) {
+                        list.noContent = false;
+                    }
                 },
                 error: function(res) {
                     console.log("homework list ajax error" + res);

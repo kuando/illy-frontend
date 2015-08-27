@@ -4,6 +4,7 @@ $task-progress-bgcolor: #fff;
 $task-progress-inner-bgColor: #EF7549;
 $task-progress-radius: 10px;
 
+$taskList-img-height: 67px;
 
 .top-area-common {
     width: 30%;
@@ -12,7 +13,14 @@ $task-progress-radius: 10px;
     background-repeat: no-repeat;
 }
 .top-left-area {
-    background-image: url("../../build/images/taskList-top-icon.png");
+
+    .inner {
+        width: 67px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../../build/images/taskList-top-icon.png");
+        height: $taskList-img-height;
+    }
 }
 
 .top-score-area {
@@ -21,18 +29,32 @@ $task-progress-radius: 10px;
     background-repeat: no-repeat;
     background-image: url("../../build/images/rank-nb.png");
     width: 33%;
+    max-width: 107px; /* must fixed value */
     height: 100px;
+    position: relative;
     
     .top-score-text {
-        margin-top: 8px;
-        margin-left: 24px;
         color: #fff;
+        position: absolute;
+        top: 8px;
+        left: 37px;
+        width: 60px;
+        text-align: center;
     }
 }
 
 .top-me-area {
-    background-position: right top;
-    background-image: url("../../build/images/taskList-top-icon.png");
+
+    .inner {
+        width: 67px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: right top;
+        height: $taskList-img-height;
+        float: right;
+        border-radius: 50%;
+        border: 4px solid #fff;
+    }
 }
 
 .task-list {
@@ -47,11 +69,21 @@ $task-progress-radius: 10px;
 
     .item-wrapper {
         background: rgba(0, 69, 99, .5);
-        overflow: hidden;
         width: 92%;
         margin: 0 auto;
         margin-top: 70px; /* overwrite */
-        padding: .08rem .06rem;
+        padding: .12rem .06rem;
+        position: relative;
+
+        .silk-common {
+            width: 100%;
+            height: $silk-height;
+            background-image: url(#{$img-dir}/silk-green.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: -60px;
+        }
     }
 
     .list-card {
@@ -72,6 +104,18 @@ $task-progress-radius: 10px;
             background-image: url("../../build/images/taskList-item-icon.png");
             border: 2px solid #bdd3ad;
             background-size: 100%;
+            position: relative;
+
+            .scoreAward {
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+                margin-left: -30px;
+                text-align: center;
+                width: 60px;
+                font-size: .12rem;
+                color: #DFD5D5;
+            }
         }
 
         .right-area {

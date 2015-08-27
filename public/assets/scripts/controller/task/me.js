@@ -12,7 +12,7 @@ define([], function() {
 
     // avatar manage
     var avatar = {
-        defaultFullUrl: 'http://resource.hizuoye.com/images/avatar/children/default1.png',
+        defaultFullUrl: 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200',
         localId: '',
         serverId: ''
     };
@@ -63,7 +63,7 @@ define([], function() {
             me.parent = source.parent;
             if (setAvatar) {
                 if (source.avatar !== void 0) {
-                    me.avatar = resourcePrefix + source.avatar;
+                    me.avatar = resourcePrefix + source.avatar + '?imageView2/1/w/200/h/200';
                 } else {
                     me.avatar = avatar.defaultFullUrl; // default setAvatar of user
                 }

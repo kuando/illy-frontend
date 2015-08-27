@@ -3,10 +3,9 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
     var token = avalon.illyGlobal.token;
-    var noTokenTips = avalon.illyGlobal.noTokenTips;
     if (token === void 0) {
-        avalon.log("Error, no token!");
-        alert(noTokenTips);
+        // handler with no token error in one global method 
+        avalon.illyGlobal.noTokenHandler();
     }
 
     // cache the view data

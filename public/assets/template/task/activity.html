@@ -10,6 +10,22 @@
     <div class="created-time">结束时间: {{endTime | date()}}</div>
     <div class="content">{{content | html}}</div>
 
+    <div class="task-helper-btn" ms-click="showShareMask">分享到朋友圈</div>
+
+    <div class="shareMask">
+
+        <img src="../../build/images/shareMask-top.png" />
+
+        <img class="wxShareIcon" src="../../build/images/shareMask-wxShare-icon.png" />
+
+        <img src="../../build/images/shareMask-adText.png" />
+
+        <div class="iKnow" ms-click="hideShareMask">朕知道了</div>
+
+        <img class="shareMaskBottom" src="../../build/images/shareMask-bottom.png" />
+
+    </div>
+
     <div class="infoCollect-wrapper">
         <div class="sign-up-btn-wrapper">
             <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>

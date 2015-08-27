@@ -4,6 +4,10 @@
     <!-- item start -->
     <div class="item-wrapper homework-list">
 
+        <div class="global-noContent-tip-dark" ms-if="noContent">
+            {{noContentText}}
+        </div>
+
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="homework">
             <a ms-attr-href="'#!/detail/' + item._id + '/info/?type=homework'" class="list-card">

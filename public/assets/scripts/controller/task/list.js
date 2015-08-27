@@ -3,6 +3,9 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
+    var resourcePrefix = 'http://resource.hizuoye.com/';
+    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';
+
     if (!token) {
         alert("no token error");
         return;
@@ -14,9 +17,17 @@ define([], function() {
 
         $id: "taskList",
         lists: [],
+        avatar: '', // user avatar
+        studentCount: '', // student count of user's school
         visited: false,
         offset: 0,
         btnShowMore: true,
+        goRank: function() {
+            avalon.router.go('task.rank');
+        },
+        goMe: function() {
+            avalon.router.go('task.me');
+        },
         fetchData: function(data, concat) {
 
             if (taskList.visited) { return ; }
@@ -29,7 +40,8 @@ define([], function() {
                     'Authorization': 'Bearer ' + token
                 },
                 success: function(lists) {
-                    concat ? taskList.lists.concat(lists) : taskList.lists = lists; // mark!!! concat work?
+                    // mark!!! concat work?
+                    concat ? taskList.lists.concat(lists) : taskList.lists = lists; /* jshint ignore:line */
                 },
                 error: function(res) {
                     console.log("taskList list ajax error" + res);
@@ -37,7 +49,7 @@ define([], function() {
                 ajaxFail: function(res) {
                     console.log("taskList list ajax failed" + res);
                 }
-            })
+            });
 
         }, // end of fetchData
         showMore: function(e) {
@@ -71,21 +83,30 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-        }
+        };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
+
+            avalon.vmodels.task.$watch('score', function(newVal) {
+                if (newVal !== void 0 || newVal !== '') {
+                    taskList.avatar = resourcePrefix + avalon.vmodels.task.avatar + "?imageView2/1/w/200/h/200" || defaultAvatarUrl;
+                    taskList.studentCount = avalon.vmodels.task.studentCount;
+                    taskList.score = avalon.vmodels.task.score;
+                }
+            });
 
             taskList.visited = avalon.vmodels.root.currentIsVisited;
-            taskList.offset <= limit ? taskList.btnShowMore = false : taskList.btnShowMore = true; // otherwise, show it
+            // otherwise, show it
+            taskList.offset <= limit ? taskList.btnShowMore = false : taskList.btnShowMore = true; /* jshint ignore:line */
             taskList.fetchData();
 
-        }
+        };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-        }
+        };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
-        $ctrl.$vmodels = []
+        $ctrl.$vmodels = [];
     });
 });
 

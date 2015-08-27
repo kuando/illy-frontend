@@ -16,15 +16,31 @@
 
     <div class="content">{{content | html}}</div>
 
+    <div class="task-helper-btn" ms-click="showShareMask">分享到朋友圈</div>
+    
+     <div class="shareMask">
+
+        <img src="../../build/images/shareMask-top.png" />
+
+        <img class="wxShareIcon" src="../../build/images/shareMask-wxShare-icon.png" />
+
+        <img src="../../build/images/shareMask-adText.png" />
+
+        <div class="iKnow" ms-click="hideShareMask">朕知道了</div>
+
+        <img class="shareMaskBottom" src="../../build/images/shareMask-bottom.png" />
+
+    </div>
+
     <ul class="pageinfo list">
 
         <div class="like" ms-if="hasLiked == false" ms-click="like()"></div>
         <div class="like" ms-class-1="hasLiked: hasLiked == true" ms-if="hasLiked == true"></div>
         <div class="like-num-wrapper"><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span>位朋友点了赞</div>
 
-        <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
-        <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
-        <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
+        <li class="share" ms-click="showShareMask" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
+        <li class="share" ms-click="showShareMask" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
+        <li class="visit" ms-click="showShareMask" ><i class="icon icon-visit"></i>{{visitCount}}</li>
 
     </ul>
 

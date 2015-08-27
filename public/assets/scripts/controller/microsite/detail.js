@@ -54,6 +54,35 @@ define([], function() {
             });
         },
         
+        scrollTop: 0, // remember the scrollTop position
+        showShareMask: function() {
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            detail.scrollTop = scrollTop; // remember the scrollTop position
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
+            var mask = document.querySelector('.shareMask');
+            setTimeout(function() {
+                mask && (mask.style.display = 'block');
+                mask && mask.classList.add('a-bounceinB'); /* jshint ignore:line */
+            }, 16);
+        },
+        hideShareMask: function() {
+            document.body.scrollTop = detail.scrollTop;
+            document.documentElement.scrollTop = detail.scrollTop;
+
+            var mask = document.querySelector('.shareMask');
+            mask && mask.classList.remove('a-bounceinB'); /* jshint ignore:line */
+            setTimeout(function() {
+                mask && mask.classList.add('a-bounceoutB'); /* jshint ignore:line */
+            }, 16);
+            setTimeout(function() {
+                mask && (mask.style.display =  'none'); /* jshint ignore:line */
+                mask && mask.classList.remove('a-bounceoutB'); /* jshint ignore:line */
+            }, 500);
+        },
+
         hasLiked: false,
         updateLike: function() {
             $http.ajax({

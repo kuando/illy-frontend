@@ -20,6 +20,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // global config, always show loader when enter the view 
     var global_always_show_loader = true;
 
+    // global always reset scrollbar when view enter
+    var global_always_reset_scrollbar = true;
+
     // global loading timeout
     var global_loading_timeout = 8000; // ms, abort the loading when timeout, then auto goback
 
@@ -28,6 +31,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
     // loader className
     var global_loader_className = '.loader';
+
+    // var global_loader_dom = document.querySelector('.loader');
 
     // title Map， 映射各种状态的action bar title
     var acTitle = {
@@ -361,7 +366,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                 }
 
                 var pageId = location.href.split("!")[1];
-                cacheContainer = cacheContainer || cachePage
+                cacheContainer = cacheContainer || cachePage;
                 cacheContainer.push(pageId);
                 // var loader = document.querySelector('.loader');
                 var isVisited = false;
@@ -387,8 +392,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                     callback = loader;
                     loader = void 0;
                 }
-                var loader = document.querySelector(loader || global_loader_className);
-                var showLoader = function () { loader && (loader.style.display = ''); }
+                loader = document.querySelector(loader || global_loader_className);
+                var showLoader = function () { loader && (loader.style.display = ''); }; /* jshint ignore:line */
                 var always_show_loader = global_always_show_loader === true ? true : false;
                  // loader show logic
                 if (loader && always_show_loader) {
@@ -407,11 +412,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         onLoad: function() { // 切换完成并成功
 
             // ====== reset scroll bar ====== //
-            function resetScrollWhenViewEnter() {
+            function resetScrollbarWhenViewEnter() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
             }
-            resetScrollWhenViewEnter();
+            if (global_always_reset_scrollbar) {
+                resetScrollbarWhenViewEnter();
+            }
             // ====== reset scroll bar ====== //
 
             // update current state ====== //
@@ -439,7 +446,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             // ====== remove loader and unbind bad network handler ====== //
             // next view loaded, remove loader && badNetworkHandler
             function unbindBadNetworkHandler(timer) {
-                timer = timer || avalon.badNetworkTimer
+                timer = timer || avalon.badNetworkTimer;
                 timer && clearTimeout(timer); /* jshint ignore:line */ 
             }
             function loadingEndHandler(loader, callback) {
@@ -447,11 +454,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                     callback = loader;
                     loader = void 0;
                 }
-                var loader = document.querySelector(loader || global_loader_className);
+                loader = document.querySelector(loader || global_loader_className);
                 var hideLoader = function() {
                     // for strong, need ()
                     loader && (loader.style.display = 'none'); /* jshint ignore:line */
-                }
+                };
                 if (global_loading_duration === void 0) {
                     global_loading_duration = 500;
                     console.log('WARNING: no global_loading_duration set!');

@@ -39,8 +39,16 @@
 .detail .cover-img {
   margin: .18rem 0;
 }
+.detail .cover-img img {
+  width: 100%;
+  /* mark! 20150826 */
+}
 .detail .content {
   margin-top: .15rem;
+  /* mark 20150826 */
+}
+.detail .content img {
+  width: 100%;
 }
 .detail .content h1 {
   font-size: .22rem;
@@ -68,6 +76,47 @@
   position: relative;
   word-break: break-all;
   color: #444242;
+}
+.detail .task-helper-btn {
+  width: 60%;
+  height: 44px;
+  line-height: 44px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #fff;
+  background-color: #64c400;
+  text-align: center;
+  border-radius: 3px;
+}
+.detail .shareMask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(6, 5, 5, 0.8);
+  padding: .3rem;
+  padding-top: .2rem;
+}
+.detail .shareMask img {
+  margin: 0 auto;
+}
+.detail .shareMask img.wxShareIcon {
+  width: 100px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.detail .shareMask img.shareMaskBottom {
+  margin-top: 80px;
+}
+.detail .shareMask .iKnow {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 50px;
 }
 .detail .pageinfo {
   text-align: center;
