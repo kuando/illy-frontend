@@ -73,7 +73,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     };
-    /***** static method area end *****/
+    /***** static method end *****/
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {

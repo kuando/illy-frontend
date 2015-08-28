@@ -21,6 +21,16 @@
     margin: 0 auto;
 }
 
+/*.silk-container {*/
+/*    max-width: $silk-max-width;*/
+/*    margin: 0 auto;*/
+/*}*/
+@media all and (min-device-width: 321px) and (max-device-width: 500px){
+    .silk-container {
+        line-height: .38rem!important;
+    }
+}
+
 /* yo-list start */
 .yo-stacked {
     display: block;

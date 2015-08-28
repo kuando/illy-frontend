@@ -119,7 +119,7 @@ define([], function() {
             avalon.clearLocalCache('illy-microsite-');
 
             // add listener for index view's navigator
-            avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { [> jshint ignore:line <]
+            avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { /* jshint ignore:line */ 
                if (newVal === 'index') {
                    setTimeout(function() {
                        $('#nav li').removeClass('ui-state-active');

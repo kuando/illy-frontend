@@ -22,7 +22,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
     var global_loading_timeout = 8; // second, abort the loading when timeout, then auto back
 
     // loading delay
-    var global_loading_duration = 300; // ms
+    var global_loading_duration = 500; // ms
 
     // avalon global cache stuff when app init
     avalon.illyGlobal = {
@@ -266,10 +266,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/microsite/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/list.js", // 指定控制器地址              
-                ignoreChange: function(type) {
-                    return !!type;
-                }
+                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址              
+                //ignoreChange: function(type) {
+                //    return !!type;
+                //}
             }
         }
     })
@@ -278,11 +278,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState
         views: {
             "": {
                 templateUrl: "assets/template/microsite/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/detail.js", // 指定控制器地址
-                viewCache: true,
-                ignoreChange: function(type) {
-                    return !!type;
-                }
+                controllerUrl: "scripts/controller/microsite/detail.js" // 指定控制器地址
+                //viewCache: true,
+                //ignoreChange: function(type) {
+                //    return !!type;
+                //}
             }
         }
     });

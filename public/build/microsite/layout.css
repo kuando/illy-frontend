@@ -248,6 +248,7 @@ input[type="checkbox"], input[type="radio"] {
 /* common vars start */
 /* common vars start */
 /* global silk height */
+/* fixed value for all device */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -307,6 +308,15 @@ input[type="checkbox"], input[type="radio"] {
   margin: 0 auto;
 }
 
+/*.silk-container {*/
+/*    max-width: $silk-max-width;*/
+/*    margin: 0 auto;*/
+/*}*/
+@media all and (min-device-width: 321px) and (max-device-width: 500px) {
+  .silk-container {
+    line-height: 0.38rem !important;
+  }
+}
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -1641,6 +1651,7 @@ a, a:hover {
 /* vars start */
 /* common vars start */
 /* global silk height */
+/* fixed value for all device */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -1689,6 +1700,8 @@ a, a:hover {
 }
 .detail .content img {
   width: 100%;
+  margin-top: .1rem;
+  margin-bottom: .1rem;
 }
 .detail .content h1 {
   font-size: .22rem;
@@ -1745,7 +1758,7 @@ a, a:hover {
 .detail .shareMask img.wxShareIcon {
   width: 100px;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .detail .shareMask img.shareMaskBottom {
   margin-top: 80px;

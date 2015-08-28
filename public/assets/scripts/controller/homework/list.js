@@ -15,6 +15,7 @@ define([], function() {
         $id: "list",
         noContent: true,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
+        showLoader: true, // only show loader in the first time
         homework: [], // 作业数据
         previews: [], // 预习数据
         offset: 0, // inner var, to fetch data with offset and limit
@@ -62,6 +63,17 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
+
+            // only show loader in the first time, add in 201508282113
+            if (list.showLoader) {
+                setTimeout(function() {
+                    list.showLoader = false;
+                }, 500);
+            }
+            if (!list.showLoader) {
+                var loader = document.querySelector('.loader');
+                loader && (loader.style.display = 'none'); /* jshint ignore:line */
+            }
             
             // remove cache in detail ctrl
             list.fetchData('homework');

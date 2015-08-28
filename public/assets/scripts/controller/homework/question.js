@@ -409,22 +409,23 @@ define([], function() {
             // drop the question flag
             question.isDroped = false;
 
+            // temp drop in 201508282052
             // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）
-            if( !hasRequestRecordAuth ) {
+            //if( !hasRequestRecordAuth ) {
 
-                var needRequestAuth = avalon.vmodels.detail.exercises.some(function(item) { // bool
-                    return item.eType === 3;
-                });
+            //    var needRequestAuth = avalon.vmodels.detail.exercises.some(function(item) { // bool
+            //        return item.eType === 3;
+            //    });
 
-                if ( needRequestAuth ) { // check audio auth earlier
-                    wx.startRecord();
-                    setTimeout(function() {
-                        wx.stopRecord();
-                    }, 2000); // 2 second, enough??? sucks... wx-sdk
-                    hasRequestRecordAuth = true; // auth done and the only place this var change!!! key!!!
-                }
+            //    if ( needRequestAuth ) { // check audio auth earlier
+            //        wx.startRecord();
+            //        setTimeout(function() {
+            //            wx.stopRecord();
+            //        }, 2000); // 2 second, enough??? sucks... wx-sdk
+            //        hasRequestRecordAuth = true; // auth done and the only place this var change!!! key!!!
+            //    }
 
-            }
+            //}
 
             question.currentId = params.questionId;
             

@@ -1,6 +1,7 @@
 /* vars start */
 /* common vars start */
 /* global silk height */
+/* fixed value for all device */
 /* common vars end */
 /* layout vars start */
 /* layout vars end */
@@ -49,6 +50,8 @@
 }
 .detail .content img {
   width: 100%;
+  margin-top: .1rem;
+  margin-bottom: .1rem;
 }
 .detail .content h1 {
   font-size: .22rem;
@@ -105,7 +108,7 @@
 .detail .shareMask img.wxShareIcon {
   width: 100px;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .detail .shareMask img.shareMaskBottom {
   margin-top: 80px;
