@@ -1988,6 +1988,8 @@ background-image: url("../../icons-36-white.png");
 .result .item {
   padding: .15rem 0 .15rem .44rem;
   font-size: .16rem;
+  display: block;
+  /* rewrite display: flex */
 }
 .result .icon {
   width: .24rem;
@@ -2009,7 +2011,7 @@ background-image: url("../../icons-36-white.png");
   background-image: url(http://app.hizuoye.com/build/images/result-totalScore.png);
 }
 .result .area {
-  width: 48%;
+  width: 40%;
 }
 .result .yo-btn {
   margin-top: .15rem;

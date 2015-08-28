@@ -914,6 +914,7 @@ background-image: url("../../icons-36-white.png");
     .item {
         padding: .15rem 0 .15rem .44rem;
         font-size: .16rem;
+        display: block; /* rewrite display: flex */
     }
 
     .icon {
@@ -937,7 +938,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .area {
-        width: 48%;
+        width: 40%;
     }
 
     .yo-btn {
