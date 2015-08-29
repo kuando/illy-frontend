@@ -768,7 +768,7 @@ ul, .unstyled {
 }
 
 .show {
-  display: inline-block;
+  display: block !important;
 }
 
 .invisible {
@@ -1923,6 +1923,7 @@ background-image: url("../../icons-36-white.png");
   padding-right: .25rem;
   line-height: .4rem;
   background-color: transparent;
+  border: none;
 }
 .question .playRecord .record-total-time {
   /* 录音时长 */
