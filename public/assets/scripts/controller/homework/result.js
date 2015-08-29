@@ -17,7 +17,7 @@ define([], function() {
             //avalon.log("result.js onRendered fn");
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
             //avalon.log("result.js onEnter callback");
             // this homwork is done and for drop check, 20150809
             avalon.vmodels.detail.isDone = true;
@@ -29,6 +29,19 @@ define([], function() {
             result.rightCount = source.rightCount;
             result.wrongCount = source.wrongCount;
             result.totalScore = source.totalScore;
+
+            if (result.totalAward === 888 && result.totalScore === 100) { // if detact fake data, use cache data
+                var res = JSON.parse(localStorage.getItem('illy-homework-last-result'));
+                if (res) {
+                    result.rightCount = res.rightCount;
+                    result.wrongCount = res.wrongCount;
+                    result.totalAward = res.totalAward;
+                    result.totalScore = res.totalScore;
+                } else { // if no cached local data, no way to recover, go index is the only way
+                    avalon.router.go('app.list');
+                }
+            }
+
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

@@ -20,27 +20,6 @@ $navigator-home-width: .5rem;
     color: #fff;
 }
 
-.site {
-    min-height: 5.5rem; /* for layout */
-
-    &, &-footer {
-        font-size: .14rem;
-    }
-
-    &-footer {
-        margin: .2rem 0 0 0;
-        width: 100%;
-        height: .40rem;
-        line-height: .44rem;
-        bottom: 0;
-        left: 0;
-        background-color: $wx-bar-bgColor;
-        opacity: .9;
-        color: whitesmoke;
-        font-weight: bold;
-    }
-} 
-
 /* global striped */
 .top-striped {
     position: fixed;

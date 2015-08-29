@@ -82,7 +82,9 @@ define([], function() {
                     target.totalAward = res.totalAward;
                     target.rightCount = res.rightCount;
                     target.wrongCount = res.wrongCount;
-                    target.totalScore = res.totalScore;
+                    target.totalScore = res.totalScore; 
+                    // last result cache, used for result
+                    localStorage.setItem('illy-homework-last-result', JSON.stringify(res));
                     setTimeout(function() {
                         // go result
                         avalon.router.go('app.detail.result', {homeworkId: detail.homeworkId});

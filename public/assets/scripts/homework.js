@@ -187,11 +187,14 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在body元素上
     var root = avalon.define({
         $id: "root",
-        currentPage: '',
+        currentState: '',
+        currentAction: '',
         currentIsVisited: false,
-        title: "标题", // 每一页action bar的标题    
+        title: "", // 每一页action bar的标题    
+        headerShow: false,
+        backBtnShow: false,
         back: function() { // has default back and can custom it
-            var state = root.currentPage;
+            var state = root.currentState;
             if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围
                 state = 'detail';
             }
@@ -200,6 +203,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                 state.back();
             } else {
                 history.go(-1);
+            }
+        }
+    });
+    root.$watch('currentState', function(newVal, oldVal) {
+        if (newVal !== void 0) {
+            if (newVal === 'list' || newVal === 'info' || newVal === 'mistakeList') {
+                root.headerShow = true;
+            } else {
+                root.headerShow = false;
+            }
+            if (newVal !== 'list' && newVal !== 'result') {
+                root.backBtnShow = true;
+            } else {
+                root.backBtnShow = false;
             }
         }
     });
@@ -346,17 +363,19 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // 每次view载入都会执行的回调，适合来做一些统一操作
     avalon.state.config({ 
         onError: function() {
+            root.currentAction = 'onError';
             avalon.log("Error!, Redirect to index!", arguments);
             avalon.router.go("/");
         }, 
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
-
+            root.currentAction = 'onBeforeUnload';
         },
         onUnload: function() { // url变化时触发
-
+            root.currentAction = 'onUnload';
         },
         onBegin: function() {
 
+            root.currentAction = 'onBegin';
             // ====== view visit statistical ====== //
             function doIsVisitedCheck(cacheContainer, callback) { 
 
@@ -411,6 +430,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         },
         onLoad: function() { // 切换完成并成功
 
+            root.currentAction = 'onload';
             // ====== reset scroll bar ====== //
             function resetScrollbarWhenViewEnter() {
                 document.body.scrollTop = 0;
@@ -431,13 +451,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                     return state2;
                 }
             }
-            root.currentPage = getCurrentState();
-            // state2 === void 0 ? root.currentPage = state1 : root.currentPage = state2; /* jshint ignore:line */
+            root.currentState = getCurrentState();
+            // state2 === void 0 ? root.currentState = state1 : root.currentState = state2; /* jshint ignore:line */
             // update current state ====== //
 
             // ====== set action bar title in page ====== //
             function setPageTitle() {
-                var currentState = root.currentPage;
+                var currentState = root.currentState;
                 root.title = acTitle[currentState];
             }
             setPageTitle();
@@ -475,13 +495,14 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             // ====== remove loader and unbind bad network handler ====== //
 
             // ====== add view enter animation ====== //
-            // var view = document.querySelector('[avalonctrl='+ root.currentPage + ']');
+            // var view = document.querySelector('[avalonctrl='+ root.currentState + ']');
             // for strong
             // view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
             // ====== add view enter animation ====== //
 
         },
         onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
+            root.currentAction = 'onViewEnter';
             //avalon(oldNode).animate({
             //    marginLeft: "-100%"
             //}, 500, "easein", function() {

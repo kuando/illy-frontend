@@ -396,18 +396,16 @@
                 <div class="like" ms-class-1="hasLiked: hasLiked == true" ms-if="hasLiked == true"></div>
                 <div class="like-num-wrapper"><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span>位朋友点了赞</div>
 
-                <li class="share" ms-if="isShared != true"><i class="icon icon-share"></i>{{shareCount}}</li>
-                <li class="share" ms-class-1="isShared: isShared == true" ms-if="isShared == true"><i class="icon icon-share"></i>{{shareCount}} (+1)</li>
-                <li class="visit"><i class="icon icon-visit"></i>{{visitCount}}</li>
-
-                <div class="yo-btn btn-scoreAward" ms-visible="isShared">积分+{{scoreAward}}</div>
+                <li class="visit" ms-click="showShareMask">阅读  {{visitCount}}</li>
+                <li class="share" ms-click="showShareMask" ms-if="isShared != true">分享  {{shareCount}}</li>
+                <li class="share" ms-click="showShareMask" ms-if="isShared == true">分享  {{shareCount}} (+1)</li>
 
             </ul>
 
 
-            <div id="jumphelper" class="gotop">
-                <a href="javascript:void(0)" id="gotop"></a>
-            </div>
+            <!--<div id="jumphelper" class="gotop">-->
+                <!--<a href="javascript:void(0)" id="gotop"></a>-->
+            <!--</div>-->
 
         </div>
 

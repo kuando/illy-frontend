@@ -312,7 +312,7 @@ input[type="checkbox"], input[type="radio"] {
 /*    max-width: $silk-max-width;*/
 /*    margin: 0 auto;*/
 /*}*/
-@media all and (min-device-width: 321px) and (max-device-width: 500px) {
+@media all and (min-device-width: 319px) and (max-device-width: 2049px) {
   .silk-container {
     line-height: 0.38rem !important;
   }
@@ -708,6 +708,18 @@ a {
   vertical-align: top;
 }
 
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
 /* float */
 .fl {
   float: left;
@@ -747,11 +759,16 @@ ul, .unstyled {
 }
 
 .hide {
+  display: none;
+}
+
+.hidden {
   display: none !important;
+  visibility: hidden !important;
 }
 
 .show {
-  display: block !important;
+  display: inline-block;
 }
 
 .invisible {
@@ -764,11 +781,6 @@ ul, .unstyled {
   text-shadow: none;
   background-color: transparent;
   border: 0;
-}
-
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 /* 块状元素水平居中 */
@@ -843,14 +855,13 @@ select {
 /* -------------------------------------------------------
     * loader 
     *-------------------------------------------------------*/
-.loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  z-index: 99999;
-}
-
+/*.loader {*/
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: $loader-bgColor;*/
+/*    z-index: 99999;*/
+/*}*/
 /* new loader pacman start */
 .loader-wrapper {
   position: fixed;
@@ -1135,6 +1146,29 @@ select {
     transform: translateY(100px);
   }
 }
+/* global common footer start */
+.site {
+  min-height: 5.5rem;
+  /* for layout */
+}
+.site, .site-footer {
+  font-size: .14rem;
+}
+.site-footer {
+  /*margin: .2rem 0 0 0;*/
+  margin: 0;
+  width: 100%;
+  height: .40rem;
+  line-height: .44rem;
+  bottom: 0;
+  left: 0;
+  background-color: #323436;
+  opacity: .9;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+/* global common footer end */
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
@@ -1562,6 +1596,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .item-img {
   width: 17%;
+  max-width: 52px;
   margin-left: .02rem;
   margin-right: .10rem;
   height: 0.45rem;
@@ -1662,8 +1697,7 @@ background-image: url("../../icons-36-white.png");
   background-image: url(http://app.hizuoye.com/build/images/playing.png);
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: -.08rem 0;
-  text-indent: 2em;
+  background-position: center;
 }
 .panel .playRecord .record-total-time {
   /* 录音时长 */
@@ -1703,6 +1737,16 @@ background-image: url("../../icons-36-white.png");
   padding: .05rem;
   margin: .05rem .05rem;
   text-align: center;
+  border-radius: 3px;
+}
+.illy-img-list label.item.question-item-active {
+  background-color: #00abfd;
+}
+.illy-img-list label.item.question-item-active .yo-checked-c > input:checked + .type::after {
+  color: #00abfd;
+}
+.illy-img-list label.item.question-item-active .yo-checked-c > input:checked + .type {
+  background-color: #fff;
 }
 .illy-img-list label.item div.flex {
   width: 100%;
@@ -1712,8 +1756,6 @@ background-image: url("../../icons-36-white.png");
   margin-bottom: .1rem;
   width: 100%;
   height: auto;
-  max-height: 120px;
-  /* mark! */
 }
 .illy-img-list label.item .yo-checked {
   /*float: left;*/
@@ -1740,6 +1782,14 @@ background-image: url("../../icons-36-white.png");
   background-color: whiteSmoke;
   /* 去除分割线，恶心的第二条线不显示bug */
   /* record too short tips */
+}
+.question .yo-list .item {
+  /* make it bigger, max-height was not needed */
+  min-height: .7rem;
+}
+.question .yo-list .item .mark {
+  /* for long text */
+  word-break: break-all;
 }
 .question .progress-wrapper {
   height: .3rem;
@@ -1769,13 +1819,19 @@ background-image: url("../../icons-36-white.png");
   background-image: none;
 }
 .question .question-text {
-  padding: .05rem;
+  padding: .02rem .01rem;
   font-weight: bold;
-  font-size: .16rem;
+  font-size: .18rem;
   margin-left: .1rem;
   position: relative;
   top: -8px;
   /* mark, not good */
+}
+@media all and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .question {
+    /* for big screen */
+    margin-bottom: 5%;
+  }
 }
 .question .fill-in .yo-input {
   width: 100%;
@@ -1807,8 +1863,8 @@ background-image: url("../../icons-36-white.png");
   position: fixed;
   top: 42%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   width: .9rem;
   height: .9rem;
   background-image: url(http://app.hizuoye.com/build/images/recording.gif);
@@ -1825,8 +1881,8 @@ background-image: url("../../icons-36-white.png");
   position: absolute;
   top: 42%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   width: .9rem;
   height: .9rem;
   line-height: .9rem;
@@ -1839,16 +1895,17 @@ background-image: url("../../icons-36-white.png");
   position: fixed;
   top: 63%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   width: 1.6rem;
   height: .41rem;
   line-height: .41rem;
-  background: #eee;
+  background-color: #fff;
   text-align: center;
   font-size: .14rem;
-  color: #666;
+  color: #64c400;
   border-radius: .05rem;
+  border: 1px solid #64c400;
 }
 .question .record-btn.active {
   background-color: #64c400;
@@ -1884,10 +1941,10 @@ background-image: url("../../icons-36-white.png");
   display: none;
   /* inline-block */
   position: fixed;
-  top: 54%;
+  top: 53.5%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   width: 1.6rem;
   height: .41rem;
   line-height: .39rem;
@@ -1929,9 +1986,10 @@ background-image: url("../../icons-36-white.png");
   width: 72%;
 }
 .question .answer-panel .answer p.analysis-text {
-  width: 60%;
+  width: 72%;
   margin-top: .03rem;
   color: #f2eded;
+  text-align: justify;
 }
 .question .tap-btn {
   width: 0.65rem;
@@ -1955,6 +2013,20 @@ background-image: url("../../icons-36-white.png");
 .question .tap-btn .icon-next {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+.question .bottom-checkAnswer-btn {
+  width: 90%;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 10px;
+  background-color: #64c400;
+  font-size: 16px;
+  color: #fff;
 }
 
 /* question end */
@@ -2022,14 +2094,32 @@ background-image: url("../../icons-36-white.png");
 
 /* result end */
 /* evaluation start */
-.evaluation .comments {
-  display: inline-block;
-  width: 92%;
+.evaluation .timeline-inner .timeline-item .time {
+  width: 30px;
 }
-.evaluation .comments-full {
-  display: none;
+.evaluation .timeline-inner .timeline-item .time .year {
+  font-size: 14px;
+  color: #00abfd;
+}
+.evaluation .timeline-inner .timeline-item .time .date {
+  font-size: 25px;
+  color: #00abfd;
 }
 
 /* evaluation end */
+/**
+ * iPhone 4/4s 
+ */
+@media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
+  .illy-img-list img {
+    width: 120px;
+    max-height: 120px;
+    /* mark! */
+  }
+
+  .question-text {
+    font-size: 14px;
+  }
+}
 
 /*# sourceMappingURL=homework.css.map */

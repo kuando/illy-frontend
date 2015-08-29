@@ -74,6 +74,7 @@ $taskList-img-height: 67px;
         margin-top: 70px; /* overwrite */
         padding: .12rem .06rem;
         position: relative;
+        border-radius: 3px;
 
         .silk-common {
             width: 100%;
@@ -114,8 +115,8 @@ $taskList-img-height: 67px;
                 margin-left: -30px;
                 text-align: center;
                 width: 60px;
-                font-size: .12rem;
-                color: #DFD5D5;
+                font-size: .14rem;
+                color: #ED6E41;
             }
         }
 

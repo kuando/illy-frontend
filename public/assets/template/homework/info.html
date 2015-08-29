@@ -4,24 +4,22 @@
 
         <ul class="yo-list yo-list-group">
             <li class="item" ms-if="title != ''">
-                <span class="mark">作业名称:</span>
-                <div class="flex">{{title}}</div>
+                <div class="flex tac">{{title}}</div>
             </li>
             <li class="item" ms-if="keyPoint != ''">
-                <span class="mark">知识重点:</span>
-                <div class="flex">{{keyPoint}}</div>
+                <div class="flex">知识重点:<br/>{{keyPoint | html}}</div>
             </li>
             <li class="item" ms-if="keyPointRecord != undefined">
-                <span class="mark">重点录音:</span>
-                <div class="flex">
+                <div class="flex tac">
 
                     <audio class="hide keyPointAudio">
                         您的浏览器不支持播放!
                     </audio>     
                     
                     <!-- 录音完毕或者后退到本题时显示 -->
-                    <div id="playRecord" class="playRecord record-btn" ms-class-1="playing: isPlaying==true" ms-on-tap="toggleRecord()"><span class="record-total-time">0</span>&quot<span ms-visible="!isPlaying">点击试听</span><span ms-visible="isPlaying">点击停止</span></div>
+                    <div id="playRecord" class="playRecord record-btn" ms-class-1="playing: isPlaying==true" ms-on-tap="toggleRecord()"><span class="record-total-time">0</span>&quot<span ms-visible="!isPlaying"></span><span ms-visible="isPlaying"></span></div>
 
+                    <span class="mark">点击播放课程重点录音:</span>
                 </div>
             </li>
         </ul>

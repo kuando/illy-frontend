@@ -125,7 +125,7 @@
     }
 
     .pageinfo {
-        text-align: center;
+        text-align: left;
 
         .like {
             width: .48rem;
@@ -144,6 +144,9 @@
         }
         .like-num-wrapper {
             margin: .1rem auto;
+            text-align: center;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: .2rem;
         }
         .like-num-update {
             /*color: $main-green;*/
@@ -154,11 +157,12 @@
         }
         .share, .visit {
             display: inline-block;
-            width: 45%;
             height: .3rem;
             line-height: .3rem;
-            background-color: #fff;
-            font-size: .16rem;
+            font-size: .14rem;
+            position: relative;
+            top: .2rem;
+            margin-right: .3rem;
 
             .icon {
                 width: .20rem;
@@ -172,6 +176,14 @@
             .icon-visit {
                 background-image: url(#{$img-dir}/iconfont-yuedu.png);
             }
+        }
+
+        .report {
+            float: right;
+            position: relative;
+            top: 23px;
+            font-size: .16rem;
+            color: $light-grey;
         }
 
     }

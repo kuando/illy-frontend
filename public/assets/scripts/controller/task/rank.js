@@ -33,7 +33,7 @@ define([], function() {
                     } else {
                         rank.avatar = 'http://resource.hizuoye.com/images/avatar/children/default1.png';
                     }
-                    rank.myRanks = res.rank;
+                    rank.myRank = res.rank;
                     rank.myScore = res.score;
                 },
                 error: function(res) {

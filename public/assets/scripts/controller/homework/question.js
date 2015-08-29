@@ -474,6 +474,16 @@ define([], function() {
                 question.hasNext = false;
             }
 
+            // 给active的项目加active Class, 用于做一些样式或者逻辑, 20140829
+            setTimeout(function() {
+                $('.yo-list').on('click', '.item', function() {
+                    if (!$(this).find('input').attr('disabled')) {
+                        $('.yo-list .item').removeClass('question-item-active');
+                        $(this).addClass('question-item-active');
+                    }
+                });
+            }, 100);
+
         }; // onEnter end
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

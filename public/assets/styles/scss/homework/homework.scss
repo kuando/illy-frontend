@@ -437,6 +437,7 @@ background-image: url("../../icons-36-white.png");
 
             .item-img {
                 width: $homework-list-icon-img-width;
+                max-width: 52px;
                 margin-left: .02rem;
                 margin-right: .10rem;
                 height: $hw_img_height;
@@ -555,8 +556,7 @@ background-image: url("../../icons-36-white.png");
         background-image: url(#{$img-dir}/playing.png);
         background-size: contain; 
         background-repeat: no-repeat;
-        background-position: -.08rem 0;
-        text-indent: 2em;
+        background-position: center;
 
         .record-total-time { /* 录音时长 */
             position: relative;
@@ -597,6 +597,18 @@ background-image: url("../../icons-36-white.png");
         padding: .05rem;
         margin: .05rem .05rem;
         text-align: center;
+        border-radius: 3px;
+
+    &.question-item-active {
+        background-color: $main-blue;
+
+        .yo-checked-c > input:checked + .type::after {
+            color: $main-blue;
+        }
+        .yo-checked-c > input:checked + .type {
+            background-color: #fff;
+        }
+    }
 
         div.flex {
             width: 100%;
@@ -607,7 +619,6 @@ background-image: url("../../icons-36-white.png");
             margin-bottom: .1rem;
             width: 100%;
             height: auto;
-            max-height: 120px; /* mark! */
         }
         .yo-checked {
             /*float: left;*/
@@ -634,6 +645,14 @@ background-image: url("../../icons-36-white.png");
 .question {
     text-align: left;
     background-color: whiteSmoke;
+
+    .yo-list .item { /* make it bigger, max-height was not needed */
+        min-height: .7rem;
+
+        .mark { /* for long text */
+            word-break: break-all;
+        }
+    }
 
     .progress-wrapper {
         height: .3rem;
@@ -671,13 +690,18 @@ background-image: url("../../icons-36-white.png");
     }
 
     .question-text {
-        padding: .05rem;
+        padding: .02rem .01rem;
         font-weight: bold;
-        font-size: .16rem;
+        font-size: .18rem;
         margin-left: .1rem;
         position: relative;
         top: -8px; /* mark, not good */
     }
+
+    @media all and (min-device-width: 768px) and (max-device-width: 1024px){ /* for big screen */
+        margin-bottom: 5%;
+    }
+
 
     .fill-in {
         .yo-input {
@@ -714,8 +738,8 @@ background-image: url("../../icons-36-white.png");
         position: fixed;
         top: 42%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
         width: .9rem;
         height: .9rem;
         background-image: url(#{$img-dir}/recording.gif);
@@ -734,8 +758,8 @@ background-image: url("../../icons-36-white.png");
         position: absolute;
         top: 42%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
         width: .9rem;
         height: .9rem;
         line-height: .9rem;
@@ -749,16 +773,17 @@ background-image: url("../../icons-36-white.png");
         position: fixed;
         top: 63%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
         width: 1.6rem;
         height: .41rem;
         line-height: .41rem;
-        background: #eee;
+        background-color: #fff;
         text-align: center;
         font-size: .14rem;
-        color: #666;
+        color: $main-green;
         border-radius: .05rem;
+        border: 1px solid $main-green;
     }
     .record-btn.active {
         background-color: $main-green;
@@ -797,10 +822,10 @@ background-image: url("../../icons-36-white.png");
     .record-tips {
         display: none; /* inline-block */
         position: fixed;
-        top: 54%;
+        top: 53.5%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
         width: 1.6rem;
         height: .41rem;
         line-height: .39rem;
@@ -845,9 +870,10 @@ background-image: url("../../icons-36-white.png");
             }
 
             p.analysis-text {
-                width: 60%;
+                width: 72%;
                 margin-top: .03rem;
                 color: #f2eded;
+                text-align: justify;
             }
         }
     }
@@ -877,6 +903,21 @@ background-image: url("../../icons-36-white.png");
             transform: rotate(90deg);
         }
 
+    }
+
+    .bottom-checkAnswer-btn {
+        width: 90%;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        bottom: 10px;
+        background-color: $main-green;
+        font-size: 16px;
+        color: #fff;
     }
 
 }
@@ -957,13 +998,40 @@ background-image: url("../../icons-36-white.png");
 
 /* evaluation start */
 .evaluation {
-    .comments {
-        display: inline-block;
-        width: 92%;
+    .timeline-wrapper {
+
     }
-    .comments-full {
-        display: none;
+    .timeline-inner {
+        .timeline-item {
+            .time {
+                width: 30px;
+                
+                .year {
+                    font-size: 14px;
+                    color: $main-blue;
+                }
+                .date {
+                    font-size: 25px;
+                    color: $main-blue;
+                }
+            }
+        }
     }
 }
 /* evaluation end */
+
+/**
+ * iPhone 4/4s 
+ */
+@media only screen
+and (min-device-width: 319px)
+and (max-device-height: 481px) {
+    .illy-img-list img {
+        width: 120px;
+        max-height: 120px;  /* mark! */
+    }
+    .question-text {
+        font-size: 14px;
+    }
+}
 

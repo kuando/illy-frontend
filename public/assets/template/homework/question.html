@@ -19,7 +19,7 @@
 
     <!-- 公用题干 -->
     <p class="question-text">
-        题干:{{exercise.question}} <br/>  
+        {{exercise.question}} ? <br/>  
         <span class="description" ms-if=" exercise.eType == 0 && !!exercise.description ">题目说明:{{exercise.description}}</span>
     </p>
     <!-- 公用题干 -->
@@ -33,7 +33,7 @@
                 {{item.title}}. {{item.content}} 
             </span>
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -42,12 +42,12 @@
 
     <!-- 图片选择题-->
     <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1">
-        <label class="item item-active" ms-repeat-item="exercise.choices">
+        <label class="item item-active" ms-class-1="question-item-active: item.title === userAnswer" ms-repeat-item="exercise.choices">
             <div class="mark flex">
                 <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
             </div>
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -76,7 +76,8 @@
         <div class="timeout-mask">10</div>
 
         <!-- 仅首次进入本题且未成功录制一次录音时显示-->
-        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">开始录制</div>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">请按住录音</div>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn && isRecording === true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开停止</div>
 
         <!-- 后退的页面不应该显示重新录制 -->
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) " ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">重新录制</div>
@@ -94,8 +95,11 @@
     <!-- 题目主干渲染区, 依据不同类型 end -->
 
     <!-- 检查按钮, 仅在没做过这题时渲染 -->
-    <div ms-click="checkAnswer()" ms-if="localAnswers.length < currentId " class="tap-btn next" ms-class-1="hide: isRecording==true">
-        <span class="icon yo-ico">&#xf078;</span>
+    <!--<div ms-click="checkAnswer()" ms-if="localAnswers.length < currentId " class="tap-btn next" ms-class-1="hide: isRecording==true">-->
+        <!--<span class="icon yo-ico">&#xf078;</span>-->
+    <!--</div>-->
+    <div ms-click="checkAnswer()" ms-if="localAnswers.length < currentId " class="bottom-checkAnswer-btn" ms-class-1="hide: isRecording==true">
+        检查答案
     </div>
     <!-- 检查按钮 -->
 
@@ -103,9 +107,9 @@
     <!-- 显示与否的罗辑， 1.先看是不是做过了这题，再看是不是点击了检查按钮! 2. 本地保存的题目数量大于或者等于当前题就说明做过了当前题 -->
     <div class="answer-panel" ms-class="wrong:right != true" ms-visible=" (localAnswers.length >= currentId)">
         <div class="answer" ms-if="exercise.eType != 3">
-            <span class="right" ms-if="right">正确! </span>
-            <span class="right" ms-if="!right">错误! </span>
-            <p class="analysis-text" ms-if="exercise.analysis != ''">解析: {{exercise.analysis}}</p>
+            <span class="right" ms-if="right">正确!</span>
+            <span class="right" ms-if="!right">错误!</span>
+            <p class="analysis-text" ms-if="exercise.analysis != ''">你的答案为{{userAnswer}}, 正确答案为: {{exercise.answer}}<br/> 解析: {{exercise.analysis}}</p>
         </div>
         <div class="answer" ms-if="exercise.eType == 3">
             <span class="save">本题完毕， 请继续操作!</span>

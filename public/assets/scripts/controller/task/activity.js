@@ -14,6 +14,7 @@ define([], function() {
     var token = avalon.illyGlobal.token;
 
     var resourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images";
+
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
 
@@ -130,6 +131,7 @@ define([], function() {
         },
 
         scrollTop: 0, // remember the scrollTop position
+        shareMaskShow: true,
         showShareMask: function() {
             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
             activity.scrollTop = scrollTop; // remember the scrollTop position

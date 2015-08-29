@@ -91,25 +91,26 @@ define([], function() {
             info.workType = type;
             var _id = params.homeworkId;
             info.fetchDataForDetailCtrl(_id, type); // 分为两种，作业和预习, 更加灵活，便于扩充
-            setTimeout(function() {
-                // 设置好录音时间
-                var audio = avalon.$('.keyPointAudio');
-                var duration = audio && audio.duration;
-                info.duration = duration;
-                var time = avalon.$('.info .record-total-time');
-                time && ( time.innerHTML = parseInt(duration, 10) || 0 );
-            }, 2000);
 
             setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
-                if (info.keyPointRecord != '' || info.keyPointRecord != undefined) {
+                if (info.keyPointRecord !== '' || info.keyPointRecord !== undefined) {
                     var keyPointAudio = avalon.$('.info .keyPointAudio');
-                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord);
+                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
                 } 
                 //else {
                 //    avalon.$('.info .keyPointAudio').getAttribute('src');
                 //    avalon.$('.keyPointAudio').getAttribute('src');
                 //}
             }, 500);
+
+            setTimeout(function() {
+                // 设置好录音时间
+                var audio = avalon.$('.keyPointAudio');
+                var duration = audio && audio.duration;
+                info.duration = duration;
+                var time = avalon.$('.info .record-total-time');
+                time && ( time.innerHTML = parseInt(duration, 10) || 0 ); /* jshint ignore:line */
+            }, 2000);
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
