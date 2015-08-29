@@ -13,7 +13,7 @@ define([], function() {
     var list = avalon.define({
 
         $id: "list",
-        noContent: true,
+        hasContent: false,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         showLoader: true, // only show loader in the first time
         homework: [], // 作业数据
@@ -38,8 +38,8 @@ define([], function() {
                     list[type] = lists; //key ! fetch data
                     //list.isLoading = false;
                     if (lists.length !== 0) {
-                        list.noContent = false;
-                    }
+                        list.hasContent = true;
+                    } else 
                 },
                 error: function(res) {
                     console.log("homework list ajax error" + res);

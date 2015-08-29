@@ -708,6 +708,18 @@ a {
   vertical-align: top;
 }
 
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
 /* float */
 .fl {
   float: left;
@@ -756,7 +768,7 @@ ul, .unstyled {
 }
 
 .show {
-  display: inline-block;
+  display: block !important;
 }
 
 .invisible {
@@ -1753,6 +1765,8 @@ a, a:hover {
   background-color: rgba(6, 6, 6, 0.9);
   padding: .3rem;
   padding-top: .2rem;
+  min-height: 8rem;
+  z-index: 99999;
 }
 .detail .shareMask img {
   margin: 0 auto;
@@ -1763,7 +1777,7 @@ a, a:hover {
   margin-bottom: 30px;
 }
 .detail .shareMask img.shareMaskBottom {
-  margin-top: 80px;
+  margin-top: 0;
 }
 .detail .shareMask .iKnow {
   width: 100%;

@@ -710,6 +710,18 @@ a {
   vertical-align: top;
 }
 
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
 /* float */
 .fl {
   float: left;
@@ -758,7 +770,7 @@ ul, .unstyled {
 }
 
 .show {
-  display: inline-block;
+  display: block !important;
 }
 
 .invisible {
@@ -1215,13 +1227,15 @@ select {
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 0;
   left: 0;
   bottom: 0;
   background-color: #fff;
-  padding-top: 50%;
+  min-height: 8rem;
 }
 
 .item1 {
+  margin-top: 50%;
   height: 150px;
   position: relative;
   padding: 30px;
@@ -1529,6 +1543,8 @@ select {
   background-color: rgba(6, 6, 6, 0.9);
   padding: .3rem;
   padding-top: .2rem;
+  min-height: 8rem;
+  z-index: 99999;
 }
 .detail .shareMask img {
   margin: 0 auto;
@@ -1539,7 +1555,7 @@ select {
   margin-bottom: 30px;
 }
 .detail .shareMask img.shareMaskBottom {
-  margin-top: 80px;
+  margin-top: 0;
 }
 .detail .shareMask .iKnow {
   width: 100%;
