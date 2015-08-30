@@ -420,6 +420,7 @@ background-image: url("../../icons-36-white.png");
 
     .item {
         width: 100%;
+        background-color: #fff;
         text-align: left;
         margin-left: .02rem;
         border-top: 1px solid #ddd;
@@ -523,12 +524,13 @@ background-image: url("../../icons-36-white.png");
 
     audio {
         width: 2rem;
-        height: 150px;
         font-size: 16px;
     }
 
     .keyPointRecord-area {
         width: 100%;
+        background-color: #fff;
+        padding: 10px;
     }
 
 }
@@ -1067,7 +1069,6 @@ background-image: url("../../icons-36-white.png");
 and (min-device-width: 319px)
 and (max-device-height: 481px) {
     .illy-img-list img {
-        width: 100px!important;
         height: 100px!important;
     }
     .question-text {
