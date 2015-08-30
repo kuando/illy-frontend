@@ -527,6 +527,10 @@ background-image: url("../../icons-36-white.png");
         font-size: 16px;
     }
 
+    .keyPointRecord-area {
+        width: 100%;
+    }
+
 }
 .panel {
     text-align: left;
@@ -548,7 +552,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord { // image of record to play
-        top: 53.5%;
+        top: 54%;
         font-size: .14rem;
         color: $light-grey;
         height: .6rem;
@@ -811,7 +815,7 @@ background-image: url("../../icons-36-white.png");
         transform: translateX(-50%) translateY(-50%);
         width: 1.6rem;
         height: .41rem;
-        line-height: .41rem;
+        line-height: .39rem;
         background-color: #fff;
         text-align: center;
         font-size: .14rem;
@@ -826,7 +830,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord { // image of record to play
-        top: 53.5%;
+        top: 54%;
         font-size: .14rem;
         color: #7c7474;
         background-image: url(#{$img-dir}/playing.png);
@@ -857,13 +861,13 @@ background-image: url("../../icons-36-white.png");
     .record-tips {
         display: none; /* inline-block */
         position: fixed;
-        top: 53.5%;
+        top: 54%;
         left: 50%;
         -webkit-transform: translateX(-50%) translateY(-50%);
         transform: translateX(-50%) translateY(-50%);
         width: 1.6rem;
         height: .41rem;
-        line-height: .39rem;
+        line-height: .37rem;
         background: #eee;
         text-align: center;
         font-size: .12rem;
@@ -1063,8 +1067,8 @@ background-image: url("../../icons-36-white.png");
 and (min-device-width: 319px)
 and (max-device-height: 481px) {
     .illy-img-list img {
-        width: 100px;
-        height: 100px;  /* mark! */
+        width: 100px!important;
+        height: 100px!important;
     }
     .question-text {
         font-size: 14px!important;
@@ -1073,6 +1077,9 @@ and (max-device-height: 481px) {
         height: 38px!important;
         line-height: 38px!important;
         bottom: 8px!important;
+    }
+    .question .record-tips {
+       top: 51%!important;
     }
 }
 
