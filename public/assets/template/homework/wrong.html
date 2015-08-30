@@ -12,7 +12,7 @@
 
     <!-- 公用题干 -->
     <p class="question-text">
-        题干:{{exercise.question}} <br/>  
+        {{exercise.question}} <br/>  
         <span class="description" ms-if=" exercise.eType == 0 && !!exercise.description ">题目说明:{{exercise.description}}</span>
     </p>
     <!-- 公用题干 -->
@@ -26,7 +26,7 @@
                 {{item.title}}. {{item.content}} 
             </span>
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer "  ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -39,8 +39,9 @@
             <span class="mark flex">
                 <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
             </span>
+            {{item.title}}
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer "  ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -49,7 +50,9 @@
 
     <!-- 填空题 -->
     <div class="fill-in wrong-fill-in" ms-if="exercise.eType == 2">
-        <p>您填写的答案为：{{localAnswers[currentId - 1]}}</p>
+        <label class="item item-input">
+            <p class="answered-text">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
+        </label>
     </div>
     <!-- 填空题 -->
 

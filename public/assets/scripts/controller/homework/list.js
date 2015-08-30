@@ -2,18 +2,19 @@ define([], function() {
     
     //var limit = 9; // 一次抓取多少数据
 
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
-    var token = avalon.illyGlobal.token;
-
-    if (!token) {
-        alert("no token error");
-        return;
+    // get config, apiBaseUrl
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    
+    // get config, token
+    var token = avalon.illyGlobal.token; 
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
     }
 
     var list = avalon.define({
 
         $id: "list",
-        hasContent: false,
+        noContent: true,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         showLoader: true, // only show loader in the first time
         homework: [], // 作业数据
@@ -38,8 +39,8 @@ define([], function() {
                     list[type] = lists; //key ! fetch data
                     //list.isLoading = false;
                     if (lists.length !== 0) {
-                        list.hasContent = true;
-                    } else 
+                        list.noContent = false;
+                    }
                 },
                 error: function(res) {
                     console.log("homework list ajax error" + res);

@@ -1,11 +1,12 @@
 define([], function() {
     
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
-    var token = avalon.illyGlobal.token;
-
-    if (!token) {
-        alert("no token error");
-        return;
+    // get config, apiBaseUrl
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    
+    // get config, token
+    var token = avalon.illyGlobal.token; 
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
     }
 
     // 每页大小

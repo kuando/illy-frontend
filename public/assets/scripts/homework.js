@@ -1,13 +1,13 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState", "./http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
-    
+
     //====================== global config area start **********************//
 
     // screen splash show time config
     //avalon.splashShowTime = 666; // ms, used in app.js
-    
+
     // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
     var cachePage = [];
-        
+
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
@@ -15,7 +15,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     var token = localStorage.getItem('illy-token');
 
     // global view change animation, from animation.css, the custom one
-    var global_viewload_animation_name = "a-bounceinR"; 
+    var global_viewload_animation_name = "a-bounceinR";
 
     // global config, always show loader when enter the view 
     var global_always_show_loader = true;
@@ -48,11 +48,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // avalon global stuff when app init
     avalon.illyGlobal = {
 
-        viewani           : global_viewload_animation_name,
-        token             : token,
-        apiBaseUrl        : apiBaseUrl,
-        question_view_ani : 'a-bounceinL',
-        noTokenHandler    : function() {
+        viewani: global_viewload_animation_name,
+        token: token,
+        apiBaseUrl: apiBaseUrl,
+        question_view_ani: 'a-bounceinL',
+        noTokenHandler: function() {
             alert("对不起，本系统仅供内部使用！");
         }
 
@@ -73,6 +73,95 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     };
+
+    function doIsVisitedCheck(cacheContainer, callback) {
+
+        if (typeof cacheContainer === 'function') {
+            callback = cacheContainer;
+            cacheContainer = void 0;
+        }
+
+        var pageId = location.href.split("!")[1];
+        cacheContainer = cacheContainer || cachePage;
+        cacheContainer.push(pageId);
+        // var loader = document.querySelector('.loader');
+        var isVisited = false;
+        for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
+            if (cachePage[i] === pageId) {
+                // visited = true;
+                isVisited = true;
+            }
+        }
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+        // avalon.vmodels.root[vmProptoSet] = isVisited;
+        return isVisited;
+    }
+
+    function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
+
+        if (typeof loader === 'function') { // deal with only one arguments and is callback
+            callback = loader;
+            loader = void 0;
+        }
+        loader = document.querySelector(loader || global_loader_className);
+        var showLoader = function() {
+            loader && (loader.style.display = '');
+        }; /* jshint ignore:line */
+        var always_show_loader = global_always_show_loader === true ? true : false;
+        // loader show logic
+        if (loader && always_show_loader) {
+            showLoader();
+        } else if (loader && !always_show_loader && !root.currentIsVisited) {
+            showLoader();
+        }
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+    }
+
+    function resetScrollbarWhenViewEnter() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    function getCurrentState() {
+        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
+        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
+        if (state2 === void 0) {
+            return state1;
+        } else {
+            return state2;
+        }
+    }
+
+    function setPageTitle() {
+        var currentState = root.currentState;
+        root.title = acTitle[currentState];
+    }
+
+    function loadingEndHandler(loader, callback) {
+        if (typeof loader === 'function') { // deal with only one arguments and is callback
+            callback = loader;
+            loader = void 0;
+        }
+        loader = document.querySelector(loader || global_loader_className);
+        var hideLoader = function() {
+            // for strong, need ()
+            loader && (loader.style.display = 'none'); /* jshint ignore:line */
+        };
+        if (global_loading_duration === void 0) {
+            global_loading_duration = 500;
+            console.log('WARNING: no global_loading_duration set!');
+        }
+        setTimeout(function() {
+            hideLoader();
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
+        }, global_loading_duration);
+    }
     /***** static method end *****/
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
@@ -87,7 +176,18 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         }, delay);
         avalon.badNetworkTimer = badNetworkTimer;
+        
+        root.$watch('currentState', function(changeState) {
+            if (changeState !== void 0) {
+                clearTimeout(badNetworkTimer);
+            }
+        });
     };
+
+    function unbindBadNetworkHandler(timer) {
+        timer = timer || avalon.badNetworkTimer;
+        timer && clearTimeout(timer); /* jshint ignore:line */
+    }
 
     /* wxsdk start */
 
@@ -115,41 +215,41 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                 nonceStr: nonceStr, // 必填，生成签名的随机串
                 signature: signature, // 必填，签名，见附录1
                 jsApiList: [
-                    'checkJsApi',
-                    'onMenuShareTimeline',
-                    'onMenuShareAppMessage',
-                    'onMenuShareQQ',
-                    'onMenuShareWeibo',
-                    'hideMenuItems',
-                    'showMenuItems',
-                    'hideAllNonBaseMenuItem',
-                    'showAllNonBaseMenuItem',
-                    'translateVoice',
-                    'startRecord',
-                    'stopRecord',
-                    'onRecordEnd',
-                    'playVoice',
-                    'pauseVoice',
-                    'stopVoice',
-                    'uploadVoice',
-                    'downloadVoice',
-                    'chooseImage',
-                    'previewImage',
-                    'uploadImage',
-                    'downloadImage',
-                    'getNetworkType',
-                    'openLocation',
-                    'getLocation',
-                    'hideOptionMenu',
-                    'showOptionMenu',
-                    'closeWindow',
-                    'scanQRCode',
-                    'chooseWXPay',
-                    'openProductSpecificView',
-                    'addCard',
-                    'chooseCard',
-                    'openCard'
-                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onRecordEnd',
+                        'playVoice',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'hideOptionMenu',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
         },
         error: function(res) {
@@ -182,17 +282,17 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
     //========================= bootstrap the app =========================// 
 
-    /* router start */
-
-    // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在body元素上
+    // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在html元素上
     var root = avalon.define({
         $id: "root",
+        namespace: 'homework', // module namespace, for global cachePrefix
         currentState: '',
         currentAction: '',
         currentIsVisited: false,
         title: "", // 每一页action bar的标题    
-        headerShow: false,
-        backBtnShow: false,
+        headerShow: false, // for header.tpl
+        backBtnShow: false, // for header.tpl
+        backHomeBtnShow: false, // for header.tpl
         back: function() { // has default back and can custom it
             var state = root.currentState;
             if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围
@@ -206,20 +306,107 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     });
-    root.$watch('currentState', function(newVal, oldVal) {
-        if (newVal !== void 0) {
-            if (newVal === 'list' || newVal === 'info' || newVal === 'mistakeList') {
+
+    root.$watch('currentState', function(currentState) {
+        if (currentState !== void 0) {
+
+            // headerShow logic 
+            if (currentState === 'list' || currentState === 'info' || currentState === 'mistakeList') {
                 root.headerShow = true;
             } else {
                 root.headerShow = false;
             }
-            if (newVal !== 'list' && newVal !== 'result') {
+
+            // backBtnShow logic 
+            if (currentState !== 'list' && currentState !== 'result') {
                 root.backBtnShow = true;
             } else {
                 root.backBtnShow = false;
             }
+
+            // backHomeBtnShow logic
+            if (currentState === 'list') {
+                root.backHomeBtnShow = false;
+            } else {
+                root.backHomeBtnShow = true;
+            }
+
         }
-    });
+    }); // end of root.currentState watcher
+
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction !== void 0) {
+            
+            switch (currentAction) {
+
+                case 'onError':
+
+                    avalon.log("Error!, Redirect to index!", arguments);
+                    avalon.router.go("/");
+
+                    break;
+                // -------------------- onError end -------------------- //
+                
+                case 'onBeforeUnload':
+
+                    break;
+                // -------------------- onBeforeUnload end -------------------- //
+
+                case 'onUnload':
+
+                    break;
+                // -------------------- onUnload end -------------------- //
+
+                case 'onload':
+
+                    // ====== reset scroll bar ====== //
+                    if (global_always_reset_scrollbar) {
+                        resetScrollbarWhenViewEnter();
+                    }
+                    // ====== reset scroll bar ====== //
+
+                    // update current state ====== //          
+                    root.currentState = getCurrentState();
+                    // state2 === void 0 ? root.currentState = state1 : root.currentState = state2; /* jshint ignore:line */
+                    // update current state ====== //
+
+                    // ====== set action bar title in page ====== //          
+                    setPageTitle();
+                    // ====== set action bar title in page ====== //
+
+                    // ====== remove loader and unbind bad network handler ====== //
+                    // next view loaded, remove loader && badNetworkHandler          
+                    loadingEndHandler(unbindBadNetworkHandler);
+                    // ====== remove loader and unbind bad network handler ====== //
+
+                    // ====== add view enter animation ====== //
+                    // var view = document.querySelector('[avalonctrl='+ root.currentState + ']');
+                    // for strong
+                    // view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
+                    // ====== add view enter animation ====== //
+
+                    break;
+                // -------------------- onload end -------------------- //
+
+                case 'onBegin':
+
+                    // ====== view visit statistical ====== //          
+                    avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
+                    // ====== view visit statistical ====== // 
+
+                    // ====== loader show and bind network handler ====== //         
+                    loadingBeginHandler(bindBadNetworkHandler);
+                    // ====== loader show and bind network handler ====== //
+                    
+                    break;
+                // -------------------- onBegin end -------------------- //
+
+            } // end of root.currentAction switch
+
+        }
+    }); // end of root.currentAction watcher
+
+    /* router start */
 
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("app", { // app.js这个控制器接管整个应用控制权
@@ -227,10 +414,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
             //"splash@": {
-                //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
+            //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
             //},
             //"loading@": {
-                //templateUrl: "assets/template/loading.html", // 指定模板地址
+            //templateUrl: "assets/template/loading.html", // 指定模板地址
             //},
             "header@": {
                 templateUrl: "assets/template/homework/header.html", // 指定模板地址
@@ -240,7 +427,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                 controllerUrl: "scripts/controller/homework/app.js", // 指定控制器地址
             }
             //,"footer@": { // 视图名字的语法请仔细查阅文档
-                //templateUrl: "assets/template/footer.html", // 指定模板地址
+            //templateUrl: "assets/template/footer.html", // 指定模板地址
             //}
         }
     })
@@ -250,9 +437,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             "": {
                 templateUrl: "assets/template/homework/list.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/list.js" // 指定控制器地址
-                //ignoreChange: function(changeType) { 
+                    //ignoreChange: function(changeType) { 
                     //return !!changeType;
-                //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
+                    //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
             }
         }
     })
@@ -345,6 +532,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     //        }
     //    }
     //})
+    //
+    
+    /* router end */
+    
+    /* state config start */
 
     /*
      *  @interface avalon.state.config 全局配置
@@ -358,171 +550,60 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
      *  @param {Node} config.onViewEnter.arguments[0] 新视图节点
      *  @param {Node} config.onViewEnter.arguments[1] 旧的节点
      *  @param {Function} config.onError 出错的回调，this指向对应的state，第一个参数是一个object，object.type表示出错的类型，比如view表示加载出错，object.name则对应出错的view name，object.xhr则是当使用默认模板加载器的时候的httpRequest对象，第二个参数是对应的state
-    */
+     */
 
     // 每次view载入都会执行的回调，适合来做一些统一操作
-    avalon.state.config({ 
+    avalon.state.config({
         onError: function() {
+
             root.currentAction = 'onError';
-            avalon.log("Error!, Redirect to index!", arguments);
-            avalon.router.go("/");
-        }, 
+
+        },
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
+
             root.currentAction = 'onBeforeUnload';
+
         },
         onUnload: function() { // url变化时触发
+
             root.currentAction = 'onUnload';
+
         },
         onBegin: function() {
 
             root.currentAction = 'onBegin';
-            // ====== view visit statistical ====== //
-            function doIsVisitedCheck(cacheContainer, callback) { 
 
-                if (typeof cacheContainer === 'function') {
-                    callback = cacheContainer;
-                    cacheContainer = void 0;
-                }
-
-                var pageId = location.href.split("!")[1];
-                cacheContainer = cacheContainer || cachePage;
-                cacheContainer.push(pageId);
-                // var loader = document.querySelector('.loader');
-                var isVisited = false;
-                for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-                    if (cachePage[i] === pageId) {
-                        // visited = true;
-                        isVisited = true;
-                    }
-                }
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-                // avalon.vmodels.root[vmProptoSet] = isVisited;
-                return isVisited;
-            }
-            avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
-            // ====== view visit statistical ====== // 
-             
-            // ====== loader show and bind network handler ====== //
-            function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
-
-                if (typeof loader === 'function') { // deal with only one arguments and is callback
-                    callback = loader;
-                    loader = void 0;
-                }
-                loader = document.querySelector(loader || global_loader_className);
-                var showLoader = function () { loader && (loader.style.display = ''); }; /* jshint ignore:line */
-                var always_show_loader = global_always_show_loader === true ? true : false;
-                 // loader show logic
-                if (loader && always_show_loader) {
-                    showLoader();
-                } else if (loader && !always_show_loader && !root.currentIsVisited) {
-                    showLoader();
-                }
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-            }
-            loadingBeginHandler(bindBadNetworkHandler);
-            // ====== loader show and bind network handler ====== //
-            
         },
         onLoad: function() { // 切换完成并成功
 
             root.currentAction = 'onload';
-            // ====== reset scroll bar ====== //
-            function resetScrollbarWhenViewEnter() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
-            if (global_always_reset_scrollbar) {
-                resetScrollbarWhenViewEnter();
-            }
-            // ====== reset scroll bar ====== //
 
-            // update current state ====== //
-            function getCurrentState() {
-                var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
-                var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-                if (state2 === void 0) {
-                    return state1;
-                } else {
-                    return state2;
-                }
-            }
-            root.currentState = getCurrentState();
-            // state2 === void 0 ? root.currentState = state1 : root.currentState = state2; /* jshint ignore:line */
-            // update current state ====== //
 
-            // ====== set action bar title in page ====== //
-            function setPageTitle() {
-                var currentState = root.currentState;
-                root.title = acTitle[currentState];
-            }
-            setPageTitle();
-            // ====== set action bar title in page ====== //
+        }
+        //,onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
+        //    root.currentAction = 'onViewEnter';
 
-            // ====== remove loader and unbind bad network handler ====== //
-            // next view loaded, remove loader && badNetworkHandler
-            function unbindBadNetworkHandler(timer) {
-                timer = timer || avalon.badNetworkTimer;
-                timer && clearTimeout(timer); /* jshint ignore:line */ 
-            }
-            function loadingEndHandler(loader, callback) {
-                if (typeof loader === 'function') { // deal with only one arguments and is callback
-                    callback = loader;
-                    loader = void 0;
-                }
-                loader = document.querySelector(loader || global_loader_className);
-                var hideLoader = function() {
-                    // for strong, need ()
-                    loader && (loader.style.display = 'none'); /* jshint ignore:line */
-                };
-                if (global_loading_duration === void 0) {
-                    global_loading_duration = 500;
-                    console.log('WARNING: no global_loading_duration set!');
-                }
-                setTimeout(function() {
-                    hideLoader();
-                    if (callback && typeof callback === 'function') {
-                        callback();
-                    }
-                }, global_loading_duration);   
-            }
-            loadingEndHandler(unbindBadNetworkHandler);
+        //avalon(oldNode).animate({
+        //    marginLeft: "-100%"
+        //}, 500, "easein", function() {
+        //    oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
+        //})
+        //} 
+    }); 
 
-            // ====== remove loader and unbind bad network handler ====== //
-
-            // ====== add view enter animation ====== //
-            // var view = document.querySelector('[avalonctrl='+ root.currentState + ']');
-            // for strong
-            // view && view.classList.add(avalon.illyGlobal && avalon.illyGlobal.viewani); /* jshint ignore:line */
-            // ====== add view enter animation ====== //
-
-        },
-        onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
-            root.currentAction = 'onViewEnter';
-            //avalon(oldNode).animate({
-            //    marginLeft: "-100%"
-            //}, 500, "easein", function() {
-            //    oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
-            //})
-        } 
-    });
-
-    /* router end */
-
+    /* state config end */
+    
+    // exports 
     return {
         init: function() { // init router and bootstrap the app
             avalon.log("init to bootstrap the app!");
             avalon.history.start({
                 // basepath: "/mmRouter",
                 fireAnchor: false
-                //,routeElementJudger: function(ele, href) {
-                //    avalon.log(arguments);
-                //    //return href;
-                //}
+                    //,routeElementJudger: function(ele, href) {
+                    //    avalon.log(arguments);
+                    //    //return href;
+                    //}
             });
             //go!!!!!!!!!
             avalon.scan();
@@ -530,7 +611,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             // APP inner performance listener start, avalon take charge of everything and start to init the app
             avalon.appInitTime = Date.now();
         }
-    };
+    }; // end of exports
 
 });
-

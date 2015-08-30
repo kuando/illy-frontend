@@ -148,8 +148,10 @@ define([], function() {
                             // 不管成功与否，前台界面至少先更新
                             article.shareMaskShow = false;
                             article.shareCount++;
-                            article.isShared = true;
-                            article.updateShare();
+                            if (article.isShared === false) {
+                                article.isShared = true;
+                                article.updateShare();
+                            }
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数

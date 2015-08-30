@@ -46,6 +46,7 @@
             <div class="mark flex">
                 <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
             </div>
+            {{item.title}}
             <div class="yo-checked yo-checked-c">
                 <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
@@ -57,10 +58,10 @@
     <!-- 填空题 -->
     <div class="fill-in yo-list" ms-if="exercise.eType == 2">
         <label class="item item-input">
-            <textarea class="yo-input" ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
+            <textarea class="yo-input fill-in-input" ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
 
             </textarea>
-            <p class="analysis" ms-visible="localAnswers[currentId - 1]">您填写的答案为：{{localAnswers[currentId - 1]}}</p>
+            <p class="answered-text" ms-visible="localAnswers[currentId - 1]">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
         </label>
     </div>
     <!-- 填空题 -->
@@ -76,12 +77,12 @@
         <div class="timeout-mask">10</div>
 
         <!-- 仅首次进入本题且未成功录制一次录音时显示-->
-        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">请按住录音</div>
-        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn && isRecording === true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开停止</div>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">按住开始录制</div>
+        <div id="startRecord" class="record-btn" ms-class="active:isRecording==true" ms-if="!showPlayRecordBtn && isRecording === true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开停止录制</div>
 
         <!-- 后退的页面不应该显示重新录制 -->
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) " ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">按住重新录制</div>
-        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) && isRecording == true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开停止录制</div>
+        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) && isRecording == true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开放弃重录</div>
 
         <!-- 录音完毕或者后退到本题时显示 -->
         <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-class-2="playing: isPlaying==true" ms-on-tap="togglePlayRecord()" ms-visible="showPlayRecordBtn && userAnswer != ''"><span class="record-total-time">{{duration}}</span><i class="second-symbol">&quot</i><span ms-visible="isPlaying!=true">点击试听</span><span ms-visible="isPlaying==true">点击停止</span></div>

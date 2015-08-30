@@ -300,7 +300,7 @@ define([], function() {
                 return;
             }
             if (question.userAnswer === '') {
-                alert("请选择至少一个答案！"); 
+                alert("请至少给出一个答案！"); 
                 return; 
             }
             
@@ -434,8 +434,13 @@ define([], function() {
             // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
+            // no exercise, error go index, report reason!
+            if (exercises.length === 0) { 
+                console.log('fetch no exercise error! maybe because back from mall! or get in directly');
+                avalon.router.go('app.list'); 
+            }
             question.exercise = exercises[id]; // yes
-
+            
             // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
             if (question.exercise.eType === 3) {
                 var localAnswerObj = question.localAnswers[question.currentId - 1] || {localId: '', duration: 0};

@@ -1,6 +1,13 @@
 define([], function() {
 
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com';
+    // get config, apiBaseUrl
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    
+    // get config, token
+    var token = avalon.illyGlobal.token; 
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     // override the global back method, only with btn in header
     var back = function back() {
@@ -66,7 +73,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + type + '/' + detail.homeworkId + '/performance',
                 headers: {
-                    Authorization: 'Bearer ' + avalon.illyGlobal.token
+                    Authorization: 'Bearer ' + token
                 },
                 data: {
                     _id: avalon.getPureModel('detail').homeworkId,

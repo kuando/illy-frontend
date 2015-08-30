@@ -1,6 +1,13 @@
 define([], function() {
 
-    var apiBaseUrl =  avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    // get config, apiBaseUrl
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    
+    // get config, token
+    var token = avalon.illyGlobal.token; 
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     // 作业详情控制器
     var mistake = avalon.define({

@@ -759,7 +759,7 @@ ul, .unstyled {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .hidden {
@@ -1839,8 +1839,8 @@ a, a:hover {
 .detail .pageinfo .report {
   float: right;
   position: relative;
-  top: 23px;
-  font-size: .16rem;
+  top: 24px;
+  font-size: .14rem;
   color: #999999;
 }
 

@@ -252,11 +252,12 @@ define([], function() {
                         imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
+                            activity.shareMaskShow = false;
                             activity.shareCount++;
                             if (activity.isShared === false) {
                                 activity.isShared = true;
+                                activity.updateShare();
                             }
-                            activity.updateShare();
                         },
                         cancel: function() {
                             // 用户取消分享后执行的回调函数

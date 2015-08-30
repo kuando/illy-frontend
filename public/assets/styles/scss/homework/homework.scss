@@ -548,9 +548,9 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord { // image of record to play
-        top: 54%;
+        top: 53.5%;
         font-size: .14rem;
-        color: #9d9292;
+        color: $light-grey;
         height: .6rem;
         line-height: .59rem;
         background-image: url(#{$img-dir}/playing.png);
@@ -599,16 +599,16 @@ background-image: url("../../icons-36-white.png");
         text-align: center;
         border-radius: 3px;
 
-    &.question-item-active {
-        background-color: $main-blue;
+    // &.question-item-active {
+    //     background-color: $main-blue;
 
-        .yo-checked-c > input:checked + .type::after {
-            color: $main-blue;
-        }
-        .yo-checked-c > input:checked + .type {
-            background-color: #fff;
-        }
-    }
+    //     .yo-checked-c > input:checked + .type::after {
+    //         color: $main-blue;
+    //     }
+    //     .yo-checked-c > input:checked + .type {
+    //         background-color: #fff;
+    //     }
+    // }
 
         div.flex {
             width: 100%;
@@ -643,22 +643,52 @@ background-image: url("../../icons-36-white.png");
 }
 
 .question {
+    -webkit-user-select: none;
+    user-select: none;
     text-align: left;
     background-color: whiteSmoke;
 
     .yo-list .item { /* make it bigger, max-height was not needed */
-        min-height: .7rem;
+        min-height: .6rem;
+        margin-bottom: .05rem;
+        border-radius: 3px;
+
+        &.question-item-active { /* active state ui */
+            background-color: $main-blue;
+            color: #fff;
+
+            .yo-checked-c > input:checked + .type::after {
+                color: $main-blue;
+            }
+            .yo-checked-c > input:checked + .type {
+                background-color: #fff;
+            }
+        }
 
         .mark { /* for long text */
             word-break: break-all;
         }
     }
 
+    .fill-in { /* fill-in Type question's border width */
+        label {
+            padding: .02rem; /* like border effect */
+        }
+
+        .fill-in-input {
+            padding: .1rem;
+        }
+
+        .answered-text {
+            padding-left: 10px;
+        }
+    }
+
     .progress-wrapper {
         height: .3rem;
         line-height: .3rem;
-        padding-left: .05rem;
-        padding-right: .05rem;
+        padding-left: .1rem;
+        padding-right: .1rem;
 
         .progress-outer {
             height: $progress-height;
@@ -792,7 +822,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .playRecord { // image of record to play
-        top: 54%;
+        top: 53.5%;
         font-size: .14rem;
         color: #7c7474;
         background-image: url(#{$img-dir}/playing.png);
@@ -875,6 +905,7 @@ background-image: url("../../icons-36-white.png");
                 margin-top: .03rem;
                 color: #f2eded;
                 text-align: justify;
+                line-height: 1.3;
             }
         }
     }
@@ -911,7 +942,7 @@ background-image: url("../../icons-36-white.png");
         height: 44px;
         line-height: 44px;
         text-align: center;
-        position: absolute;
+        position: fixed;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
