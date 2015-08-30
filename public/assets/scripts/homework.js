@@ -40,7 +40,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
         'info': '作业详情',
         'question': '题目详情',
         'result': '作业结果',
-        'mistake': '错题列表',
+        'mistakeList': '错题列表',
         'wrong': '错题详情',
         'evaluation': '课堂表现'
     };
@@ -176,7 +176,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         }, delay);
         avalon.badNetworkTimer = badNetworkTimer;
-        
         root.$watch('currentState', function(changeState) {
             if (changeState !== void 0) {
                 clearTimeout(badNetworkTimer);
@@ -318,7 +317,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
 
             // backBtnShow logic 
-            if (currentState !== 'list' && currentState !== 'result') {
+            if (currentState !== 'list' && currentState !== 'result' && currentState !== 'mistakeList') {
                 root.backBtnShow = true;
             } else {
                 root.backBtnShow = false;
@@ -493,7 +492,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             }
         }
     })
-    .state("app.mistake.list", { // mistake list
+    .state("app.mistake.mistakeList", { // mistake list
         url: "mistake/list", // 
         views: {
             "": {

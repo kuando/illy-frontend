@@ -19,7 +19,7 @@
 
     <!-- 公用题干 -->
     <p class="question-text">
-        {{exercise.question}} ? <br/>  
+        {{exercise.question}}<br/>  
         <span class="description" ms-if=" exercise.eType == 0 && !!exercise.description ">题目说明:{{exercise.description}}</span>
     </p>
     <!-- 公用题干 -->
@@ -58,7 +58,7 @@
     <!-- 填空题 -->
     <div class="fill-in yo-list" ms-if="exercise.eType == 2">
         <label class="item item-input">
-            <textarea class="yo-input fill-in-input" ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
+            <textarea class="yo-input fill-in-textarea" ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
 
             </textarea>
             <p class="answered-text" ms-visible="localAnswers[currentId - 1]">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
