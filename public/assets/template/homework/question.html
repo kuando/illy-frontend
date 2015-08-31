@@ -82,7 +82,7 @@
 
         <!-- 后退的页面不应该显示重新录制 -->
         <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) " ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">按住重新录制</div>
-        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) && isRecording == true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开放弃重录</div>
+        <div id="reStartRecord" class="record-btn" ms-class="active:isRecording==true" ms-if=" showPlayRecordBtn && (localAnswers.length < currentId) && isRecording == true" ms-on-touchstart="startRecord()" ms-on-touchend="stopRecord()" ms-on-touchcancel="stopRecord()" ms-on-touchleave="stopRecord()">松开停止重录</div>
 
         <!-- 录音完毕或者后退到本题时显示 -->
         <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-class-2="playing: isPlaying==true" ms-on-tap="togglePlayRecord()" ms-visible="showPlayRecordBtn && userAnswer != ''"><span class="record-total-time">{{duration}}</span><i class="second-symbol">&quot</i><span ms-visible="isPlaying!=true">点击试听</span><span ms-visible="isPlaying==true">点击停止</span></div>

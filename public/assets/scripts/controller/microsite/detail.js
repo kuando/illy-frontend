@@ -43,7 +43,7 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 success: function() {
-
+                    
                 },
                 error: function(res) {
                     console.log(res);
@@ -149,6 +149,7 @@ define([], function() {
                             detail.shareCount++;
                             detail.isShared = true;
                             detail.updateShare();
+                            detail.hideShareMask();
                         },
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数

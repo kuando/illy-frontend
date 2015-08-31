@@ -19,7 +19,7 @@ define([], function() {
         submit: function() { // core!!!
             mistake.exercises = [];
             alert("恭喜您，本次作业复习完毕!");
-            avalon.router.go('app.mistake.list');   
+            avalon.router.go('app.mistake.mistakeList');   
         } // end of submit
     });
 

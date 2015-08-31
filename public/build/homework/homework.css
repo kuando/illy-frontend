@@ -1575,7 +1575,7 @@ background-image: url("../../icons-36-white.png");
 /* list-item start */
 .item-wrapper {
   margin: .03rem;
-  margin-top: .15rem;
+  margin-top: .10rem;
 }
 .item-wrapper .item {
   width: 100%;
@@ -2124,16 +2124,120 @@ background-image: url("../../icons-36-white.png");
 
 /* result end */
 /* evaluation start */
+.evaluation .profile-wrapper {
+  position: relative;
+  /*background-color:  rgba(79, 74, 74, .1);   */
+  color: #FFF;
+  background-size: 100%;
+  background-position: center;
+  background-image: url(http://app.hizuoye.com/build/images/me-colorful-profile-bg.jpg);
+}
+.evaluation .profile-wrapper .inner-wrapper {
+  width: 100%;
+  height: 160px;
+}
+.evaluation .profile-wrapper .name {
+  text-align: center;
+  margin-top: -10px;
+  /*.icon-update {*/
+  /*width: .16rem;*/
+  /*height: .16rem;*/
+  /*background: url(http://app.hizuoye.com/build/images/iconfont-updateProfile.png) no-repeat center;*/
+  /*background-size: 100%;*/
+  /*position: relative;*/
+  /*top: -1px;*/
+  /*}*/
+}
+.evaluation .avatar-wrapper {
+  width: 100%;
+  padding: .15rem .20rem;
+  text-align: center;
+}
+.evaluation .avatar-wrapper img {
+  display: inline-block;
+  width: 90px;
+  max-height: 90px;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.evaluation .navigator-bar {
+  font-size: 14px;
+  margin-right: -1px;
+  overflow: hidden;
+}
+.evaluation .navigator-bar .go-homework, .evaluation .navigator-bar .go-mistake {
+  width: 50%;
+  float: left;
+  height: 44px;
+  color: #5c5454;
+  line-height: 44px;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+.evaluation .timeline-wrapper {
+  padding: .10rem;
+  padding-top: 0;
+  border-top: 3px solid #00abfd;
+}
+.evaluation .timeline-inner .timeline-item {
+  text-align: left;
+  position: relative;
+}
+.evaluation .timeline-inner .timeline-item .line {
+  width: 3px;
+  height: 100%;
+  background-color: #00abfd;
+  position: absolute;
+  left: 29%;
+  top: 0;
+}
 .evaluation .timeline-inner .timeline-item .time {
-  width: 30px;
+  width: 27%;
 }
 .evaluation .timeline-inner .timeline-item .time .year {
-  font-size: 14px;
+  font-size: 12px;
   color: #00abfd;
 }
 .evaluation .timeline-inner .timeline-item .time .date {
-  font-size: 25px;
+  font-size: 20px;
   color: #00abfd;
+}
+.evaluation .timeline-inner .timeline-item .right-info {
+  width: 62%;
+  margin-left: 9%;
+}
+.evaluation .timeline-inner .timeline-item .right-info img.avatar {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 24%;
+  top: 44px;
+}
+.evaluation .timeline-inner .timeline-item .right-info .evaluation-text {
+  font-size: 12px;
+  line-height: 1.7;
+  padding: .06rem;
+  border: 1px solid #00abfd;
+  border-radius: 3px;
+  position: relative;
+  background-color: #00abfd;
+  color: #fff;
+  margin-top: 35px;
+  max-height: 90px;
+  /* mark */
+  text-align: justify;
+}
+.evaluation .timeline-inner .timeline-item .right-info .evaluation-text:before {
+  position: absolute;
+  content: "\00a0";
+  width: 0px;
+  height: 0px;
+  border-width: 8px 18px 8px 0;
+  border-style: solid;
+  border-color: transparent #00abfd transparent transparent;
+  top: 15px;
+  left: -19px;
 }
 
 /* evaluation end */

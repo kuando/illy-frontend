@@ -1962,7 +1962,7 @@ select {
 
 .profile-wrapper {
   position: relative;
-  background-color: rbga(79, 74, 74, 0.1);
+  /*background-color:  rgba(79, 74, 74, .1);   */
   color: #FFF;
   background-size: 100%;
   background-position: center;
