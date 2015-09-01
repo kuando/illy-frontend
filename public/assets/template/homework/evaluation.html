@@ -6,10 +6,10 @@
 
             <div class="avatar-wrapper area">
                 <!--<img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" /> temp rm -->
-                <img width="90px" height="90px" src="http://resource.hizuoye.com/5563ebb4bde56ef26d97e3d3/GDwFHQfCBI8E8o0TR1jM5c9fAtTudZAPHyhlaAMhlbEPp4LhXF00J2-3cDrV_hz_?imageView2/1/w/200/h/200" alt="1000126">
+                <img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="displayName" />
             </div>
 
-            <div class="name">李达</div>
+            <div class="name">{{displayName}}</div>
 
         </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- item start -->
     <div class="timeline-wrapper">
         <ul class="timeline-inner">
-            <li class="timeline-item">
+            <li class="timeline-item" ms-repeat-item="lists">
                 <div class="time area">
                     <span class="year">2015</span>
                     <span class="date">08.06</span>
@@ -30,40 +30,9 @@
                 <div class="line"></div>
                 <div class="right-info area">
                     <img class="avatar" src="http://resource.hizuoye.com/images/avatar/children/default1.png" alt="teacher" />
+                    <div class="homework-title text-overflow">&lt&lt{{item.title}}&gt&gt</div>
                     <div class="evaluation-text">
-                        新学期，你的新概念学的很好，比上学期有了很大的进步，希望你
-                        继续努力，争取更大的进步，加油加油～～~
-                        新学期，你的新                    
-                    </div>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <div class="time area">
-                    <span class="year">2015</span>
-                    <span class="date">08.06</span>
-                </div>
-                <div class="line"></div>
-                <div class="right-info area">
-                    <img class="avatar" src="http://resource.hizuoye.com/images/avatar/children/default1.png" alt="teacher" />
-                    <div class="evaluation-text">
-                        新学期，你的新概念学的很好，比上学期有了很大的进步，希望你
-                        继续努力，争取更大的进步，加油加油～～~
-                        新学期，你的新                    
-                    </div>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <div class="time area">
-                    <span class="year">2015</span>
-                    <span class="date">08.06</span>
-                </div>
-                <div class="line"></div>
-                <div class="right-info area">
-                    <img class="avatar" src="http://resource.hizuoye.com/images/avatar/children/default1.png" alt="teacher" />
-                    <div class="evaluation-text">
-                        新学期，你的新概念学的很好，比上学期有了很大的进步，希望你
-                        继续努力，争取更大的进步，加油加油～～~
-                        新学期，你的新                    
+                        {{item.comment || '暂无老师评语, 老师有空会及时给出评价的, 请耐心等待哦～'}}
                     </div>
                 </div>
             </li>

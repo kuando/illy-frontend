@@ -1,5 +1,17 @@
 define([], function() {
 
+    // global config, apiBaseUrl
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
+
+    // token
+    var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
+
+    // defaultAvatarUrl
+    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
+
     // app ctrl take charge of everything...
     var app = avalon.define({
         $id: "app",
@@ -24,6 +36,39 @@ define([], function() {
         noClick: function() {
             app.yesOrNo = false;
             app.hideConfirm();
+        },
+
+        schoolName: '',
+        studentCount: 100,
+        displayName: '',
+        avatar: defaultAvatarUrl,
+        getUserInfo: function() {
+            $http.ajax({
+                url: apiBaseUrl + "profile",
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(json) {
+                    app.avatar = json.avatar !== void 0 ? json.avatar : defaultAvatarUrl;
+                    app.displayName = json.displayName;
+                    app.score = json.score;
+                }
+            });
+        },
+        getSchoolInfo: function() {
+            $http.ajax({
+                url: apiBaseUrl + "school",
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(json) {
+                    app.schoolName = json.school;
+                    avalon.vmodels.root.footerInfo = json.school + ' © ' + new Date().getFullYear();
+                    app.studentCount = json.studentCount || 100;
+                }
+            });
         }
     });
 
@@ -42,6 +87,7 @@ define([], function() {
             avalon.appTotalTime = avalon.appRenderedTime - avalon.appInitTime;
             // only first in will log
             (avalon.appTotalTime < 15000) && avalon.log('total of avalon rendered the page: ' + avalon.appTotalTime); /* jshint ignore:line */
+            app.getUserInfo();
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

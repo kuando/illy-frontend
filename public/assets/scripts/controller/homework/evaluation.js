@@ -3,6 +3,9 @@ define([], function() {
     // get config, apiBaseUrl
     var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     
+    var resourcePrefix = 'http://resource.hizuoye.com/';
+    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';
+    
     // get config, token
     var token = avalon.illyGlobal.token; 
     if (token === null) {
@@ -14,6 +17,8 @@ define([], function() {
     var evaluation = avalon.define({ // 教师评价评语列表
 
         $id: "evaluation",
+        avatar: '',
+        displayName: '',
         lists: [],
         visited: false,
         offset: 0,
@@ -29,7 +34,7 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(lists) {
-                    concat ? evaluation.lists.concat(lists) : evaluation.lists = lists;
+                    concat ? evaluation.lists.concat(lists) : evaluation.lists = lists; /* jshint ignore:line */
                 },
                 error: function(res) {
                     console.log("evaluation list ajax error" + res);
@@ -61,10 +66,18 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
 
-            evaluation.visited = avalon.vmodels.root.currentIsVisited;
-            evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; // otherwise, show it
+            avalon.vmodels.app.$watch('displayName', function(newVal) {
+                if (newVal !== void 0 || newVal !== '') {
+                    evaluation.avatar = resourcePrefix + avalon.vmodels.app.avatar + "?imageView2/1/w/200/h/200" || defaultAvatarUrl;
+                    evaluation.displayName = avalon.vmodels.app.displayName;
+                }
+            });
+
+            evaluation.visited = avalon.vmodels.root.currentIsVisited; 
+            // otherwise, show it
+            evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; /* jshint ignore:line */
             evaluation.fetchData();
             
         };

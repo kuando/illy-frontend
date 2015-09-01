@@ -2184,6 +2184,7 @@ background-image: url("../../icons-36-white.png");
 .evaluation .timeline-inner .timeline-item {
   text-align: left;
   position: relative;
+  padding-bottom: 5px;
 }
 .evaluation .timeline-inner .timeline-item .line {
   width: 3px;
@@ -2195,6 +2196,9 @@ background-image: url("../../icons-36-white.png");
 }
 .evaluation .timeline-inner .timeline-item .time {
   width: 27%;
+  /* 27% */
+  position: relative;
+  top: 10px;
 }
 .evaluation .timeline-inner .timeline-item .time .year {
   font-size: 12px;
@@ -2206,6 +2210,7 @@ background-image: url("../../icons-36-white.png");
 }
 .evaluation .timeline-inner .timeline-item .right-info {
   width: 62%;
+  /* 62% */
   margin-left: 9%;
 }
 .evaluation .timeline-inner .timeline-item .right-info img.avatar {
@@ -2213,7 +2218,15 @@ background-image: url("../../icons-36-white.png");
   height: 32px;
   position: absolute;
   left: 24%;
-  top: 44px;
+  top: 43px;
+  z-index: 100;
+}
+.evaluation .timeline-inner .timeline-item .right-info .homework-title {
+  width: 62%;
+  position: absolute;
+  top: .15rem;
+  font-size: .12rem;
+  color: #6C6969;
 }
 .evaluation .timeline-inner .timeline-item .right-info .evaluation-text {
   font-size: 12px;

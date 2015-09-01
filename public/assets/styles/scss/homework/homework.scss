@@ -8,6 +8,9 @@
 @import "../_normalize.scss";
 @import "../_common.scss";
 
+$evaluation-right-width: 62%;
+$evaluation-left-width: 27%;
+
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
@@ -1109,6 +1112,7 @@ background-image: url("../../icons-36-white.png");
         .timeline-item {
             text-align: left;
             position: relative;
+            padding-bottom: 5px;
 
             .line {
                 width: 3px;
@@ -1120,7 +1124,9 @@ background-image: url("../../icons-36-white.png");
             }
 
             .time {
-                width: 27%;
+                width: $evaluation-left-width; /* 27% */
+                position: relative;
+                top: 10px;
                 
                 .year {
                     font-size: 12px;
@@ -1133,7 +1139,7 @@ background-image: url("../../icons-36-white.png");
             }
 
             .right-info {
-                width: 62%;
+                width: $evaluation-right-width; /* 62% */
                 margin-left: 9%;
 
                 img.avatar {
@@ -1141,7 +1147,16 @@ background-image: url("../../icons-36-white.png");
                     height: 32px;
                     position: absolute;
                     left: 24%;
-                    top: 44px;
+                    top: 43px;
+                    z-index: $zIndex3;
+                }
+
+                .homework-title {
+                    width: $evaluation-right-width;
+                    position: absolute;
+                    top: .15rem;
+                    font-size: .12rem;
+                    color: #6C6969;
                 }
 
                 .evaluation-text {

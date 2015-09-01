@@ -12,11 +12,11 @@ define([], function() {
     // task ctrl take charge of everything...
     var task = avalon.define({ /* jshint ignore:line */
         $id: "task",
+        score: 88,
+        schoolName: '',
+        studentCount: 100,
         displayName: '',
         avatar: defaultAvatarUrl,
-        schoolName: '',
-        score: 88,
-        studentCount: 100,
         getUserInfo: function() {
             $http.ajax({
                 url: apiBaseUrl + "profile",

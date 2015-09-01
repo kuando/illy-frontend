@@ -24,6 +24,7 @@ define([], function() {
              *  通知父vm提交(父vm决定提交跳转逻辑，此处简化)
              */
 
+            wrong.localAnswers = []; // key! clear cache! bug fix in 201509012200
             avalon.vmodels.mistake.submit();
 
         } 
@@ -51,7 +52,6 @@ define([], function() {
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
-
 
             wrong.currentId = params.questionId;
             var exercises = avalon.vmodels.mistake.exercises;
