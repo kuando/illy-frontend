@@ -1832,6 +1832,7 @@ background-image: url("../../icons-36-white.png");
   display: inline-block;
   vertical-align: top;
   margin-top: 0.135rem;
+  overflow: hidden;
 }
 .question .progress-wrapper .progress-outer .progress-inner {
   height: 0.03rem;

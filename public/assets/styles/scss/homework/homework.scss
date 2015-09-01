@@ -707,6 +707,7 @@ background-image: url("../../icons-36-white.png");
             display: inline-block;
             vertical-align: top; // key!
             margin-top: (0.3 - $progress-height) / 2; // for vertical center
+            overflow: hidden;
 
             .progress-inner {
                 height: $progress-height;
