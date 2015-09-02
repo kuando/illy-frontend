@@ -15,7 +15,8 @@
         <div class="top-score-area area"><div class="top-score-text">{{score}}</div></div>
 
         <!-- task列表 start -->
-        <div class="global-noContent-tip-dark" ms-if="lists == ''">恭喜您，完成了所有任务，请等待新任务!赚积分，拿大奖!</div>
+        <div class="global-noContent-tip-dark" ms-if="noContent">恭喜您，完成了所有任务，请等待新任务!赚积分，拿大奖!</div>
+
         <div class="item area list-card" ms-repeat-item="lists">
             <div class="inner-box" ms-click="goSpecTask(this)" ms-attr-data-taskType="item.taskType" ms-attr-data-taskId="item._id" ms-attr-data-taskScoreAward="item.scoreAward">
                 <div class="left-icon area">
@@ -33,7 +34,7 @@
                             <!-- progress of task -->
                             <div class="progress-wrapper">
                                 <div class="progress-outer">
-                                    <div class="progress-inner" ms-css-width="( item.participants * 100 ) / studentCount + '%' "></div> 
+                                    <div class="progress-inner" ms-css-width=" ( item.participants * 100 ) / studentCount + '%' "></div> 
                                 </div>
                             </div>
                             <!-- progress of task -->

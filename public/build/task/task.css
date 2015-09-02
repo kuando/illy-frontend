@@ -314,7 +314,7 @@ input[type="checkbox"], input[type="radio"] {
 /*    max-width: $silk-max-width;*/
 /*    margin: 0 auto;*/
 /*}*/
-@media all and (min-device-width: 319px) and (max-device-width: 2049px) {
+@media all and (min-device-width: 321px) and (max-device-width: 2049px) {
   .silk-container {
     line-height: 0.38rem !important;
   }
@@ -1131,7 +1131,7 @@ select {
   background-repeat: no-repeat;
   position: absolute;
   top: -60px;
-  line-height: 0.32rem !important;
+  line-height: .32rem;
 }
 .task-list .item-wrapper .top-score-area {
   background-size: 100%;

@@ -16,6 +16,7 @@ define([], function() {
     var taskList = avalon.define({ 
 
         $id: "taskList",
+        noContent: false, // done all the task or nothing, show tip flag
         lists: [],
         avatar: '', // user avatar
         studentCount: '', // student count of user's school
@@ -28,9 +29,7 @@ define([], function() {
         goMe: function() {
             avalon.router.go('task.me');
         },
-        fetchData: function(data, concat) {
-
-            if (taskList.visited) { return ; }
+        fetchData: function(data, concat) { // should not cache
 
             $http.ajax({
                 method: "",
@@ -42,6 +41,12 @@ define([], function() {
                 success: function(lists) {
                     // mark!!! concat work?
                     concat ? taskList.lists.concat(lists) : taskList.lists = lists; /* jshint ignore:line */
+                    setTimeout(function() {
+                        var newLists = taskList.lists;
+                        if (newLists && newLists.length === 0) {
+                            taskList.noContent = true;
+                        }
+                    }, 2000); // wait for 2s
                 },
                 error: function(res) {
                     console.log("taskList list ajax error" + res);
@@ -90,7 +95,7 @@ define([], function() {
             avalon.vmodels.task.$watch('score', function(newVal) {
                 if (newVal !== void 0 || newVal !== '') {
                     taskList.avatar = resourcePrefix + avalon.vmodels.task.avatar + "?imageView2/1/w/200/h/200" || defaultAvatarUrl;
-                    taskList.studentCount = avalon.vmodels.task.studentCount;
+                    taskList.studentCount = avalon.vmodels.task.studentCount || 100;
                     taskList.score = avalon.vmodels.task.score;
                 }
             });
