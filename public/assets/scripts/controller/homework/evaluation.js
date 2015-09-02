@@ -25,6 +25,8 @@ define([], function() {
     var evaluation = avalon.define({ // 教师评价评语列表
 
         $id: "evaluation",
+        noContent: false,
+        noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
         avatar: '',
         displayName: '',
         lists: [],
@@ -43,12 +45,17 @@ define([], function() {
                 dataType: "json",
                 success: function(lists) {
                     concat ? evaluation.lists.concat(lists) : evaluation.lists = lists; /* jshint ignore:line */
+                    setTimeout(function() {
+                        evaluation.noContent = true;
+                    })
                 },
                 error: function(res) {
                     console.log("evaluation list ajax error" + res);
+                    evaluation.noContent = true;
                 },
                 ajaxFail: function(res) {
                     console.log("evaluation list ajax failed" + res);
+                    evaluation.noContent = true;
                 }
             });
         }, // end of fetchData

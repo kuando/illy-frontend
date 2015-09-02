@@ -1498,6 +1498,11 @@ background-image: url("../../icons-36-white.png");
   padding-bottom: .3rem;
   overflow: hidden;
 }
+.panel .yo-list {
+  padding-left: .05rem;
+  /* rewrite for info panel */
+  padding-right: .05rem;
+}
 .panel .item {
   align-items: baseline;
 }
@@ -1549,13 +1554,13 @@ background-image: url("../../icons-36-white.png");
   position: relative;
   top: -8px;
   /* mark, not good */
-  margin-right: -.12rem;
+  margin-right: -3.5%;
 }
 .illy-img-list label.item {
   width: 46.5%;
   display: inline-block;
   padding: .05rem;
-  margin-right: .1rem;
+  margin-right: 3.5%;
   text-align: center;
   border-radius: 3px;
 }
@@ -2029,6 +2034,14 @@ background-image: url("../../icons-36-white.png");
 .evaluation .timeline-wrapper {
   padding: .10rem;
   padding-top: 0;
+}
+.evaluation .timeline-wrapper .no-evaluation-text {
+  width: 98%;
+  border: 2px solid #43d1d5;
+  position: relative;
+  top: -6px;
+  padding: .2rem .05rem;
+  border-radius: 5px;
 }
 .evaluation .h-inner-line {
   width: 22%;

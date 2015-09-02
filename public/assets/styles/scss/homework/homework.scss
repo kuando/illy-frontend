@@ -545,6 +545,11 @@ background-image: url("../../icons-36-white.png");
     padding-bottom: .3rem;
     overflow: hidden;
 
+    .yo-list {
+        padding-left: .05rem; /* rewrite for info panel */
+        padding-right: .05rem;
+    }
+
     .item {
         align-items: baseline;
     }
@@ -599,13 +604,13 @@ background-image: url("../../icons-36-white.png");
     text-align: left;
     position: relative;
     top: -8px; /* mark, not good */
-    margin-right: -.12rem;
+    margin-right: -3.5%;
 
     label.item {
         width: 46.5%;
         display: inline-block;
         padding: .05rem;
-        margin-right: .1rem;
+        margin-right: 3.5%;
         text-align: center;
         border-radius: 3px;
 
@@ -1150,6 +1155,15 @@ background-image: url("../../icons-36-white.png");
         padding: .10rem;
         padding-top: 0;
         // border-top: $timeline-line-size solid $timeline-blue;
+        // 
+        .no-evaluation-text {
+            width: 98%;
+            border: $timeline-line-size solid $timeline-blue;
+            position: relative;
+            top: -6px;
+            padding: .2rem .05rem;
+            border-radius: 5px;
+        }
     }
 
     .h-inner-line {
@@ -1162,6 +1176,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .timeline-inner {
+
         .timeline-item.light {
             text-align: left;
             position: relative;
