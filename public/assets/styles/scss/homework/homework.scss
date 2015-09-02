@@ -599,12 +599,13 @@ background-image: url("../../icons-36-white.png");
     text-align: left;
     position: relative;
     top: -8px; /* mark, not good */
+    margin-right: -.12rem;
 
     label.item {
         width: 46.5%;
         display: inline-block;
         padding: .05rem;
-        margin: 0 .05rem;
+        margin-right: .1rem;
         text-align: center;
         border-radius: 3px;
 
@@ -952,7 +953,7 @@ background-image: url("../../icons-36-white.png");
     }
 
     .bottom-checkAnswer-btn {
-        width: 90%;
+        width: 94%;
         height: 44px;
         line-height: 44px;
         text-align: center;
@@ -1046,17 +1047,23 @@ background-image: url("../../icons-36-white.png");
 /* evaluation start */
 .evaluation {
 
+  $timeline-line-size: 2px;
+  $timeline-h-line-size: 4px;
+  $timeline-blue: #43d1d5;
+
     .profile-wrapper {
         position: relative;
         /*background-color:  rgba(79, 74, 74, .1);   */
         color: $me-profile-color;
         background-size: 100%;
-        background-position: center;
-        background-image: url(#{$img-dir}/me-colorful-profile-bg.jpg);
+        background-position: center top;
+        background-repeat: no-repeat;
+        /* background-image: url(../../build/images/evaluation-bg.png); */
+        background-color: $timeline-blue;
 
         .inner-wrapper {
             width: 100%;
-            height: $me-avatar-height + 70px;
+            height: 145px;
         }
 
         .name {
@@ -1096,32 +1103,77 @@ background-image: url("../../icons-36-white.png");
         .go-homework, .go-mistake {
             width: 50%;
             float: left;
-            height: 44px;
+            height: 32px;
             color: #5c5454;
-            line-height: 44px;
+            line-height: 24px;
             text-align: center;
             border-right: 1px solid #dedede;
+            margin-top: 10px;
         }
+    }
+
+    .h-line {
+        width: 100%;
+        height: $timeline-h-line-size;
+        background-color: $timeline-blue;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .h-line:before {
+        position: absolute;
+        content: "\00a0";
+        width: 0px;
+        height: 0px;
+        border-width: 18px 18px 0 18px;
+        border-style: solid;
+        border-color: $timeline-blue transparent transparent transparent;
+        top: $timeline-h-line-size;
+        left: 50%;
+        margin-left: -18px;
+    }
+
+    .h-line:after {
+        position: absolute;
+        content: "\00a0";
+        width: 0px;
+        height: 0px;
+        border-width: 18px 18px 0 18px;
+        border-style: solid;
+        border-color: $g_bgColor transparent transparent transparent;
+        top: -2px;
+        left: 50%;
+        margin-left: -18px;
     }
 
     .timeline-wrapper {
         padding: .10rem;
         padding-top: 0;
-        border-top: 3px solid $main-blue;
+        // border-top: $timeline-line-size solid $timeline-blue;
     }
+
+    .h-inner-line {
+        width: 22%;
+        height: $timeline-line-size;
+        background-color: $timeline-blue;
+        position: relative;
+        top: -4px;
+        left: 28%;
+    }
+
     .timeline-inner {
-        .timeline-item {
+        .timeline-item.light {
             text-align: left;
             position: relative;
             padding-bottom: 5px;
 
             .line {
-                width: 3px;
-                height: 100%;
-                background-color: $main-blue;
+                width: $timeline-line-size;
+                height: 138%;
+                background-color: $timeline-blue;
                 position: absolute;
-                left: 29%;
-                top: 0;
+                left: 28%;
+                top: -6px;
             }
 
             .time {
@@ -1131,11 +1183,11 @@ background-image: url("../../icons-36-white.png");
                 
                 .year {
                     font-size: 12px;
-                    color: $main-blue;
+                    color: $timeline-blue;
                 }
                 .date {
                     font-size: 20px;
-                    color: $main-blue;
+                    color: $timeline-blue;
                 }
             }
 
@@ -1147,7 +1199,7 @@ background-image: url("../../icons-36-white.png");
                     width: 32px;
                     height: 32px;
                     position: absolute;
-                    left: 24%;
+                    left: 23%;
                     top: 43px;
                     z-index: $zIndex3;
                 }
@@ -1164,10 +1216,10 @@ background-image: url("../../icons-36-white.png");
                     font-size: 12px;
                     line-height: 1.7;
                     padding: .06rem;
-                    border: 1px solid $main-blue;
+                    border: 1px solid $timeline-blue;
                     border-radius: 3px;
                     position: relative;
-                    background-color: $main-blue;
+                    background-color: $timeline-blue;
                     color: #fff;
                     margin-top: 35px;
                     max-height: 90px; /* mark */
@@ -1178,11 +1230,11 @@ background-image: url("../../icons-36-white.png");
                     content:"\00a0";
                     width:0px;
                     height:0px;
-                    border-width:8px 18px 8px 0;
+                    border-width:8px 15px 8px 0;
                     border-style:solid;
-                    border-color:transparent $main-blue transparent transparent;
+                    border-color:transparent $timeline-blue transparent transparent;
                     top:15px;
-                    left:-19px;
+                    left:-12px;
                 }
             }
         }
@@ -1207,7 +1259,7 @@ and (max-device-height: 481px) {
         line-height: 38px!important;
         bottom: 8px!important;
     }
-    .question .record-tips {
+    .question .record-tips, .question .playRecord {
        top: 51%!important;
     }
 }

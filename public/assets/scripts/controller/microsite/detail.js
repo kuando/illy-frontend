@@ -118,7 +118,7 @@ define([], function() {
                 detail.title = localCache.title;
                 detail.image = resourcePrefix + localCache.image;
                 detail.content = localCache.content;
-                detail.created = localCache.created;
+                detail.created = localCache.createdTime;
                 detail.shareCount = localCache.shareCount;
                 detail.visitCount = localCache.visitCount;
                 detail.likeCount = localCache.like;
@@ -134,7 +134,7 @@ define([], function() {
                     detail.title = json.title;
                     detail.image = resourcePrefix + json.image;
                     detail.content = json.content;
-                    detail.created = json.created;
+                    detail.created = json.createdTime;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
                     detail.likeCount = json.like;

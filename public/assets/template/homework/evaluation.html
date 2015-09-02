@@ -19,13 +19,19 @@
         <a href="#!/mistake/list" class="go-mistake">温习错题</a>
     </div>
 
+    <div class="h-line"></div>
+
     <!-- item start -->
     <div class="timeline-wrapper">
+
+        <div class="h-inner-line"></div>
         <ul class="timeline-inner">
-            <li class="timeline-item" ms-repeat-item="lists">
+            <li class="timeline-item" ms-repeat-item="lists" ms-class-1="light: parseInt($index / 5, 10) % 2 === 0" ms-class-2="dark: parseInt($index / 5, 10) % 2 !== 0">
                 <div class="time area">
+<!--                     <span class="year">{{item.createdTime | date() | year}}</span>
+                    <span class="date">{{item.createdTime | date() | date}}</span> -->
                     <span class="year">2015</span>
-                    <span class="date">08.06</span>
+                    <span class="date">09.02</span>
                 </div>
                 <div class="line"></div>
                 <div class="right-info area">

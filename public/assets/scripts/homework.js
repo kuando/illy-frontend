@@ -32,7 +32,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // loader className
     var global_loader_className = '.loader';
 
-    // var global_loader_dom = document.querySelector('.loader');
+    var global_loader_dom = document.querySelector('.loader'); 
 
     // title Map， 映射各种状态的action bar title
     var acTitle = {
@@ -105,7 +105,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             callback = loader;
             loader = void 0;
         }
-        loader = document.querySelector(loader || global_loader_className);
+        loader = global_loader_dom || document.querySelector(global_loader_className);
         var showLoader = function() {
             loader && (loader.style.display = '');
         }; /* jshint ignore:line */
@@ -146,7 +146,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             callback = loader;
             loader = void 0;
         }
-        loader = document.querySelector(loader || global_loader_className);
+        loader = global_loader_dom || document.querySelector(global_loader_className);
         var hideLoader = function() {
             // for strong, need ()
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
@@ -167,7 +167,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
         delay = global_loading_timeout || 8000;
-        var loader = document.querySelector('.loader');
+        var loader = global_loader_dom || document.querySelector(global_loader_className);
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
             // even can invoke the wx-sdk to close the page
@@ -283,80 +283,49 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
 
     // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在html元素上
     var root = avalon.define({
-        $id: "root",
-        namespace: 'homework', // module namespace, for global cachePrefix
-        currentState: '',
-        currentAction: '',
-        currentIsVisited: false,
-        title: "", // 每一页action bar的标题    
-        headerShow: false, // for header.tpl
-        backBtnShow: false, // for header.tpl
-        backHomeBtnShow: false, // for header.tpl
-        back: function() { // has default back and can custom it
-            var state = root.currentState;
-            if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围
-                state = 'detail';
-            }
-            state = avalon.vmodels[state];
-            if (state.back) {
-                state.back();
-            } else {
-                history.go(-1);
-            }
-        }
+        $id: "root", // in html or body
+        namespace: 'homework', // module namespace, for global cachePrefix use
+        currentState: '', // list question wrong info result...
+        currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
+        currentIsVisited: false, // boolean flag
+        title: '' // for title element or actionBar use
     });
 
-    root.$watch('currentState', function(currentState) {
-        if (currentState !== void 0) {
-
-            // headerShow logic 
-            if (currentState === 'list' || currentState === 'info' || currentState === 'mistakeList') {
-                root.headerShow = true;
-            } else {
-                root.headerShow = false;
-            }
-
-            // backBtnShow logic 
-            if (currentState !== 'list' && currentState !== 'result' && currentState !== 'mistakeList') {
-                root.backBtnShow = true;
-            } else {
-                root.backBtnShow = false;
-            }
-
-            // backHomeBtnShow logic
-            if (currentState === 'list') {
-                root.backHomeBtnShow = false;
-            } else {
-                root.backHomeBtnShow = true;
-            }
-
-        }
-    }); // end of root.currentState watcher
-
+    // new way to ctrl the app, also the key & core of the app!!!!!!
     root.$watch('currentAction', function(currentAction) {
         if (currentAction !== void 0) {
             
             switch (currentAction) {
 
+                // -------------------- onError start -------------------- //
                 case 'onError':
-
                     avalon.log("Error!, Redirect to index!", arguments);
                     avalon.router.go("/");
-
                     break;
                 // -------------------- onError end -------------------- //
-                
-                case 'onBeforeUnload':
+                 
 
+
+               
+                // -------------------- onBegin start -------------------- //
+                case 'onBegin':
+
+                    // ====== view visit statistical ====== //          
+                    avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
+                    // ====== view visit statistical ====== // 
+
+                    // ====== loader show and bind network handler ====== //         
+                    loadingBeginHandler(bindBadNetworkHandler);
+                    // ====== loader show and bind network handler ====== //
+                    
                     break;
-                // -------------------- onBeforeUnload end -------------------- //
+                // -------------------- onBegin end -------------------- //
 
-                case 'onUnload':
 
-                    break;
-                // -------------------- onUnload end -------------------- //
 
-                case 'onload':
+
+                // -------------------- onLoad start -------------------- //
+                case 'onLoad':
 
                     // ====== reset scroll bar ====== //
                     if (global_always_reset_scrollbar) {
@@ -385,20 +354,24 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
                     // ====== add view enter animation ====== //
 
                     break;
-                // -------------------- onload end -------------------- //
+                // -------------------- onLoad end -------------------- //
 
-                case 'onBegin':
 
-                    // ====== view visit statistical ====== //          
-                    avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
-                    // ====== view visit statistical ====== // 
 
-                    // ====== loader show and bind network handler ====== //         
-                    loadingBeginHandler(bindBadNetworkHandler);
-                    // ====== loader show and bind network handler ====== //
-                    
+
+                // -------------------- onBeforeUnload end -------------------- //
+                case 'onBeforeUnload':
                     break;
-                // -------------------- onBegin end -------------------- //
+                // -------------------- onBeforeUnload end -------------------- //
+
+
+
+
+                // -------------------- onUnload start -------------------- //
+                case 'onUnload':
+                    break;
+                // -------------------- onUnload end -------------------- //
+                
 
             } // end of root.currentAction switch
 
@@ -420,10 +393,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
             //},
             "header@": {
                 templateUrl: "assets/template/homework/header.html", // 指定模板地址
+                controllerUrl: "scripts/controller/homework/header.js"
             },
             "": {
                 templateUrl: "assets/template/homework/app.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/app.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/app.js" // 指定控制器地址
             }
             //,"footer@": { // 视图名字的语法请仔细查阅文档
             //templateUrl: "assets/template/footer.html", // 指定模板地址
@@ -554,40 +528,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState
     // 每次view载入都会执行的回调，适合来做一些统一操作
     avalon.state.config({
         onError: function() {
-
             root.currentAction = 'onError';
-
         },
         onBeforeUnload: function() { // 太宽泛了，放到具体ctrl里处理
-
             root.currentAction = 'onBeforeUnload';
-
         },
         onUnload: function() { // url变化时触发
-
             root.currentAction = 'onUnload';
-
         },
         onBegin: function() {
-
             root.currentAction = 'onBegin';
-
         },
         onLoad: function() { // 切换完成并成功
-
-            root.currentAction = 'onload';
-
-
+            root.currentAction = 'onLoad';
         }
-        //,onViewEnter: function(newNode, oldNode) { /* jshint ignore:line */
-        //    root.currentAction = 'onViewEnter';
-
-        //avalon(oldNode).animate({
-        //    marginLeft: "-100%"
-        //}, 500, "easein", function() {
-        //    oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
-        //})
-        //} 
     }); 
 
     /* state config end */

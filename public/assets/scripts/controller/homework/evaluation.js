@@ -12,6 +12,14 @@ define([], function() {
         avalon.vmodels.root.noTokenHandler();
     }
 
+    avalon.filters.year = function(str) {
+        return str.substring(0, 4);
+    };
+
+    avalon.filters.date = function(str) {
+        return str.substring(5);
+    };
+
     // 每页大小
     var limit = 6;
     var evaluation = avalon.define({ // 教师评价评语列表

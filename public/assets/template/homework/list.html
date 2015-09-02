@@ -15,7 +15,7 @@
                 <img class="item-img area" src="../../build/images/homework_list_icon_green.png" ms-attr-alt="item.title" />
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="time">{{item.startTime | date("yyyy.MM.dd")}} - {{item.endTime | date("yyyy.MM.dd")}}</span>
+                    <span class="time">{{item.createdTime | date("yyyy.MM.dd")}}</span>
                     <span class="finish_count"><i class="icon-people"></i>{{item.finishedCount}}人已完成</span>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>
@@ -29,7 +29,7 @@
                 <img class="item-img area" src="../../build/images/homework_list_icon_blue.png" ms-attr-alt="item.title" />
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
-                    <span class="time">{{item.startTime | date("yyyy.MM.dd")}} - {{item.endTime | date("yyyy.MM.dd")}}</span>
+                    <span class="time">{{item.createdTime | date("yyyy.MM.dd")}}</span>
                     <span class="finish_count"><i class="icon-people"></i>{{item.finishedCount}}人已完成</span>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>

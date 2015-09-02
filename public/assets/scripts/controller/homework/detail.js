@@ -99,7 +99,7 @@ define([], function() {
                 },
                 error: function(res) {
                     console.log(res);
-                    alert("系统错误, 请稍后再试!");
+                    alert("对不起，作业提交失败，请退出重试！");
                     avalon.router.go('app.list'); // go list page
                 }
             });

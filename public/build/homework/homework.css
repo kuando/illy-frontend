@@ -1549,12 +1549,13 @@ background-image: url("../../icons-36-white.png");
   position: relative;
   top: -8px;
   /* mark, not good */
+  margin-right: -.12rem;
 }
 .illy-img-list label.item {
   width: 46.5%;
   display: inline-block;
   padding: .05rem;
-  margin: 0 .05rem;
+  margin-right: .1rem;
   text-align: center;
   border-radius: 3px;
 }
@@ -1641,7 +1642,7 @@ background-image: url("../../icons-36-white.png");
 }
 .question .progress-wrapper .progress-outer {
   height: 0.03rem;
-  background-color: grey;
+  background-color: #00abfd;
   width: 87%;
   display: inline-block;
   vertical-align: top;
@@ -1860,7 +1861,7 @@ background-image: url("../../icons-36-white.png");
   transform: rotate(90deg);
 }
 .question .bottom-checkAnswer-btn {
-  width: 90%;
+  width: 94%;
   height: 44px;
   line-height: 44px;
   text-align: center;
@@ -1945,12 +1946,14 @@ background-image: url("../../icons-36-white.png");
   /*background-color:  rgba(79, 74, 74, .1);   */
   color: #FFF;
   background-size: 100%;
-  background-position: center;
-  background-image: url(http://app.hizuoye.com/build/images/me-colorful-profile-bg.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  /* background-image: url(../../build/images/evaluation-bg.png); */
+  background-color: #43d1d5;
 }
 .evaluation .profile-wrapper .inner-wrapper {
   width: 100%;
-  height: 160px;
+  height: 145px;
 }
 .evaluation .profile-wrapper .name {
   text-align: center;
@@ -1985,88 +1988,127 @@ background-image: url("../../icons-36-white.png");
 .evaluation .navigator-bar .go-homework, .evaluation .navigator-bar .go-mistake {
   width: 50%;
   float: left;
-  height: 44px;
+  height: 32px;
   color: #5c5454;
-  line-height: 44px;
+  line-height: 24px;
   text-align: center;
   border-right: 1px solid #dedede;
+  margin-top: 10px;
+}
+.evaluation .h-line {
+  width: 100%;
+  height: 4px;
+  background-color: #43d1d5;
+  position: relative;
+  margin-bottom: 20px;
+}
+.evaluation .h-line:before {
+  position: absolute;
+  content: "\00a0";
+  width: 0px;
+  height: 0px;
+  border-width: 18px 18px 0 18px;
+  border-style: solid;
+  border-color: #43d1d5 transparent transparent transparent;
+  top: 4px;
+  left: 50%;
+  margin-left: -18px;
+}
+.evaluation .h-line:after {
+  position: absolute;
+  content: "\00a0";
+  width: 0px;
+  height: 0px;
+  border-width: 18px 18px 0 18px;
+  border-style: solid;
+  border-color: #f1f1f1 transparent transparent transparent;
+  top: -2px;
+  left: 50%;
+  margin-left: -18px;
 }
 .evaluation .timeline-wrapper {
   padding: .10rem;
   padding-top: 0;
-  border-top: 3px solid #00abfd;
 }
-.evaluation .timeline-inner .timeline-item {
+.evaluation .h-inner-line {
+  width: 22%;
+  height: 2px;
+  background-color: #43d1d5;
+  position: relative;
+  top: -4px;
+  left: 28%;
+}
+.evaluation .timeline-inner .timeline-item.light {
   text-align: left;
   position: relative;
   padding-bottom: 5px;
 }
-.evaluation .timeline-inner .timeline-item .line {
-  width: 3px;
-  height: 100%;
-  background-color: #00abfd;
+.evaluation .timeline-inner .timeline-item.light .line {
+  width: 2px;
+  height: 138%;
+  background-color: #43d1d5;
   position: absolute;
-  left: 29%;
-  top: 0;
+  left: 28%;
+  top: -6px;
 }
-.evaluation .timeline-inner .timeline-item .time {
+.evaluation .timeline-inner .timeline-item.light .time {
   width: 27%;
   /* 27% */
   position: relative;
   top: 10px;
 }
-.evaluation .timeline-inner .timeline-item .time .year {
+.evaluation .timeline-inner .timeline-item.light .time .year {
   font-size: 12px;
-  color: #00abfd;
+  color: #43d1d5;
 }
-.evaluation .timeline-inner .timeline-item .time .date {
+.evaluation .timeline-inner .timeline-item.light .time .date {
   font-size: 20px;
-  color: #00abfd;
+  color: #43d1d5;
 }
-.evaluation .timeline-inner .timeline-item .right-info {
+.evaluation .timeline-inner .timeline-item.light .right-info {
   width: 62%;
   /* 62% */
   margin-left: 9%;
 }
-.evaluation .timeline-inner .timeline-item .right-info img.avatar {
+.evaluation .timeline-inner .timeline-item.light .right-info img.avatar {
   width: 32px;
   height: 32px;
   position: absolute;
-  left: 24%;
+  left: 23%;
   top: 43px;
   z-index: 100;
 }
-.evaluation .timeline-inner .timeline-item .right-info .homework-title {
+.evaluation .timeline-inner .timeline-item.light .right-info .homework-title {
   width: 62%;
   position: absolute;
   top: .15rem;
   font-size: .12rem;
   color: #6C6969;
 }
-.evaluation .timeline-inner .timeline-item .right-info .evaluation-text {
+.evaluation .timeline-inner .timeline-item.light .right-info .evaluation-text {
   font-size: 12px;
   line-height: 1.7;
   padding: .06rem;
-  border: 1px solid #00abfd;
+  border: 1px solid #43d1d5;
   border-radius: 3px;
   position: relative;
-  background-color: #00abfd;
+  background-color: #43d1d5;
   color: #fff;
   margin-top: 35px;
   max-height: 90px;
   /* mark */
   text-align: justify;
 }
-.evaluation .timeline-inner .timeline-item .right-info .evaluation-text:before {
+.evaluation .timeline-inner .timeline-item.light .right-info .evaluation-text:before {
   position: absolute;
   content: "\00a0";
   width: 0px;
   height: 0px;
-  border-width: 8px 18px 8px 0;
+  border-width: 8px 15px 8px 0;
   border-style: solid;
-  border-color: transparent #00abfd transparent transparent;
+  border-color: transparent #43d1d5 transparent transparent;
   top: 15px;
-  left: -19px;
+  left: -12px;
 }
 
 /* evaluation end */
@@ -2088,7 +2130,7 @@ background-image: url("../../icons-36-white.png");
     bottom: 8px !important;
   }
 
-  .question .record-tips {
+  .question .record-tips, .question .playRecord {
     top: 51% !important;
   }
 }
