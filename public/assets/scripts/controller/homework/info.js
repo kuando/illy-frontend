@@ -114,7 +114,7 @@ define([], function() {
                 info.duration = duration;
                 var time = avalon.$('.info .record-total-time');
                 time && ( time.innerHTML = parseInt(duration, 10) || 0 ); /* jshint ignore:line */
-            }, 2000);
+            }, 1000);
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {

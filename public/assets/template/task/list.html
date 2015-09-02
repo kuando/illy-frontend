@@ -1,16 +1,18 @@
 <!-- taskList start -->
 <div class="task-list" ms-controller="taskList">
 
-    <div class="top-area-common top-left-area area" ms-click="goRank"><div class="inner"></div></div>
-    <div class="top-score-area area"><div class="top-score-text">{{score}}</div></div>
-    <div class="top-area-common top-me-area area" ms-click="goMe"><div class="inner" ms-css-background-image="'url(' + avatar + ')'"></div></div>
-
+<!--     <div class="top-area-common top-left-area area" ms-click="goRank"><div class="inner"></div></div> -->
+<!--     <div class="top-score-area area"><div class="top-score-text">{{score}}</div></div>
+ --><!--     <div class="top-area-common top-me-area area" ms-click="goMe"><div class="inner" ms-css-background-image="'url(' + avatar + ')'"></div></div>
+ -->
     <!-- item start -->
     <div class="item-wrapper">
 
         <div class="silk-container silk-common title-bg">
             任务列表
         </div>
+
+        <div class="top-score-area area"><div class="top-score-text">{{score}}</div></div>
 
         <!-- task列表 start -->
         <div class="global-noContent-tip-dark" ms-if="lists == ''">恭喜您，完成了所有任务，请等待新任务!赚积分，拿大奖!</div>

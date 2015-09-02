@@ -104,6 +104,16 @@
         min-height: 8rem;
         z-index: $zIndex6;
 
+        .task-shareMask-tip-text {
+            color: #fff;
+            font-weight: bold;
+            font-size: 17px;
+            position: absolute;
+            top: 68px;
+            left: 50%;
+            margin-left: -40px;
+        }
+
         img {
             margin: 0 auto;
         }
@@ -129,21 +139,14 @@
     .pageinfo {
         text-align: left;
 
-        .like {
-            width: .48rem;
-            height: .48rem;
-            color: $dark-grey;
-            margin: .05rem auto;
-            background-size: 75%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-image: url(#{$img-dir}/iconfont-like.png);
-        }
+        // .like {
+        //     width: .16rem;
+        //     height: .16rem;
+        //     background-repeat: no-repeat;
+        //     background-position: center center;
+        //     background-image: url(#{$img-dir}/iconfont-like.png);
+        // }
 
-        .hasLiked {
-            color: $main-blue;
-            background-image: url(#{$img-dir}/iconfont-hasLiked.png);
-        }
         .like-num-wrapper {
             margin: .1rem auto;
             text-align: center;
@@ -157,18 +160,18 @@
         .isShared {
             color: $main-blue;
         }
-        .share, .visit {
+        .share, .visit, .like {
             display: inline-block;
             height: .3rem;
             line-height: .3rem;
             font-size: .14rem;
             position: relative;
             top: .2rem;
-            margin-right: .3rem;
+            margin-right: .1rem;
 
             .icon {
-                width: .20rem;
-                height: .20rem;
+                width: .16rem;
+                height: .16rem;
                 display: inline-block;
             }
             .icon-share {
@@ -177,6 +180,16 @@
 
             .icon-visit {
                 background-image: url(#{$img-dir}/iconfont-yuedu.png);
+            }
+
+            .icon-like {
+                background-image: url(#{$img-dir}/iconfont-like.png);
+                position: relative;
+                top: -2px;
+            }
+            .hasLiked {
+                color: $main-blue;
+                background-image: url(#{$img-dir}/iconfont-hasLiked.png);
             }
         }
 

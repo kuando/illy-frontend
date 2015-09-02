@@ -22,6 +22,8 @@
 
         <img src="../../build/images/shareMask-top.png" />
 
+        <p class="task-shareMask-tip-text">分享拿积分</p>
+
         <img class="wxShareIcon" src="../../build/images/shareMask-wxShare-icon.png" />
 
         <img src="../../build/images/shareMask-adText.png" />
@@ -34,14 +36,18 @@
 
     <ul class="pageinfo list">
 
-        <div class="like" ms-if="hasLiked == false" ms-click="like()"></div>
+       <!--  <div class="like" ms-if="hasLiked == false" ms-click="like()"></div>
         <div class="like" ms-class-1="hasLiked: hasLiked == true" ms-if="hasLiked == true"></div>
         <div class="like-num-wrapper"><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span>位朋友点了赞</div>
-
+ -->
         <li class="visit" ms-click="showShareMask">阅读  {{visitCount}}</li>
         <li class="share" ms-click="showShareMask" ms-if="isShared != true">分享  {{shareCount}}</li>
         <li class="share" ms-click="showShareMask" ms-if="isShared == true">分享  {{shareCount}} (+1)</li>
 
+<!--         <div class="like" ms-if="hasLiked == false" ms-click="like()"></div>
+        <div class="like" ms-class-1="hasLiked: hasLiked == true" ms-if="hasLiked == true"></div> -->
+        <div class="like" ms-click="like" ms-if="!hasLiked">赞<i class="icon icon-like" ms-class-1="hasLiked: hasLiked == true"></i><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span></div>
+        <div class="like" ms-if="hasLiked == true">赞<i class="icon icon-like hasLiked"></i><span class="like-num" ms-class-1="like-num-update: hasLiked == true">{{likeCount}}</span></div>
         <div class="report" ms-click="report">举报</div>
 
     </ul>
