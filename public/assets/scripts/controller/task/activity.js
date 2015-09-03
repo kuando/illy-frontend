@@ -54,6 +54,11 @@ define([], function() {
         };
     };
 
+    function resetScroll() {
+        document.documentElement.srcollTop = 0;
+        document.body.scrollTop = 0;
+    }
+
     var activity = avalon.define({
         $id: "activity",
         visited: false,
@@ -85,7 +90,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'tasks/' + activity.taskId + '/done',
+                url: apiBaseUrl + 'public/activities' + activity.activityId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -254,9 +259,13 @@ define([], function() {
                             // 不管成功与否，前台界面至少先更新
                             activity.shareMaskShow = false;
                             activity.shareCount++;
-                            if (activity.isShared === false) {
-                                activity.isShared = true;
-                                activity.updateShare();
+                            if (article.isShared === false) {
+                                article.isShared = true;
+                                resetScroll();
+                                article.updateShare();
+                                setTimeout(function() {
+                                    $('.item1 > div.kodai').click();
+                                }, 1500);
                             }
                         },
                         cancel: function() {

@@ -23,6 +23,12 @@ define([], function() {
     // prefix of localStorage
     var cachedPrefix = 'illy-task-article-';
 
+
+    function resetScroll() {
+        document.documentElement.srcollTop = 0;
+        document.body.scrollTop = 0;
+    }
+
     var article = avalon.define({
         $id: "article",
         taskId: 1,
@@ -40,7 +46,7 @@ define([], function() {
         updateShare: function() {
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'tasks/' + article.taskId + '/done',
+                url: apiBaseUrl + 'public/posts/' + article.articleId + '/share',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -155,7 +161,11 @@ define([], function() {
                             article.shareCount++;
                             if (article.isShared === false) {
                                 article.isShared = true;
+                                resetScroll();
                                 article.updateShare();
+                                setTimeout(function() {
+                                    $('.item1 > div.kodai').click();
+                                }, 1500);
                             }
                         },
                         cancel: function () { 

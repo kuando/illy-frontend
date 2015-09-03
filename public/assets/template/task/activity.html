@@ -10,13 +10,14 @@
     <div class="created-time">结束时间: {{endTime | date()}}</div>
     <div class="content">{{content | html}}</div>
 
-    <div class="task-helper-btn" ms-click="showShareMask">领积分</div>
+    <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared === false">领积分</div>
+    <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared !== false">已领取{{scoreAward}}分奖励</div>
 
     <div class="shareMask" ms-visible="shareMaskShow">
 
         <img src="../../build/images/shareMask-top.png" />
 
-        <p class="task-shareMask-tip-text">分享拿积分</p>
+        <p class="task-shareMask-tip-text">分享领积分</p>
 
         <img class="wxShareIcon" src="../../build/images/shareMask-wxShare-icon.png" />
 
@@ -26,24 +27,6 @@
 
         <img class="shareMaskBottom" src="../../build/images/shareMask-bottom.png" />
 
-    </div>
-
-    <div class="infoCollect-wrapper">
-        <div class="sign-up-btn-wrapper">
-            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
-            <div class='yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就成功了, 点我报名!</div>
-            <div class='yo-btn yo-btn-m' ms-if="isDone">报名成功</div>
-        </div>
-
-        <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling" style="margin-bottom: .1rem;">
-            <p class="activity-info-form-title">请填写报名信息</p>
-            <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
-                <span class="hide">{{CopyinfoCollect[$index]}}</span>
-                <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
-            </label>
-            <div class="yo-btn yo-btn-info yo-btn-m" ms-click="pushInfo()">确定</div>
-            <div class="yo-btn yo-btn-light yo-btn-m" ms-click="cancel()">取消</div>
-        </div>
     </div>
 
     <ul class="pageinfo list">
@@ -57,6 +40,24 @@
         <div class="report" ms-click="report">举报</div>
 
     </ul>
+
+    <div class="infoCollect-wrapper">
+        <div class="sign-up-btn-wrapper">
+            <div class='sign-btn yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
+            <div class='sign-btn yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就成功了, 点我报名!</div>
+            <div class='sign-btn yo-btn yo-btn-m' ms-if="isDone">报名成功</div>
+        </div>
+
+        <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling" style="margin-bottom: .1rem;">
+            <p class="activity-info-form-title">请填写报名信息</p>
+            <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
+                <span class="hide">{{CopyinfoCollect[$index]}}</span>
+                <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
+            </label>
+            <div class="yo-btn yo-btn-info yo-btn-m" ms-click="pushInfo()">确定</div>
+            <div class="yo-btn yo-btn-light yo-btn-m" ms-click="cancel()">取消</div>
+        </div>
+    </div>
 
     <!-- koudai jinbi start -->
     <div class="koudai-wrapper" ms-if="isShared === true">

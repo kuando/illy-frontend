@@ -14,13 +14,14 @@
 
     <div class="content">{{content | html}}</div>
 
-    <div class="task-helper-btn" ms-click="showShareMask">领积分</div>
+    <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared === false">领积分</div>
+    <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared !== false">已领取{{scoreAward}}分奖励</div>
 
     <div class="shareMask" ms-visible="shareMaskShow">
 
         <img src="../../build/images/shareMask-top.png" />
 
-        <p class="task-shareMask-tip-text">分享拿积分</p>
+        <p class="task-shareMask-tip-text">分享领积分</p>
 
         <img class="wxShareIcon" src="../../build/images/shareMask-wxShare-icon.png" />
 

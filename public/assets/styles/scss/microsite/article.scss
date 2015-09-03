@@ -215,12 +215,27 @@
 
 .infoCollect-wrapper {
     text-align: center;
+
+    .sign-btn {
+        position: relative;
+        bottom: -20px;
+        left: 0;
+        width: 100%;
+        display: inline-block;
+        border: none;
+        border-radius: 0;
+    }
 }
 .activity-info-form {
     text-align: center;
     background-color: #fff;
     padding: .1rem;
     border-radius: 3px;
+    margin-bottom: .1rem;
+    position: fixed;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
 
     &-title {
         text-align: center;
@@ -243,4 +258,5 @@
     background-color: #F25454;
     color: #fff;
 }
+
 /* activity end */
