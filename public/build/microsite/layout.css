@@ -256,7 +256,10 @@ input[type="checkbox"], input[type="radio"] {
 /* homework vars end */
 /* task me start */
 /* task me end */
-/* common vars end */
+/**
+ *  for wxShareMask & others 
+ *  created on 201509031750
+ */
 /* global-animation start 弹入-从右 */
 .a-bounceinR,
 .a-bounceoutB,
@@ -303,6 +306,83 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 /* global-animation end   弹入-从右 */
+/* 弹入-从下 */
+.a-bounceinB {
+  -webkit-animation-name: bounceinB;
+  -moz-animation-name: bounceinB;
+  -ms-animation-name: bounceinB;
+  animation-name: bounceinB;
+}
+
+/* 弹入-从下 */
+@-webkit-keyframes bounceinB {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80% {
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceinB {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* 弹出-向下 */
+.a-bounceoutB {
+  -webkit-animation-name: bounceoutB;
+  -moz-animation-name: bounceoutB;
+  -ms-animation-name: bounceoutB;
+  animation-name: bounceoutB;
+}
+
+/* 弹出-向下 */
+@-webkit-keyframes bounceoutB {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+}
+@keyframes bounceoutB {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+/* common vars end */
 .illy-container {
   max-width: 5rem;
   margin: 0 auto;
@@ -854,18 +934,6 @@ select {
   margin-right: .05rem;
 }
 
-/* -------------------------------------------------------
-    * loader 
-    *-------------------------------------------------------*/
-/*.loader {*/
-/*    position: fixed;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background: $loader-bgColor;*/
-/*    z-index: 99999;*/
-/*}*/
-/* new loader pacman start */
-/* new loader pacman end */
 /* fix for header's back-index */
 #header, .yo-header {
   background-color: #323436;
@@ -884,82 +952,6 @@ select {
   color: #fff;
 }
 
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
 /* global common footer start */
 .site {
   min-height: 5.5rem;
@@ -1476,7 +1468,10 @@ a, a:hover {
 
 /* list end */
 /* detail start */
-/* vars start */
+/**
+ *  for microsite task or outer static use
+ *  
+ */
 /* common vars start */
 /* global silk height */
 /* fixed value for all device */
@@ -1487,7 +1482,132 @@ a, a:hover {
 /* homework vars end */
 /* task me start */
 /* task me end */
-/* vars end */
+/**
+ *  for wxShareMask & others 
+ *  created on 201509031750
+ */
+/* global-animation start 弹入-从右 */
+.a-bounceinR,
+.a-bounceoutB,
+.a-bounceinB {
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
+}
+
+.a-bounceinR {
+  -webkit-animation-name: bounceinR;
+  animation-name: bounceinR;
+}
+
+@-webkit-keyframes bounceinR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  80% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+@keyframes bounceinR {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* global-animation end   弹入-从右 */
+/* 弹入-从下 */
+.a-bounceinB {
+  -webkit-animation-name: bounceinB;
+  -moz-animation-name: bounceinB;
+  -ms-animation-name: bounceinB;
+  animation-name: bounceinB;
+}
+
+/* 弹入-从下 */
+@-webkit-keyframes bounceinB {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80% {
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceinB {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* 弹出-向下 */
+.a-bounceoutB {
+  -webkit-animation-name: bounceoutB;
+  -moz-animation-name: bounceoutB;
+  -ms-animation-name: bounceoutB;
+  animation-name: bounceoutB;
+}
+
+/* 弹出-向下 */
+@-webkit-keyframes bounceoutB {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+}
+@keyframes bounceoutB {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
 .detail {
   color: #1c1c1c;
   padding: 0 .16rem;
@@ -1595,6 +1715,7 @@ a, a:hover {
   margin: 0 auto;
 }
 .detail .shareMask img.wxShareIcon {
+  display: block;
   width: 100px;
   margin-top: 30px;
   margin-bottom: 30px;

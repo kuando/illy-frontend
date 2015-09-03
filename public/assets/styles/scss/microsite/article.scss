@@ -1,6 +1,11 @@
-/* vars start */
+/**
+ *  for microsite task or outer static use
+ *  
+ */
+
 @import "../_var.scss";
-/* vars end */
+@import "../_animation-part.scss";
+
 
 .detail {
     color: hsl(0, 0%, 11%);
@@ -118,6 +123,7 @@
             margin: 0 auto;
         }
         img.wxShareIcon {
+            display: block;
             width: 100px;
             margin-top: 30px;
             margin-bottom: 30px;

@@ -256,7 +256,10 @@ input[type="checkbox"], input[type="radio"] {
 /* homework vars end */
 /* task me start */
 /* task me end */
-/* common vars end */
+/**
+ *  for wxShareMask & others 
+ *  created on 201509031750
+ */
 /* global-animation start 弹入-从右 */
 .a-bounceinR,
 .a-bounceoutB,
@@ -303,6 +306,83 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 /* global-animation end   弹入-从右 */
+/* 弹入-从下 */
+.a-bounceinB {
+  -webkit-animation-name: bounceinB;
+  -moz-animation-name: bounceinB;
+  -ms-animation-name: bounceinB;
+  animation-name: bounceinB;
+}
+
+/* 弹入-从下 */
+@-webkit-keyframes bounceinB {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80% {
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceinB {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* 弹出-向下 */
+.a-bounceoutB {
+  -webkit-animation-name: bounceoutB;
+  -moz-animation-name: bounceoutB;
+  -ms-animation-name: bounceoutB;
+  animation-name: bounceoutB;
+}
+
+/* 弹出-向下 */
+@-webkit-keyframes bounceoutB {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+  }
+}
+@keyframes bounceoutB {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+/* common vars end */
 .illy-container {
   max-width: 5rem;
   margin: 0 auto;
@@ -854,18 +934,6 @@ select {
   margin-right: .05rem;
 }
 
-/* -------------------------------------------------------
-    * loader 
-    *-------------------------------------------------------*/
-/*.loader {*/
-/*    position: fixed;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background: $loader-bgColor;*/
-/*    z-index: 99999;*/
-/*}*/
-/* new loader pacman start */
-/* new loader pacman end */
 /* fix for header's back-index */
 #header, .yo-header {
   background-color: #323436;
@@ -884,82 +952,6 @@ select {
   color: #fff;
 }
 
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
 /* global common footer start */
 .site {
   min-height: 5.5rem;
@@ -1825,7 +1817,8 @@ background-image: url("../../icons-36-white.png");
   text-align: left;
   /* 录音已保存 */
 }
-.question .answer-panel .answer .right, .question .answer-panel .answer .save {
+.question .answer-panel .answer .right,
+.question .answer-panel .answer .save {
   font-weight: bold;
   font-size: .18rem;
   color: #f2eded;
@@ -1990,7 +1983,8 @@ background-image: url("../../icons-36-white.png");
   margin-right: -1px;
   overflow: hidden;
 }
-.evaluation .navigator-bar .go-homework, .evaluation .navigator-bar .go-mistake {
+.evaluation .navigator-bar .go-homework,
+.evaluation .navigator-bar .go-mistake {
   width: 50%;
   float: left;
   height: 32px;
@@ -2032,7 +2026,6 @@ background-image: url("../../icons-36-white.png");
   margin-left: -18px;
 }
 .evaluation .timeline-wrapper {
-  padding: .10rem;
   padding-top: 0;
 }
 .evaluation .timeline-wrapper .no-evaluation-text {
@@ -2051,54 +2044,86 @@ background-image: url("../../icons-36-white.png");
   top: -4px;
   left: 28%;
 }
-.evaluation .timeline-inner .timeline-item.light {
+.evaluation .timeline-inner {
+  position: relative;
+  top: -5px;
+}
+.evaluation .timeline-inner .timeline-item.dark {
+  background-color: #43d1d5 !important;
+  color: #fff !important;
+}
+.evaluation .timeline-inner .timeline-item.dark .time {
+  color: #fff !important;
+}
+.evaluation .timeline-inner .timeline-item.dark .line {
+  background-color: #fff !important;
+}
+.evaluation .timeline-inner .timeline-item.dark .homework-title {
+  color: #fff !important;
+}
+.evaluation .timeline-inner .timeline-item.dark .evaluation-text {
+  background-color: #fff !important;
+  color: #43d1d5 !important;
+}
+.evaluation .timeline-inner .timeline-item.dark .evaluation-text:before {
+  border-color: transparent #fff transparent transparent !important;
+}
+.evaluation .timeline-inner .timeline-item:last-child {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #43d1d5;
+}
+.evaluation .timeline-inner .timeline-item {
   text-align: left;
   position: relative;
-  padding-bottom: 5px;
+  padding: .05rem;
+  padding-bottom: .2rem;
 }
-.evaluation .timeline-inner .timeline-item.light .line {
+.evaluation .timeline-inner .timeline-item .line {
   width: 2px;
-  height: 138%;
+  height: 100%;
+  /* must has value but whatever value is */
   background-color: #43d1d5;
   position: absolute;
   left: 28%;
-  top: -6px;
+  top: 0px;
 }
-.evaluation .timeline-inner .timeline-item.light .time {
+.evaluation .timeline-inner .timeline-item .time {
   width: 27%;
   /* 27% */
   position: relative;
-  top: 10px;
+  top: 1px;
+  color: #43d1d5;
 }
-.evaluation .timeline-inner .timeline-item.light .time .year {
+.evaluation .timeline-inner .timeline-item .time .year {
   font-size: 12px;
-  color: #43d1d5;
 }
-.evaluation .timeline-inner .timeline-item.light .time .date {
+.evaluation .timeline-inner .timeline-item .time .date {
   font-size: 20px;
-  color: #43d1d5;
 }
-.evaluation .timeline-inner .timeline-item.light .right-info {
+.evaluation .timeline-inner .timeline-item .right-info {
   width: 62%;
   /* 62% */
   margin-left: 9%;
 }
-.evaluation .timeline-inner .timeline-item.light .right-info img.avatar {
+.evaluation .timeline-inner .timeline-item .right-info img.avatar {
   width: 32px;
   height: 32px;
   position: absolute;
-  left: 23%;
-  top: 43px;
+  left: 27%;
+  margin-left: -12px;
+  /* new way for all device */
+  top: 48px;
   z-index: 100;
 }
-.evaluation .timeline-inner .timeline-item.light .right-info .homework-title {
+.evaluation .timeline-inner .timeline-item .right-info .homework-title {
   width: 62%;
   position: absolute;
   top: .15rem;
   font-size: .12rem;
-  color: #6C6969;
+  color: #676973;
+  font-family: "yo-font";
 }
-.evaluation .timeline-inner .timeline-item.light .right-info .evaluation-text {
+.evaluation .timeline-inner .timeline-item .right-info .evaluation-text {
   font-size: 12px;
   line-height: 1.7;
   padding: .06rem;
@@ -2112,7 +2137,7 @@ background-image: url("../../icons-36-white.png");
   /* mark */
   text-align: justify;
 }
-.evaluation .timeline-inner .timeline-item.light .right-info .evaluation-text:before {
+.evaluation .timeline-inner .timeline-item .right-info .evaluation-text:before {
   position: absolute;
   content: "\00a0";
   width: 0px;
@@ -2143,7 +2168,8 @@ background-image: url("../../icons-36-white.png");
     bottom: 8px !important;
   }
 
-  .question .record-tips, .question .playRecord {
+  .question .record-tips,
+  .question .playRecord {
     top: 51% !important;
   }
 }

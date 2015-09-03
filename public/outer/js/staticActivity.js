@@ -78,7 +78,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
         wx.onMenuShareTimeline({
             title: activity.theme, // 分享标题
             link: '', // 分享链接 
-            imgUrl: document.getElementsByTagName('img')[0].src || '', // 分享图标
+            imgUrl: document.querySelector('.content').querySelectorAll('img')[0].src, // 分享图标
             success: function() {
                 // 不管成功与否，前台界面至少先更新
                 activity.shareCount++;
@@ -141,6 +141,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
     var activity = avalon.define({
         $id: "activity",
 
+        resourcePrefix: 'http://app.hizuoye.com/build/images',
+
         theme: '',
 
         isDone: false,
@@ -178,6 +180,36 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
             });
         },
 
+        scrollTop: 0, // remember the scrollTop position
+        shareMaskShow: true,
+        showShareMask: function() {
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            activity.scrollTop = scrollTop; // remember the scrollTop position
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
+            var mask = document.querySelector('.shareMask');
+            setTimeout(function() {
+                mask && (mask.style.display = 'block'); /* jshint ignore:line */
+                mask && mask.classList.add('a-bounceinB'); /* jshint ignore:line */
+            }, 16);
+        },
+        hideShareMask: function() {
+            document.body.scrollTop = activity.scrollTop;
+            document.documentElement.scrollTop = activity.scrollTop;
+
+            var mask = document.querySelector('.shareMask');
+            mask && mask.classList.remove('a-bounceinB'); /* jshint ignore:line */
+            setTimeout(function() {
+                mask && mask.classList.add('a-bounceoutB'); /* jshint ignore:line */
+            }, 16);
+            setTimeout(function() {
+                mask && (mask.style.display =  'none'); /* jshint ignore:line */
+                mask && mask.classList.remove('a-bounceoutB'); /* jshint ignore:line */
+            }, 500);
+        },
+
         hasLiked: false,
         updateLike: function() {
             $http.ajax({
@@ -204,6 +236,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
 
         filling: function() {
             activity.isFilling = true;
+            var scrollTop = document.body.clientHeight;
+            setTimeout(function() {
+                document.body.scrollTop = parseInt(scrollTop, 10) + 150 + 'px';
+                document.documentElement.scrollTop = parseInt(scrollTop, 10) + 150 + 'px';
+            }, 100);
         },
         cancel: function() {
             activity.isCancel = true;

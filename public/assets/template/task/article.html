@@ -1,6 +1,17 @@
 <div ms-controller="article" class="detail">
+
     <h2 class="title">{{title}}</h2>
-    <div class="created-time">{{created | date()}}</div>
+
+    <div class="count visit-count"><span>阅读</span>{{visitCount}}</div> 
+    <div class="count share-count"><span>分享</span>{{shareCount}}</div> 
+    <div class="count like-count"><span>喜欢</span>{{likeCount}}</div> 
+
+    <div class="count time fr">{{createdTime | date()}}</div>
+
+    <div class="cover-img">
+        <img ms-attr-src="image" />
+    </div>
+
     <div class="content">{{content | html}}</div>
 
     <div class="task-helper-btn" ms-click="showShareMask">领积分</div>

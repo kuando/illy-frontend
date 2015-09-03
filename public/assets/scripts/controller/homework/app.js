@@ -50,7 +50,11 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(json) {
-                    app.avatar = json.avatar !== void 0 ? json.avatar : defaultAvatarUrl;
+                    if (json.avatar !== void 0) {
+                        app.avatar = json.avatar;
+                    } else {
+                        app.avatar = defaultAvatarUrl;
+                    }
                     app.displayName = json.displayName;
                     app.score = json.score;
                 }

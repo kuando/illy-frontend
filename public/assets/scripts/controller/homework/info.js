@@ -42,6 +42,9 @@ define([], function() {
                     info.keyPointRecord = json.keyPointRecord;
                     detail.keyPointRecord = json.keyPointRecord;
                     detail.exercises = json.exercises;
+
+                    var keyPointAudio = avalon.$('.info .keyPointAudio');
+                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
                 },
                 error: function(res) {
                     console.log('homework info ajax error' + res);
@@ -52,7 +55,7 @@ define([], function() {
             });
         },
         goNext: function() { // core!!! 判断跳转到哪种类型的题目
-            avalon.router.go('app.detail.question', {homeworkId: info.homeworkId, questionId: 1 });
+            avalon.router.go('app.detail.question', { homeworkId: info.homeworkId, questionId: 1 });
         },
         playRecord: function() {
             var audio = avalon.$('.keyPointAudio');
@@ -96,16 +99,16 @@ define([], function() {
             var _id = params.homeworkId;
             info.fetchDataForDetailCtrl(_id, type); // 分为两种，作业和预习, 更加灵活，便于扩充
 
-            setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
-                if (info.keyPointRecord !== '' || info.keyPointRecord !== undefined) {
-                    var keyPointAudio = avalon.$('.info .keyPointAudio');
-                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
-                } 
-                //else {
-                //    avalon.$('.info .keyPointAudio').getAttribute('src');
-                //    avalon.$('.keyPointAudio').getAttribute('src');
-                //}
-            }, 500);
+            // setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
+            //     if (info.keyPointRecord !== '' || info.keyPointRecord !== undefined) {
+            //         var keyPointAudio = avalon.$('.info .keyPointAudio');
+            //         keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
+            //     } 
+            //     //else {
+            //     //    avalon.$('.info .keyPointAudio').getAttribute('src');
+            //     //    avalon.$('.keyPointAudio').getAttribute('src');
+            //     //}
+            // }, 500);
 
             setTimeout(function() {
                 // 设置好录音时间

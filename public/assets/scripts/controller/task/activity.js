@@ -249,7 +249,7 @@ define([], function() {
                     wx.onMenuShareTimeline({
                         title: activity.theme, // 分享标题
                         link: 'http://app.hizuoye.com/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
-                        imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
+                        imgUrl: document.querySelector('.content').querySelectorAll('img')[0].src, // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
                             activity.shareMaskShow = false;
@@ -283,16 +283,6 @@ define([], function() {
                 activity.isDone = true;
                 activity.isFilling = false;
             }
-
-            avalon.$('.gotop').onclick = function() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            };
-
-            setTimeout(function() {
-                var gotop = avalon.$('#gotop');
-                gotop && (gotop.style.display = 'block'); /* jshint ignore:line */
-            }, 3000);
 
         };
         // 进入视图

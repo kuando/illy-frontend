@@ -28,7 +28,7 @@ define([], function() {
         title: "",
         image: '',
         content: "",
-        created: "2015-07-03",
+        createdTime: "2015-07-03",
 
         shareCount: 88,
         visitCount: 88,
@@ -118,7 +118,7 @@ define([], function() {
                 detail.title = localCache.title;
                 detail.image = resourcePrefix + localCache.image;
                 detail.content = localCache.content;
-                detail.created = localCache.createdTime;
+                detail.createdTime = localCache.createdTime;
                 detail.shareCount = localCache.shareCount;
                 detail.visitCount = localCache.visitCount;
                 detail.likeCount = localCache.like;
@@ -134,7 +134,7 @@ define([], function() {
                     detail.title = json.title;
                     detail.image = resourcePrefix + json.image;
                     detail.content = json.content;
-                    detail.created = json.createdTime;
+                    detail.createdTime = json.createdTime;
                     detail.shareCount = json.shareCount;
                     detail.visitCount = json.visitCount;
                     detail.likeCount = json.like;
@@ -143,7 +143,7 @@ define([], function() {
                     wx.onMenuShareTimeline({
                         title: detail.title, // 分享标题
                         link: '', // 分享链接
-                        imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
+                        imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新
                             detail.shareCount++;

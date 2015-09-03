@@ -28,7 +28,7 @@ define([], function() {
         scoreAward: 0,
         title: "",
         content: "",
-        created: "2015-07-09",
+        createdTime: "2015-07-09",
         shareCount: 88,
         visitCount: 88,
         likeCount: 88,
@@ -118,7 +118,7 @@ define([], function() {
                 article.articleId = local._id;
                 article.title = local.title;
                 article.content = local.content;
-                article.created = local.created;
+                article.createdTime = local.createdTime;
                 article.shareCount = local.shareCount;
                 article.visitCount = local.visitCount;
                 article.likeCount = local.like || 0;
@@ -134,7 +134,7 @@ define([], function() {
                     article.articleId = json._id;
                     article.title = json.title;
                     article.content = json.content;
-                    article.created = json.created;
+                    article.createdTime = json.createdTime;
                     article.shareCount = json.shareCount;
                     article.visitCount = json.visitCount;
                     article.likeCount = json.like || 0;
@@ -143,7 +143,7 @@ define([], function() {
                     wx.onMenuShareTimeline({
                         title: article.title, // 分享标题
                         link: 'http://app.hizuoye.com/outer/staticArticle.html?id=' + article.articleId, // 分享链接
-                        imgUrl: document.getElementsByTagName('img')[0].src, // 分享图标
+                        imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新
                             article.shareMaskShow = false;

@@ -46,8 +46,10 @@ define([], function() {
                 success: function(lists) {
                     concat ? evaluation.lists.concat(lists) : evaluation.lists = lists; /* jshint ignore:line */
                     setTimeout(function() {
-                        evaluation.noContent = true;
-                    })
+                        if (lists.length === 0) {
+                            evaluation.noContent = true;
+                        }
+                    }, 1000);
                 },
                 error: function(res) {
                     console.log("evaluation list ajax error" + res);
@@ -72,7 +74,6 @@ define([], function() {
             evaluation.fetchRemoteData({offset: evaluation.offset}, 'concat');
         }
 
-
     });
 
     return avalon.controller(function($ctrl) {
@@ -82,13 +83,10 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
-
-            avalon.vmodels.app.$watch('displayName', function(newVal) {
-                if (newVal !== void 0 || newVal !== '') {
-                    evaluation.avatar = resourcePrefix + avalon.vmodels.app.avatar + "?imageView2/1/w/200/h/200" || defaultAvatarUrl;
-                    evaluation.displayName = avalon.vmodels.app.displayName;
-                }
-            });
+            setTimeout(function() {
+                evaluation.avatar = (resourcePrefix + avalon.vmodels.app.avatar + "?imageView2/1/w/200/h/200") || defaultAvatarUrl;
+                evaluation.displayName = avalon.vmodels.app.displayName;
+            }, 300);
 
             evaluation.visited = avalon.vmodels.root.currentIsVisited; 
             // otherwise, show it
@@ -98,17 +96,6 @@ define([], function() {
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-
-            setTimeout(function() {
-                $('.comments-overflow').on('click', function() { 
-                    $(this).hide();
-                    $(this).parent().find('.comments-full')[0].style.display = 'inline-block';
-                });
-                $('.comments-full').on('click', function() { 
-                    $(this).hide();
-                    $(this).parent().find('.comments-overflow')[0].style.display = 'inline-block';
-                });
-            }, 500);
 
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
