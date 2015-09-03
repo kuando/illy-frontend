@@ -13,7 +13,9 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
-    var resourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images";
+    var jinbiResourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images";
+
+    var resourcePrefix = 'http://resource.hizuoye.com/';
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
@@ -27,6 +29,7 @@ define([], function() {
         articleId: 1,
         scoreAward: 0,
         title: "",
+        image: '', // cover-img
         content: "",
         createdTime: "2015-07-09",
         shareCount: 88,
@@ -117,6 +120,7 @@ define([], function() {
                 var local = avalon.getLocalCache(cachedPrefix + article.taskId);
                 article.articleId = local._id;
                 article.title = local.title;
+                article.image = resourcePrefix + local.image + '?imageview2/2/w/400/h/400';
                 article.content = local.content;
                 article.createdTime = local.createdTime;
                 article.shareCount = local.shareCount;
@@ -133,6 +137,7 @@ define([], function() {
                 success: function(json) {
                     article.articleId = json._id;
                     article.title = json.title;
+                    article.image = resourcePrefix + json.image + '?imageView2/2/w/400/h/400';
                     article.content = json.content;
                     article.createdTime = json.createdTime;
                     article.shareCount = json.shareCount;
@@ -210,7 +215,7 @@ define([], function() {
                         var y = 0;
                         var index = 1;
                         for (var z = 0; z <= (amount * width) ; z = z + width) {
-                            $('<img class="clipped" src="' + resourcePrefix +'/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
+                            $('<img class="clipped" src="' + jinbiResourcePrefix +'/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
                             if (z === (amount * width) - width) {
                                 y = y + height;
                                 z = -width;

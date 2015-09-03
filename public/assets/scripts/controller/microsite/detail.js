@@ -23,6 +23,7 @@ define([], function() {
     
     var detail = avalon.define({
         $id: "detail",
+        resourcePrefix: 'http://app.hizuoye.com/build/images',
         visited: false,
         articleId: 1,
         title: "",
@@ -116,7 +117,7 @@ define([], function() {
             if (detail.visited && needCache) {
                 var localCache = avalon.getLocalCache(cachedPrefix + detail.articleId);
                 detail.title = localCache.title;
-                detail.image = resourcePrefix + localCache.image;
+                detail.image = resourcePrefix + localCache.image + '?imageView2/2/w/400/h/400';
                 detail.content = localCache.content;
                 detail.createdTime = localCache.createdTime;
                 detail.shareCount = localCache.shareCount;
@@ -132,7 +133,7 @@ define([], function() {
                 dataType: "json",
                 success: function(json) {
                     detail.title = json.title;
-                    detail.image = resourcePrefix + json.image;
+                    detail.image = resourcePrefix + json.image + '?imageView2/2/w/400/h/400';
                     detail.content = json.content;
                     detail.createdTime = json.createdTime;
                     detail.shareCount = json.shareCount;
