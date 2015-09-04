@@ -515,7 +515,7 @@ background-image: url("../../icons-36-white.png");
                         background-size: 100%;
                         background-repeat: no-repeat;
                         margin-right: .06rem;
-                        margin-top: -0.02rem;
+                        margin-top: -0.04rem;
                     }
                     .icon-people {
                         //background-image: url(#{$img-dir}/iconfont-xinzengrenshu.png);
@@ -690,10 +690,12 @@ background-image: url("../../icons-36-white.png");
             /* active state ui */
             background-color: $main-blue;
             color: #fff;
-            .yo-checked-c > input:checked + .type::after {
+            //.yo-checked-c > input:checked + .type::after {
+            .yo-checked-c > input + .type::after {
                 color: $main-blue;
             }
-            .yo-checked-c > input:checked + .type {
+            // .yo-checked-c > input:checked + .type {
+            .yo-checked-c > input + .type {
                 background-color: #fff;
             }
         }
@@ -777,6 +779,18 @@ background-image: url("../../icons-36-white.png");
             /* 错误的选择题 */
             border: 2px solid $main-red;
             border-radius: .05rem;
+
+             /* active state ui */
+            background-color: #fff;
+            color: $main-blue;
+            //.yo-checked-c > input:checked + .type::after {
+            .yo-checked-c > input + .type::after {
+                color: $main-blue;
+            }
+            // .yo-checked-c > input:checked + .type {
+            .yo-checked-c > input + .type {
+                background-color: #fff;
+            }
         }
     }
     .mask {

@@ -32,19 +32,17 @@
         </div>
 
         <ul class="timeline-inner" ms-if="!noContent">
-            <li class="timeline-item" ms-repeat-item="lists" ms-class-1="timeline-item-last-dark: parseInt($last / 5, 10) % 2 !== 0" ms-class-2="light: parseInt($index / 5, 10) % 2 === 0" ms-class-3="dark: parseInt($index / 5, 10) % 2 !== 0">
+            <li class="timeline-item" ms-repeat-item="lists" ms-class-1="timeline-item-last-dark: $last === true && parseInt($index / 5, 10) % 2 !== 0" ms-class-2="light: parseInt($index / 5, 10) % 2 === 0" ms-class-3="dark: parseInt($index / 5, 10) % 2 !== 0">
                 <div class="time area">
-<!--                <span class="year">{{item.createdTime | date() | year}}</span>
-                    <span class="date">{{item.createdTime | date() | date}}</span> -->
-                    <span class="year">2015</span>
-                    <span class="date">09.02</span>
+                    <span class="year">{{ item.createdTime | date("yyyy.MM.dd") | year }}</span>
+                    <span class="date">{{ item.createdTime | date("yyyy.MM.dd") | time }}</span>
                 </div>
                 <div class="line"></div>
                 <div class="right-info area">
                     <img class="avatar" src="http://resource.hizuoye.com/images/avatar/children/default1.png" alt="teacher" />
                     <div class="homework-title text-overflow">&lt&lt{{item.title}}&gt&gt</div>
                     <div class="evaluation-text">
-                        {{item.comment || '暂无老师评语, 老师有空会及时给出评价的, 请耐心等待哦～'}}
+                        {{item.comment.content || '暂无老师评语, 老师有空会及时给出评价的, 请耐心等待哦～'}}
                     </div>
                 </div>
             </li>

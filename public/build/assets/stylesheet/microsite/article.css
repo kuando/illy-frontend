@@ -334,9 +334,9 @@
   padding: .1rem;
   border-radius: 3px;
   margin-bottom: .1rem;
-  position: fixed;
+  position: absolute;
   left: 0;
-  bottom: 20px;
+  bottom: 10px;
   width: 100%;
 }
 .activity-info-form-title {

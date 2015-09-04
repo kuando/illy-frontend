@@ -1457,7 +1457,7 @@ background-image: url("../../icons-36-white.png");
   background-size: 100%;
   background-repeat: no-repeat;
   margin-right: .06rem;
-  margin-top: -0.02rem;
+  margin-top: -0.04rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
   background-image: url(http://app.hizuoye.com/build/images/task-people.png);
@@ -1611,10 +1611,10 @@ background-image: url("../../icons-36-white.png");
   background-color: #00abfd;
   color: #fff;
 }
-.question .yo-list .item.question-item-active .yo-checked-c > input:checked + .type::after {
+.question .yo-list .item.question-item-active .yo-checked-c > input + .type::after {
   color: #00abfd;
 }
-.question .yo-list .item.question-item-active .yo-checked-c > input:checked + .type {
+.question .yo-list .item.question-item-active .yo-checked-c > input + .type {
   background-color: #fff;
 }
 .question .yo-list .item .mark {
@@ -1694,6 +1694,15 @@ background-image: url("../../icons-36-white.png");
   /* 错误的选择题 */
   border: 2px solid #e50b23;
   border-radius: .05rem;
+  /* active state ui */
+  background-color: #fff;
+  color: #00abfd;
+}
+.question .yo-list .item.wrong-answer .yo-checked-c > input + .type::after {
+  color: #00abfd;
+}
+.question .yo-list .item.wrong-answer .yo-checked-c > input + .type {
+  background-color: #fff;
 }
 .question .mask {
   display: none;

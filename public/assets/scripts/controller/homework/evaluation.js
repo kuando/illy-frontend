@@ -16,7 +16,7 @@ define([], function() {
         return str.substring(0, 4);
     };
 
-    avalon.filters.date = function(str) {
+    avalon.filters.time = function(str) {
         return str.substring(5);
     };
 
