@@ -1,0 +1,1 @@
+{"version":3,"file":"event.ortchange.js","sources":["../../../../../../../assets/scripts/lib/gmu/js/extend/event.ortchange.js"],"names":["$","mediaQuery","ortchange","window","innerWidth","matchMedia","addListener","trigger"],"mappings":"AAQAA,EAAE,WAUEA,EAAEC,YACEC,UAAW,sBAAwBC,OAAOC,WAAa,OAG3DJ,EAAEK,WAAWL,EAAEC,WAAWC,WAAWI,YAAY,WAC7CN,EAAEG,QAAQI,QAAQ"}

@@ -73,7 +73,7 @@ define([], function() {
 
             var mask = document.querySelector('.shareMask');
             setTimeout(function() {
-                mask && (mask.style.display = 'block');
+                mask && (mask.style.display = 'block'); /* jshint ignore:line */
                 mask && mask.classList.add('a-bounceinB'); /* jshint ignore:line */
             }, 16);
         },
@@ -213,7 +213,7 @@ define([], function() {
                 article.hasLiked = false;
             }
 
-            article.$watch("isShared", function(newVal, oldVal) {
+            article.$watch("isShared", function(newVal) {
 
                 if (newVal) {
                     (genClips = function () {
@@ -238,17 +238,17 @@ define([], function() {
                                 z = 9999999;
                             }
                         }
-                    })();
-                    function rand(min, max) {
+                    })(); /* jshint ignore:line */
+                    var rand = function rand(min, max) {
                         return Math.floor(Math.random() * (max - min + 1)) + min;
-                    }
+                    };
                     var first = false,
                         clicked = false;
                     // On click
                     $('.item1 div.kodai').on('click', function () {
 
                         setTimeout(function() {
-                            alert("任务完成，恭喜获得" + article.scoreAward + "积分！快去兑大奖吧~")
+                            alert("任务完成，恭喜获得" + article.scoreAward + "积分！快去兑大奖吧~");
                         }, 3000);
                         setTimeout(function() {
                             article.isShared = 'isShared'; // key! mark!

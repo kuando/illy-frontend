@@ -1,0 +1,2 @@
+!function($,win){gmu.Suggestion.options.compatdata=!0,gmu.Suggestion.option("compatdata",!0,function(){this.on("ready",function(){var localdata,dataArr,key=this.key,flagKey="SUG-History-DATATRANS";try{localdata=win.localStorage[key],localdata&&!win.localStorage[flagKey]&&(win.localStorage[flagKey]="",dataArr=localdata.split(","),win.localStorage[key]=dataArr.join(this.separator))}catch(e){console.log(e.message)}})})}(gmu.$,window);
+//# sourceMappingURL=compatdata.js.map

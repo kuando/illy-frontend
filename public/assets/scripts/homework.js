@@ -1,4 +1,5 @@
-define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", "./lib/mmRouter/mmState", "./http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
+define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mmState", "./lib/http/http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
+// AvalonLibBaseUrl defined in main html
 
     //====================== global config area start **********************//
 

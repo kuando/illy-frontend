@@ -41,7 +41,7 @@ define([], function() {
                     detail.keyPoint = json.keyPoint;
                     info.keyPointRecord = json.keyPointRecord;
                     detail.keyPointRecord = json.keyPointRecord;
-                    detail.exercises = json.exercises;
+                    detail.exercises = json.quiz.exercises;
 
                     var keyPointAudio = avalon.$('.info .keyPointAudio');
                     keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
@@ -114,14 +114,15 @@ define([], function() {
                 // 设置好录音时间
                 var audio = avalon.$('.keyPointAudio');
                 var duration = audio && audio.duration;
-                info.duration = duration;
-                var time = avalon.$('.info .record-total-time');
-                time && ( time.innerHTML = parseInt(duration, 10) || 0 ); /* jshint ignore:line */
+                info.duration = (parseInt(duration, 10) + 1) || 6;
+                // var time = avalon.$('.info .record-total-time');
+                // time && ( time.innerHTML = parseInt(duration, 10) || 0 ); /* jshint ignore:line */
             }, 2000);
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("info.js onBeforeUnload fn");
+            info.stopRecord();
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

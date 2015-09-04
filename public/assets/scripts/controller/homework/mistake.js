@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    //var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -29,9 +29,9 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
-            avalon.vmodels.wrong && (avalon.vmodels.wrong.localAnswers = []);
+            avalon.vmodels.wrong && (avalon.vmodels.wrong.localAnswers = []); /* jshint ignore:line */
             mistake.exercises = [];
             mistake.inWorking = false;
         };

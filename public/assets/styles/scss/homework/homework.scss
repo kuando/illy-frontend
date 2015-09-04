@@ -1081,9 +1081,10 @@ background-image: url("../../icons-36-white.png");
         }
     }
     .navigator-bar {
-        font-size: 14px;
+        font-size: 16px;
         margin-right: -1px;
         overflow: hidden;
+
         .go-homework,
         .go-mistake {
             width: 50%;
@@ -1094,6 +1095,17 @@ background-image: url("../../icons-36-white.png");
             text-align: center;
             border-right: 1px solid #dedede;
             margin-top: 10px;
+        }
+        
+        .icon {
+            position: relative;
+            top: -1px;
+        }
+        .icon-homework {
+            background-image: url(#{$img-dir}/evaluation-homework.png);
+        }
+        .icon-mistake {
+            background-image: url(#{$img-dir}/evaluation-mistake.png);
         }
     }
     .h-line {
@@ -1132,12 +1144,14 @@ background-image: url("../../icons-36-white.png");
         // border-top: $timeline-line-size solid $timeline-blue;
         // 
         .no-evaluation-text {
-            width: 98%;
+            width: 80%;
             border: $timeline-line-size solid $timeline-blue;
             position: relative;
             top: -6px;
             padding: .2rem .05rem;
             border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
     .h-inner-line {

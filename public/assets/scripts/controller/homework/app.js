@@ -14,10 +14,16 @@ define([], function() {
 
     // app ctrl take charge of everything...
     var app = avalon.define({
+
         $id: "app",
-        yesOrNo: null,
+
+        /* common start */
         appMessage: 'I am message from app ctrl',
         gMaskShow: false,
+        /* common end */
+
+        /* comfirm start */
+        yesOrNo: null,
         gConfirmShow: false,
         showConfirm: function(message) {
             app.appMessage = message; // set message
@@ -37,6 +43,23 @@ define([], function() {
             app.yesOrNo = false;
             app.hideConfirm();
         },
+        /* confirm end */
+
+        /* alert start */
+        gAlertShow: false,
+        showAlert: function(message) {
+            app.appMessage = message; // set message
+            app.gMaskShow = true;
+            app.gAlertShow = true;
+        },
+        hideAlert: function() {
+            app.gMaskShow = false;
+            app.gAlertShow = false;
+        },
+        iKnowClick: function() {
+            app.hideAlert();
+        },
+        /* alert end */
 
         schoolName: '',
         studentCount: 100,

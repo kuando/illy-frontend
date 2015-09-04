@@ -65,7 +65,7 @@ define([], function() {
 
             var mask = document.querySelector('.shareMask');
             setTimeout(function() {
-                mask && (mask.style.display = 'block');
+                mask && (mask.style.display = 'block'); /* jshint ignore:line */
                 mask && mask.classList.add('a-bounceinB'); /* jshint ignore:line */
             }, 16);
         },

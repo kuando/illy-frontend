@@ -62,7 +62,7 @@ $taskList-img-height: 67px;
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
-    background-image: url("../../build/images/taskList-bg.png");
+    background-image: url(#{$img-dir}/taskList-bg.png);
     color: $dark-grey;
     padding-top: 15px;
     background-color: #ffefb5; /* for too much items */
@@ -90,7 +90,7 @@ $taskList-img-height: 67px;
             background-size: 100%;
             background-position: center top;
             background-repeat: no-repeat;
-            background-image: url("../../build/images/rank-nb.png");
+            background-image: url(#{$img-dir}/rank-nb.png);
             width: 37%;
             max-width: 107px;
             /* must fixed value */
@@ -123,7 +123,7 @@ $taskList-img-height: 67px;
             max-width: 67px;
             height: 67px;
             border-radius: 15px;
-            background-image: url("../../build/images/taskList-item-icon.png");
+            background-image: url(#{$img-dir}/taskList-item-icon.png);
             border: 2px solid #bdd3ad;
             background-size: 100%;
             position: relative;
@@ -182,7 +182,7 @@ $taskList-img-height: 67px;
                 .go {
                     width: 35%;
                     height: 41px;
-                    background-image: url("../../build/images/taskList-btn.png");
+                    background-image: url(#{$img-dir}/taskList-btn.png);
                     background-size: 99%;
                     background-position: right bottom;
                     background-repeat: no-repeat;

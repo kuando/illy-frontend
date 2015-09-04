@@ -259,10 +259,10 @@ define([], function() {
                             // 不管成功与否，前台界面至少先更新
                             activity.shareMaskShow = false;
                             activity.shareCount++;
-                            if (article.isShared === false) {
-                                article.isShared = true;
+                            if (activity.isShared === false) {
+                                activity.isShared = true;
                                 resetScroll();
-                                article.updateShare();
+                                activity.updateShare();
                                 setTimeout(function() {
                                     $('.item1 > div.kodai').click();
                                 }, 1500);
@@ -311,10 +311,10 @@ define([], function() {
                 activity.hasLiked = false;
             }
 
-            activity.$watch("isShared", function(newVal, oldVal) {
+            activity.$watch("isShared", function(newVal) {
 
                 if (newVal) {
-                    (genClips = function () {
+                    (genClips = function () { /* jshint:ignore:line */
                         $t = $('.item1');
                         var amount = 5;
                         var width = $t.width() / amount;
@@ -336,17 +336,17 @@ define([], function() {
                                 z = 9999999;
                             }
                         }
-                    })();
-                    function rand(min, max) {
+                    })(); /* jshint ignore:line */
+                    var rand = function rand(min, max) {
                         return Math.floor(Math.random() * (max - min + 1)) + min;
-                    }
+                    };
                     var first = false,
                         clicked = false;
                     // On click
                     $('.item1 div.kodai').on('click', function () {
 
                         setTimeout(function() {
-                            alert("任务完成，恭喜获得" + activity.scoreAward + "积分！快去兑大奖吧~")
+                            alert("任务完成，恭喜获得" + activity.scoreAward + "积分！快去兑大奖吧~");
                         }, 3000);
                         setTimeout(function() {
                             activity.isShared = 'isShared'; // key! mark!

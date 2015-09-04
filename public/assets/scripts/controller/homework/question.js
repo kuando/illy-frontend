@@ -261,11 +261,14 @@ define([], function() {
             }
 
         },
-        checkAnswer: function() { // check answer and collect info for Collect
+        checkAnswer: function() { // check answer and collect info for Collections
 
             /** 
              *  首先设置状态为正在做题，防御后退更改答案, 停止播放录音(执行呗，反正无害...)
              *  1. 如果为录音题, 做相关判断和统计
+             *        点击检查答案弹出确认提示框，
+             *           确认放弃, 则localAnswers做相关记录，同时不上传录音题信息统计(!!!not push to detailVM's audioAnswers!!!)，
+             *           取消就一切如常
              *  2. 不是录音题
              *        如果没做，提示并停止检查
              *        做了检查对错, 做好相关统计，加入本地答案列表
@@ -300,7 +303,8 @@ define([], function() {
                 return;
             }
             if (question.userAnswer === '') {
-                alert("请至少给出一个答案！"); 
+                // alert("请至少给出一个答案！"); 
+                avalon.vmodels.app.showAlert("请至少给出一个答案！");
                 return; 
             }
             
@@ -356,7 +360,7 @@ define([], function() {
                             question.submit();
                         }
                     } else {
-                        app.$unwatch("yesOrNo");
+                        app.$unwatch("yesOrNo"); // mark, avalon1.5+ drop $unwatch this way!
                         //avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId});
                     }
                 });

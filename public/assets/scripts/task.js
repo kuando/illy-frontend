@@ -1,4 +1,5 @@
-define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", './lib/mmRouter/mmState', './http'], function(wx) {
+define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mmState", "./lib/http/http"], function(wx) {
+// AvalonLibBaseUrl defined in main html
 
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;

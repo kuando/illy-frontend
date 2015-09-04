@@ -15,7 +15,7 @@ define([], function() {
 
         $id: "list",
         noHomeworkContent: false,
-        noPreviewsContent: false,
+        // noPreviewsContent: false,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         showLoader: true, // only show loader in the first time
         homework: [], // 作业数据
@@ -46,12 +46,12 @@ define([], function() {
                             }      
                         }
 
-                        if (type === 'previews') {                           
-                            var newLists2 = list.previews;
-                            if (newLists2 && newLists2.length === 0) {
-                                list.noPreviewsContent = true;
-                            }       
-                        }
+                        // if (type === 'previews') {                           
+                        //     var newLists2 = list.previews;
+                        //     if (newLists2 && newLists2.length === 0) {
+                        //         list.noPreviewsContent = true;
+                        //     }       
+                        // }
                     }, 500);
                 },
                 error: function(res) {
@@ -90,7 +90,7 @@ define([], function() {
             
             // remove cache in detail ctrl
             list.fetchData('homework');
-            list.fetchData('previews');
+            // list.fetchData('previews'); // api droped in 20150904
 
             if (avalon.vmodels.question !== void 0) { // fix in 20150811
                 // 可以开启做题时间统计的标记, 自己第一次进入是true，同时唯一在此处开启

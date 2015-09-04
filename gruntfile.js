@@ -1,12 +1,14 @@
 'use strict';
 
 var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
+var lrSnippet = require('connect-livereload')({
+    port: LIVERELOAD_PORT
+});
+var mountFolder = function(connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -51,7 +53,7 @@ module.exports = function (grunt) {
                 files: ['public/assets/styles/scss/task/*.scss'],
                 tasks: ['sass:task']
             },
-                   
+
             js: {
                 files: ['public/assets/js/**/*.js', 'public/assets/js/*.js'],
                 tasks: ['buildjs']
@@ -59,18 +61,18 @@ module.exports = function (grunt) {
 
             fonts: {
                 files: ['public/assets/fonts/*'],
-                tasks: ['clean:fonts','copy:fonts']
+                tasks: ['clean:fonts', 'copy:fonts']
             },
 
             images: {
                 files: ['public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
-                tasks: ['clean:images','imagemin']
+                tasks: ['clean:images', 'imagemin']
             },
 
             css: {
                 files: ['public/assets/vendor/css/*.css'],
                 tasks: ['buildcss'] // scss要一起build才行
-            }                    
+            }
         }, // watch 
 
         connect: {
@@ -81,7 +83,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    middleware: function (connect) {
+                    middleware: function(connect) {
                         return [ // server root path 
                             mountFolder(connect, 'public'),
                             lrSnippet
@@ -110,7 +112,7 @@ module.exports = function (grunt) {
                     'head-script-disabled': true,
                     'style-disabled': true
                 },
-                src: ['public/index.html', 'public/modules/**/*.html']
+                src: ['public/*.html', 'public/assets/template/**/*.html']
             }
         }, // html hint
 
@@ -125,7 +127,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'public/assets/styles/scss/microsite',
                     src: ['*.scss'],
-                    dest: 'public/build/microsite',
+                    dest: 'public/build/assets/stylesheet/microsite',
                     ext: '.css'
                 }]
             },
@@ -134,7 +136,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'public/assets/styles/scss/homework',
                     src: ['*.scss'],
-                    dest: 'public/build/homework',
+                    dest: 'public/build/assets/stylesheet/homework',
                     ext: '.css'
                 }]
             },
@@ -143,7 +145,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'public/assets/styles/scss/task',
                     src: ['*.scss'],
-                    dest: 'public/build/task',
+                    dest: 'public/build/assets/stylesheet/task',
                     ext: '.css'
                 }]
             }
@@ -152,18 +154,18 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 sourceMap: true
-                //banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:mm:ss") %> */\n'//添加banner
+                    //banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:mm:ss") %> */\n'//添加banner
             },
-            buildall: {//按原文件结构压缩js文件夹内所有JS文件
+            buildall: { //按原文件结构压缩js文件夹内所有JS文件
                 options: {
                     mangle: false, //不混淆变量名
                     preserveComments: 'some', //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
                 },
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/js',//js目录下
-                    src: '**/*.js',//所有js文件
-                    dest: 'public/build/javascript/js'//输出到此目录下
+                    cwd: 'public/assets/scripts', //js目录下
+                    src: '**/*.js', //所有js文件
+                    dest: 'public/build/assets/scripts/' //输出到此目录下
                 }]
             }
         }, // js uglify
@@ -173,71 +175,106 @@ module.exports = function (grunt) {
                 sourceMap: true,
                 mangle: false, //不混淆变量名
                 preserveComments: 'some', //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
-                banner:'/*! \n  Project  Name: <%= pkg.name %> \n  Last Modified: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n'//添加banner
+                banner: '/*! \n  Project  Name: <%= pkg.name %> \n  Last Modified: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n' //添加banner
             },
-            js: {  
+            js: {
                 src: [
                     'public/build/javascript/js/app.js'
-                ],  
-                dest: 'public/build/javascript/app-build.js' 
-            },  
+                ],
+                dest: 'public/build/javascript/app-build.js'
+            },
 
             css: {
                 src: ['public/build/stylesheet/css/*.css'],
-                dest:'public/build/stylesheet/app.css'
+                dest: 'public/build/stylesheet/app.css'
             }
         }, // concat js and css
 
         cssmin: {
-            minall: {
+            homework: {
                 expand: true,
-                cwd: 'public/build/stylesheet/css/',
+                cwd: 'public/build/assets/stylesheet/homework/',
                 src: ['*.css'],
-                dest: 'public/build/stylesheet/css/min',
-                ext: '.min.css'
+                dest: 'public/build/assets/stylesheet/homework/min',
+                ext: '.css'
             },
-            minappcss: {
-                src: ['public/build/stylesheet/app.css'],
-                dest:'public/build/stylesheet/app-build.css'
-            }
+            microsite: {
+                expand: true,
+                cwd: 'public/build/assets/stylesheet/microsite/',
+                src: ['*.css'],
+                dest: 'public/build/assets/stylesheet/microsite/min',
+                ext: '.css'
+            },
+            task: {
+                expand: true,
+                cwd: 'public/build/assets/stylesheet/task/',
+                src: ['*.css'],
+                dest: 'public/build/assets/stylesheet/task/min',
+                ext: '.css'
+            },
         }, // css min, only app-build.css to min...
 
         // https://www.npmjs.com/package/grunt-contrib-imagemin
-        imagemin: {                          // Task
-            foldermin: {                         // target
-              files: [{
-                expand: true,                  // Enable dynamic expansion
-                cwd: 'public/assets/images/',  // Src matches are relative to this path
-                src: ['*.{png,jpg,gif}'],      // Actual patterns to match
-                dest: 'public/build/images/'   // Destination path prefix
-              }]
+        imagemin: {
+            foldermin: { // target
+                files: [{
+                    expand: true, // Enable dynamic expansion
+                    cwd: 'public/assets/images/', // Src matches are relative to this path
+                    src: ['*.{png,jpg,gif}'], // Actual patterns to match
+                    dest: 'public/build/images/' // Destination path prefix
+                }]
             }
         },
 
         // https://www.npmjs.com/package/grunt-contrib-clean
         // clean the build or no-use assets and files.
         clean: {
-          fonts: ["public/build/fonts/"], 
-          images: ["public/build/images/"], 
-          css: ["public/build/stylesheet/css/"], 
-          js: ['public/build/javascript/js/']
+            fonts: ["public/build/fonts/"],
+            images: ["public/build/images/"],
+            css: ["public/build/stylesheet/css/"],
+            js: ['public/build/javascript/js/']
+
         },
 
         // https://www.npmjs.com/package/grunt-contrib-copy
         // In my opinion, copy is used to copy resource to build path,
         // because build path is a folder that all files should be auto-created.
         copy: {
-          fonts: {
-            files: [
-              // makes all src relative to cwd
-              {expand: true, cwd: 'public/assets/', src: ['fonts/*'], dest: 'public/build/'}                           
-            ],
-          },
-          css: {
-            files: [            
-              {expand: true, cwd: 'public/assets/vendor/css/', src: ['*.css'], dest: 'public/build/stylesheet/css/'}                    
-            ],
-          }
+            fonts: {
+                files: [
+                    // makes all src relative to cwd
+                    {
+                        expand: true,
+                        cwd: 'public/assets/',
+                        src: ['fonts/*'],
+                        dest: 'public/build/'
+                    }
+                ],
+            },
+            css: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/assets/vendor/css/',
+                    src: ['*.css'],
+                    dest: 'public/build/stylesheet/css/'
+                }],
+            },
+            tpl: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/assets/template/',
+                    src: ['**/*.html'],
+                    dest: 'public/build/assets/template'
+                }],
+            },
+            outer: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/outer',
+                    src: ['**/*'],
+                    dest: 'public/build/outer'
+                }],
+            },
         },
 
         karma: {
@@ -252,18 +289,19 @@ module.exports = function (grunt) {
         },
 
         jshint: {
-            all: ['gruntfile.js', 'public/assets/js/*.js']
+            //all: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
+            ctrlScripts: ['public/assets/scripts/controller/**/*.js']
         }
 
     });
     // Tasks config end...
- 
+
     // basic tasks
     //grunt.registerTask('buildscss', 'build scss files...', ['sass','concat:css', 'cssmin']);
     grunt.registerTask('buildscss', 'build scss files...', ['sass']);
     grunt.registerTask('buildjs', 'build js files...', ['uglify', 'concat:js']);
     grunt.registerTask('buildimages', 'build images files...', ['imagemin']);
-     
+
     // manual tasks (手动任务)
     grunt.registerTask('checkfiles', 'check files...', ['htmlhint', 'jshint']);
     grunt.registerTask('buildcss', 'build css files...', ['clean:css', 'copy:css', 'buildscss']);
@@ -271,12 +309,12 @@ module.exports = function (grunt) {
     grunt.registerTask('buildall', 'build all files...', ['buildscss', 'buildjs', 'buildimages']);
     grunt.registerTask('mv2bdfolder', 'move files to build folder...', ['clean', 'copy:fonts', 'copy:css']);
     grunt.registerTask('test', 'test the projects...', ['karma']);
-    
+
     // helper tasks
-    grunt.registerTask('rebuild', 'rebuild all files...', ['mv2bdfolder', 'buildall']); 
-    
+    grunt.registerTask('rebuild', 'rebuild all files...', ['mv2bdfolder', 'buildall']);
+
     // workflow task
-    grunt.registerTask('workflow', function (target) { // start task
+    grunt.registerTask('workflow', function(target) { // start task
         grunt.task.run([
             'rebuild', //make app runs well even in the first time
             'connect:livereload',
@@ -286,7 +324,7 @@ module.exports = function (grunt) {
     });
 
     // temp task... for dev... three sub-project(microsite, homework, task)
-    grunt.registerTask('dev', function (target) { // dev task
+    grunt.registerTask('dev', function(target) { // dev task
         grunt.task.run([
             'sass',
             'connect:livereload',
@@ -296,4 +334,3 @@ module.exports = function (grunt) {
     });
 
 };
-

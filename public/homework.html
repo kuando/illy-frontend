@@ -12,7 +12,7 @@
     /* loading, pacman end   */
     </style>
     <!-- <link rel="stylesheet" href="assets/styles/animation.css" /> -->
-    <link rel="stylesheet" href="build/homework/homework.css" />
+    <link rel="stylesheet" href="build/assets/stylesheet/homework/homework.css" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 
 </body>
 
-<script src="./assets/scripts/lib/avalon/avalon.js"></script>
+<script src="./assets/scripts/lib/avalon/1.45/avalon.js"></script>
 <script>
 
     // rendered and bootstrap the page
@@ -43,6 +43,8 @@
     require(['./scripts/homework'], function(app) {
         app && app.init && app.init();
     })
+
+    var AvalonLibsBaseUrl = './lib/avalonRouter/1.5-before/'; // for children files amd-define version control
 
 </script>
 
