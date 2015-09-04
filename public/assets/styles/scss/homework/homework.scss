@@ -501,19 +501,28 @@ background-image: url("../../icons-36-white.png");
                 .finish_count {
                     display: inline-block;
                     vertical-align: top;
-                    width: 100%;
+                    width: 49%;
                     position: relative;
                     top: .05rem;
-                    .icon-people {
+                    max-height: 24px;
+                    overflow: hidden;
+
+                    .icon {
                         width: .16rem;
                         height: .16rem;
                         display: inline-block;
                         vertical-align: middle;
-                        /* 下面两条规则适配高分屏 */
-                        background: url(#{$img-dir}/iconfont-xinzengrenshu.png) no-repeat;
                         background-size: 100%;
-                        margin-right: .08rem;
+                        background-repeat: no-repeat;
+                        margin-right: .06rem;
                         margin-top: -0.02rem;
+                    }
+                    .icon-people {
+                        //background-image: url(#{$img-dir}/iconfont-xinzengrenshu.png);
+                        background-image: url(#{$img-dir}/task-people.png);
+                    }
+                    .icon-score {
+                        background-image: url(#{$img-dir}/result-score.png);
                     }
                 }
             }
@@ -1106,6 +1115,7 @@ background-image: url("../../icons-36-white.png");
         }
         .icon-mistake {
             background-image: url(#{$img-dir}/evaluation-mistake.png);
+            top: -3px; 
         }
     }
     .h-line {
@@ -1147,7 +1157,7 @@ background-image: url("../../icons-36-white.png");
             width: 80%;
             border: $timeline-line-size solid $timeline-blue;
             position: relative;
-            top: -6px;
+            top: 30px;
             padding: .2rem .05rem;
             border-radius: 5px;
             margin-left: auto;
@@ -1187,9 +1197,13 @@ background-image: url("../../icons-36-white.png");
                 border-color: transparent $timeline-white transparent transparent!important;
             }
         }
-        .timeline-item:last-child {
+        .timeline-item:last-child { /* default  .timeline-item-last-light */
             padding-bottom: 30px;
             border-bottom: $timeline-line-size solid $timeline-blue;
+        }
+        .timeline-item-last-dark {
+            padding-bottom: 30px!important;
+            border-bottom: $timeline-line-size solid $timeline-white!important;
         }
         .timeline-item {
             text-align: left;

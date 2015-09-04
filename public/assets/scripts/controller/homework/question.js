@@ -295,7 +295,7 @@ define([], function() {
                     return;
                 } else {
                     question.right = true; // right it for next
-                    detailVM.audioAnswers.push({exerciseId: question.currentId, answer: audioAnswer});
+                    detailVM.audioAnswers.push({sequence: question.currentId, answer: audioAnswer});
                 }
                 
                 //question.localAnswers.push(record.localId); // bug fix, also need push
@@ -318,7 +318,7 @@ define([], function() {
                 // collect info and push to the wrongCollect
                 var radioAnswer = question.userAnswer;
                 //alert(radioAnswer);
-                detailVM.wrongCollect.push({exerciseId: question.currentId, answer: radioAnswer});  
+                detailVM.wrongCollect.push({sequence: question.currentId, answer: radioAnswer});  
             }
             question.localAnswers.push(question.userAnswer); // old-bug, 20150731
 
@@ -494,6 +494,8 @@ define([], function() {
                     if (!$(this).find('input').attr('disabled')) {
                         $('.yo-list .item').removeClass('question-item-active');
                         $(this).addClass('question-item-active');
+                        // $('.yo-list input').attr('checked', 'false');
+                        // $(this).find('input').attr('checked', 'true');
                     }
                 });
             }, 100);

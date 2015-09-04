@@ -27,8 +27,10 @@ define([], function() {
         $id: "evaluation",
         noContent: false,
         noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
-        avatar: '',
-        displayName: '',
+
+        // avatar: '',
+        //displayName: '',
+        
         lists: [],
         visited: false,
         offset: 0,
@@ -49,7 +51,7 @@ define([], function() {
                         if (lists.length === 0) {
                             evaluation.noContent = true;
                         }
-                    }, 1000);
+                    }, 200);
                 },
                 error: function(res) {
                     console.log("evaluation list ajax error" + res);

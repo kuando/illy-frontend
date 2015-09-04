@@ -4,6 +4,10 @@
     <!-- item start -->
     <div class="item-wrapper">
 
+        <div class="global-noContent-tip-dark" ms-if="noHomeworkContent">
+            {{noContentText}}
+        </div>
+
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="lists">
             <div ms-click="goWrong(this)" ms-attr-data-homeworkId="item._id" class="list-card">

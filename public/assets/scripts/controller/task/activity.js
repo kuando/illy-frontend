@@ -311,6 +311,8 @@ define([], function() {
                 activity.hasLiked = false;
             }
 
+            activity.isFilling = false; // hide form
+
             activity.$watch("isShared", function(newVal) {
 
                 if (newVal) {

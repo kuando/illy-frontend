@@ -5,6 +5,8 @@ define([], function() {
 
     // token
     var token = avalon.illyGlobal.token;
+    
+    var resourcePrefix = 'http://resource.hizuoye.com/';
 
     // defaultAvatarUrl
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
@@ -25,7 +27,11 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(json) {
-                    task.avatar = json.avatar !== void 0 ? json.avatar : defaultAvatarUrl;
+                    if (json.avatar !== void 0) {
+                        task.avatar = resourcePrefix + json.avatar + '?imageView2/2/w/200/h/200';
+                    } else {
+                        task.avatar = defaultAvatarUrl;
+                    }
                     task.displayName = json.displayName;
                     task.score = json.score;
                 }

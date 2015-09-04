@@ -9,6 +9,8 @@ define([], function() {
         avalon.vmodels.root.noTokenHandler();
     }
 
+    var resourcePrefix = 'http://resource.hizuoye.com/';
+
     // defaultAvatarUrl
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
@@ -74,7 +76,7 @@ define([], function() {
                 dataType: "json",
                 success: function(json) {
                     if (json.avatar !== void 0) {
-                        app.avatar = json.avatar;
+                        app.avatar = resourcePrefix + json.avatar + '?imageView2/2/w/200/h/200';
                     } else {
                         app.avatar = defaultAvatarUrl;
                     }

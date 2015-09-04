@@ -35,7 +35,7 @@ define([], function() {
         gender: '',
         phone: '',
         parent: '',
-        avatar: '',
+        //avatar: '', // use partent task ctrl's avatar
         onSchool: '',
         grade: '',
         finishedHomeworkCount: '',

@@ -1,13 +1,10 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mmState", "./lib/http/http"], function(wx) { // 此处wx对象必须手动导入内部，不同于其他模式工厂return的对象，内部直接可用。且导入时位置还必须在第一个。fuck...
-// AvalonLibBaseUrl defined in main html
+// AvalonLibsBaseUrl defined in project main file(.html)
 
-    //====================== global config area start **********************//
+    // ==================== global config area start, @included  ==================== //
 
     // screen splash show time config
     //avalon.splashShowTime = 666; // ms, used in app.js
-
-    // 缓存访问过得页面，为了更好的loading体验，性能嘛? 先mark一下!!!
-    var cachePage = [];
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
@@ -35,31 +32,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     var global_loader_dom = document.querySelector('.loader'); 
 
-    // title Map， 映射各种状态的action bar title
-    var acTitle = {
-        'list': "作业列表",
-        'info': '作业详情',
-        'question': '题目详情',
-        'result': '作业结果',
-        'mistakeList': '错题列表',
-        'wrong': '错题详情',
-        'evaluation': '课堂表现'
-    };
+    // ==================== global config area end, @included  ==================== //
 
-    // avalon global stuff when app init
-    avalon.illyGlobal = {
+    // ==================== static method start, @included  ==================== //
 
-        viewani: global_viewload_animation_name,
-        token: token,
-        apiBaseUrl: apiBaseUrl,
-        question_view_ani: 'a-bounceinL',
-        noTokenHandler: function() {
-            alert("对不起，本系统仅供内部使用！");
-        }
-
-    };
-
-    /***** static method start *****/
     // avalon global static method, get vm-object with vm-name
     avalon.getVM = function(vm) {
         return avalon.vmodels[vm];
@@ -75,7 +51,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         return document.querySelector(selector);
     };
 
-    function doIsVisitedCheck(cacheContainer, callback) {
+    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
 
         if (typeof cacheContainer === 'function') {
             callback = cacheContainer;
@@ -98,9 +74,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
         // avalon.vmodels.root[vmProptoSet] = isVisited;
         return isVisited;
-    }
+    };
 
-    function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
+    var loadingBeginHandler = function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
 
         if (typeof loader === 'function') { // deal with only one arguments and is callback
             callback = loader;
@@ -120,29 +96,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         if (callback && typeof callback === 'function') {
             callback();
         }
-    }
+    };
 
-    function resetScrollbarWhenViewEnter() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-
-    function getCurrentState() {
-        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
-        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-        if (state2 === void 0) {
-            return state1;
-        } else {
-            return state2;
-        }
-    }
-
-    function setPageTitle() {
-        var currentState = root.currentState;
-        root.title = acTitle[currentState];
-    }
-
-    function loadingEndHandler(loader, callback) {
+    var loadingEndHandler = function loadingEndHandler(loader, callback) {
         if (typeof loader === 'function') { // deal with only one arguments and is callback
             callback = loader;
             loader = void 0;
@@ -162,8 +118,27 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 callback();
             }
         }, global_loading_duration);
-    }
-    /***** static method end *****/
+    };
+
+    var resetScrollbarWhenViewEnter = function resetScrollbarWhenViewEnter() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+
+    var getCurrentState = function getCurrentState() {
+        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
+        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
+        if (state2 === void 0) {
+            return state1;
+        } else {
+            return state2;
+        }
+    };
+
+    var setPageTitle = function setPageTitle() {
+        var currentState = root.currentState;
+        root.title = acTitle[currentState];
+    };
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
@@ -184,12 +159,45 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         });
     };
 
-    function unbindBadNetworkHandler(timer) {
+    var unbindBadNetworkHandler = function unbindBadNetworkHandler(timer) {
         timer = timer || avalon.badNetworkTimer;
         timer && clearTimeout(timer); /* jshint ignore:line */
-    }
+    }; 
 
-    /* wxsdk start */
+    // ==================== static method end, @included ==================== //
+
+    // ==================== custom project data start  ==================== //
+
+    // avalon global stuff when app init
+    avalon.illyGlobal = {
+
+        viewani: global_viewload_animation_name,
+        token: token,
+        apiBaseUrl: apiBaseUrl,
+        question_view_ani: 'a-bounceinL',
+        noTokenHandler: function() {
+            alert("对不起，本系统仅供内部使用！");
+        }
+
+    };
+
+    // 页面访问统计容器
+    var cachePage = [];
+
+    // title Map， 映射各种状态的action bar title
+    var acTitle = {
+        'list': "作业列表",
+        'info': '作业详情',
+        'question': '题目详情',
+        'result': '作业结果',
+        'mistakeList': '错题列表',
+        'wrong': '错题详情',
+        'evaluation': '课堂表现'
+    };
+
+    // ==================== custom project data end  ==================== //
+
+    // ==================== wxsdk start  ==================== //
 
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
@@ -276,11 +284,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         alert("Woops, error comes..." + res);
     });
 
-    /* wxsdk end */
+    // ====================  wxsdk end  ==================== //
 
-    //========================= global config area end =========================//
-
-    //========================= bootstrap the app =========================// 
+    // ==================== bootstrap the app  ==================== // 
 
     // 定义一个顶层的vmodel，用来放置全局共享数据, 挂载在html元素上
     var root = avalon.define({
@@ -376,10 +382,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
             } // end of root.currentAction switch
 
-        }
+        } // end of if
     }); // end of root.currentAction watcher
 
-    /* router start */
+    // ==================== router start  ==================== //
 
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("app", { // app.js这个控制器接管整个应用控制权
@@ -508,9 +514,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     //})
     //
     
-    /* router end */
+    // ==================== router end  ==================== //
     
-    /* state config start */
+    // ==================== state config start  ==================== //
 
     /*
      *  @interface avalon.state.config 全局配置
@@ -545,7 +551,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
     }); 
 
-    /* state config end */
+    // ====================  state config end  ==================== //
     
     // exports 
     return {

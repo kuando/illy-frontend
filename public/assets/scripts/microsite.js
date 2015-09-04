@@ -1,5 +1,5 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mmState", "./lib/http/http"], function(wx) {
-// AvalonLibBaseUrl defined in main html
+// AvalonLibsBaseUrl defined in project main file(.html)
 
     //====================== global config area start **********************//
     

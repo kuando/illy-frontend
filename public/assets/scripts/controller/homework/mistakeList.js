@@ -12,6 +12,8 @@ define([], function() {
     var mistakeList = avalon.define({
 
         $id: "mistakeList",
+        noHomeworkContent: false,
+        noContentText: '恭喜你！小学霸。暂时没有错题集，咱们继续努力，再接再厉吧~',
         lists: [], // 作业数据
         //isLoading: false, // 正在加载标记
         fetchData: function() {
@@ -25,12 +27,20 @@ define([], function() {
                 },
                 success: function(res) {
                     mistakeList.lists = res; //key ! fetch data
+                    setTimeout(function() {                          
+                        var newLists = mistakeList.lists;
+                        if (newLists && newLists.length === 0) {
+                            mistakeList.noHomeworkContent = true;
+                        }      
+                    }, 200);
                 },
                 error: function(res) {
                     console.log("mistakeList ajax error" + res);
+                    mistakeList.noHomeworkContent = true;
                 },
                 ajaxFail: function(res) {
                     console.log("mistakeList ajax failed" + res);
+                    mistakeList.noHomeworkContent = true;
                 }
             });
         }, // end of fetchData

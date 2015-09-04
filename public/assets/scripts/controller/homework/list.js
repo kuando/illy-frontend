@@ -38,27 +38,20 @@ define([], function() {
                 dataType: "json",
                 success: function(lists) {
                     list[type] = lists; //key ! fetch data
-                    setTimeout(function() {
-                        if (type === 'homework') {                           
-                            var newLists = list.homework;
-                            if (newLists && newLists.length === 0) {
-                                list.noHomeworkContent = true;
-                            }      
-                        }
-
-                        // if (type === 'previews') {                           
-                        //     var newLists2 = list.previews;
-                        //     if (newLists2 && newLists2.length === 0) {
-                        //         list.noPreviewsContent = true;
-                        //     }       
-                        // }
-                    }, 500);
+                    setTimeout(function() {                          
+                        var newLists = list.homework;
+                        if (newLists && newLists.length === 0) {
+                            list.noHomeworkContent = true;
+                        }      
+                    }, 200);
                 },
                 error: function(res) {
                     console.log("homework list ajax error" + res);
+                    list.noHomeworkContent = true;
                 },
                 ajaxFail: function(res) {
                     console.log("homework list ajax failed" + res);
+                    list.noHomeworkContent = true;
                 }
             });
         } // end of fetchData

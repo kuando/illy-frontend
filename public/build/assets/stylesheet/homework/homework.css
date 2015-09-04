@@ -1443,20 +1443,27 @@ background-image: url("../../icons-36-white.png");
 .item-wrapper .item .list-card .hw-info .finish_count {
   display: inline-block;
   vertical-align: top;
-  width: 100%;
+  width: 49%;
   position: relative;
   top: .05rem;
+  max-height: 24px;
+  overflow: hidden;
 }
-.item-wrapper .item .list-card .hw-info .finish_count .icon-people {
+.item-wrapper .item .list-card .hw-info .finish_count .icon {
   width: .16rem;
   height: .16rem;
   display: inline-block;
   vertical-align: middle;
-  /* 下面两条规则适配高分屏 */
-  background: url(http://app.hizuoye.com/build/images/iconfont-xinzengrenshu.png) no-repeat;
   background-size: 100%;
-  margin-right: .08rem;
+  background-repeat: no-repeat;
+  margin-right: .06rem;
   margin-top: -0.02rem;
+}
+.item-wrapper .item .list-card .hw-info .finish_count .icon-people {
+  background-image: url(http://app.hizuoye.com/build/images/task-people.png);
+}
+.item-wrapper .item .list-card .hw-info .finish_count .icon-score {
+  background-image: url(http://app.hizuoye.com/build/images/result-score.png);
 }
 .item-wrapper .item .list-card .todo {
   position: absolute;
@@ -2003,6 +2010,7 @@ background-image: url("../../icons-36-white.png");
 }
 .evaluation .navigator-bar .icon-mistake {
   background-image: url(http://app.hizuoye.com/build/images/evaluation-mistake.png);
+  top: -3px;
 }
 .evaluation .h-line {
   width: 100%;
@@ -2042,7 +2050,7 @@ background-image: url("../../icons-36-white.png");
   width: 80%;
   border: 2px solid #43d1d5;
   position: relative;
-  top: -6px;
+  top: 30px;
   padding: .2rem .05rem;
   border-radius: 5px;
   margin-left: auto;
@@ -2081,8 +2089,13 @@ background-image: url("../../icons-36-white.png");
   border-color: transparent #fff transparent transparent !important;
 }
 .evaluation .timeline-inner .timeline-item:last-child {
+  /* default  .timeline-item-last-light */
   padding-bottom: 30px;
   border-bottom: 2px solid #43d1d5;
+}
+.evaluation .timeline-inner .timeline-item-last-dark {
+  padding-bottom: 30px !important;
+  border-bottom: 2px solid #fff !important;
 }
 .evaluation .timeline-inner .timeline-item {
   text-align: left;
