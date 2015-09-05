@@ -226,7 +226,8 @@ function toApp() {
                 location.replace(next); // pure url
             }
         } else {
-            alert("request state error not 200 ok" + xhr.response + "status is: " + status);
+            // alert("request state error not 200 ok" + xhr.response + "status is: " + status);
+            alert(xhr.response.error + '!');
         }
     };
 

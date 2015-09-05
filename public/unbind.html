@@ -74,8 +74,9 @@
             var status = xhr.status;
             if (status === 200) { // binded user and qo next...
                 localStorage.removeItem('illy-token');
-                location.replace('http://app.hizuoye.com/login.html');
-            } else if ( status === 401) { // unbinded user and go login...
+                var openid = xhr.responseText;
+                location.replace('http://app.hizuoye.com/login.html?openid=' + openid);
+            } else if ( status === 401) {
                 alert('账户注销失败!');
             } else {
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);

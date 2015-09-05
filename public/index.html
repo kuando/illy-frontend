@@ -59,7 +59,9 @@
 
         // enough auth, go anywhere
         if (typeof localStorage.getItem('illy-token') === 'string') { // enough auth, go
-            location.replace(nextUrl); // pure url
+            if (next !== 'unbind') { // cannot local, must http reAuth
+                location.replace(nextUrl); // pure url
+            } 
         }
         // microsite only auth
         if (nextUrl === 'microsite' && typeof localStorage.getItem('illy-token-microsite') === 'string') {
@@ -87,10 +89,10 @@
                         } else {
                             localStorage.setItem('illy-token', xhr.responseText);
                         }
-                        location.replace(nextUrl); // pure url
+                        location.replace(nextUrl); // pure url, included unbind
                     } else {
-                        console.error('不支持本地存储，token获取不到');
-                        alert('localStorage not support, no token');
+                        alert('不支持本地存储，token获取不到');
+                        console.error('localStorage not support, no token');
                     }
                 } else if ( status === 401) { // unbinded user and go login...
                     var openid = xhr.responseText;

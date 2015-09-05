@@ -403,14 +403,18 @@ define([], function() {
             //}, 1600);
             /* bad hack */
 
+            // just stop record
             setTimeout(function() {
                 wx.stopRecord();
-            }, 500);
+            }, 200);
 
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
+
+            // just stop record.
+            wx.stopRecord();
 
             //question.starter = true; // 做题开始计时标记，使得开始仅执行一次
             
