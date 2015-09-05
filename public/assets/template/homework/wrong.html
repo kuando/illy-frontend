@@ -13,14 +13,14 @@
     <!-- 公用题干 -->
     <p class="question-text">
         {{exercise.question | html}}<br/>  
-        <span class="description" ms-if=" exercise.eType == 0 && !!exercise.description ">题目说明:{{exercise.description}}</span>
+        <span class="description" ms-if=" exercise.eType === 0 && !!exercise.description ">题目说明:{{exercise.description}}</span>
     </p>
     <!-- 公用题干 -->
 
     <!-- 题目主干渲染区, 依据不同类型 start -->
 
     <!-- 文字选择题-->
-    <div class="yo-list yo-list-group" ms-if="exercise.eType == 0">
+    <div class="yo-list yo-list-group" ms-if="exercise.eType === 0">
         <label class="item item-active" ms-repeat-item="exercise.choices" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
             <div class="mark flex">
                 {{item.title}}. {{item.content}} 
@@ -34,9 +34,9 @@
     <!-- 文字选择题-->
 
     <!-- 图片选择题-->
-    <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType == 1" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
+    <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType === 1" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
         <label class="item item-active" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer" ms-repeat-item="exercise.choices" >
-            <div class="mark flex">
+            <div class="mark flex" ms-if="exercise.eType === 1">
                 <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
             </div>
             {{item.title}}
@@ -49,7 +49,7 @@
     <!-- 图片选择题-->
 
     <!-- 填空题 -->
-    <div class="fill-in wrong-fill-in" ms-if="exercise.eType == 2">
+    <div class="fill-in wrong-fill-in" ms-if="exercise.eType === 2">
         <label class="item item-input">
             <p class="answered-text">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
         </label>

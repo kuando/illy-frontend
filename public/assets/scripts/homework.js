@@ -144,6 +144,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
         delay = global_loading_timeout || 8000;
         var loader = global_loader_dom || document.querySelector(global_loader_className);
+        badNetworkTimer && clearTimeout(badNetworkTimer);
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
             // even can invoke the wx-sdk to close the page

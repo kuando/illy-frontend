@@ -220,6 +220,9 @@ function toApp() {
             // location.href = next + '.html?token=' + xhr.responseText;
             if (localStorage && localStorage.getItem) {
                 localStorage.setItem('illy-token', xhr.responseText);
+                if (next === void 0) {
+                    next = './task.html#!/me';
+                }
                 location.replace(next); // pure url
             }
         } else {

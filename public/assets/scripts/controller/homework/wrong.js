@@ -55,6 +55,11 @@ define([], function() {
 
             wrong.currentId = params.questionId;
             var exercises = avalon.vmodels.mistake.exercises;
+            if (exercises.length === 0) {
+                alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
+                location.replace('./homework.html#!/mistake/list');
+                return;
+            }
             // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性

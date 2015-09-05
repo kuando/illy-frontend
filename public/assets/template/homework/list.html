@@ -17,7 +17,7 @@
                     <h2 class="item-title area">{{item.title}}</h2>
                     <span class="time">{{item.createdTime | date("yyyy.MM.dd")}}</span>
                     <span class="finish_count"><i class="icon icon-people"></i>{{item.statistics.studentCountOfFinished}}人已完成</span>
-                    <span class="finish_count"><i class="icon icon-score"></i>总奖励{{item.performanceAward}}分</span>
+                    <span class="finish_count"><i class="icon icon-score"></i>总奖励{{item.performanceAward + item.finishAward}}分</span>
                 </div>
                 <span class="todo yo-ico">&#xf07f;</span>
             </a>

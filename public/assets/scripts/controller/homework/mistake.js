@@ -23,7 +23,7 @@ define([], function() {
             setTimeout(function() {
                 avalon.vmodels.app.hideAlert();
                 avalon.router.go('app.mistake.mistakeList');   
-            }, 3000);
+            }, 1500);
         } // end of submit
     });
 

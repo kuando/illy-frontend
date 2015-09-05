@@ -9,7 +9,7 @@
         </div>
 
         <!-- 作业列表 start -->
-        <div class="item area" ms-repeat-item="lists">
+        <div class="item area" ms-repeat-item="lists" ms-if="!noHomeworkContent">
             <div ms-click="goWrong(this)" ms-attr-data-homeworkId="item._id" class="list-card">
                 <img class="item-img area" src="../../build/images/homework_list_icon_green.png" ms-attr-alt="item.title" />
                 <div class="hw-info area">
