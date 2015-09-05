@@ -1033,7 +1033,7 @@
         }
     }
     .h-inner-line {
-        width: 22%;
+        width: 22.4%; /* for big screen device */
         height: $timeline-line-size;
         background-color: $timeline-blue;
         position: relative;
@@ -1113,6 +1113,7 @@
                     margin-left: -12px; /* new way for all device */
                     top: 48px;
                     z-index: $zIndex3;
+                    border-radius: 50%;
                 }
                 .homework-title {
                     width: $evaluation-right-width;
@@ -1132,7 +1133,7 @@
                     background-color: $timeline-blue;
                     color: $timeline-white;
                     margin-top: 35px;
-                    max-height: 90px;
+                    word-break: break-all;
                     /* mark */
                     text-align: justify;
                 }

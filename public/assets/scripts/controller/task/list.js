@@ -46,7 +46,7 @@ define([], function() {
                         if (newLists && newLists.length === 0) {
                             taskList.noContent = true;
                         }
-                    }, 2000); // wait for 2s
+                    }, 500); // wait for .5s
                 },
                 error: function(res) {
                     console.log("taskList list ajax error" + res);

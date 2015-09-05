@@ -87,15 +87,15 @@ define([], function() {
         CopyinfoCollect: [],
 
         isShared: false, // true, false, 'isShared' default:false
-        updateShare: function() {
+        updateShare: function() { // mean done the task!!!
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/activities' + activity.activityId + '/share',
+                url: apiBaseUrl + 'tasks/' + activity.taskId + '/done',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function() {
-
+                success: function(res) {
+                    avalon.vmodels.task.score = res.score;
                 },
                 error: function(res) {
                     console.log(res);
@@ -273,7 +273,7 @@ define([], function() {
                             // 用户取消分享后执行的回调函数
                             if (!activity.isShared) {
                                 // alert('差一点就分享成功了, 拿积分兑大奖了!');
-                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 1); // hideDelay
+                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 3); // hideDelay
                             }
                         }
                     });

@@ -1242,8 +1242,12 @@ select {
   background-image: url(http://app.hizuoye.com/build/images/taskList-bg.png);
   color: #333438;
   padding-top: 15px;
-  background-color: #ffefb5;
+  background-color: #945e27;
   /* for too much items */
+}
+.task-list .global-noContent-tip-dark {
+  margin-top: 0rem !important;
+  margin-bottom: 0.2rem !important;
 }
 .task-list .item-wrapper {
   background: rgba(0, 69, 99, 0.5);

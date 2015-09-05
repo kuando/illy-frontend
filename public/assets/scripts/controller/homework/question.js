@@ -446,7 +446,7 @@ define([], function() {
             // no exercise, error go index, report reason!
             if (exercises.length === 0) { 
                 console.log('fetch no exercise error! maybe because back from mall! or get in directly');
-                alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
+                // alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
                 location.replace('./homework.html');
                 return ;
             }

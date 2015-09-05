@@ -65,7 +65,12 @@ $taskList-img-height: 67px;
     background-image: url(#{$img-dir}/taskList-bg.png);
     color: $dark-grey;
     padding-top: 15px;
-    background-color: #ffefb5; /* for too much items */
+    background-color: #945e27; /* for too much items */
+
+    .global-noContent-tip-dark {
+        margin-top: 0rem!important;
+        margin-bottom: .2rem!important;
+    }
 
     .item-wrapper {
         background: rgba(0, 69, 99, .5);

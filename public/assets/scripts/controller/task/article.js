@@ -43,15 +43,15 @@ define([], function() {
         likeCount: 88,
 
         isShared: false,
-        updateShare: function() {
+        updateShare: function() { // mean done the task
             $http.ajax({
                 method: 'PUT',
-                url: apiBaseUrl + 'public/posts/' + article.articleId + '/share',
+                url: apiBaseUrl + 'tasks/' + article.taskId + '/done',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                success: function() {
-
+                success: function(res) {
+                    avalon.vmodels.task.score = res.score;
                 },
                 error: function(res) {
                     console.log(res);
@@ -172,7 +172,7 @@ define([], function() {
                             // 用户取消分享后执行的回调函数
                             if (!article.isShared) {
                                 // alert('差一点就分享成功, 拿积分兑大奖了!');
-                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 1); // hideDelay
+                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 3); // hideDelay
                             }
                         }
                     });

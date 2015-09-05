@@ -41,8 +41,11 @@
                 <div class="right-info area">
                     <img class="avatar" src="http://resource.hizuoye.com/images/avatar/children/default1.png" alt="teacher" />
                     <div class="homework-title text-overflow">&lt&lt{{item.title}}&gt&gt</div>
-                    <div class="evaluation-text">
-                        {{item.comment.content || '暂无老师评语, 老师有空会及时给出评价的, 请耐心等待哦～'}}
+                    <div class="evaluation-text" ms-if="item.comment === void 0">
+                        暂无老师评语, 老师有空会及时给出评价的, 请耐心等待哦～
+                    </div>
+                    <div class="evaluation-text" ms-if="item.comment !== void 0">
+                        {{item.comment.content}}
                     </div>
                 </div>
             </li>
