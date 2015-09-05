@@ -122,9 +122,16 @@ define([], function() {
             var app = avalon.vmodels.app; 
             app.showConfirm('您确定放弃本次作业？');
         },
-        back: back
+        back: back,
         //isBack: false // 防止重复执行back函数，因为点击会调用，同时页面销毁回调也注册了back方法(对付手机原生后退)，重复执行了
-    });
+        clearLastHomeworkData: function() {
+            detail.$model.homeworkId = 0;
+            detail.$model.title = ''; // 作业标题，用于info面板
+            detail.$model.keyPoint = ''; // 知识重点，用于info面板
+            detail.$model.keyPointRecord = ''; // 知识重点录音
+            detail.$model.exercises.length = 0; // 题目列表
+        }
+    }); // end of define
 
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成

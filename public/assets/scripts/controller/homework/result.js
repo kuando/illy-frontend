@@ -20,6 +20,7 @@ define([], function() {
         $ctrl.$onEnter = function() {
             //avalon.log("result.js onEnter callback");
             // this homwork is done and for drop check, 20150809
+
             avalon.vmodels.detail.isDone = true;
             //avalon.log(params); 
             var source = avalon.getPureModel('detail').result;
@@ -42,10 +43,16 @@ define([], function() {
                 }
             }
 
+            // clear detail exercises for trigger question cannot back
+            avalon.vmodels.detail.clearLastHomeworkData();
+
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("result.js onBeforeUnload fn");
+            
+            // clear detail exercises for trigger question cannot back
+            avalon.vmodels.detail.clearLastHomeworkData();
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

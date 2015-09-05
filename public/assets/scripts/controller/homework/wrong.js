@@ -56,7 +56,7 @@ define([], function() {
             wrong.currentId = params.questionId;
             var exercises = avalon.vmodels.mistake.exercises;
             if (exercises.length === 0) {
-                alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
+                // alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
                 location.replace('./homework.html#!/mistake/list');
                 return;
             }
