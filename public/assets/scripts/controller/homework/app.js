@@ -49,10 +49,15 @@ define([], function() {
 
         /* alert start */
         gAlertShow: false,
-        showAlert: function(message) {
+        showAlert: function(message, hideDelay) {
             app.appMessage = message; // set message
             app.gMaskShow = true;
             app.gAlertShow = true;
+            if (hideDelay !== void 0) {
+                setTimeout(function() {
+                    app.hideAlert();
+                }, hideDelay * 1000);
+            }
         },
         hideAlert: function() {
             app.gMaskShow = false;

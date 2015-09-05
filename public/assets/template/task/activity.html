@@ -6,8 +6,7 @@
     <div class="count share-count"><span>分享</span>{{shareCount}}</div> 
     <div class="count like-count"><span>喜欢</span>{{likeCount}}</div> 
 
-    <div class="created-time">开始时间: {{startTime | date()}}</div>
-    <div class="created-time">结束时间: {{endTime | date()}}</div>
+    <div class="created-time">活动时间: {{startTime | date()}} - {{endTime | date()}}</div>
     <div class="content">{{content | html}}</div>
 
     <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared === false">领积分</div>

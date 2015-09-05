@@ -14,6 +14,32 @@ define([], function() {
     // task ctrl take charge of everything...
     var task = avalon.define({ /* jshint ignore:line */
         $id: "task",
+
+        /* common start */
+        appMessage: 'I am message from app ctrl',
+        gMaskShow: false,
+        /* common end */
+        /* alert start */
+        gAlertShow: false,
+        showAlert: function(message, hideDelay) {
+            task.appMessage = message; // set message
+            task.gMaskShow = true;
+            task.gAlertShow = true;
+            if (hideDelay !== void 0) {
+                setTimeout(function() {
+                    task.hideAlert();
+                }, hideDelay * 1000);
+            }
+        },
+        hideAlert: function() {
+            task.gMaskShow = false;
+            task.gAlertShow = false;
+        },
+        iKnowClick: function() {
+            task.hideAlert();
+        },
+        /* alert end */
+
         score: 88,
         schoolName: '',
         studentCount: 100,

@@ -18,8 +18,12 @@ define([], function() {
         inWorking: false,
         submit: function() { // core!!!
             mistake.exercises = [];
-            alert("恭喜您，本次作业复习完毕!");
-            avalon.router.go('app.mistake.mistakeList');   
+            // alert("恭喜您，本次作业复习完毕!");
+            avalon.vmodels.app.showAlert('恭喜您，本次作业复习完毕!');
+            setTimeout(function() {
+                avalon.vmodels.app.hideAlert();
+                avalon.router.go('app.mistake.mistakeList');   
+            }, 3000);
         } // end of submit
     });
 

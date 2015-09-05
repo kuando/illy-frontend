@@ -171,7 +171,8 @@ define([], function() {
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             if (!article.isShared) {
-                                alert('差一点就分享成功, 拿积分兑大奖了!');
+                                // alert('差一点就分享成功, 拿积分兑大奖了!');
+                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 1); // hideDelay
                             }
                         }
                     });

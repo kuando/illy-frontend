@@ -179,7 +179,8 @@ define([], function() {
 
             var valid = activity.infoCollect[0] !== '' && validPhone(activity.infoCollect[1]);
             if (!valid) {
-                alert('请填写信息完整，格式正确的报名信息，谢谢!');
+                // alert('请填写信息完整，格式正确的报名信息，谢谢!');
+                avalon.vmodels.task.showAlert('请填写完整, 格式无误的信息', 2);
                 return;
             }
 
@@ -263,7 +264,7 @@ define([], function() {
                                 activity.isShared = true;
                                 resetScroll();
                                 activity.updateShare();
-                                setTimeout(function() {
+                                setTimeout(function() { // auto click when time enough
                                     $('.item1 > div.kodai').click();
                                 }, 1500);
                             }
@@ -271,7 +272,8 @@ define([], function() {
                         cancel: function() {
                             // 用户取消分享后执行的回调函数
                             if (!activity.isShared) {
-                                alert('差一点就分享成功了!');
+                                // alert('差一点就分享成功了, 拿积分兑大奖了!');
+                                avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 1); // hideDelay
                             }
                         }
                     });
