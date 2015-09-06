@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title ms-text="title"></title>
-    <link rel="stylesheet" href="../assets/stylesheet/microsite/min/article.css" />
+    <link rel="stylesheet" href="http://app.hizuoye.com/assets/stylesheet/microsite/min/article.css" />
     <style>
     * {
         margin: 0;
@@ -471,21 +471,20 @@
 
     </div>
 </body>
-<script src="../assets/scripts/lib/avalon/1.45/avalon.js"></script>
+<script src="http://app.hizuoye.com/assets/scripts/lib/avalon/1.45/avalon.js"></script>
 <script>
-    avalon.config({
-        debug: true
-    });
+avalon.config({
+    debug: true
+});
 
-    require.config({
-        baseUrl: "./js"
-    });
+require.config({
+    baseUrl: "./js"
+});
 
-    require(['./staticActivity'], function(page) {
+require(['./staticActivity'], function(page) {
         page && page.init && page.init();
     })
     // rendered and bootstrap the page
-      
 </script>
 
 </html>

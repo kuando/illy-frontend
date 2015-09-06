@@ -1,16 +1,16 @@
-'use strict';
+'use strict'; /* jshint ignore:line */
 
 var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({
+var lrSnippet = require('connect-livereload')({ /* jshint ignore:line */
     port: LIVERELOAD_PORT
 });
 var mountFolder = function(connect, dir) {
-    return connect.static(require('path').resolve(dir));
+    return connect.static(require('path').resolve(dir)); /* jshint ignore:line */
 };
 
-module.exports = function(grunt) {
+module.exports = function(grunt) { /* jshint ignore:line */
     // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks); /* jshint ignore:line */
 
     grunt.initConfig({
 
@@ -34,11 +34,6 @@ module.exports = function(grunt) {
                 ]
             },
 
-            // use as a children task for check...
-            // html: {
-            //     files: ['public/index.html', 'public/modules/**.html'],
-            //     tasks: ['checkhtml'] 
-            // },
             micrositescss: {
                 files: ['public/assets/styles/scss/microsite/*.scss'],
                 tasks: ['sass:microsite']
@@ -54,11 +49,6 @@ module.exports = function(grunt) {
                 tasks: ['sass:task']
             },
 
-            js: {
-                files: ['public/assets/js/**/*.js', 'public/assets/js/*.js'],
-                tasks: ['buildjs']
-            },
-
             fonts: {
                 files: ['public/assets/fonts/*'],
                 tasks: ['clean:fonts', 'copy:fonts']
@@ -67,12 +57,8 @@ module.exports = function(grunt) {
             images: {
                 files: ['public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
                 tasks: ['clean:images', 'imagemin']
-            },
-
-            css: {
-                files: ['public/assets/vendor/css/*.css'],
-                tasks: ['buildcss'] // scss要一起build才行
             }
+
         }, // watch 
 
         connect: {
@@ -94,8 +80,11 @@ module.exports = function(grunt) {
         }, // connect as a local server
 
         open: {
-            server: {
-                path: 'http://localhost:<%= connect.options.port %>'
+            dev: {
+                path: 'http://localhost:<%= connect.options.port %>/microsite.html'
+            },
+            build: {
+                path: 'http://localhost:<%= connect.options.port %>/build/microsite.html'
             }
         }, //open browser
 
@@ -215,7 +204,7 @@ module.exports = function(grunt) {
         }, // css min, only app-build.css to min...
 
         // https://www.npmjs.com/package/grunt-contrib-imagemin
-        imagemin: {
+        imagemin: { 
             foldermin: { // target
                 files: [{
                     expand: true, // Enable dynamic expansion
@@ -229,10 +218,11 @@ module.exports = function(grunt) {
         // https://www.npmjs.com/package/grunt-contrib-clean
         // clean the build or no-use assets and files.
         clean: {
-            fonts: ["public/build/fonts/"],
+            fonts: ["public/build/assets/fonts/"],
             images: ["public/build/images/"],
-            css: ["public/build/stylesheet/css/"],
-            js: ['public/build/javascript/js/']
+            css: ["public/build/assets/stylesheet/"],
+            js: ['public/build/assets/scripts/'],
+            tpls: ['public/build/assets/template']
 
         },
 
@@ -247,17 +237,9 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: 'public/assets/',
                         src: ['fonts/*'],
-                        dest: 'public/build/'
+                        dest: 'public/build/assets/'
                     }
                 ],
-            },
-            css: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/assets/vendor/css/',
-                    src: ['*.css'],
-                    dest: 'public/build/stylesheet/css/'
-                }],
             },
             tpl: {
                 files: [{
@@ -290,47 +272,41 @@ module.exports = function(grunt) {
 
         jshint: {
             //all: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
-            ctrlScripts: ['public/assets/scripts/controller/**/*.js']
+            ctrlScripts: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
         }
 
     });
     // Tasks config end...
-
-    // basic tasks
-    //grunt.registerTask('buildscss', 'build scss files...', ['sass','concat:css', 'cssmin']);
-    grunt.registerTask('buildscss', 'build scss files...', ['sass']);
-    grunt.registerTask('buildjs', 'build js files...', ['uglify', 'concat:js']);
-    grunt.registerTask('buildimages', 'build images files...', ['imagemin']);
-
-    // manual tasks (手动任务)
-    grunt.registerTask('checkfiles', 'check files...', ['htmlhint', 'jshint']);
-    grunt.registerTask('buildcss', 'build css files...', ['clean:css', 'copy:css', 'buildscss']);
-    grunt.registerTask('buildcssjs', 'build all css and js files...', ['buildcss', 'buildjs']);
-    grunt.registerTask('buildall', 'build all files...', ['buildscss', 'buildjs', 'buildimages']);
-    grunt.registerTask('mv2bdfolder', 'move files to build folder...', ['clean', 'copy:fonts', 'copy:css']);
-    grunt.registerTask('test', 'test the projects...', ['karma']);
-
-    // helper tasks
-    grunt.registerTask('rebuild', 'rebuild all files...', ['mv2bdfolder', 'buildall']);
-
-    // workflow task
-    grunt.registerTask('workflow', function(target) { // start task
-        grunt.task.run([
-            'rebuild', //make app runs well even in the first time
-            'connect:livereload',
-            'open',
-            'watch'
-        ]);
-    });
-
-    // temp task... for dev... three sub-project(microsite, homework, task)
-    grunt.registerTask('dev', function(target) { // dev task
+    
+    // dev task 
+    grunt.registerTask('dev', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'sass',
             'connect:livereload',
-            'open',
+            'open:dev',
             'watch'
         ]);
     });
 
+    // build task 
+    grunt.registerTask('build', function(target) { /* jshint ignore:line */
+        grunt.task.run([
+            'clean',
+            'sass',
+            'cssmin',
+            'imagemin',
+            'uglify',
+            'copy',
+            'open:build'
+        ]);
+    });
+
+    // hint task 
+    grunt.registerTask('hint', function(target) { /* jshint ignore:line */
+        grunt.task.run([
+            'jshint',
+            'htmlhint'
+        ]);
+    });
 };
+

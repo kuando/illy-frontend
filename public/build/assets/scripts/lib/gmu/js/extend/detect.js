@@ -1,2 +1,0 @@
-!function($,navigator){var ret,ua=navigator.userAgent,br=$.browser,detects={qq:/MQQBrowser\/([\d.]+)/i,uc:/UCBrowser\/([\d.]+)/i,baidu:/baidubrowser\/.*?([\d.]+)/i};$.each(detects,function(i,re){return(ret=ua.match(re))?(br[i]=!0,br.version=ret[1],!1):void 0}),!br.uc&&/Uc/i.test(navigator.appVersion)&&(br.uc=!0)}(Zepto,navigator);
-//# sourceMappingURL=detect.js.map

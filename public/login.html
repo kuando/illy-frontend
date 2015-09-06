@@ -227,7 +227,8 @@ function toApp() {
             }
         } else {
             // alert("request state error not 200 ok" + xhr.response + "status is: " + status);
-            alert(xhr.response.error + '!');
+            var error = JSON.parse(xhr.response);
+            alert(error + '!');
         }
     };
 

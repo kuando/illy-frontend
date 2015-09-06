@@ -7,7 +7,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     //avalon.splashShowTime = 666; // ms, used in app.js
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://101.201.176.191/api/v1/';
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
@@ -84,7 +84,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
         loader = global_loader_dom || document.querySelector(global_loader_className);
         var showLoader = function() {
-            loader && (loader.style.display = '');
+            loader && (loader.style.display = ''); /* jshint ignore:line */
         }; /* jshint ignore:line */
         var always_show_loader = global_always_show_loader === true ? true : false;
         // loader show logic
@@ -120,7 +120,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }, global_loading_duration);
     };
 
-    var resetScrollbarWhenViewEnter = function resetScrollbarWhenViewEnter() {
+    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     };
@@ -144,7 +144,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
         delay = global_loading_timeout || 8000;
         var loader = global_loader_dom || document.querySelector(global_loader_className);
-        badNetworkTimer && clearTimeout(badNetworkTimer);
+        badNetworkTimer && clearTimeout(badNetworkTimer); /* jshint ignore:line */
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
             // even can invoke the wx-sdk to close the page
@@ -299,7 +299,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         title: '' // for title element or actionBar use
     });
 
-    // new way to ctrl the app, also the key & core of the app!!!!!!
+    // ==================== app components area start ==================== // 
+    
+    // app ctrl component start // 
     root.$watch('currentAction', function(currentAction) {
         if (currentAction !== void 0) {
             
@@ -319,11 +321,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 case 'onBegin':
 
                     // ====== view visit statistical ====== //          
-                    avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
+                    // ;avalon.vmodels.root.currentIsVisited = doIsVisitedCheck();
                     // ====== view visit statistical ====== // 
 
                     // ====== loader show and bind network handler ====== //         
-                    loadingBeginHandler(bindBadNetworkHandler);
+                    // ;;loadingBeginHandler(bindBadNetworkHandler);
                     // ====== loader show and bind network handler ====== //
                     
                     break;
@@ -336,23 +338,23 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 case 'onLoad':
 
                     // ====== reset scroll bar ====== //
-                    if (global_always_reset_scrollbar) {
-                        resetScrollbarWhenViewEnter();
-                    }
+                    // ;;if (global_always_reset_scrollbar) {
+                    // ;;    resetScrollbarWhenViewLoaded();
+                    // ;;}
                     // ====== reset scroll bar ====== //
 
                     // update current state ====== //          
-                    root.currentState = getCurrentState();
+                    // ;;root.currentState = getCurrentState();
                     // state2 === void 0 ? root.currentState = state1 : root.currentState = state2; /* jshint ignore:line */
                     // update current state ====== //
 
                     // ====== set action bar title in page ====== //          
-                    setPageTitle();
+                    // ;;setPageTitle();
                     // ====== set action bar title in page ====== //
 
                     // ====== remove loader and unbind bad network handler ====== //
                     // next view loaded, remove loader && badNetworkHandler          
-                    loadingEndHandler(unbindBadNetworkHandler);
+                    // ;; loadingEndHandler(unbindBadNetworkHandler);
                     // ====== remove loader and unbind bad network handler ====== //
 
                     // ====== add view enter animation ====== //
@@ -385,7 +387,66 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
         } // end of if
     }); // end of root.currentAction watcher
+    // app ctrl component end // 
 
+    // loading component start //
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBegin') {
+            loadingBeginHandler();
+        }
+        if (currentAction === 'onLoad') {
+            loadingEndHandler();
+        }
+    });
+    // loading component end //
+
+    // badNetworkHandler component start // 
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBegin') {
+            bindBadNetworkHandler();
+        }
+        if (currentAction === 'onLoad') {
+            unbindBadNetworkHandler();
+        }
+    });
+    // badNetworkHandler component end //
+    
+    // getCurrentState component start //
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onLoad') {
+            root.currentState = getCurrentState();
+        }
+    });
+    // getCurrentState component end //
+    
+    // setTitle component start //
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onLoad') {
+            setPageTitle();
+        }
+    });
+    // setTitle component end //
+    
+    // visitedChecker component start //
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBegin') {
+            root.currentIsVisited = doIsVisitedCheck();
+        }
+    });
+    // visitedChecker component end //
+    
+    // resetScrollbar component start //
+    if (global_always_reset_scrollbar === true) {
+        root.$watch('currentAction', function(currentAction) {
+            if (currentAction === 'onLoad') {
+                resetScrollbarWhenViewLoaded();
+            }
+        });
+    }
+    // resetScrollbar component end //
+    
+    // ==================== app components area end ==================== //
+    
     // ==================== router start  ==================== //
 
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
@@ -479,7 +540,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/template/homework/mistakeList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistakeList.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/mistakeList.js", // 指定控制器地址
+                viewCache: true
             }
         }
     })
@@ -575,3 +637,4 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     }; // end of exports
 
 });
+

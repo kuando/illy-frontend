@@ -42,15 +42,16 @@
 
     // Custom Globals
     "globals"       : {
+        "require": true,
         "define" : true,
         "avalon" : true,
         "$"      : true,
-        /*"console": true,*/
-        /*"alert"  : true,*/
         "$http"  : true,
         "wx"     : true,
         "mmState": true,
-        "module" : true
-    },        // additional predefined global variables
+        "module" : true, 
+        "AvalonLibsBaseUrl": true
+    },        
+    // additional predefined global variables
     "devel": true
 }

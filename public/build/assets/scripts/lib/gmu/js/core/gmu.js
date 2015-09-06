@@ -1,2 +1,0 @@
-var gmu=gmu||{version:"@version",$:window.Zepto,staticCall:function($){var proto=$.fn,slice=[].slice,instance=$();return instance.length=1,function(item,fn){return instance[0]=item,proto[fn].apply(instance,slice.call(arguments,2))}}(Zepto)};
-//# sourceMappingURL=gmu.js.map

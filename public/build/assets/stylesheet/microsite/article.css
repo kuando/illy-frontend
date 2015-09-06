@@ -292,19 +292,19 @@
   display: inline-block;
 }
 .detail .pageinfo .share .icon-share, .detail .pageinfo .visit .icon-share, .detail .pageinfo .like .icon-share {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-share.png);
+  background-image: url(http://app.hizuoye.com/images/iconfont-share.png);
 }
 .detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit, .detail .pageinfo .like .icon-visit {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-yuedu.png);
+  background-image: url(http://app.hizuoye.com/images/iconfont-yuedu.png);
 }
 .detail .pageinfo .share .icon-like, .detail .pageinfo .visit .icon-like, .detail .pageinfo .like .icon-like {
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-like.png);
+  background-image: url(http://app.hizuoye.com/images/iconfont-like.png);
   position: relative;
   top: -2px;
 }
 .detail .pageinfo .share .hasLiked, .detail .pageinfo .visit .hasLiked, .detail .pageinfo .like .hasLiked {
   color: #00abfd;
-  background-image: url(http://app.hizuoye.com/build/images/iconfont-hasLiked.png);
+  background-image: url(http://app.hizuoye.com/images/iconfont-hasLiked.png);
 }
 .detail .pageinfo .report {
   float: right;

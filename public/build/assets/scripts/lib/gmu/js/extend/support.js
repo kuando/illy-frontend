@@ -1,2 +1,0 @@
-!function($){var br=$.browser;$.support=$.extend($.support||{},{orientation:!(br.uc||parseFloat($.os.version)<5&&(br.qq||br.chrome))&&!($.os.android&&parseFloat($.os.version)>3)&&"orientation"in window&&"onorientationchange"in window,touch:"ontouchend"in document,cssTransitions:"WebKitTransitionEvent"in window,has3d:"WebKitCSSMatrix"in window&&"m11"in new WebKitCSSMatrix,pushState:"pushState"in history&&"replaceState"in history,scrolling:"",requestAnimationFrame:"webkitRequestAnimationFrame"in window})}(Zepto);
-//# sourceMappingURL=support.js.map

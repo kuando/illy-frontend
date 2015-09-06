@@ -46,7 +46,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var token = localStorage.getItem('illy-token');
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://101.201.176.191/api/v1/';
 
     // avalon global cache stuff when app init
     avalon.illyGlobal = {

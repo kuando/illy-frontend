@@ -9,41 +9,77 @@ define([], function() {
         avalon.vmodels.root.noTokenHandler();
     }
 
+    var localLimit = 6;
+
     var mistakeList = avalon.define({
 
         $id: "mistakeList",
-        noHomeworkContent: false,
+        isVisited: false,
+        noMistakeListContent: false,
         noContentText: '恭喜你！小学霸。暂时没有错题集，咱们继续努力，再接再厉吧~',
         lists: [], // 作业数据
-        //isLoading: false, // 正在加载标记
-        fetchData: function() {
-            //list.isLoading = true; // 正在加载标记
+
+        isLoading: false, // 正在加载标记
+        isRecover: false,
+        offset: 0, // inner var, to fetch data with offset and limit
+        noMoreData: false, // no more data
+        btnShowMore: true,
+        fetchData: function(limit, offset, showMore) {
+            mistakeList.isLoading = true; // 正在加载标记
+            limit = limit || localLimit;
+            offset = mistakeList.offset;
+            if (mistakeList.isVisited && !mistakeList.isRecover) {
+                offset = localStorage.getItem('illy-homework-mistakeList-offset');
+                if (offset !== 0 && offset >= mistakeList.offset) { // has lots of data, fetch it
+                    limit = offset;
+                    offset = 0;
+                    mistakeList.isRecover = true;
+                }
+            }
+            // else, need data or data maybe change, fetch it
             $http.ajax({
                 method: "",
-                //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "homework/mistake",
+                url: apiBaseUrl + "homework/mistake?limit=" + limit + '&offset=' + offset,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 success: function(res) {
-                    mistakeList.lists = res; //key ! fetch data
+                    if (showMore === true && res.length <= localLimit) {
+                        mistakeList.lists = mistakeList.lists.concat(res);
+                    } else {
+                        mistakeList.lists = res;
+                    }
+                    localStorage.setItem('illy-homework-mistakeList-offset', mistakeList.lists.length);
+                    mistakeList.offset = mistakeList.lists.length;
+                    // mistakeList.lists = res; //key ! fetch data
                     setTimeout(function() {                          
                         var newLists = mistakeList.lists;
                         if (newLists && newLists.length === 0) {
-                            mistakeList.noHomeworkContent = true;
+                            mistakeList.noMistakeListContent = true;
                         }      
                     }, 200);
+                    if (res.length === 0) {
+                        mistakeList.noMoreData = true;
+                    }
+                    mistakeList.isLoading = false;
                 },
                 error: function(res) {
                     console.log("mistakeList ajax error" + res);
-                    mistakeList.noHomeworkContent = true;
+                    mistakeList.noMistakeListContent = true;
+                    mistakeList.isLoading = false;
                 },
                 ajaxFail: function(res) {
                     console.log("mistakeList ajax failed" + res);
-                    mistakeList.noHomeworkContent = true;
+                    mistakeList.noMistakeListContent = true;
+                    mistakeList.isLoading = false;
                 }
             });
         }, // end of fetchData
+        showMore: function(e) {
+            e.preventDefault();
+            var offset = mistakeList.offset;
+            mistakeList.fetchData(localLimit, offset, true); //is concat 
+        },
         fetchDataForExercises: function(homeworkId) {
             $http.ajax({
                 url: apiBaseUrl + 'homework/mistake/' + homeworkId,
@@ -75,10 +111,11 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
             //avalon.log("leave list");
+            mistakeList.isRecover = false;
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
-            // remove cache in detail ctrl
+        $ctrl.$onEnter = function() {
+            mistakeList.isVisited = avalon.vmodels.root.currentIsVisited;
             mistakeList.fetchData();
         };
         // 视图渲染后，意思是avalon.scan完成

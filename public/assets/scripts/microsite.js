@@ -11,7 +11,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     avalon.wx = wx;
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://101.201.176.191/api/v1/';
 
     // get the token and ready to cache, update 20150825
     var token = localStorage.getItem('illy-token-microsite') || localStorage.getItem('illy-token');

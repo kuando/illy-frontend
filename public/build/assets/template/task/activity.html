@@ -6,8 +6,7 @@
     <div class="count share-count"><span>分享</span>{{shareCount}}</div> 
     <div class="count like-count"><span>喜欢</span>{{likeCount}}</div> 
 
-    <div class="created-time">开始时间: {{startTime | date()}}</div>
-    <div class="created-time">结束时间: {{endTime | date()}}</div>
+    <div class="created-time">活动时间: {{startTime | date()}} - {{endTime | date()}}</div>
     <div class="content">{{content | html}}</div>
 
     <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared === false">领积分</div>
@@ -63,8 +62,8 @@
     <div class="koudai-wrapper" ms-if="isShared === true">
         <div class="item1">
             <div class="kodai">
-                <img src="http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images/kd2.png" class="full" />
-                <img src="http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images/kd1.png" class="empty" />
+                <img src="http://app.hizuoye.com/images/kd2.png" class="full" />
+                <img src="http://app.hizuoye.com/images/kd1.png" class="empty" />
             </div>
             <div class="clipped-box"></div>
         </div>

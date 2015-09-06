@@ -13,7 +13,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
     var token = avalon.illyGlobal.token;
 
-    var jinbiResourcePrefix = "http://www.17sucai.com/preview/1/2015-07-12/金币抛洒/images";
+    var jinbiResourcePrefix = "http://app.hizuoye.com/images";
 
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
