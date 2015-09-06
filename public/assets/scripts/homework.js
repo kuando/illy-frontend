@@ -10,7 +10,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_domain = 'http://app.hizuoye.com/';
 
     // project images base src
-    var illy_images_base = illy_domain + 'assets/images/'; /* jshint ignore:line */
+    var illy_images_base = illy_domain + 'assets/images'; /* jshint ignore:line */
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://101.201.176.191/api/v1/';

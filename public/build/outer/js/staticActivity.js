@@ -141,7 +141,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.co
     var activity = avalon.define({
         $id: "activity",
 
-        resourcePrefix: 'http://app.hizuoye.com/build/images',
+        resourcePrefix: 'http://app.hizuoye.com/assets/images',
 
         theme: '',
 
