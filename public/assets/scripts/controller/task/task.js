@@ -14,6 +14,7 @@ define([], function() {
     // task ctrl take charge of everything...
     var task = avalon.define({ /* jshint ignore:line */
         $id: "task",
+        illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 
         /* common start */
         appMessage: 'I am message from app ctrl',

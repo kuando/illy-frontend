@@ -56,7 +56,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
 
             images: {
                 files: ['public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
-                tasks: ['clean:images', 'imagemin']
+                tasks: ['imagemin']
             }
 
         }, // watch 
@@ -210,7 +210,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true, // Enable dynamic expansion
                     cwd: 'public/assets/images/', // Src matches are relative to this path
                     src: ['*.{png,jpg,gif}'], // Actual patterns to match
-                    dest: 'public/build/images/' // Destination path prefix
+                    dest: 'public/build/assets/images/' // Destination path prefix
                 }]
             }
         },
@@ -219,7 +219,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
         // clean the build or no-use assets and files.
         clean: {
             fonts: ["public/build/assets/fonts/"],
-            images: ["public/build/images/"],
+            images: ["public/build/assets/images/"],
             css: ["public/build/assets/stylesheet/"],
             js: ['public/build/assets/scripts/'],
             tpls: ['public/build/assets/template']

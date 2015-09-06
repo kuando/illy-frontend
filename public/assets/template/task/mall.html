@@ -1,7 +1,7 @@
 <div ms-controller="mall" class="mall">
     
     <!--<div class="mall-top-bg"></div>-->
-    <img class="img-bg" src="http://app.hizuoye.com/build/images/mall-top.png" />
+    <img class="img-bg" src="illy_images_base + 'mall-top.png'" />
 
     <div class="mall-wrapper">
 
@@ -14,13 +14,10 @@
             </div>
             <div class="title text-overflow">{{item.productName}}</div>
             <div class="exchangeTimes">
-                <!--<i class="icon icon-exchangeTimes"></i>-->
                 <span>兑换</span>
-                <!--{{item.exchangeTimes}}-->
                 {{parseInt(item.stock/5, 10)}}
             </div>
             <div class="stock">
-                <!--<i class="icon icon-stock"></i>-->
                 <span>库存</span>
                 {{item.stock}}
             </div>

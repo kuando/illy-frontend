@@ -1,6 +1,12 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mmState", "./lib/http/http"], function(wx) {
 // AvalonLibsBaseUrl defined in project main file(.html)
 
+    // project domain
+    var illy_domain = 'http://app.hizuoye.com/';
+
+    // project images base src
+    var illy_images_base = illy_domain + 'assets/images'; /* jshint ignore:line */
+
     // 挂载微信sdk到avalon以供全局调用
     avalon.wx = wx;
 
@@ -52,7 +58,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     avalon.illyGlobal = {
         viewani    : g_viewload_animation,
         token      : token,
-        apiBaseUrl : apiBaseUrl
+        apiBaseUrl : apiBaseUrl,
+        imagesBaseSrc: illy_images_base
     };
 
     // avalon global static method, get vm-object with vm-name

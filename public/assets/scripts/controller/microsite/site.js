@@ -10,6 +10,7 @@ define([], function() {
     // site ctrl take charge of everything...
     var site = avalon.define({ 
         $id: "site",
+        illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
         fetchAllCategoriesNames: function() {

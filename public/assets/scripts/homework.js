@@ -5,6 +5,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // screen splash show time config
     //avalon.splashShowTime = 666; // ms, used in app.js
+    
+    // project domain
+    var illy_domain = 'http://app.hizuoye.com/';
+
+    // project images base src
+    var illy_images_base = illy_domain + 'assets/images/'; /* jshint ignore:line */
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://101.201.176.191/api/v1/';
@@ -175,6 +181,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         viewani: global_viewload_animation_name,
         token: token,
         apiBaseUrl: apiBaseUrl,
+        imagesBaseSrc: illy_images_base,
         question_view_ani: 'a-bounceinL',
         noTokenHandler: function() {
             alert("对不起，本系统仅供内部使用！");

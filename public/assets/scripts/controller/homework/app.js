@@ -18,6 +18,7 @@ define([], function() {
     var app = avalon.define({
 
         $id: "app",
+        illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 
         /* common start */
         appMessage: 'I am message from app ctrl',
