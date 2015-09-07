@@ -1390,6 +1390,7 @@ select {
   display: inline-block;
   margin: .03rem;
   margin-top: .10rem;
+  width: 100%;
 }
 .item-wrapper .item {
   width: 100%;

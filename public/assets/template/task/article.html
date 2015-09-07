@@ -17,11 +17,11 @@
     <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared === false">领积分</div>
     <div class="task-helper-btn" ms-click="showShareMask" ms-if="isShared !== false">已领取{{scoreAward}}分奖励</div>
 
-     <div class="shareMask">
+     <div class="shareMask" ms-visible="shareMaskShow">
 
         <img ms-attr-src="illy_images_base + '/shareMask-top.png'" />
 
-        <p class="task-shareMask-tip-text hide">分享拿积分</p>
+        <p class="task-shareMask-tip-text">分享拿积分</p>
 
         <img class="wxShareIcon" ms-attr-src="illy_images_base + '/shareMask-wxShare-icon.png'" />
 

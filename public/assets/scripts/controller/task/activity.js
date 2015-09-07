@@ -257,11 +257,11 @@ define([], function() {
 
                     wx.onMenuShareTimeline({
                         title: activity.theme, // 分享标题
-                        link: avalon.vmodels.task.illyDoMain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
+                        link: avalon.vmodels.task.illy_domain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
                         imgUrl: document.querySelector('.content').querySelectorAll('img')[0].src, // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
-                            activity.shareMaskShow = false;
+                            activity.hideShareMask();
                             activity.shareCount++;
                             if (activity.isShared === false) {
                                 activity.isShared = true;

@@ -254,6 +254,7 @@ define([], function() {
              *  不在播放就开始
              */
 
+            alert(1);
             if (question.isPlaying) {
                 question.stopPlayRecord();
             } else {
