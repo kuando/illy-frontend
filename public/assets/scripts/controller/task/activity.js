@@ -255,10 +255,11 @@ define([], function() {
                     activity.theme = json.theme;
                     avalon.setLocalCache(cachedPrefix + activity.taskId, json);
 
+                    var imgUrl = document.querySelector('.content').querySelectorAll('img')[0];
                     wx.onMenuShareTimeline({
                         title: activity.theme, // 分享标题
                         link: avalon.vmodels.task.illy_domain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
-                        imgUrl: document.querySelector('.content').querySelectorAll('img')[0].src, // 分享图标
+                        imgUrl: imgUrl && imgUrl.src || avalon.vmodels.task.illy_domain + '/assets/images/kd2.png', // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
                             activity.hideShareMask();

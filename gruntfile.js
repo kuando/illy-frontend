@@ -250,14 +250,14 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     dest: 'public/build/assets/template'
                 }],
             },
-            outer: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/outer',
-                    src: ['**/*'],
-                    dest: 'public/build/outer'
-                }],
-            },
+            //outer: {
+            //    files: [{
+            //        expand: true,
+            //        cwd: 'public/outer',
+            //        src: ['**/*'],
+            //        dest: 'public/build/outer'
+            //    }],
+            //},
             index: {
                 files: [{
                     expand: true,
