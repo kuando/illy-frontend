@@ -32,8 +32,6 @@ define([], function() {
 
     return avalon.controller(function($ctrl) {
 
-        //var exercises = avalon.vmodels[mistakeList].exercises;
-
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
@@ -43,10 +41,6 @@ define([], function() {
             setTimeout(function() {
                 question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
             }, 16);
-            //answerPanel && (answerPanel.style.left = '1px'); [> jshint ignore:line <]
-            //setTimeout(function() {
-            //    answerPanel && (answerPanel.style.left = '0'); [> jshint ignore:line <]
-            //}, 1600);
 
         };
         // 进入视图, 对复用的数据进行重置或清空操作！
@@ -60,7 +54,7 @@ define([], function() {
                 location.replace('./homework.html#!/mistake/list');
                 return;
             }
-            // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
+
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             wrong.exercise = exercises[id]; // yes
@@ -68,13 +62,7 @@ define([], function() {
             wrong.localAnswers.push(wrong.exercise.wrongAnswer);
 
             // 重置题目对错标记
-            //question.right = (question.exercise.answer == question.userAnswer);
             wrong.right = false;
-
-            //wrong.right = true; // drop in 20150808, fix reflow bug... deal with .question
-            //setTimeout(function() {
-            //    wrong.right = false;
-            //}, 1700) // magic...  en..... bad design and i don't know why in low android
 
             wrong.total = avalon.vmodels.mistake.exercises.length; // yes, must动态设置
             if (params.questionId < wrong.total) { // key! to next or submit

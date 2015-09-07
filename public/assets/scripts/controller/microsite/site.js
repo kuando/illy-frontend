@@ -1,8 +1,11 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     // defaultAvatarUrl
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
@@ -10,6 +13,7 @@ define([], function() {
     // site ctrl take charge of everything...
     var site = avalon.define({ 
         $id: "site",
+        illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
@@ -78,23 +82,6 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            
-            // text-loading && splash done...
-            //setTimeout(function() {
-                //document.querySelector('#splash').style.display = 'none';
-            //}, avalon.splashShowTime);
-            // drop in 20150815
-            //document.querySelector('#loading-before-site').style.display = 'none';
-            
-            //avalon.$('.gotop').onclick = function() {
-            //    document.body.scrollTop = 0;
-            //    document.documentElement.scrollTop = 0;
-            //};
-
-            //setTimeout(function() {
-            //    var gotop = avalon.$('#gotop');
-            //    gotop && (gotop.style.display = 'block'); [> jshint ignore:line <]
-            //}, 3000);
 
         };
 
@@ -104,17 +91,6 @@ define([], function() {
         // 进入视图
         var navigatorInitDelay = 80;
         $ctrl.$onEnter = function() {
-
-            //setTimeout(function() {
-
-            //    // 0. init
-            //    $('#nav').navigator();
-            //    // 1 add fixed
-            //    $('.left-fixed').addClass('fixed-navigator');
-            //    // reset delay for not first time in
-            //    navigatorInitDelay = 50;
-
-            //}, navigatorInitDelay); // enough time
 
             // clear old local cache
             avalon.clearLocalCache('illy-microsite-');

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title> 账户解绑 </title> <!-- title可以保留因为至少下次会跳到index.html -->
+        <title></title>
         <style>
             .center {
                 position: absolute;
@@ -24,7 +24,6 @@
                 font-weight: bold;
                 border-radius: 3px;
             }
-
             .tip {
                 color: #F54F4F;
                 margin-top: 14px;
@@ -41,10 +40,9 @@
     </body>
 
     <script>
-
     function unbind() {
     
-        var apiUrl = 'http://api.hizuoye.com/api/v1/unbind';
+        var apiUrl = 'http://101.201.176.191/api/v1/unbind';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
         function createXHR(method, url) {
@@ -64,7 +62,6 @@
             }
             return xhr;
         }
-
         var xhr = createXHR("POST", apiUrl);
         if (!xhr) {
             alert('CORS not supported');
@@ -74,18 +71,18 @@
             var status = xhr.status;
             if (status === 200) { // binded user and qo next...
                 localStorage.removeItem('illy-token');
-                location.replace('http://app.hizuoye.com/login.html');
-            } else if ( status === 401) { // unbinded user and go login...
+                localStorage.removeItem('illy-token-microsite'); // also need clear
+                var openid = xhr.responseText;
+                location.replace('http://app.hizuoye.com/login.html?openid=' + openid);
+            } else if ( status === 401) {
                 alert('账户注销失败!');
             } else {
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
             }
         }
-
         xhr.onerror = function () {
             alert('Woops, there was an error making the request.');
         };
-
         xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         xhr.send(null);
     }

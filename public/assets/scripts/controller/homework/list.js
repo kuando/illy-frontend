@@ -3,7 +3,7 @@ define([], function() {
     //var limit = 9; // 一次抓取多少数据
 
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -55,10 +55,6 @@ define([], function() {
                 }
             });
         } // end of fetchData
-
-        //,showMore: function() { // 目前的设计无法实现很好的加载更多，考虑到作业不会很多，放弃分页
-        //    list.fetchData()
-        //}
 
     });
 

@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config, apiBaseUrl
-    //var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    //var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -43,7 +43,7 @@ define([], function() {
         $ctrl.$onBeforeUnload = function() {
 
         };
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
 

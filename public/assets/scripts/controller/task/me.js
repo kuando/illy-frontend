@@ -1,8 +1,11 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;

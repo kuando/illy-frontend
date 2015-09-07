@@ -1,7 +1,10 @@
 define([], function() {
     
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     var resourcePrefix = 'http://resource.hizuoye.com/';
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';

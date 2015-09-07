@@ -1,7 +1,10 @@
 define([], function() {
 
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
-    var token = avalon.illyGlobal.token || localStorage.getItem('illy-token');
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
+    var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
     
     //var cachedPrefix = 'illy-task-mall-';
 

@@ -10,10 +10,13 @@ define([], function() {
      */  
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
-    var resourcePrefix = "http://app.hizuoye.com/images";
+    var jinbiResourcePrefix = avalon.vmodels.task.illy_domain + "/assets/images";
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
@@ -254,7 +257,7 @@ define([], function() {
 
                     wx.onMenuShareTimeline({
                         title: activity.theme, // 分享标题
-                        link: 'http://app.hizuoye.com/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
+                        link: avalon.vmodels.task.illyDoMain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
                         imgUrl: document.querySelector('.content').querySelectorAll('img')[0].src, // 分享图标
                         success: function() {
                             // 不管成功与否，前台界面至少先更新
@@ -327,7 +330,7 @@ define([], function() {
                         var y = 0;
                         var index = 1;
                         for (var z = 0; z <= (amount * width) ; z = z + width) {
-                            $('<img class="clipped" src="' + resourcePrefix +'/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
+                            $('<img class="clipped" src="' + jinbiResourcePrefix +'/jb' + index + '.png" />').appendTo($('.item1 .clipped-box'));
                             if (z === (amount * width) - width) {
                                 y = y + height;
                                 z = -width;
@@ -437,7 +440,7 @@ define([], function() {
         $ctrl.$onBeforeUnload = function() {
 
         };
-        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concact(DOM树上下文vmodels)
+        // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
 

@@ -1,13 +1,12 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
-    var token = avalon.illyGlobal.token;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
 
-    //if (token === void 0) {
-    //    avalon.log("Error, no token!");
-    //    alert('对不起，系统错误，请退出重试！');
-    //}
+    var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;

@@ -24,7 +24,6 @@
                 font-weight: bold;
                 border-radius: 3px;
             }
-
             .tip {
                 color: #F54F4F;
                 margin-top: 14px;
@@ -41,10 +40,9 @@
     </body>
 
     <script>
-
     function unbind() {
     
-        var apiUrl = 'http://api.hizuoye.com/api/v1/unbind';
+        var apiUrl = 'http://101.201.176.191/api/v1/unbind';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
         function createXHR(method, url) {
@@ -64,7 +62,6 @@
             }
             return xhr;
         }
-
         var xhr = createXHR("POST", apiUrl);
         if (!xhr) {
             alert('CORS not supported');
@@ -83,11 +80,9 @@
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
             }
         }
-
         xhr.onerror = function () {
             alert('Woops, there was an error making the request.');
         };
-
         xhr.setRequestHeader('Authorization', 'Bearer ' + token);
         xhr.send(null);
     }

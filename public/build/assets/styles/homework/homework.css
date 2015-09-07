@@ -247,6 +247,7 @@ input[type="checkbox"], input[type="radio"] {
  ******************************************************/
 /* common vars start */
 /* common vars start */
+/*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
@@ -1115,10 +1116,15 @@ select {
 }
 
 /* global common footer end */
+.show-more-btn {
+  display: inline-block;
+  margin: 0 0 0.15rem 0;
+}
+
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
-  src: url(http://app.hizuoye.com/assets/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://app.hizuoye.com/assets/fonts/yo/1.0.0/yofont.ttf) format("truetype");
+  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
 }
 .yo-ico {
   font-family: yofont !important;
@@ -1380,12 +1386,8 @@ select {
 
 /* global end */
 /* list-item start */
-.show-more-btn {
-  margin: .02rem 0 .1rem 0;
-  display: inline-block;
-}
-
 .item-wrapper {
+  display: inline-block;
   margin: .03rem;
   margin-top: .10rem;
 }

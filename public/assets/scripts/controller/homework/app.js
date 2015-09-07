@@ -18,6 +18,7 @@ define([], function() {
     var app = avalon.define({
 
         $id: "app",
+        illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 
         /* common start */

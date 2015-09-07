@@ -1,7 +1,7 @@
 define([], function() {
     
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -13,20 +13,15 @@ define([], function() {
     var info = avalon.define({
         $id: "info",
         homeworkId: 0,
-        workType: 'homework',
         title: '',
         keyPoint: '',
         keyPointRecord: '',
         isPlaying: false, // 有录音的作业是否在播放录音
         duration: 0, // 知识重点录音时长, 用于播放完毕ui change
         // core!!! 因为detail为抽象状态，无onEnter的params参数，故延迟到这里获取数据
-        fetchDataForDetailCtrl: function(id, type) { // 可以获取多种作业类型的数据了,201507201446
-            var _id = id;   
+        fetchDataForDetailCtrl: function(_id) { 
             $http.ajax({
-                url: apiBaseUrl + type + '/' + _id,
-                data: {
-                    
-                },
+                url: apiBaseUrl + 'homework/' + _id,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -69,8 +64,6 @@ define([], function() {
             var audio = avalon.$('.keyPointAudio');
             audio.pause();
             info.isPlaying = false;
-            // ui recover
-            // ...
         },
         toggleRecord: function() {
             if (info.isPlaying) {
@@ -90,33 +83,14 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
             //avalon.log("info.js onEnter callback");
             
-            //clear localAnswers here to fix bug in low Andriod, drop in 20150808
-            //var questionVM = avalon.vmodels.question;
-            //questionVM && ( questionVM.localAnswers = [] );
-           
-            var type = location.href.split("=")[1] || 'homework'; // for strong
-            info.workType = type;
             var _id = params.homeworkId;
-            info.fetchDataForDetailCtrl(_id, type); // 分为两种，作业和预习, 更加灵活，便于扩充
-
-            // setTimeout(function() { // fix: deal with no keyPointRecord condition & make no 404 request with undefined resource
-            //     if (info.keyPointRecord !== '' || info.keyPointRecord !== undefined) {
-            //         var keyPointAudio = avalon.$('.info .keyPointAudio');
-            //         keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
-            //     } 
-            //     //else {
-            //     //    avalon.$('.info .keyPointAudio').getAttribute('src');
-            //     //    avalon.$('.keyPointAudio').getAttribute('src');
-            //     //}
-            // }, 500);
+            info.fetchDataForDetailCtrl(_id);
 
             setTimeout(function() {
                 // 设置好录音时间
                 var audio = avalon.$('.keyPointAudio');
                 var duration = audio && audio.duration;
                 info.duration = (parseInt(duration, 10) + 1) || 6;
-                // var time = avalon.$('.info .record-total-time');
-                // time && ( time.innerHTML = parseInt(duration, 10) || 0 ); /* jshint ignore:line */
             }, 2000);
         };
         // 对应的视图销毁前

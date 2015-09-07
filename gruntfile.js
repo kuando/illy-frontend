@@ -50,7 +50,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             },
 
             fonts: {
-                files: ['public/assets/fonts/*'],
+                files: ['public/assets/fonts/**/*.*'],
                 tasks: ['clean:fonts', 'copy:fonts']
             },
 
@@ -116,7 +116,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/microsite',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/stylesheet/microsite',
+                    dest: 'public/build/assets/styles/microsite',
                     ext: '.css'
                 }]
             },
@@ -125,7 +125,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/homework',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/stylesheet/homework',
+                    dest: 'public/build/assets/styles/homework',
                     ext: '.css'
                 }]
             },
@@ -134,7 +134,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/task',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/stylesheet/task',
+                    dest: 'public/build/assets/styles/task',
                     ext: '.css'
                 }]
             }
@@ -159,46 +159,46 @@ module.exports = function(grunt) { /* jshint ignore:line */
             }
         }, // js uglify
 
-        concat: {
-            options: {
-                sourceMap: true,
-                mangle: false, //不混淆变量名
-                preserveComments: 'some', //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
-                banner: '/*! \n  Project  Name: <%= pkg.name %> \n  Last Modified: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n' //添加banner
-            },
-            js: {
-                src: [
-                    'public/build/javascript/js/app.js'
-                ],
-                dest: 'public/build/javascript/app-build.js'
-            },
+        //concat: {
+        //    options: {
+        //        sourceMap: true,
+        //        mangle: false, //不混淆变量名
+        //        preserveComments: 'some', //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
+        //        banner: '/*! \n  Project  Name: <%= pkg.name %> \n  Last Modified: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n' //添加banner
+        //    },
+        //    js: {
+        //        src: [
+        //            'public/build/scripts/**/*.js'
+        //        ],
+        //        dest: 'public/build/javascript/app-build.js'
+        //    },
 
-            css: {
-                src: ['public/build/stylesheet/css/*.css'],
-                dest: 'public/build/stylesheet/app.css'
-            }
-        }, // concat js and css
+        //    css: {
+        //        src: ['public/build/assets/**/*.css'],
+        //        dest: 'public/build/styles/app.css'
+        //    }
+        //}, // concat js and css
 
         cssmin: {
             homework: {
                 expand: true,
-                cwd: 'public/build/assets/stylesheet/homework/',
+                cwd: 'public/build/assets/styles/homework/',
                 src: ['*.css'],
-                dest: 'public/build/assets/stylesheet/homework/min',
+                dest: 'public/build/assets/styles/homework/min',
                 ext: '.css'
             },
             microsite: {
                 expand: true,
-                cwd: 'public/build/assets/stylesheet/microsite/',
+                cwd: 'public/build/assets/styles/microsite/',
                 src: ['*.css'],
-                dest: 'public/build/assets/stylesheet/microsite/min',
+                dest: 'public/build/assets/styles/microsite/min',
                 ext: '.css'
             },
             task: {
                 expand: true,
-                cwd: 'public/build/assets/stylesheet/task/',
+                cwd: 'public/build/assets/styles/task/',
                 src: ['*.css'],
-                dest: 'public/build/assets/stylesheet/task/min',
+                dest: 'public/build/assets/styles/task/min',
                 ext: '.css'
             },
         }, // css min, only app-build.css to min...
@@ -220,9 +220,10 @@ module.exports = function(grunt) { /* jshint ignore:line */
         clean: {
             fonts: ["public/build/assets/fonts/"],
             images: ["public/build/assets/images/"],
-            css: ["public/build/assets/stylesheet/"],
+            css: ["public/build/assets/styles/"],
             js: ['public/build/assets/scripts/'],
-            tpls: ['public/build/assets/template']
+            tpls: ['public/build/assets/template'],
+            old: ['public/build/login.html', 'public/build/unbind.html', 'public/build/index.html']
 
         },
 
@@ -235,9 +236,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     // makes all src relative to cwd
                     {
                         expand: true,
-                        cwd: 'public/assets/',
-                        src: ['fonts/*'],
-                        dest: 'public/build/assets/'
+                        cwd: 'public/assets/fonts/',
+                        src: ['**/*'],
+                        dest: 'public/build/assets/fonts'
                     }
                 ],
             },
@@ -257,6 +258,38 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     dest: 'public/build/outer'
                 }],
             },
+            index: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/',
+                    src: ['index.html'],
+                    dest: 'public/build/'
+                }],
+            },
+            unbind: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/',
+                    src: ['unbind.html'],
+                    dest: 'public/build/'
+                }],
+            },
+            login: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/',
+                    src: ['login.html'],
+                    dest: 'public/build/'
+                }],
+            },
+            404: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/',
+                    src: ['404.html'],
+                    dest: 'public/build/'
+                }],
+            }
         },
 
         karma: {
@@ -294,10 +327,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
             'clean',
             'sass',
             'cssmin',
-            'imagemin',
             'uglify',
-            'copy',
-            'open:build'
+            'imagemin',
+            'copy'
         ]);
     });
 

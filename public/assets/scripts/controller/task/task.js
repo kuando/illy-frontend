@@ -5,6 +5,9 @@ define([], function() {
 
     // token
     var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
     
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
@@ -14,6 +17,7 @@ define([], function() {
     // task ctrl take charge of everything...
     var task = avalon.define({ /* jshint ignore:line */
         $id: "task",
+        illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 
         /* common start */

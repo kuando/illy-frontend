@@ -375,9 +375,6 @@ define([], function() {
     var hasRequestRecordAuth= false; // 申请录音权限, do it only once, 非核心数据，不应该放在vm里!
     return avalon.controller(function($ctrl) {
 
-        //var rootView = document.querySelector('.app');
-        //var questionView = document.querySelector('.question');
-
         //var question_view_ani = local_question_view_ani || (avalon.illyGlobal && avalon.illyGlobal.question_view_ani); // question视图切换动画配置
         var detailModel = avalon.getPureModel('detail');
         var exercises = detailModel.exercises;
@@ -397,11 +394,6 @@ define([], function() {
             setTimeout(function() {
                 question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
             }, 16);
-            //answerPanel && (answerPanel.style.left = '1px'); [> jshint ignore:line <]
-            //setTimeout(function() {
-            //    answerPanel && (answerPanel.style.left = '0'); [> jshint ignore:line <]
-            //}, 1600);
-            /* bad hack */
 
             // just stop record
             setTimeout(function() {
@@ -415,13 +407,10 @@ define([], function() {
 
             // just stop record.
             wx.stopRecord();
-
-            //question.starter = true; // 做题开始计时标记，使得开始仅执行一次
             
             // drop the question flag
             question.isDroped = false;
 
-            // temp drop in 201508282052
             // 保证不需要执行时不执行且执行最多一次（执行过后不会再执行）
             if( !hasRequestRecordAuth ) {
 
@@ -442,9 +431,6 @@ define([], function() {
 
             question.currentId = params.questionId;
             
-            //question.homeworkId = params.homeworkId !== "" ? params.homeworkId : 0; // yes, 直接从父vm属性中拿,这个不变的东西，不需要在此处动态获取！
-            
-            // questionId, 去取上级vm的exercises[questionId], 然后赋值给本ctrl的exercise，
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
             // no exercise, error go index, report reason!
@@ -477,8 +463,6 @@ define([], function() {
                     question.right = (question.exercise.answer ===  question.userAnswer) || (question.exercise.eType === 3);
                 }, 0);
             }
-            //question.userAnswer = question.localAnswers[question.currentId - 1] || '';
-
 
             // play record btn, 至少一定是后退才能看到
             if ( question.localAnswers.length < question.currentId ) {
@@ -500,8 +484,6 @@ define([], function() {
                     if (!$(this).find('input').attr('disabled')) {
                         $('.yo-list .item').removeClass('question-item-active');
                         $(this).addClass('question-item-active');
-                        // $('.yo-list input').attr('checked', 'false');
-                        // $(this).find('input').attr('checked', 'true');
                     }
                 });
             }, 100);

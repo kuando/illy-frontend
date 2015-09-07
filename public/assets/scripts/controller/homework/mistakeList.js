@@ -1,7 +1,7 @@
 define([], function() {
     
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -23,7 +23,7 @@ define([], function() {
         isRecover: false,
         offset: 0, // inner var, to fetch data with offset and limit
         noMoreData: false, // no more data
-        btnShowMore: true,
+        btnShowMore: false,
         fetchData: function(limit, offset, showMore) {
             mistakeList.isLoading = true; // 正在加载标记
             limit = limit || localLimit;
@@ -105,6 +105,14 @@ define([], function() {
             //avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
         }
 
+    });
+
+    mistakeList.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
+        if (newLength && (newLength < localLimit)) {
+            mistakeList.btnShowMore = false;
+        } else {
+            mistakeList.btnShowMore = true;
+        }
     });
 
     return avalon.controller(function($ctrl) {

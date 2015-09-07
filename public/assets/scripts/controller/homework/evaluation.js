@@ -1,7 +1,7 @@
 define([], function() {
     
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
     var resourcePrefix = 'http://resource.hizuoye.com/';
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';

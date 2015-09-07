@@ -1,8 +1,11 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
-    var token = avalon.illyGlobal && avalon.illyGlobal.token;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
+    var token = avalon.illyGlobal.token;
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
+    }
     var resourcePrefix = 'http://resource.hizuoye.com';
     
     var rank = avalon.define({

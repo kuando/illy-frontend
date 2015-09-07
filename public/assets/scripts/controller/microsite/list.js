@@ -1,11 +1,10 @@
 define([], function() {
 
     // get config
-    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuo.com/api/v1/';
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
-    if (token === void 0) {
-        avalon.log("Error, no token!");
-        alert('对不起，系统错误，请退出重试！');
+    if (token === null) {
+        avalon.vmodels.root.noTokenHandler();
     }
     
     // prefix of localStorage
@@ -23,10 +22,13 @@ define([], function() {
         lists: [], 
         categoryId: 111111111111111111111111,
         title: 'title', // 本来是想这个页面url带来栏目名，重写action上的title，结果url带中文不行。暂时没用，先留着吧
+
         offset: 0, // inner var, to fetch data with offset and limit
+        isLoading: false,
+        noMoreData: false,
         btnShowMore: true,
-        fetchRemoteData: function(apiArgs, data, target, type) { // only ctrl function to fetch data with api
-            if (list.visited && needCache) {
+        fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
+            if (list.visited && needCache && !concat) {
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
                 return;
             }
@@ -37,14 +39,17 @@ define([], function() {
                 },
                 data: data,
                 success: function(res) { /* jshint ignore:line */
-                    type === 'concat' ? list[target] = list[target].concat(res) : list[target] = res; /* jshint ignore:line */
+                    concat === true ? list[target] = list[target].concat(res) : list[target] = res; /* jshint ignore:line */
                     avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, res); // illy-microsite-11111-lists
+                    if (list.lists.length === 0) {
+                        list.noMoreData = true;
+                    }
                 },
                 error: function(res) { /* jshint ignore:line */
-                    console.log('list.js ajax error when fetch data');
+                    console.log('list.js ajax error when fetch data' + res);
                 },
                 ajaxFail: function(res) { /* jshint ignore:line */
-                    console.log('list.js ajax failed when fetch data');
+                    console.log('list.js ajax failed when fetch data' + res);
                 }
             });
         },
@@ -58,7 +63,7 @@ define([], function() {
                 list.offset = list.offset + limit * (page - 1);
             }
 
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', 'concat');
+            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', true); // isShowMore
         }
 
     }); // end of define
