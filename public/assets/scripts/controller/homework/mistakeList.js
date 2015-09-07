@@ -19,8 +19,8 @@ define([], function() {
         noContentText: '恭喜你！小学霸。暂时没有错题集，咱们继续努力，再接再厉吧~',
         lists: [], // 作业数据
 
-        isLoading: false, // 正在加载标记
         isRecover: false,
+        isLoading: false, // 正在加载标记
         offset: 0, // inner var, to fetch data with offset and limit
         noMoreData: false, // no more data
         btnShowMore: false,

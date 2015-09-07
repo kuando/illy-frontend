@@ -16,7 +16,7 @@
 
     <div class="navigator-bar">
         <!-- 强制刷新，防止date filter无效 -->
-        <a href="./homework.html" class="go-homework"><i class="icon icon-homework"></i>去做作业</a>
+        <a href="#!/" class="go-homework"><i class="icon icon-homework"></i>去做作业</a>
         <a href="#!/mistake/list" class="go-mistake"><i class="icon icon-mistake"></i>温习错题</a>
     </div>
 
@@ -53,14 +53,9 @@
     </div>
     <!-- item end -->
 
-    <div class="show-more hide" ms-click="showMore()" ms-if="isLoading != true">
-        加载更多
-    </div>
-
-    <!-- 加载中 -->
-    <div class="show-more hide" class="isLoading" ms-if="isLoading == true">
-        <span>加载中<span class="loading-with-dot"></span></span>
-    </div>
+    <a href="javascript:void(0)" class="show-more-btn" ms-if="!noContent && btnShowMore && isLoading === false && !noMoreData" ms-click="showMore()">加载更多</a>
+    <a href="javascript:void(0)" class="show-more-btn" ms-if="!noContent && btnShowMore && isLoading === true">加载中...</a>
+    <a href="javascript:void(0)" class="show-more-btn" ms-if="!noContent && btnShowMore && isLoading === false && noMoreData" ms-click="showMore()">没有更多了</a>
 
 </div>
 <!-- evaluation end -->

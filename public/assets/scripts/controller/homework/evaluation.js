@@ -21,7 +21,7 @@ define([], function() {
     };
 
     // 每页大小
-    var limit = 6;
+    var localLimit = 5;
     var evaluation = avalon.define({ // 教师评价评语列表
 
         $id: "evaluation",
@@ -33,25 +33,52 @@ define([], function() {
         
         lists: [],
         visited: false,
-        offset: 0,
-        btnShowMore: true,
+
+        isRecover: false,
+        isLoading: false, // 正在加载标记
+        offset: 0, // inner var, to fetch data with offset and limit
+        noMoreData: false, // no more data
+        btnShowMore: false,
         fetchData: function(data, concat) {
+            evaluation.isLoading = true;
+
+            var limit = localLimit;
+            var offset;
+            offset = evaluation.lists.length || 0;
+
+            if (evaluation.visited && !evaluation.isRecover) {
+                evaluation.offset = localStorage.getItem('illy-homework-evaluation-index') || 0;
+                limit = evaluation.offset;
+                offset = 0;
+                evaluation.isRecover = true;
+            }
+
             $http.ajax({
                 method: "",
-                //url: "api/list.json?limit=6",
-                url: apiBaseUrl + "homework/comments",
+                url: apiBaseUrl + "homework/comments?limit=" + limit + "&offset=" + offset,
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(lists) {
-                    concat ? evaluation.lists.concat(lists) : evaluation.lists = lists; /* jshint ignore:line */
-                    setTimeout(function() {
-                        if (lists.length === 0) {
-                            evaluation.noContent = true;
-                        }
+
+                    if (concat === true) {
+                        evaluation.lists = evaluation.lists.concat(lists);
+                    } else {
+                        evaluation.lists = lists;
+                    }
+                    setTimeout(function() {                          
+                        var newLists = evaluation.lists;
+                        if (newLists && newLists.length === 0) {
+                            evaluation.noMistakeListContent = true;
+                        }      
                     }, 200);
+                    if (lists.length === 0) {
+                        evaluation.noMoreData = true;
+                    }
+                    localStorage.setItem('illy-homework-evaluation-index', evaluation.lists.length);
+                    evaluation.isLoading = false;
                 },
                 error: function(res) {
                     console.log("evaluation list ajax error" + res);
@@ -65,23 +92,23 @@ define([], function() {
         }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
-            var page = 2;
-            if (evaluation.offset < limit) {
-                evaluation.btnShowMore = false;
-                return;
-            } else {
-                evaluation.offset = evaluation.offset + limit * (page - 1);
-            }
+            evaluation.fetchData({}, true); //is concat 
+        },
 
-            evaluation.fetchRemoteData({offset: evaluation.offset}, 'concat');
+    }); // end of define
+
+    evaluation.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
+        if (newLength && (newLength < localLimit)) {
+            evaluation.btnShowMore = false;
+        } else {
+            evaluation.btnShowMore = true;
         }
-
     });
 
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-
+            evaluation.isRecover = false;
         };
         // 进入视图
         $ctrl.$onEnter = function() {
@@ -92,7 +119,6 @@ define([], function() {
 
             evaluation.visited = avalon.vmodels.root.currentIsVisited; 
             // otherwise, show it
-            evaluation.offset <= limit ? evaluation.btnShowMore = false : evaluation.btnShowMore = true; /* jshint ignore:line */
             evaluation.fetchData();
             
         };

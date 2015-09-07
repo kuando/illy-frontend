@@ -5,8 +5,11 @@ define([], function() {
     if (token === null) {
         avalon.vmodels.root.noTokenHandler();
     }
+
+	var wx = avalon.wx;
     
     //var cachedPrefix = 'illy-task-mall-';
+	var resourcePrefix = 'http://resource.hizuoye.com/';
 
     var limit = 6; // 一次抓取多少数据
     var mall = avalon.define({
@@ -55,7 +58,21 @@ define([], function() {
             }
 
             mall.fetchRemoteData('score/mall', {offset: mall.offset}, 'lists', 'concat');
-        }
+        },
+		rendered: function() {
+			var imgSrcLists = [],
+                currentImgSrc;
+			for (var i = 0, len = mall.lists.length; i < len; i++) {
+				imgSrcLists.push(resourcePrefix + mall.lists[i].imageKey + '?imageView2/2/w/400/h/400');
+			}
+			$('.img-wrapper').on('click', 'img', function() {
+			    currentImgSrc = $(this)[0].src.split("?")[0];
+				wx.previewImage({
+					current: currentImgSrc, // 当前显示图片的http链接
+					urls: imgSrcLists // 需要预览的图片http链接列表
+				});	
+			});
+		}
     });
 
     return avalon.controller(function($ctrl) {
@@ -71,6 +88,10 @@ define([], function() {
             mall.fetchRemoteData('score/mall', {}, 'lists');
 
             mall.fetchRemoteData('score/exchangeInstruction', {}, 'rules');
+
+			setTimeout(function() {
+			}, 1000);
+
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
