@@ -78,9 +78,9 @@ define([], function() {
         },
         goSpecTask: function() {
             // get info from target you click and then do dispatch
-            var taskType = arguments[0].getAttribute('data-taskType');
-            var taskId = arguments[0].getAttribute('data-taskId');
-            var taskScoreAward = arguments[0].getAttribute('data-taskScoreAward');
+            var taskType = arguments[0].getAttribute('data-tasktype');
+            var taskId = arguments[0].getAttribute('data-taskid');
+            var taskScoreAward = arguments[0].getAttribute('data-taskscoreaward');
             var state = 'task.detail.' + taskList.taskTypeMap[taskType];
             avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
         }

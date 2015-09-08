@@ -231,20 +231,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
             //"splash@": {
-                //templateUrl: "assets/template/microsite/splash.html", // 指定模板地址
+                //templateUrl: "assets/templates/microsite/splash.html", // 指定模板地址
             //},
             //"loading@": {
-                //templateUrl: "assets/template/loading.html", // 指定模板地址
+                //templateUrl: "assets/templates/loading.html", // 指定模板地址
             //},
             //"header@": {
-            //    templateUrl: "assets/template/microsite/header.html", // 指定模板地址
+            //    templateUrl: "assets/templates/microsite/header.html", // 指定模板地址
             //},
             "": {
-                templateUrl: "assets/template/microsite/site.html", // 指定模板地址
+                templateUrl: "assets/templates/microsite/site.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/site.js", // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
-                templateUrl: "assets/template/footer.html", // 指定模板地址
+                templateUrl: "assets/templates/footer.html", // 指定模板地址
             }
         }
     })
@@ -252,7 +252,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "", // "/" will make error, 就没这个页面了
         views: {
             "": {
-                templateUrl: "assets/template/microsite/index.html", // 指定模板地址
+                templateUrl: "assets/templates/microsite/index.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/index.js", // 指定控制器地址
                 //ignoreChange: function(changeType) {
                 //    return !!changeType;
@@ -274,7 +274,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "{categoryId}",
         views: {
             "": {
-                templateUrl: "assets/template/microsite/list.html", // 指定模板地址
+                templateUrl: "assets/templates/microsite/list.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址              
                 //ignoreChange: function(type) {
                 //    return !!type;
@@ -286,7 +286,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "detail/{articleId}",
         views: {
             "": {
-                templateUrl: "assets/template/microsite/detail.html", // 指定模板地址
+                templateUrl: "assets/templates/microsite/detail.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/detail.js" // 指定控制器地址
                 //viewCache: true,
                 //ignoreChange: function(type) {

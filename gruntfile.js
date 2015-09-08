@@ -27,7 +27,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 },
                 files: [
                     'public/*.html',
-                    'public/assets/template/**/*.html',
+                    'public/assets/templates/**/*.html',
                     'public/assets/styles/scss/**/*.scss',
                     'public/assets/**/*.js',
                     'public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
@@ -101,14 +101,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 removeEmptyAttributes: true,
                 removeOptionalTags: true
             },
-            template: {
+            templates: {
                 files: [
-                    {expand: true, cwd: 'public/assets/template', src: ['**/*.html'], dest: 'public/build/assets/template'}
-                ]
-            },
-            html: {
-                files: [
-                    {expand: true, cwd: 'public/build/', src: ['*.html'], dest: 'public/build'}
+                    {expand: true, cwd: 'public/assets/templates', src: ['**/*.html'], dest: 'public/build/assets/templates'}
                 ]
             }
         },
@@ -230,7 +225,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             images: ["public/build/assets/images/"],
             css: ["public/build/assets/styles/"],
             js: ['public/build/assets/scripts/'],
-            tpls: ['public/build/assets/template'],
+            templates: ['public/build/assets/templates'],
             old: ['public/build/login.html', 'public/build/unbind.html', 'public/build/index.html']
 
         },
@@ -250,14 +245,14 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     }
                 ],
             },
-            tpl: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/assets/template/',
-                    src: ['**/*.html'],
-                    dest: 'public/build/assets/template'
-                }],
-            },
+            //templates: {
+            //    files: [{
+            //        expand: true,
+            //        cwd: 'public/assets/templates/',
+            //        src: ['**/*.html'],
+            //        dest: 'public/build/assets/templates'
+            //    }],
+            //},
             //outer: {
             //    files: [{
             //        expand: true,
@@ -307,13 +302,13 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     'tagname-lowercase': true,
                     'attr-lowercase': true,
                     'attr-value-double-quotes': true,
-                    'doctype-first': true,
+                    'doctype-first': false,
                     'spec-char-escape': true,
                     'id-unique': true,
                     'head-script-disabled': true,
-                    'style-disabled': true
+                    'style-disabled': false 
                 },
-                src: ['public/*.html', 'public/assets/template/**/*.html']
+                src: ['public/*.html', 'public/assets/templates/**/*.html']
             }
         }, // html hint
 
@@ -350,11 +345,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
     grunt.registerTask('release', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'clean',
+            'imagemin',
+            'htmlmin',
             'sass',
             'cssmin',
             'uglify',
-            'htmlmin',
-            'imagemin',
             'copy'
         ]);
     });
@@ -362,9 +357,10 @@ module.exports = function(grunt) { /* jshint ignore:line */
     // hint task 
     grunt.registerTask('hint', function(target) { /* jshint ignore:line */
         grunt.task.run([
-            'jshint',
-            'htmlhint'
+            'htmlhint',
+            'jshint'
         ]);
     });
+
 };
 

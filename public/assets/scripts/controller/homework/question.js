@@ -460,8 +460,8 @@ define([], function() {
                 setTimeout(function() { // mark! 20150826
                     question.userAnswer = question.localAnswers[question.currentId - 1] || '';
                     // 重置题目对错标记
-                    question.right = (question.exercise.answer ===  question.userAnswer) || (question.exercise.eType === 3);
-                }, 0);
+                    question.right = (question.exercise.answer === question.userAnswer) || (question.exercise.eType === 3);
+                }, 16);
             }
 
             // play record btn, 至少一定是后退才能看到

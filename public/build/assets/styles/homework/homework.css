@@ -1389,6 +1389,11 @@ select {
 
 /* global end */
 /* list-item start */
+.mistakeList .show-more-btn {
+  position: relative;
+  top: -.1rem;
+}
+
 .item-wrapper {
   display: inline-block;
   margin: .03rem;

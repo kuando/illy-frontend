@@ -115,7 +115,6 @@ define([], function() {
 
             detail.isDone = false;
             detail.isDoing = false;
-            //detail.isBack = false;
         },
         dropCurrentDoneComfirm: function() { // confirm 
             var app = avalon.vmodels.app; 

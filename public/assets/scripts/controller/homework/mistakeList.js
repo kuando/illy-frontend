@@ -100,7 +100,7 @@ define([], function() {
             });
         },
         goWrong: function() { // 前往具体错误题目
-            var homeworkId = arguments[0].getAttribute('data-homeworkId');
+            var homeworkId = arguments[0].getAttribute('data-homeworkid');
             mistakeList.fetchDataForExercises(homeworkId);
             //avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
         }

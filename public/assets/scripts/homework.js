@@ -331,7 +331,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 // -------------------- onError start -------------------- //
                 case 'onError':
                     avalon.log("Error!, Redirect to index!", arguments);
-                    avalon.router.go("/");
+                    avalon.router.go("app.list");
                     break;
                 // -------------------- onError end -------------------- //
                  
@@ -476,18 +476,18 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
             //"splash@": {
-            //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
+            //templateUrl: "assets/templates/homework/splash.html", // 指定模板地址
             //},
             "header@": {
-                templateUrl: "assets/template/homework/header.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/header.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/header.js"
             },
             "": {
-                templateUrl: "assets/template/homework/app.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/app.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/app.js" // 指定控制器地址
             }
             //,"footer@": { // 视图名字的语法请仔细查阅文档
-            //templateUrl: "assets/template/footer.html", // 指定模板地址
+            //templateUrl: "assets/templates/footer.html", // 指定模板地址
             //}
         }
     })
@@ -495,7 +495,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "", // list the homework and can enter to do it
         views: {
             "": {
-                templateUrl: "assets/template/homework/list.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/list.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/list.js" // 指定控制器地址
             }
         }
@@ -505,7 +505,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/template/homework/detail.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/detail.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/detail.js" // 指定控制器地址
             }
         }
@@ -514,7 +514,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "detail/{homeworkId}/info", // 
         views: {
             "": {
-                templateUrl: "assets/template/homework/info.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/info.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/info.js" // 指定控制器地址
             }
         }
@@ -523,7 +523,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "detail/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/template/homework/question.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/question.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/question.js", // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
@@ -535,7 +535,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "detail/{homeworkId}/result", // 
         views: {
             "": {
-                templateUrl: "assets/template/homework/result.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/result.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/result.js" // 指定控制器地址
             }
         }
@@ -545,7 +545,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/template/homework/mistake.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/mistake.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/mistake.js" // 指定控制器地址
             }
         }
@@ -554,7 +554,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "mistake/list", // 
         views: {
             "": {
-                templateUrl: "assets/template/homework/mistakeList.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/mistakeList.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/mistakeList.js", // 指定控制器地址
                 viewCache: true
             }
@@ -564,7 +564,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/template/homework/wrong.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/wrong.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/wrong.js", // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
@@ -576,7 +576,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "evaluation", // 
         views: {
             "": {
-                templateUrl: "assets/template/homework/evaluation.html", // 指定模板地址
+                templateUrl: "assets/templates/homework/evaluation.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/evaluation.js" // 指定控制器地址
             }
         }

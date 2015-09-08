@@ -233,20 +233,20 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
             //"splash@": {
-                //templateUrl: "assets/template/task/splash.html", // 指定模板地址
+                //templateUrl: "assets/templates/task/splash.html", // 指定模板地址
             //},
             //"loading@": {
-                //templateUrl: "assets/template/loading.html", // 指定模板地址
+                //templateUrl: "assets/templates/loading.html", // 指定模板地址
             //},
             //"header@": {
-                //templateUrl: "assets/template/task/header.html", // 指定模板地址
+                //templateUrl: "assets/templates/task/header.html", // 指定模板地址
             //},
             "": {
-                templateUrl: "assets/template/task/task.html", // 指定模板地址
+                templateUrl: "assets/templates/task/task.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/task.js", // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
-                templateUrl: "assets/template/footer.html", // 指定模板地址
+                templateUrl: "assets/templates/footer.html", // 指定模板地址
             }
         }
     })
@@ -254,7 +254,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "",
         views: {
             "": {
-                templateUrl: "assets/template/task/list.html", // 指定模板地址
+                templateUrl: "assets/templates/task/list.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/list.js" // 指定控制器地址
             }
         }
@@ -263,7 +263,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/template/task/detail.html", // 指定模板地址
+                templateUrl: "assets/templates/task/detail.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
             }
         }
@@ -272,7 +272,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "article/{taskId}/score/{scoreAward}", // 
         views: {
             "": {
-                templateUrl: "assets/template/task/article.html", // 指定模板地址
+                templateUrl: "assets/templates/task/article.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/article.js" // 指定控制器地址
             }
         }
@@ -281,7 +281,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "activity/{taskId}/score/{scoreAward}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/template/task/activity.html", // 指定模板地址
+                templateUrl: "assets/templates/task/activity.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/activity.js" // 指定控制器地址
             }
         }
@@ -290,7 +290,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "staticActivity/{taskId}",
         views: {
             "": {
-                templateUrl: "assets/template/task/static-activity.html", // 指定模板地址
+                templateUrl: "assets/templates/task/static-activity.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/static-activity.js" // 指定控制器地址
             }
         }
@@ -299,7 +299,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "rank",
         views: {
             "": {
-                templateUrl: "assets/template/task/rank.html", // 指定模板地址
+                templateUrl: "assets/templates/task/rank.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/rank.js" // 指定控制器地址
             }
         }
@@ -308,7 +308,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "mall",
         views: {
             "": {
-                templateUrl: "assets/template/task/mall.html", // 指定模板地址
+                templateUrl: "assets/templates/task/mall.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地r
             }
         }
@@ -317,7 +317,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "me",
         views: {
             "": {
-                templateUrl: "assets/template/task/me.html", // 指定模板地址
+                templateUrl: "assets/templates/task/me.html", // 指定模板地址
                 controllerUrl: "scripts/controller/task/me.js" // 指定控制器地址
             }
         }

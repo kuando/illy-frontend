@@ -1,5 +1,5 @@
 <!-- list start -->
-<div class="list" ms-controller="mistakeList">
+<div class="list mistakeList" ms-controller="mistakeList">
 
     <!-- item start -->
     <div class="item-wrapper">
@@ -10,7 +10,7 @@
 
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="lists" ms-if="noMistakeListContent === false">
-            <div ms-click="goWrong(this)" ms-attr-data-homeworkId="item._id" class="list-card">
+            <div ms-click="goWrong(this)" ms-attr-data-homeworkid="item._id" class="list-card">
                 <img class="item-img area" ms-attr-src="illy_images_base + '/homework_list_icon_green.png'" ms-attr-alt="item.title" />
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
