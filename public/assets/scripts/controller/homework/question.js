@@ -254,7 +254,6 @@ define([], function() {
              *  不在播放就开始
              */
 
-            alert(1);
             if (question.isPlaying) {
                 question.stopPlayRecord();
             } else {
@@ -377,8 +376,8 @@ define([], function() {
     return avalon.controller(function($ctrl) {
 
         //var question_view_ani = local_question_view_ani || (avalon.illyGlobal && avalon.illyGlobal.question_view_ani); // question视图切换动画配置
-        var detailModel = avalon.getPureModel('detail');
-        var exercises = detailModel.exercises;
+        var detailVM = avalon.getVM('detail');
+        var exercises = detailVM.exercises;
 
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() { 

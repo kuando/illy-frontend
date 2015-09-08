@@ -1023,7 +1023,12 @@
     .timeline-wrapper {
         padding-top: 0;
         // border-top: $timeline-line-size solid $timeline-blue;
-        // 
+        
+        .show-more-btn {
+            position: relative;
+            top: -.025rem;
+        }
+
         .no-evaluation-text {
             width: 80%;
             border: $timeline-line-size solid $timeline-blue;

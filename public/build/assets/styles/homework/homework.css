@@ -1118,7 +1118,10 @@ select {
 /* global common footer end */
 .show-more-btn {
   display: inline-block;
-  margin: 0 0 0.15rem 0;
+  width: 100%;
+  height: .44rem;
+  line-height: .44rem;
+  text-align: center;
 }
 
 /* yo-font-face start */
@@ -2065,6 +2068,10 @@ select {
 }
 .evaluation .timeline-wrapper {
   padding-top: 0;
+}
+.evaluation .timeline-wrapper .show-more-btn {
+  position: relative;
+  top: -.025rem;
 }
 .evaluation .timeline-wrapper .no-evaluation-text {
   width: 80%;

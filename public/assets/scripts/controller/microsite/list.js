@@ -14,59 +14,88 @@ define([], function() {
     // list cache flag
     var needCache = true;
 
-    var limit = 6; // 一次抓取多少数据
+    var localLimit = 6; // 一次抓取多少数据
     var list = avalon.define({
 
         $id: "list",
         visited: false, // first in, no data
         lists: [], 
         categoryId: 111111111111111111111111,
-        title: 'title', // 本来是想这个页面url带来栏目名，重写action上的title，结果url带中文不行。暂时没用，先留着吧
 
         offset: 0, // inner var, to fetch data with offset and limit
+        noContent: false,
         isLoading: false,
         noMoreData: false,
-        btnShowMore: true,
+        btnShowMore: false,
         fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
+            if (arguments.length !== 4) {
+                console.log('ERROR: must give 4 args!', arguments);
+            }
+            list.noMoreData = false;
             if (list.visited && needCache && !concat) {
+                var articles = list.lists;
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
+                list.offset = list.lists.length;
+                if (articles.length > localLimit && articles.length % localLimit < localLimit) {
+                    list.noMoreData = true; // not full support, but ok
+                }
                 return;
             }
+            list.isLoading = true;
             $http.ajax({
                 url: apiBaseUrl + apiArgs,
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
                 data: data,
-                success: function(res) { /* jshint ignore:line */
-                    concat === true ? list[target] = list[target].concat(res) : list[target] = res; /* jshint ignore:line */
-                    avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, res); // illy-microsite-11111-lists
-                    if (list.lists.length === 0) {
+                success: function(res) { 
+                    if (concat === true) {
+                        list.lists = list.lists.concat(res);
+                    } else {
+                        list.lists = res;
+                    }
+                    if (res.length === 0) {
                         list.noMoreData = true;
                     }
+                    list.offset = list.lists.length;
+                    if (list.lists.length === 0) {
+                        list.noContent = true;
+                        list.noMoreData = true;
+                    }
+                    var result = list.lists.$model;
+                    avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, result); // illy-microsite-11111-lists
+                    list.isLoading = false;
                 },
                 error: function(res) { /* jshint ignore:line */
                     console.log('list.js ajax error when fetch data' + res);
+                    list.noContent = true;
+                    list.isLoading = false;
                 },
                 ajaxFail: function(res) { /* jshint ignore:line */
                     console.log('list.js ajax failed when fetch data' + res);
+                    list.noContent = true;
+                    list.isLoading = false;
                 }
             });
         },
         showMore: function(e) {
             e.preventDefault();
-            var page = 2;
-            if (list.offset < limit) {
-                list.btnShowMore = false;
-                return;
-            } else {
-                list.offset = list.offset + limit * (page - 1);
-            }
-
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {offset: list.offset}, 'lists', true); // isShowMore
+            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: list.offset}, 'lists', true); // isShowMore
         }
 
     }); // end of define
+
+    list.lists.$watch('length', function(newLists) {
+        if (newLists !== void 0) {
+            if (newLists < localLimit) {
+                list.btnShowMore = false;
+            } else {
+                if (list.categoryId !== 'hots') {
+                    list.btnShowMore = true;
+                }
+            }
+        }
+    });
 
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
@@ -85,16 +114,13 @@ define([], function() {
             if (list.categoryId === 'hots') { // deal with hots column
 
                 list.btnShowMore = false;
-                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists');
+                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists', false);
                 return ;
 
             }
 
-            // otherwise, show it
-            list.offset <= limit ? list.btnShowMore = false : list.btnShowMore = true; /* jshint ignore:line */
-
             // deal with all other column
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {}, 'lists');
+            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: 0}, 'lists', false);
 
         };
         // 视图渲染后，意思是avalon.scan完成

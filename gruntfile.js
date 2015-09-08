@@ -88,22 +88,30 @@ module.exports = function(grunt) { /* jshint ignore:line */
             }
         }, //open browser
 
-        htmlhint: {
-            hint: {
-                options: {
-                    'tag-pair': true,
-                    'tagname-lowercase': true,
-                    'attr-lowercase': true,
-                    'attr-value-double-quotes': true,
-                    'doctype-first': true,
-                    'spec-char-escape': true,
-                    'id-unique': true,
-                    'head-script-disabled': true,
-                    'style-disabled': true
-                },
-                src: ['public/*.html', 'public/assets/template/**/*.html']
+        //压缩HTML
+        htmlmin: {
+            options: {
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                removeAttributeQuotes: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true
+            },
+            template: {
+                files: [
+                    {expand: true, cwd: 'public/assets/template', src: ['**/*.html'], dest: 'public/build/assets/template'}
+                ]
+            },
+            html: {
+                files: [
+                    {expand: true, cwd: 'public/build/', src: ['*.html'], dest: 'public/build'}
+                ]
             }
-        }, // html hint
+        },
 
         sass: {
             options: {
@@ -292,6 +300,28 @@ module.exports = function(grunt) { /* jshint ignore:line */
             }
         },
 
+        htmlhint: {
+            hint: {
+                options: {
+                    'tag-pair': true,
+                    'tagname-lowercase': true,
+                    'attr-lowercase': true,
+                    'attr-value-double-quotes': true,
+                    'doctype-first': true,
+                    'spec-char-escape': true,
+                    'id-unique': true,
+                    'head-script-disabled': true,
+                    'style-disabled': true
+                },
+                src: ['public/*.html', 'public/assets/template/**/*.html']
+            }
+        }, // html hint
+
+        jshint: {
+            //all: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
+            ctrlScripts: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
+        },
+
         karma: {
             options: { // shared config
                 configFile: 'karma.conf.js'
@@ -301,11 +331,6 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     singleRun: true // specific config example
                 }
             }
-        },
-
-        jshint: {
-            //all: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
-            ctrlScripts: ['gruntfile.js', 'public/assets/scripts/controller/**/*.js']
         }
 
     });
@@ -322,12 +347,13 @@ module.exports = function(grunt) { /* jshint ignore:line */
     });
 
     // build task 
-    grunt.registerTask('build', function(target) { /* jshint ignore:line */
+    grunt.registerTask('release', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'clean',
             'sass',
             'cssmin',
             'uglify',
+            'htmlmin',
             'imagemin',
             'copy'
         ]);

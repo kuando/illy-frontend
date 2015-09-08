@@ -1118,7 +1118,10 @@ select {
 /* global common footer end */
 .show-more-btn {
   display: inline-block;
-  margin: 0 0 0.15rem 0;
+  width: 100%;
+  height: .44rem;
+  line-height: .44rem;
+  text-align: center;
 }
 
 #splash {

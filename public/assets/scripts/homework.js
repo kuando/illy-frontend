@@ -10,49 +10,47 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_domain = 'http://app.hizuoye.com';
 
     // project images base src
-    var illy_images_base = illy_domain + '/assets/images'; /* jshint ignore:line */
+    var illy_images_base_src = illy_domain + '/assets/images';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://101.201.176.191/api/v1/';
+    var api_base_url = 'http://101.201.176.191/api/v1/';
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 
-    // global view change animation, from animation.css, the custom one
+    // global view loaded animation, from animation.css, the custom version 
     var global_viewload_animation_name = "a-bounceinR";
 
-    // global config, always show loader when enter the view 
+    // global config, always show loader when view enter 
     var global_always_show_loader = true;
 
-    // global always reset scrollbar when view enter
+    // global config, always reset scrollbar when view enter
     var global_always_reset_scrollbar = true;
 
-    // global loading timeout
+    // global config, loading timeout
     var global_loading_timeout = 8000; // ms, abort the loading when timeout, then auto goback
 
-    // loading delay
-    var global_loading_duration = 300; // ms
+    // global config, view loaded with a litle delay for rendering page, time enough
+    var global_loading_delay = 300; // ms
 
-    // loader className
+    // global config, loader className
     var global_loader_className = '.loader';
 
+    // global config, loader'dom, must ensure the dom is exists
     var global_loader_dom = document.querySelector('.loader'); 
 
     // ==================== global config area end, @included  ==================== //
 
     // ==================== static method start, @included  ==================== //
 
-    // avalon global static method, get vm-object with vm-name
     avalon.getVM = function(vm) {
         return avalon.vmodels[vm];
     };
 
-    // avalon global static method, get pure $model for server
     avalon.getPureModel = function(vm) {
         return avalon.vmodels && avalon.vmodels[vm] && avalon.vmodels[vm].$model; // for strong
     };
 
-    // avalon global static method, get element
     avalon.$ = function(selector) {
         return document.querySelector(selector);
     };
@@ -65,65 +63,74 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
 
         var pageId = location.href.split("!")[1];
-        cacheContainer = cacheContainer || cachePage;
+        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
         cacheContainer.push(pageId);
-        // var loader = document.querySelector('.loader');
         var isVisited = false;
-        for (var i = 0, len = cachePage.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-            if (cachePage[i] === pageId) {
-                // visited = true;
+        for (var i = 0, len = CACHE_VISITED_PAGEID_CONTAINER.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
+            if (CACHE_VISITED_PAGEID_CONTAINER[i] === pageId) {
                 isVisited = true;
             }
         }
         if (callback && typeof callback === 'function') {
             callback();
         }
-        // avalon.vmodels.root[vmProptoSet] = isVisited;
+
         return isVisited;
+
     };
 
-    var loadingBeginHandler = function loadingBeginHandler(loader, callback) { // mark!!! mark!!! deal with arguments
+    var loadingBeginHandler = function loadingBeginHandler(loader, callback) {
 
         if (typeof loader === 'function') { // deal with only one arguments and is callback
             callback = loader;
             loader = void 0;
         }
+
         loader = global_loader_dom || document.querySelector(global_loader_className);
+
         var showLoader = function() {
             loader && (loader.style.display = ''); /* jshint ignore:line */
-        }; /* jshint ignore:line */
-        var always_show_loader = global_always_show_loader === true ? true : false;
+        }; 
+
         // loader show logic
+        var always_show_loader = global_always_show_loader === true ? true : false;
         if (loader && always_show_loader) {
             showLoader();
         } else if (loader && !always_show_loader && !root.currentIsVisited) {
             showLoader();
         }
+
         if (callback && typeof callback === 'function') {
             callback();
         }
+
     };
 
     var loadingEndHandler = function loadingEndHandler(loader, callback) {
+
         if (typeof loader === 'function') { // deal with only one arguments and is callback
             callback = loader;
             loader = void 0;
         }
+
         loader = global_loader_dom || document.querySelector(global_loader_className);
+
         var hideLoader = function() {
-            // for strong, need ()
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         };
-        if (global_loading_duration === void 0) {
-            global_loading_duration = 500;
-            console.log('WARNING: no global_loading_duration set!');
+
+        if (global_loading_delay === void 0) {
+            global_loading_delay = 500;
+            console.log('WARNING: no global_loading_delay set!');
         }
+
         setTimeout(function() {
             hideLoader();
             if (callback && typeof callback === 'function') {
                 callback();
             }
-        }, global_loading_duration);
+        }, global_loading_delay);
+
     };
 
     var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
@@ -141,29 +148,35 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
     };
 
-    var setPageTitle = function setPageTitle() {
+    var setPageTitle = function setPageTitle(titleMap) {
+        titleMap = titleMap || ACTIONBAR_TITLE_MAP;
         var currentState = root.currentState;
-        root.title = acTitle[currentState];
+        root.title = titleMap[currentState];
     };
 
     // deal with bad network condition for wait too long, auto-back when time enough with tip
-    var bindBadNetworkHandler = function bindBadNetworkHandler(delay) {
-        delay = global_loading_timeout || 8000;
+    var bindBadNetworkHandler = function bindBadNetworkHandler(timeout) {
+
+        timeout = global_loading_timeout || 8000;
         var loader = global_loader_dom || document.querySelector(global_loader_className);
         badNetworkTimer && clearTimeout(badNetworkTimer); /* jshint ignore:line */
+
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
             // even can invoke the wx-sdk to close the page
             history.go(-1);
             // for strong, need ()
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
-        }, delay);
+        }, timeout);
+
         avalon.badNetworkTimer = badNetworkTimer;
+
         root.$watch('currentState', function(changeState) {
             if (changeState !== void 0) {
                 clearTimeout(badNetworkTimer);
             }
         });
+
     };
 
     var unbindBadNetworkHandler = function unbindBadNetworkHandler(timer) {
@@ -180,9 +193,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
         viewani: global_viewload_animation_name,
         token: token,
-        apiBaseUrl: apiBaseUrl,
+        apiBaseUrl: api_base_url,
         illyDomain: illy_domain,
-        imagesBaseSrc: illy_images_base,
+        imagesBaseSrc: illy_images_base_src,
         question_view_ani: 'a-bounceinL',
         noTokenHandler: function() {
             alert("对不起，本系统仅供内部使用！");
@@ -191,10 +204,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     // 页面访问统计容器
-    var cachePage = [];
+    var CACHE_VISITED_PAGEID_CONTAINER = [];
 
-    // title Map， 映射各种状态的action bar title
-    var acTitle = {
+    // title Map， 映射各种状态的action-bar title
+    var ACTIONBAR_TITLE_MAP = {
         'list': "作业列表",
         'info': '作业详情',
         'question': '题目详情',
@@ -465,9 +478,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             //"splash@": {
             //templateUrl: "assets/template/homework/splash.html", // 指定模板地址
             //},
-            //"loading@": {
-            //templateUrl: "assets/template/loading.html", // 指定模板地址
-            //},
             "header@": {
                 templateUrl: "assets/template/homework/header.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/header.js"
@@ -487,9 +497,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             "": {
                 templateUrl: "assets/template/homework/list.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/list.js" // 指定控制器地址
-                    //ignoreChange: function(changeType) { 
-                    //return !!changeType;
-                    //} // url通过{}配置的参数变量发生变化的时候是否通过innerHTML重刷ms-view内的DOM，默认会，如果你做的是翻页这种应用，建议使用例子内的配置，把数据更新到vmodel上即可
             }
         }
     })
@@ -574,16 +581,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             }
         }
     });
-    //.state("app.report", { // 学业统计报告页面
-    //    url: "report", // 
-    //    views: {
-    //        "": {
-    //            templateUrl: "assets/template/homework/report.html", // 指定模板地址
-    //            controllerUrl: "scripts/controller/homework/report.js" // 指定控制器地址
-    //        }
-    //    }
-    //})
-    //
     
     // ==================== router end  ==================== //
     
