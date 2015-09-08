@@ -142,7 +142,7 @@ define([], function() {
 
                     wx.onMenuShareTimeline({
                         title: detail.title, // 分享标题
-                        link: '', // 分享链接
+                        link: avalon.vmodels.site.illy_domain + '/outer/staticArticle.html?id=' + detail.articleId, // 分享链接
                         imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新
