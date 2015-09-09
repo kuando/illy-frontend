@@ -248,6 +248,7 @@ input[type="checkbox"], input[type="radio"] {
 /* common vars start */
 /* common vars start */
 /*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
+/*$img-dir: 'http://app.hizuoye.com/assets/images';*/
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
@@ -1477,10 +1478,10 @@ select {
   margin-top: -0.04rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
-  background-image: url(http://app.hizuoye.com/assets/images/task-people.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/task-people.png);
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-score {
-  background-image: url(http://app.hizuoye.com/assets/images/result-score.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-score.png);
 }
 .item-wrapper .item .list-card .todo {
   position: absolute;
@@ -1534,7 +1535,7 @@ select {
   color: #999999;
   height: .6rem;
   line-height: .59rem;
-  background-image: url(http://app.hizuoye.com/assets/images/playing.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/playing.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1545,7 +1546,7 @@ select {
   left: -.01rem;
 }
 .panel .playRecord.playing {
-  background-image: url(http://app.hizuoye.com/assets/images/playing.gif);
+  background-image: url(http://weixin.hizuoye.com/assets/images/playing.gif);
 }
 .panel .go-question {
   display: block;
@@ -1743,7 +1744,7 @@ select {
   transform: translateX(-50%) translateY(-50%);
   width: .9rem;
   height: .9rem;
-  background-image: url(http://app.hizuoye.com/assets/images/recording.gif);
+  background-image: url(http://weixin.hizuoye.com/assets/images/recording.gif);
   background-repeat: no-repeat;
   background-size: 100%;
   border-radius: .10rem;
@@ -1792,7 +1793,7 @@ select {
   top: 54%;
   font-size: .14rem;
   color: #7c7474;
-  background-image: url(http://app.hizuoye.com/assets/images/playing.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/playing.png);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: .06rem -.08rem;
@@ -1812,7 +1813,7 @@ select {
 }
 .question .playRecord.playing {
   /* playing-state, gif */
-  background-image: url(http://app.hizuoye.com/assets/images/playing.gif);
+  background-image: url(http://weixin.hizuoye.com/assets/images/playing.gif);
 }
 .question .record-tips {
   display: none;
@@ -1916,7 +1917,7 @@ select {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(http://app.hizuoye.com/assets/images/result-bg.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-bg.png);
   min-height: 600px;
 }
 .result .result-silk-bg {
@@ -1925,7 +1926,7 @@ select {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(http://app.hizuoye.com/assets/images/silk-yellow-green.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/silk-yellow-green.png);
   line-height: .38rem;
   color: #fff;
   font-size: .18rem;
@@ -1950,16 +1951,16 @@ select {
   background-position: center top;
 }
 .result .icon-right {
-  background-image: url(http://app.hizuoye.com/assets/images/result-right.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-right.png);
 }
 .result .icon-wrong {
-  background-image: url(http://app.hizuoye.com/assets/images/result-wrong.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-wrong.png);
 }
 .result .icon-score {
-  background-image: url(http://app.hizuoye.com/assets/images/result-score.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-score.png);
 }
 .result .icon-totalScore {
-  background-image: url(http://app.hizuoye.com/assets/images/result-totalScore.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/result-totalScore.png);
 }
 .result .area {
   width: 40%;
@@ -1994,7 +1995,7 @@ select {
   /*.icon-update {*/
   /*width: .16rem;*/
   /*height: .16rem;*/
-  /*background: url(http://app.hizuoye.com/assets/images/iconfont-updateProfile.png) no-repeat center;*/
+  /*background: url(http://weixin.hizuoye.com/assets/images/iconfont-updateProfile.png) no-repeat center;*/
   /*background-size: 100%;*/
   /*position: relative;*/
   /*top: -1px;*/
@@ -2034,10 +2035,10 @@ select {
   top: -1px;
 }
 .evaluation .navigator-bar .icon-homework {
-  background-image: url(http://app.hizuoye.com/assets/images/evaluation-homework.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/evaluation-homework.png);
 }
 .evaluation .navigator-bar .icon-mistake {
-  background-image: url(http://app.hizuoye.com/assets/images/evaluation-mistake.png);
+  background-image: url(http://weixin.hizuoye.com/assets/images/evaluation-mistake.png);
   top: -3px;
 }
 .evaluation .h-line {

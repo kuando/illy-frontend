@@ -88,6 +88,29 @@ module.exports = function(grunt) { /* jshint ignore:line */
             }
         }, //open browser
 
+        includereplace: {
+            buildScripts: {
+                options: {
+                    prefix: '// @@',
+                    suffix: ' //'
+                },
+                // Files to perform replacements and includes with
+                src: 'public/src/**/*.js',
+                // Destidistnation directory to copy files to
+                dest: 'public/dist/scripts/'
+            },
+            buildTemplates: {
+                options: {
+                    prefix: '<!-- @@',
+                    suffix: ' -->'
+                },
+                // Files to perform replacements and includes with
+                src: 'public/src/**/*.html',
+                // Destidistnation directory to copy files to
+                dest: 'public/dist/templates/'
+            }
+        },
+
         //压缩HTML
         htmlmin: {
             options: {
@@ -331,6 +354,14 @@ module.exports = function(grunt) { /* jshint ignore:line */
     });
     // Tasks config end...
     
+    // hint task 
+    grunt.registerTask('hint', function(target) { /* jshint ignore:line */
+        grunt.task.run([
+            'htmlhint',
+            'jshint'
+        ]);
+    });
+    
     // dev task 
     grunt.registerTask('dev', function(target) { /* jshint ignore:line */
         grunt.task.run([
@@ -344,6 +375,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
     // build task 
     grunt.registerTask('release', function(target) { /* jshint ignore:line */
         grunt.task.run([
+            'hint',
             'clean',
             'imagemin',
             'htmlmin',
@@ -351,14 +383,6 @@ module.exports = function(grunt) { /* jshint ignore:line */
             'cssmin',
             'uglify',
             'copy'
-        ]);
-    });
-
-    // hint task 
-    grunt.registerTask('hint', function(target) { /* jshint ignore:line */
-        grunt.task.run([
-            'htmlhint',
-            'jshint'
         ]);
     });
 

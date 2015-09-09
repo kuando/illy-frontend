@@ -8,7 +8,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     //avalon.splashShowTime = splash_show_time;
 
     // project domain
-    var illy_domain = 'http://app.hizuoye.com';
+    var illy_domain = 'http://weixin.hizuoye.com';
 
     // project images base src
     var illy_images_base = illy_domain + '/assets/images'; /* jshint ignore:line */
