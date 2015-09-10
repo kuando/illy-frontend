@@ -15,7 +15,7 @@ define([], function() {
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
     // task ctrl take charge of everything...
-    var task = avalon.define({ /* jshint ignore:line */
+    var task = avalon.define({
         $id: "task",
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
@@ -87,9 +87,7 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            //avalon.log("task.js onRendered fn");
-            //document.querySelector('#splash').style.display = 'none';
-            //document.querySelector('#loading-before-site').style.display = 'none';
+
         };
         // 进入视图
         $ctrl.$onEnter = function() {

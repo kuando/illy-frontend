@@ -1,7 +1,7 @@
 define([], function() {
 
     // get config, apiBaseUrl
-    //var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
+    //var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 

@@ -57,10 +57,10 @@ define([], function() {
                     avalon.vmodels.task.score = res.score;
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('task done ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    avalon.illyError('task done ajax failed', res);
                 }
             });
         },
@@ -108,10 +108,10 @@ define([], function() {
                     article.likeCount = ++likeCount;
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('updateLike ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    avalon.illyError('updateLike ajax failed', res);
                 }
             });
         },

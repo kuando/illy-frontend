@@ -29,10 +29,10 @@ define([], function() {
                     index[target] = res;
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    alert("Woops, site.index ajax failed!" + res);
+                    avalon.illyError('ajax failed', res);
                 }
             });
 
@@ -55,9 +55,6 @@ define([], function() {
         }
     });
 
-    // download this ctrl file time
-    //var enterTime = Date.now();
-    //avalon.indexEnterTime = enterTime;
     return avalon.controller(function($ctrl) {
         // 进入视图
         $ctrl.$onEnter = function() {
@@ -75,7 +72,7 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            //avalon.log("index.js onBeforeUnload fn");
+
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

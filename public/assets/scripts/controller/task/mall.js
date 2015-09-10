@@ -96,7 +96,7 @@ define([], function() {
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            //avalon.log('list.js onRendered in Time: ' + Date.now());
+
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

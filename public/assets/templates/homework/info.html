@@ -17,7 +17,7 @@
                     </audio>     
                     
                     <!-- 录音完毕或者后退到本题时显示 -->
-                    <div id="playRecord" class="playRecord record-btn" ms-class-1="playing: isPlaying==true" ms-on-tap="toggleRecord()"><span class="record-total-time">{{duration}}</span>&quot<span ms-visible="!isPlaying"></span><span ms-visible="isPlaying"></span></div>
+                    <div id="playRecord" class="playRecord record-btn" ms-class-1="playing: isPlaying==true" ms-on-click="toggleRecord()"><span class="record-total-time">{{duration}}</span>&quot<span ms-visible="!isPlaying"></span><span ms-visible="isPlaying"></span></div>
 
                     <span class="mark">点击播放课程重点录音:</span>
                 </div>

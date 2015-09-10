@@ -1,7 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.com/assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
     /* wxsdk start */
 
@@ -10,7 +10,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.co
 
     $http.ajax({
         method: "",
-        url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
+        url: apiBaseUrl + 'public/sdk/signature',
         data: {
             url: url
         },

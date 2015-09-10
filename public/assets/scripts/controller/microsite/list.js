@@ -29,7 +29,7 @@ define([], function() {
         btnShowMore: false,
         fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
             if (arguments.length !== 4) {
-                console.log('ERROR: must give 4 args!', arguments);
+                avalon.illyError('ERROR: must give 4 args!' + arguments);
             }
             list.noMoreData = false;
             if (list.visited && needCache && !concat) {
@@ -66,13 +66,13 @@ define([], function() {
                     avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, result); // illy-microsite-11111-lists
                     list.isLoading = false;
                 },
-                error: function(res) { /* jshint ignore:line */
-                    console.log('list.js ajax error when fetch data' + res);
+                error: function(res) {
+                    avalon.illyError('microsite list.js ajax error', res);
                     list.noContent = true;
                     list.isLoading = false;
                 },
-                ajaxFail: function(res) { /* jshint ignore:line */
-                    console.log('list.js ajax failed when fetch data' + res);
+                ajaxFail: function(res) { 
+                    avalon.illyError('microsite list.js ajax failed', res);
                     list.noContent = true;
                     list.isLoading = false;
                 }
@@ -105,11 +105,13 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
+            // recover the state
+            list.noContent = false;
+
             list.visited = avalon.vmodels.root.currentIsVisited;
 
             list.categoryId = params.categoryId; // get postId
             avalon.vmodels.site.categoryId = params.categoryId; // for parent ctrl site use
-            //avalon.vmodels.root.title = params.categoryName; // set action bar title again drop in 20150724
             
             if (list.categoryId === 'hots') { // deal with hots column
 

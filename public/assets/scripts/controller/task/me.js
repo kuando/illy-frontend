@@ -166,11 +166,11 @@ define([], function() {
                     alert('上传成功!' + res);    
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('avatar ajax error', res);
                     alert('对不起，头像上传失败，请重试！');
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    avalon.illyError('avatar ajax ', res);
                     alert('对不起，头像上传失败，请重试！');
                 } 
             });

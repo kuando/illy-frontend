@@ -81,11 +81,11 @@ define([], function() {
                     evaluation.isLoading = false;
                 },
                 error: function(res) {
-                    console.log("evaluation list ajax error" + res);
+                    avalon.illyError("evaluation list ajax error", res);
                     evaluation.noContent = true;
                 },
                 ajaxFail: function(res) {
-                    console.log("evaluation list ajax failed" + res);
+                    avalon.illyError("evaluation list ajax failed" + res);
                     evaluation.noContent = true;
                 }
             });

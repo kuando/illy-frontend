@@ -20,9 +20,7 @@ define([], function() {
             var app = avalon.vmodels.app; 
             app.$watch("yesOrNo", function(value) { /* [, oldValue] */
                 if (value === true) {
-                    //history.go(-1);
                     avalon.router.go('app.list');
-                    //detail.isBack = true;
                     return ;
                 } 
                 else {
@@ -31,8 +29,6 @@ define([], function() {
             });
 
         } else {
-            //detail.isBack = true;
-            //history.go(-1);
             avalon.router.go('app.list');
             return ;
         }
@@ -62,7 +58,6 @@ define([], function() {
             totalScore: 100
         },
         submit: function() { // core!!!
-            //avalon.log("detail submit"); // no log, but real here, don't worry
             
             // 统计做题时间
             var spendSeconds = ( Date.now() - avalon.vmodels.detail.questionStartTime ) / 1000;
@@ -75,11 +70,11 @@ define([], function() {
                     Authorization: 'Bearer ' + token
                 },
                 data: {
-                    _id: avalon.getPureModel('detail').homeworkId,
+                    _id: avalon.getVM('detail').homeworkId,
                     spendSeconds: IntSpendSeconds,
-                    wrongCollect: avalon.getPureModel('detail').wrongCollect,
-                    audioAnswers: avalon.getPureModel('detail').audioAnswers,
-                    numOfExercise: avalon.getPureModel('detail').exercises.length
+                    wrongCollect: avalon.getVM('detail').wrongCollect,
+                    audioAnswers: avalon.getVM('detail').audioAnswers,
+                    numOfExercise: avalon.getVM('detail').exercises.length
                 },
                 success: function(res) {
                     var target = avalon.vmodels.detail.$model.result;
@@ -97,7 +92,7 @@ define([], function() {
                     }, 16);
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError("submit homework error", res);
                     alert("对不起，作业提交失败，请退出重试！");
                     avalon.router.go('app.list'); // go list page
                 }
@@ -105,7 +100,7 @@ define([], function() {
         }, // end of submit
         clearCachedData: function() { // 清除缓存数据
             // 清除detail控制器缓存的统计数据
-            var detailVM = avalon.getPureModel('detail');
+            var detailVM = avalon.getVM('detail');
             detailVM && (detailVM.wrongCollect = []); /* jshint ignore:line */
             detailVM && (detailVM.audioAnswers = []); /* jshint ignore:line */
             // 清除题目页面缓存的统计数据
@@ -143,8 +138,7 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            // 此处虽然可以同样监听到浏览器原生后退，但一定后退，无法阻止(除了alert), 就显得鸡肋了
-            // !detail.isBack && detail.back(); /* jshint ignore:line */ 
+
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

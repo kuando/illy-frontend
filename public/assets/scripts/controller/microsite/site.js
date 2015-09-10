@@ -28,10 +28,10 @@ define([], function() {
                     site.categoriesNames = res; // cached auto nature
                 },
                 error: function(res) {
-                    console.log('site fetchAllCategoriesNames error!' + res);
+                    avalon.illyError('site fetchAllCategoriesNames ajax error!', res);
                 },
                 ajaxFail: function(res) {
-                    console.log('site fetchAllCategoriesNames failed!' + res);
+                    avalon.illyError('site fetchAllCategoriesNames ajax failed!', res);
                 }
             });
         },
@@ -96,11 +96,17 @@ define([], function() {
             avalon.clearLocalCache('illy-microsite-');
 
             // add listener for index view's navigator
-            avalon.vmodels.root.$watch("currentPage", function(newVal, oldVal) { /* jshint ignore:line */ 
+            avalon.vmodels.root.$watch("currentState", function(newVal, oldVal) { /* jshint ignore:line */ 
                if (newVal === 'index') {
                    setTimeout(function() {
                        $('#nav li').removeClass('ui-state-active');
                    }, navigatorInitDelay + 100 );
+               }
+
+               if (newVal === 'detail') {
+                   avalon.$('.left-fixed').style.display = 'none';
+               } else {
+                   avalon.$('.left-fixed').style.display = 'block';
                }
             });
 

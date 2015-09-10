@@ -57,6 +57,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
             images: {
                 files: ['public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
                 tasks: ['imagemin']
+            },
+
+            scripts: {
+                files: ['public/assets/scripts/**/*.js'],
+                tasks: ['includereplace:buildScripts', 'copy:copyBuildScripts', 'clean:buildScriptsDist']
             }
 
         }, // watch 
@@ -92,20 +97,20 @@ module.exports = function(grunt) { /* jshint ignore:line */
             buildScripts: {
                 options: {
                     prefix: '// @@',
-                    suffix: ' //'
+                    suffix: ' @@ //'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/src/**/*.js',
+                src: 'public/assets/scripts/src/*.js',
                 // Destidistnation directory to copy files to
-                dest: 'public/dist/scripts/'
+                dest: 'public/assets/scripts/dist/scripts/'
             },
             buildTemplates: {
                 options: {
                     prefix: '<!-- @@',
-                    suffix: ' -->'
+                    suffix: ' @@ -->'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/src/**/*.html',
+                src: 'public/assets/templates/src/**/*.html',
                 // Destidistnation directory to copy files to
                 dest: 'public/dist/templates/'
             }
@@ -249,8 +254,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
             css: ["public/build/assets/styles/"],
             js: ['public/build/assets/scripts/'],
             templates: ['public/build/assets/templates'],
-            old: ['public/build/login.html', 'public/build/unbind.html', 'public/build/index.html']
-
+            oldFiles: ['public/build/login.html', 'public/build/unbind.html', 'public/build/index.html'],
+            buildScriptsDist: ['public/assets/scripts/dist/']
         },
 
         // https://www.npmjs.com/package/grunt-contrib-copy
@@ -314,6 +319,14 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     cwd: 'public/',
                     src: ['404.html'],
                     dest: 'public/build/'
+                }],
+            },
+            copyBuildScripts: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/assets/scripts/dist/scripts/public/assets/scripts/src',
+                    src: ['*.js'],
+                    dest: 'public/assets/scripts/'
                 }],
             }
         },

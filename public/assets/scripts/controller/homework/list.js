@@ -15,7 +15,6 @@ define([], function() {
 
         $id: "list",
         noHomeworkContent: false,
-        // noPreviewsContent: false,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         showLoader: true, // only show loader in the first time
         homework: [], // 作业数据
@@ -41,17 +40,25 @@ define([], function() {
                     setTimeout(function() {                          
                         var newLists = list.homework;
                         if (newLists && newLists.length === 0) {
-                            list.noHomeworkContent = true;
+                            if (newLists.length === 0) {
+                                list.noHomeworkContent = true;
+                            }
                         }      
                     }, 200);
                 },
                 error: function(res) {
-                    console.log("homework list ajax error" + res);
-                    list.noHomeworkContent = true;
+                    avalon.illyError('ajax error', res);
+                    var newLists = list.homework;
+                    if (newLists.length === 0) {
+                        list.noHomeworkContent = true;
+                    }
                 },
                 ajaxFail: function(res) {
-                    console.log("homework list ajax failed" + res);
-                    list.noHomeworkContent = true;
+                    avalon.illyError('ajax failed', res);
+                    var newLists = list.homework;
+                    if (newLists.length === 0) {
+                        list.noHomeworkContent = true;
+                    }
                 }
             });
         } // end of fetchData
@@ -61,7 +68,7 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            //avalon.log("leave list");
+
         };
         // 进入视图
         $ctrl.$onEnter = function() {
@@ -79,7 +86,6 @@ define([], function() {
             
             // remove cache in detail ctrl
             list.fetchData('homework');
-            // list.fetchData('previews'); // api droped in 20150904
 
             if (avalon.vmodels.question !== void 0) { // fix in 20150811
                 // 可以开启做题时间统计的标记, 自己第一次进入是true，同时唯一在此处开启

@@ -100,9 +100,8 @@ define([], function() {
 
             var localId = record.localId;
             if (localId === '') {
+                avalon.illyError('上传失败，没有localId, localId为：' + localId);
                 alert('对不起,上传失败!');
-                console.log('上传失败，没有localId, localId为：' + localId);
-                //console.log(record); // print global record array
                 return;
             }
             wx.uploadVoice({
@@ -114,9 +113,7 @@ define([], function() {
 
                     question.showPlayRecordBtn = true;
                     
-                    //var recordTotalTime = avalon.$('.record-total-time'); 
                     // 设置录音时长
-                    //recordTotalTime && ( recordTotalTime.innerHTML = ( parseInt(record.duration, 10) || 0 ) ); [> jshint ignore:line <]
                     question.duration = record.duration; 
                 }
             });
@@ -130,17 +127,17 @@ define([], function() {
 
             var localId = record.localId;
             if (localId === '') {
+                avalon.illyError('no localId to playRecord');
                 alert("录制不成功，请重试！");
-                console.log('no localId');
                 return ;
             }
             wx.playVoice({
                 localId: localId
             });
             question.isPlaying = true;
-            // 同时播完应该isPlaying = false
             
             //  clear first and add new another timeout
+            // 同时播完应该isPlaying = false
             clearTimeout(record.playRecordTimeout);
             record.playRecordTimeout = setTimeout(function() {
                 question.isPlaying = false;
@@ -278,11 +275,12 @@ define([], function() {
             avalon.vmodels.detail.isDoing = true;
 
             if (question.localAnswers.length >= question.currentId) {
-                console.log("不可更改答案!");
+                avalon.illyError("不可更改答案!");
+                alert("不可更改答案!");
                 return;
             }
             question.isRecording && question.stopPlayRecord(); /* jshint ignore:line */
-            var detailVM = avalon.getPureModel('detail');
+            var detailVM = avalon.getVM('detail');
             // if map3, collect info and push to the AudioCollect
             if (question.exercise && question.exercise.eType === 3) {
                 question.stopRecord(); // checkAnswer click, means record must stop
@@ -405,8 +403,10 @@ define([], function() {
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
 
-            // just stop record.
-            wx.stopRecord();
+            // just stop record
+            setTimeout(function() {
+                wx.stopRecord();
+            }, 200);
             
             // drop the question flag
             question.isDroped = false;
@@ -430,16 +430,26 @@ define([], function() {
             }
 
             question.currentId = params.questionId;
-            
+
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
+
+            // error, current is not url homework, maybe because backbackback...
+            var currentHomeworkId = avalon.vmodels.detail.homeworkId;
+            var urlHomeworkId = params.homeworkId;
+            if (currentHomeworkId !== urlHomeworkId) {
+                alert('后面没有作业了，请专注本套作业，谢谢～');
+                avalon.router.go('app.list');
+            }
+            
             // no exercise, error go index, report reason!
             if (exercises.length === 0) { 
-                console.log('fetch no exercise error! maybe because back from mall! or get in directly');
+                // console.log('fetch no exercise error! maybe because back from mall! or get in directly');
                 // alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
                 location.replace('./homework.html');
                 return ;
             }
+
             question.exercise = exercises[id]; // yes
             
             // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
@@ -457,11 +467,11 @@ define([], function() {
                 question.isRecording = false;
 
             } else {
-                setTimeout(function() { // mark! 20150826
+                setTimeout(function() {
                     question.userAnswer = question.localAnswers[question.currentId - 1] || '';
                     // 重置题目对错标记
                     question.right = (question.exercise.answer === question.userAnswer) || (question.exercise.eType === 3);
-                }, 16);
+                }, 100);
             }
 
             // play record btn, 至少一定是后退才能看到

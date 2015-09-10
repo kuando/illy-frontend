@@ -46,10 +46,10 @@ define([], function() {
                     
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('microsite updateShare ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    avalon.illyError('microsite updateShare ajax failed', res);
                 }
             });
         },
@@ -96,10 +96,10 @@ define([], function() {
                     detail.likeCount = ++likeCount;
                 },
                 error: function(res) {
-                    console.log(res);
+                    avalon.illyError('microsite updateLike ajax error ', res);
                 },
                 ajaxFail: function(res) {
-                    console.log(res);
+                    avalon.illyError('microsite updateLike ajax failed ' + res);
                 }
             });
         },

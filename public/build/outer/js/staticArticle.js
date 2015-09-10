@@ -1,7 +1,7 @@
-define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.com/assets/scripts/lib/http/http'], function(wx) {
+define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://101.201.176.191/api/v1/';
 
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
@@ -12,7 +12,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.co
 
     $http.ajax({
         method: "",
-        url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
+        url: apiBaseUrl + 'public/sdk/signature',
         data: {
             url: url
         },
@@ -103,7 +103,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  'http://app.hizuoye.co
     var article = avalon.define({
         
         $id: "article",
-        resourcePrefix: 'http://app.hizuoye.com/assets/images',
+        resourcePrefix: 'http://weixin.hizuoye.com/assets/images',
         articleId: location.href.split('?')[1].split('&')[0].split('=')[1], // mark!
         title: "",
         image: '',

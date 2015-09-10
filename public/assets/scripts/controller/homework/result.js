@@ -14,12 +14,10 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-            //avalon.log("result.js onRendered fn");
+
         };
         // 进入视图
         $ctrl.$onEnter = function() {
-            //avalon.log("result.js onEnter callback");
-            // this homwork is done and for drop check, 20150809
 
             avalon.vmodels.detail.isDone = true;
             //avalon.log(params); 
@@ -49,7 +47,6 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            //avalon.log("result.js onBeforeUnload fn");
             
             // clear detail exercises for trigger question cannot back
             avalon.vmodels.detail.clearLastHomeworkData();

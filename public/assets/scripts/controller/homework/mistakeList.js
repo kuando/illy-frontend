@@ -1,7 +1,7 @@
 define([], function() {
     
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     
     // get config, token
     var token = avalon.illyGlobal.token; 
@@ -64,12 +64,12 @@ define([], function() {
                     mistakeList.isLoading = false;
                 },
                 error: function(res) {
-                    console.log("mistakeList ajax error" + res);
+                    avalon.illyError("mistakeList ajax error", res);
                     mistakeList.noMistakeListContent = true;
                     mistakeList.isLoading = false;
                 },
                 ajaxFail: function(res) {
-                    console.log("mistakeList ajax failed" + res);
+                    avalon.illyError("mistakeList ajax failed", res);
                     mistakeList.noMistakeListContent = true;
                     mistakeList.isLoading = false;
                 }
@@ -92,17 +92,16 @@ define([], function() {
                     avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
                 },
                 error: function(res) {
-                    console.log('mistakeTemp ajax error' + res);
+                    avalon.illyError('mistakeTemp ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log('mistakeTemp ajax failed' + res);
+                    avalon.illyError('mistakeTemp ajax failed', res);
                 }
             });
         },
         goWrong: function() { // 前往具体错误题目
             var homeworkId = arguments[0].getAttribute('data-homeworkid');
             mistakeList.fetchDataForExercises(homeworkId);
-            //avalon.router.go('app.mistake.wrong', {homeworkId: homeworkId, questionId: 1});
         }
 
     });
@@ -118,7 +117,6 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            //avalon.log("leave list");
             mistakeList.isRecover = false;
         };
         // 进入视图

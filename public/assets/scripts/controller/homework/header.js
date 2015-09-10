@@ -2,9 +2,9 @@ define([], function() {
 
     var header = avalon.define({
         $id: "header",  
-        headerShow: false, // for header.tpl
-        backBtnShow: false, // for header.tpl
-        backHomeBtnShow: false, // for header.tpl
+        headerShow: false, // for header.html
+        backBtnShow: false, // for header.html
+        backHomeBtnShow: false, // for header.html
         back: function() { // has default back and can custom it
             var state = avalon.vmodels.root.currentState;
             if (state === 'info' || state === 'result') { // not include question, 此处尽量收窄范围

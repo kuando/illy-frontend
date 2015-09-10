@@ -1,0 +1,2 @@
+root.$watch("currentAction",function(currentAction){if(void 0!==currentAction)switch(currentAction){case"onError":avalon.log("Error!, Redirect to index!",arguments),avalon.router.go("site.index");break;case"onBegin":break;case"onLoad":break;case"onBeforeUnload":break;case"onUnload":}});
+//# sourceMappingURL=actionController.js.map

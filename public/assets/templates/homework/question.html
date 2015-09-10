@@ -10,13 +10,6 @@
     </div>
     <!-- progress of question -->
 
-    <!--<ul class="yo-list yo-list-group">-->
-    <!--    <li class="item yo-range yo-range-e">-->
-    <!--        <input type="range" min="0" max="100" ms-attr-value="( (currentId - 1) * 100) / total">-->
-    <!--        <span class="progress-text">{{currentId}} / {{total}}</span>-->
-    <!--    </li>-->
-    <!--</ul>-->
-
     <!-- 公用题干 -->
     <p class="question-text">
         {{exercise.question | html}}<br/>  
@@ -33,7 +26,7 @@
                 {{item.title}}. {{item.content}} 
             </span>
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string="userAnswer" ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -48,7 +41,7 @@
             </div>
             {{item.title}}
             <div class="yo-checked yo-checked-c">
-                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string=" userAnswer " ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
+                <input type="radio" name="xiaoxuan" ms-attr-value="{{item.title}}" ms-duplex-string="userAnswer" ms-attr-disabled="(localAnswers.length >= currentId) && (userAnswer !== item.title)" />
                 <span class="type"></span>
             </div>
         </label>
@@ -58,10 +51,10 @@
     <!-- 填空题 -->
     <div class="fill-in yo-list" ms-if="exercise.eType === 2">
         <label class="item item-input" ms-class-1="question-item-active: userAnswer !== ''">
-            <textarea placeholder="请在此输入问题答案" autofocus class="yo-input fill-in-textarea" ms-duplex="userAnswer" ms-visible=" localAnswers[currentId - 1] == void 0 ">
+            <textarea ms-if="localAnswers[currentId - 1] === void 0" placeholder="请在此输入问题答案" autofocus class="yo-input fill-in-textarea" ms-duplex="userAnswer">
 
             </textarea>
-            <p class="answered-text" ms-visible="localAnswers[currentId - 1]">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
+            <p ms-if="localAnswers[currentId - 1] !== void 0" class="answered-text" ms-visible="localAnswers[currentId - 1] !== void 0">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
         </label>
     </div>
     <!-- 填空题 -->
@@ -86,7 +79,7 @@
 
         <!-- 录音完毕或者后退到本题时显示 -->
         <div id="playRecord" class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-class-2="playing: isPlaying==true" ms-on-click="togglePlayRecord()" ms-visible="showPlayRecordBtn && userAnswer != ''"><span class="record-total-time">{{duration}}</span><i class="second-symbol">&quot</i><span ms-visible="isPlaying!=true">点击试听</span><span ms-visible="isPlaying==true">点击停止</span></div>
-        <div class="playRecord record-btn" ms-class-1="hide: isRecording==true" ms-visible="showPlayRecordBtn && userAnswer == ''"><span class="record-total-time">0</span><i class="second-symbol">&quot</i><span ms-visible="isPlaying!=true">未录制</span></div>
+        <div class="playRecord record-btn" ms-class-1="hide: isRecording===true" ms-visible="showPlayRecordBtn && userAnswer === ''"><span class="record-total-time">0</span><i class="second-symbol">&quot</i><span ms-visible="isPlaying!=true">未录制</span></div>
 
         <!-- 仅录音过短显示, 一定时间后消失或录音时消失 -->
         <div class="record-tips">录音时间过短，请重新录制</div>

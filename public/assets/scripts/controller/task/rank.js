@@ -40,10 +40,10 @@ define([], function() {
                     rank.myScore = res.score;
                 },
                 error: function(res) {
-                    console.log('rank ajax error!' + res);
+                    avalon.illyError('my rank info ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log('rank ajax ajaxFail!' + res);
+                    avalon.illyError('my rank info ajax failed', res);
                 }
             });
             $http.ajax({
@@ -55,10 +55,10 @@ define([], function() {
                     rank.ranks = res;
                 },
                 error: function(res) {
-                    console.log('rank ajax error!' + res);
+                    avalon.illyError('topTen rank info ajax error', res);
                 },
                 ajaxFail: function(res) {
-                    console.log('rank ajax ajaxFail!' + res);
+                    avalon.illyError('topTen rank info ajax failed', res);
                 }
             });
         };

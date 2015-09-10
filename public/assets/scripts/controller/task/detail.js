@@ -1,10 +1,10 @@
 define([], function() {
     
-    //var apiBaseUrl = avalon.illyGlobal.apiBaseUrl || 'http://api.hizuoye.com/api/v1/';
-    // var token = avalon.illyGlobal.token;
-    // if (token === null) {
-    //     avalon.vmodels.root.noTokenHandler();
-    // }
+     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl; /* jshint ignore:line */
+     var token = avalon.illyGlobal.token;
+     if (token === null) {
+         avalon.vmodels.root.noTokenHandler();
+     }
     
     var detail = avalon.define({
 

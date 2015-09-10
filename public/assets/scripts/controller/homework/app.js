@@ -112,8 +112,6 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             
-            // performance listener, almost rendered the page...
-            
             app.getUserInfo();
 
         };

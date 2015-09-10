@@ -11,7 +11,6 @@
         <!-- 作业列表 start -->
         <div class="item area" ms-repeat-item="homework" ms-if="!noHomeworkContent">
             <a ms-attr-href="'#!/detail/' + item._id + '/info/?type=homework'" class="list-card">
-                <!--<img class="item-img area" ms-attr-src="item.image" ms-attr-alt="item.title">-->
                 <img class="item-img area" ms-attr-src="illy_images_base + '/homework_list_icon_green.png'" ms-attr-alt="item.title" />
                 <div class="hw-info area">
                     <h2 class="item-title area">{{item.title}}</h2>
@@ -24,30 +23,8 @@
         </div>
         <!-- 作业列表 end -->
 
-        <!-- 预习列表 start -->
-        <!--<div class="item area" ms-repeat-item="previews">-->
-        <!--    <a ms-attr-href="'#!/detail/' + item._id + '/info/?type=previews'" class="list-card">-->
-        <!--        <img class="item-img area" src="../../build/images/homework_list_icon_blue.png" ms-attr-alt="item.title" />-->
-        <!--        <div class="hw-info area">-->
-        <!--            <h2 class="item-title area">{{item.title}}</h2>-->
-        <!--            <span class="time">{{item.createdTime | date("yyyy.MM.dd")}}</span>-->
-        <!--            <span class="finish_count"><i class="icon-people"></i>{{item.finishedCount}}人已完成</span>-->
-        <!--        </div>-->
-        <!--        <span class="todo yo-ico">&#xf07f;</span>-->
-        <!--    </a>-->
-        <!--</div>-->
-        <!-- 预习列表 end -->
-
     </div>
     <!-- item end -->
-
-    <!-- 加载更多按钮, 不需要，作业很少 -->
-    <!--<div class="show-more hide" ms-click="showMore()" ms-if="isLoading != true">-->
-    <!--    加载更多-->
-    <!--</div>-->
-    <!--<div class="show-more hide" class="isLoading" ms-if="isLoading == true">-->
-    <!--    <span>加载中<span class="loading-with-dot"></span></span>-->
-    <!--</div>-->
 
 </div>
 <!-- list end -->

@@ -1,0 +1,2 @@
+avalon.illyGlobal={token:token,apiBaseUrl:api_base_url,illyDomain:illy_domain,imagesBaseSrc:illy_images_base_src,noTokenHandler:function(){alert("对不起，本系统仅供内部使用！")}};var root=avalon.define({$id:"root",namespace:"homework",currentState:"",currentAction:"",currentIsVisited:!1,title:""});
+//# sourceMappingURL=customData.js.map
