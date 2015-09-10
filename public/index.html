@@ -85,7 +85,7 @@
                         alert('不支持本地存储，token获取不到');
                         console.error('localStorage not support, no token');
                     }
-                } else if ( status === 401) { // unbinded user and go login...
+                } else if (status === 401) { // unbinded user and go login...
                     var openid = xhr.responseText;
                     location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
                 } else {

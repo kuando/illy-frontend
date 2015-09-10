@@ -64,7 +64,7 @@ define([], function() {
         $id: "question",
 
         /* 通信量 start */
-        homeworkId: avalon.vmodels.detail.homeworkId, // 直接取，这种固定值不需要动态获取
+        homeworkId: '', 
         starter: true, // start answer the question flag
         /* 通信量 end */
 
@@ -378,7 +378,7 @@ define([], function() {
         var exercises = detailVM.exercises;
 
         // 视图渲染后，意思是avalon.scan完成
-        $ctrl.$onRendered = function() { 
+        $ctrl.$onRendered = function(params) { 
 
             if (avalon.vmodels.question.starter) {
                 avalon.vmodels.detail.questionStartTime = Date.now(); 
@@ -402,6 +402,9 @@ define([], function() {
         // 进入视图, 对复用的数据进行重置或清空操作！
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
+
+            // fix old & big bug, 201509101956
+            question.homeworkId = avalon.vmodels.detail.homeworkId;
 
             // just stop record
             setTimeout(function() {
@@ -433,15 +436,17 @@ define([], function() {
 
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
-
-            // error, current is not url homework, maybe because backbackback...
-            var currentHomeworkId = avalon.vmodels.detail.homeworkId;
-            var urlHomeworkId = params.homeworkId;
-            if (currentHomeworkId !== urlHomeworkId) {
-                alert('后面没有作业了，请专注本套作业，谢谢～');
-                avalon.router.go('app.list');
-            }
             
+            // error, current is not url homework, maybe because backbackback...
+            setTimeout(function() {
+                var currentHomeworkId = avalon.vmodels.detail.homeworkId;
+                var urlHomeworkId = params.homeworkId;
+                if (currentHomeworkId !== urlHomeworkId) {
+                    //alert('后面没有作业了，请专注本套作业，谢谢～');
+                    avalon.router.go('app.list');
+                }
+            }, 100);
+
             // no exercise, error go index, report reason!
             if (exercises.length === 0) { 
                 // console.log('fetch no exercise error! maybe because back from mall! or get in directly');
