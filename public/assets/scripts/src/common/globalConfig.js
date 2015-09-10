@@ -8,7 +8,7 @@
     var illy_images_base_src = illy_domain + '/assets/images';
 
     // global apiBaseUrl
-    var api_base_url = 'http://101.201.176.191/api/v1/';
+    var api_base_url = 'http://api.hizuoye.com/api/v1/';
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');

@@ -474,6 +474,9 @@ define([], function() {
             } else {
                 setTimeout(function() {
                     question.userAnswer = question.localAnswers[question.currentId - 1] || '';
+                    //if (question.exercise.eType === 2) {
+                    //    avalon.$('.answered-text').innerHTML = question.userAnswer + '';
+                    //}
                     // 重置题目对错标记
                     question.right = (question.exercise.answer === question.userAnswer) || (question.exercise.eType === 3);
                 }, 100);
