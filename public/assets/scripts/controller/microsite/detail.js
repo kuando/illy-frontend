@@ -159,10 +159,13 @@ define([], function() {
                         }
                     });
                     
+                    var appMessageDesc = '发现' + avalon.vmodels.site.schoolName + '的这篇<<' + detail.title + '>>很赞, 你也瞧瞧~';
+                    alert(appMessageDesc);
                     // wx share to friend
                     wx.onMenuShareAppMessage({
                         title: detail.title, // 分享标题
                         link: avalon.vmodels.site.illy_domain + '/outer/staticArticle.html?id=' + detail.articleId, // 分享链接
+                        desc: appMessageDesc,
                         imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             // 不管成功与否，前台界面至少先更新

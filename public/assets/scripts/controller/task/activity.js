@@ -282,10 +282,12 @@ define([], function() {
                         }
                     });
 
+                    var appMessageDesc = '发现' + avalon.vmodels.task.schoolName + '的这篇<<' + activity.theme+ '>>很赞, 你也瞧瞧~';
+                    //alert(appMessageDesc);
                     // wx share to friend
                     wx.onMenuShareAppMessage({
                         title: activity.theme, // 分享标题
-                        desc: '',
+                        desc: appMessageDesc,
                         link: avalon.vmodels.task.illy_domain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
                         imgUrl: imgUrl && imgUrl.src || avalon.vmodels.task.illy_domain + '/assets/images/kd2.png', // 分享图标
                         success: function() {

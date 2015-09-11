@@ -195,7 +195,8 @@ $navigator-home-width: .5rem;
 }
 .left-fixed>div.left {
     width: $navigator-home-width;
-    z-index: $zIndex5; /* key! for mobile */
+    /* key! for mobile */
+    /* z-index: $zIndex5; */
     position: absolute;
     top: 0;
     left: 0;

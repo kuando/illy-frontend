@@ -1323,8 +1323,8 @@ select {
 
 .left-fixed > div.left {
   width: 0.5rem;
-  z-index: 10000;
   /* key! for mobile */
+  /* z-index: $zIndex5; */
   position: absolute;
   top: 0;
   left: 0;

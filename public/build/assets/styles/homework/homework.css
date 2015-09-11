@@ -1392,7 +1392,7 @@ select {
 /* list-item start */
 .mistakeList .show-more-btn {
   position: relative;
-  top: -.1rem;
+  top: -.05rem;
 }
 
 .item-wrapper {

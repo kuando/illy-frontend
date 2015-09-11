@@ -180,10 +180,13 @@ define([], function() {
                         }
                     });
 
+                    var appMessageDesc = '发现' + avalon.vmodels.task.schoolName + '的这篇<<' + article.title + '>>很赞, 你也瞧瞧~';
+                    //alert(appMessageDesc);
                     // wx share to friend
                     wx.onMenuShareAppMessage({
                         title: article.title, // 分享标题
                         link: avalon.vmodels.task.illy_domain + '/outer/staticArticle.html?id=' + article.articleId, // 分享链接
+                        desc: appMessageDesc,
                         imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
                         success: function () { 
                             avalon.vmodels.task.showAlert('分享成功! 朋友将会收到您的分享~', 3); // hideDelay

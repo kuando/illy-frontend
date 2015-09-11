@@ -1,6 +1,22 @@
 <div ms-controller="site" class="site">
 
-    <div class="left-fixed" ms-visible="currentPage !== 'detail'">
+    <div class="ui-mask"  ms-visible="gMaskShow"></div>
+
+    <div class="ui-dialog" ms-visible="gAlertShow">
+        <div class="ui-dialog-title">
+            <h3>系统提示</h3>
+        </div>
+        <div class="ui-dialog-content">
+            <div title="提示">
+                <p>{{appMessage}}</p>
+            </div>
+        </div>
+        <div class="ui-dialog-btns">
+            <a class="ui-btn ui-btn-1 g-Alert-iKnow-btn" ms-click="iKnowClick()">我知道了</a>
+        </div>
+    </div>
+
+    <div class="left-fixed">
         <div class="left navigator-home"><a href="#!/">首页</a></div>
         <div id="nav" class="ui-navigator"> 
             <ul class="ui-navigator-list" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">
@@ -12,10 +28,6 @@
     </div>
 
     <div ms-view=""></div>
-    
-    <!--<div id="jumphelper" class="gotop">-->
-        <!--<a href="javascript:void(0)" id="gotop"></a>-->
-    <!--</div>-->
     
 </div>
 

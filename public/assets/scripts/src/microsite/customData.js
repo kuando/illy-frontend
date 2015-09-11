@@ -11,7 +11,7 @@
         illyDomain : illy_domain,
         imagesBaseSrc: illy_images_base_src,
         noTokenHandler: function() {
-            alert("对不起，本系统仅供内部使用！");
+            alert("ERROR::no token! 对不起，本系统仅供内部使用！");
         }
 
     };
