@@ -13,7 +13,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     var jinbiResourcePrefix = avalon.vmodels.task.illy_domain + "/assets/images";
@@ -176,6 +176,23 @@ define([], function() {
                             if (!article.isShared) {
                                 // alert('差一点就分享成功, 拿积分兑大奖了!');
                                 avalon.vmodels.task.showAlert('差一点就分享成功了, 拿积分兑大奖了!', 3); // hideDelay
+                            }
+                        }
+                    });
+
+                    // wx share to friend
+                    wx.onMenuShareAppMessage({
+                        title: article.title, // 分享标题
+                        link: avalon.vmodels.task.illy_domain + '/outer/staticArticle.html?id=' + article.articleId, // 分享链接
+                        imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
+                        success: function () { 
+                            avalon.vmodels.task.showAlert('分享成功! 朋友将会收到您的分享~', 3); // hideDelay
+                        },
+                        cancel: function () { 
+                            // 用户取消分享后执行的回调函数
+                            if (!article.isShared) {
+                                // alert('差一点就分享成功, 拿积分兑大奖了!');
+                                avalon.vmodels.task.showAlert('差一点就分享成功了!', 3); // hideDelay
                             }
                         }
                     });

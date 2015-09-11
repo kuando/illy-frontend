@@ -9,7 +9,7 @@ define([], function() {
     // get config, token
     var token = avalon.illyGlobal.token; 
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     avalon.filters.year = function(str) {

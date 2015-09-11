@@ -4,8 +4,8 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
 
     var token = avalon.illyGlobal.token;
-    if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+    if (token === void 0) {
+        avalon.illyGlobal.noTokenHandler();
     }
 
     // 获取全局wx-sdk接口
@@ -155,6 +155,23 @@ define([], function() {
                             // 用户取消分享后执行的回调函数
                             if (!detail.isShared) {
                                 alert('差一点就分享成功了!');
+                            }
+                        }
+                    });
+                    
+                    // wx share to friend
+                    wx.onMenuShareAppMessage({
+                        title: detail.title, // 分享标题
+                        link: avalon.vmodels.site.illy_domain + '/outer/staticArticle.html?id=' + detail.articleId, // 分享链接
+                        imgUrl: document.querySelector('.cover-img > img').src || document.getElementsByTagName('img')[0].src, // 分享图标
+                        success: function () { 
+                            // 不管成功与否，前台界面至少先更新
+                            avalon.vmodels.site.showAlert('分享成功!', 3); // hideDelay
+                        },
+                        cancel: function () { 
+                            // 用户取消分享后执行的回调函数
+                            if (!detail.isShared) {
+                                avalon.vmodels.site.showAlert('差一点就分享成功了!', 3); // hideDelay
                             }
                         }
                     });

@@ -60,7 +60,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             },
 
             scripts: {
-                files: ['public/assets/scripts/**/*.js'],
+                files: ['public/assets/scripts/src/**/*.js'],
                 tasks: ['includereplace:buildScripts', 'copy:copyBuildScripts', 'clean:buildScriptsDist']
             }
 

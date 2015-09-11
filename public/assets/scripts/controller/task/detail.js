@@ -2,9 +2,9 @@ define([], function() {
     
      var apiBaseUrl = avalon.illyGlobal.apiBaseUrl; /* jshint ignore:line */
      var token = avalon.illyGlobal.token;
-     if (token === null) {
-         avalon.vmodels.root.noTokenHandler();
-     }
+    if (token === null) {
+        avalon.illyGlobal.noTokenHandler();
+    }
     
     var detail = avalon.define({
 

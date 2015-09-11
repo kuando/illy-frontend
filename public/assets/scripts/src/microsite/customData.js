@@ -1,5 +1,7 @@
 // ==================== custom project data start @include ==================== //
 
+    token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
+
     // avalon global stuff when app init
     avalon.illyGlobal = {
 

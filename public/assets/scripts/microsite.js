@@ -95,17 +95,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         illyLog('info', msg, res, global_infoLog_style, true);
     };
 
-    /*
-     * clearLocalCache
-     * @param prefix {string}
-     * clear the cache item includes the given prefix
+    /**
+     * getLocalCache
+     * @param itemName {String}
+     * return result   {Object} (json-from-api)
     */
-    var clearLocalCache = function clearLocalCache(prefix) {
-        for (var key in localStorage) {
-            if (key.indexOf(prefix) >= 0) {
-                localStorage.rem
-            }
-        }
+    var getLocalCache = function getLocalCache(itemName) {
+        return localStorage.getItem && JSON.parse( '' + localStorage.getItem(itemName) );
     };
 
     /**
@@ -118,25 +114,31 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         localStorage.setItem && localStorage.setItem( itemName, source ); /* jshint ignore:line */
     };
 
-    /**
-     * getLocalCache
-     * @param itemName {String}
-     * return result   {Object} (json-from-api)
+    /*
+     * clearLocalCache
+     * @param prefix {string}
+     * clear the cache item includes the given prefix
     */
-    var getLocalCache = function getLocalCache(itemName) {
-        return localStorage.getItem && JSON.parse( '' + localStorage.getItem(itemName) );
+    var clearLocalCache = function clearLocalCache(prefix) {
+        for (var key in localStorage) {
+            if (key.indexOf(prefix) >= 0) {
+                localStorage.removeItem(key);
+            }
+        }
     };
 
     // 挂载
-    avalon.clearLocalCache = clearLocalCache;
-    avalon.setLocalCache = setLocalCache;
     avalon.getLocalCache = getLocalCache;
+    avalon.setLocalCache = setLocalCache;
+    avalon.clearLocalCache = clearLocalCache;
 
     // ==================== static method end, @included ==================== //
 
     
     // ==================== custom project data start @include ==================== //
 
+    token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
+     
     // avalon global stuff when app init
     avalon.illyGlobal = {
 

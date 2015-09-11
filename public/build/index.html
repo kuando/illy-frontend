@@ -11,7 +11,7 @@
     </body>
 
     <script>
-        var apiUrl = 'http://101.201.176.191/api/v1/';
+        var apiUrl = 'http://api.hizuoye.com/api/v1/';
         var url = window.location.href;
         var re = /([?&])(code|next)=([^?&]+)/g;
         var query = {}, matches;
@@ -49,14 +49,20 @@
             unbind: './unbind.html'
         }
         var nextUrl = nextMap[next];
+
+        var getItem = function(item) {
+            return localStorage.getItem(item);
+        }
+        var illyToken = getItem('illy-token');
+        var illyTokenMicrosite = getItem('illy-token-microsite');
         // enough auth, go anywhere
-        if (typeof localStorage.getItem('illy-token') === 'string') { // enough auth, go
+        if (typeof illyToken  === 'string') { // enough auth, go
             if (next !== 'unbind') { // cannot local, must http reAuth
                 location.replace(nextUrl); // pure url
             } 
         }
         // microsite only auth
-        if (nextUrl === 'microsite' && typeof localStorage.getItem('illy-token-microsite') === 'string') {
+        if (next === 'microsite' && typeof illyTokenMicrosite  === 'string') {
             location.replace(nextUrl); // pure url
         }
         // local

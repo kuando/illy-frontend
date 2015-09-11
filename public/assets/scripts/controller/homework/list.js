@@ -8,7 +8,7 @@ define([], function() {
     // get config, token
     var token = avalon.illyGlobal.token; 
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     var list = avalon.define({

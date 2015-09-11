@@ -73,12 +73,14 @@
         xhr.onload = function () {
             var status = xhr.status;
             if (status === 200) { // binded user and qo next...
+                var openid = xhr.responseText;
                 localStorage.removeItem('illy-token');
                 localStorage.removeItem('illy-token-microsite'); // also need clear
-                var openid = xhr.responseText;
-                location.replace('http://app.hizuoye.com/login.html?openid=' + openid);
+                location.replace('http://weixin.hizuoye.com/login.html?openid=' + openid);
             } else if ( status === 401) {
                 alert('账户注销失败!');
+                localStorage.removeItem('illy-token');
+                localStorage.removeItem('illy-token-microsite'); // also need clear
             } else {
                 alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
             }

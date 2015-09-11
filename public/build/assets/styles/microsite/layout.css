@@ -1940,9 +1940,14 @@ a, a:hover {
 .infoCollect-wrapper {
   text-align: center;
 }
+.infoCollect-wrapper .sign-up-btn-wrapper {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
 .infoCollect-wrapper .sign-btn {
   position: relative;
-  bottom: -20px;
   left: 0;
   width: 100%;
   display: inline-block;
@@ -1955,10 +1960,9 @@ a, a:hover {
   background-color: #fff;
   padding: .1rem;
   border-radius: 3px;
-  margin-bottom: .1rem;
   position: absolute;
   left: 0;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
 }
 .activity-info-form-title {

@@ -4,7 +4,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     // defaultAvatarUrl
@@ -76,7 +76,32 @@ define([], function() {
                     site.studentCount = json.studentCount || 100;
                 }
             });
+        },
+
+        /* common start */
+        appMessage: 'I am message from app ctrl',
+        gMaskShow: false,
+        /* common end */
+        /* alert start */
+        gAlertShow: false,
+        showAlert: function(message, hideDelay) {
+            site.appMessage = message; // set message
+            site.gMaskShow = true;
+            site.gAlertShow = true;
+            if (hideDelay !== void 0) {
+                setTimeout(function() {
+                    site.hideAlert();
+                }, hideDelay * 1000);
+            }
+        },
+        hideAlert: function() {
+            site.gMaskShow = false;
+            site.gAlertShow = false;
+        },
+        iKnowClick: function() {
+            site.hideAlert();
         }
+        /* alert end */
     });
 
     return avalon.controller(function($ctrl) {

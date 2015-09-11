@@ -6,7 +6,7 @@ define([], function() {
     // token
     var token = avalon.illyGlobal.token;
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     var resourcePrefix = 'http://resource.hizuoye.com/';

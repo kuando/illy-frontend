@@ -4,8 +4,9 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
+    
     var resourcePrefix = 'http://resource.hizuoye.com';
     
     var rank = avalon.define({

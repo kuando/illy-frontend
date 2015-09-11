@@ -135,7 +135,7 @@
         color: #246183
     }
     .logo {
-        background-image: url(http://app.hizuoye.com/assets/images/logo.png); /* mark */
+        background-image: url(http://weixin.hizuoye.com/assets/images/logo.png); /* mark */
         height: 175px;
         width: 70%;
         margin: 0 auto;
@@ -204,7 +204,7 @@ var next = query.next; // to describee a state to render spa... maybe need a con
 function toApp() {
     var username = document.querySelector('.username').value;
     var password = document.querySelector('.password').value;
-    var xhr = createXHR("POST", 'http://101.201.176.191/api/v1/public/bind');
+    var xhr = createXHR("POST", 'http://api.hizuoye.com/api/v1/public/bind');
     if (!xhr) {
         alert('CORS not supported');
     }

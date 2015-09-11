@@ -13,7 +13,7 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     if (token === null) {
-        avalon.vmodels.root.noTokenHandler();
+        avalon.illyGlobal.noTokenHandler();
     }
 
     var jinbiResourcePrefix = avalon.vmodels.task.illy_domain + "/assets/images";
@@ -282,6 +282,24 @@ define([], function() {
                         }
                     });
 
+                    // wx share to friend
+                    wx.onMenuShareAppMessage({
+                        title: activity.theme, // 分享标题
+                        desc: '',
+                        link: avalon.vmodels.task.illy_domain + '/outer/staticActivity.html?id=' + activity.activityId, // 分享链接 
+                        imgUrl: imgUrl && imgUrl.src || avalon.vmodels.task.illy_domain + '/assets/images/kd2.png', // 分享图标
+                        success: function() {
+                            avalon.vmodels.task.showAlert('分享成功! 朋友将会收到您的分享~', 3); // hideDelay
+                        },
+                        cancel: function() {
+                            // 用户取消分享后执行的回调函数
+                            if (!activity.isShared) {
+                                // alert('差一点就分享成功了, 拿积分兑大奖了!');
+                                avalon.vmodels.task.showAlert('差一点就分享成功了!', 3); // hideDelay
+                            }
+                        }
+                    });
+
                 }
             });
         } // end of fetch data
@@ -302,6 +320,10 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function(params) {
+
+            setTimeout(function() {
+                avalon.$('#footer').style.display = 'none';
+            }, 300);
 
             activity.taskId = params.taskId;
             activity.scoreAward = params.scoreAward; // get activity score award
