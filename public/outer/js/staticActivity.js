@@ -92,7 +92,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
         });
 
         var appMessageDesc = '发现这篇文章: <<' + activity.theme+ '>>很赞, 你也瞧瞧~';
-        //alert(appMessageDesc);
+        alert(appMessageDesc);
         // wx share to friend
         wx.onMenuShareAppMessage({
             title: activity.theme, // 分享标题

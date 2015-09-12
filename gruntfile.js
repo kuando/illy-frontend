@@ -147,7 +147,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/microsite',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/styles/microsite',
+                    dest: 'public/assets/styles/microsite',
                     ext: '.css'
                 }]
             },
@@ -156,7 +156,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/homework',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/styles/homework',
+                    dest: 'public/assets/styles/homework',
                     ext: '.css'
                 }]
             },
@@ -165,7 +165,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     expand: true,
                     cwd: 'public/assets/styles/scss/task',
                     src: ['*.scss'],
-                    dest: 'public/build/assets/styles/task',
+                    dest: 'public/assets/styles/task',
                     ext: '.css'
                 }]
             }
@@ -213,21 +213,21 @@ module.exports = function(grunt) { /* jshint ignore:line */
         cssmin: {
             homework: {
                 expand: true,
-                cwd: 'public/build/assets/styles/homework/',
+                cwd: 'public/assets/styles/homework/',
                 src: ['*.css'],
                 dest: 'public/build/assets/styles/homework/min',
                 ext: '.css'
             },
             microsite: {
                 expand: true,
-                cwd: 'public/build/assets/styles/microsite/',
+                cwd: 'public/assets/styles/microsite/',
                 src: ['*.css'],
                 dest: 'public/build/assets/styles/microsite/min',
                 ext: '.css'
             },
             task: {
                 expand: true,
-                cwd: 'public/build/assets/styles/task/',
+                cwd: 'public/assets/styles/task/',
                 src: ['*.css'],
                 dest: 'public/build/assets/styles/task/min',
                 ext: '.css'
@@ -367,6 +367,10 @@ module.exports = function(grunt) { /* jshint ignore:line */
     });
     // Tasks config end...
     
+    grunt.registerTask('buildcss', 'minify the css to build folder...', ['cssmin']);
+    grunt.registerTask('buildjs', 'uglify the js to build folder...', ['uglify']);
+    grunt.registerTask('buildTemplates', 'minify the templates to build folder...', ['htmlmin:templates']);
+
     // hint task 
     grunt.registerTask('hint', function(target) { /* jshint ignore:line */
         grunt.task.run([

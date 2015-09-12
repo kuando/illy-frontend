@@ -154,13 +154,13 @@ define([], function() {
                         cancel: function () { 
                             // 用户取消分享后执行的回调函数
                             if (!detail.isShared) {
-                                alert('差一点就分享成功了!');
+                                avalon.vmodels.site.showAlert('差一点就分享成功了!', 3); // hideDelay
                             }
                         }
                     });
                     
                     var appMessageDesc = '发现' + avalon.vmodels.site.schoolName + '的这篇<<' + detail.title + '>>很赞, 你也瞧瞧~';
-                    alert(appMessageDesc);
+                    // alert(appMessageDesc);
                     // wx share to friend
                     wx.onMenuShareAppMessage({
                         title: detail.title, // 分享标题

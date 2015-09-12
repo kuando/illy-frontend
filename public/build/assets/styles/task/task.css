@@ -430,7 +430,7 @@ input[type="checkbox"], input[type="radio"] {
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  -webkit-tap-highlight-color: #fff;
+  -webkit-tap-highlight-color: transparent;
   background-color: #fff;
   -webkit-user-select: none;
   -webkit-user-drag: none;

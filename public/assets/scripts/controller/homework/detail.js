@@ -132,7 +132,7 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
             detail.clearCachedData(); // 对付后退又进入，最多后退到info页面(还在detail控制范围内)还保存数据
         };

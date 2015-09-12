@@ -515,7 +515,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
-            "header@": {
+            "header": {
                 templateUrl: "assets/templates/homework/header.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/header.js"
             },
