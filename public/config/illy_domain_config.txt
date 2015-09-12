@@ -1,1 +1,1 @@
-var illy_domain = 'http://app.hizuoye.com/';
+var illy_domain = 'http://app.hizuoye.com';
