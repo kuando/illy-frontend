@@ -11,51 +11,6 @@ $taskList-img-height: 67px;
     background-repeat: no-repeat;
 }
 
-// .top-left-area {
-//     .inner {
-//         width: 67px;
-//         background-size: 100%;
-//         background-repeat: no-repeat;
-//         background-image: url("../../build/images/taskList-top-icon.png");
-//         height: $taskList-img-height;
-//     }
-// }
-
-// .top-score-area {
-//     background-size: 100%;
-//     background-position: center top;
-//     background-repeat: no-repeat;
-//     background-image: url("../../build/images/rank-nb.png");
-//     width: 37%;
-//     max-width: 107px;
-//     /* must fixed value */
-//     height: 44px;
-//     position: relative;
-//     top: -28px;
-//     margin-bottom: -44px;
-//     .top-score-text {
-//         color: #fff;
-//         position: absolute;
-//         top: 8px;
-//         left: 37px;
-//         width: 60px;
-//         text-align: center;
-//     }
-// }
-
-// .top-me-area {
-//     .inner {
-//         width: 67px;
-//         background-size: 100%;
-//         background-repeat: no-repeat;
-//         background-position: right top;
-//         height: $taskList-img-height;
-//         float: right;
-//         border-radius: 50%;
-//         border: 4px solid #fff;
-//     }
-// }
-
 .task-list {
     width: 100%;
     min-height: 600px;
@@ -73,6 +28,7 @@ $taskList-img-height: 67px;
     }
 
     .item-wrapper {
+        max-width: 380px;
         background: rgba(0, 69, 99, .5);
         width: 92%;
         margin: 0 auto;

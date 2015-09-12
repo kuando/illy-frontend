@@ -12,9 +12,6 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     var jinbiResourcePrefix = avalon.vmodels.task.illy_domain + "/assets/images";
 

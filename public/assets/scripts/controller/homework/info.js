@@ -5,9 +5,6 @@ define([], function() {
     
     // get config, token
     var token = avalon.illyGlobal.token; 
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     // 题目要求视图,渲染题目信息面板
     var info = avalon.define({

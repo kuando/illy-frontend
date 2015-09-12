@@ -1,6 +1,12 @@
 // ==================== custom project data start @include ==================== //
 
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
+    if (token === null) {
+        alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
+        setTimeout(function() {
+            wx.closeWindow();
+        }, 3000);
+    }
 
     // avalon global stuff when app init
     avalon.illyGlobal = {
@@ -9,10 +15,7 @@
         token      : token,
         apiBaseUrl : apiBaseUrl,
         illyDomain : illy_domain,
-        imagesBaseSrc: illy_images_base_src,
-        noTokenHandler: function() {
-            alert("ERROR::no token! 对不起，本系统仅供内部使用！");
-        }
+        imagesBaseSrc: illy_images_base_src
 
     };
 

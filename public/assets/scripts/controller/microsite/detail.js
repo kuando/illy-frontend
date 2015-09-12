@@ -4,9 +4,6 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
 
     var token = avalon.illyGlobal.token;
-    if (token === void 0) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;

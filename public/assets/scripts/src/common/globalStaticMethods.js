@@ -30,11 +30,15 @@
         if (typeof res !== 'string') {
             res = JSON.stringify(res);
         }
-        console.log('%c' + type.toUpperCase() + ': ' + namespace + ' ' + currentVM + ' ' + msg +  '! '+ res, style); 
+        console.log('%c' + type.toUpperCase() + ': ' + namespace + ' -> ' + currentVM + ': ' + msg + res, style); 
         if (saveToLocalStorage) {
             localStorage.setItem(namespace + ' ' + currentVM + ' log ' + index, msg + ' ' + res);
             index++;
         }
+    };
+
+    avalon.illyWarning = function(msg, res) {
+        illyLog('warning', msg, res, global_warningLog_style, false);
     };
 
     avalon.illyError = function(msg, res) {

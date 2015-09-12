@@ -249,8 +249,6 @@ input[type="checkbox"], input[type="radio"] {
  ******************************************************/
 /* common vars start */
 /* common vars start */
-/*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
-/*$img-dir: 'http://app.hizuoye.com/assets/images';*/
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
@@ -387,11 +385,10 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 /* common vars end */
-.illy-container {
-  max-width: 5rem;
-  margin: 0 auto;
-}
-
+/*.illy-container {*/
+/*    max-width: $illy-container-width;*/
+/*    margin: 0 auto;*/
+/*}*/
 /*.silk-container {*/
 /*    max-width: $silk-max-width;*/
 /*    margin: 0 auto;*/
@@ -411,7 +408,7 @@ input[type="checkbox"], input[type="radio"] {
   left: 0;
   background: #888;
   opacity: 0.5;
-  z-index: 10000;
+  z-index: 8888;
   -webkit-transform: translateZ(0);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
@@ -419,7 +416,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .ui-dialog {
-  max-width: 4.2rem;
+  max-width: 2.5rem;
   display: block;
   position: fixed;
   overflow: hidden;
@@ -458,7 +455,7 @@ input[type="checkbox"], input[type="radio"] {
 
 .ui-dialog .ui-dialog-title {
   height: .4rem;
-  line-height: .5rem;
+  line-height: .4rem;
   font-size: .16rem;
   text-align: center;
   font-weight: 700;
@@ -489,7 +486,10 @@ background-image: url("../../icons-36-white.png");
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: .16rem;
+  font-size: .14rem;
+  padding: 0 .1rem;
+  text-align: justify;
+  line-height: 1.5;
 }
 
 .ui-dialog-btns {
@@ -1082,7 +1082,7 @@ select {
 #header, .yo-header {
   background-color: #323436;
   color: #light-grey;
-  z-index: 10000;
+  z-index: 999;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -1249,7 +1249,7 @@ select {
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  background-image: url(http://weixin.hizuoye.com/assets/images/taskList-bg.png);
+  background-image: url(../../../assets/images/taskList-bg.png);
   color: #333438;
   padding-top: 15px;
   background-color: #945e27;
@@ -1260,6 +1260,7 @@ select {
   margin-bottom: 0.2rem !important;
 }
 .task-list .item-wrapper {
+  max-width: 380px;
   background: rgba(0, 69, 99, 0.5);
   width: 92%;
   margin: 0 auto;
@@ -1272,7 +1273,7 @@ select {
 .task-list .item-wrapper .silk-common {
   width: 100%;
   height: 0.6rem;
-  background-image: url(http://weixin.hizuoye.com/assets/images/silk-green.png);
+  background-image: url(../../../assets/images/silk-green.png);
   background-size: 100%;
   background-repeat: no-repeat;
   position: absolute;
@@ -1283,7 +1284,7 @@ select {
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  background-image: url(http://weixin.hizuoye.com/assets/images/rank-nb.png);
+  background-image: url(../../../assets/images/rank-nb.png);
   width: 37%;
   max-width: 107px;
   /* must fixed value */
@@ -1316,7 +1317,7 @@ select {
   max-width: 67px;
   height: 67px;
   border-radius: 15px;
-  background-image: url(http://weixin.hizuoye.com/assets/images/taskList-item-icon.png);
+  background-image: url(../../../assets/images/taskList-item-icon.png);
   border: 2px solid #bdd3ad;
   background-size: 100%;
   position: relative;
@@ -1377,7 +1378,7 @@ select {
 .task-list .list-card .right-area .right-bottom-area .go {
   width: 35%;
   height: 41px;
-  background-image: url(http://weixin.hizuoye.com/assets/images/taskList-btn.png);
+  background-image: url(../../../assets/images/taskList-btn.png);
   background-size: 99%;
   background-position: right bottom;
   background-repeat: no-repeat;
@@ -1390,8 +1391,6 @@ select {
  *  
  */
 /* common vars start */
-/*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
-/*$img-dir: 'http://app.hizuoye.com/assets/images';*/
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
@@ -1560,6 +1559,8 @@ select {
 .detail .cover-img img {
   width: 100%;
   /* mark! 20150826 */
+  max-width: 450px;
+  margin: 0 auto;
 }
 .detail .content {
   margin-top: .15rem;
@@ -1624,7 +1625,7 @@ select {
   padding: .3rem;
   padding-top: .2rem;
   min-height: 8rem;
-  z-index: 99999;
+  z-index: 999;
 }
 .detail .shareMask .task-shareMask-tip-text {
   color: #fff;
@@ -1685,19 +1686,19 @@ select {
   display: inline-block;
 }
 .detail .pageinfo .share .icon-share, .detail .pageinfo .visit .icon-share, .detail .pageinfo .like .icon-share {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-share.png);
+  background-image: url(../../../assets/images/iconfont-share.png);
 }
 .detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit, .detail .pageinfo .like .icon-visit {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-yuedu.png);
+  background-image: url(../../../assets/images/iconfont-yuedu.png);
 }
 .detail .pageinfo .share .icon-like, .detail .pageinfo .visit .icon-like, .detail .pageinfo .like .icon-like {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-like.png);
+  background-image: url(../../../assets/images/iconfont-like.png);
   position: relative;
   top: -2px;
 }
 .detail .pageinfo .share .hasLiked, .detail .pageinfo .visit .hasLiked, .detail .pageinfo .like .hasLiked {
   color: #00abfd;
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-hasLiked.png);
+  background-image: url(../../../assets/images/iconfont-hasLiked.png);
 }
 .detail .pageinfo .report {
   float: right;
@@ -1769,7 +1770,7 @@ select {
 }
 
 .mall-top-bg {
-  background: url(http://weixin.hizuoye.com/assets/images/mall-top.png) no-repeat center top;
+  background: url(../../../assets/images/mall-top.png) no-repeat center top;
   background-size: 100%;
   height: 215px;
 }
@@ -1784,10 +1785,12 @@ select {
   padding-bottom: 0.3rem;
   padding-left: .06rem;
   padding-right: .06rem;
+  max-width: 450px;
+  margin: 0 auto;
   /* mall item end */
 }
 .mall-wrapper .mall-wrapper-silk {
-  background-image: url(http://weixin.hizuoye.com/assets/images/silk-red.png);
+  background-image: url(../../../assets/images/silk-red.png);
 }
 .mall-wrapper .mall-item {
   display: inline-block;
@@ -1846,7 +1849,7 @@ select {
   font-size: .12rem;
   vertical-align: top;
   /*.icon-exchangeTimes {*/
-  /*background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-exchangeTimes.png);*/
+  /*background-image: url(../../../assets/images/iconfont-exchangeTimes.png);*/
   /*}*/
 }
 .mall-wrapper .mall-item .stock {
@@ -1857,7 +1860,7 @@ select {
   font-size: .12rem;
   vertical-align: top;
   /*.icon-stock {*/
-  /*background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-stock.png);*/
+  /*background-image: url(../../../assets/images/iconfont-stock.png);*/
   /*}*/
 }
 
@@ -1868,9 +1871,12 @@ select {
   background-color: #f77d65;
   min-height: 1.5rem;
   position: relative;
+  max-width: 450px;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 .mall-rules .mall-rules-silk {
-  background-image: url(http://weixin.hizuoye.com/assets/images/silk-blue.png);
+  background-image: url(../../../assets/images/silk-blue.png);
 }
 .mall-rules .rules-text {
   width: 100%;
@@ -1895,10 +1901,12 @@ select {
 .rank .rank-top-bg {
   width: 100%;
   height: 300px;
-  background: url(http://weixin.hizuoye.com/assets/images/rank-top.png) no-repeat center top;
+  background: url(../../../assets/images/rank-top.png) no-repeat center top;
   background-size: 100%;
 }
 .rank .my-info-panel {
+  max-width: 450px;
+  margin: 0 auto;
   height: 1rem;
   color: #666;
   font-size: .16rem;
@@ -1914,7 +1922,7 @@ select {
   /* extend silk-common */
 }
 .rank .my-info-panel .my-info-panel-top-bg {
-  background-image: url(http://weixin.hizuoye.com/assets/images/silk-green.png);
+  background-image: url(../../../assets/images/silk-green.png);
 }
 .rank .my-info-panel .my-rank-rank {
   width: 100%;
@@ -1934,7 +1942,7 @@ select {
 .rank .rank-wrapper .rank-list-top-bg {
   width: 100%;
   color: #615C5C;
-  background: url(http://weixin.hizuoye.com/assets/images/rank-tit.png) no-repeat center;
+  background: url(../../../assets/images/rank-tit.png) no-repeat center;
   position: relative;
   top: -.14rem;
   width: 1.6rem;
@@ -1944,6 +1952,7 @@ select {
   margin-left: -.8rem;
 }
 .rank .rank-wrapper .rank-list {
+  max-width: 450px;
   width: 90%;
   margin: 0 auto;
   background-color: #fa7a7a;
@@ -2001,13 +2010,13 @@ select {
   background-position: center top;
 }
 .rank .rank-wrapper .rank-list .rank-title .title-icon-rank {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-);
+  background-image: url(../../../assets/images/iconfont-);
 }
 .rank .rank-wrapper .rank-list .rank-title .title-icon-name {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-jin.png);
+  background-image: url(../../../assets/images/iconfont-jin.png);
 }
 .rank .rank-wrapper .rank-list .rank-title .title-icon-score {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-jin.png);
+  background-image: url(../../../assets/images/iconfont-jin.png);
 }
 .rank .rank-wrapper .rank-list .rank-common-line {
   padding: .15rem .05rem;
@@ -2024,13 +2033,13 @@ select {
   background-position: center top;
 }
 .rank .rank-wrapper .rank-list .rank-common-line .icon-rank-0 {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-jin.png);
+  background-image: url(../../../assets/images/iconfont-jin.png);
 }
 .rank .rank-wrapper .rank-list .rank-common-line .icon-rank-1 {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-yin.png);
+  background-image: url(../../../assets/images/iconfont-yin.png);
 }
 .rank .rank-wrapper .rank-list .rank-common-line .icon-rank-2 {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-tong.png);
+  background-image: url(../../../assets/images/iconfont-tong.png);
 }
 .rank .rank-wrapper .rank-list .rank-common-line .avatar {
   width: .28rem;
@@ -2047,7 +2056,7 @@ select {
 .rank .rank-bottom-bg {
   width: 100%;
   height: 30px;
-  background: url(http://weixin.hizuoye.com/assets/images/rank-bottom.png) no-repeat center top;
+  background: url(../../../assets/images/rank-bottom.png) no-repeat center top;
   background-size: 90%;
   position: relative;
   top: -.28rem;
@@ -2071,7 +2080,7 @@ select {
   color: #FFF;
   background-size: 100%;
   background-position: center;
-  background-image: url(http://weixin.hizuoye.com/assets/images/me-colorful-profile-bg.jpg);
+  background-image: url(../../../assets/images/me-colorful-profile-bg.jpg);
 }
 .profile-wrapper .inner-wrapper {
   width: 100%;
@@ -2085,7 +2094,7 @@ select {
 .profile-wrapper .update .icon-update {
   width: .16rem;
   height: .16rem;
-  background: url(http://weixin.hizuoye.com/assets/images/iconfont-updateProfile.png) no-repeat center;
+  background: url(../../../assets/images/iconfont-updateProfile.png) no-repeat center;
   background-size: 100%;
   position: relative;
   top: -1px;
@@ -2210,22 +2219,22 @@ select {
   background-size: 100%;
 }
 .update-profile-list .icon-name {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-name.png);
+  background-image: url(../../../assets/images/iconfont-name.png);
 }
 .update-profile-list .icon-gender {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-gender.png);
+  background-image: url(../../../assets/images/iconfont-gender.png);
 }
 .update-profile-list .icon-parent {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-parent.png);
+  background-image: url(../../../assets/images/iconfont-parent.png);
 }
 .update-profile-list .icon-phone {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-phone.png);
+  background-image: url(../../../assets/images/iconfont-phone.png);
 }
 .update-profile-list .icon-school {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-school.png);
+  background-image: url(../../../assets/images/iconfont-school.png);
 }
 .update-profile-list .icon-grade {
-  background-image: url(http://weixin.hizuoye.com/assets/images/iconfont-grade.png);
+  background-image: url(../../../assets/images/iconfont-grade.png);
 }
 .update-profile-list .editing-btn-wrapper {
   text-align: center;

@@ -34,6 +34,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 ]
             },
 
+            commonscss: {
+                files: ['public/assets/styles/src/scss/*.scss'],
+                tasks: ['sass:microsite', 'sass:homework', 'sass:task']
+            },
+
             micrositescss: {
                 files: ['public/assets/styles/src/scss/microsite/*.scss'],
                 tasks: ['sass:microsite', 'sass:task']
@@ -61,12 +66,17 @@ module.exports = function(grunt) { /* jshint ignore:line */
 
             mainHtmls: {
                 files: ['public/assets/mainHtmls/**/*.html'],
-                tasks: ['includereplace:generateMainHtmls', 'copy:mainHtmls', 'clean:mainHtmlsDist']
+                tasks: ['reGenerateMainHtmls']
             },
 
             mainScripts: {
                 files: ['public/assets/scripts/src/**/*.js'],
-                tasks: ['includereplace:generateMainScripts', 'copy:mainScripts', 'clean:mainScriptsDist']
+                tasks: ['reGenerateMainScripts']
+            },
+
+            outer: {
+                files: ['public/assets/outer/**/*'],
+                tasks: ['reGenerateOuter']
             }
 
         }, // watch 
@@ -273,7 +283,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             build: ['public/build/'], // for release
             mainHtmlsDist: ['public/assets/mainHtmls/dist/'], // for dev
             mainScriptsDist: ['public/assets/scripts/dist/'], // for dev
-            outerDist: ['public/assets/outer/dist/']
+            outerDist: ['public/assets/outer/dist/'] // for dev
         },
 
         // https://www.npmjs.com/package/grunt-contrib-copy

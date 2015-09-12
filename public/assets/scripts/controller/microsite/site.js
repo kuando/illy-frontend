@@ -3,9 +3,6 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     // defaultAvatarUrl
     var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
@@ -17,6 +14,9 @@ define([], function() {
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
+        report: function() {
+           avalon.vmodels.site.showAlert('感谢您的反馈， 我们会妥善处理!', 3); 
+        },
         fetchAllCategoriesNames: function() {
             $http.ajax({
                 url: apiBaseUrl + 'categories',
@@ -82,14 +82,21 @@ define([], function() {
         appMessage: 'I am message from app ctrl',
         gMaskShow: false,
         /* common end */
+
         /* alert start */
         gAlertShow: false,
+        hideDelayTimer: null,
         showAlert: function(message, hideDelay) {
+            var hideDelayTimer = avalon.vmodels.site.hideDelayTimer;
+            clearTimeout(hideDelayTimer);
+            if (hideDelay >= 10) {
+                avalon.illyWarning('is it too long in seconds when hide the mask?');
+            }
             site.appMessage = message; // set message
             site.gMaskShow = true;
             site.gAlertShow = true;
             if (hideDelay !== void 0) {
-                setTimeout(function() {
+                avalon.vmodels.site.hideDelayTimer = setTimeout(function() {
                     site.hideAlert();
                 }, hideDelay * 1000);
             }

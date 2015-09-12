@@ -6,14 +6,14 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== global config area start, @included  ==================== //
 
     // project domain, by config 
-    var illy_domain = 'http://app.hizuoye.com';
+    var illy_domain = 'http://testweixin.hizuoye.com';
 
-    
     // project images base src
-    var illy_images_base_src = illy_domain + '/assets/images';
+    var illy_images_base_src = './assets/images';
 
     // global apiBaseUrl
     var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+    
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 
@@ -27,7 +27,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_always_reset_scrollbar = true;
 
     // global config, loading timeout
-    var global_loading_timeout = 8000; // ms, abort the loading when timeout, then auto goback
+    var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for rendering page, time enough
     var global_loading_delay = 300; // ms
@@ -40,6 +40,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // global config, error log style
     var global_errorLog_style = "background-color: red; color: #fff; padding: 3px; border-radius: 3px";
+    // global config, error log style
+    
+    var global_warningLog_style = "background-color: #ff9100; color: #fff; padding: 3px; border-radius: 3px";
 
     // global config, info log style
     var global_infoLog_style = "background-color: #fff; color: #14E5D5; padding: 3px; border-radius: 3px";
@@ -79,11 +82,15 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         if (typeof res !== 'string') {
             res = JSON.stringify(res);
         }
-        console.log('%c' + type.toUpperCase() + ': ' + namespace + ' ' + currentVM + ' ' + msg +  '! '+ res, style); 
+        console.log('%c' + type.toUpperCase() + ': ' + namespace + ' -> ' + currentVM + ': ' + msg + res, style); 
         if (saveToLocalStorage) {
             localStorage.setItem(namespace + ' ' + currentVM + ' log ' + index, msg + ' ' + res);
             index++;
         }
+    };
+
+    avalon.illyWarning = function(msg, res) {
+        illyLog('warning', msg, res, global_warningLog_style, false);
     };
 
     avalon.illyError = function(msg, res) {
@@ -137,6 +144,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== custom project data start @include ==================== //
 
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
+    if (token === null) {
+        alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
+        setTimeout(function() {
+            wx.closeWindow();
+        }, 3000);
+    }
 
     // avalon global stuff when app init
     avalon.illyGlobal = {
@@ -145,10 +158,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         token      : token,
         apiBaseUrl : apiBaseUrl,
         illyDomain : illy_domain,
-        imagesBaseSrc: illy_images_base_src,
-        noTokenHandler: function() {
-            alert("ERROR::no token! 对不起，本系统仅供内部使用！");
-        }
+        imagesBaseSrc: illy_images_base_src
 
     };
 

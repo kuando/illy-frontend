@@ -1,13 +1,11 @@
 /* common vars start */
 
-/*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
 $font-face-src: 'http://source.qunarzz.com/fonts/yo/1.0.0';
 
 $illy-container-width: 5rem;
 
 $loader-bgColor: #fff;
-/*$img-dir: 'http://app.hizuoye.com/assets/images';*/
-$img-dir: 'http://weixin.hizuoye.com/assets/images';
+$img-dir: '../../../assets/images';
 
 $g_bgColor: #f1f1f1;
 $main-color: #64c400;
@@ -20,16 +18,18 @@ $main-red: #e50b23;
 $main-blue: #00abfd;
 
 $zIndex1: 1;
-$zIndex2: 10;
-$zIndex3: 100;
-$zIndex4: 1000;
-$zIndex5: 10000;
-$zIndex6: 99999;
+$zIndex2: 9;
+$zIndex3: 99;
+$zIndex4: 520;
+$zIndex5: 999;
+$zIndex6: 8888;
+$zIndex7: 99999;
 
 /* global silk height */
 $silk-height: .6rem;
 $silk-max-width: 294px; /* fixed value for all device */
 
+$max-content-width: 450px; // for big screen like ipad
 /* common vars end */
 
 /* layout vars start */
@@ -37,6 +37,7 @@ $g_font_color: $dark-grey;
 
 $ms-slider-height: 1.8rem;
 
+$navigator-home-width: .5rem;
 $categories-bgColor: white;
 $category-title-color: #333438;
 $item-title-color: #333438;
@@ -69,6 +70,13 @@ $next_radius: $answer_panel_height / 2 + .1rem;
 $progress-bgcolor: $main-blue;
 $progress-color: $main-green;
 $progress-height: .03rem;
+
+$evaluation-right-width: 62%;
+$evaluation-left-width: 27%;
+$timeline-line-size: 2px;
+$timeline-h-line-size: 4px;
+$timeline-blue: #43d1d5;
+$timeline-white: #fff;
 /* homework vars end */
 
 /* task me start */

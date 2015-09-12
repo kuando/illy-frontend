@@ -1,10 +1,7 @@
 define([], function() {
     
-     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl; /* jshint ignore:line */
-     var token = avalon.illyGlobal.token;
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
+    //var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
+    //var token = avalon.illyGlobal.token;
     
     var detail = avalon.define({
 

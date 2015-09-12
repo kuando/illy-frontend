@@ -1,7 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    // @@include('../../../config/illy_apiBaseUrl_config.txt') @@ //
+    // @@include('../../../config/illy_apiBaseUrl.cfg') @@ //
     
     /* wxsdk start */
 
@@ -158,7 +158,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
     var activity = avalon.define({
         $id: "activity",
 
-        resourcePrefix: 'http://weixin.hizuoye.com/assets/images',
+        resourcePrefix: '../../assets/images',
 
         theme: '',
 

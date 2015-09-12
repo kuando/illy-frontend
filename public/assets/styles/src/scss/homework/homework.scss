@@ -272,16 +272,6 @@
 
 /* global start */
 
-#splash {
-    z-index: $zIndex6;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: $main-color;
-    font-size: .8rem;
-    color: #fff;
-}
-
 .app {
     min-height: 5.5rem;
 }
@@ -291,7 +281,10 @@
 
 /* list-item start */
 
-.homework-list {}
+.homework-list,
+.mistakeList {
+    text-align: left;
+}
 
 .mistakeList {
 
@@ -308,6 +301,22 @@
     margin-top: .10rem;
     width: 100%;
 
+    @media only screen
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : landscape) { 
+        .item {
+            width: 49%!important;
+            margin: 0 7px;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : portrait) { 
+
+    }
     .item {
         width: 100%;
         background-color: #fff;
@@ -411,6 +420,9 @@
 
 .info {
     text-align: center;
+    max-width: $max-content-width;
+    margin: 0 auto;
+
     audio {
         width: 2rem;
         font-size: 16px;
@@ -492,6 +504,23 @@
     top: -8px;
     /* mark, not good */
     margin-right: -3.5%;
+
+    @media only screen
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : landscape) { 
+        label.item {
+            max-width: 222px;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : portrait) { 
+
+    }
+
     label.item {
         width: 46.5%;
         display: inline-block;
@@ -624,10 +653,6 @@
         word-break: break-all; /* for English */
         top: -8px;
         /* mark, not good */
-    }
-    @media all and (min-device-width: 768px) and (max-device-width: 1024px) {
-        /* for big screen */
-        margin-bottom: 5%;
     }
     .fill-in {
         .yo-input {
@@ -923,12 +948,6 @@
 /* evaluation start */
 
 .evaluation {
-    $evaluation-right-width: 62%;
-    $evaluation-left-width: 27%;
-    $timeline-line-size: 2px;
-    $timeline-h-line-size: 4px;
-    $timeline-blue: #43d1d5;
-    $timeline-white: #fff;
 
     .profile-wrapper {
         position: relative;
@@ -946,14 +965,6 @@
         .name {
             text-align: center;
             margin-top: -10px;
-            /*.icon-update {*/
-            /*width: .16rem;*/
-            /*height: .16rem;*/
-            /*background: url(#{$img-dir}/iconfont-updateProfile.png) no-repeat center;*/
-            /*background-size: 100%;*/
-            /*position: relative;*/
-            /*top: -1px;*/
-            /*}*/
         }
     }
     .avatar-wrapper {
@@ -1031,7 +1042,6 @@
     }
     .timeline-wrapper {
         padding-top: 0;
-        // border-top: $timeline-line-size solid $timeline-blue;
         
         .show-more-btn {
             position: relative;
@@ -1129,7 +1139,7 @@
                     left: 27%;
                     margin-left: -12px; /* new way for all device */
                     top: 48px;
-                    z-index: $zIndex3;
+                    z-index: $zIndex2;
                     border-radius: 50%;
                 }
                 .homework-title {

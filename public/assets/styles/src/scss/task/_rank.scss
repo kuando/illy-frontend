@@ -21,6 +21,8 @@ $rank-list-bg: #fa7a7a;
     }
 
     .my-info-panel {
+        max-width: $max-content-width;
+        margin: 0 auto;
         height: 1rem;
         color: #666;
         font-size: .16rem;
@@ -77,6 +79,7 @@ $rank-list-bg: #fa7a7a;
         }
 
         .rank-list {
+            max-width: $max-content-width;
             width: $content-width;
             margin: 0 auto;
             background-color: $rank-list-bg;

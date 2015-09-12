@@ -1,13 +1,13 @@
 // ==================== global config area start, @included  ==================== //
 
     // project domain, by config 
-    // @@include('../../../../config/illy_domain_config.txt') @@ //
-    
+    // @@include('../../../../config/illy_domain.cfg') @@ //
     // project images base src
-    var illy_images_base_src = illy_domain + '/assets/images';
+    var illy_images_base_src = './assets/images';
 
     // global apiBaseUrl
-    // @@include('../../../../config/illy_apiBaseUrl_config.txt') @@ //
+    // @@include('../../../../config/illy_apiBaseUrl.cfg') @@ //
+    
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 
@@ -21,7 +21,7 @@
     var global_always_reset_scrollbar = true;
 
     // global config, loading timeout
-    var global_loading_timeout = 8000; // ms, abort the loading when timeout, then auto goback
+    var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for rendering page, time enough
     var global_loading_delay = 300; // ms
@@ -34,6 +34,9 @@
 
     // global config, error log style
     var global_errorLog_style = "background-color: red; color: #fff; padding: 3px; border-radius: 3px";
+    // global config, error log style
+    
+    var global_warningLog_style = "background-color: #ff9100; color: #fff; padding: 3px; border-radius: 3px";
 
     // global config, info log style
     var global_infoLog_style = "background-color: #fff; color: #14E5D5; padding: 3px; border-radius: 3px";

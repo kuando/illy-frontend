@@ -247,8 +247,6 @@ input[type="checkbox"], input[type="radio"] {
  ******************************************************/
 /* common vars start */
 /* common vars start */
-/*$font-face-src: 'http://app.hizuoye.com/assets/fonts/yo/1.0.0';*/
-/*$img-dir: 'http://app.hizuoye.com/assets/images';*/
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
@@ -385,11 +383,10 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 /* common vars end */
-.illy-container {
-  max-width: 5rem;
-  margin: 0 auto;
-}
-
+/*.illy-container {*/
+/*    max-width: $illy-container-width;*/
+/*    margin: 0 auto;*/
+/*}*/
 /*.silk-container {*/
 /*    max-width: $silk-max-width;*/
 /*    margin: 0 auto;*/
@@ -409,7 +406,7 @@ input[type="checkbox"], input[type="radio"] {
   left: 0;
   background: #888;
   opacity: 0.5;
-  z-index: 10000;
+  z-index: 8888;
   -webkit-transform: translateZ(0);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
@@ -417,7 +414,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .ui-dialog {
-  max-width: 4.2rem;
+  max-width: 2.5rem;
   display: block;
   position: fixed;
   overflow: hidden;
@@ -456,7 +453,7 @@ input[type="checkbox"], input[type="radio"] {
 
 .ui-dialog .ui-dialog-title {
   height: .4rem;
-  line-height: .5rem;
+  line-height: .4rem;
   font-size: .16rem;
   text-align: center;
   font-weight: 700;
@@ -487,7 +484,10 @@ background-image: url("../../icons-36-white.png");
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: .16rem;
+  font-size: .14rem;
+  padding: 0 .1rem;
+  text-align: justify;
+  line-height: 1.5;
 }
 
 .ui-dialog-btns {
@@ -1080,7 +1080,7 @@ select {
 #header, .yo-header {
   background-color: #323436;
   color: #light-grey;
-  z-index: 10000;
+  z-index: 999;
 }
 #header .affirm, .yo-header .affirm {
   color: #fff;
@@ -1374,22 +1374,17 @@ select {
 }
 
 /* global start */
-#splash {
-  z-index: 99999;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: #64c400;
-  font-size: .8rem;
-  color: #fff;
-}
-
 .app {
   min-height: 5.5rem;
 }
 
 /* global end */
 /* list-item start */
+.homework-list,
+.mistakeList {
+  text-align: left;
+}
+
 .mistakeList .show-more-btn {
   position: relative;
   top: -.05rem;
@@ -1400,6 +1395,12 @@ select {
   margin: .03rem;
   margin-top: .10rem;
   width: 100%;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .item-wrapper .item {
+    width: 49% !important;
+    margin: 0 7px;
+  }
 }
 .item-wrapper .item {
   width: 100%;
@@ -1478,10 +1479,10 @@ select {
   margin-top: -0.04rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
-  background-image: url(http://weixin.hizuoye.com/assets/images/task-people.png);
+  background-image: url(../../../assets/images/task-people.png);
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-score {
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-score.png);
+  background-image: url(../../../assets/images/result-score.png);
 }
 .item-wrapper .item .list-card .todo {
   position: absolute;
@@ -1496,6 +1497,8 @@ select {
 /* info start */
 .info {
   text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
 }
 .info audio {
   width: 2rem;
@@ -1535,7 +1538,7 @@ select {
   color: #999999;
   height: .6rem;
   line-height: .59rem;
-  background-image: url(http://weixin.hizuoye.com/assets/images/playing.png);
+  background-image: url(../../../assets/images/playing.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1546,7 +1549,7 @@ select {
   left: -.01rem;
 }
 .panel .playRecord.playing {
-  background-image: url(http://weixin.hizuoye.com/assets/images/playing.gif);
+  background-image: url(../../../assets/images/playing.gif);
 }
 .panel .go-question {
   display: block;
@@ -1572,6 +1575,11 @@ select {
   top: -8px;
   /* mark, not good */
   margin-right: -3.5%;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .illy-img-list label.item {
+    max-width: 222px;
+  }
 }
 .illy-img-list label.item {
   width: 46.5%;
@@ -1695,12 +1703,6 @@ select {
   top: -8px;
   /* mark, not good */
 }
-@media all and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .question {
-    /* for big screen */
-    margin-bottom: 5%;
-  }
-}
 .question .fill-in .yo-input {
   width: 100%;
   /* overwrite to normal */
@@ -1744,7 +1746,7 @@ select {
   transform: translateX(-50%) translateY(-50%);
   width: .9rem;
   height: .9rem;
-  background-image: url(http://weixin.hizuoye.com/assets/images/recording.gif);
+  background-image: url(../../../assets/images/recording.gif);
   background-repeat: no-repeat;
   background-size: 100%;
   border-radius: .10rem;
@@ -1793,7 +1795,7 @@ select {
   top: 54%;
   font-size: .14rem;
   color: #7c7474;
-  background-image: url(http://weixin.hizuoye.com/assets/images/playing.png);
+  background-image: url(../../../assets/images/playing.png);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: .06rem -.08rem;
@@ -1813,7 +1815,7 @@ select {
 }
 .question .playRecord.playing {
   /* playing-state, gif */
-  background-image: url(http://weixin.hizuoye.com/assets/images/playing.gif);
+  background-image: url(../../../assets/images/playing.gif);
 }
 .question .record-tips {
   display: none;
@@ -1917,7 +1919,7 @@ select {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-bg.png);
+  background-image: url(../../../assets/images/result-bg.png);
   min-height: 600px;
 }
 .result .result-silk-bg {
@@ -1926,7 +1928,7 @@ select {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(http://weixin.hizuoye.com/assets/images/silk-yellow-green.png);
+  background-image: url(../../../assets/images/silk-yellow-green.png);
   line-height: .38rem;
   color: #fff;
   font-size: .18rem;
@@ -1951,16 +1953,16 @@ select {
   background-position: center top;
 }
 .result .icon-right {
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-right.png);
+  background-image: url(../../../assets/images/result-right.png);
 }
 .result .icon-wrong {
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-wrong.png);
+  background-image: url(../../../assets/images/result-wrong.png);
 }
 .result .icon-score {
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-score.png);
+  background-image: url(../../../assets/images/result-score.png);
 }
 .result .icon-totalScore {
-  background-image: url(http://weixin.hizuoye.com/assets/images/result-totalScore.png);
+  background-image: url(../../../assets/images/result-totalScore.png);
 }
 .result .area {
   width: 40%;
@@ -1992,14 +1994,6 @@ select {
 .evaluation .profile-wrapper .name {
   text-align: center;
   margin-top: -10px;
-  /*.icon-update {*/
-  /*width: .16rem;*/
-  /*height: .16rem;*/
-  /*background: url(http://weixin.hizuoye.com/assets/images/iconfont-updateProfile.png) no-repeat center;*/
-  /*background-size: 100%;*/
-  /*position: relative;*/
-  /*top: -1px;*/
-  /*}*/
 }
 .evaluation .avatar-wrapper {
   width: 100%;
@@ -2035,10 +2029,10 @@ select {
   top: -1px;
 }
 .evaluation .navigator-bar .icon-homework {
-  background-image: url(http://weixin.hizuoye.com/assets/images/evaluation-homework.png);
+  background-image: url(../../../assets/images/evaluation-homework.png);
 }
 .evaluation .navigator-bar .icon-mistake {
-  background-image: url(http://weixin.hizuoye.com/assets/images/evaluation-mistake.png);
+  background-image: url(../../../assets/images/evaluation-mistake.png);
   top: -3px;
 }
 .evaluation .h-line {
@@ -2172,7 +2166,7 @@ select {
   margin-left: -12px;
   /* new way for all device */
   top: 48px;
-  z-index: 100;
+  z-index: 9;
   border-radius: 50%;
 }
 .evaluation .timeline-inner .timeline-item .right-info .homework-title {

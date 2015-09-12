@@ -8,9 +8,6 @@ define([], function() {
     
     // get config, token
     var token = avalon.illyGlobal.token; 
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     avalon.filters.year = function(str) {
         return str.substring(0, 4);

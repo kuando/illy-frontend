@@ -41,6 +41,8 @@
 
         img {
             width: 100%; /* mark! 20150826 */
+            max-width: $max-content-width;
+            margin: 0 auto;
         }
     }
 
@@ -114,7 +116,7 @@
         padding: .3rem;
         padding-top: .2rem;
         min-height: 8rem;
-        z-index: $zIndex6;
+        z-index: $zIndex5;
 
         .task-shareMask-tip-text {
             color: #fff;

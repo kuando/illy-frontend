@@ -28,6 +28,8 @@ $main-yellow: yellow;
     padding-bottom: $silk-height / 2;
     padding-left: .06rem;
     padding-right: .06rem;
+    max-width: $max-content-width;
+    margin: 0 auto;
 
     .mall-wrapper-silk {
         background-image: url(#{$img-dir}/silk-red.png);
@@ -122,6 +124,9 @@ $main-yellow: yellow;
     background-color: #f77d65;
     min-height: $mall-rules-height;
     position: relative;
+    max-width: $max-content-width;
+    margin: 0 auto;
+    margin-top: 20px;
 
     .mall-rules-silk {
         background-image: url(#{$img-dir}/silk-blue.png);

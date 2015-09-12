@@ -5,9 +5,6 @@ define([], function() {
 
     // token
     var token = avalon.illyGlobal.token;
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
     
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
@@ -24,14 +21,21 @@ define([], function() {
         appMessage: 'I am message from app ctrl',
         gMaskShow: false,
         /* common end */
+
         /* alert start */
         gAlertShow: false,
+        hideDelayTimer: null,
         showAlert: function(message, hideDelay) {
+            var hideDelayTimer = avalon.vmodels.task.hideDelayTimer;
+            clearTimeout(hideDelayTimer);
+            if (hideDelay >= 10) {
+                avalon.illyWarning('is it too long in seconds when hide the mask?');
+            }
             task.appMessage = message; // set message
             task.gMaskShow = true;
             task.gAlertShow = true;
             if (hideDelay !== void 0) {
-                setTimeout(function() {
+                avalon.vmodels.task.hideDelayTimer = setTimeout(function() {
                     task.hideAlert();
                 }, hideDelay * 1000);
             }
@@ -44,6 +48,10 @@ define([], function() {
             task.hideAlert();
         },
         /* alert end */
+
+        report: function() {
+           avalon.vmodels.task.showAlert('感谢您的反馈， 我们会妥善处理!', 3); 
+        },
 
         score: 88,
         schoolName: '',

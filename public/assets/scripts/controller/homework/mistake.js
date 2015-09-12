@@ -5,9 +5,6 @@ define([], function() {
     
     // get config, token
     var token = avalon.illyGlobal.token; 
-    if (token === null) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     // 作业详情控制器
     var mistake = avalon.define({

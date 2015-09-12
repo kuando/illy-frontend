@@ -10,10 +10,10 @@
 @import "./_animation_part.scss";
 /* common vars end */
 
-.illy-container {
-    max-width: $illy-container-width;
-    margin: 0 auto;
-}
+/*.illy-container {*/
+/*    max-width: $illy-container-width;*/
+/*    margin: 0 auto;*/
+/*}*/
 
 /*.silk-container {*/
 /*    max-width: $silk-max-width;*/
@@ -36,7 +36,7 @@
     left: 0;
     background: #888;
     opacity: 0.5;
-    z-index: $zIndex5;
+    z-index: $zIndex6;
     -webkit-transform: translateZ(0);
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-user-select: none;
@@ -44,11 +44,11 @@
 }
 
 .ui-dialog {
-    max-width: 4.2rem;
+    max-width: 2.5rem;
     display: block;
     position: fixed;
     overflow: hidden;
-    z-index: $zIndex6;
+    z-index: $zIndex7;
     width: 80%;
     height: auto;
     top: 40%;
@@ -83,7 +83,7 @@
 
 .ui-dialog .ui-dialog-title {
     height: .4rem;
-    line-height: .5rem;
+    line-height: .4rem;
     font-size: .16rem;
     text-align: center;
     font-weight: 700;
@@ -116,7 +116,10 @@ background-image: url("../../icons-36-white.png");
 }
 
 .ui-dialog .ui-dialog-content p {
-    font-size: .16rem;
+    font-size: .14rem;
+    padding: 0 .1rem;
+    text-align: justify;
+    line-height: 1.5;
 }
 
 .ui-dialog-btns {

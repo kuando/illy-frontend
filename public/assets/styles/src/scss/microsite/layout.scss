@@ -8,17 +8,6 @@
 @import "../_normalize.scss";
 @import "../_common.scss";
 
-$navigator-home-width: .5rem;
-
-#splash {
-    z-index: 99999;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: $main-color;
-    font-size: .8rem;
-    color: #fff;
-}
 
 /* global striped */
 .top-striped {
@@ -35,10 +24,28 @@ $navigator-home-width: .5rem;
 #slider {
     font-size: .14rem;
     visibility: hidden;
-    height: 1.8rem;
+    height: $ms-slider-height;
     margin-bottom: .1rem;
     margin-top: $ms-navigator-height;
 }
+    @media only screen
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : landscape) { 
+        #slider {
+            height: 3.5rem;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : portrait) { 
+        #slider {
+            height: 3rem;
+        }
+
+    }
 .ui-slider {
     width: 100%;
     overflow: hidden;
@@ -49,6 +56,7 @@ $navigator-home-width: .5rem;
 }
 
 .ui-slider-group {
+    height: 100%;
     overflow: hidden;
     position: relative;
     white-space:nowrap;/*内容不换行*/
@@ -65,13 +73,13 @@ $navigator-home-width: .5rem;
 }
 
 .ui-slider-item {
-    height: $ms-slider-height;
+    height: 100%;
 }
 
 .ui-slider-item img {
     width: 100%;
     background:#E7E7E7 center center no-repeat;
-    height: $ms-slider-height;
+    height: 100%;
 }
 
 .ui-slider-item > a {
@@ -183,7 +191,7 @@ $navigator-home-width: .5rem;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $zIndex6;
+    z-index: $zIndex3;
 }
 .left-fixed {
     display: -webkit-box;
@@ -196,7 +204,7 @@ $navigator-home-width: .5rem;
 .left-fixed>div.left {
     width: $navigator-home-width;
     /* key! for mobile */
-    /* z-index: $zIndex5; */
+    z-index: $zIndex4; 
     position: absolute;
     top: 0;
     left: 0;
@@ -360,6 +368,7 @@ a, a:hover {
     margin-top: .15rem;
     background-color: $categories-bgColor;
     padding: 0 .05rem;
+    max-width: $max-content-width;
 }
 
 [avalonctrl].topN { /* list */

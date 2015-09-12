@@ -3,9 +3,6 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
-    if (token === void 0) {
-        avalon.illyGlobal.noTokenHandler();
-    }
 
     // cache the view data
     var needCache = true;
