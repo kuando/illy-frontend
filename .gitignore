@@ -4,5 +4,5 @@ node_modules
 .sass-cache
 public/temp
 stuff
-task_everyday.txt
+todoList_everyday.md
 

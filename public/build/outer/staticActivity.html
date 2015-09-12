@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title ms-text="title"></title>
-    <link rel="stylesheet" href="../assets/styles/microsite/min/article.css" />
+    <link rel="stylesheet" href="../assets/styles/microsite/article.css" />
     <style>
     * {
         margin: 0;
@@ -14,8 +14,6 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-    
-
 
     input,
     textarea,
@@ -26,7 +24,7 @@
         -webkit-tap-highlight-color: transparent;
         /* remove touch outline */
     }
-
+    
     html {
         font-size: 100px;
     }
@@ -466,8 +464,7 @@
         <div class="infoCollect-wrapper">
             <div class="sign-up-btn-wrapper">
                 <div class='sign-btn yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && !isCancel && !isFilling" ms-click="filling()">我要报名</div>
-                <div class='sign-btn yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就能报名成功了...
-                    <br/>点我添加报名信息</div>
+                <div class='sign-btn yo-btn yo-btn-info yo-btn-m' ms-if="!isDone && isCancel && !isFilling" ms-click="filling()">差一点就成功了, 点我报名!</div>
                 <div class='sign-btn yo-btn yo-btn-m' ms-if="isDone">报名成功</div>
             </div>
             <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling">

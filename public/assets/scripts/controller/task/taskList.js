@@ -52,9 +52,15 @@ define([], function() {
                     }, 500); // wait for .5s
                 },
                 error: function(res) {
+                    if (taskList.lists.length === 0) {
+                        taskList.noContent = true;
+                    }
                     avalon.illyError('ajax error', res);
                 },
                 ajaxFail: function(res) {
+                    if (taskList.lists.length === 0) {
+                        taskList.noContent = true;
+                    }
                     avalon.illyError('ajax failed', res);
                 }
             });

@@ -68,12 +68,16 @@ define([], function() {
                 },
                 error: function(res) {
                     avalon.illyError('microsite list.js ajax error', res);
-                    list.noContent = true;
+                    if (list.lists.length === 0) {
+                        list.noContent = true;
+                    }
                     list.isLoading = false;
                 },
                 ajaxFail: function(res) { 
                     avalon.illyError('microsite list.js ajax failed', res);
-                    list.noContent = true;
+                    if (list.lists.length === 0) {
+                        list.noContent = true;
+                    }
                     list.isLoading = false;
                 }
             });

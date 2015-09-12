@@ -45,7 +45,8 @@
     <script>
     function unbind() {
     
-        var apiUrl = 'http://api.hizuoye.com/api/v1/unbind';
+        // var apiBaseUrl = 'http://api.hizuoye.com/api/v1/unbind';
+        var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
         function createXHR(method, url) {
@@ -65,7 +66,7 @@
             }
             return xhr;
         }
-        var xhr = createXHR("POST", apiUrl);
+        var xhr = createXHR("POST", apiBaseUrl + "unbind");
         if (!xhr) {
             alert('CORS not supported');
         }
@@ -77,7 +78,7 @@
                 localStorage.removeItem('illy-token');
                 localStorage.removeItem('illy-token-microsite'); // also need clear
                 location.replace('http://weixin.hizuoye.com/login.html?openid=' + openid);
-            } else if ( status === 401) {
+            } else if ( status === 401) { // no way to get here now, just write here
                 alert('账户注销失败!');
                 localStorage.removeItem('illy-token');
                 localStorage.removeItem('illy-token-microsite'); // also need clear

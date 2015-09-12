@@ -1,15 +1,13 @@
 // ==================== global config area start, @included  ==================== //
 
-    // project domain
-    //var illy_domain = 'http://weixin.hizuoye.com';
-    var illy_domain = 'http://weixin.hizuoye.com';
-
+    // project domain, by config 
+    // @@include('../../../../config/illy_domain_config.txt') @@ //
+    
     // project images base src
     var illy_images_base_src = illy_domain + '/assets/images';
 
     // global apiBaseUrl
-    var api_base_url = 'http://api.hizuoye.com/api/v1/';
-
+    // @@include('../../../../config/illy_apiBaseUrl_config.txt') @@ //
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 

@@ -11,7 +11,7 @@
     </body>
 
     <script>
-        var apiUrl = 'http://api.hizuoye.com/api/v1/';
+        var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
         var url = window.location.href;
         var re = /([?&])(code|next)=([^?&]+)/g;
         var query = {}, matches;
@@ -68,9 +68,9 @@
         // local
         if (code) {
             if (next === 'microsite') {
-                var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url) + "&authType=visitor");
+                var xhr = createXHR("GET", apiBaseUrl + 'public/auth?code=' + code + "&url=" + btoa(url) + "&authType=visitor");
             } else {
-                var xhr = createXHR("GET", apiUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
+                var xhr = createXHR("GET", apiBaseUrl + 'public/auth?code=' + code + "&url=" + btoa(url));
             }
             if (!xhr) {
                 alert('CORS not supported');

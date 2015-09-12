@@ -65,12 +65,16 @@ define([], function() {
                 },
                 error: function(res) {
                     avalon.illyError("mistakeList ajax error", res);
-                    mistakeList.noMistakeListContent = true;
+                    if (mistakeList.lists.length === 0) {
+                        mistakeList.noMistakeListContent = true;
+                    }
                     mistakeList.isLoading = false;
                 },
                 ajaxFail: function(res) {
                     avalon.illyError("mistakeList ajax failed", res);
-                    mistakeList.noMistakeListContent = true;
+                    if (mistakeList.lists.length === 0) {
+                        mistakeList.noMistakeListContent = true;
+                    }
                     mistakeList.isLoading = false;
                 }
             });

@@ -7,7 +7,7 @@
 
         viewani    : global_viewload_animation_name,
         token      : token,
-        apiBaseUrl : api_base_url,
+        apiBaseUrl : apiBaseUrl,
         illyDomain : illy_domain,
         imagesBaseSrc: illy_images_base_src,
         noTokenHandler: function() {
