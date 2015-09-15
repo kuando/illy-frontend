@@ -416,12 +416,12 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .ui-dialog {
-  max-width: 2.5rem;
+  max-width: 2.7rem;
   display: block;
   position: fixed;
   overflow: hidden;
   z-index: 99999;
-  width: 80%;
+  width: 85%;
   height: auto;
   top: 40%;
   left: 50%;

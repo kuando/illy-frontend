@@ -135,7 +135,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     suffix: ' @@ //'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/assets/outer/**/*',
+                src: 'public/assets/outer/**/*.*',
                 // Destidistnation directory to copy files to
                 dest: 'public/assets/outer/dist/'
             }
@@ -341,7 +341,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     // makes all src relative to cwd
                     {
                         expand: true,
-                        cwd: 'public/assets/outer/',
+                        cwd: 'public/outer/',
                         src: ['**/*'],
                         dest: 'public/build/outer/'
                     }

@@ -178,6 +178,9 @@
     text-align: center;
     width: 100%;
 }
+.left-fixed>div.left a:hover {
+    color: #999999; /* fix text disappear */
+}
 .ui-scroller {
     float: left;
 }

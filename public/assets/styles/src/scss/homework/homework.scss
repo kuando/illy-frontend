@@ -306,7 +306,7 @@
     and (max-device-width : 1024px) 
     and (orientation : landscape) { 
         .item {
-            width: 47%!important;
+            width: 48.5%!important;
             margin: 0 .07rem;
         }
     }
@@ -510,7 +510,7 @@
     and (max-device-width : 1024px) 
     and (orientation : landscape) { 
         label.item {
-            width: 21.5%important;
+            width: 21.5%!important;
         }
     }
 
