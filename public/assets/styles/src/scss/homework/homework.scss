@@ -306,8 +306,8 @@
     and (max-device-width : 1024px) 
     and (orientation : landscape) { 
         .item {
-            width: 49%!important;
-            margin: 0 7px;
+            width: 47%!important;
+            margin: 0 .07rem;
         }
     }
 
@@ -335,7 +335,7 @@
             width: 100%;
             .item-img {
                 width: $homework-list-icon-img-width;
-                max-width: 52px;
+                max-width: .52rem;
                 margin-left: .02rem;
                 margin-right: .10rem;
                 height: $hw_img_height;
@@ -378,7 +378,7 @@
                     width: 49%;
                     position: relative;
                     top: .05rem;
-                    max-height: 24px;
+                    max-height: .24rem;
                     overflow: hidden;
 
                     .icon {
@@ -402,7 +402,7 @@
             }
             .todo {
                 position: absolute;
-                right: 10px;
+                right: .1rem;
                 font-size: .22rem;
                 height: $hw-info-height;
                 line-height: $hw-info-height;
@@ -430,7 +430,7 @@
     .keyPointRecord-area {
         width: 100%;
         background-color: #fff;
-        padding: 10px;
+        padding: .1rem;
     }
 }
 
@@ -501,7 +501,7 @@
 .illy-img-list {
     text-align: left;
     position: relative;
-    top: -8px;
+    top: -.08rem;
     /* mark, not good */
     margin-right: -3.5%;
 
@@ -510,7 +510,7 @@
     and (max-device-width : 1024px) 
     and (orientation : landscape) { 
         label.item {
-            max-width: 222px;
+            width: 21.5%important;
         }
     }
 
@@ -548,7 +548,7 @@
         }
         .yo-checked {
             /*float: left;*/
-            margin-bottom: 5px;
+            margin-bottom: .05rem;
         }
     }
 }
@@ -579,7 +579,7 @@
         /* make it bigger, max-height was not needed */
         min-height: .6rem;
         margin-bottom: .05rem;
-        border-radius: 3px;
+        border-radius: .03rem;
         &.question-item-active {
             /* active state ui */
             background-color: $main-blue;
@@ -607,12 +607,12 @@
         }
         .fill-in-textarea {
             padding: .1rem;
-            border-radius: 3px;
+            border-radius: .03rem;
         }
         .answered-text {
-            padding-left: 10px;
-            padding-top: 16px;
-            padding-bottom: 16px;
+            padding-left: .1rem;
+            padding-top: .16rem;
+            padding-bottom: .16rem;
         }
     }
     .progress-wrapper {
@@ -651,7 +651,7 @@
         margin-left: .1rem;
         position: relative;
         word-break: break-all; /* for English */
-        top: -8px;
+        top: -.08rem;
         /* mark, not good */
     }
     .fill-in {
@@ -858,14 +858,14 @@
     }
     .bottom-checkAnswer-btn {
         width: 94%;
-        height: 44px;
-        line-height: 44px;
+        height: .44rem;
+        line-height: .44rem;
         text-align: center;
         position: fixed;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
-        bottom: 10px;
+        bottom: .1rem;
         background-color: $main-green;
         font-size: 16px;
         color: #fff;
@@ -885,7 +885,7 @@
     background-repeat: no-repeat;
     background-position: center top;
     background-image: url(#{$img-dir}/result-bg.png);
-    min-height: 600px;
+    min-height: 6rem;
     .result-silk-bg {
         width: 100%;
         height: $silk-height;
@@ -960,11 +960,11 @@
         background-color: $timeline-blue;
         .inner-wrapper {
             width: 100%;
-            height: 145px;
+            height: 1.45rem;
         }
         .name {
             text-align: center;
-            margin-top: -10px;
+            margin-top: -.1rem;
         }
     }
     .avatar-wrapper {
@@ -982,31 +982,31 @@
     }
     .navigator-bar {
         font-size: 16px;
-        margin-right: -1px;
+        margin-right: -.01rem;
         overflow: hidden;
 
         .go-homework,
         .go-mistake {
             width: 50%;
             float: left;
-            height: 32px;
+            height: .32rem;
             color: #5c5454;
-            line-height: 24px;
+            line-height: .24rem;
             text-align: center;
             border-right: 1px solid #dedede;
-            margin-top: 10px;
+            margin-top: .1rem;
         }
         
         .icon {
             position: relative;
-            top: -1px;
+            top: -.01rem;
         }
         .icon-homework {
             background-image: url(#{$img-dir}/evaluation-homework.png);
         }
         .icon-mistake {
             background-image: url(#{$img-dir}/evaluation-mistake.png);
-            top: -3px; 
+            top: -.03rem; 
         }
     }
     .h-line {
@@ -1014,31 +1014,31 @@
         height: $timeline-h-line-size;
         background-color: $timeline-blue;
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: .2rem;
     }
     .h-line:before {
         position: absolute;
         content: "\00a0";
         width: 0px;
         height: 0px;
-        border-width: 18px 18px 0 18px;
+        border-width: .18rem .18rem 0 .18rem;
         border-style: solid;
         border-color: $timeline-blue transparent transparent transparent;
         top: $timeline-h-line-size;
         left: 50%;
-        margin-left: -18px;
+        margin-left: -.18rem;
     }
     .h-line:after {
         position: absolute;
         content: "\00a0";
         width: 0px;
         height: 0px;
-        border-width: 18px 18px 0 18px;
+        border-width: .18rem .18rem 0 .18rem;
         border-style: solid;
         border-color: $g_bgColor transparent transparent transparent;
-        top: -2px;
+        top: -.02rem;
         left: 50%;
-        margin-left: -18px;
+        margin-left: -.18rem;
     }
     .timeline-wrapper {
         padding-top: 0;
@@ -1052,9 +1052,9 @@
             width: 80%;
             border: $timeline-line-size solid $timeline-blue;
             position: relative;
-            top: 30px;
+            top: .3rem;
             padding: .2rem .05rem;
-            border-radius: 5px;
+            border-radius: .05rem;
             margin-left: auto;
             margin-right: auto;
         }
@@ -1064,12 +1064,12 @@
         height: $timeline-line-size;
         background-color: $timeline-blue;
         position: relative;
-        top: -4px;
+        top: -.04rem;
         left: 28%;
     }
     .timeline-inner {
         position: relative;
-        top: -5px;
+        top: -.05rem;
 
         .timeline-item.dark {
             background-color: $timeline-blue!important;
@@ -1093,11 +1093,11 @@
             }
         }
         .timeline-item:last-child { /* default  .timeline-item-last-light */
-            padding-bottom: 30px;
+            padding-bottom: .3rem;
             border-bottom: $timeline-line-size solid $timeline-blue;
         }
         .timeline-item-last-dark {
-            padding-bottom: 30px!important;
+            padding-bottom: .3rem!important;
             border-bottom: $timeline-line-size solid $timeline-white!important;
         }
         .timeline-item {
@@ -1112,13 +1112,13 @@
                 background-color: $timeline-blue;
                 position: absolute;
                 left: 28%;
-                top: 0px;
+                top: 0;
             }
             .time {
                 width: $evaluation-left-width;
                 /* 27% */
                 position: relative;
-                top: 1px;
+                top: .01rem;
                 color: $timeline-blue;
 
                 .year {
@@ -1133,12 +1133,12 @@
                 /* 62% */
                 margin-left: 9%;
                 img.avatar {
-                    width: 32px;
-                    height: 32px;
+                    width: .32rem;
+                    height: .32rem;
                     position: absolute;
                     left: 27%;
-                    margin-left: -12px; /* new way for all device */
-                    top: 48px;
+                    margin-left: -.12rem; /* new way for all device */
+                    top: .48rem;
                     z-index: $zIndex2;
                     border-radius: 50%;
                 }
@@ -1155,11 +1155,11 @@
                     line-height: 1.7;
                     padding: .06rem;
                     border: 1px solid $timeline-blue;
-                    border-radius: 3px;
+                    border-radius: .03rem;
                     position: relative;
                     background-color: $timeline-blue;
                     color: $timeline-white;
-                    margin-top: 35px;
+                    margin-top: .35rem;
                     word-break: break-all;
                     /* mark */
                     text-align: justify;
@@ -1169,11 +1169,11 @@
                     content: "\00a0";
                     width: 0px;
                     height: 0px;
-                    border-width: 8px 15px 8px 0;
+                    border-width: .08rem .15rem .08rem 0;
                     border-style: solid;
                     border-color: transparent $timeline-blue transparent transparent;
-                    top: 15px;
-                    left: -12px;
+                    top: .15rem;
+                    left: -.12rem;
                 }
             }
         }
@@ -1190,15 +1190,15 @@
 
 @media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
     .illy-img-list img {
-        height: 100px!important;
+        height: 1rem!important;
     }
     .question-text {
         font-size: 14px!important;
     }
     .bottom-checkAnswer-btn {
-        height: 38px!important;
-        line-height: 38px!important;
-        bottom: 8px!important;
+        height: .38rem!important;
+        line-height: .38rem!important;
+        bottom: .08rem!important;
     }
     .question .record-tips,
     .question .playRecord {

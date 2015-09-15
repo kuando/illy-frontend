@@ -35,15 +35,17 @@
 
     // rendered and bootstrap the page
     avalon.config({
-        debug: true 
+        // debug: true // for dev
+        debug: false // for production
     });
 
     require.config({
-        baseUrl: "/assets"
+        baseUrl: "./assets" // relative 
     });
 
     require(['./scripts/app-task'], function(task) {
         task && task.init && task.init();
+        avalon.appInitTime = Date.now();
     })
 
     var AvalonLibsBaseUrl = './lib/avalonRouter/1.5-before/'; // for children files amd-define version control

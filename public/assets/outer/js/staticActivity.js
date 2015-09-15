@@ -180,6 +180,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
         infoCollect: [],
         CopyinfoCollect: [],
 
+        report: function() {
+            alert("感谢您的反馈，我们会妥善处理!");
+        },
+
         isShared: false,
         updateShare: function() {
             $http.ajax({

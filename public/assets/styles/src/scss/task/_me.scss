@@ -99,8 +99,8 @@ position: relative;
     }
     .update-avatar-tip {
         position: absolute;
-        left: 120px;
-        bottom: 48px;
+        left: 1.2rem;
+        bottom: .48rem;
     }
 
     .item { 
@@ -128,7 +128,7 @@ position: relative;
             vertical-align: middle; /* key! */
             max-width: 50%; /* key! great set! avoid text-overflow */
             overflow: hidden;
-            height: 24px;
+            height: .24rem;
             width: 49%;
         }
         .left-item {

@@ -50,7 +50,7 @@ define([], function() {
         /* alert end */
 
         report: function() {
-           avalon.vmodels.task.showAlert('感谢您的反馈， 我们会妥善处理!', 3); 
+           avalon.vmodels.task.showAlert('感谢反馈， 我们会妥善处理!', 3); 
         },
 
         score: 88,
@@ -95,7 +95,10 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-
+            var renderedTime = Date.now();
+            setTimeout(function() {
+                avalon.illyRecord('avalon rendered totalTime: ' , renderedTime - avalon.appInitTime);
+            }, 888);
         };
         // 进入视图
         $ctrl.$onEnter = function() {

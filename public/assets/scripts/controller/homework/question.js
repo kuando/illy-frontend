@@ -386,12 +386,11 @@ define([], function() {
             }  
 
             /* bad hack */
-            var question = avalon.$('.question');
-            var win_height = document.documentElement.clientHeight;
-            //var answerPanel = avalon.$('.answer-panel');
-            setTimeout(function() {
-                question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
-            }, 16);
+            //var question = avalon.$('.question');
+            //var win_height = document.documentElement.clientHeight;
+            //setTimeout(function() {
+            //    question && (question.style.height = win_height + 'px'); [> jshint ignore:line <]
+            //}, 16);
 
             // just stop record
             setTimeout(function() {

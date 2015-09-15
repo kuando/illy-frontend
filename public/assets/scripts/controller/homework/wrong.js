@@ -35,12 +35,12 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
-            var question = avalon.$('.question');
-            var win_height = document.documentElement.clientHeight;
-            var answerPanel = avalon.$('.answer-panel');
-            setTimeout(function() {
-                question && (question.style.height = win_height + 'px'); /* jshint ignore:line */
-            }, 16);
+            //var question = avalon.$('.question');
+            //var win_height = document.documentElement.clientHeight;
+            //var answerPanel = avalon.$('.answer-panel');
+            //setTimeout(function() {
+            //    question && (question.style.height = win_height + 'px'); [> jshint ignore:line <]
+            //}, 16);
 
         };
         // 进入视图, 对复用的数据进行重置或清空操作！

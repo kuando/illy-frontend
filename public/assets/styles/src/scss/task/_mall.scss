@@ -15,7 +15,7 @@ $main-yellow: yellow;
 .mall-top-bg {
     background: url(#{$img-dir}/mall-top.png) no-repeat center top;
     background-size: 100%;
-    height: 215px;
+    height: 2.15rem;
 }
 
 .mall-wrapper {
@@ -44,7 +44,7 @@ $main-yellow: yellow;
         padding: .03rem 0;
         padding-top: 0;
         text-align: left;
-        border-radius: 3px;
+        border-radius: .03rem;
         color: $light-grey;
 
         .img-wrapper {
@@ -126,7 +126,7 @@ $main-yellow: yellow;
     position: relative;
     max-width: $max-content-width;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: .2rem;
 
     .mall-rules-silk {
         background-image: url(#{$img-dir}/silk-blue.png);

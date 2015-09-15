@@ -68,7 +68,7 @@ define([], function() {
                     setTimeout(function() {                          
                         var newLists = evaluation.lists;
                         if (newLists && newLists.length === 0) {
-                            evaluation.noMistakeListContent = true;
+                            evaluation.noContent = true;
                         }      
                     }, 200);
                     if (lists.length === 0) {

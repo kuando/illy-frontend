@@ -39,6 +39,9 @@
     var global_warningLog_style = "background-color: #ff9100; color: #fff; padding: 3px; border-radius: 3px";
 
     // global config, info log style
-    var global_infoLog_style = "background-color: #fff; color: #14E5D5; padding: 3px; border-radius: 3px";
+    var global_infoLog_style = "background-color: #14e5d5; color: #fff; padding: 3px; border-radius: 3px";
+
+    // global config, record log style
+    var global_recordLog_style = "background-color: #64c400; color: #fff; padding: 3px; border-radius: 3px";
 
     // ==================== global config area end, @included  ==================== //

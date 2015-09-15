@@ -3,23 +3,23 @@ $task-progress-height: .1rem;
 $task-progress-bgcolor: #fff;
 $task-progress-inner-bgColor: #EF7549;
 $task-progress-radius: 10px;
-$taskList-img-height: 67px;
+$taskList-img-height: .67rem;
 .top-area-common {
     width: 30%;
-    height: 100px;
+    height: 1rem;
     background-size: 64%;
     background-repeat: no-repeat;
 }
 
 .task-list {
     width: 100%;
-    min-height: 600px;
+    min-height: 6rem;
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
     background-image: url(#{$img-dir}/taskList-bg.png);
     color: $dark-grey;
-    padding-top: 15px;
+    padding-top: .15rem;
     background-color: #945e27; /* for too much items */
 
     .global-noContent-tip-dark {
@@ -28,11 +28,11 @@ $taskList-img-height: 67px;
     }
 
     .item-wrapper {
-        max-width: 380px;
+        max-width: 3.8rem;
         background: rgba(0, 69, 99, .5);
         width: 92%;
         margin: 0 auto;
-        margin-top: 70px;
+        margin-top: .7rem;
         /* overwrite */
         padding: .12rem .06rem;
         position: relative;
@@ -44,7 +44,7 @@ $taskList-img-height: 67px;
             background-size: 100%;
             background-repeat: no-repeat;
             position: absolute;
-            top: -60px;
+            top: -.6rem;
             line-height: .32rem;
         }
         .top-score-area {
@@ -53,18 +53,18 @@ $taskList-img-height: 67px;
             background-repeat: no-repeat;
             background-image: url(#{$img-dir}/rank-nb.png);
             width: 37%;
-            max-width: 107px;
+            max-width: 1.07rem;
             /* must fixed value */
-            height: 44px;
+            height: .44rem;
             position: relative;
-            top: -28px;
-            margin-bottom: -44px;
+            top: -.28rem;
+            margin-bottom: -.44rem;
             .top-score-text {
                 color: #fff;
                 position: absolute;
-                top: 8px;
-                left: 37px;
-                width: 60px;
+                top: .08rem;
+                left: .37rem;
+                width: .6rem;
                 text-align: center;
             }
         }
@@ -81,8 +81,8 @@ $taskList-img-height: 67px;
         background-color: #ffefb5;
         .left-icon {
             width: $taskList-left-width;
-            max-width: 67px;
-            height: 67px;
+            max-width: .67rem;
+            height: .67rem;
             border-radius: 15px;
             background-image: url(#{$img-dir}/taskList-item-icon.png);
             border: 2px solid #bdd3ad;
@@ -91,11 +91,11 @@ $taskList-img-height: 67px;
             .scoreAward {
                 position: absolute;
                 left: 50%;
-                bottom: 1px;
-                margin-left: -30px;
+                bottom: .01rem;
+                margin-left: -.3rem;
                 text-align: center;
-                width: 60px;
-                font-size: .14rem;
+                width: .6rem;
+                font-size: 14px;
                 color: #ED6E41;
             }
         }
@@ -103,21 +103,21 @@ $taskList-img-height: 67px;
             width: 97% - $taskList-left-width;
             .title {
                 width: 100%;
-                font-size: .14rem;
-                padding-left: 5px;
+                font-size: 14px;
+                padding-left: .05rem;
             }
             .right-bottom-area {
                 width: 100%;
-                height: 50px;
+                height: .5rem;
                 .progress-area {
                     width: 62%;
-                    height: 41px;
+                    height: .41rem;
                     .progress-text {
                         font-size: .14rem;
                         color: orange;
                         padding-left: .05rem;
                         padding-top: .05rem;
-                        letter-spacing: 1px;
+                        letter-spacing: .01rem;
                     }
                     .progress-wrapper {
                         height: .3rem;
@@ -142,7 +142,7 @@ $taskList-img-height: 67px;
                 }
                 .go {
                     width: 35%;
-                    height: 41px;
+                    height: .41rem;
                     background-image: url(#{$img-dir}/taskList-btn.png);
                     background-size: 99%;
                     background-position: right bottom;

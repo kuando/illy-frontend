@@ -15,7 +15,7 @@ define([], function() {
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
         report: function() {
-           avalon.vmodels.site.showAlert('感谢您的反馈， 我们会妥善处理!', 3); 
+           avalon.vmodels.site.showAlert('感谢反馈， 我们会妥善处理!', 3); 
         },
         fetchAllCategoriesNames: function() {
             $http.ajax({
@@ -114,7 +114,10 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-
+            var renderedTime = Date.now();
+            setTimeout(function() {
+                avalon.illyRecord('avalon rendered totalTime: ' , renderedTime - avalon.appInitTime);
+            }, 888);
         };
 
         // 仅执行一次，抓取所有栏目名，供以后使用

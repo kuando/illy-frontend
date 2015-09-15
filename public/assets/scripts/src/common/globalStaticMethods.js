@@ -12,7 +12,6 @@
         return document.querySelector(selector);
     };
 
-    var index = 0;
     /**
      * illyLog
      *
@@ -32,8 +31,7 @@
         }
         console.log('%c' + type.toUpperCase() + ': ' + namespace + ' -> ' + currentVM + ': ' + msg + res, style); 
         if (saveToLocalStorage) {
-            localStorage.setItem(namespace + ' ' + currentVM + ' log ' + index, msg + ' ' + res);
-            index++;
+            localStorage.setItem('illy-record-' + namespace + '-' + currentVM + '-' + Date.now(), msg + ' ' + res);
         }
     };
 
@@ -46,7 +44,11 @@
     };
 
     avalon.illyInfo = function(msg, res) {
-        illyLog('info', msg, res, global_infoLog_style, true);
+        illyLog('info', msg, res, global_infoLog_style, false);
+    };
+
+    avalon.illyRecord = function(msg, res) {
+        illyLog('record', msg, res, global_recordLog_style, true);
     };
 
     /**

@@ -84,10 +84,11 @@
 .ui-dialog .ui-dialog-title {
     height: .4rem;
     line-height: .4rem;
-    font-size: .16rem;
+    font-size: 18px;
     text-align: center;
     font-weight: 700;
     border-radius: .03rem .03rem 0 0;
+    color: #000;
 }
 
 .ui-dialog .ui-dialog-close {
@@ -99,7 +100,6 @@
     line-height: 1;
     border-radius: .03rem;
 }
-
 
 /*
 .ui-dialog .ui-dialog-close .ui-icon {
@@ -116,9 +116,9 @@ background-image: url("../../icons-36-white.png");
 }
 
 .ui-dialog .ui-dialog-content p {
-    font-size: .14rem;
+    font-size: 16px;
     padding: 0 .1rem;
-    text-align: justify;
+    text-align: center;
     line-height: 1.5;
 }
 
@@ -150,6 +150,7 @@ background-image: url("../../icons-36-white.png");
 .ui-dialog-btns .ui-btn:first-child {
     border-bottom-left-radius: .03rem;
     border-left: 0 none;
+    font-weight: bold; /* for recomand */
 }
 
 .ui-dialog-btns .ui-btn:last-child {

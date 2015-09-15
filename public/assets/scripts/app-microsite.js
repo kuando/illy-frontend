@@ -45,7 +45,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_warningLog_style = "background-color: #ff9100; color: #fff; padding: 3px; border-radius: 3px";
 
     // global config, info log style
-    var global_infoLog_style = "background-color: #fff; color: #14E5D5; padding: 3px; border-radius: 3px";
+    var global_infoLog_style = "background-color: #14e5d5; color: #fff; padding: 3px; border-radius: 3px";
+
+    // global config, record log style
+    var global_recordLog_style = "background-color: #64c400; color: #fff; padding: 3px; border-radius: 3px";
 
     // ==================== global config area end, @included  ==================== //
 
@@ -64,7 +67,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         return document.querySelector(selector);
     };
 
-    var index = 0;
     /**
      * illyLog
      *
@@ -84,8 +86,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
         console.log('%c' + type.toUpperCase() + ': ' + namespace + ' -> ' + currentVM + ': ' + msg + res, style); 
         if (saveToLocalStorage) {
-            localStorage.setItem(namespace + ' ' + currentVM + ' log ' + index, msg + ' ' + res);
-            index++;
+            localStorage.setItem('illy-record-' + namespace + '-' + currentVM + '-' + Date.now(), msg + ' ' + res);
         }
     };
 
@@ -98,7 +99,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     avalon.illyInfo = function(msg, res) {
-        illyLog('info', msg, res, global_infoLog_style, true);
+        illyLog('info', msg, res, global_infoLog_style, false);
+    };
+
+    avalon.illyRecord = function(msg, res) {
+        illyLog('record', msg, res, global_recordLog_style, true);
     };
 
     /**

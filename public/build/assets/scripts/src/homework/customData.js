@@ -1,2 +1,2 @@
-avalon.illyGlobal={token:token,apiBaseUrl:apiBaseUrl,illyDomain:illy_domain,imagesBaseSrc:illy_images_base_src,noTokenHandler:function(){alert("ERROR::no token! 对不起，本系统仅供内部使用！")}};var root=avalon.define({$id:"root",namespace:"homework",currentState:"",currentAction:"",currentIsVisited:!1,title:""});
+null===token&&(alert("对不起，本系统仅供内部使用！ ERROR::no token error!"),setTimeout(function(){wx.closeWindow()},3e3)),avalon.illyGlobal={token:token,apiBaseUrl:apiBaseUrl,illyDomain:illy_domain,imagesBaseSrc:illy_images_base_src};var root=avalon.define({$id:"root",namespace:"homework",currentState:"",currentAction:"",currentIsVisited:!1,title:""});
 //# sourceMappingURL=customData.js.map

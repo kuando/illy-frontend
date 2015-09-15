@@ -1,7 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    // @@include('../../../config/illy_apiBaseUrl_config.txt') @@ //
+    // @@include('../../../config/illy_apiBaseUrl.cfg') @@ //
 
     var resourcePrefix = 'http://resource.hizuoye.com/';
 
@@ -121,7 +121,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
     var article = avalon.define({
         
         $id: "article",
-        resourcePrefix: 'http://weixin.hizuoye.com/assets/images',
+        resourcePrefix: '../../assets/images',
         articleId: location.href.split('?')[1].split('&')[0].split('=')[1], // mark!
         title: "",
         image: '',
@@ -130,6 +130,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
         shareCount: 88,
         visitCount: 88,
         likeCount: 88,
+
+        report: function() {
+            alert("感谢您的反馈，我们会妥善处理!");
+        },
 
         isShared: false,
         updateShare: function() {
