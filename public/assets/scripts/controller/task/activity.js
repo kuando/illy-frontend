@@ -389,7 +389,15 @@ define([], function() {
                             $('.empty').css({
                                 'display': 'block'
                             });
+
                             clicked = true;
+
+                            setTimeout(function() {
+                                alert("任务完成，恭喜获得" + activity.scoreAward + "积分！快去兑大奖吧~");
+                            }, 3000);
+                            setTimeout(function() {
+                                activity.isShared = 'isShared'; // key! mark!
+                            }, 4000); // disappeared after 1 second
 
                             $('.item1 .clipped-box').css({
                                 'display': 'block'

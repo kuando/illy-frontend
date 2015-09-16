@@ -193,7 +193,8 @@ function createXHR(method, url) {
     return xhr;
 }
 
-var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+
 var url = window.location.href;
 var re = /([?&])(openid|next)=([^?&]+)/g;
 var query = {},

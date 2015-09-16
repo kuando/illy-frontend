@@ -268,14 +268,6 @@ define([], function() {
                     // On click
                     $('.item1 div.kodai').on('click', function () {
 
-                        setTimeout(function() {
-                            alert("任务完成，恭喜获得" + article.scoreAward + "积分！快去兑大奖吧~");
-                        }, 3000);
-                        setTimeout(function() {
-                            article.isShared = 'isShared'; // key! mark!
-                        }, 4000); // disappeared after 1 second
-
-
                         if (clicked === false) {
                             $('.full').css({
                                 'display': 'none'
@@ -284,6 +276,13 @@ define([], function() {
                                 'display': 'block'
                             });
                             clicked = true;
+
+                            setTimeout(function() {
+                                alert("任务完成，恭喜获得" + article.scoreAward + "积分！快去兑大奖吧~");
+                            }, 3000);
+                            setTimeout(function() {
+                                article.isShared = 'isShared'; // key! mark!
+                            }, 4000); // disappeared after 1 second
 
                             $('.item1 .clipped-box').css({
                                 'display': 'block'
