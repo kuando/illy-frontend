@@ -19,7 +19,6 @@ define([], function() {
     
     var detail = avalon.define({
         $id: "detail",
-        resourcePrefix: 'http://app.hizuoye.com/build/images',
         visited: false,
         articleId: 1,
         title: "",

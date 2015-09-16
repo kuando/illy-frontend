@@ -10,6 +10,7 @@ define([], function() {
     // site ctrl take charge of everything...
     var site = avalon.define({ 
         $id: "site",
+        $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         categoriesNames: [], // cached auto nature
@@ -44,11 +45,11 @@ define([], function() {
                 $('#nav li').removeClass('ui-state-active');
             }, 32); // enough time for strong
         },
-        displayName: '',
-        avatar: defaultAvatarUrl,
+        //displayName: '',
+        //avatar: defaultAvatarUrl,
         schoolName: '',
-        score: 88,
-        studentCount: 100,
+        //score: 88,
+        //studentCount: 100,
         getUserInfo: function() {
             $http.ajax({
                 url: apiBaseUrl + "profile",
@@ -145,7 +146,7 @@ define([], function() {
                }
             });
 
-            site.getUserInfo();
+            // site.getUserInfo();
             site.getSchoolInfo();
 
         };

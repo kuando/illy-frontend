@@ -14,6 +14,7 @@ define([], function() {
     // task ctrl take charge of everything...
     var task = avalon.define({
         $id: "task",
+        $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 

@@ -86,7 +86,7 @@ define([], function() {
                 // 设置好录音时间
                 var audio = avalon.$('.keyPointAudio');
                 var duration = audio && audio.duration;
-                info.duration = (parseInt(duration, 10) + 1) || 6;
+                info.duration = (parseInt(duration, 10) + 1) || "加载中...";
             }, 2000);
         };
         // 对应的视图销毁前

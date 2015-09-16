@@ -25,9 +25,6 @@ define([], function() {
         noContent: false,
         noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
 
-        // avatar: '',
-        //displayName: '',
-        
         lists: [],
         visited: false,
 

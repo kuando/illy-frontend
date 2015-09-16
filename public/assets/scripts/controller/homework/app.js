@@ -15,6 +15,7 @@ define([], function() {
     var app = avalon.define({
 
         $id: "app",
+        $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
 
