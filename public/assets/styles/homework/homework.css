@@ -2087,8 +2087,8 @@ select {
   margin-right: auto;
 }
 .evaluation .h-inner-line {
-  width: 22.4%;
-  /* for big screen device */
+  width: 22.1%;
+  /* for big screen device, not too long */
   height: 2px;
   background-color: #43d1d5;
   position: relative;

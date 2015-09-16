@@ -160,15 +160,15 @@ define([], function() {
                     avatar: avatar.serverId
                 },
                 success: function(res) {
-                    alert('上传成功!' + res);    
+                    avalon.vmodels.task.showAlert('头像更换成功!', 2);
                 },
                 error: function(res) {
                     avalon.illyError('avatar ajax error', res);
-                    alert('对不起，头像上传失败，请重试！');
+                    avalon.vmodels.task.showAlert('对不起，头像更换失败，请重试！', 1);
                 },
                 ajaxFail: function(res) {
                     avalon.illyError('avatar ajax ', res);
-                    alert('对不起，头像上传失败，请重试！');
+                    avalon.vmodels.task.showAlert('对不起，头像更换失败，请重试！', 1);
                 } 
             });
         },

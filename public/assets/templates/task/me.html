@@ -1,14 +1,12 @@
 <div class="me" ms-controller="me">
 
-    <!--<div class="yo-btn hide" ms-click="resetAll()" ms-if="editing == true">resetAll</div>-->
-
     <!-- bg & avatar & info & update-profile area start -->
     <div class="profile-wrapper" ms-if="editing === false">
         <div class="inner-wrapper">
 
             <div class="avatar-wrapper area">
-                <!--<img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" /> temp rm -->
-                <img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="username" />
+                <img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="username" ms-click="chooseImage()" />
+                <!--<img width="90px" height="90px" ms-attr-src="avatar" ms-attr-alt="username" />-->
             </div>
 
             <div class="update" ms-click="edit()" ms-if="editing == false"><i class="icon icon-update"></i>编辑</div>
@@ -67,9 +65,6 @@
             <div class="right-item" ms-if="editing == false">{{gender}}</div>
         </li>
         <label class="item item-input" ms-if="editing == true">
-            <!--<input type="text" class="yo-input" ms-duplex-string="gender" placeholder="性别" />-->
-            <!--<input type="radio" ms-duplex-string="gender" value="男" />-->
-            <!--<input type="radio" ms-duplex-string="gender" value="女" />-->
             <label class="profile-gender-label">
                 <span class="mark flex">男</span>
                 <div class="yo-checked yo-checked-c">
@@ -132,3 +127,4 @@
     <!-- editable form end -->
 
 </div>
+

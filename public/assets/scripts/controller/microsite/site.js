@@ -116,7 +116,7 @@ define([], function() {
         $ctrl.$onRendered = function() {
             var renderedTime = Date.now();
             setTimeout(function() {
-                avalon.illyRecord('avalon rendered totalTime: ' , renderedTime - avalon.appInitTime);
+                avalon.illyInfo('avalon rendered totalTime: ' , renderedTime - avalon.appInitTime);
             }, 888);
         };
 
