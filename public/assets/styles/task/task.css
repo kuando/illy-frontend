@@ -889,6 +889,8 @@ input,
 textarea,
 button,
 select
+div,
+p,
 a {
   outline: 0 none;
   /* mark! key! remove outline */

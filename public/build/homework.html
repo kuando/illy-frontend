@@ -42,7 +42,7 @@
         baseUrl: "./assets" // relative
     });
 
-    require(['./scripts/app-homework'], function(app) {
+    require(['./scripts/app-homework.js?v=0.1'], function(app) {
         app && app.init && app.init();
         avalon.appInitTime = Date.now();
     })

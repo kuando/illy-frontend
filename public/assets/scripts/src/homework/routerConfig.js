@@ -1,5 +1,7 @@
 // ==================== router start @include ==================== //
 
+    var _v = '?v=' + global_resource_version;
+
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
         'list': "作业列表",
@@ -18,11 +20,11 @@
         views: {
             "header@": {
                 templateUrl: "assets/templates/homework/header.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/header.js"
+                controllerUrl: "scripts/controller/homework/header.js" + _v
             },
             "": {
                 templateUrl: "assets/templates/homework/app.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/app.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/app.js" + _v // 指定控制器地址
             }
         }
     })
@@ -31,7 +33,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/list.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/list.js" + _v // 指定控制器地址
             }
         }
     })
@@ -41,7 +43,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/detail.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/detail.js" + _v // 指定控制器地址
             }
         }
     })
@@ -50,7 +52,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/info.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/info.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/info.js" + _v // 指定控制器地址
             }
         }
     })
@@ -59,7 +61,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/question.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/question.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/question.js" + _v, // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 }
@@ -71,7 +73,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/result.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/result.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/result.js" + _v // 指定控制器地址
             }
         }
     })
@@ -81,7 +83,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/mistake.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistake.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/mistake.js" + _v // 指定控制器地址
             }
         }
     })
@@ -90,7 +92,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/mistakeList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistakeList.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/mistakeList.js" + _v, // 指定控制器地址
                 viewCache: true
             }
         }
@@ -100,7 +102,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/wrong.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/wrong.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/wrong.js" + _v, // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 }
@@ -112,7 +114,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/evaluation.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/evaluation.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/evaluation.js" + _v // 指定控制器地址
             }
         }
     });

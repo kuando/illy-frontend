@@ -5,6 +5,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // ==================== global config area start, @included  ==================== //
 
+    // version 
+    var global_resource_version = '0.0.1'; 
+
     // project domain, by config 
     var illy_domain = 'http://weixin.hizuoye.com';
 
@@ -14,7 +17,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // global apiBaseUrl
     var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
-    
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 
@@ -22,7 +24,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_viewload_animation_name = "a-bounceinR";
 
     // global config, always show loader when view enter 
-    var global_always_show_loader = true;
+    var global_always_show_loader = false;
 
     // global config, always reset scrollbar when view enter
     var global_always_reset_scrollbar = true;
@@ -208,8 +210,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {
-            wx.closeWindow();
-        }, 3000);
+            location.replace('./login.html');
+        }, 0);
     }
 
     // avalon global stuff when app init
@@ -288,6 +290,77 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     
     // ==================== app components area start @include ==================== // 
 
+    /**
+     *  components: order is important
+     *
+     *  getCurrentState(base)
+     *  doIsVisitedCheck(base)
+     *
+     *  loading
+     *  resetScrollbar
+     *  badNetworkHandler
+     *  setTitle
+     *
+     */
+
+    // getCurrentState component start //
+    
+    var getCurrentState = function getCurrentState() {
+        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
+        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
+        if (state2 === void 0) {
+            return state1;
+        } else {
+            return state2;
+        }
+    };
+
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onLoad') {
+            root.currentState = getCurrentState();
+        }
+    });
+
+    // getCurrentState component end //
+    
+    // visitedChecker component start //
+    
+    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
+
+        if (typeof cacheContainer === 'function') {
+            callback = cacheContainer;
+            cacheContainer = void 0;
+        }
+
+        var pageId = location.href.split("!")[1];
+        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
+        cacheContainer.push(pageId);
+        var isVisited = false;
+        for (var i = 0, len = cacheContainer.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
+            if (cacheContainer[i] === pageId) {
+                isVisited = true;
+                //console.log('only once');
+                break;
+            }
+        }
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+
+        return isVisited;
+
+    };
+
+    // 页面访问统计容器
+    var CACHE_VISITED_PAGEID_CONTAINER = [];
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBegin') {
+            root.currentIsVisited = doIsVisitedCheck();
+        }
+    });
+
+    // visitedChecker component end //
+     
     // loading component start //
 
     var loadingBeginHandler = function loadingBeginHandler(loader, callback) {
@@ -305,9 +378,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
         // loader show logic
         var always_show_loader = global_always_show_loader === true ? true : false;
-        if (loader && always_show_loader) {
+        if (always_show_loader) {
             showLoader();
-        } else if (loader && !always_show_loader && !root.currentIsVisited) {
+        } 
+        console.log('currentIsVisited ' + root.currentIsVisited);
+        if (!always_show_loader && !root.currentIsVisited) {
             showLoader();
         }
 
@@ -332,7 +407,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
         if (global_loading_delay === void 0) {
             global_loading_delay = 500;
-            console.log('%cWARNING: no global_loading_delay set!', "background-color: red; color: #fff");
+            avalon.illyWarning('no global_loading_delay set!');
         }
 
         setTimeout(function() {
@@ -353,8 +428,24 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
     });
 
-    // loading component end //
+    // loading component end // 
+     
+    // resetScrollbar component start //
+    
+    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
 
+    if (global_always_reset_scrollbar === true) {
+        root.$watch('currentAction', function(currentAction) {
+            if (currentAction === 'onLoad') {
+                resetScrollbarWhenViewLoaded();
+            }
+        });
+    }
+    // resetScrollbar component end // 
+     
     // badNetworkHandler component start // 
     
     // deal with bad network condition for wait too long, auto-back when time enough with tip
@@ -397,27 +488,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     });
 
     // badNetworkHandler component end //
-
-    // getCurrentState component start //
     
-    var getCurrentState = function getCurrentState() {
-        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
-        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-        if (state2 === void 0) {
-            return state1;
-        } else {
-            return state2;
-        }
-    };
-
-    root.$watch('currentAction', function(currentAction) {
-        if (currentAction === 'onLoad') {
-            root.currentState = getCurrentState();
-        }
-    });
-
-    // getCurrentState component end //
-
     // setTitle component start //
     
     var setPageTitle = function setPageTitle(titleMap) {
@@ -432,59 +503,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
     });
 
-    // setTitle component end //
-
-    // visitedChecker component start //
-    
-    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
-
-        if (typeof cacheContainer === 'function') {
-            callback = cacheContainer;
-            cacheContainer = void 0;
-        }
-
-        var pageId = location.href.split("!")[1];
-        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
-        cacheContainer.push(pageId);
-        var isVisited = false;
-        for (var i = 0, len = CACHE_VISITED_PAGEID_CONTAINER.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-            if (CACHE_VISITED_PAGEID_CONTAINER[i] === pageId) {
-                isVisited = true;
-            }
-        }
-        if (callback && typeof callback === 'function') {
-            callback();
-        }
-
-        return isVisited;
-
-    };
-
-    // 页面访问统计容器
-    var CACHE_VISITED_PAGEID_CONTAINER = [];
-    root.$watch('currentAction', function(currentAction) {
-        if (currentAction === 'onBegin') {
-            root.currentIsVisited = doIsVisitedCheck();
-        }
-    });
-
-    // visitedChecker component end //
-
-    // resetScrollbar component start //
-    
-    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
-
-    if (global_always_reset_scrollbar === true) {
-        root.$watch('currentAction', function(currentAction) {
-            if (currentAction === 'onLoad') {
-                resetScrollbarWhenViewLoaded();
-            }
-        });
-    }
-    // resetScrollbar component end //
+    // setTitle component end // 
 
     // ==================== app components area end @include ==================== //
 
@@ -553,10 +572,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             });
         },
         error: function(res) {
-            console.log("wx ajax error" + res);
+            avalon.illyError('wx ajax error!', res);
         },
         ajaxFail: function(res) {
-            console.log("wx ajaxFail" + res);
+            avalon.illyError('wx ajax failed!', res);
         }
     });
 
@@ -581,6 +600,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // ==================== router start @include ==================== //
 
+    var _v = '?v=' + global_resource_version;
+
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
         'list': '任务列表',
@@ -598,7 +619,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/task.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/task.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/task/task.js" + _v, // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
                 templateUrl: "assets/templates/footer.html", // 指定模板地址
@@ -610,7 +631,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/taskList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/taskList.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/taskList.js" + _v // 指定控制器地址
             }
         }
     })
@@ -619,7 +640,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/detail.js" + _v // 指定控制器地址
             }
         }
     })
@@ -628,7 +649,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/article.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/article.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/article.js" + _v // 指定控制器地址
             }
         }
     })
@@ -637,7 +658,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/activity.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/activity.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/activity.js" + _v // 指定控制器地址
             }
         }
     })
@@ -646,7 +667,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/rank.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/rank.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/rank.js" + _v // 指定控制器地址
             }
         }
     })
@@ -655,7 +676,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/mall.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地r
+                controllerUrl: "scripts/controller/task/mall.js" + _v // 指定控制器地r
             }
         }
     })
@@ -664,7 +685,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/task/me.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/me.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/me.js" + _v // 指定控制器地址
             }
         }
     });

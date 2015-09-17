@@ -1,5 +1,7 @@
 // ==================== router start @include ==================== //
 
+    var _v = '?v=' + global_resource_version;
+
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
         'list': '任务列表',
@@ -17,7 +19,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/task.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/task.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/task/task.js" + _v, // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
                 templateUrl: "assets/templates/footer.html", // 指定模板地址
@@ -29,7 +31,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/taskList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/taskList.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/taskList.js" + _v // 指定控制器地址
             }
         }
     })
@@ -38,7 +40,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/detail.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/detail.js" + _v // 指定控制器地址
             }
         }
     })
@@ -47,7 +49,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/article.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/article.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/article.js" + _v // 指定控制器地址
             }
         }
     })
@@ -56,7 +58,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/activity.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/activity.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/activity.js" + _v // 指定控制器地址
             }
         }
     })
@@ -65,7 +67,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/rank.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/rank.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/rank.js" + _v // 指定控制器地址
             }
         }
     })
@@ -74,7 +76,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/mall.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/mall.js" // 指定控制器地r
+                controllerUrl: "scripts/controller/task/mall.js" + _v // 指定控制器地r
             }
         }
     })
@@ -83,7 +85,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/task/me.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/me.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/task/me.js" + _v // 指定控制器地址
             }
         }
     });

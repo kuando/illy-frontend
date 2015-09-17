@@ -62,10 +62,10 @@
             });
         },
         error: function(res) {
-            console.log("wx ajax error" + res);
+            avalon.illyError('wx ajax error!', res);
         },
         ajaxFail: function(res) {
-            console.log("wx ajaxFail" + res);
+            avalon.illyError('wx ajax failed!', res);
         }
     });
 

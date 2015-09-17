@@ -1,5 +1,76 @@
 // ==================== app components area start @include ==================== // 
 
+    /**
+     *  components: order is important
+     *
+     *  getCurrentState(base)
+     *  doIsVisitedCheck(base)
+     *
+     *  loading
+     *  resetScrollbar
+     *  badNetworkHandler
+     *  setTitle
+     *
+     */
+
+    // getCurrentState component start //
+    
+    var getCurrentState = function getCurrentState() {
+        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
+        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
+        if (state2 === void 0) {
+            return state1;
+        } else {
+            return state2;
+        }
+    };
+
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onLoad') {
+            root.currentState = getCurrentState();
+        }
+    });
+
+    // getCurrentState component end //
+    
+    // visitedChecker component start //
+    
+    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
+
+        if (typeof cacheContainer === 'function') {
+            callback = cacheContainer;
+            cacheContainer = void 0;
+        }
+
+        var pageId = location.href.split("!")[1];
+        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
+        cacheContainer.push(pageId);
+        var isVisited = false;
+        for (var i = 0, len = cacheContainer.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
+            if (cacheContainer[i] === pageId) {
+                isVisited = true;
+                //console.log('only once');
+                break;
+            }
+        }
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+
+        return isVisited;
+
+    };
+
+    // 页面访问统计容器
+    var CACHE_VISITED_PAGEID_CONTAINER = [];
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBegin') {
+            root.currentIsVisited = doIsVisitedCheck();
+        }
+    });
+
+    // visitedChecker component end //
+     
     // loading component start //
 
     var loadingBeginHandler = function loadingBeginHandler(loader, callback) {
@@ -17,9 +88,11 @@
 
         // loader show logic
         var always_show_loader = global_always_show_loader === true ? true : false;
-        if (loader && always_show_loader) {
+        if (always_show_loader) {
             showLoader();
-        } else if (loader && !always_show_loader && !root.currentIsVisited) {
+        } 
+        console.log('currentIsVisited ' + root.currentIsVisited);
+        if (!always_show_loader && !root.currentIsVisited) {
             showLoader();
         }
 
@@ -44,7 +117,7 @@
 
         if (global_loading_delay === void 0) {
             global_loading_delay = 500;
-            console.log('%cWARNING: no global_loading_delay set!', "background-color: red; color: #fff");
+            avalon.illyWarning('no global_loading_delay set!');
         }
 
         setTimeout(function() {
@@ -65,8 +138,24 @@
         }
     });
 
-    // loading component end //
+    // loading component end // 
+     
+    // resetScrollbar component start //
+    
+    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
 
+    if (global_always_reset_scrollbar === true) {
+        root.$watch('currentAction', function(currentAction) {
+            if (currentAction === 'onLoad') {
+                resetScrollbarWhenViewLoaded();
+            }
+        });
+    }
+    // resetScrollbar component end // 
+     
     // badNetworkHandler component start // 
     
     // deal with bad network condition for wait too long, auto-back when time enough with tip
@@ -109,27 +198,7 @@
     });
 
     // badNetworkHandler component end //
-
-    // getCurrentState component start //
     
-    var getCurrentState = function getCurrentState() {
-        var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
-        var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
-        if (state2 === void 0) {
-            return state1;
-        } else {
-            return state2;
-        }
-    };
-
-    root.$watch('currentAction', function(currentAction) {
-        if (currentAction === 'onLoad') {
-            root.currentState = getCurrentState();
-        }
-    });
-
-    // getCurrentState component end //
-
     // setTitle component start //
     
     var setPageTitle = function setPageTitle(titleMap) {
@@ -144,58 +213,6 @@
         }
     });
 
-    // setTitle component end //
-
-    // visitedChecker component start //
-    
-    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
-
-        if (typeof cacheContainer === 'function') {
-            callback = cacheContainer;
-            cacheContainer = void 0;
-        }
-
-        var pageId = location.href.split("!")[1];
-        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
-        cacheContainer.push(pageId);
-        var isVisited = false;
-        for (var i = 0, len = CACHE_VISITED_PAGEID_CONTAINER.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-            if (CACHE_VISITED_PAGEID_CONTAINER[i] === pageId) {
-                isVisited = true;
-            }
-        }
-        if (callback && typeof callback === 'function') {
-            callback();
-        }
-
-        return isVisited;
-
-    };
-
-    // 页面访问统计容器
-    var CACHE_VISITED_PAGEID_CONTAINER = [];
-    root.$watch('currentAction', function(currentAction) {
-        if (currentAction === 'onBegin') {
-            root.currentIsVisited = doIsVisitedCheck();
-        }
-    });
-
-    // visitedChecker component end //
-
-    // resetScrollbar component start //
-    
-    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
-
-    if (global_always_reset_scrollbar === true) {
-        root.$watch('currentAction', function(currentAction) {
-            if (currentAction === 'onLoad') {
-                resetScrollbarWhenViewLoaded();
-            }
-        });
-    }
-    // resetScrollbar component end //
+    // setTitle component end // 
 
     // ==================== app components area end @include ==================== //

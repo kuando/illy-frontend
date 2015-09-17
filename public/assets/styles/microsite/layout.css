@@ -887,6 +887,8 @@ input,
 textarea,
 button,
 select
+div,
+p,
 a {
   outline: 0 none;
   /* mark! key! remove outline */
@@ -1200,6 +1202,7 @@ select {
   text-decoration: none;
   /*由于slide-item有3d属性，导致android上最后一个overflow:hidden无效，所以给子集也加个overflow:hidden;*/
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 

@@ -1,5 +1,7 @@
 // ==================== router start @include ==================== //
 
+    var _v = '?v=' + global_resource_version;
+
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
         'index': '首页',
@@ -14,7 +16,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/site.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/site.js", // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/site.js" + _v, // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
                 templateUrl: "assets/templates/footer.html", // 指定模板地址
@@ -26,7 +28,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/index.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/index.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/index.js" + _v // 指定控制器地址
             }
         }
     })
@@ -36,7 +38,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/list.js" // 指定控制器地址              
+                controllerUrl: "scripts/controller/microsite/list.js" + _v // 指定控制器地址              
             }
         }
     })
@@ -45,7 +47,7 @@
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/detail.js" // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/detail.js" + _v // 指定控制器地址
             }
         }
     });

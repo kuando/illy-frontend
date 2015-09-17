@@ -1,10 +1,13 @@
 // ==================== custom project data start @include ==================== //
 
+    // rewrite: global config, always show loader when view enter 
+    global_always_show_loader = true;
+
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {
-            wx.closeWindow();
-        }, 3000);
+            location.replace('./login.html');
+        }, 0);
     }
 
     // avalon global stuff when app init

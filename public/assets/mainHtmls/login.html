@@ -34,10 +34,16 @@
         color: #aaa
     }
     
-    a,
+    input,
+    textarea,
     button,
-    input:focus {
-        outline: 0
+    select,
+    div,
+    img,
+    a {
+        outline: 0 none; /* mark! key! remove outline */
+        -webkit-tap-highlight-color: transparent;
+        /* remove touch outline */
     }
     
     .content {

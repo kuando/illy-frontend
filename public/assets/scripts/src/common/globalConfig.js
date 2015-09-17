@@ -1,5 +1,8 @@
 // ==================== global config area start, @included  ==================== //
 
+    // version 
+    var global_resource_version = '0.0.1'; 
+
     // project domain, by config 
     // @@include('../../../../config/illy_domain.cfg') @@ //
     // project images base src
@@ -7,7 +10,6 @@
 
     // global apiBaseUrl
     // @@include('../../../../config/illy_apiBaseUrl.cfg') @@ //
-    
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 
@@ -15,7 +17,7 @@
     var global_viewload_animation_name = "a-bounceinR";
 
     // global config, always show loader when view enter 
-    var global_always_show_loader = true;
+    var global_always_show_loader = false;
 
     // global config, always reset scrollbar when view enter
     var global_always_reset_scrollbar = true;
