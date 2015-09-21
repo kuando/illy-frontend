@@ -91,7 +91,6 @@
         if (always_show_loader) {
             showLoader();
         } 
-        console.log('currentIsVisited ' + root.currentIsVisited);
         if (!always_show_loader && !root.currentIsVisited) {
             showLoader();
         }
