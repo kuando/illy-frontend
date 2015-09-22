@@ -1110,7 +1110,6 @@ select {
   font-size: .14rem;
 }
 .site-footer {
-  /*margin: .2rem 0 0 0;*/
   margin: 0;
   width: 100%;
   height: .40rem;
@@ -1250,7 +1249,7 @@ select {
 
 .task-list {
   width: 100%;
-  min-height: 6rem;
+  min-height: 7rem;
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
@@ -1259,6 +1258,8 @@ select {
   padding-top: .15rem;
   background-color: #945e27;
   /* for too much items */
+  padding-bottom: .44rem;
+  /* for fixed footer */
 }
 .task-list .global-noContent-tip-dark {
   margin-top: 0rem !important;
@@ -1316,6 +1317,9 @@ select {
   padding: .08rem;
   border-radius: 10px;
   background-color: #ffefb5;
+}
+.task-list .list-card .inner-box {
+  display: block;
 }
 .task-list .list-card .left-icon {
   width: 25%;

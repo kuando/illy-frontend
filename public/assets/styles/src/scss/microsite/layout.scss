@@ -154,6 +154,16 @@
     left: 0;
     z-index: $zIndex7 + 1; /* special ... */
 }
+.navBarMask {
+    width: 100%;
+    height: .34rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: .1;
+    z-index: $zIndex7 + 2;
+}
 .left-fixed {
     display: -webkit-box;
     min-width: 100%; /* mark! */

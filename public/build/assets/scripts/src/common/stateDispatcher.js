@@ -1,2 +1,2 @@
-avalon.state.config({onError:function(){root.currentAction="onError"},onBeforeUnload:function(){root.currentAction="onBeforeUnload"},onUnload:function(){root.currentAction="onUnload"},onBegin:function(){root.currentAction="onBegin"},onLoad:function(){root.currentAction="onLoad"}});
+avalon.state.config({onError:function(){root.currentAction="onError"},onBeforeUnload:function(){root.currentAction="onBeforeUnload"},onUnload:function(){root.currentAction="onUnload"},onBegin:function(){root.currentAction="onBegin",root.currentRendered=!1},onLoad:function(){root.currentAction="onLoad"}});
 //# sourceMappingURL=stateDispatcher.js.map

@@ -14,7 +14,10 @@ define([], function() {
         categories: [], // auto-nature-cached key!!!
         visited: false, // first in, no cache
         fetchRemoteData: function(apiArgs, data, target) {
-            if (index.visited && needCache) { return; }
+            if (index.visited && needCache) { 
+                avalon.vmodels.root.currentRendered = true;
+                return; 
+            }
 
             $http.ajax({
                 url: apiBaseUrl + apiArgs + '',
@@ -24,6 +27,7 @@ define([], function() {
                 data: data,
                 success: function(res) {
                     index[target] = res;
+                    avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
                     avalon.illyError('ajax error', res);

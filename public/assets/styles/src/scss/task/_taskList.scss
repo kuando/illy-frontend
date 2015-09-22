@@ -13,7 +13,7 @@ $taskList-img-height: .67rem;
 
 .task-list {
     width: 100%;
-    min-height: 6rem;
+    min-height: 7rem;
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
@@ -21,6 +21,7 @@ $taskList-img-height: .67rem;
     color: $dark-grey;
     padding-top: .15rem;
     background-color: #945e27; /* for too much items */
+    padding-bottom: .44rem; /* for fixed footer */
 
     .global-noContent-tip-dark {
         margin-top: 0rem!important;
@@ -79,6 +80,11 @@ $taskList-img-height: .67rem;
         padding: .08rem;
         border-radius: 10px;
         background-color: #ffefb5;
+
+        .inner-box {
+            display: block;
+        }
+
         .left-icon {
             width: $taskList-left-width;
             max-width: .67rem;

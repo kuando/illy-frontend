@@ -26,6 +26,7 @@
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view
+        currentRendered: false,
         title: "", // 每一页action bar的标题   
         footerInfo: 'kuando Inc',
         back: function() {

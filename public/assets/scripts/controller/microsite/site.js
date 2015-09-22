@@ -15,6 +15,7 @@ define([], function() {
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
+        navBarMaskShow: false, // navbar's mask, for loading
         report: function() {
            avalon.vmodels.site.showAlert('感谢反馈， 我们会妥善处理!', 3); 
         },

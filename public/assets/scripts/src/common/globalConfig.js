@@ -26,7 +26,7 @@
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for rendering page, time enough
-    var global_loading_delay = 300; // ms
+    var global_loading_delay = 3000; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';

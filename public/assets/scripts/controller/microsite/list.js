@@ -32,6 +32,7 @@ define([], function() {
             if (list.visited && needCache && !concat) {
                 var articles = list.lists;
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
+                avalon.vmodels.root.currentRendered = true;
                 list.offset = list.lists.length;
                 if (articles.length > localLimit && articles.length % localLimit < localLimit) {
                     list.noMoreData = true; // not full support, but ok
@@ -62,6 +63,7 @@ define([], function() {
                     var result = list.lists.$model;
                     avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, result); // illy-microsite-11111-lists
                     list.isLoading = false;
+                    avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
                     avalon.illyError('microsite list.js ajax error', res);

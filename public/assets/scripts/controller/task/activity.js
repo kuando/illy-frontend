@@ -468,7 +468,9 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-
+            setTimeout(function() {
+                avalon.$('#footer').style.display = '';
+            }, 300);
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];

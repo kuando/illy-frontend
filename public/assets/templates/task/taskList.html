@@ -18,7 +18,9 @@
         <div class="global-noContent-tip-dark" ms-if="noContent">恭喜您，完成了所有任务，请等待新任务!赚积分，拿大奖!</div>
 
         <div class="item area list-card" ms-repeat-item="lists">
-            <div class="inner-box" ms-click="goSpecTask(this)" ms-attr-data-tasktype="item.taskType" ms-attr-data-taskid="item._id" ms-attr-data-taskscoreaward="item.scoreAward">
+            <!--<div class="inner-box" ms-click="goSpecTask(this)" ms-attr-data-tasktype="item.taskType" ms-attr-data-taskid="item._id" ms-attr-data-taskscoreaward="item.scoreAward">-->
+            <a class="inner-box" ms-attr-href="( item.taskType === 0 ? '#!/article/' : '#!/activity/' ) + item._id + '/score/' + item.scoreAward">
+
                 <div class="left-icon area">
                     <div class="scoreAward">+{{item.scoreAward}}</div>
                 </div>
@@ -34,7 +36,7 @@
                             <!-- progress of task -->
                             <div class="progress-wrapper">
                                 <div class="progress-outer">
-                                    <div class="progress-inner" ms-css-width=" ( item.participants * 100 ) / studentCount + '%' "></div> 
+                                    <div class="progress-inner" ms-css-width=" ( (item.participants + 1) * 100 ) / studentCount + '%' "></div>  <!-- plus 1 for strong, 201509221912 -->
                                 </div>
                             </div>
                             <!-- progress of task -->
@@ -46,7 +48,8 @@
 
                 </div> <!-- end of right-area -->
 
-            </div> <!-- end of inner-box -->
+            </a>
+            <!--</div> [> end of inner-box <]-->
 
         </div> <!-- end of item -->
 

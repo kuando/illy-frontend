@@ -1,5 +1,7 @@
 // ==================== custom project data start @include ==================== //
 
+    global_loading_delay = 300;
+
     // rewrite: global config, always show loader when view enter 
     global_always_show_loader = true;
 

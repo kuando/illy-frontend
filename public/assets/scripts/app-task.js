@@ -33,7 +33,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for rendering page, time enough
-    var global_loading_delay = 300; // ms
+    var global_loading_delay = 3000; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';
@@ -207,6 +207,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     
     // ==================== custom project data start @include ==================== //
 
+    global_loading_delay = 300;
+
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {
@@ -339,7 +341,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         for (var i = 0, len = cacheContainer.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
             if (cacheContainer[i] === pageId) {
                 isVisited = true;
-                //console.log('only once');
                 break;
             }
         }
@@ -364,6 +365,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // loading component start //
 
     var loadingBeginHandler = function loadingBeginHandler(loader, callback) {
+
+        // update action
+        //root.currentAction = 'loading';
 
         if (typeof loader === 'function') { // deal with only one arguments and is callback
             callback = loader;
@@ -404,16 +408,31 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         };
 
+        var done = false; // 互斥标记,callback仅执行一次
+        setTimeout(function() {
+            if (!done) {
+                hideLoader();
+                if (callback && typeof callback === 'function') {
+                    callback();
+                }
+            }
+            done = true;
+        }, 96); // wait js to exec and rendered the page
+
         if (global_loading_delay === void 0) {
-            global_loading_delay = 500;
+            global_loading_delay = 3000;
             avalon.illyWarning('no global_loading_delay set!');
         }
 
-        setTimeout(function() {
-            hideLoader();
-            if (callback && typeof callback === 'function') {
-                callback();
+        setTimeout(function() { // for strong
+            if (!done) {
+                hideLoader();
+                if (callback && typeof callback === 'function') {
+                    callback();
+                }
+                avalon.illyRecord('time not enough to rendered page!');
             }
+            done = true;
         }, global_loading_delay);
 
     };
@@ -422,7 +441,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         if (currentAction === 'onBegin') {
             loadingBeginHandler();
         }
-        if (currentAction === 'onLoad') {
+        if (root.namespace !== 'microsite' && currentAction === 'onLoad') {
+            loadingEndHandler();
+        }
+    });
+
+    root.$watch('currentRendered', function(rendered) {
+        if (rendered === true) {
             loadingEndHandler();
         }
     });
@@ -450,9 +475,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // deal with bad network condition for wait too long, auto-back when time enough with tip
     var bindBadNetworkHandler = function bindBadNetworkHandler(timeout) {
 
-        timeout = global_loading_timeout || 8000;
+        // remove old handler first
+        badNetworkTimer && (clearTimeout(badNetworkTimer)); / * jshint ignore:line */
+
+        timeout = global_loading_timeout;
         var loader = global_loader_dom || document.querySelector(global_loader_className);
-        badNetworkTimer && clearTimeout(badNetworkTimer); /* jshint ignore:line */
 
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
@@ -464,11 +491,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
         avalon.badNetworkTimer = badNetworkTimer;
 
-        root.$watch('currentState', function(changeState) {
-            if (changeState !== void 0) {
-                clearTimeout(badNetworkTimer);
-            }
-        });
+        //root.$watch('currentState', function(changeState) {
+        //    if (changeState !== void 0) {
+        //        clearTimeout(badNetworkTimer);
+        //    }
+        //});
 
     };
 
@@ -721,6 +748,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         },
         onBegin: function() {
             root.currentAction = 'onBegin';
+            root.currentRendered = false;
         },
         onLoad: function() { // 切换完成并成功
             root.currentAction = 'onLoad';
