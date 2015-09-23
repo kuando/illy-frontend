@@ -249,10 +249,8 @@ define(["avalon"], function(avalon) {
             }
             var hash = href.replace(prefix, "").trim()
             if (href.indexOf(prefix) === 0 && hash !== "") {
-                setTimeout(function() {
-                    event.preventDefault()
-                    avalon.router && avalon.router.navigate(hash)
-                }, 100);
+                event.preventDefault()
+                avalon.router && avalon.router.navigate(hash)
             }
         }
     })

@@ -1402,7 +1402,7 @@ select {
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .item-wrapper .item {
-    width: 48.4% !important;
+    width: 48% !important;
     margin: 0 .07rem;
   }
 }

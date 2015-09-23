@@ -17,7 +17,7 @@ define([], function() {
         categoryId: '',  // for list.html ui-state-active use
         navBarMaskShow: false, // navbar's mask, for loading
         report: function() {
-           avalon.vmodels.site.showAlert('感谢反馈， 我们会妥善处理!', 3); 
+            avalon.vmodels.site.showAlert('感谢反馈， 我们会妥善处理!', 3); 
         },
         fetchAllCategoriesNames: function() {
             $http.ajax({
@@ -113,6 +113,17 @@ define([], function() {
         /* alert end */
     });
 
+    // disabled the navigator
+    avalon.vmodels.root.$watch('currentRendered', function(rendered) {
+        if (rendered === false) {
+            site.navBarMaskShow = true;
+        } else {
+            setTimeout(function() {
+                site.navBarMaskShow = false;
+            }, 96);
+        }
+    });
+
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
@@ -134,17 +145,17 @@ define([], function() {
 
             // add listener for index view's navigator
             avalon.vmodels.root.$watch("currentState", function(newVal, oldVal) { /* jshint ignore:line */ 
-               if (newVal === 'index') {
-                   setTimeout(function() {
-                       $('#nav li').removeClass('ui-state-active');
-                   }, navigatorInitDelay + 100 );
-               }
+                if (newVal === 'index') {
+                    setTimeout(function() {
+                        $('#nav li').removeClass('ui-state-active');
+                    }, navigatorInitDelay + 100 );
+                }
 
-               if (newVal === 'detail') {
-                   avalon.$('.left-fixed').style.display = 'none';
-               } else {
-                   avalon.$('.left-fixed').style.display = 'block';
-               }
+                if (newVal === 'detail') {
+                    avalon.$('.left-fixed').style.display = 'none';
+                } else {
+                    avalon.$('.left-fixed').style.display = 'block';
+                }
             });
 
             // site.getUserInfo();
@@ -158,6 +169,6 @@ define([], function() {
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
     });
-    
+
 });
 
