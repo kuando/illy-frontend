@@ -1,0 +1,76 @@
+/**
+ *  for index
+ *  20150924
+ *  
+ */
+
+@import "../_var.scss";
+@import "../_animation_part.scss";
+
+@mixin center {
+    position: fixed;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+$camera-ask-size: 2rem;
+
+.index {
+    text-align: center;
+    background-color: $main-blue;
+    min-height: 7rem;
+
+    .ask-record {
+        font-size: 12px;
+        color: #fff;
+        padding: .03rem .08rem;
+        border-radius: 10px;
+        position: fixed;
+        top: .15rem;
+        right: .15rem;
+        border: 1px solid #ccc;
+        letter-spacing: 3px;
+    }
+
+    .camera-ask {
+        width: $camera-ask-size;
+        height: $camera-ask-size;
+        border-radius: 50%;
+        background-color: #fff;
+        @include center;
+
+        .camera-img {
+
+        }
+
+        .camera-tip-text {
+            font-size: 18px;
+            color: $main-blue;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            bottom: .2rem;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+    }
+
+    .text-ask {
+        font-size: 16px;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        bottom: 1rem;
+        text-align: center;
+        width: 100%;
+
+        .text-img {
+
+        }
+    }
+
+
+}

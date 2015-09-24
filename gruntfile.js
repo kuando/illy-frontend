@@ -36,7 +36,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
 
             commonscss: {
                 files: ['public/assets/styles/src/scss/*.scss'],
-                tasks: ['sass:microsite', 'sass:homework', 'sass:task']
+                tasks: ['sass:microsite', 'sass:homework', 'sass:task', 'sass:question']
             },
 
             micrositescss: {
@@ -52,6 +52,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
             taskscss: {
                 files: ['public/assets/styles/src/scss/task/*.scss'],
                 tasks: ['sass:task']
+            },
+
+            question: {
+                files: ['public/assets/styles/src/scss/question/*.scss'],
+                tasks: ['sass:question']
             },
 
             fonts: {
@@ -193,6 +198,15 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     dest: 'public/assets/styles/task',
                     ext: '.css'
                 }]
+            },
+            question: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/assets/styles/src/scss/question',
+                    src: ['*.scss'],
+                    dest: 'public/assets/styles/question',
+                    ext: '.css'
+                }]
             }
         }, //build scss
 
@@ -255,6 +269,13 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 cwd: 'public/assets/styles/task/',
                 src: ['*.css'],
                 dest: 'public/build/assets/styles/task/',
+                ext: '.css'
+            },
+            question: {
+                expand: true,
+                cwd: 'public/assets/styles/question/',
+                src: ['*.css'],
+                dest: 'public/build/assets/styles/question/',
                 ext: '.css'
             },
         }, // css min, only app-build.css to min...
