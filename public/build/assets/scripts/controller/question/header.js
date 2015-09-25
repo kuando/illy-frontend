@@ -1,0 +1,2 @@
+define([],function(){var header=avalon.define({$id:"header",headerShow:!1,backBtnShow:!0,backHomeBtnShow:!0,back:function(){history.go(-1)}});return avalon.controller(function($ctrl){$ctrl.$onEnter=function(){avalon.vmodels.root.$watch("currentState",function(currentState){void 0!==currentState&&(header.headerShow="index"!==currentState?!0:!1)})},$ctrl.$onRendered=function(){},$ctrl.$onBeforeUnload=function(){},$ctrl.$vmodels=[]})});
+//# sourceMappingURL=header.js.map

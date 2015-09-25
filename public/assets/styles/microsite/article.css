@@ -144,6 +144,9 @@
   padding: 0 .16rem;
   text-align: left;
   margin-bottom: .3rem;
+  max-width: 6rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .detail .title {
   font-size: .22rem;

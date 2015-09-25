@@ -11,19 +11,18 @@ define([], function() {
     // list cache flag
     var needCache = true;
 
-    var localLimit = 6; // 一次抓取多少数据
+    //var localLimit = 6; // 一次抓取多少数据
     var list = avalon.define({
 
         $id: "list",
         visited: false, // first in, no data
         lists: [], 
-        categoryId: 111111111111111111111111,
 
-        offset: 0, // inner var, to fetch data with offset and limit
+        //offset: 0, // inner var, to fetch data with offset and limit
         noContent: false,
-        isLoading: false,
-        noMoreData: false,
-        btnShowMore: false,
+        //isLoading: false,
+        //noMoreData: false,
+        //btnShowMore: false,
         fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
             if (arguments.length !== 4) {
                 avalon.illyError('ERROR: must give 4 args!' + arguments);
@@ -80,25 +79,25 @@ define([], function() {
                     list.isLoading = false;
                 }
             });
-        },
-        showMore: function(e) {
-            e.preventDefault();
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: list.offset}, 'lists', true); // isShowMore
         }
+        //showMore: function(e) {
+        //    e.preventDefault();
+        //    list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: list.offset}, 'lists', true); // isShowMore
+        //}
 
     }); // end of define
 
-    list.lists.$watch('length', function(newLists) {
-        if (newLists !== void 0) {
-            if (newLists < localLimit) {
-                list.btnShowMore = false;
-            } else {
-                if (list.categoryId !== 'hots') {
-                    list.btnShowMore = true;
-                }
-            }
-        }
-    });
+    //list.lists.$watch('length', function(newLists) {
+    //    if (newLists !== void 0) {
+    //        if (newLists < localLimit) {
+    //            list.btnShowMore = false;
+    //        } else {
+    //            if (list.categoryId !== 'hots') {
+    //                list.btnShowMore = true;
+    //            }
+    //        }
+    //    }
+    //});
 
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
@@ -108,24 +107,8 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
-            // recover the state
-            list.noContent = false;
-
+            avalon.vmodels.result.current = 'list';
             list.visited = avalon.vmodels.root.currentIsVisited;
-
-            list.categoryId = params.categoryId; // get postId
-            avalon.vmodels.site.categoryId = params.categoryId; // for parent ctrl site use
-            
-            if (list.categoryId === 'hots') { // deal with hots column
-
-                list.btnShowMore = false;
-                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists', false);
-                return ;
-
-            }
-
-            // deal with all other column
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: 0}, 'lists', false);
 
         };
         // 视图渲染后，意思是avalon.scan完成

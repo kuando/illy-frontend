@@ -5,19 +5,18 @@ define([], function() {
     var token = avalon.illyGlobal.token;
     
     // prefix of localStorage
-    var cachedPrefix = 'illy-microsite-list-';
+    var cachedPrefix = 'illy-question-history-';
     // cache the view data
     
-    // list cache flag
+    // history cache flag
     var needCache = true;
 
     var localLimit = 6; // 一次抓取多少数据
-    var list = avalon.define({
+    var history = avalon.define({
 
-        $id: "list",
+        $id: "history",
         visited: false, // first in, no data
-        lists: [], 
-        categoryId: 111111111111111111111111,
+        historys: [], 
 
         offset: 0, // inner var, to fetch data with offset and limit
         noContent: false,
@@ -28,18 +27,18 @@ define([], function() {
             if (arguments.length !== 4) {
                 avalon.illyError('ERROR: must give 4 args!' + arguments);
             }
-            list.noMoreData = false;
-            if (list.visited && needCache && !concat) {
-                var articles = list.lists;
-                list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
+            history.noMoreData = false;
+            if (history.visited && needCache && !concat) {
+                var articles = history.historys;
+                history.historys = avalon.getLocalCache(cachedPrefix + history.categoryId + '-' + target);
                 avalon.vmodels.root.currentRendered = true;
-                list.offset = list.lists.length;
+                history.offset = history.historys.length;
                 if (articles.length > localLimit && articles.length % localLimit < localLimit) {
-                    list.noMoreData = true; // not full support, but ok
+                    history.noMoreData = true; // not full support, but ok
                 }
                 return;
             }
-            list.isLoading = true;
+            history.isLoading = true;
             $http.ajax({
                 url: apiBaseUrl + apiArgs,
                 headers: {
@@ -48,53 +47,53 @@ define([], function() {
                 data: data,
                 success: function(res) { 
                     if (concat === true) {
-                        list.lists = list.lists.concat(res);
+                        history.historys = history.historys.concat(res);
                     } else {
-                        list.lists = res;
+                        history.historys = res;
                     }
                     if (res.length === 0) {
-                        list.noMoreData = true;
+                        history.noMoreData = true;
                     }
-                    list.offset = list.lists.length;
-                    if (list.lists.length === 0) {
-                        list.noContent = true;
-                        list.noMoreData = true;
+                    history.offset = history.historys.length;
+                    if (history.historys.length === 0) {
+                        history.noContent = true;
+                        history.noMoreData = true;
                     }
-                    var result = list.lists.$model;
-                    avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, result); // illy-microsite-11111-lists
-                    list.isLoading = false;
+                    var result = history.historys.$model;
+                    avalon.setLocalCache(cachedPrefix + history.categoryId + '-' + target, result); // illy-microsite-11111-historys
+                    history.isLoading = false;
                     avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
-                    avalon.illyError('microsite list.js ajax error', res);
-                    if (list.lists.length === 0) {
-                        list.noContent = true;
+                    avalon.illyError('microsite history.js ajax error', res);
+                    if (history.historys.length === 0) {
+                        history.noContent = true;
                     }
-                    list.isLoading = false;
+                    history.isLoading = false;
                 },
                 ajaxFail: function(res) { 
-                    avalon.illyError('microsite list.js ajax failed', res);
-                    if (list.lists.length === 0) {
-                        list.noContent = true;
+                    avalon.illyError('microsite history.js ajax failed', res);
+                    if (history.historys.length === 0) {
+                        history.noContent = true;
                     }
-                    list.isLoading = false;
+                    history.isLoading = false;
                 }
             });
         },
         showMore: function(e) {
             e.preventDefault();
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: list.offset}, 'lists', true); // isShowMore
+            history.fetchRemoteData('categories/' + history.categoryId + '/posts', {limit: localLimit, offset: history.offset}, 'historys', true); // isShowMore
         }
 
     }); // end of define
 
-    list.lists.$watch('length', function(newLists) {
-        if (newLists !== void 0) {
-            if (newLists < localLimit) {
-                list.btnShowMore = false;
+    history.historys.$watch('length', function(newhistorys) {
+        if (newhistorys !== void 0) {
+            if (newhistorys < localLimit) {
+                history.btnShowMore = false;
             } else {
-                if (list.categoryId !== 'hots') {
-                    list.btnShowMore = true;
+                if (history.categoryId !== 'hots') {
+                    history.btnShowMore = true;
                 }
             }
         }
@@ -108,24 +107,8 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function(params) {
 
-            // recover the state
-            list.noContent = false;
-
-            list.visited = avalon.vmodels.root.currentIsVisited;
-
-            list.categoryId = params.categoryId; // get postId
-            avalon.vmodels.site.categoryId = params.categoryId; // for parent ctrl site use
-            
-            if (list.categoryId === 'hots') { // deal with hots column
-
-                list.btnShowMore = false;
-                list.fetchRemoteData('posts/hot?limit=10', {}, 'lists', false);
-                return ;
-
-            }
-
-            // deal with all other column
-            list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: 0}, 'lists', false);
+            avalon.vmodels.result.current = 'history';
+            history.visited = avalon.vmodels.root.currentIsVisited;
 
         };
         // 视图渲染后，意思是avalon.scan完成

@@ -26,6 +26,7 @@
         namespace: 'question', // module namespace, for global cachePrefix use
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
+        title: '',
         currentIsVisited: false, // boolean flag
     });
 

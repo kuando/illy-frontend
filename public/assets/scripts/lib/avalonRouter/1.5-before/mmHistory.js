@@ -250,7 +250,12 @@ define(["avalon"], function(avalon) {
             var hash = href.replace(prefix, "").trim()
             if (href.indexOf(prefix) === 0 && hash !== "") {
                 event.preventDefault()
-                avalon.router && avalon.router.navigate(hash)
+                // mark! 201509251730, bad code but f**c apple ios9 hash delay bug
+                setTimeout(function() {
+                    setTimeout(function() {
+                        avalon.router && avalon.router.navigate(hash)
+                    }, 30);
+                }, 30);
             }
         }
     })

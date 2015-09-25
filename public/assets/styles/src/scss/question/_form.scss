@@ -7,6 +7,30 @@
 @import "../_var.scss";
 @import "../_animation_part.scss";
 
+.form {
+    min-height: 7rem;
+    background-color: #fff;
+    padding: .1rem;
+}
 
+.description-input {
+    width: 100%;
+    min-height: 2rem;
+    padding: .05rem .1rem;
+    line-height: 1.7;
+    margin-bottom: .2rem;
+
+    &:focus {
+        border: 1px solid $main-blue;
+    }
+}
+
+.submit-question-btn {
+
+}
+
+.cancel-question-btn {
+
+}
 
 

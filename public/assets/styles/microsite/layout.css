@@ -1109,7 +1109,6 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
   background-color: #323436;
-  color: #light-grey;
   z-index: 999;
 }
 #header .affirm, .yo-header .affirm {
@@ -1770,6 +1769,9 @@ a, a:hover {
   padding: 0 .16rem;
   text-align: left;
   margin-bottom: .3rem;
+  max-width: 6rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .detail .title {
   font-size: .22rem;

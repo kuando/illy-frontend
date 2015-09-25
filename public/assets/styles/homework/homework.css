@@ -1109,7 +1109,6 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
   background-color: #323436;
-  color: #light-grey;
   z-index: 999;
 }
 #header .affirm, .yo-header .affirm {

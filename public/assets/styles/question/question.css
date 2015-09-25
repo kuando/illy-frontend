@@ -1109,7 +1109,6 @@ select {
 /* fix for header's back-index */
 #header, .yo-header {
   background-color: #323436;
-  color: #light-grey;
   z-index: 999;
 }
 #header .affirm, .yo-header .affirm {
@@ -1484,6 +1483,25 @@ select {
     transform: translateY(100px);
   }
 }
+.form {
+  min-height: 7rem;
+  background-color: #fff;
+  padding: .1rem;
+}
+
+.description-input {
+  width: 100%;
+  min-height: 2rem;
+  padding: .05rem .1rem;
+  line-height: 1.7;
+  margin-bottom: .2rem;
+}
+.description-input:focus {
+  border: 1px solid #00abfd;
+}
+
+/*@import "_list.scss";*/
+/*@import "_history.scss";*/
 /**
  *  for microsite task or outer static use
  *  
@@ -2236,6 +2254,27 @@ select {
 }
 
 /* activity end */
+.navigator-ul {
+  height: 0.34rem;
+  line-height: 0.34rem;
+  z-index: 100000;
+  position: relative;
+  /* to make z-index prop effect */
+}
+.navigator-ul li {
+  width: 50%;
+  border-bottom: 2px solid #333438;
+}
+.navigator-ul li.current-active {
+  border-bottom: 2px solid #00abfd;
+}
+.navigator-ul .list-li {
+  float: left;
+}
+.navigator-ul .history-li {
+  float: right;
+}
+
 /**
  *  for microsite task or outer static use
  *  
@@ -2612,5 +2651,94 @@ select {
 }
 
 /* activity end */
+#header, .yo-header {
+  z-index: 100000 !important;
+}
+
+/* yo-font-face start */
+@font-face {
+  font-family: yofont;
+  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
+}
+.yo-ico {
+  font-family: yofont !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
+/* yo-font-face end */
+/* yo-header start */
+.yo-header {
+  position: relative;
+  height: 0.44rem;
+  line-height: 0.44rem;
+  border-bottom: 1px solid #1ba9ba;
+  background-color: #1ba9ba;
+  color: #fff;
+  font-size: 0.18rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.yo-header > .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 0.6rem;
+}
+
+.yo-header > .regret,
+.yo-header > .affirm {
+  position: absolute;
+  top: 0;
+  width: 0.6rem;
+  cursor: pointer;
+  font-size: 0.14rem;
+}
+
+.yo-header > .regret:active,
+.yo-header > .affirm:active {
+  opacity: .5;
+}
+
+.yo-header > .regret.yo-ico,
+.yo-header > .regret > .yo-ico,
+.yo-header > .affirm.yo-ico,
+.yo-header > .affirm > .yo-ico {
+  color: #fff;
+  /* overwrite */
+  font-size: 0.2rem;
+}
+
+.yo-header > .regret {
+  left: 0;
+  padding-left: 0.15rem;
+  text-align: left;
+}
+
+.yo-header > .affirm {
+  right: 0;
+  padding-right: 0.15rem;
+  text-align: right;
+}
+
+.yo-header-normal {
+  border-color: #ddd;
+  background-color: #eee;
+  color: #212121;
+}
+
+.yo-header-normal > .regret.yo-ico,
+.yo-header-normal > .regret > .yo-ico,
+.yo-header-normal > .affirm.yo-ico,
+.yo-header-normal > .affirm > .yo-ico {
+  color: #212121;
+}
+
+/* yo-header end */
 
 /*# sourceMappingURL=question.css.map */

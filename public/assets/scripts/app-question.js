@@ -233,6 +233,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         namespace: 'question', // module namespace, for global cachePrefix use
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
+        title: '',
         currentIsVisited: false, // boolean flag
     });
 
@@ -628,12 +629,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
-        'list': '任务列表',
-        'rank': '排行榜',
-        'mall': '积分商城',
-        'article': '活动详情',
-        'activity': '活动详情',
-        'me': '个人中心'
+        'index': '',
+        'form': '问题描述',
+        'list': '当前提问',
+        'history': '过往提问',
+        'detail': '解答详情'
     };
 
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
@@ -641,6 +641,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
+            "header": {
+                templateUrl: templateBaseUrl + 'header.html', // 指定模板地址
+                controllerUrl: controllerBaseUrl + 'header.js' + _v, // 指定控制器地址
+            },
             "": {
                 templateUrl: templateBaseUrl + 'question.html', // 指定模板地址
                 controllerUrl: controllerBaseUrl + 'question.js' + _v, // 指定控制器地址
