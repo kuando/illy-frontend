@@ -5,109 +5,16 @@
     > Created Time: 2015年09月24日 星期四 21时24分18秒
  ******************************************************/
 
-@import "../_normalize.scss";
-@import "../_common.scss";
+@import "../base/base";
 
-@import "_index.scss";
-@import "_form.scss";
-/*@import "_list.scss";*/
-/*@import "_history.scss";*/
-@import "_result.scss";
-@import "_detail.scss";
+@import "index";
+@import "form";
+@import "result";
+@import "detail";
 
 #header, .yo-header {
     z-index: $zIndex7 + 1!important;
 }
 
-/* yo-font-face start */
-
-@font-face {
-    font-family: yofont;
-    src: url(#{$font-face-src}/yofont.woff) format("woff"),
-    url(#{$font-face-src}/yofont.ttf) format("truetype");
-}
-
-.yo-ico {
-    font-family: yofont !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    vertical-align: middle;
-}
-
-
-/* yo-font-face end */
-
-/* yo-header start */
-
-.yo-header {
-    position: relative;
-    height: 0.44rem;
-    line-height: 0.44rem;
-    border-bottom: 1px solid #1ba9ba;
-    background-color: #1ba9ba;
-    color: #fff;
-    font-size: 0.18rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-}
-
-.yo-header > .title {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin: 0 0.6rem;
-}
-
-.yo-header > .regret,
-.yo-header > .affirm {
-    position: absolute;
-    top: 0;
-    width: 0.6rem;
-    cursor: pointer;
-    font-size: 0.14rem;
-}
-
-.yo-header > .regret:active,
-.yo-header > .affirm:active {
-    opacity: .5;
-}
-
-.yo-header > .regret.yo-ico,
-.yo-header > .regret > .yo-ico,
-.yo-header > .affirm.yo-ico,
-.yo-header > .affirm > .yo-ico {
-    color: #fff;
-    /* overwrite */
-    font-size: 0.2rem;
-}
-
-.yo-header > .regret {
-    left: 0;
-    padding-left: 0.15rem;
-    text-align: left;
-}
-
-.yo-header > .affirm {
-    right: 0;
-    padding-right: 0.15rem;
-    text-align: right;
-}
-
-.yo-header-normal {
-    border-color: #ddd;
-    background-color: #eee;
-    color: #212121;
-}
-
-.yo-header-normal > .regret.yo-ico,
-.yo-header-normal > .regret > .yo-ico,
-.yo-header-normal > .affirm.yo-ico,
-.yo-header-normal > .affirm > .yo-ico {
-    color: #212121;
-}
-
-
-/* yo-header end */
+// yo component, header
+@import "../base/yo-header";

@@ -1,10 +1,7 @@
-// $img-dir: '../../build/images';
 $mall-rules-height: 1.5rem;
 
 $mall-content-width: 94%;
 $mall-item-img-height: 1.2rem;
-
-$main-yellow: yellow;
 
 .mall {
     background-color: #ea68a2;
@@ -55,7 +52,6 @@ $main-yellow: yellow;
         img {
             display: inline-block;
             width: 100%;
-            /*height: $mall-item-img-height;*/
         }
 
         .title {
@@ -95,10 +91,6 @@ $main-yellow: yellow;
             padding-left: .1rem;
             font-size: .12rem;
             vertical-align: top;
-
-            /*.icon-exchangeTimes {*/
-                /*background-image: url(#{$img-dir}/iconfont-exchangeTimes.png);*/
-            /*}*/
         }
 
         .stock {
@@ -108,10 +100,6 @@ $main-yellow: yellow;
             padding-right: .1rem;
             font-size: .12rem;
             vertical-align: top;
-
-            /*.icon-stock {*/
-                /*background-image: url(#{$img-dir}/iconfont-stock.png);*/
-            /*}*/
         }
 
     } /* mall item end */

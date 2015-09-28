@@ -3,15 +3,14 @@
  *  
  */
 
-@import "../_var.scss";
-@import "../_animation_part.scss";
-
+@import "../base/variables";
+@import "../base/animation-part";
 
 .detail {
     color: hsl(0, 0%, 11%);
     padding: 0 .16rem;
     text-align: left;
-    margin-bottom: .3rem;
+    margin-bottom: .44rem;
     max-width: 6rem;
     margin-left: auto;
     margin-right: auto;
@@ -43,7 +42,7 @@
         margin: .18rem 0;
 
         img {
-            width: 100%; /* mark! 20150826 */
+            width: 100%;
             max-width: $max-content-width;
             margin: 0 auto;
         }
@@ -52,7 +51,6 @@
     .content {
         margin-top: .15rem;
         
-        /* mark 20150826 */
         img {
             width: 100%;
             margin-top: .1rem;
@@ -85,7 +83,7 @@
             margin-bottom: .16rem;
             position: relative;
             word-break: break-all;
-            color: $content-color;
+            color: $article-content-text-color;
         }
 
         iframe {

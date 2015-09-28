@@ -7,12 +7,6 @@
 /* global silk height */
 /* fixed value for all device */
 /* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
 /**
  *  for wxShareMask & others 
  *  created on 201509031750
@@ -143,7 +137,7 @@
   color: #1c1c1c;
   padding: 0 .16rem;
   text-align: left;
-  margin-bottom: .3rem;
+  margin-bottom: .44rem;
   max-width: 6rem;
   margin-left: auto;
   margin-right: auto;
@@ -174,13 +168,11 @@
 }
 .detail .cover-img img {
   width: 100%;
-  /* mark! 20150826 */
   max-width: 450px;
   margin: 0 auto;
 }
 .detail .content {
   margin-top: .15rem;
-  /* mark 20150826 */
 }
 .detail .content img {
   width: 100%;

@@ -5,6 +5,12 @@
     > Mail: indexxuan@gmail.com
     > Created Time: 2015年09月24日 星期四 21时24分18秒
  ******************************************************/
+/*******************************************************
+> File Name: common.scss
+> Author: IndexXuan
+> Mail: indexxuan@gmail.com
+> Created Time: 2015年07月13日 星期一 18时38分20秒
+ ******************************************************/
 article,
 aside,
 details,
@@ -239,23 +245,6 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0;
 }
 
-/*******************************************************
-> File Name: common.scss
-> Author: IndexXuan
-> Mail: indexxuan@gmail.com
-> Created Time: 2015年07月13日 星期一 18时38分20秒
- ******************************************************/
-/* common vars start */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
 /**
  *  for wxShareMask & others 
  *  created on 201509031750
@@ -382,21 +371,299 @@ input[type="checkbox"], input[type="radio"] {
     transform: translateY(100px);
   }
 }
+/* common vars start */
+/* global silk height */
+/* fixed value for all device */
 /* common vars end */
-/*.illy-container {*/
-/*    max-width: $illy-container-width;*/
-/*    margin: 0 auto;*/
-/*}*/
-/*.silk-container {*/
-/*    max-width: $silk-max-width;*/
-/*    margin: 0 auto;*/
-/*}*/
+/* yo-font-face start */
+@font-face {
+  font-family: yofont;
+  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
+}
+.yo-ico {
+  font-family: yofont !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
+/* yo-font-face end */
+/* global reboot start */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* for root(html) rem, with different dpr attribute */
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  html[ios="true"] {
+    font-size: 200px;
+  }
+}
+@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+  html[ios="true"] {
+    font-size: 300px;
+  }
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  page-break-inside: avoid;
+}
+
+/* a tag glabal set */
+a,
+a:active,
+a:visited,
+a:focus,
+a:hover {
+  text-decoration: none;
+  outline: none;
+  /*color: $g_font_color;*/
+  color: inherit;
+}
+
+/* remove touch outline for elements in some device */
+input,
+textarea,
+button,
+select div,
+p,
+a {
+  outline: 0 none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[ms-controller],
+.ms-controller,
+[ms-important],
+.ms-important {
+  visibility: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  /* for global rem */
+  font-size: 100px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100%;
+  background-color: #f1f1f1;
+}
+
+html.native-scrolling {
+  /* 系统原生滚动效果 */
+  height: 100%;
+  overflow-x: hidde;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #333438;
+  font-size: .14rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+big,
+input,
+textarea,
+button,
+select {
+  font-size: inherit;
+}
+
+.icon {
+  width: .16rem;
+  height: .16rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: .05rem;
+}
+
+/* global reboot end */
+/* utils start */
 @media all and (min-device-width: 321px) and (max-device-width: 2049px) {
   .silk-container {
     line-height: 0.38rem !important;
   }
 }
-/** global-dialog start */
+.global-noContent-tip-light {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #fff;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.global-noContent-tip-dark {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #333438;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.area {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  z-index: 99999;
+}
+
+.fixed-bottom {
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  margin-bottom: 1px;
+}
+
+ul,
+.unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hide {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.text-hide,
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.block-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.common-bottom-footer {
+  font-size: .14rem;
+  margin: 0;
+  width: 100%;
+  height: .40rem;
+  line-height: .44rem;
+  bottom: 0;
+  left: 0;
+  background-color: #323436;
+  opacity: .9;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.show-more-btn {
+  display: inline-block;
+  width: 100%;
+  height: .44rem;
+  line-height: .44rem;
+  text-align: center;
+}
+
+/* utils end */
+/* gmu dialog start */
 .ui-mask {
   display: block;
   position: fixed;
@@ -541,7 +808,7 @@ background-image: url("../../icons-36-white.png");
     min-height: 1.1em;
   }
 }
-/* global dialog end */
+/* gmu dialog end */
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -789,7 +1056,7 @@ background-image: url("../../icons-36-white.png");
   content: " )";
 }
 
-/* yo-list end  */
+/* yo-list end */
 /* yo-btn start */
 .yo-btn {
   display: inline-block;
@@ -856,444 +1123,7 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* yo-btn end */
-/* global reset start */
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* for root(html) rem, with different dpr attribute */
-@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-  html[ios="true"] {
-    font-size: 200px;
-  }
-}
-@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-  html[ios="true"] {
-    font-size: 300px;
-  }
-}
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-  border: 0;
-  page-break-inside: avoid;
-}
-
-/* a tag glabal set */
-a,
-a:active,
-a:visited,
-a:focus,
-a:hover {
-  text-decoration: none;
-  outline: none;
-  color: #333438;
-}
-
-a:active,
-a:visited,
-a:focus,
-a:hover {
-  color: inherit;
-}
-
-input,
-textarea,
-button,
-select
-div,
-p,
-a {
-  outline: 0 none;
-  /* mark! key! remove outline */
-  -webkit-tap-highlight-color: transparent;
-  /* remove touch outline */
-}
-
-/* global reset end */
-/* util start */
-/* empty content tip */
-.global-noContent-tip-light {
-  width: 90%;
-  padding: .3rem;
-  margin: 0 auto;
-  margin-top: .5rem;
-  font-size: .16rem;
-  color: #fff;
-  text-align: left;
-  line-height: 2;
-  text-indent: 2em;
-  border: 2px solid #64c400;
-  border-radius: 10px;
-  background-color: white;
-}
-
-.global-noContent-tip-dark {
-  width: 90%;
-  padding: .3rem;
-  margin: 0 auto;
-  margin-top: .5rem;
-  font-size: .16rem;
-  color: #333438;
-  text-align: left;
-  line-height: 2;
-  text-indent: 2em;
-  border: 2px solid #64c400;
-  border-radius: 10px;
-  background-color: white;
-}
-
-/* empty content tip */
-.area {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.tac {
-  text-align: center;
-}
-
-.tal {
-  text-align: left;
-}
-
-.tar {
-  text-align: right;
-}
-
-/* float */
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-/* 单行文字溢出省略号显示*/
-.text-overflow {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* Fixed */
-.fixed-top {
-  position: fixed;
-  top: 0;
-  bottom: auto;
-  z-index: 99999;
-}
-
-.fixed-bottom {
-  position: fixed;
-  top: auto;
-  bottom: 0;
-  margin-bottom: 1px;
-}
-
-/*  ul */
-ul, .unstyled {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.hide {
-  display: none !important;
-}
-
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-.show {
-  display: block !important;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.text-hide, .hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-
-/* 块状元素水平居中 */
-.block-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* custom page start */
-[ms-controller], .ms-controller, [ms-important], .ms-important {
-  visibility: hidden;
-}
-
-html, body {
-  width: 100%;
-  font-size: 100px;
-  /* for global rem */
-  line-height: 1.5;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 100%;
-  background-color: #f1f1f1;
-}
-
-html.native-scrolling {
-  /* 系统原生滚动效果 */
-  height: 100%;
-  overflow-x: hidde;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-body {
-  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  text-align: center;
-  background-color: #f1f1f1;
-  color: #333438;
-  font-size: .14rem;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-small,
-big,
-input,
-textarea,
-button,
-select {
-  font-size: inherit;
-}
-
-.icon {
-  width: .16rem;
-  height: .16rem;
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100%;
-  vertical-align: middle;
-  margin-right: .05rem;
-}
-
-/* fix for header's back-index */
-#header, .yo-header {
-  background-color: #323436;
-  z-index: 999;
-}
-#header .affirm, .yo-header .affirm {
-  color: #fff;
-}
-#header .title, .yo-header .title {
-  font-weight: bold;
-  font-size: .2rem;
-}
-
-.yo-header > .regret.yo-ico, .yo-header > .regret > .yo-ico, .yo-header > .affirm.yo-ico, .yo-header > .affirm > .yo-ico {
-  color: #fff;
-}
-
-/* global common footer start */
-.site {
-  min-height: 5.5rem;
-  /* for layout */
-}
-.site, .site-footer {
-  font-size: .14rem;
-}
-.site-footer {
-  margin: 0;
-  width: 100%;
-  height: .40rem;
-  line-height: .44rem;
-  bottom: 0;
-  left: 0;
-  background-color: #323436;
-  opacity: .9;
-  color: whitesmoke;
-  font-weight: bold;
-}
-
-/* global common footer end */
-.show-more-btn {
-  display: inline-block;
-  width: 100%;
-  height: .44rem;
-  line-height: .44rem;
-  text-align: center;
-}
-
-/**
- *  for index
- *  20150924
- *  
- */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/**
- *  for wxShareMask & others 
- *  created on 201509031750
- */
-/* global-animation start 弹入-从右 */
-.a-bounceinR,
-.a-bounceoutB,
-.a-bounceinB {
-  -webkit-animation: .4s ease-in forwards;
-  animation: .4s ease-in forwards;
-}
-
-.a-bounceinR {
-  -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
-}
-
-@-webkit-keyframes bounceinR {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  80% {
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-}
-@keyframes bounceinR {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-/* global-animation end   弹入-从右 */
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
+/* question index start */
 .index {
   text-align: center;
   background-color: #00abfd;
@@ -1342,147 +1172,8 @@ select {
   width: 100%;
 }
 
-/**
- *  for ask description form 
- *  20150924
- *  
- */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/**
- *  for wxShareMask & others 
- *  created on 201509031750
- */
-/* global-animation start 弹入-从右 */
-.a-bounceinR,
-.a-bounceoutB,
-.a-bounceinB {
-  -webkit-animation: .4s ease-in forwards;
-  animation: .4s ease-in forwards;
-}
-
-.a-bounceinR {
-  -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
-}
-
-@-webkit-keyframes bounceinR {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  80% {
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-}
-@keyframes bounceinR {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-/* global-animation end   弹入-从右 */
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
+/* question index end */
+/* discription form start */
 .form {
   min-height: 7rem;
   background-color: #fff;
@@ -1500,760 +1191,7 @@ select {
   border: 1px solid #00abfd;
 }
 
-/*@import "_list.scss";*/
-/*@import "_history.scss";*/
-/**
- *  for microsite task or outer static use
- *  
- */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/**
- *  for wxShareMask & others 
- *  created on 201509031750
- */
-/* global-animation start 弹入-从右 */
-.a-bounceinR,
-.a-bounceoutB,
-.a-bounceinB {
-  -webkit-animation: .4s ease-in forwards;
-  animation: .4s ease-in forwards;
-}
-
-.a-bounceinR {
-  -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
-}
-
-@-webkit-keyframes bounceinR {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  80% {
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-}
-@keyframes bounceinR {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-/* global-animation end   弹入-从右 */
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-.detail {
-  color: #1c1c1c;
-  padding: 0 .16rem;
-  text-align: left;
-  margin-bottom: .3rem;
-}
-.detail .title {
-  font-size: .22rem;
-  padding: .12rem 0 .12rem 0;
-  /* fix top-striped first in render bug, should not use margin, 20150813 */
-  line-height: 1.3;
-}
-.detail .count {
-  font-size: .14rem;
-  display: inline-block;
-  vertical-align: top;
-  color: #999999;
-}
-.detail .count span {
-  padding-right: .05rem;
-}
-.detail .gap-point {
-  font-size: .04rem;
-  position: relative;
-  top: -.02rem;
-  color: #999999;
-}
-.detail .cover-img {
-  margin: .18rem 0;
-}
-.detail .cover-img img {
-  width: 100%;
-  /* mark! 20150826 */
-  max-width: 450px;
-  margin: 0 auto;
-}
-.detail .content {
-  margin-top: .15rem;
-  /* mark 20150826 */
-}
-.detail .content img {
-  width: 100%;
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-.detail .content h1 {
-  font-size: .22rem;
-}
-.detail .content h2 {
-  font-size: .20rem;
-}
-.detail .content h3 {
-  font-size: .18rem;
-}
-.detail .content h4 {
-  font-size: .16rem;
-}
-.detail .content h1, .detail .content h2, .detail .content h3, .detail .content h4, .detail .content h5, .detail .content h6 {
-  margin: .1rem 0;
-}
-.detail .content dd, .detail .content dl, .detail .content dt {
-  margin: 0;
-}
-.detail .content p {
-  font-size: .16rem;
-  text-indent: 2em;
-  line-height: 1.7;
-  margin-bottom: .16rem;
-  position: relative;
-  word-break: break-all;
-  color: #444242;
-}
-.detail .content iframe {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-}
-.detail .task-helper-btn {
-  width: 60%;
-  height: .44rem;
-  line-height: .44rem;
-  margin: 0 auto;
-  font-size: 16px;
-  color: #fff;
-  background-color: #64c400;
-  text-align: center;
-  border-radius: 3px;
-}
-.detail .shareMask {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(6, 6, 6, 0.9);
-  padding: .3rem;
-  padding-top: .2rem;
-  min-height: 8rem;
-  z-index: 999;
-}
-.detail .shareMask .task-shareMask-tip-text {
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-  position: absolute;
-  top: .68rem;
-  left: 50%;
-  margin-left: -.4rem;
-}
-.detail .shareMask img {
-  margin: 0 auto;
-}
-.detail .shareMask img.wxShareIcon {
-  display: block;
-  width: 1rem;
-  margin-top: .3rem;
-  margin-bottom: .3rem;
-}
-.detail .shareMask img.shareMaskBottom {
-  margin-top: 0;
-}
-.detail .shareMask .iKnow {
-  width: 100%;
-  height: .4rem;
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-  margin-top: .5rem;
-}
-.detail .pageinfo {
-  text-align: left;
-}
-.detail .pageinfo .like-num-wrapper {
-  margin: .1rem auto;
-  text-align: center;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: .2rem;
-}
-.detail .pageinfo .like-num-update {
-  /*color: $main-green;*/
-}
-.detail .pageinfo .isShared {
-  color: #00abfd;
-}
-.detail .pageinfo .share, .detail .pageinfo .visit, .detail .pageinfo .like {
-  display: inline-block;
-  height: .3rem;
-  line-height: .3rem;
-  font-size: .14rem;
-  position: relative;
-  top: .2rem;
-  margin-right: .1rem;
-}
-.detail .pageinfo .share .icon, .detail .pageinfo .visit .icon, .detail .pageinfo .like .icon {
-  width: .16rem;
-  height: .16rem;
-  display: inline-block;
-}
-.detail .pageinfo .share .icon-share, .detail .pageinfo .visit .icon-share, .detail .pageinfo .like .icon-share {
-  background-image: url(../../../assets/images/iconfont-share.png);
-}
-.detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit, .detail .pageinfo .like .icon-visit {
-  background-image: url(../../../assets/images/iconfont-yuedu.png);
-}
-.detail .pageinfo .share .icon-like, .detail .pageinfo .visit .icon-like, .detail .pageinfo .like .icon-like {
-  background-image: url(../../../assets/images/iconfont-like.png);
-  position: relative;
-  top: -.02rem;
-}
-.detail .pageinfo .share .hasLiked, .detail .pageinfo .visit .hasLiked, .detail .pageinfo .like .hasLiked {
-  color: #00abfd;
-  background-image: url(../../../assets/images/iconfont-hasLiked.png);
-}
-.detail .pageinfo .report {
-  float: right;
-  position: relative;
-  top: .24rem;
-  font-size: .14rem;
-  color: #999999;
-}
-
-/* activity start */
-.infoCollect-wrapper {
-  text-align: center;
-}
-.infoCollect-wrapper .sign-up-btn-wrapper {
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.infoCollect-wrapper .sign-btn {
-  position: relative;
-  left: 0;
-  width: 100%;
-  display: inline-block;
-  border: none;
-  border-radius: 0;
-  height: .44rem;
-  line-height: .44rem;
-}
-
-.activity-info-form {
-  text-align: center;
-  background-color: #fff;
-  padding: .1rem;
-  border-radius: 3px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-.activity-info-form-title {
-  text-align: center;
-  margin: .1rem;
-}
-.activity-info-form .yo-btn {
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-
-.btn-scoreAward {
-  border: none;
-  /* overwrite */
-  display: block;
-  width: 92%;
-  height: .3rem;
-  line-height: .30rem;
-  margin: 0 auto;
-  margin-top: .1rem;
-  background-color: #F25454;
-  color: #fff;
-}
-
-/* activity end */
-/**
- *  for microsite task or outer static use
- *  
- */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/**
- *  for wxShareMask & others 
- *  created on 201509031750
- */
-/* global-animation start 弹入-从右 */
-.a-bounceinR,
-.a-bounceoutB,
-.a-bounceinB {
-  -webkit-animation: .4s ease-in forwards;
-  animation: .4s ease-in forwards;
-}
-
-.a-bounceinR {
-  -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
-}
-
-@-webkit-keyframes bounceinR {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  80% {
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-}
-@keyframes bounceinR {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-/* global-animation end   弹入-从右 */
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-.detail {
-  color: #1c1c1c;
-  padding: 0 .16rem;
-  text-align: left;
-  margin-bottom: .3rem;
-}
-.detail .title {
-  font-size: .22rem;
-  padding: .12rem 0 .12rem 0;
-  /* fix top-striped first in render bug, should not use margin, 20150813 */
-  line-height: 1.3;
-}
-.detail .count {
-  font-size: .14rem;
-  display: inline-block;
-  vertical-align: top;
-  color: #999999;
-}
-.detail .count span {
-  padding-right: .05rem;
-}
-.detail .gap-point {
-  font-size: .04rem;
-  position: relative;
-  top: -.02rem;
-  color: #999999;
-}
-.detail .cover-img {
-  margin: .18rem 0;
-}
-.detail .cover-img img {
-  width: 100%;
-  /* mark! 20150826 */
-  max-width: 450px;
-  margin: 0 auto;
-}
-.detail .content {
-  margin-top: .15rem;
-  /* mark 20150826 */
-}
-.detail .content img {
-  width: 100%;
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-.detail .content h1 {
-  font-size: .22rem;
-}
-.detail .content h2 {
-  font-size: .20rem;
-}
-.detail .content h3 {
-  font-size: .18rem;
-}
-.detail .content h4 {
-  font-size: .16rem;
-}
-.detail .content h1, .detail .content h2, .detail .content h3, .detail .content h4, .detail .content h5, .detail .content h6 {
-  margin: .1rem 0;
-}
-.detail .content dd, .detail .content dl, .detail .content dt {
-  margin: 0;
-}
-.detail .content p {
-  font-size: .16rem;
-  text-indent: 2em;
-  line-height: 1.7;
-  margin-bottom: .16rem;
-  position: relative;
-  word-break: break-all;
-  color: #444242;
-}
-.detail .content iframe {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-}
-.detail .task-helper-btn {
-  width: 60%;
-  height: .44rem;
-  line-height: .44rem;
-  margin: 0 auto;
-  font-size: 16px;
-  color: #fff;
-  background-color: #64c400;
-  text-align: center;
-  border-radius: 3px;
-}
-.detail .shareMask {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(6, 6, 6, 0.9);
-  padding: .3rem;
-  padding-top: .2rem;
-  min-height: 8rem;
-  z-index: 999;
-}
-.detail .shareMask .task-shareMask-tip-text {
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-  position: absolute;
-  top: .68rem;
-  left: 50%;
-  margin-left: -.4rem;
-}
-.detail .shareMask img {
-  margin: 0 auto;
-}
-.detail .shareMask img.wxShareIcon {
-  display: block;
-  width: 1rem;
-  margin-top: .3rem;
-  margin-bottom: .3rem;
-}
-.detail .shareMask img.shareMaskBottom {
-  margin-top: 0;
-}
-.detail .shareMask .iKnow {
-  width: 100%;
-  height: .4rem;
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-  margin-top: .5rem;
-}
-.detail .pageinfo {
-  text-align: left;
-}
-.detail .pageinfo .like-num-wrapper {
-  margin: .1rem auto;
-  text-align: center;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: .2rem;
-}
-.detail .pageinfo .like-num-update {
-  /*color: $main-green;*/
-}
-.detail .pageinfo .isShared {
-  color: #00abfd;
-}
-.detail .pageinfo .share, .detail .pageinfo .visit, .detail .pageinfo .like {
-  display: inline-block;
-  height: .3rem;
-  line-height: .3rem;
-  font-size: .14rem;
-  position: relative;
-  top: .2rem;
-  margin-right: .1rem;
-}
-.detail .pageinfo .share .icon, .detail .pageinfo .visit .icon, .detail .pageinfo .like .icon {
-  width: .16rem;
-  height: .16rem;
-  display: inline-block;
-}
-.detail .pageinfo .share .icon-share, .detail .pageinfo .visit .icon-share, .detail .pageinfo .like .icon-share {
-  background-image: url(../../../assets/images/iconfont-share.png);
-}
-.detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit, .detail .pageinfo .like .icon-visit {
-  background-image: url(../../../assets/images/iconfont-yuedu.png);
-}
-.detail .pageinfo .share .icon-like, .detail .pageinfo .visit .icon-like, .detail .pageinfo .like .icon-like {
-  background-image: url(../../../assets/images/iconfont-like.png);
-  position: relative;
-  top: -.02rem;
-}
-.detail .pageinfo .share .hasLiked, .detail .pageinfo .visit .hasLiked, .detail .pageinfo .like .hasLiked {
-  color: #00abfd;
-  background-image: url(../../../assets/images/iconfont-hasLiked.png);
-}
-.detail .pageinfo .report {
-  float: right;
-  position: relative;
-  top: .24rem;
-  font-size: .14rem;
-  color: #999999;
-}
-
-/* activity start */
-.infoCollect-wrapper {
-  text-align: center;
-}
-.infoCollect-wrapper .sign-up-btn-wrapper {
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.infoCollect-wrapper .sign-btn {
-  position: relative;
-  left: 0;
-  width: 100%;
-  display: inline-block;
-  border: none;
-  border-radius: 0;
-  height: .44rem;
-  line-height: .44rem;
-}
-
-.activity-info-form {
-  text-align: center;
-  background-color: #fff;
-  padding: .1rem;
-  border-radius: 3px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-.activity-info-form-title {
-  text-align: center;
-  margin: .1rem;
-}
-.activity-info-form .yo-btn {
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-
-.btn-scoreAward {
-  border: none;
-  /* overwrite */
-  display: block;
-  width: 92%;
-  height: .3rem;
-  line-height: .30rem;
-  margin: 0 auto;
-  margin-top: .1rem;
-  background-color: #F25454;
-  color: #fff;
-}
-
-/* activity end */
+/* discription form end */
 .navigator-ul {
   height: 0.34rem;
   line-height: 0.34rem;
@@ -2275,400 +1213,10 @@ select {
   float: right;
 }
 
-/**
- *  for microsite task or outer static use
- *  
- */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
-/**
- *  for wxShareMask & others 
- *  created on 201509031750
- */
-/* global-animation start 弹入-从右 */
-.a-bounceinR,
-.a-bounceoutB,
-.a-bounceinB {
-  -webkit-animation: .4s ease-in forwards;
-  animation: .4s ease-in forwards;
-}
-
-.a-bounceinR {
-  -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
-}
-
-@-webkit-keyframes bounceinR {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  80% {
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-}
-@keyframes bounceinR {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-/* global-animation end   弹入-从右 */
-/* 弹入-从下 */
-.a-bounceinB {
-  -webkit-animation-name: bounceinB;
-  -moz-animation-name: bounceinB;
-  -ms-animation-name: bounceinB;
-  animation-name: bounceinB;
-}
-
-/* 弹入-从下 */
-@-webkit-keyframes bounceinB {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(-30px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceinB {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-30px);
-  }
-  80% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-/* 弹出-向下 */
-.a-bounceoutB {
-  -webkit-animation-name: bounceoutB;
-  -moz-animation-name: bounceoutB;
-  -ms-animation-name: bounceoutB;
-  animation-name: bounceoutB;
-}
-
-/* 弹出-向下 */
-@-webkit-keyframes bounceoutB {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(100px);
-  }
-}
-@keyframes bounceoutB {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-.detail {
-  color: #1c1c1c;
-  padding: 0 .16rem;
-  text-align: left;
-  margin-bottom: .3rem;
-}
-.detail .title {
-  font-size: .22rem;
-  padding: .12rem 0 .12rem 0;
-  /* fix top-striped first in render bug, should not use margin, 20150813 */
-  line-height: 1.3;
-}
-.detail .count {
-  font-size: .14rem;
-  display: inline-block;
-  vertical-align: top;
-  color: #999999;
-}
-.detail .count span {
-  padding-right: .05rem;
-}
-.detail .gap-point {
-  font-size: .04rem;
-  position: relative;
-  top: -.02rem;
-  color: #999999;
-}
-.detail .cover-img {
-  margin: .18rem 0;
-}
-.detail .cover-img img {
-  width: 100%;
-  /* mark! 20150826 */
-  max-width: 450px;
-  margin: 0 auto;
-}
-.detail .content {
-  margin-top: .15rem;
-  /* mark 20150826 */
-}
-.detail .content img {
-  width: 100%;
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-.detail .content h1 {
-  font-size: .22rem;
-}
-.detail .content h2 {
-  font-size: .20rem;
-}
-.detail .content h3 {
-  font-size: .18rem;
-}
-.detail .content h4 {
-  font-size: .16rem;
-}
-.detail .content h1, .detail .content h2, .detail .content h3, .detail .content h4, .detail .content h5, .detail .content h6 {
-  margin: .1rem 0;
-}
-.detail .content dd, .detail .content dl, .detail .content dt {
-  margin: 0;
-}
-.detail .content p {
-  font-size: .16rem;
-  text-indent: 2em;
-  line-height: 1.7;
-  margin-bottom: .16rem;
-  position: relative;
-  word-break: break-all;
-  color: #444242;
-}
-.detail .content iframe {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-}
-.detail .task-helper-btn {
-  width: 60%;
-  height: .44rem;
-  line-height: .44rem;
-  margin: 0 auto;
-  font-size: 16px;
-  color: #fff;
-  background-color: #64c400;
-  text-align: center;
-  border-radius: 3px;
-}
-.detail .shareMask {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(6, 6, 6, 0.9);
-  padding: .3rem;
-  padding-top: .2rem;
-  min-height: 8rem;
-  z-index: 999;
-}
-.detail .shareMask .task-shareMask-tip-text {
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-  position: absolute;
-  top: .68rem;
-  left: 50%;
-  margin-left: -.4rem;
-}
-.detail .shareMask img {
-  margin: 0 auto;
-}
-.detail .shareMask img.wxShareIcon {
-  display: block;
-  width: 1rem;
-  margin-top: .3rem;
-  margin-bottom: .3rem;
-}
-.detail .shareMask img.shareMaskBottom {
-  margin-top: 0;
-}
-.detail .shareMask .iKnow {
-  width: 100%;
-  height: .4rem;
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-  margin-top: .5rem;
-}
-.detail .pageinfo {
-  text-align: left;
-}
-.detail .pageinfo .like-num-wrapper {
-  margin: .1rem auto;
-  text-align: center;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: .2rem;
-}
-.detail .pageinfo .like-num-update {
-  /*color: $main-green;*/
-}
-.detail .pageinfo .isShared {
-  color: #00abfd;
-}
-.detail .pageinfo .share, .detail .pageinfo .visit, .detail .pageinfo .like {
-  display: inline-block;
-  height: .3rem;
-  line-height: .3rem;
-  font-size: .14rem;
-  position: relative;
-  top: .2rem;
-  margin-right: .1rem;
-}
-.detail .pageinfo .share .icon, .detail .pageinfo .visit .icon, .detail .pageinfo .like .icon {
-  width: .16rem;
-  height: .16rem;
-  display: inline-block;
-}
-.detail .pageinfo .share .icon-share, .detail .pageinfo .visit .icon-share, .detail .pageinfo .like .icon-share {
-  background-image: url(../../../assets/images/iconfont-share.png);
-}
-.detail .pageinfo .share .icon-visit, .detail .pageinfo .visit .icon-visit, .detail .pageinfo .like .icon-visit {
-  background-image: url(../../../assets/images/iconfont-yuedu.png);
-}
-.detail .pageinfo .share .icon-like, .detail .pageinfo .visit .icon-like, .detail .pageinfo .like .icon-like {
-  background-image: url(../../../assets/images/iconfont-like.png);
-  position: relative;
-  top: -.02rem;
-}
-.detail .pageinfo .share .hasLiked, .detail .pageinfo .visit .hasLiked, .detail .pageinfo .like .hasLiked {
-  color: #00abfd;
-  background-image: url(../../../assets/images/iconfont-hasLiked.png);
-}
-.detail .pageinfo .report {
-  float: right;
-  position: relative;
-  top: .24rem;
-  font-size: .14rem;
-  color: #999999;
-}
-
-/* activity start */
-.infoCollect-wrapper {
-  text-align: center;
-}
-.infoCollect-wrapper .sign-up-btn-wrapper {
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.infoCollect-wrapper .sign-btn {
-  position: relative;
-  left: 0;
-  width: 100%;
-  display: inline-block;
-  border: none;
-  border-radius: 0;
-  height: .44rem;
-  line-height: .44rem;
-}
-
-.activity-info-form {
-  text-align: center;
-  background-color: #fff;
-  padding: .1rem;
-  border-radius: 3px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-.activity-info-form-title {
-  text-align: center;
-  margin: .1rem;
-}
-.activity-info-form .yo-btn {
-  margin-top: .1rem;
-  margin-bottom: .1rem;
-}
-
-.btn-scoreAward {
-  border: none;
-  /* overwrite */
-  display: block;
-  width: 92%;
-  height: .3rem;
-  line-height: .30rem;
-  margin: 0 auto;
-  margin-top: .1rem;
-  background-color: #F25454;
-  color: #fff;
-}
-
-/* activity end */
 #header, .yo-header {
   z-index: 100000 !important;
 }
 
-/* yo-font-face start */
-@font-face {
-  font-family: yofont;
-  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
-}
-.yo-ico {
-  font-family: yofont !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  vertical-align: middle;
-}
-
-/* yo-font-face end */
 /* yo-header start */
 .yo-header {
   position: relative;
@@ -2740,5 +1288,30 @@ select {
 }
 
 /* yo-header end */
+/* yo-header patch start, fix for header */
+#header {
+  background-color: #323436;
+  border-bottom: 0 none;
+  z-index: 999;
+}
+#header .affirm {
+  color: #fff;
+}
+#header .regret {
+  padding-left: .10rem;
+}
+#header .title {
+  font-weight: bold;
+  font-size: .2rem;
+}
+
+.yo-header > .regret.yo-ico,
+.yo-header > .regret > .yo-ico,
+.yo-header > .affirm.yo-ico,
+.yo-header > .affirm > .yo-ico {
+  color: #fff;
+}
+
+/* yo-header patch end */
 
 /*# sourceMappingURL=question.css.map */

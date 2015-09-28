@@ -114,13 +114,16 @@ define([], function() {
     });
 
     // disabled the navigator
+    var state = avalon.vmodels.root.currentState;
     avalon.vmodels.root.$watch('currentRendered', function(rendered) {
-        if (rendered === false) {
-            site.navBarMaskShow = true;
-        } else {
-            setTimeout(function() {
-                site.navBarMaskShow = false;
-            }, 96);
+        if (state === 'list') {
+            if (rendered === false) {
+                site.navBarMaskShow = true;
+            } else {
+                setTimeout(function() {
+                    site.navBarMaskShow = false;
+                }, 96);
+            }
         }
     });
 

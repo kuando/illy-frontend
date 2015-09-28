@@ -4,6 +4,7 @@ $task-progress-bgcolor: #fff;
 $task-progress-inner-bgColor: #EF7549;
 $task-progress-radius: 10px;
 $taskList-img-height: .67rem;
+
 .top-area-common {
     width: 30%;
     height: 1rem;
@@ -13,7 +14,7 @@ $taskList-img-height: .67rem;
 
 .task-list {
     width: 100%;
-    min-height: 7rem;
+    min-height: $min-viewport-height;
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;

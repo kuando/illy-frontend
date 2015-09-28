@@ -1,20 +1,4 @@
-/**
- *  for index
- *  20150924
- *  
- */
-
-@import "../_var.scss";
-@import "../_animation_part.scss";
-
-@mixin center {
-    position: fixed;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
+/* question index start */
 
 $camera-ask-size: 2rem;
 
@@ -40,7 +24,7 @@ $camera-ask-size: 2rem;
         height: $camera-ask-size;
         border-radius: 50%;
         background-color: #fff;
-        @include center;
+        @include display-center;
 
         .camera-img {
 
@@ -74,3 +58,5 @@ $camera-ask-size: 2rem;
 
 
 }
+
+/* question index end */

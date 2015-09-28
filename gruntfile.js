@@ -34,8 +34,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 ]
             },
 
-            commonscss: {
-                files: ['public/assets/styles/src/scss/*.scss'],
+            basescss: {
+                files: ['public/assets/styles/src/scss/base/**/*.scss'],
                 tasks: ['sass:microsite', 'sass:homework', 'sass:task', 'sass:question']
             },
 

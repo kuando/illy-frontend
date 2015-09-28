@@ -5,6 +5,12 @@
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月13日 星期一 18时01分34秒
  ******************************************************/
+/*******************************************************
+> File Name: common.scss
+> Author: IndexXuan
+> Mail: indexxuan@gmail.com
+> Created Time: 2015年07月13日 星期一 18时38分20秒
+ ******************************************************/
 article,
 aside,
 details,
@@ -239,23 +245,6 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0;
 }
 
-/*******************************************************
-> File Name: common.scss
-> Author: IndexXuan
-> Mail: indexxuan@gmail.com
-> Created Time: 2015年07月13日 星期一 18时38分20秒
- ******************************************************/
-/* common vars start */
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
-/* layout vars start */
-/* layout vars end */
-/* homework vars start */
-/* homework vars end */
-/* task me start */
-/* task me end */
 /**
  *  for wxShareMask & others 
  *  created on 201509031750
@@ -382,21 +371,299 @@ input[type="checkbox"], input[type="radio"] {
     transform: translateY(100px);
   }
 }
+/* common vars start */
+/* global silk height */
+/* fixed value for all device */
 /* common vars end */
-/*.illy-container {*/
-/*    max-width: $illy-container-width;*/
-/*    margin: 0 auto;*/
-/*}*/
-/*.silk-container {*/
-/*    max-width: $silk-max-width;*/
-/*    margin: 0 auto;*/
-/*}*/
+/* yo-font-face start */
+@font-face {
+  font-family: yofont;
+  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
+}
+.yo-ico {
+  font-family: yofont !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
+/* yo-font-face end */
+/* global reboot start */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* for root(html) rem, with different dpr attribute */
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  html[ios="true"] {
+    font-size: 200px;
+  }
+}
+@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+  html[ios="true"] {
+    font-size: 300px;
+  }
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  page-break-inside: avoid;
+}
+
+/* a tag glabal set */
+a,
+a:active,
+a:visited,
+a:focus,
+a:hover {
+  text-decoration: none;
+  outline: none;
+  /*color: $g_font_color;*/
+  color: inherit;
+}
+
+/* remove touch outline for elements in some device */
+input,
+textarea,
+button,
+select div,
+p,
+a {
+  outline: 0 none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[ms-controller],
+.ms-controller,
+[ms-important],
+.ms-important {
+  visibility: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  /* for global rem */
+  font-size: 100px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100%;
+  background-color: #f1f1f1;
+}
+
+html.native-scrolling {
+  /* 系统原生滚动效果 */
+  height: 100%;
+  overflow-x: hidde;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #333438;
+  font-size: .14rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+big,
+input,
+textarea,
+button,
+select {
+  font-size: inherit;
+}
+
+.icon {
+  width: .16rem;
+  height: .16rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: .05rem;
+}
+
+/* global reboot end */
+/* utils start */
 @media all and (min-device-width: 321px) and (max-device-width: 2049px) {
   .silk-container {
     line-height: 0.38rem !important;
   }
 }
-/** global-dialog start */
+.global-noContent-tip-light {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #fff;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.global-noContent-tip-dark {
+  width: 90%;
+  padding: .3rem;
+  margin: 0 auto;
+  margin-top: .5rem;
+  font-size: .16rem;
+  color: #333438;
+  text-align: left;
+  line-height: 2;
+  text-indent: 2em;
+  border: 2px solid #64c400;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.area {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  z-index: 99999;
+}
+
+.fixed-bottom {
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  margin-bottom: 1px;
+}
+
+ul,
+.unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hide {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.text-hide,
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.block-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.common-bottom-footer {
+  font-size: .14rem;
+  margin: 0;
+  width: 100%;
+  height: .40rem;
+  line-height: .44rem;
+  bottom: 0;
+  left: 0;
+  background-color: #323436;
+  opacity: .9;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.show-more-btn {
+  display: inline-block;
+  width: 100%;
+  height: .44rem;
+  line-height: .44rem;
+  text-align: center;
+}
+
+/* utils end */
+/* gmu dialog start */
 .ui-mask {
   display: block;
   position: fixed;
@@ -541,7 +808,7 @@ background-image: url("../../icons-36-white.png");
     min-height: 1.1em;
   }
 }
-/* global dialog end */
+/* gmu dialog end */
 /* yo-list start */
 .yo-stacked {
   display: block;
@@ -789,7 +1056,7 @@ background-image: url("../../icons-36-white.png");
   content: " )";
 }
 
-/* yo-list end  */
+/* yo-list end */
 /* yo-btn start */
 .yo-btn {
   display: inline-block;
@@ -856,317 +1123,6 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* yo-btn end */
-/* global reset start */
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* for root(html) rem, with different dpr attribute */
-@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-  html[ios="true"] {
-    font-size: 200px;
-  }
-}
-@media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-  html[ios="true"] {
-    font-size: 300px;
-  }
-}
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-  border: 0;
-  page-break-inside: avoid;
-}
-
-/* a tag glabal set */
-a,
-a:active,
-a:visited,
-a:focus,
-a:hover {
-  text-decoration: none;
-  outline: none;
-  color: #333438;
-}
-
-a:active,
-a:visited,
-a:focus,
-a:hover {
-  color: inherit;
-}
-
-input,
-textarea,
-button,
-select
-div,
-p,
-a {
-  outline: 0 none;
-  /* mark! key! remove outline */
-  -webkit-tap-highlight-color: transparent;
-  /* remove touch outline */
-}
-
-/* global reset end */
-/* util start */
-/* empty content tip */
-.global-noContent-tip-light {
-  width: 90%;
-  padding: .3rem;
-  margin: 0 auto;
-  margin-top: .5rem;
-  font-size: .16rem;
-  color: #fff;
-  text-align: left;
-  line-height: 2;
-  text-indent: 2em;
-  border: 2px solid #64c400;
-  border-radius: 10px;
-  background-color: white;
-}
-
-.global-noContent-tip-dark {
-  width: 90%;
-  padding: .3rem;
-  margin: 0 auto;
-  margin-top: .5rem;
-  font-size: .16rem;
-  color: #333438;
-  text-align: left;
-  line-height: 2;
-  text-indent: 2em;
-  border: 2px solid #64c400;
-  border-radius: 10px;
-  background-color: white;
-}
-
-/* empty content tip */
-.area {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.tac {
-  text-align: center;
-}
-
-.tal {
-  text-align: left;
-}
-
-.tar {
-  text-align: right;
-}
-
-/* float */
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-/* 单行文字溢出省略号显示*/
-.text-overflow {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* Fixed */
-.fixed-top {
-  position: fixed;
-  top: 0;
-  bottom: auto;
-  z-index: 99999;
-}
-
-.fixed-bottom {
-  position: fixed;
-  top: auto;
-  bottom: 0;
-  margin-bottom: 1px;
-}
-
-/*  ul */
-ul, .unstyled {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.hide {
-  display: none !important;
-}
-
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-.show {
-  display: block !important;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.text-hide, .hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-
-/* 块状元素水平居中 */
-.block-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* custom page start */
-[ms-controller], .ms-controller, [ms-important], .ms-important {
-  visibility: hidden;
-}
-
-html, body {
-  width: 100%;
-  font-size: 100px;
-  /* for global rem */
-  line-height: 1.5;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 100%;
-  background-color: #f1f1f1;
-}
-
-html.native-scrolling {
-  /* 系统原生滚动效果 */
-  height: 100%;
-  overflow-x: hidde;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-body {
-  font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-  text-align: center;
-  background-color: #f1f1f1;
-  color: #333438;
-  font-size: .14rem;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-small,
-big,
-input,
-textarea,
-button,
-select {
-  font-size: inherit;
-}
-
-.icon {
-  width: .16rem;
-  height: .16rem;
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100%;
-  vertical-align: middle;
-  margin-right: .05rem;
-}
-
-/* fix for header's back-index */
-#header, .yo-header {
-  background-color: #323436;
-  z-index: 999;
-}
-#header .affirm, .yo-header .affirm {
-  color: #fff;
-}
-#header .title, .yo-header .title {
-  font-weight: bold;
-  font-size: .2rem;
-}
-
-.yo-header > .regret.yo-ico, .yo-header > .regret > .yo-ico, .yo-header > .affirm.yo-ico, .yo-header > .affirm > .yo-ico {
-  color: #fff;
-}
-
-/* global common footer start */
-.site {
-  min-height: 5.5rem;
-  /* for layout */
-}
-.site, .site-footer {
-  font-size: .14rem;
-}
-.site-footer {
-  margin: 0;
-  width: 100%;
-  height: .40rem;
-  line-height: .44rem;
-  bottom: 0;
-  left: 0;
-  background-color: #323436;
-  opacity: .9;
-  color: whitesmoke;
-  font-weight: bold;
-}
-
-/* global common footer end */
-.show-more-btn {
-  display: inline-block;
-  width: 100%;
-  height: .44rem;
-  line-height: .44rem;
-  text-align: center;
-}
-
-/* yo-font-face start */
-@font-face {
-  font-family: yofont;
-  src: url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.woff) format("woff"), url(http://source.qunarzz.com/fonts/yo/1.0.0/yofont.ttf) format("truetype");
-}
-.yo-ico {
-  font-family: yofont !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  vertical-align: middle;
-}
-
-/* yo-font-face end */
 /* yo-header start */
 .yo-header {
   position: relative;
@@ -1238,6 +1194,31 @@ select {
 }
 
 /* yo-header end */
+/* yo-header patch start, fix for header */
+#header {
+  background-color: #323436;
+  border-bottom: 0 none;
+  z-index: 999;
+}
+#header .affirm {
+  color: #fff;
+}
+#header .regret {
+  padding-left: .10rem;
+}
+#header .title {
+  font-weight: bold;
+  font-size: .2rem;
+}
+
+.yo-header > .regret.yo-ico,
+.yo-header > .regret > .yo-ico,
+.yo-header > .affirm.yo-ico,
+.yo-header > .affirm > .yo-ico {
+  color: #fff;
+}
+
+/* yo-header patch end */
 /* yo-checked start */
 .yo-checked {
   display: inline-block;
@@ -1397,13 +1378,13 @@ select {
 }
 
 /* yo-checked end */
-.yo-header {
-  background-color: #64c400;
-}
-
 /* global start */
 .app {
-  min-height: 5.5rem;
+  min-height: 7.36rem;
+}
+
+.yo-header {
+  background-color: #64c400;
 }
 
 /* global end */
@@ -1519,75 +1500,6 @@ select {
 }
 
 /* list-item end */
-/* info start */
-.info {
-  text-align: center;
-  max-width: 450px;
-  margin: 0 auto;
-}
-.info audio {
-  width: 2rem;
-  font-size: 16px;
-}
-.info .keyPointRecord-area {
-  width: 100%;
-  background-color: #fff;
-  padding: .1rem;
-}
-
-.panel {
-  text-align: left;
-  display: inline-block;
-  width: 96%;
-  margin-top: .15rem;
-  padding-bottom: .3rem;
-  overflow: hidden;
-}
-.panel .yo-list {
-  padding-left: .05rem;
-  /* rewrite for info panel */
-  padding-right: .05rem;
-}
-.panel .item {
-  align-items: baseline;
-}
-.panel .mark {
-  width: 23%;
-}
-.panel .flex {
-  width: 75%;
-}
-.panel .playRecord {
-  top: 54%;
-  font-size: .14rem;
-  color: #999999;
-  height: .6rem;
-  line-height: .59rem;
-  background-image: url(../../../assets/images/playing.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.panel .playRecord .record-total-time {
-  /* 录音时长 */
-  position: relative;
-  left: -.01rem;
-}
-.panel .playRecord.playing {
-  background-image: url(../../../assets/images/playing.gif);
-}
-.panel .go-question {
-  display: block;
-  width: 98%;
-  margin: 0 auto;
-  background: #64c400;
-  border-color: #64c400;
-  margin-top: .2rem;
-  border-radius: .05rem;
-  font-size: .2rem;
-}
-
-/* info end */
 /* question start */
 .yo-list {
   padding-left: .1rem;
@@ -1624,7 +1536,6 @@ select {
   height: auto;
 }
 .illy-img-list label.item .yo-checked {
-  /*float: left;*/
   margin-bottom: .05rem;
 }
 
@@ -1938,7 +1849,76 @@ select {
 }
 
 /* question end */
-/* result start */
+/* homework-info start */
+.info {
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+}
+.info audio {
+  width: 2rem;
+  font-size: 16px;
+}
+.info .keyPointRecord-area {
+  width: 100%;
+  background-color: #fff;
+  padding: .1rem;
+}
+
+.panel {
+  text-align: left;
+  display: inline-block;
+  width: 96%;
+  margin-top: .15rem;
+  padding-bottom: .3rem;
+  overflow: hidden;
+}
+.panel .yo-list {
+  padding-left: .05rem;
+  /* rewrite for info panel */
+  padding-right: .05rem;
+}
+.panel .item {
+  align-items: baseline;
+}
+.panel .mark {
+  width: 23%;
+}
+.panel .flex {
+  width: 75%;
+}
+.panel .playRecord {
+  top: 54%;
+  font-size: .14rem;
+  color: #999999;
+  height: .6rem;
+  line-height: .59rem;
+  background-image: url(../../../assets/images/playing.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.panel .playRecord .record-total-time {
+  /* 录音时长 */
+  position: relative;
+  left: -.01rem;
+}
+.panel .playRecord.playing {
+  background-image: url(../../../assets/images/playing.gif);
+}
+.panel .go-question {
+  display: block;
+  width: 98%;
+  margin: 0 auto;
+  background: #64c400;
+  border-color: #64c400;
+  margin-top: .2rem;
+  border-radius: .05rem;
+  font-size: .2rem;
+}
+
+/* homework-info end */
+/* homework-result start */
 .result {
   margin-top: 0;
   padding-top: .5rem;
@@ -2001,16 +1981,15 @@ select {
   border: none;
 }
 
-/* result end */
-/* evaluation start */
+/* homework-result end */
+/* homework-evaluation start */
 .evaluation .profile-wrapper {
   position: relative;
   /*background-color:  rgba(79, 74, 74, .1);   */
-  color: #FFF;
+  color: #fff;
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  /* background-image: url(../../build/images/evaluation-bg.png); */
   background-color: #43d1d5;
 }
 .evaluation .profile-wrapper .inner-wrapper {
@@ -2028,8 +2007,8 @@ select {
 }
 .evaluation .avatar-wrapper img {
   display: inline-block;
-  width: 90px;
-  max-height: 90px;
+  width: 0.9rem;
+  max-height: 0.9rem;
   height: auto;
   border-radius: 50%;
   border: 2px solid #fff;
@@ -2168,7 +2147,6 @@ select {
 }
 .evaluation .timeline-inner .timeline-item .time {
   width: 27%;
-  /* 27% */
   position: relative;
   top: .01rem;
   color: #43d1d5;
@@ -2181,7 +2159,6 @@ select {
 }
 .evaluation .timeline-inner .timeline-item .right-info {
   width: 62%;
-  /* 62% */
   margin-left: 9%;
 }
 .evaluation .timeline-inner .timeline-item .right-info img.avatar {
@@ -2190,10 +2167,15 @@ select {
   position: absolute;
   left: 27%;
   margin-left: -.12rem;
-  /* new way for all device */
+  /* new way for mobile device */
   top: .48rem;
   z-index: 9;
   border-radius: 50%;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .evaluation .timeline-inner .timeline-item .right-info img.avatar {
+    margin-left: -0.04rem !important;
+  }
 }
 .evaluation .timeline-inner .timeline-item .right-info .homework-title {
   width: 62%;
@@ -2214,7 +2196,6 @@ select {
   color: #fff;
   margin-top: .35rem;
   word-break: break-all;
-  /* mark */
   text-align: justify;
 }
 .evaluation .timeline-inner .timeline-item .right-info .evaluation-text:before {
@@ -2229,7 +2210,7 @@ select {
   left: -.12rem;
 }
 
-/* evaluation end */
+/* homework-evaluation end */
 /**
  * iPhone 4/4s 
  */

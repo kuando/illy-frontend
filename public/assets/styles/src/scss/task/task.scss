@@ -5,43 +5,14 @@
 > Created Time: 2015年07月30日 星期四16时41分34秒
  ******************************************************/
 
-/* vars start */
-
-/* vars end */
-
-@import "../_normalize.scss";
-@import "../_common.scss";
+@import "../base/base";
 
 .img-bg {
     width: 100%;
 }
 
-/* yo-input start */
-/*.yo-input {*/
-  /*width: 100%;*/
-  /*height: 0.44rem;*/
-  /*padding: 0.1rem;*/
-  /*border: 1px solid #ccc;*/
-  /*border-radius: 0.02rem;*/
-  /*-webkit-background-clip: padding-box !important;*/
-  /*background-clip: padding-box !important;*/
-  /*background-color: transparent;*/
-  /*vertical-align: top;*/
-/*}*/
- 
-/*.yo-input,*/
-/*.yo-input::-webkit-inner-spin-button {*/
-  /*-webkit-appearance: none;*/
-  /*appearance: none;*/
-/*}*/
-
-/*.yo-input::-webkit-input-placeholder {*/
-  /*color: #bbb;*/
-/*}*/
-/* yo-input end */
-
 .task {
-    min-height: 5.5rem; 
+    min-height: $min-viewport-height; 
 
     &, &-footer {
         font-size: .14rem;
@@ -116,23 +87,17 @@
 }
 /* koudai jinbi end */
 
-/* taskList start */
-@import "./_taskList.scss";
-/* taskList end */
+// taskList start 
+@import "taskList";
 
-/* detail start */
-@import "../microsite/article.scss";
-/* detail end */
+// detail start
+@import "../microsite/article";
 
-/* mall start */
-@import "./_mall.scss";
-/* mall end */
+// mall start
+@import "mall";
 
-/* rank start */
-@import "./_rank.scss";
-/* rank end */
+// rank start
+@import "rank";
 
-/* me start */
-@import "./_me.scss";
-/* me end */
-
+// me start
+@import "me";

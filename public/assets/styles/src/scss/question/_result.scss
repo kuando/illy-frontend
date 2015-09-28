@@ -1,10 +1,10 @@
-@import "_list.scss";
-@import "_history.scss";
+@import "list";
+@import "history";
 
-$navigator-size: .34rem;
+$q-navigator-size: .34rem;
 .navigator-ul {
-    height: $navigator-size;
-    line-height: $navigator-size;
+    height: $q-navigator-size;
+    line-height: $q-navigator-size;
     z-index: $zIndex7 + 1;
     position: relative; /* to make z-index prop effect */
 
@@ -25,5 +25,3 @@ $navigator-size: .34rem;
         float: right;
     }
 }
-
-
