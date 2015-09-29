@@ -18,10 +18,10 @@
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
-            "header@": {
-                templateUrl: "assets/templates/homework/header.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/header.js" + _v
-            },
+            //"header@": {
+                //templateUrl: "assets/templates/homework/header.html", // 指定模板地址
+                //controllerUrl: "scripts/controller/homework/header.js" + _v
+            //},
             "": {
                 templateUrl: "assets/templates/homework/app.html", // 指定模板地址
                 controllerUrl: "scripts/controller/homework/app.js" + _v // 指定控制器地址

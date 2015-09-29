@@ -1123,102 +1123,7 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* yo-btn end */
-/* yo-header start */
-.yo-header {
-  position: relative;
-  height: 0.44rem;
-  line-height: 0.44rem;
-  border-bottom: 1px solid #1ba9ba;
-  background-color: #1ba9ba;
-  color: #fff;
-  font-size: 0.18rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-
-.yo-header > .title {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin: 0 0.6rem;
-}
-
-.yo-header > .regret,
-.yo-header > .affirm {
-  position: absolute;
-  top: 0;
-  width: 0.6rem;
-  cursor: pointer;
-  font-size: 0.14rem;
-}
-
-.yo-header > .regret:active,
-.yo-header > .affirm:active {
-  opacity: .5;
-}
-
-.yo-header > .regret.yo-ico,
-.yo-header > .regret > .yo-ico,
-.yo-header > .affirm.yo-ico,
-.yo-header > .affirm > .yo-ico {
-  color: #fff;
-  /* overwrite */
-  font-size: 0.2rem;
-}
-
-.yo-header > .regret {
-  left: 0;
-  padding-left: 0.15rem;
-  text-align: left;
-}
-
-.yo-header > .affirm {
-  right: 0;
-  padding-right: 0.15rem;
-  text-align: right;
-}
-
-.yo-header-normal {
-  border-color: #ddd;
-  background-color: #eee;
-  color: #212121;
-}
-
-.yo-header-normal > .regret.yo-ico,
-.yo-header-normal > .regret > .yo-ico,
-.yo-header-normal > .affirm.yo-ico,
-.yo-header-normal > .affirm > .yo-ico {
-  color: #212121;
-}
-
-/* yo-header end */
-/* yo-header patch start, fix for header */
-#header {
-  background-color: #323436;
-  border-bottom: 0 none;
-  z-index: 999;
-}
-#header .affirm {
-  color: #fff;
-}
-#header .regret {
-  padding-left: .10rem;
-}
-#header .title {
-  font-weight: bold;
-  font-size: .2rem;
-}
-
-.yo-header > .regret.yo-ico,
-.yo-header > .regret > .yo-ico,
-.yo-header > .affirm.yo-ico,
-.yo-header > .affirm > .yo-ico {
-  color: #fff;
-}
-
-/* yo-header patch end */
+/*@import "../base/yo-header";*/
 /* yo-checked start */
 .yo-checked {
   display: inline-block;
@@ -1521,6 +1426,9 @@ background-image: url("../../icons-36-white.png");
   margin-bottom: .1rem;
   margin-top: 0;
 }
+#slider .ui-slider-item > p {
+  display: none;
+}
 
 .homework-list,
 .mistakeList {
@@ -1534,8 +1442,7 @@ background-image: url("../../icons-36-white.png");
 
 .item-wrapper {
   display: inline-block;
-  padding: .08rem .10rem;
-  margin-top: .05rem;
+  padding: 0rem .08rem .08rem;
   width: 100%;
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
@@ -1572,7 +1479,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .hw-info {
   width: 72%;
-  height: 0.7rem;
+  height: 0.75rem;
   line-height: 1.7;
   font-size: .12rem;
   margin-top: -.02rem;
@@ -1597,7 +1504,7 @@ background-image: url("../../icons-36-white.png");
   white-space: nowrap;
   text-overflow: ellipsis;
   position: relative;
-  top: .03rem;
+  top: .01rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count {
   display: inline-block;
@@ -1620,7 +1527,6 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
   background-image: url(../../../assets/images/iconfont-smile.png);
-  width: .15rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-score {
   background-image: url(../../../assets/images/iconfont-score.png);
@@ -1628,7 +1534,7 @@ background-image: url("../../icons-36-white.png");
 .item-wrapper .item .list-card .todo {
   position: absolute;
   right: .01rem;
-  top: .23rem;
+  top: .25rem;
   background-image: url(../../../assets/images/iconfont-jiaru.png);
   width: 24px;
   height: 24px;
