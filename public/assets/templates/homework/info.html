@@ -2,12 +2,14 @@
 
     <div class="panel">
 
+        <div class="silk-common silk-container homework-info-silk">作业详情</div>
+
         <ul class="yo-list yo-list-group">
             <li class="item" ms-if="title != ''">
                 <div class="flex tac">{{title}}</div>
             </li>
             <li class="item" ms-if="keyPoint != ''">
-                <div class="flex">{{keyPoint | html}}</div>
+                <div class="flex keyPoint">{{keyPoint | html}}</div>
             </li>
             <li class="keyPointRecord-area area" ms-if="keyPointRecord != undefined">
                 <div class="tac">

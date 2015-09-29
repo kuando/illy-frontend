@@ -7,34 +7,9 @@
 
 @import "../base/base";
 
-.img-bg {
-    width: 100%;
-}
-
 .task {
     min-height: $min-viewport-height; 
-
-    &, &-footer {
-        font-size: .14rem;
-    }
-
 } 
-
-/* common silk style */
-.silk-common {
-    width: 100%;
-    height: $silk-height;
-    line-height: .32rem;
-    background-repeat: no-repeat;
-    background-size: 98%;
-    background-position: center top;
-    position: absolute;
-    left: 0;
-    top: -($silk-height / 2);
-    text-align: center;
-    color: #fff;
-    font-size: .18rem;
-}
 
 /* koudai jinbi start */
 .koudai-wrapper {
@@ -87,17 +62,18 @@
 }
 /* koudai jinbi end */
 
-// taskList start 
+// taskList
 @import "taskList";
 
-// detail start
+// detail
 @import "../microsite/article";
 
-// mall start
+// mall
 @import "mall";
 
-// rank start
+// rank
 @import "rank";
 
-// me start
+// me 
 @import "me";
+

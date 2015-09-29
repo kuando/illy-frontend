@@ -371,10 +371,6 @@ input[type="checkbox"], input[type="radio"] {
     transform: translateY(100px);
   }
 }
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
@@ -660,6 +656,27 @@ ul,
   height: .44rem;
   line-height: .44rem;
   text-align: center;
+}
+
+.img-bg {
+  width: 100%;
+}
+
+/* common silk style */
+.silk-common {
+  width: 100%;
+  height: 0.6rem;
+  line-height: .32rem;
+  background-repeat: no-repeat;
+  background-size: 98%;
+  background-position: center top;
+  position: absolute;
+  left: 0;
+  top: -0.3rem;
+  text-align: center;
+  color: #fff;
+  font-size: .18rem;
+  z-index: 99;
 }
 
 /* utils end */

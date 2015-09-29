@@ -1,13 +1,22 @@
 /* homework-info start */
+.homework-info-silk {
+    background-image: url(#{$img-dir}/silk-green.png);
+    top: -.4rem;
+}
+
 .info {
     text-align: center;
     max-width: $max-content-width;
     margin: 0 auto;
+    padding-top: .4rem;
 
     audio {
         width: 2rem;
         font-size: 16px;
     }
+    //.keyPoint {
+    //    text-indent: 2em;
+    //}
     .keyPointRecord-area {
         width: 100%;
         background-color: #fff;
@@ -21,7 +30,8 @@
     width: 96%;
     margin-top: .15rem;
     padding-bottom: .3rem;
-    overflow: hidden;
+    position: relative;
+
     .yo-list {
         padding-left: .05rem;
         /* rewrite for info panel */

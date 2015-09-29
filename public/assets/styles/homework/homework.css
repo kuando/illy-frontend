@@ -371,10 +371,6 @@ input[type="checkbox"], input[type="radio"] {
     transform: translateY(100px);
   }
 }
-/* common vars start */
-/* global silk height */
-/* fixed value for all device */
-/* common vars end */
 /* yo-font-face start */
 @font-face {
   font-family: yofont;
@@ -660,6 +656,27 @@ ul,
   height: .44rem;
   line-height: .44rem;
   text-align: center;
+}
+
+.img-bg {
+  width: 100%;
+}
+
+/* common silk style */
+.silk-common {
+  width: 100%;
+  height: 0.6rem;
+  line-height: .32rem;
+  background-repeat: no-repeat;
+  background-size: 98%;
+  background-position: center top;
+  position: absolute;
+  left: 0;
+  top: -0.3rem;
+  text-align: center;
+  color: #fff;
+  font-size: .18rem;
+  z-index: 99;
 }
 
 /* utils end */
@@ -1286,7 +1303,6 @@ background-image: url("../../icons-36-white.png");
 /* global start */
 .app {
   min-height: 7.36rem;
-  background-color: #ddd;
 }
 
 .yo-header {
@@ -1294,7 +1310,6 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* global end */
-/* list-item start */
 /* gmu slider start */
 #slider {
   font-size: .14rem;
@@ -1431,15 +1446,22 @@ background-image: url("../../icons-36-white.png");
 }
 
 .homework-list,
-.mistakeList {
+.mistake-list {
   text-align: left;
+  background-color: #ddd;
+  min-height: 7.36rem;
 }
 
-.mistakeList .show-more-btn {
+.mistake-list {
+  padding-top: .1rem;
+  /* temp */
+}
+.mistake-list .show-more-btn {
   position: relative;
   top: -.05rem;
 }
 
+/* list-item start */
 .item-wrapper {
   display: inline-block;
   padding: 0rem .08rem .08rem;
@@ -1479,7 +1501,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .hw-info {
   width: 72%;
-  height: 0.75rem;
+  height: 0.7rem;
   line-height: 1.7;
   font-size: .12rem;
   margin-top: -.02rem;
@@ -1533,7 +1555,7 @@ background-image: url("../../icons-36-white.png");
 }
 .item-wrapper .item .list-card .todo {
   position: absolute;
-  right: .01rem;
+  right: .05rem;
   top: .25rem;
   background-image: url(../../../assets/images/iconfont-jiaru.png);
   width: 24px;
@@ -1543,7 +1565,6 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* list-item end */
-/* question start */
 .yo-list {
   padding-left: .1rem;
   padding-right: .1rem;
@@ -1891,12 +1912,17 @@ background-image: url("../../icons-36-white.png");
   color: #fff;
 }
 
-/* question end */
 /* homework-info start */
+.homework-info-silk {
+  background-image: url(../../../assets/images/silk-green.png);
+  top: -.4rem;
+}
+
 .info {
   text-align: center;
   max-width: 450px;
   margin: 0 auto;
+  padding-top: .4rem;
 }
 .info audio {
   width: 2rem;
@@ -1914,7 +1940,7 @@ background-image: url("../../icons-36-white.png");
   width: 96%;
   margin-top: .15rem;
   padding-bottom: .3rem;
-  overflow: hidden;
+  position: relative;
 }
 .panel .yo-list {
   padding-left: .05rem;
@@ -2026,9 +2052,12 @@ background-image: url("../../icons-36-white.png");
 
 /* homework-result end */
 /* homework-evaluation start */
+.evaluation {
+  background-color: #f1f1f1;
+  min-height: 7.36rem;
+}
 .evaluation .profile-wrapper {
   position: relative;
-  /*background-color:  rgba(79, 74, 74, .1);   */
   color: #fff;
   background-size: 100%;
   background-position: center top;

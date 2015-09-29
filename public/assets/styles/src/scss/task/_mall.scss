@@ -30,12 +30,13 @@ $mall-item-img-height: 1.2rem;
 
     .mall-wrapper-silk {
         background-image: url(#{$img-dir}/silk-red.png);
+        top: -.1rem; 
     }
 
     .mall-item {
         display: inline-block;
         width: 45%; /* mark! */
-        margin-top: .05rem;
+        margin-top: .10rem;
         margin-left: .10rem;
         background: #fff;
         padding: .03rem 0;

@@ -1,4 +1,4 @@
-/* common vars start */
+// common vars start //
 
 // rewrite to project server in production
 $font-face-src: 'http://source.qunarzz.com/fonts/yo/1.0.0';
@@ -32,21 +32,23 @@ $zIndex5: 999;
 $zIndex6: 8888;
 $zIndex7: 99999;
 
-/* global silk height */
+// global silk height
 $silk-height: .6rem;
-$silk-max-width: 294px; /* fixed value for all device */
+// fixed value for all device
+$silk-max-width: 294px; 
 
 $max-content-width: 450px; // for big screen like ipad's content, you know not more wider more good
 $min-viewport-height: 7.36rem; // iphone6 plus's size
 $g_font_color: $dark-grey;
 
-/* common vars end */
+// common vars end //
 
 // progress
 $progress-bgcolor: $main-blue;
 $progress-color: $main-green;
 $progress-height: .03rem;
 
+// common avatar size
 $avatar-size: .9rem;
 
 // for common use
@@ -55,3 +57,4 @@ $like-color: $light-grey;
 
 // for article content's color
 $article-content-text-color: #444242;
+

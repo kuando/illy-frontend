@@ -650,7 +650,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/index.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/index.js" + _v // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/index.js" + _v, // 指定控制器地址
+                viewCache: true
             }
         }
     })

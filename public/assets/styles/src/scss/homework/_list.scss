@@ -1,0 +1,136 @@
+$list-bgColor: #ddd;
+$homework-list-icon-img-width: 17%;
+$hw_img_height: .45rem;
+$hw-info-height: .70rem;
+$hw-info-color: #7E7F83;
+$item_title_height: .45rem;
+
+.homework-list,
+.mistake-list {
+    text-align: left;
+    background-color: $list-bgColor;
+    min-height: $min-viewport-height;
+}
+
+.mistake-list {
+    padding-top: .1rem; /* temp */
+
+    .show-more-btn {
+        position: relative;
+        top: -.05rem;
+    }
+
+}
+
+/* list-item start */
+
+.item-wrapper {
+    display: inline-block;
+    padding: 0rem .08rem .08rem;
+    width: 100%;
+
+    @include ipad-screen(landscape) {
+        .item {
+            width: 48.0%!important;
+            margin: 0 .07rem;
+        }
+    }
+
+    .item {
+        width: 100%;
+        background-color: #fff;
+        text-align: left;
+        padding: .10rem .08rem;
+        margin-bottom: .1rem;
+        border-radius: 3px;
+
+        .list-card {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            .item-img {
+                width: $homework-list-icon-img-width;
+                max-width: .52rem;
+                margin-left: .02rem;
+                margin-right: .10rem;
+                height: $hw_img_height;
+                border: 1px solid #eee;
+                vertical-align: middle;
+                border: 0;
+                -ms-interpolation-mode: bicubic;
+                position: relative;
+                top: .11rem;
+            }
+            // 右侧作业信息
+            .hw-info {
+                width: 72%;
+                height: $hw-info-height;
+                line-height: 1.7;
+                font-size: .12rem;
+                margin-top: -.02rem;
+                color: $hw-info-color;
+
+                .item-title {
+                    width: 92%;
+                    margin-top: .01rem;
+                    max-height: $item_title_height;
+                    word-break: break-all;
+                    color: #373434;
+                    font-size: .16rem;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .time {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 92%;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    position: relative;
+                    top: .01rem; // fix
+                }
+                .finish_count {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 49%;
+                    position: relative;
+                    top: .05rem;
+                    max-height: .24rem;
+                    overflow: hidden;
+
+                    .icon {
+                        width: .16rem;
+                        height: .16rem;
+                        display: inline-block;
+                        vertical-align: middle;
+                        background-size: 100%;
+                        background-repeat: no-repeat;
+                        margin-right: .06rem;
+                        margin-top: -0.04rem;
+                    }
+                    .icon-people {
+                        background-image: url(#{$img-dir}/iconfont-smile.png);
+                    }
+                    .icon-score {
+                        background-image: url(#{$img-dir}/iconfont-score.png);
+                    }
+                }
+            }
+            .todo {
+                position: absolute;
+                right: .05rem;
+                top: .25rem;
+                background-image: url(#{$img-dir}/iconfont-jiaru.png);
+                width: 24px;
+                height: 24px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+
+/* list-item end */
+

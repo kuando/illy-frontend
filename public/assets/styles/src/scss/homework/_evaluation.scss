@@ -1,3 +1,5 @@
+$view-bgColor: $g_bgColor;
+
 $evaluation-right-width: 62%;
 $evaluation-left-width: 27%;
 $timeline-line-size: 2px;
@@ -7,10 +9,11 @@ $timeline-white: #fff;
 
 /* homework-evaluation start */
 .evaluation {
+    background-color: $view-bgColor;
+    min-height: $min-viewport-height;
 
     .profile-wrapper {
         position: relative;
-        /*background-color:  rgba(79, 74, 74, .1);   */
         color: #fff;
         background-size: 100%;
         background-position: center top;
@@ -93,7 +96,7 @@ $timeline-white: #fff;
         height: 0px;
         border-width: .18rem .18rem 0 .18rem;
         border-style: solid;
-        border-color: $g_bgColor transparent transparent transparent;
+        border-color: $view-bgColor transparent transparent transparent;
         top: -.02rem;
         left: 50%;
         margin-left: -.18rem;

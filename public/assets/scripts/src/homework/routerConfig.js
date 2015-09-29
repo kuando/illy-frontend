@@ -33,7 +33,8 @@
         views: {
             "": {
                 templateUrl: "assets/templates/homework/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/list.js" + _v // 指定控制器地址
+                controllerUrl: "scripts/controller/homework/list.js" + _v, // 指定控制器地址
+                viewCache: true
             }
         }
     })

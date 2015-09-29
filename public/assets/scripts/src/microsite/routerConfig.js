@@ -28,7 +28,8 @@
         views: {
             "": {
                 templateUrl: "assets/templates/microsite/index.html", // 指定模板地址
-                controllerUrl: "scripts/controller/microsite/index.js" + _v // 指定控制器地址
+                controllerUrl: "scripts/controller/microsite/index.js" + _v, // 指定控制器地址
+                viewCache: true
             }
         }
     })

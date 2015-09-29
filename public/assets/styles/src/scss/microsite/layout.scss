@@ -7,12 +7,12 @@
 
 @import "../base/base";
 
-/* layout vars start */
+// layout vars start //
 
 // for microsite slider's height
 $slider-height: 1.8rem;
 
-/* list page */
+// list page //
 $categories-bgColor: #fff;
 $category-title-color: $dark-grey;
 $item-title-color: $dark-grey;
@@ -30,26 +30,19 @@ $navigator-current-bgColor: $wx-bar-bgColor;
 $navigator-current-text-color: #fff;
 $navigator-text-color: $light-grey;
 
-/* layout vars end */
-
-// gmu component, slider
-@import "../base/gmu-slider";
-
-// gmu componetn, navigator
-@import "../base/_gmu-navigator";
+// layout vars end //
 
 .site {
     min-height: $min-viewport-height;
 }
 
+// gmu componetn, navigator
+@import "../base/_gmu-navigator";
+
+// gmu component, slider
+@import "../base/gmu-slider";
 #slider {
     @include make-slider-container($slider-height, $ms-navigator-height);
-}
-
-a, a:hover {
-    text-decoration: none;
-    color: $g_font_color;
-    cursor: pointer;
 }
 
 /* striped for detail page */
@@ -107,6 +100,7 @@ a, a:hover {
 }
 
 /* common item end */
+
 /* util end */
 
 /* topN start */
@@ -263,5 +257,6 @@ a, a:hover {
 }
 /* list end */
 
-// detail start
+// detail 
 @import "article";
+
