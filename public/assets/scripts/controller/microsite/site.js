@@ -114,8 +114,9 @@ define([], function() {
     });
 
     // disabled the navigator
-    var state = avalon.vmodels.root.currentState;
+    var root = avalon.vmodels.root;
     avalon.vmodels.root.$watch('currentRendered', function(rendered) {
+        var state = root.currentState;
         if (state === 'list') {
             if (rendered === false) {
                 site.navBarMaskShow = true;
@@ -124,6 +125,8 @@ define([], function() {
                     site.navBarMaskShow = false;
                 }, 96);
             }
+        } else {
+            site.navBarMaskShow = false;
         }
     });
 
