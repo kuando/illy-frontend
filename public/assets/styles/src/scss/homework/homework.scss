@@ -9,9 +9,12 @@
 @import "../base/yo-header";
 @import "../base/yo-check";
 
+$slider-height: 1.8rem;
+
 $homework-list-icon-img-width: 17%;
 $hw_img_height: .45rem;
 $hw-info-height: .7rem;
+$hw-info-color: #7E7F83;
 $answer_panel_height: 1.1rem;
 $item_title_height: .45rem;
 $next_radius: $answer_panel_height / 2 + .1rem;
@@ -20,6 +23,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
 
 .app {
     min-height: $min-viewport-height;
+    background-color: #ddd;
 }
 
 .yo-header {
@@ -29,6 +33,11 @@ $next_radius: $answer_panel_height / 2 + .1rem;
 /* global end */
 
 /* list-item start */
+
+@import "../base/gmu-slider";
+#slider {
+    @include make-slider-container($slider-height);
+}
 
 .homework-list,
 .mistakeList {
@@ -46,7 +55,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
 
 .item-wrapper {
     display: inline-block;
-    padding: .05rem;
+    padding: .08rem .10rem;
     margin-top: .05rem;
     width: 100%;
 
@@ -63,9 +72,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
         text-align: left;
         padding: .10rem .08rem;
         margin-bottom: .1rem;
-        border-left: 3px solid $main-green;
         border-radius: 3px;
-        border: 1px solid #ccc;
 
         .list-card {
             display: inline-block;
@@ -81,14 +88,18 @@ $next_radius: $answer_panel_height / 2 + .1rem;
                 vertical-align: middle;
                 border: 0;
                 -ms-interpolation-mode: bicubic;
+                position: relative;
+                top: .11rem;
             }
             // 右侧作业信息
             .hw-info {
                 width: 72%;
                 height: $hw-info-height;
-                line-height: .22rem;
+                line-height: 1.7;
                 font-size: .12rem;
                 margin-top: -.02rem;
+                color: $hw-info-color;
+
                 .item-title {
                     width: 92%;
                     margin-top: .01rem;
@@ -130,20 +141,23 @@ $next_radius: $answer_panel_height / 2 + .1rem;
                         margin-top: -0.04rem;
                     }
                     .icon-people {
-                        background-image: url(#{$img-dir}/task-people.png);
+                        background-image: url(#{$img-dir}/iconfont-smile.png);
+                        width: .15rem;
                     }
                     .icon-score {
-                        background-image: url(#{$img-dir}/result-score.png);
+                        background-image: url(#{$img-dir}/iconfont-score.png);
                     }
                 }
             }
             .todo {
                 position: absolute;
                 right: .01rem;
-                font-size: .22rem;
-                height: $hw-info-height;
-                line-height: $hw-info-height;
-                color: #A99D9D;
+                top: .23rem;
+                background-image: url(#{$img-dir}/iconfont-jiaru.png);
+                width: 24px;
+                height: 24px;
+                background-size: 100%;
+                background-repeat: no-repeat;
             }
         }
     }

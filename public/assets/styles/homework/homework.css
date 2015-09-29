@@ -1381,6 +1381,7 @@ background-image: url("../../icons-36-white.png");
 /* global start */
 .app {
   min-height: 7.36rem;
+  background-color: #ddd;
 }
 
 .yo-header {
@@ -1389,6 +1390,138 @@ background-image: url("../../icons-36-white.png");
 
 /* global end */
 /* list-item start */
+/* gmu slider start */
+#slider {
+  font-size: .14rem;
+  visibility: hidden;
+  height: 1.8rem;
+  margin-bottom: .1rem;
+  margin-top: 0;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  #slider {
+    height: 3.5rem;
+  }
+}
+@imclude ipad-screen(portrait) {
+  #slider {
+    height: 3rem;
+  }
+}
+.ui-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ui-slider-group {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  /*内容不换行*/
+  -webkit-transform: translateZ(0);
+}
+
+.ui-slider-item {
+  background-color: #e3e3e3;
+  text-align: center;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+}
+
+.ui-slider-item {
+  height: 100%;
+}
+
+.ui-slider-item img {
+  width: 100%;
+  background: #E7E7E7 center center no-repeat;
+  height: 100%;
+}
+
+.ui-slider-item > a {
+  display: block;
+  text-decoration: none;
+  /*由于slide-item有3d属性，导致android上最后一个overflow:hidden无效，所以给子集也加个overflow:hidden;*/
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ui-slider-item > p {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: .06rem 0;
+  text-indent: .10rem;
+}
+
+/* slider dots */
+.ui-slider-dots {
+  display: none;
+  position: relative;
+  top: -.25rem;
+  padding: 0 .06rem;
+  /*text-align: right;*/
+}
+
+.ui-slider-dots > b {
+  /* dots to bar, 20150708 */
+  display: inline-block;
+  margin: 0 .04rem;
+  width: .15rem;
+  height: .03rem;
+  background: rgba(144, 144, 144, 0.8);
+}
+
+.ui-slider-dots .ui-state-active {
+  background: #fff;
+}
+
+/*css for pad*/
+@media all and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .ui-slider-item > p {
+    font-size: .16rem;
+    padding: .5em 0;
+    text-indent: .8em;
+  }
+
+  .ui-slider-dots {
+    bottom: .5em;
+    padding-right: .5em;
+  }
+
+  .ui-slider-dots b {
+    margin-right: .5em;
+    width: .5em;
+    height: .5em;
+    border-radius: .25em;
+  }
+}
+/* gmu slider end */
+#slider {
+  font-size: .14rem;
+  visibility: hidden;
+  height: 1.8rem;
+  margin-bottom: .1rem;
+  margin-top: 0;
+}
+
 .homework-list,
 .mistakeList {
   text-align: left;
@@ -1401,7 +1534,7 @@ background-image: url("../../icons-36-white.png");
 
 .item-wrapper {
   display: inline-block;
-  padding: .05rem;
+  padding: .08rem .10rem;
   margin-top: .05rem;
   width: 100%;
 }
@@ -1417,9 +1550,7 @@ background-image: url("../../icons-36-white.png");
   text-align: left;
   padding: .10rem .08rem;
   margin-bottom: .1rem;
-  border-left: 3px solid #64c400;
   border-radius: 3px;
-  border: 1px solid #ccc;
 }
 .item-wrapper .item .list-card {
   display: inline-block;
@@ -1436,13 +1567,16 @@ background-image: url("../../icons-36-white.png");
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
+  position: relative;
+  top: .11rem;
 }
 .item-wrapper .item .list-card .hw-info {
   width: 72%;
   height: 0.7rem;
-  line-height: .22rem;
+  line-height: 1.7;
   font-size: .12rem;
   margin-top: -.02rem;
+  color: #7E7F83;
 }
 .item-wrapper .item .list-card .hw-info .item-title {
   width: 92%;
@@ -1485,18 +1619,21 @@ background-image: url("../../icons-36-white.png");
   margin-top: -0.04rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-people {
-  background-image: url(../../../assets/images/task-people.png);
+  background-image: url(../../../assets/images/iconfont-smile.png);
+  width: .15rem;
 }
 .item-wrapper .item .list-card .hw-info .finish_count .icon-score {
-  background-image: url(../../../assets/images/result-score.png);
+  background-image: url(../../../assets/images/iconfont-score.png);
 }
 .item-wrapper .item .list-card .todo {
   position: absolute;
   right: .01rem;
-  font-size: .22rem;
-  height: 0.7rem;
-  line-height: 0.7rem;
-  color: #A99D9D;
+  top: .23rem;
+  background-image: url(../../../assets/images/iconfont-jiaru.png);
+  width: 24px;
+  height: 24px;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 /* list-item end */

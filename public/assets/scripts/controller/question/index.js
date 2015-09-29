@@ -24,12 +24,12 @@ define([], function() {
                         success: function (res) {
                             index.serverId = res.serverId; // 返回图片的服务器端ID
                             // todo: uploadImageToServer with api
+                            
+                            // temp demo
+                            location.hash = '#!/form';
+                            // avalon.router.go('index.form');
                         }
                     });
-
-                    // temp demo
-                    location.hash = '#!/form';
-                    // avalon.router.go('index.form');
                 }
             });
         }

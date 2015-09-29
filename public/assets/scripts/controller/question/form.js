@@ -7,8 +7,10 @@ define([], function() {
     var form = avalon.define({
         $id: "form",
         visited: false, // first in, no cache
+        imgLocalId: '',
+        imgServerId: '',
         fetchRemoteData: function(apiArgs, data, target) {
-            if (form.visited && needCache) { 
+            if (form.visited) { 
                 avalon.vmodels.root.currentRendered = true;
                 return; 
             }
@@ -40,6 +42,8 @@ define([], function() {
 
             form.visited = avalon.vmodels.root.currentIsVisited;
             // form.fetchRemoteData();
+            form.imgLocalId = avalon.vmodels.index.localImgSrc;
+            form.imgServerId = avalon.vmodels.index.serverId;
             
        };
         // 视图渲染后，意思是avalon.scan完成
