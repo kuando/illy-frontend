@@ -1,6 +1,6 @@
 $list-bgColor: #ddd;
 $homework-list-icon-img-width: 17%;
-$hw_img_height: .45rem;
+$hw_img_height: .49rem;
 $hw-info-height: .70rem;
 $hw-info-color: #7E7F83;
 $item_title_height: .45rem;
@@ -10,10 +10,10 @@ $item_title_height: .45rem;
     text-align: left;
     background-color: $list-bgColor;
     min-height: $min-viewport-height;
+    padding-top: .1rem; /* temp */
 }
 
 .mistake-list {
-    padding-top: .1rem; /* temp */
 
     .show-more-btn {
         position: relative;
@@ -121,7 +121,7 @@ $item_title_height: .45rem;
             .todo {
                 position: absolute;
                 right: .05rem;
-                top: .25rem;
+                top: .22rem;
                 background-image: url(#{$img-dir}/iconfont-jiaru.png);
                 width: 24px;
                 height: 24px;

@@ -22,7 +22,7 @@
 /* global end */
 
 // gmu component, slider
-$slider-height: 1.8rem;
+$slider-height: 1.6rem;
 @import "../base/gmu-slider";
 #slider {
     @include make-slider-container($slider-height);

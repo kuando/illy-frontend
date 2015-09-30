@@ -8,6 +8,17 @@ define([], function() {
     // get config, token
     var token = avalon.illyGlobal.token; 
 
+
+    // var slidersUrlPrefix = './assets/images';
+
+    // var listSliders = [
+    //     {
+    //         image: slidersUrlPrefix + '/hw-list-slider2.png',
+    //         title: 'mistakeList',
+    //         href: '#!/mistake/list'
+    //     }
+    // ];
+
     var list = avalon.define({
 
         $id: "list",
@@ -17,31 +28,6 @@ define([], function() {
         homework: [], // 作业数据
         previews: [], // 预习数据
         offset: 0, // inner var, to fetch data with offset and limit
-        sliders: [
-            {image: './assets/images/slider1.png',
-             title: '温故而知新',
-             href: '#!/mistake/list'
-            },
-            {image: './assets/images/slider2.png',
-             title: '温故而知新',
-             href: '#!/mistake/list'
-            }
-        ],
-        renderSlider: function() {
-            setTimeout(function() {
-                $('#slider').slider({
-                    loop: true,
-                    ready: function() {
-                        setTimeout(function() {
-                            avalon.$('#slider').style.visibility = 'visible';
-                        }, 16); // 1 frame
-                    },
-                    'done.dom': function() {
-
-                    }
-                });
-            }, 32);
-        },
         //isLoading: false, // 正在加载标记
         fetchData: function(type) {
             //list.isLoading = true; // 正在加载标记
@@ -94,7 +80,8 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
-
+            
+            // avalon.vmodels.app.sliders = listSliders;
             // only show loader in the first time, add in 201508282113
             if (list.showLoader) {
                 setTimeout(function() {

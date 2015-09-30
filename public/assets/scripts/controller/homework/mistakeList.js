@@ -8,6 +8,21 @@ define([], function() {
 
     var localLimit = 6;
 
+    // var slidersUrlPrefix = './assets/images';
+
+    // var mistakeListSliders = [
+    //     {
+    //         image: slidersUrlPrefix + '/hw-list-slider1.png',
+    //         title: 'homework',
+    //         href: '#!/'
+    //     },
+    //     {
+    //         image: slidersUrlPrefix + '/hw-list-slider2.png',
+    //         title: 'homework',
+    //         href: '#!/'
+    //     }
+    // ];
+
     var mistakeList = avalon.define({
 
         $id: "mistakeList",
@@ -122,6 +137,7 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
+            // avalon.vmodels.app.sliders = mistakeListSliders;
             mistakeList.isVisited = avalon.vmodels.root.currentIsVisited;
             mistakeList.fetchData();
         };

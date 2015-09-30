@@ -1314,8 +1314,7 @@ background-image: url("../../icons-36-white.png");
 #slider {
   font-size: .14rem;
   visibility: hidden;
-  height: 1.8rem;
-  margin-bottom: .1rem;
+  height: 1.6rem;
   margin-top: 0;
 }
 
@@ -1437,8 +1436,7 @@ background-image: url("../../icons-36-white.png");
 #slider {
   font-size: .14rem;
   visibility: hidden;
-  height: 1.8rem;
-  margin-bottom: .1rem;
+  height: 1.6rem;
   margin-top: 0;
 }
 #slider .ui-slider-item > p {
@@ -1450,12 +1448,10 @@ background-image: url("../../icons-36-white.png");
   text-align: left;
   background-color: #ddd;
   min-height: 7.36rem;
-}
-
-.mistake-list {
   padding-top: .1rem;
   /* temp */
 }
+
 .mistake-list .show-more-btn {
   position: relative;
   top: -.05rem;
@@ -1491,7 +1487,7 @@ background-image: url("../../icons-36-white.png");
   max-width: .52rem;
   margin-left: .02rem;
   margin-right: .10rem;
-  height: 0.45rem;
+  height: 0.49rem;
   border: 1px solid #eee;
   vertical-align: middle;
   border: 0;
@@ -1556,7 +1552,7 @@ background-image: url("../../icons-36-white.png");
 .item-wrapper .item .list-card .todo {
   position: absolute;
   right: .05rem;
-  top: .25rem;
+  top: .22rem;
   background-image: url(../../../assets/images/iconfont-jiaru.png);
   width: 24px;
   height: 24px;

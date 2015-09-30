@@ -80,7 +80,10 @@ define([], function() {
         $ctrl.$onEnter = function(params) {
             
             var _id = params.homeworkId;
-            info.fetchDataForDetailCtrl(_id);
+            var detailVMCachedId = avalon.vmodels.detail.homeworkId;
+            if (detailVMCachedId !== _id) {
+                info.fetchDataForDetailCtrl(_id);
+            }
 
             setTimeout(function() {
                 // 设置好录音时间

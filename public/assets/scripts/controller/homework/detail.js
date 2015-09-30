@@ -15,18 +15,24 @@ define([], function() {
             detail.dropCurrentDoneComfirm();
 
             var app = avalon.vmodels.app; 
-            app.$watch("yesOrNo", function(value) { /* [, oldValue] */
+            app.$watch("yesOrNo", function(value) { // update in 201509301202
                 if (value === true) {
-                    avalon.router.go('app.list');
+                    // avalon.router.go('app.list');
+                    detail.clearCachedData();
                     return ;
                 } 
-                else {
+                if (value === false) {
                     app.$unwatch("yesOrNo");
+                    // not very good way
+                    // history.go(1);
+                    // perfect way, but ios9 ok?
+                    avalon.router.go('app.detail.question', {homeworkId: detail.homeworkId, questionId: avalon.vmodels.question.localAnswers.length});
                 }
             });
 
         } else {
-            avalon.router.go('app.list');
+            // avalon.router.go('app.list');
+            detail.clearCachedData();
             return ;
         }
 
@@ -96,14 +102,14 @@ define([], function() {
             });
         }, // end of submit
         clearCachedData: function() { // 清除缓存数据
-            // 清除detail控制器缓存的统计数据
+            // 清除detail控制器缓存的统计数据& core data
             var detailVM = avalon.getVM('detail');
+            detailVM.homeworkId = ''; // core data, must clear
             detailVM && (detailVM.wrongCollect = []); /* jshint ignore:line */
             detailVM && (detailVM.audioAnswers = []); /* jshint ignore:line */
             // 清除题目页面缓存的统计数据
             var questionVM = avalon.getVM('question'); // bug!!! $model不统一于vm本身
             questionVM && (questionVM.localAnswers = []); /* jshint ignore:line */
-            //avalon.log(avalon.vmodels.question && avalon.vmodels.question.localAnswers);
 
             detail.isDone = false;
             detail.isDoing = false;
@@ -131,11 +137,11 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             // 抽象视图，啥也不做,放到具体视图里做,但会执行
-            detail.clearCachedData(); // 对付后退又进入，最多后退到info页面(还在detail控制范围内)还保存数据
+            // detail.clearCachedData(); // 对付后退又进入，最多后退到info页面(还在detail控制范围内)还保存数据
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-
+            back();
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
