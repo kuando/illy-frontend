@@ -13,13 +13,13 @@ define([], function() {
     var mistakeListSliders = [
         {
             image: slidersUrlPrefix + '/slider-mistake.png',
-            title: 'list',
-            href: '#!/'
+            title: 'mistakeList',
+            href: '#!/mistake/list'
         },
         {
             image: slidersUrlPrefix + '/slider-ask.png',
             title: 'ask',
-            href: './question.html'
+            href: '#!/mistake/list'
         }
     ];
 

@@ -19,7 +19,7 @@ define([], function() {
         {
             image: slidersUrlPrefix + '/slider-ask.png',
             title: 'ask',
-            href: './question.html'
+            href: '#!/mistake/list'
         }
     ];
 

@@ -1,7 +1,7 @@
 // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.1'; 
+    var global_resource_version = '0.0.2'; 
 
     // project domain, by config 
     // @@include('../../../../config/illy_domain.cfg') @@ //
