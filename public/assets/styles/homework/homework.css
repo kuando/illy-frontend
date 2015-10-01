@@ -1448,8 +1448,10 @@ background-image: url("../../icons-36-white.png");
   text-align: left;
   background-color: #ddd;
   min-height: 7.36rem;
-  padding-top: .1rem;
-  /* temp */
+}
+.homework-list #slider,
+.mistake-list #slider {
+  margin-bottom: 0.1rem;
 }
 
 .mistake-list .show-more-btn {
@@ -1474,7 +1476,7 @@ background-image: url("../../icons-36-white.png");
   background-color: #fff;
   text-align: left;
   padding: .10rem .08rem;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
   border-radius: 3px;
 }
 .item-wrapper .item .list-card {
@@ -1483,8 +1485,7 @@ background-image: url("../../icons-36-white.png");
   width: 100%;
 }
 .item-wrapper .item .list-card .item-img {
-  width: 17%;
-  max-width: .52rem;
+  width: 0.49rem;
   margin-left: .02rem;
   margin-right: .10rem;
   height: 0.49rem;
@@ -1493,7 +1494,7 @@ background-image: url("../../icons-36-white.png");
   border: 0;
   -ms-interpolation-mode: bicubic;
   position: relative;
-  top: .11rem;
+  top: .10rem;
 }
 .item-wrapper .item .list-card .hw-info {
   width: 72%;

@@ -3,13 +3,11 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
 
-    var resourcePrefix = 'http://resource.hizuoye.com/';
-    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';
+    // resourcePrefix
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
-    if (!token) {
-        alert("no token error");
-        return;
-    }
+    // defaultAvatarUrl
+    var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
     // 每页大小
     var limit = 6;

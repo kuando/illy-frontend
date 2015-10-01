@@ -14,6 +14,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // project images base src
     var illy_images_base_src = './assets/images';
 
+    // resource base url
+    var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
+
     // global apiBaseUrl
     var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
@@ -222,7 +225,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         token      : token,
         apiBaseUrl : apiBaseUrl,
         illyDomain : illy_domain,
-        imagesBaseSrc: illy_images_base_src
+        imagesBaseSrc: illy_images_base_src,
+        resourceBaseUrl: illy_resource_base_url
 
     };
 

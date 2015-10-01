@@ -4,7 +4,7 @@
     <!-- slider start -->
     <div id="slider">
         <div ms-repeat-slider="sliders" data-repeat-rendered="renderSlider"> <!-- repeat point -->
-            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="'http://resource.hizuoye.com/' + slider.image + '?imageView2/1/w/640/h/320/interlace/1'" /></a>
+            <a ms-attr-href="'#!/detail/' + slider._id"><img ms-src="illy_resource_base + slider.image + '?imageView2/1/w/640/h/320/interlace/1'" /></a>
             <p>{{slider.title}}</p>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <!-- item start -->
         <div class="item-wrapper">
             <a ms-attr-href="'#!/detail/' + item._id" class="item area" ms-repeat-item="hots">
-                <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image+ '?imageView2/1/w/200/h/200/interlace/1'" ms-attr-alt="item.title" />
+                <img class="item-img area" ms-attr-src="illy_resource_base + item.image+ '?imageView2/1/w/200/h/200/interlace/1'" ms-attr-alt="item.title" />
                 <div class="right-area">
                     <div class="created-time">{{item.created | date()}}</div>
                     <h3 class="item-title area">{{item.title}}</h3>
@@ -40,16 +40,16 @@
         <!-- title start -->
         <div class="title-line">
             <h2 class="col-title area">{{category.name}}</h2>
-            <!--<a class="more" ms-attr-href="'#!/' +category.name + '/Id/' + category._id">查看更多</a>-->
             <a class="more" ms-attr-href="'#!/' + category._id"><i class="icon icon-more"></i> 查看更多</a>
         </div>
         <div class="line"></div>
         <!-- title end -->
+
         <!-- item start -->
         <div class="item-wrapper">
             <div class="item area" ms-repeat-item="category.posts">
                 <a ms-attr-href="'#!/detail/' + item._id">
-                    <img class="item-img area" ms-attr-src="'http://resource.hizuoye.com/' + item.image + '?imageView2/1/w/320/h/180/interlace/1'" ms-attr-alt="item.title" />
+                    <img class="item-img area" ms-attr-src="illy_resource_base + item.image + '?imageView2/1/w/320/h/180/interlace/1'" ms-attr-alt="item.title" />
                     <div class="info-area list">
                         <h3 class="item-title text-overflow area">{{item.title}}</h3>
                         <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
@@ -59,6 +59,7 @@
             </div>
         </div>
         <!-- item end -->
+
     </div>
     <!-- categories end -->
 

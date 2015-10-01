@@ -7,7 +7,7 @@ define([], function() {
         avalon.illyGlobal.noTokenHandler();
     }
     
-    var resourcePrefix = 'http://resource.hizuoye.com';
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
     
     var rank = avalon.define({
         $id: "rank",
@@ -35,7 +35,7 @@ define([], function() {
                     if (res.avatar) {
                         rank.avatar = resourcePrefix + res.avatar;
                     } else {
-                        rank.avatar = 'http://resource.hizuoye.com/images/avatar/children/default1.png';
+                        rank.avatar = resourcePrefix + 'images/avatar/children/default1.png';
                     }
                     rank.myRank = res.rank;
                     rank.myScore = res.score;

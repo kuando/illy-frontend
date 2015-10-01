@@ -8,20 +8,20 @@ define([], function() {
 
     var localLimit = 6;
 
-    // var slidersUrlPrefix = './assets/images';
+    var slidersUrlPrefix = './assets/images';
 
-    // var mistakeListSliders = [
-    //     {
-    //         image: slidersUrlPrefix + '/hw-list-slider1.png',
-    //         title: 'homework',
-    //         href: '#!/'
-    //     },
-    //     {
-    //         image: slidersUrlPrefix + '/hw-list-slider2.png',
-    //         title: 'homework',
-    //         href: '#!/'
-    //     }
-    // ];
+    var mistakeListSliders = [
+        {
+            image: slidersUrlPrefix + '/slider-mistake.png',
+            title: 'list',
+            href: '#!/'
+        },
+        {
+            image: slidersUrlPrefix + '/slider-ask.png',
+            title: 'ask',
+            href: './question.html'
+        }
+    ];
 
     var mistakeList = avalon.define({
 
@@ -30,6 +30,22 @@ define([], function() {
         noMistakeListContent: false,
         noContentText: '恭喜你！小学霸。暂时没有错题集，咱们继续努力，再接再厉吧~',
         lists: [], // 作业数据
+        sliders: mistakeListSliders, 
+        renderSlider: function() {
+            setTimeout(function() {
+                $('.illy-container #slider').slider({
+                    loop: true,
+                    ready: function() {
+                        setTimeout(function() {
+                                avalon.$('.illy-container #slider').style.visibility = 'visible';
+                        }, 16); // 1 frame
+                    },
+                    'done.dom': function() {
+
+                    }
+                });
+            }, 332);
+        },
 
         isRecover: false,
         isLoading: false, // 正在加载标记
@@ -119,7 +135,6 @@ define([], function() {
             var homeworkId = arguments[0].getAttribute('data-homeworkid');
             mistakeList.fetchDataForExercises(homeworkId);
         }
-
     });
 
     mistakeList.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way

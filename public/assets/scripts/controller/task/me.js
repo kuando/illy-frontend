@@ -8,11 +8,11 @@ define([], function() {
     var wx = avalon.wx;
 
     // prefix of resource
-    var resourcePrefix = 'http://resource.hizuoye.com/';
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     // avatar manage
     var avatar = {
-        defaultFullUrl: 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200',
+        defaultFullUrl: resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200',
         localId: '',
         serverId: ''
     };

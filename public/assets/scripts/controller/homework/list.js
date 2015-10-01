@@ -8,20 +8,40 @@ define([], function() {
     // get config, token
     var token = avalon.illyGlobal.token; 
 
+    var slidersUrlPrefix = './assets/images';
 
-    // var slidersUrlPrefix = './assets/images';
-
-    // var listSliders = [
-    //     {
-    //         image: slidersUrlPrefix + '/hw-list-slider2.png',
-    //         title: 'mistakeList',
-    //         href: '#!/mistake/list'
-    //     }
-    // ];
+    var listSliders = [
+        {
+            image: slidersUrlPrefix + '/slider-mistake.png',
+            title: 'mistakeList',
+            href: '#!/mistake/list'
+        },
+        {
+            image: slidersUrlPrefix + '/slider-ask.png',
+            title: 'ask',
+            href: './question.html'
+        }
+    ];
 
     var list = avalon.define({
 
         $id: "list",
+        sliders: listSliders,
+        renderSlider: function() {
+            setTimeout(function() {
+                $('.illy-container #slider').slider({
+                    loop: true,
+                    ready: function() {
+                        setTimeout(function() {
+                            avalon.$('.illy-container #slider').style.visibility = 'visible';
+                        }, 16); // 1 frame
+                    },
+                    'done.dom': function() {
+
+                    }
+                });
+            }, 32);
+        },
         noHomeworkContent: false,
         noContentText: '恭喜你小学霸，完成了所有作业，更多精彩，敬请期待!',
         showLoader: true, // only show loader in the first time

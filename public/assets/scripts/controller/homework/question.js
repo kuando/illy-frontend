@@ -402,9 +402,6 @@ define([], function() {
         // 一个重大的问题或者注意事项就是，恢复的顺序问题，很多数据都是有顺序依赖的
         $ctrl.$onEnter = function(params) {
 
-            var loader = document.querySelector('.loader');
-            loader && (loader.style.display = 'none'); /* jshint ignore:line */
-
             // fix old & big bug, 201509101956
             question.homeworkId = avalon.vmodels.detail.homeworkId;
 

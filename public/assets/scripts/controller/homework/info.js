@@ -36,7 +36,7 @@ define([], function() {
                     detail.exercises = json.quiz.exercises;
 
                     var keyPointAudio = avalon.$('.info .keyPointAudio');
-                    keyPointAudio && keyPointAudio.setAttribute('src', 'http://resource.hizuoye.com/' + info.keyPointRecord); /* jshint ignore:line */
+                    keyPointAudio && keyPointAudio.setAttribute('src', avalon.illyGlobal.resourceBaseUrl + info.keyPointRecord); /* jshint ignore:line */
                 },
                 error: function(res) {
                     avalon.illyError("homework exercises ajax error", res);

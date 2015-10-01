@@ -143,6 +143,7 @@ $taskList-img-height: .67rem;
                                 height: $task-progress-height;
                                 background-color: $task-progress-inner-bgColor;
                                 border-radius: $task-progress-radius;
+                                width: 20%; /* default width */
                             }
                         }
                     } // end of progress-wrapper

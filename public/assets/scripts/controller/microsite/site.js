@@ -5,7 +5,7 @@ define([], function() {
     var token = avalon.illyGlobal.token;
 
     // defaultAvatarUrl
-    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
+    var defaultAvatarUrl = avalon.illyGlobal.resourceBaseUrl + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
     // site ctrl take charge of everything...
     var site = avalon.define({ 
@@ -13,6 +13,7 @@ define([], function() {
         $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
+        illy_resource_base: avalon.illyGlobal.resourceBaseUrl,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
         navBarMaskShow: false, // navbar's mask, for loading

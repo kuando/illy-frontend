@@ -8,6 +8,9 @@
     // project images base src
     var illy_images_base_src = './assets/images';
 
+    // resource base url
+    var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
+
     // global apiBaseUrl
     // @@include('../../../../config/illy_apiBaseUrl.cfg') @@ //
     // get the token and ready to cache

@@ -1470,9 +1470,14 @@ background-image: url("../../icons-36-white.png");
 /* common item end */
 /* util end */
 /* topN start */
+.topN .item-wrapper {
+  border-top: 1px solid #ddd;
+  padding-bottom: .1rem;
+}
+
 /* topN end */
 /* categories start */
-.categories, .topN {
+.categories, .topN, .list {
   font-size: .14rem;
   /* normalize the fs*/
   text-align: left;
@@ -1486,11 +1491,9 @@ background-image: url("../../icons-36-white.png");
   max-width: 450px;
 }
 
-[avalonctrl].topN {
+[avalonctrl].list {
   /* list */
   margin-top: 0.39rem;
-  padding: 0;
-  /* key for width 100% navigator */
 }
 
 .categories .item-title {
@@ -1541,11 +1544,9 @@ background-image: url("../../icons-36-white.png");
 }
 
 /* categories end */
-/* list start, just small modify for list */
+/* list start(including index's hots category), just small modify for list */
 .list .item-wrapper, .topN .item-wrapper {
-  border-top: 1px solid #ddd;
-  margin-bottom: -.10rem;
-  /* key! remove last item border-bottom */
+  padding-bottom: .1rem;
 }
 .list .item, .topN .item {
   width: 100%;
@@ -1589,10 +1590,6 @@ background-image: url("../../icons-36-white.png");
 }
 .list .icon-people, .topN .icon-people {
   background-image: url(../../../assets/images/iconfont-yuedu.png);
-}
-
-.list .item-wrapper {
-  margin-top: .1rem;
 }
 
 .info-area .item-title {

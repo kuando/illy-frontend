@@ -27,7 +27,7 @@
                 <div class="rank-div mark" ms-visible="$index < 3"><i ms-attr-class="'icon icon-rank-' + $index"></i></div>
                 <div class="rank-div mark" ms-visible="$index >= 3">{{$index + 1}}</div>
                 <div class="name-div flex">
-                    <img ms-if="item.avatar != undefined" class="avatar rank-body-avatar" ms-attr-src="'http://resource.hizuoye.com/' + item.avatar + '?imageView2/1/w/64/h/64'" ms-attr-alt="item.displayName" />
+                    <img ms-if="item.avatar != undefined" class="avatar rank-body-avatar" ms-attr-src="illy_resource_base + item.avatar + '?imageView2/1/w/64/h/64'" ms-attr-alt="item.displayName" />
                     <div ms-if="item.avatar == undefined" class="avatar avatar-default rank-body-avatar"></div>
                     {{item.displayName}}
                 </div>

@@ -1,8 +1,14 @@
+// 列表背景色
 $list-bgColor: #ddd;
-$homework-list-icon-img-width: 17%;
-$hw_img_height: .49rem;
+// 列表间距
+$item-gap: .1rem;
+// 左侧图标尺寸
+$homework-list-icon-size: .49rem;
+// 右侧作业信息总高度
 $hw-info-height: .70rem;
+// 右侧作业信息文字颜色
 $hw-info-color: #7E7F83;
+// 右侧作业信息行高
 $item_title_height: .45rem;
 
 .homework-list,
@@ -10,7 +16,10 @@ $item_title_height: .45rem;
     text-align: left;
     background-color: $list-bgColor;
     min-height: $min-viewport-height;
-    padding-top: .1rem; /* temp */
+
+    #slider {
+        margin-bottom: $item-gap;
+    }
 }
 
 .mistake-list {
@@ -41,7 +50,7 @@ $item_title_height: .45rem;
         background-color: #fff;
         text-align: left;
         padding: .10rem .08rem;
-        margin-bottom: .1rem;
+        margin-bottom: $item-gap;
         border-radius: 3px;
 
         .list-card {
@@ -49,17 +58,16 @@ $item_title_height: .45rem;
             position: relative;
             width: 100%;
             .item-img {
-                width: $homework-list-icon-img-width;
-                max-width: .52rem;
+                width: $homework-list-icon-size;
                 margin-left: .02rem;
                 margin-right: .10rem;
-                height: $hw_img_height;
+                height: $homework-list-icon-size;
                 border: 1px solid #eee;
                 vertical-align: middle;
                 border: 0;
                 -ms-interpolation-mode: bicubic;
                 position: relative;
-                top: .11rem;
+                top: .10rem;
             }
             // 右侧作业信息
             .hw-info {

@@ -39,7 +39,7 @@ define([], function() {
         var arr = copyArr(source);
         for (var i = 2, len = arr.length; i < len; i++) {
             arr[i] = {
-                key: activity.CopyinfoCollect[i],
+                key: activity.copyinfoCollect[i],
                 value: arr[i]
             };
         }
@@ -84,7 +84,7 @@ define([], function() {
         likeCount: 0,
 
         infoCollect: [],
-        CopyinfoCollect: [],
+        copyinfoCollect: [],
 
         isShared: false, // true, false, 'isShared' default:false
         updateShare: function() { // mean done the task!!!
@@ -220,8 +220,11 @@ define([], function() {
                 activity.shareCount = localCache.shareCount;
                 activity.visitCount = localCache.visitCount;
                 activity.likeCount = localCache.like || 0;
-                activity.infoCollect = localCache.infoCollect[0];
-                activity.CopyinfoCollect = localCache.infoCollect[0];
+                activity.infoCollect = localCache.infoCollect;
+                for (var i = 0, len = activity.infoCollect.length; i < len; i++) {
+                    activity.infoCollect[i] = '';
+                }
+                activity.copyinfoCollect = localCache.infoCollect;
 
                 return; // core!!! key!!! forget this will getCache and request!!!
             }
@@ -248,7 +251,7 @@ define([], function() {
                     for (var i = 0, len = activity.infoCollect.length; i < len; i++) {
                         activity.infoCollect[i] = '';
                     }
-                    activity.CopyinfoCollect = json.infoCollect;
+                    activity.copyinfoCollect = json.infoCollect;
                     activity.theme = json.theme;
                     avalon.setLocalCache(cachedPrefix + activity.taskId, json);
 

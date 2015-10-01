@@ -19,7 +19,8 @@
         token: token,
         apiBaseUrl: apiBaseUrl,
         illyDomain: illy_domain,
-        imagesBaseSrc: illy_images_base_src
+        imagesBaseSrc: illy_images_base_src,
+        resourceBaseUrl: illy_resource_base_url
 
     };
 

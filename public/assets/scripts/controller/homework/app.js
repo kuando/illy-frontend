@@ -6,43 +6,34 @@ define([], function() {
     // token
     var token = avalon.illyGlobal.token;
 
-    var resourcePrefix = 'http://resource.hizuoye.com/';
+    // resourcePrefix
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     // defaultAvatarUrl
-    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
+    var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
-    var slidersUrlPrefix = './assets/images';
+    //var slidersUrlPrefix = './assets/images';
 
-    var slidersData = [
-        {
-            image: slidersUrlPrefix + '/hw-list-slider1.png',
-            title: 'task',
-            href: './task.html'
-        },
-        {
-            image: slidersUrlPrefix + '/hw-list-slider2.png',
-            title: 'mall',
-            href: './task.html#!/mall'
-        },
-        {
-            image: slidersUrlPrefix + '/hw-list-slider1.png',
-            title: 'rank',
-            href: './task.html#!/rank'
-        },
-    ];
+    //var listSliders = [
+    //    {
+    //        image: slidersUrlPrefix + '/hw-list-slider2.png',
+    //        title: 'mistakeList',
+    //        href: '#!/mistake/list'
+    //    }
+    //];
 
-    var mistakeListSliders = [
-        {
-            image: slidersUrlPrefix + '/hw-list-slider1.png',
-            title: 'homework',
-            href: '#!/'
-        },
-        {
-            image: slidersUrlPrefix + '/hw-list-slider2.png',
-            title: 'homework',
-            href: '#!/'
-        }
-    ];
+    //var mistakeListSliders = [
+    //    {
+    //        image: slidersUrlPrefix + '/hw-list-slider1.png',
+    //        title: 'homework',
+    //        href: '#!/'
+    //    },
+    //    {
+    //        image: slidersUrlPrefix + '/hw-list-slider2.png',
+    //        title: 'homework',
+    //        href: '#!/'
+    //    }
+    //];
 
     // app ctrl take charge of everything...
     var app = avalon.define({
@@ -51,23 +42,23 @@ define([], function() {
         $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
-        
-        sliders: [], // source from child vm for custom
-        renderSlider: function() {
-            setTimeout(function() {
-                $('#slider').slider({
-                    loop: true,
-                    ready: function() {
-                        setTimeout(function() {
-                            avalon.$('#slider').style.visibility = 'visible';
-                        }, 16); // 1 frame
-                    },
-                    'done.dom': function() {
+        illy_resource_base: avalon.illyGlobal.resourceBaseUrl,
+        //sliders: [],
+        //renderSlider: function() {
+        //    setTimeout(function() {
+        //        $('.illy-container #slider').slider({
+        //            loop: true,
+        //            ready: function() {
+        //                setTimeout(function() {
+        //                    avalon.$('.illy-container #slider').style.visibility = 'visible';
+        //                }, 16); // 1 frame
+        //            },
+        //            'done.dom': function() {
 
-                    }
-                });
-            }, 32);
-        },
+        //            }
+        //        });
+        //    }, 132);
+        //},
 
         /* common start */
         appMessage: 'I am message from app ctrl',
@@ -156,29 +147,22 @@ define([], function() {
         }
     });
 
-
-    avalon.vmodels.root.$watch('currentState', function(newState) {
-        if (newState !== 'list' && newState !== 'mistakeList') { // view-only
-            avalon.$('#slider').style.display = 'none';
-        } else {
-            // avalon.vmodels.app.sliders = [];
-            // if (newState === 'list') {
-            //     var data = listSliders;
-            //     setTimeout(function() {
-            //         avalon.vmodels.app.sliders = data;
-            //     }, 64);
-            // }
-            // if (newState === 'mistakeList') {
-            //     var data = mistakeListSliders;
-            //     setTimeout(function() {
-            //         avalon.vmodels.app.sliders = data;
-            //     }, 64);
-            // }
-            avalon.vmodels.app.sliders = slidersData;
-            avalon.$('#slider').style.display = '';
-        }
-    });
-
+    //avalon.vmodels.root.$watch('currentState', function(newState) {
+    //    if (newState !== 'list' && newState !== 'mistakeList') { // view-only
+    //        avalon.$('.illy-container #slider').style.display = 'none';
+    //    } else {
+    //        if (newState === 'list') {
+    //            setTimeout(function() {
+    //                avalon.vmodels.app.sliders = listSliders;
+    //            }, 64);
+    //        }
+    //        if (newState === 'mistakeList') {
+    //            setTimeout(function() {
+    //                avalon.vmodels.app.sliders = mistakeListSliders;
+    //            }, 64);
+    //        }
+    //    }
+    //});
 
     return avalon.controller(function($ctrl) {
         // 进入视图

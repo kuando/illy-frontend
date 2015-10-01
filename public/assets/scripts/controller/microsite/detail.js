@@ -12,7 +12,7 @@ define([], function() {
     var cachedPrefix = 'illy-microsite-detail-';
 
     // resource prefix
-    var resourcePrefix = 'http://resource.hizuoye.com/';
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     // cache the view data
     var needCache = true;

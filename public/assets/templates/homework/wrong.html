@@ -37,7 +37,7 @@
     <div class="yo-list yo-list-group illy-img-list" ms-if="exercise.eType === 1" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer">
         <label class="item item-active" ms-class-1="wrong-answer: item.title == exercise.wrongAnswer" ms-repeat-item="exercise.choices" >
             <div class="mark flex" ms-if="exercise.eType === 1">
-                <img ms-attr-src="'http://resource.hizuoye.com/' + item.content + '?imageView2/1/w/150/h/150'" />
+                <img ms-attr-src="illy_resource_base + item.content + '?imageView2/1/w/150/h/150'" />
             </div>
             {{item.title}}
             <div class="yo-checked yo-checked-c">

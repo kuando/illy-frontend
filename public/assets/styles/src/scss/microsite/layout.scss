@@ -37,7 +37,7 @@ $navigator-text-color: $light-grey;
 }
 
 // gmu componetn, navigator
-@import "../base/_gmu-navigator";
+@import "../base/gmu-navigator";
 
 // gmu component, slider
 @import "../base/gmu-slider";
@@ -105,12 +105,15 @@ $navigator-text-color: $light-grey;
 
 /* topN start */
 .topN {
-
+    .item-wrapper {
+        border-top: 1px solid #ddd;
+        padding-bottom: .1rem;
+    }
 }
 /* topN end */
 
 /* categories start */
-.categories, .topN {
+.categories, .topN, .list {
     font-size: .14rem; /* normalize the fs*/
     text-align: left;
     width: 100%;
@@ -123,9 +126,8 @@ $navigator-text-color: $light-grey;
     max-width: $max-content-width;
 }
 
-[avalonctrl].topN { /* list */
+[avalonctrl].list { /* list */
     margin-top: $ms-navigator-height + .05rem;
-    padding: 0; /* key for width 100% navigator */
 }
 
 .categories {
@@ -183,11 +185,10 @@ $navigator-text-color: $light-grey;
 
 /* categories end */
 
-/* list start, just small modify for list */
+/* list start(including index's hots category), just small modify for list */
 .list, .topN {
     .item-wrapper {
-        border-top: 1px solid #ddd;
-        margin-bottom: -.10rem; /* key! remove last item border-bottom */
+        padding-bottom: .1rem;
     }
     .item {
         width: 100%;
@@ -233,12 +234,6 @@ $navigator-text-color: $light-grey;
 
     .icon-people {
         background-image: url(#{$img-dir}/iconfont-yuedu.png);
-    }
-}
-
-.list {
-    .item-wrapper {
-        margin-top: .1rem;
     }
 }
 

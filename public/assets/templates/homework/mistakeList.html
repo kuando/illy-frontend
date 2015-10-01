@@ -1,6 +1,15 @@
 <!-- list start -->
 <div class="list mistake-list" ms-controller="mistakeList">
 
+    <!-- slider and anchor to jump to other place -->
+    <div id="slider">
+        <div ms-repeat-slider="sliders" data-repeat-rendered="renderSlider"> 
+            <a ms-attr-href="slider.href"><img ms-src="slider.image + '?imageView2/1/w/640/h/320/interlace/1'" /></a>
+            <p>{{slider.title}}</p>
+        </div>
+    </div>
+    <!-- slider and anchor to jump to other place -->
+
     <!-- item start -->
     <div class="item-wrapper">
 

@@ -6,10 +6,11 @@ define([], function() {
     // token
     var token = avalon.illyGlobal.token;
     
-    var resourcePrefix = 'http://resource.hizuoye.com/';
+    // resourcePrefix
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     // defaultAvatarUrl
-    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?imageView2/1/w/200/h/200';
+    var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
     // task ctrl take charge of everything...
     var task = avalon.define({
@@ -17,6 +18,7 @@ define([], function() {
         $skipArray: ["illly_domain", "illy_images_base"],
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
+        illy_resource_base: avalon.illyGlobal.resourceBaseUrl,
 
         /* common start */
         appMessage: 'I am message from app ctrl',

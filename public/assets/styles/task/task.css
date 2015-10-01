@@ -1344,6 +1344,8 @@ background-image: url("../../icons-36-white.png");
   height: 0.1rem;
   background-color: #EF7549;
   border-radius: 10px;
+  width: 20%;
+  /* default width */
 }
 .task-list .list-card .right-area .right-bottom-area .go {
   width: 35%;

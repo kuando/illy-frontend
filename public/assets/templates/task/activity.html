@@ -50,8 +50,8 @@
         <div class="activity-info-form yo-list yo-list-group" ms-if="isFilling">
             <p class="activity-info-form-title">请填写报名信息</p>
             <label class="item item-input item-stacked" ms-repeat-item="infoCollect">
-                <span class="hide">{{CopyinfoCollect[$index]}}</span>
-                <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="CopyinfoCollect[$index]" />
+                <span class="hide">{{copyinfoCollect[$index]}}</span>
+                <input type="text" class="yo-input" ms-duplex-string="item" ms-attr-placeholder="copyinfoCollect[$index]" />
             </label>
             <div class="yo-btn yo-btn-info yo-btn-m" ms-click="pushInfo()">确定</div>
             <div class="yo-btn yo-btn-light yo-btn-m" ms-click="cancel()">取消</div>

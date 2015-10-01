@@ -3,8 +3,11 @@ define([], function() {
     // get config, apiBaseUrl
     var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     
-    var resourcePrefix = 'http://resource.hizuoye.com/';
-    var defaultAvatarUrl = 'http://resource.hizuoye.com/images/avatar/children/default1.png?image';
+    // resourcePrefix
+    var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
+
+    // defaultAvatarUrl
+    var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
     
     // get config, token
     var token = avalon.illyGlobal.token; 

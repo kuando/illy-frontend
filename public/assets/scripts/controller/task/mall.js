@@ -6,7 +6,7 @@ define([], function() {
 	var wx = avalon.wx;
     
     //var cachedPrefix = 'illy-task-mall-';
-	var resourcePrefix = 'http://resource.hizuoye.com/';
+	var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     var limit = 6; // 一次抓取多少数据
     var mall = avalon.define({
