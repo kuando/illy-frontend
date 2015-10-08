@@ -481,7 +481,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
         ]);
     });
 
-    // build task 
+    // build task, for local dev and test with source code, almost not using directly
     grunt.registerTask('build', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'clean:dev',
@@ -492,9 +492,10 @@ module.exports = function(grunt) { /* jshint ignore:line */
         ]);
     });
 
-    // release task 
+    // release task, use it before deploy to server
     grunt.registerTask('release', function(target) { /* jshint ignore:line */
         grunt.task.run([
+            'build', // add this to avoid ignoring the grunt build task(like 20151009 hot fix)
             'hint',
             'clean:build',
             'copy:fonts',

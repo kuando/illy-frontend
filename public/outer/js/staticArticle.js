@@ -4,7 +4,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
     var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
 
-    var resourcePrefix = 'http://resource.hizuoye.com/';
+    var resourcePrefix = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     /* wxsdk start */
 

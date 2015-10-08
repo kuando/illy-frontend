@@ -17,7 +17,7 @@ define([], function() {
             href: '#!/mistake/list'
         },
         {
-            image: slidersUrlPrefix + '/slider-ask.png',
+            image: slidersUrlPrefix + '/slider-question.png',
             title: 'ask',
             href: '#!/mistake/list'
         }

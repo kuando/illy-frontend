@@ -22,13 +22,17 @@ $title-line-height: .36rem;
 $ms-img-height: .80rem;
 $item_title_height: .45rem;
 
-// microsite list navigator
-$ms-navigator-height: .34rem;
+// microsite scroller-navigator
+// $ms-navigator-height: .34rem;
+$ms-navigator-height: 0;
 $navigator-home-width: .5rem;
 $navigator-color: $wx-bar-bgColor;
 $navigator-current-bgColor: $wx-bar-bgColor;
 $navigator-current-text-color: #fff;
 $navigator-text-color: $light-grey;
+
+// navigator-panel
+$navigator-item-height: .34rem;
 
 // layout vars end //
 
@@ -103,6 +107,25 @@ $navigator-text-color: $light-grey;
 
 /* util end */
 
+.navigator-panel {
+    background-color: $categories-bgColor;
+
+    .navigator-item {
+        display: inline-block;
+        width: 32%;
+        height: $navigator-item-height;
+        line-height: $navigator-item-height;
+        vertical-align: bottom;
+        font-size: 14px;
+        color: $dark-grey;
+
+        .yo-ico {
+            font-size: 10px;
+            margin-right: .05rem;
+            color: $main-green;
+        }
+    }
+}
 /* topN start */
 .topN {
     .item-wrapper {
