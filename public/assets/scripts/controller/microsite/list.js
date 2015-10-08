@@ -15,6 +15,7 @@ define([], function() {
     var list = avalon.define({
 
         $id: "list",
+        //currentCategoryName: '热门文章',
         visited: false, // first in, no data
         lists: [], 
         categoryId: 111111111111111111111111,
@@ -126,6 +127,15 @@ define([], function() {
 
             // deal with all other column
             list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: 0}, 'lists', false);
+
+            //list.currentCategoryName = '热门文章';
+            //var categoriesNames = avalon.vmodels.site.categoriesNames.$model;
+            //categoriesNames.forEach(function(item) {
+            //    if (item._id === list.categoryId) {
+            //        // refresh the name
+            //        list.currentCategoryName = item.name;
+            //    }
+            //});
 
         };
         // 视图渲染后，意思是avalon.scan完成

@@ -10,9 +10,9 @@
     </div>
     <!-- slider end -->
 
-    <ul class="navigator-panel">
-        <li class="navigator-item" ms-repeat-item="categoriesNames"><i class="yo-ico"></i>{{item.name}}</li>
-    </ul>
+    <!--<ul class="navigator-panel">-->
+        <!--<li class="navigator-item" ms-repeat-item="categoriesNames"><i class="yo-ico"></i><a ms-attr-href="'#!/' + item._id">{{item.name}}</a></li>-->
+    <!--</ul>-->
 
     <!-- topN start -->
     <div class="topN">
@@ -54,7 +54,7 @@
             <div class="item area" ms-repeat-item="category.posts">
                 <a ms-attr-href="'#!/detail/' + item._id">
                     <img class="item-img area" ms-attr-src="illy_resource_base + item.image + '?imageView2/1/w/320/h/180/interlace/1'" ms-attr-alt="item.title" />
-                    <div class="info-area list">
+                    <div class="info-area">
                         <h3 class="item-title text-overflow area">{{item.title}}</h3>
                         <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
                         <div class="count like-count"><span>喜欢</span>{{item.like}}</div> 

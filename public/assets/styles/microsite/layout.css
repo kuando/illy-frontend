@@ -1137,7 +1137,7 @@ ul,
   top: 0;
   left: 0;
   -webkit-box-flex: 0;
-  line-height: 0;
+  line-height: 0.4rem;
   background-color: #323436;
   color: #999999;
 }
@@ -1159,8 +1159,8 @@ ul,
 
 .ui-navigator {
   background: #323436;
-  height: 0;
-  line-height: 0;
+  height: 0.4rem;
+  line-height: 0.4rem;
   margin-left: 0.5rem;
   overflow: hidden;
   /* mark! */
@@ -1187,7 +1187,7 @@ ul,
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
-  padding: 0 .1rem;
+  padding: 0 .12rem;
 }
 
 .ui-navigator-list li.ui-state-hover,
@@ -1367,7 +1367,7 @@ ul,
   font-size: .14rem;
   visibility: hidden;
   height: 1.8rem;
-  margin-top: 0;
+  margin-top: 0.4rem;
 }
 
 /* striped for detail page */
@@ -1400,6 +1400,7 @@ ul,
   -ms-interpolation-mode: bicubic;
 }
 .item-wrapper .item-title {
+  width: 100%;
   margin-top: .03rem;
   max-height: 0.45rem;
   min-height: 0.45rem;
@@ -1422,24 +1423,24 @@ ul,
 
 /* common item end */
 /* util end */
-.navigator-panel {
-  background-color: #fff;
-}
-.navigator-panel .navigator-item {
-  display: inline-block;
-  width: 32%;
-  height: 0.34rem;
-  line-height: 0.34rem;
-  vertical-align: bottom;
-  font-size: 14px;
-  color: #333438;
-}
-.navigator-panel .navigator-item .yo-ico {
-  font-size: 10px;
-  margin-right: .05rem;
-  color: #64c400;
-}
-
+/*.navigator-panel {*/
+/*background-color: $categories-bgColor;*/
+/*overflow: hidden;*/
+/*.navigator-item {*/
+/*float: left;*/
+/*width: 32%;*/
+/*height: $navigator-item-height;*/
+/*line-height: $navigator-item-height;*/
+/*vertical-align: bottom;*/
+/*font-size: 14px;*/
+/*color: $dark-grey;*/
+/*.yo-ico {*/
+/*font-size: 10px;*/
+/*margin-right: .05rem;*/
+/*color: $main-green;*/
+/*}*/
+/*}*/
+/*}*/
 /* topN start */
 .topN .item-wrapper {
   border-top: 1px solid #ddd;
@@ -1464,7 +1465,9 @@ ul,
 
 [avalonctrl].list {
   /* list */
-  margin-top: 0.05rem;
+  margin-top: 0.4rem;
+  /* key to make page bar full */
+  padding: 0;
 }
 
 .categories .item-title {
@@ -1516,6 +1519,13 @@ ul,
 
 /* categories end */
 /* list start(including index's hots category), just small modify for list */
+.list .title-center-bar, .topN .title-center-bar {
+  width: 100%;
+  text-align: center;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  background-color: #F0EDED;
+}
 .list .item-wrapper, .topN .item-wrapper {
   padding-bottom: .1rem;
 }

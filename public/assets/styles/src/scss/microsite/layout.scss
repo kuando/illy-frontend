@@ -23,8 +23,7 @@ $ms-img-height: .80rem;
 $item_title_height: .45rem;
 
 // microsite scroller-navigator
-// $ms-navigator-height: .34rem;
-$ms-navigator-height: 0;
+$ms-navigator-height: .40rem;
 $navigator-home-width: .5rem;
 $navigator-color: $wx-bar-bgColor;
 $navigator-current-bgColor: $wx-bar-bgColor;
@@ -32,7 +31,7 @@ $navigator-current-text-color: #fff;
 $navigator-text-color: $light-grey;
 
 // navigator-panel
-$navigator-item-height: .34rem;
+$navigator-item-height: .44rem;
 
 // layout vars end //
 
@@ -81,6 +80,7 @@ $navigator-item-height: .34rem;
     }
 
     .item-title {
+        width: 100%;
         margin-top: .03rem;
         max-height: $item_title_height;
         min-height: $item_title_height; 
@@ -107,25 +107,27 @@ $navigator-item-height: .34rem;
 
 /* util end */
 
-.navigator-panel {
-    background-color: $categories-bgColor;
+/*.navigator-panel {*/
+    /*background-color: $categories-bgColor;*/
+    /*overflow: hidden;*/
 
-    .navigator-item {
-        display: inline-block;
-        width: 32%;
-        height: $navigator-item-height;
-        line-height: $navigator-item-height;
-        vertical-align: bottom;
-        font-size: 14px;
-        color: $dark-grey;
+    /*.navigator-item {*/
+        /*float: left;*/
+        /*width: 32%;*/
+        /*height: $navigator-item-height;*/
+        /*line-height: $navigator-item-height;*/
+        /*vertical-align: bottom;*/
+        /*font-size: 14px;*/
+        /*color: $dark-grey;*/
 
-        .yo-ico {
-            font-size: 10px;
-            margin-right: .05rem;
-            color: $main-green;
-        }
-    }
-}
+        /*.yo-ico {*/
+            /*font-size: 10px;*/
+            /*margin-right: .05rem;*/
+            /*color: $main-green;*/
+        /*}*/
+    /*}*/
+/*}*/
+
 /* topN start */
 .topN {
     .item-wrapper {
@@ -150,7 +152,9 @@ $navigator-item-height: .34rem;
 }
 
 [avalonctrl].list { /* list */
-    margin-top: $ms-navigator-height + .05rem;
+    margin-top: $ms-navigator-height;
+    /* key to make page bar full */
+    padding: 0;
 }
 
 .categories {
@@ -210,6 +214,15 @@ $navigator-item-height: .34rem;
 
 /* list start(including index's hots category), just small modify for list */
 .list, .topN {
+
+    .title-center-bar {
+        width: 100%;
+        text-align: center;
+        height: $navigator-item-height - .1rem;
+        line-height: $navigator-item-height - .1rem;
+        background-color: #F0EDED;
+    }
+
     .item-wrapper {
         padding-bottom: .1rem;
     }
