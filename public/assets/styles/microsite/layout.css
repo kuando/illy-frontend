@@ -762,7 +762,7 @@ ul,
   text-align: center;
   height: .44rem;
   line-height: .44rem;
-  color: #0894ec;
+  color: #0079ff;
   border: 0.01rem solid #b5b5b5;
   border-bottom: 0 none;
   cursor: pointer;
@@ -1187,7 +1187,7 @@ ul,
   display: block;
   width: 100%;
   -webkit-box-sizing: border-box;
-  padding: 0 .12rem;
+  padding: 0 .10rem;
 }
 
 .ui-navigator-list li.ui-state-hover,
@@ -1401,7 +1401,7 @@ ul,
 }
 .item-wrapper .item-title {
   width: 100%;
-  margin-top: .03rem;
+  margin-top: -.02rem;
   max-height: 0.45rem;
   min-height: 0.45rem;
   font-size: .14rem;

@@ -51,7 +51,7 @@
     <!-- 填空题 -->
     <div class="fill-in yo-list" ms-visible="exercise.eType === 2">
         <label class="item item-input" ms-class-1="question-item-active: userAnswer !== ''">
-            <textarea ms-if="localAnswers[currentId - 1] === void 0" placeholder="请在此输入问题答案" class="yo-iput fill-in-textarea" ms-duplex-string="userAnswer">
+            <textarea ms-if="localAnswers[currentId - 1] === void 0" placeholder="请在此输入问题答案" class="yo-input fill-in-textarea" ms-duplex-string="userAnswer">
 
             </textarea>
             <p ms-if="localAnswers[currentId - 1] !== void 0" class="answered-text" ms-visible="localAnswers[currentId - 1] !== void 0">你填写的答案为：{{localAnswers[currentId - 1]}}</p>
