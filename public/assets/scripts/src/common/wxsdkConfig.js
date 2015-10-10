@@ -7,7 +7,7 @@
     var url = encodeURIComponent(uri);
 
     $http.ajax({
-        url: 'http://api.hizuoye.com/api/v1/public/sdk/signature',
+        url: apiBaseUrl + 'public/sdk/signature',
         data: {
             url: url
         },

@@ -75,8 +75,8 @@ define([], function() {
                 data: {
                     _id: avalon.getVM('detail').homeworkId,
                     spendSeconds: IntSpendSeconds,
-                    wrongCollect: avalon.getVM('detail').wrongCollect,
-                    audioAnswers: avalon.getVM('detail').audioAnswers,
+                    wrongCollect: avalon.getVM('detail').$model.wrongCollect, // avoid include avalon-vm-data(like $id, $model, $event)
+                    audioAnswers: avalon.getVM('detail').$model.audioAnswers,
                     numOfExercise: avalon.getVM('detail').exercises.length
                 },
                 success: function(res) {
