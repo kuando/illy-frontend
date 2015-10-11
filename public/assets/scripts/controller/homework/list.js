@@ -12,6 +12,11 @@ define([], function() {
 
     var listSliders = [
         {
+            image: slidersUrlPrefix + '/slider-task.png',
+            title: 'task',
+            href: './task.html'
+        },
+        {
             image: slidersUrlPrefix + '/slider-mistake.png',
             title: 'mistakeList',
             href: '#!/mistake/list'

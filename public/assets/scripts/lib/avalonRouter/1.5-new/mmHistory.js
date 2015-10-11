@@ -136,20 +136,20 @@ define(["avalon"], function(avalon) {
                 if (that.monitorMode === "iframepoll" && !iframe) {
                     return false
                 }
-                var pageHash = that.getFragment(), hash, lastHash = avalon.router.getLastPath()
+                var pageHash = that.getFragment(), hash
                 if (iframe) {//IE67
                     var iframeHash = that.getHash(iframe)
                     //与当前页面hash不等于之前的页面hash，这主要是用户通过点击链接引发的
-                    if (pageHash !== lastHash) {
+                    if (pageHash !== that.fragment) {
                         that._setIframeHistory(that.prefix + pageHash)
                         hash = pageHash
                         //如果是后退按钮触发hash不一致
-                    } else if (iframeHash !== lastHash) {
+                    } else if (iframeHash !== that.fragment) {
                         that.location.hash = that.prefix + iframeHash
                         hash = iframeHash
                     }
 
-                } else if (pageHash !== lastHash) {
+                } else if (pageHash !== that.fragment) {
                     hash = pageHash
                 }
                 if (hash !== void 0) {

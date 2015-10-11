@@ -150,7 +150,7 @@ define(["./mmHistory"], function() {
             var parsed = parseQuery((hash.charAt(0) !== "/" ? "/" : "") + hash),
                 options = options || {}
             if(hash.charAt(0) === "/")
-                hash = hash.slice(1)// 修正出现多扛的情况 fix http://localhost:8383/index.html#!//
+                hash = hash.slice(1)// 修正出现多扛的情况 fix http://localhost:8383/mmRouter/index.html#!//
             // 在state之内有写history的逻辑
             if(!avalon.state || options.silent) avalon.history && avalon.history.updateLocation(hash, avalon.mix({}, options, {silent: true}))
             // 只是写历史而已
@@ -224,7 +224,7 @@ define(["./mmHistory"], function() {
                 },
                 pattern: "0|1"
             },
-            'int': {
+            int: {
                 decode: function(val) {
                     return parseInt(val, 10);
                 },
