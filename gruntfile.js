@@ -27,35 +27,35 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 },
                 files: [
                     'public/*.html',
-                    'public/assets/templates/**/*.html',
-                    'public/assets/styles/src/scss/**/*.scss',
-                    'public/assets/scripts/**/*.js',
+                    'public/src/templates/**/*.html',
+                    'public/src/scss/**/*.scss',
+                    'public/src/scripts/**/*.js',
                     'public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                 ]
             },
 
             basescss: {
-                files: ['public/assets/styles/src/scss/base/**/*.scss'],
+                files: ['public/src/scss/base/**/*.scss'],
                 tasks: ['sass:microsite', 'sass:homework', 'sass:task', 'sass:question']
             },
 
             micrositescss: {
-                files: ['public/assets/styles/src/scss/microsite/*.scss'],
+                files: ['public/src/scss/microsite/*.scss'],
                 tasks: ['sass:microsite', 'sass:task']
             },
 
             homeworkscss: {
-                files: ['public/assets/styles/src/scss/homework/*.scss'],
+                files: ['public/src/scss/homework/*.scss'],
                 tasks: ['sass:homework']
             },
 
             taskscss: {
-                files: ['public/assets/styles/src/scss/task/*.scss'],
+                files: ['public/src/scss/task/*.scss'],
                 tasks: ['sass:task']
             },
 
-            question: {
-                files: ['public/assets/styles/src/scss/question/*.scss'],
+            questionscss: {
+                files: ['public/src/scss/question/*.scss'],
                 tasks: ['sass:question']
             },
 
@@ -70,17 +70,27 @@ module.exports = function(grunt) { /* jshint ignore:line */
             },
 
             mainHtmls: {
-                files: ['public/assets/mainHtmls/**/*.html'],
+                files: ['public/src/mainHtmls/**/*.html'],
                 tasks: ['reGenerateMainHtmls']
             },
 
             mainScripts: {
-                files: ['public/assets/scripts/src/**/*.js'],
+                files: ['public/src/scripts/app/**/*.js'],
                 tasks: ['reGenerateMainScripts']
             },
 
+            templates: {
+                files: ['public/src/templates/**/*.html'],
+                tasks: ['copyTemplates']
+            },
+
+            controllerJs: {
+                files: ['public/src/scripts/controller/**/*.js'],
+                tasks: ['copyControllerJs']
+            },
+
             outer: {
-                files: ['public/assets/outer/**/*'],
+                files: ['public/src/outer/**/*'],
                 tasks: ['reGenerateOuter']
             }
 
@@ -120,7 +130,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     suffix: ' @@ //'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/assets/scripts/src/**/*.js',
+                src: 'public/src/scripts/app/**/*.js',
                 // Destidistnation directory to copy files to
                 dest: 'public/assets/scripts/dist/scripts/'
             },
@@ -130,7 +140,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     suffix: ' @@ -->'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/assets/mainHtmls/*.html',
+                src: 'public/src/mainHtmls/*.html',
                 // Destidistnation directory to copy files to
                 dest: 'public/assets/mainHtmls/dist/'
             },
@@ -140,7 +150,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     suffix: ' @@ //'
                 },
                 // Files to perform replacements and includes with
-                src: 'public/assets/outer/**/*.*',
+                src: 'public/src/outer/**/*.*',
                 // Destidistnation directory to copy files to
                 dest: 'public/assets/outer/dist/'
             }
@@ -175,7 +185,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             microsite: {
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/styles/src/scss/microsite',
+                    cwd: 'public/src/scss/microsite',
                     src: ['*.scss'],
                     dest: 'public/assets/styles/microsite',
                     ext: '.css'
@@ -184,7 +194,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             homework: {
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/styles/src/scss/homework',
+                    cwd: 'public/src/scss/homework',
                     src: ['*.scss'],
                     dest: 'public/assets/styles/homework',
                     ext: '.css'
@@ -193,7 +203,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             task: {
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/styles/src/scss/task',
+                    cwd: 'public/src/scss/task',
                     src: ['*.scss'],
                     dest: 'public/assets/styles/task',
                     ext: '.css'
@@ -202,7 +212,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             question: {
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/styles/src/scss/question',
+                    cwd: 'public/src/scss/question',
                     src: ['*.scss'],
                     dest: 'public/assets/styles/question',
                     ext: '.css'
@@ -228,26 +238,6 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 }]
             }
         }, // js uglify
-
-        //concat: {
-        //    options: {
-        //        sourceMap: true,
-        //        mangle: false, //不混淆变量名
-        //        preserveComments: 'some', //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
-        //        banner: '/*! \n  Project  Name: <%= pkg.name %> \n  Last Modified: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n' //添加banner
-        //    },
-        //    js: {
-        //        src: [
-        //            'public/build/scripts/**/*.js'
-        //        ],
-        //        dest: 'public/build/javascript/app-build.js'
-        //    },
-
-        //    css: {
-        //        src: ['public/build/assets/**/*.css'],
-        //        dest: 'public/build/styles/app.css'
-        //    }
-        //}, // concat js and css
 
         cssmin: {
             homework: {
@@ -314,26 +304,42 @@ module.exports = function(grunt) { /* jshint ignore:line */
             mainHtmls: { // for dev
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/mainHtmls/dist/public/assets/mainHtmls/',
+                    cwd: 'public/assets/mainHtmls/dist/public/src/mainHtmls/',
                     src: ['*.html'],
                     dest: 'public/'
-                }],
+                }]
             },
             mainScripts: { // for dev
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/scripts/dist/scripts/public/assets/scripts/src',
+                    cwd: 'public/assets/scripts/dist/scripts/public/src/scripts/app/',
                     src: ['*.js'],
                     dest: 'public/assets/scripts/'
-                }],
+                }]
+            },
+            templates: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/src/templates/',
+                    src: ['**/*.html'],
+                    dest: 'public/assets/templates/'
+                }]
+            },
+            controllerJs: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/src/scripts/controller/',
+                    src: ['**/*.js'],
+                    dest: 'public/assets/scripts/controller/'
+                }]
             },
             outer: { // for dev
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/outer/dist/public/assets/outer/',
+                    cwd: 'public/assets/outer/dist/public/src/outer/',
                     src: ['**/*'],
                     dest: 'public/outer'
-                }],
+                }]
             },
             fonts: { // for release
                 files: [
@@ -344,7 +350,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                         src: ['**/*'],
                         dest: 'public/build/assets/fonts'
                     }
-                ],
+                ]
             },
             releaseMainHtmls: { // for release
                 files: [
@@ -355,7 +361,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                         src: ['*.html'],
                         dest: 'public/build/'
                     }
-                ],
+                ]
             },
             releaseOuter: { // for release
                 files: [
@@ -366,56 +372,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                         src: ['**/*'],
                         dest: 'public/build/outer/'
                     }
-                ],
+                ]
             }
-            //templates: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/assets/templates/',
-            //        src: ['**/*.html'],
-            //        dest: 'public/build/assets/templates'
-            //    }],
-            //},
-            //outer: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/outer',
-            //        src: ['**/*'],
-            //        dest: 'public/build/outer'
-            //    }],
-            //},
-            //index: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/',
-            //        src: ['index.html'],
-            //        dest: 'public/build/'
-            //    }],
-            //},
-            //unbind: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/',
-            //        src: ['unbind.html'],
-            //        dest: 'public/build/'
-            //    }],
-            //},
-            //login: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/',
-            //        src: ['login.html'],
-            //        dest: 'public/build/'
-            //    }],
-            //},
-            //404: {
-            //    files: [{
-            //        expand: true,
-            //        cwd: 'public/',
-            //        src: ['404.html'],
-            //        dest: 'public/build/'
-            //    }],
-            //},
         },
 
         htmlhint: {
@@ -454,6 +412,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
     });
     // Tasks config end...
     
+    // helper task
     grunt.registerTask('buildimages', 'minify the images to build folder...', ['imagemin']);
     grunt.registerTask('buildtemplates', 'minify the templates to build folder...', ['htmlmin:templates']);
     grunt.registerTask('buildcss', 'minify the css to build folder...', ['sass', 'cssmin']);
@@ -462,6 +421,10 @@ module.exports = function(grunt) { /* jshint ignore:line */
     grunt.registerTask('reGenerateMainHtmls', 'reGenerateMainHtmls...', ['includereplace:generateMainHtmls', 'copy:mainHtmls', 'clean:mainHtmlsDist']);
     grunt.registerTask('reGenerateMainScripts', 'reGenerateMainScripts...', ['includereplace:generateMainScripts', 'copy:mainScripts', 'clean:mainScriptsDist']);
     grunt.registerTask('reGenerateOuter', 'reGenerateOuter...', ['includereplace:generateOuter', 'copy:outer', 'clean:outerDist']);
+
+    // not very good way, just copy
+    grunt.registerTask('copyTemplates', 'copy templates html files to assets/ ...', ['copy:templates']);
+    grunt.registerTask('copyControllerJs', 'copy controller js files to assets/ ...', ['copy:controllerJs']);
 
     // hint task 
     grunt.registerTask('hint', function(target) { /* jshint ignore:line */
@@ -488,7 +451,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
             'sass',
             'reGenerateMainHtmls',
             'reGenerateMainScripts',
-            'reGenerateOuter'
+            'reGenerateOuter',
+            'copyTemplates',
+            'copyControllerJs'
         ]);
     });
 
