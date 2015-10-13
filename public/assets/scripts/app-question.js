@@ -703,8 +703,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             }
         }
     })
-    .state("question.result.detail", { // 过往提问
-        url: "detail/{detailId}",
+    .state("question.detail", { // 过往提问
+        url: "detail/{questionId}",
         views: {
             "": {
                 templateUrl: templateBaseUrl + 'detail.html', // 指定模板地址

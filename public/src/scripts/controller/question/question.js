@@ -55,22 +55,22 @@ define([], function() {
         yesOrNo: null,
         gConfirmShow: false,
         showConfirm: function(message) {
-            app.appMessage = message; // set message
-            app.gMaskShow = true;
-            app.gConfirmShow = true;
+            question.appMessage = message; // set message
+            question.gMaskShow = true;
+            question.gConfirmShow = true;
         },
         hideConfirm: function() {
-            app.yesOrNo = null;
-            app.gMaskShow = false;
-            app.gConfirmShow = false;
+            question.yesOrNo = null;
+            question.gMaskShow = false;
+            question.gConfirmShow = false;
         },
         yesClick: function() {
-            app.yesOrNo = true;
-            app.hideConfirm();
+            question.yesOrNo = true;
+            question.hideConfirm();
         },
         noClick: function() {
-            app.yesOrNo = false;
-            app.hideConfirm();
+            question.yesOrNo = false;
+            question.hideConfirm();
         },
         /* confirm end */
 

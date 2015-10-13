@@ -18,3 +18,10 @@
 
 // yo component, header
 @import "../base/yo-header";
+
+.question-list-wrapper,
+.history-list-wrapper {
+    .noContent {
+        padding: .1rem;
+    }
+}

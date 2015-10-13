@@ -77,8 +77,8 @@
             }
         }
     })
-    .state("question.result.detail", { // 过往提问
-        url: "detail/{detailId}",
+    .state("question.detail", { // 过往提问
+        url: "detail/{questionId}",
         views: {
             "": {
                 templateUrl: templateBaseUrl + 'detail.html', // 指定模板地址

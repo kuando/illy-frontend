@@ -1,0 +1,31 @@
+.detail {
+    text-align: left;
+    line-height: 1.7;
+
+    .questionImage {
+
+        img {
+            width: 100%;
+        }
+
+    }
+
+    .questionText {
+        margin-top: .1rem;
+        padding: .1rem;
+    }
+
+    .answer-panel {
+        margin-top: .1rem;
+        padding: .1rem;
+    }
+
+    .noAnswer-tips {
+        padding: .1rem;
+        margin-top: .1rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+}
+

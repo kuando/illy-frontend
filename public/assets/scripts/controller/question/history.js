@@ -12,7 +12,7 @@ define([], function() {
         noContent: false,
         noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
 
-        historys: [],
+        lists: [],
 
         isLoading: false, // 正在加载标记
         offset: 0, // inner var, to fetch data with offset and limit
@@ -23,41 +23,41 @@ define([], function() {
 
             var limit = localLimit;
             var offset;
-            offset = history.historys.length || 0;
+            offset = history.lists.length || 0;
 
             $http.ajax({
-                url: apiBaseUrl + "questions?limit=" + limit + "&offset=" + offset,
+                url: apiBaseUrl + "questions?state=1&limit=" + limit + "&offset=" + offset,
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
-                success: function(historys) {
+                success: function(lists) {
 
                     if (concat === true) {
-                        history.historys = history.historys.concat(historys);
+                        history.lists = history.lists.concat(lists);
                     } else {
-                        history.historys = historys;
+                        history.lists = lists;
                     }
                     setTimeout(function() {                          
-                        var newhistorys = history.historys;
-                        if (newhistorys && newhistorys.length === 0) {
+                        var newlists = history.lists;
+                        if (newlists && newlists.length === 0) {
                             history.noContent = true;
                         }      
                     }, 200);
-                    if (historys.length === 0) {
+                    if (lists.length === 0) {
                         history.noMoreData = true;
                     }
                     history.isLoading = false;
                 },
                 error: function(res) {
-                    avalon.illyError("history history ajax error", res);
+                    avalon.illyError("history ajax error", res);
                     if (history.lists.length <= 1) {
                         history.noContent = true;
                     }
                 },
                 ajaxFail: function(res) {
-                    avalon.illyError("history history ajax failed" + res);
+                    avalon.illyError("history ajax failed" + res);
                     if (history.lists.length <= 1) {
                         history.noContent = true;
                     }
@@ -71,7 +71,7 @@ define([], function() {
 
     }); // end of define
 
-    history.historys.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
+    history.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
         if (newLength && (newLength < localLimit)) {
             history.btnShowMore = false;
         } else {
@@ -87,6 +87,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
 
+            avalon.vmodels.result.current = 'history';
             history.isVisited = avalon.vmodels.root.currentIsVisited;
             if (!history.isVisited) {
                 history.fetchData();

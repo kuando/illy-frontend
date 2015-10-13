@@ -1,2 +1,2 @@
-define([],function(){avalon.illyGlobal&&avalon.illyGlobal.apiBaseUrl,avalon.illyGlobal.token,avalon.define({$id:"result",current:"list"});return avalon.controller(function($ctrl){$ctrl.$onRendered=function(){},$ctrl.$onEnter=function(){},$ctrl.$onBeforeUnload=function(){},$ctrl.$vmodels=[]})});
+define([],function(){avalon.define({$id:"result",current:"list"});return avalon.controller(function($ctrl){$ctrl.$onRendered=function(){},$ctrl.$onEnter=function(){},$ctrl.$onBeforeUnload=function(){},$ctrl.$vmodels=[]})});
 //# sourceMappingURL=result.js.map

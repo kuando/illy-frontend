@@ -1,14 +1,15 @@
 define([], function() {
 
     // get config, apiBaseUrl
-    var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
+    //var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
     // get config, token
-    var token = avalon.illyGlobal.token; 
+    //var token = avalon.illyGlobal.token; 
 
     // 作业详情控制器
-    var result = avalon.define({
+    var result = avalon.define({ /* jshint ignore:line */
 
-        $id: "result"
+        $id: "result",
+        current: "list" 
 
     }); // end of define
 

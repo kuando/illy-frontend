@@ -26,7 +26,7 @@ define([], function() {
             offset = list.lists.length || 0;
 
             $http.ajax({
-                url: apiBaseUrl + "questions?limit=" + limit + "&offset=" + offset,
+                url: apiBaseUrl + "questions?state=0&limit=" + limit + "&offset=" + offset,
                 data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -51,13 +51,13 @@ define([], function() {
                     list.isLoading = false;
                 },
                 error: function(res) {
-                    avalon.illyError("list list ajax error", res);
+                    avalon.illyError("list ajax error", res);
                     if (list.lists.length <= 1) {
                         list.noContent = true;
                     }
                 },
                 ajaxFail: function(res) {
-                    avalon.illyError("list list ajax failed" + res);
+                    avalon.illyError("list ajax failed" + res);
                     if (list.lists.length <= 1) {
                         list.noContent = true;
                     }
@@ -87,6 +87,7 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
 
+            avalon.vmodels.result.current = 'list';
             list.isVisited = avalon.vmodels.root.currentIsVisited;
             if (!list.isVisited) {
                 list.fetchData();

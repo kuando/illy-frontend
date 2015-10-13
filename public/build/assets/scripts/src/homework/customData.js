@@ -1,2 +1,0 @@
-global_loading_delay=300,global_always_show_loader=!0,null===token&&(alert("对不起，本系统仅供内部使用！ ERROR::no token error!"),setTimeout(function(){location.replace("./login.html")},0)),avalon.illyGlobal={token:token,apiBaseUrl:apiBaseUrl,illyDomain:illy_domain,imagesBaseSrc:illy_images_base_src,resourceBaseUrl:illy_resource_base_url};var root=avalon.define({$id:"root",namespace:"homework",currentState:"",currentAction:"",currentIsVisited:!1,title:""});
-//# sourceMappingURL=customData.js.map

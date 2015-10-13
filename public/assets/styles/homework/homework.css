@@ -427,7 +427,6 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  /*color: $g_font_color;*/
   color: inherit;
 }
 

@@ -427,7 +427,6 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: none;
-  /*color: $g_font_color;*/
   color: inherit;
 }
 
@@ -1145,23 +1144,62 @@ ul,
 /* question index end */
 /* discription form start */
 .form {
+  margin-top: .1rem;
   min-height: 7rem;
   background-color: #fff;
-  padding: .1rem;
 }
 
 .description-input {
-  width: 100%;
+  width: 94%;
   min-height: 2rem;
   padding: .05rem .1rem;
   line-height: 1.7;
+  margin-left: .1rem;
+  margin-right: .1rem;
   margin-bottom: .2rem;
+  border-radius: 5px;
 }
 .description-input:focus {
   border: 1px solid #00abfd;
 }
 
+.submit-question-btn:active {
+  color: #fff;
+}
+
 /* discription form end */
+.question-list {
+  margin: 0  0  0 .03rem;
+}
+.question-list .item {
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  padding: .08rem .05rem;
+  background-color: #fff;
+}
+.question-list .item .item-img {
+  width: 31%;
+  max-width: 0.95rem;
+  height: 0.5rem;
+}
+.question-list .item .info-area {
+  width: 65%;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: .03rem;
+  font-size: .12rem;
+  line-height: 1.9;
+  padding-left: .05rem;
+}
+.question-list .item .info-area .questionText {
+  font-size: .14rem;
+  color: #333438;
+}
+.question-list .item .info-area .created-time {
+  color: #999999;
+}
+
 .navigator-ul {
   height: 0.34rem;
   line-height: 0.34rem;
@@ -1171,7 +1209,7 @@ ul,
 }
 .navigator-ul li {
   width: 50%;
-  border-bottom: 2px solid #333438;
+  border-bottom: 2px solid #999999;
 }
 .navigator-ul li.current-active {
   border-bottom: 2px solid #00abfd;
@@ -1181,6 +1219,28 @@ ul,
 }
 .navigator-ul .history-li {
   float: right;
+}
+
+.detail {
+  text-align: left;
+  line-height: 1.7;
+}
+.detail .questionImage img {
+  width: 100%;
+}
+.detail .questionText {
+  margin-top: .1rem;
+  padding: .1rem;
+}
+.detail .answer-panel {
+  margin-top: .1rem;
+  padding: .1rem;
+}
+.detail .noAnswer-tips {
+  padding: .1rem;
+  margin-top: .1rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 #header, .yo-header {
@@ -1283,5 +1343,9 @@ ul,
 }
 
 /* yo-header patch end */
+.question-list-wrapper .noContent,
+.history-list-wrapper .noContent {
+  padding: .1rem;
+}
 
 /*# sourceMappingURL=question.css.map */

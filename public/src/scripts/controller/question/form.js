@@ -10,17 +10,21 @@ define([], function() {
         imgServerId: '',
         questionText: '',
         createQuestion: function() {
+            if (form.questionText.length <= 5) {
+                avalon.vmodels.question.showAlert('请增加一些描述，以便老师解答!', 3);
+                return;
+            }
             $http.ajax({
                 method: 'POST',
                 url: apiBaseUrl + 'questions',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                data {
+                data: {
                     questionImage: form.imgServerId,
                     questionText: form.questionText
                 },
-                success: function(res) {
+                success: function() {
                     avalon.router.go('question.result.list');
                 },
                 error: function(res) {
@@ -40,8 +44,9 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
 
-            form.imgLocalId = avalon.vmodels.index.localImgSrc;
-            form.imgServerId = avalon.vmodels.index.serverId;
+            var index = avalon.vmodels.index;
+            form.imgLocalId = index && index.localImgSrc;
+            form.imgServerId = index && index.serverId;
             
        };
         // 视图渲染后，意思是avalon.scan完成
