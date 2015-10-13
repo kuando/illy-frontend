@@ -6,42 +6,40 @@ define([], function() {
 
     var form = avalon.define({
         $id: "form",
-        visited: false, // first in, no cache
         imgLocalId: '',
         imgServerId: '',
-        fetchRemoteData: function(apiArgs, data, target) {
-            if (form.visited) { 
-                avalon.vmodels.root.currentRendered = true;
-                return; 
-            }
-
+        questionText: '',
+        createQuestion: function() {
             $http.ajax({
-                url: apiBaseUrl + apiArgs + '',
+                method: 'POST',
+                url: apiBaseUrl + 'questions',
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                data: data,
+                data {
+                    questionImage: form.imgServerId,
+                    questionText: form.questionText
+                },
                 success: function(res) {
-                    form[target] = res;
-                    avalon.vmodels.root.currentRendered = true;
+                    avalon.router.go('question.result.list');
                 },
                 error: function(res) {
                     avalon.illyError('ajax error', res);
+                    alert("submit error!");
                 },
                 ajaxFail: function(res) {
                     avalon.illyError('ajax failed', res);
+                    alert("submit failed!");
                 }
             });
 
-        } // end of fetchRemoteData
+        } // end of createQuestion 
     });
 
     return avalon.controller(function($ctrl) {
         // 进入视图
         $ctrl.$onEnter = function() {
 
-            form.visited = avalon.vmodels.root.currentIsVisited;
-            // form.fetchRemoteData();
             form.imgLocalId = avalon.vmodels.index.localImgSrc;
             form.imgServerId = avalon.vmodels.index.serverId;
             

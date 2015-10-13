@@ -1,13 +1,12 @@
 define([], function() {
  
     // get config
-    //var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
-    //var token = avalon.illyGlobal.token;
+    var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
+    var token = avalon.illyGlobal.token;
     var wx = avalon.wx;
 
     var index = avalon.define({
         $id: "index",
-        visited: false, // first in, no cache
         localImgSrc: '',  // 获取用户所拍题目图片(本地)
         serverId: '',  // 获取用户所拍题目图片(微信官方服务器对应资源)
         openCamera: function() {
@@ -23,15 +22,13 @@ define([], function() {
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
                             index.serverId = res.serverId; // 返回图片的服务器端ID
-                            // todo: uploadImageToServer with api
+                            avalon.router.go('question.form');
                         }
                     });
-                    // temp demo
-                    location.hash = '#!/form';
-                    // avalon.router.go('index.form');
                 }
             });
         }
+
     });
 
     return avalon.controller(function($ctrl) {

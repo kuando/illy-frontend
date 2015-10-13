@@ -1,14 +1,14 @@
 define([], function() {
-    
+
     // get config, apiBaseUrl
     var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
-    
+
     // resourcePrefix
     var resourcePrefix = avalon.illyGlobal.resourceBaseUrl;
 
     // defaultAvatarUrl
     var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
-    
+
     // get config, token
     var token = avalon.illyGlobal.token; 
 
@@ -79,11 +79,17 @@ define([], function() {
                 },
                 error: function(res) {
                     avalon.illyError("evaluation list ajax error", res);
-                    evaluation.noContent = true;
+                    if (evaluation.lists.length <= 1) {
+                        evaluation.noContent = true;
+                    }
+                    evaluation.isLoading = false;
                 },
                 ajaxFail: function(res) {
                     avalon.illyError("evaluation list ajax failed" + res);
-                    evaluation.noContent = true;
+                    if (evaluation.lists.length <= 1) {
+                        evaluation.noContent = true;
+                    }
+                    evaluation.isLoading = false;
                 }
             });
         }, // end of fetchData
@@ -117,7 +123,7 @@ define([], function() {
             evaluation.visited = avalon.vmodels.root.currentIsVisited; 
             // otherwise, show it
             evaluation.fetchData();
-            
+
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

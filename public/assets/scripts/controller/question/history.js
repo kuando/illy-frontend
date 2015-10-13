@@ -4,98 +4,78 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     
-    // prefix of localStorage
-    var cachedPrefix = 'illy-question-history-';
-    // cache the view data
-    
-    // history cache flag
-    var needCache = true;
-
     var localLimit = 6; // 一次抓取多少数据
     var history = avalon.define({
 
         $id: "history",
-        visited: false, // first in, no data
-        historys: [], 
-
-        offset: 0, // inner var, to fetch data with offset and limit
+        isVisited: false,
         noContent: false,
-        isLoading: false,
-        noMoreData: false,
+        noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
+
+        historys: [],
+
+        isLoading: false, // 正在加载标记
+        offset: 0, // inner var, to fetch data with offset and limit
+        noMoreData: false, // no more data
         btnShowMore: false,
-        fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
-            if (arguments.length !== 4) {
-                avalon.illyError('ERROR: must give 4 args!' + arguments);
-            }
-            history.noMoreData = false;
-            if (history.visited && needCache && !concat) {
-                var articles = history.historys;
-                history.historys = avalon.getLocalCache(cachedPrefix + history.categoryId + '-' + target);
-                avalon.vmodels.root.currentRendered = true;
-                history.offset = history.historys.length;
-                if (articles.length > localLimit && articles.length % localLimit < localLimit) {
-                    history.noMoreData = true; // not full support, but ok
-                }
-                return;
-            }
+        fetchData: function(data, concat) {
             history.isLoading = true;
+
+            var limit = localLimit;
+            var offset;
+            offset = history.historys.length || 0;
+
             $http.ajax({
-                url: apiBaseUrl + apiArgs,
-                headers: {
-                    Authorization: 'Bearer ' + token
-                },
+                url: apiBaseUrl + "questions?limit=" + limit + "&offset=" + offset,
                 data: data,
-                success: function(res) { 
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(historys) {
+
                     if (concat === true) {
-                        history.historys = history.historys.concat(res);
+                        history.historys = history.historys.concat(historys);
                     } else {
-                        history.historys = res;
+                        history.historys = historys;
                     }
-                    if (res.length === 0) {
+                    setTimeout(function() {                          
+                        var newhistorys = history.historys;
+                        if (newhistorys && newhistorys.length === 0) {
+                            history.noContent = true;
+                        }      
+                    }, 200);
+                    if (historys.length === 0) {
                         history.noMoreData = true;
                     }
-                    history.offset = history.historys.length;
-                    if (history.historys.length === 0) {
-                        history.noContent = true;
-                        history.noMoreData = true;
-                    }
-                    var result = history.historys.$model;
-                    avalon.setLocalCache(cachedPrefix + history.categoryId + '-' + target, result); // illy-microsite-11111-historys
                     history.isLoading = false;
-                    avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
-                    avalon.illyError('microsite history.js ajax error', res);
-                    if (history.historys.length === 0) {
+                    avalon.illyError("history history ajax error", res);
+                    if (history.lists.length <= 1) {
                         history.noContent = true;
                     }
-                    history.isLoading = false;
                 },
-                ajaxFail: function(res) { 
-                    avalon.illyError('microsite history.js ajax failed', res);
-                    if (history.historys.length === 0) {
+                ajaxFail: function(res) {
+                    avalon.illyError("history history ajax failed" + res);
+                    if (history.lists.length <= 1) {
                         history.noContent = true;
                     }
-                    history.isLoading = false;
                 }
             });
-        },
+        }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
-            history.fetchRemoteData('categories/' + history.categoryId + '/posts', {limit: localLimit, offset: history.offset}, 'historys', true); // isShowMore
-        }
+            history.fetchData({}, true); //is concat 
+        },
 
     }); // end of define
 
-    history.historys.$watch('length', function(newhistorys) {
-        if (newhistorys !== void 0) {
-            if (newhistorys < localLimit) {
-                history.btnShowMore = false;
-            } else {
-                if (history.categoryId !== 'hots') {
-                    history.btnShowMore = true;
-                }
-            }
+    history.historys.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
+        if (newLength && (newLength < localLimit)) {
+            history.btnShowMore = false;
+        } else {
+            history.btnShowMore = true;
         }
     });
 
@@ -105,10 +85,12 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
 
-            avalon.vmodels.result.current = 'history';
-            history.visited = avalon.vmodels.root.currentIsVisited;
+            history.isVisited = avalon.vmodels.root.currentIsVisited;
+            if (!history.isVisited) {
+                history.fetchData();
+            }
 
         };
         // 视图渲染后，意思是avalon.scan完成

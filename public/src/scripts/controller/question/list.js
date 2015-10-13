@@ -4,100 +4,80 @@ define([], function() {
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
     
-    // prefix of localStorage
-    var cachedPrefix = 'illy-microsite-list-';
-    // cache the view data
-    
-    // list cache flag
-    var needCache = true;
-
-    //var localLimit = 6; // 一次抓取多少数据
+    var localLimit = 6; // 一次抓取多少数据
     var list = avalon.define({
 
         $id: "list",
-        visited: false, // first in, no data
-        lists: [], 
-
-        //offset: 0, // inner var, to fetch data with offset and limit
+        isVisited: false,
         noContent: false,
-        //isLoading: false,
-        //noMoreData: false,
-        //btnShowMore: false,
-        fetchRemoteData: function(apiArgs, data, target, concat) { // only ctrl function to fetch data with api
-            if (arguments.length !== 4) {
-                avalon.illyError('ERROR: must give 4 args!' + arguments);
-            }
-            list.noMoreData = false;
-            if (list.visited && needCache && !concat) {
-                var articles = list.lists;
-                list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
-                avalon.vmodels.root.currentRendered = true;
-                list.offset = list.lists.length;
-                if (articles.length > localLimit && articles.length % localLimit < localLimit) {
-                    list.noMoreData = true; // not full support, but ok
-                }
-                return;
-            }
+        noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
+
+        lists: [],
+
+        isLoading: false, // 正在加载标记
+        offset: 0, // inner var, to fetch data with offset and limit
+        noMoreData: false, // no more data
+        btnShowMore: false,
+        fetchData: function(data, concat) {
             list.isLoading = true;
+
+            var limit = localLimit;
+            var offset;
+            offset = list.lists.length || 0;
+
             $http.ajax({
-                url: apiBaseUrl + apiArgs,
-                headers: {
-                    Authorization: 'Bearer ' + token
-                },
+                url: apiBaseUrl + "questions?limit=" + limit + "&offset=" + offset,
                 data: data,
-                success: function(res) { 
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function(lists) {
+
                     if (concat === true) {
-                        list.lists = list.lists.concat(res);
+                        list.lists = list.lists.concat(lists);
                     } else {
-                        list.lists = res;
+                        list.lists = lists;
                     }
-                    if (res.length === 0) {
+                    setTimeout(function() {                          
+                        var newLists = list.lists;
+                        if (newLists && newLists.length === 0) {
+                            list.noContent = true;
+                        }      
+                    }, 200);
+                    if (lists.length === 0) {
                         list.noMoreData = true;
                     }
-                    list.offset = list.lists.length;
-                    if (list.lists.length === 0) {
-                        list.noContent = true;
-                        list.noMoreData = true;
-                    }
-                    var result = list.lists.$model;
-                    avalon.setLocalCache(cachedPrefix + list.categoryId + '-' + target, result); // illy-microsite-11111-lists
                     list.isLoading = false;
-                    avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
-                    avalon.illyError('microsite list.js ajax error', res);
-                    if (list.lists.length === 0) {
+                    avalon.illyError("list list ajax error", res);
+                    if (list.lists.length <= 1) {
                         list.noContent = true;
                     }
-                    list.isLoading = false;
                 },
-                ajaxFail: function(res) { 
-                    avalon.illyError('microsite list.js ajax failed', res);
-                    if (list.lists.length === 0) {
+                ajaxFail: function(res) {
+                    avalon.illyError("list list ajax failed" + res);
+                    if (list.lists.length <= 1) {
                         list.noContent = true;
                     }
-                    list.isLoading = false;
                 }
             });
-        }
-        //showMore: function(e) {
-        //    e.preventDefault();
-        //    list.fetchRemoteData('categories/' + list.categoryId + '/posts', {limit: localLimit, offset: list.offset}, 'lists', true); // isShowMore
-        //}
+        }, // end of fetchData
+        showMore: function(e) {
+            e.preventDefault();
+            list.fetchData({}, true); //is concat 
+        },
 
     }); // end of define
 
-    //list.lists.$watch('length', function(newLists) {
-    //    if (newLists !== void 0) {
-    //        if (newLists < localLimit) {
-    //            list.btnShowMore = false;
-    //        } else {
-    //            if (list.categoryId !== 'hots') {
-    //                list.btnShowMore = true;
-    //            }
-    //        }
-    //    }
-    //});
+    list.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
+        if (newLength && (newLength < localLimit)) {
+            list.btnShowMore = false;
+        } else {
+            list.btnShowMore = true;
+        }
+    });
 
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
@@ -105,10 +85,12 @@ define([], function() {
 
         };
         // 进入视图
-        $ctrl.$onEnter = function(params) {
+        $ctrl.$onEnter = function() {
 
-            avalon.vmodels.result.current = 'list';
-            list.visited = avalon.vmodels.root.currentIsVisited;
+            list.isVisited = avalon.vmodels.root.currentIsVisited;
+            if (!list.isVisited) {
+                list.fetchData();
+            }
 
         };
         // 视图渲染后，意思是avalon.scan完成
