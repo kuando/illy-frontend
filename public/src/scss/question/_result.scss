@@ -7,10 +7,11 @@ $q-navigator-size: .34rem;
     line-height: $q-navigator-size;
     z-index: $zIndex7 + 1;
     position: relative; /* to make z-index prop effect */
+    background-color: #fff;
 
     li {
         width: 50%;
-        border-bottom: 2px solid $light-grey;
+        border-bottom: 2px solid #fff;
 
         &.current-active {
             border-bottom: 2px solid $main-blue;

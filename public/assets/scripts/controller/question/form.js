@@ -10,8 +10,8 @@ define([], function() {
         imgServerId: '',
         questionText: '',
         createQuestion: function() {
-            if (form.questionText.length <= 5) {
-                avalon.vmodels.question.showAlert('请增加一些描述，以便老师解答!', 3);
+            if (form.questionText.length <= 6) {
+                avalon.vmodels.question.showAlert('请增加一些描述，以便老师解答!', 2);
                 return;
             }
             $http.ajax({
@@ -56,7 +56,9 @@ define([], function() {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
 
-            avalon.vmodels.index.localImgSrc = '';
+            if (avalon.vmodels.index) {
+                avalon.vmodels.index.localImgSrc = '';
+            }
             avalon.vmodels.form.questionText = '';
 
         };

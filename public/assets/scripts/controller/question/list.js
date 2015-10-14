@@ -209,7 +209,7 @@ define([], function() {
                     }
                     throttle(function move() {
                         self.css('-webkit-transform', 'translateX(' + moveX + 'px)');
-                    }, 16);
+                    }, 66);
 
                 });
 
@@ -218,7 +218,7 @@ define([], function() {
                 //var swipeRightDoneAniName = 'a-bounceinR';
                 $(wrapper).on('touchend', touchTarget, function() {
                     // e.preventDefault();
-                    if (endX > 0 && endX < startX) { // if swipeLeft
+                    if (endX > 0 && endX < startX && Math.abs(moveDelta) > 30) { // if swipeLeft
                         $(this).css('-webkit-transform', 'translateX('+ -maxMoveX +'px)');
                         swipeLeftDone = true;
                         // add swipeLeft ani

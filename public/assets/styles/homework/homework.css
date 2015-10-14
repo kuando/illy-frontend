@@ -1537,6 +1537,7 @@ ul,
   margin-bottom: .1rem;
   width: 100%;
   height: auto;
+  min-height: 1rem;
 }
 .illy-img-list label.item .yo-checked {
   margin-bottom: .05rem;

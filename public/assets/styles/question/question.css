@@ -1111,24 +1111,35 @@ ul,
   bottom: 0;
   left: 0;
 }
+.index .camera-ask .landscape-tips {
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: -.3rem;
+  text-align: center;
+  width: 100%;
+}
+.index .camera-ask .camera-img {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: url(../../../assets/images/iconfont-camera.png) no-repeat center;
+  background-size: 100%;
+}
 .index .camera-ask .camera-tip-text {
   font-size: 18px;
   color: #00abfd;
-  font-weight: bold;
   position: absolute;
   left: 50%;
   bottom: .2rem;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-}
-.index .landscape-tips {
-  font-size: 12px;
-  color: #fff;
-  position: fixed;
-  left: 0;
-  bottom: 1.1rem;
-  text-align: center;
-  width: 100%;
 }
 .index .text-ask {
   font-size: 16px;
@@ -1143,13 +1154,8 @@ ul,
 /* question index end */
 /* discription form start */
 .form {
-  padding-top: .1rem;
   min-height: 7rem;
   background-color: #fff;
-}
-
-.localImg {
-  margin-bottom: .1rem;
 }
 
 .description-input {
@@ -1157,6 +1163,7 @@ ul,
   min-height: 2rem;
   padding: .05rem .1rem;
   line-height: 1.7;
+  margin-top: .1rem;
   margin-left: .1rem;
   margin-right: .1rem;
   margin-bottom: .2rem;
@@ -1168,23 +1175,24 @@ ul,
 
 .submit-question-btn {
   width: 2rem;
+  border-color: #4a87ee;
 }
-.submit-question-btn:active {
+.submit-question-btn:focus, .submit-question-btn:visited, .submit-question-btn:hover, .submit-question-btn:active {
   color: #fff;
 }
 
 /* discription form end */
-.question-list {
+.list-wrapper {
   margin: 0  0  0 .03rem;
 }
-.question-list .list-item {
+.list-wrapper .list-item {
   background-color: #fff;
   width: 100%;
   text-align: left;
   position: relative;
   height: 0.67rem;
 }
-.question-list .inner {
+.list-wrapper .inner {
   z-index: 1;
   position: absolute;
   width: 100%;
@@ -1196,12 +1204,12 @@ ul,
   padding: .08rem .05rem;
   border-bottom: 1px solid #ddd;
 }
-.question-list .inner .item-img {
+.list-wrapper .inner .item-img {
   width: 31%;
   max-width: 0.95rem;
   height: 0.5rem;
 }
-.question-list .inner .info-area {
+.list-wrapper .inner .info-area {
   width: 65%;
   display: inline-block;
   vertical-align: top;
@@ -1210,14 +1218,14 @@ ul,
   line-height: 1.9;
   padding-left: .05rem;
 }
-.question-list .inner .info-area .questionText {
+.list-wrapper .inner .info-area .questionText {
   font-size: .14rem;
   color: #333438;
 }
-.question-list .inner .info-area .created-time {
+.list-wrapper .inner .info-area .created-time {
   color: #999999;
 }
-.question-list .fn-layer {
+.list-wrapper .fn-layer {
   width: 25%;
   height: 0.49rem;
   margin-top: .08rem;
@@ -1231,16 +1239,30 @@ ul,
   color: #fff;
 }
 
+.history .done-flag {
+  font-size: 12px;
+  color: #64c400;
+  position: absolute;
+  right: .01rem;
+  top: .1rem;
+  -webkit-transform: rotate(33deg);
+  transform: rotate(33deg);
+  padding: .07rem;
+  border: 1px solid #e50b23;
+  border-radius: 50%;
+}
+
 .navigator-ul {
   height: 0.34rem;
   line-height: 0.34rem;
   z-index: 100000;
   position: relative;
   /* to make z-index prop effect */
+  background-color: #fff;
 }
 .navigator-ul li {
   width: 50%;
-  border-bottom: 2px solid #999999;
+  border-bottom: 2px solid #fff;
 }
 .navigator-ul li.current-active {
   border-bottom: 2px solid #00abfd;
@@ -1259,6 +1281,7 @@ ul,
 .detail .questionImage img {
   width: 100%;
   max-height: 1.8rem;
+  min-height: 1.8rem;
 }
 .detail .questionText {
   margin-top: .1rem;
@@ -1267,6 +1290,13 @@ ul,
 .detail .answer-panel {
   margin-top: .1rem;
   padding: .1rem;
+}
+.detail .common-panel-bg {
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  border-radius: 5px;
 }
 .detail .noAnswer-tips {
   padding: .1rem;

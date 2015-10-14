@@ -67,7 +67,7 @@ define([], function() {
         showMore: function(e) {
             e.preventDefault();
             history.fetchData({}, true); //is concat 
-        },
+        }
 
     }); // end of define
 

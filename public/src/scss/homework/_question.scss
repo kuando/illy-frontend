@@ -37,6 +37,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
             margin-bottom: .1rem;
             width: 100%;
             height: auto;
+            min-height: 1rem; // add in 20151021 for layout
         }
         .yo-checked {
             margin-bottom: .05rem;

@@ -1,6 +1,7 @@
 /* question index start */
 
 $camera-ask-size: 2rem;
+$camera-img-size: 1rem;
 
 .index {
     text-align: center;
@@ -26,14 +27,32 @@ $camera-ask-size: 2rem;
         background-color: #fff;
         @include display-center;
 
-        .camera-img {
+        .landscape-tips {
+            font-size: 12px;
+            color: #fff;
+            position: absolute;
+            left: 0;
+            top: -.3rem;
+            text-align: center;
+            width: 100%;
+        }
 
+        .camera-img {
+            display: block;
+            width: $camera-img-size;
+            height: $camera-img-size;
+            position: absolute;
+            left: 50%;
+            top: 48%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background: url(#{$img-dir}/iconfont-camera.png) no-repeat center;
+            background-size: 100%;
         }
 
         .camera-tip-text {
             font-size: 18px;
             color: $main-blue;
-            font-weight: bold;
             position: absolute;
             left: 50%;
             bottom: .2rem;
@@ -42,15 +61,6 @@ $camera-ask-size: 2rem;
         }
     }
 
-    .landscape-tips {
-        font-size: 12px;
-        color: #fff;
-        position: fixed;
-        left: 0;
-        bottom: 1.1rem;
-        text-align: center;
-        width: 100%;
-    }
     .text-ask {
         font-size: 16px;
         color: #fff;

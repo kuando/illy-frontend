@@ -4,13 +4,14 @@
         <img ms-attr-src="questionImage" ms-attr-alt="questionText" />
     </div>
 
-    <div class="questionText">
+    <div class="questionText common-panel-bg">
         问题描述:<br/>
         {{questionText}} 
     </div>
 
-    <div ms-if="answer" class="answer-panel">
-        <i class="icon icon-teacher"></i>
+    <div ms-if="answer" class="answer-panel common-panel-bg">
+        <!--<i class="icon icon-teacher"></i>-->
+        {{teacher.displayName}}老师的解答:<br/>
         <p class="text">{{answer | html}}</p>
     </div>
 
