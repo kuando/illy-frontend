@@ -1121,12 +1121,21 @@ ul,
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+.index .landscape-tips {
+  font-size: 12px;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 1.1rem;
+  text-align: center;
+  width: 100%;
+}
 .index .text-ask {
   font-size: 16px;
   color: #fff;
   position: fixed;
   left: 0;
-  bottom: 1rem;
+  bottom: .7rem;
   text-align: center;
   width: 100%;
 }
@@ -1134,9 +1143,13 @@ ul,
 /* question index end */
 /* discription form start */
 .form {
-  margin-top: .1rem;
+  padding-top: .1rem;
   min-height: 7rem;
   background-color: #fff;
+}
+
+.localImg {
+  margin-bottom: .1rem;
 }
 
 .description-input {

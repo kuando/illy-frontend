@@ -68,6 +68,29 @@ define([], function() {
             e.preventDefault();
             list.fetchData({}, true); //is concat 
         },
+        deleteQuestion: function(questionId) {
+            $http.ajax({
+                method: 'DELETE',
+                url: apiBaseUrl + "questions/" + questionId,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                dataType: "json",
+                success: function() {
+                    list.lists.forEach(function(item, i) {
+                        if (item._id === questionId) {
+                            list.lists.splice(i, 1);
+                        }
+                    })
+                },
+                error: function(res) {
+                    avalon.illyError("question delete ajax error", res);
+                },
+                ajaxFail: function(res) {
+                    avalon.illyError("question delete ajax failed" + res);
+                }
+            });
+        }
 
     }); // end of define
 
@@ -99,24 +122,64 @@ define([], function() {
 
             (function() {
 
+                var throttle = function(func, wait, options) {
+                    var context, args, result;
+                    var timeout = null;
+                    // 上次执行时间点
+                    var previous = 0;
+                    if (!options) { options = {}; }
+                    // 延迟执行函数
+                    var later = function() {
+                        // 若设定了开始边界不执行选项，上次执行时间始终为0
+                        previous = options.leading === false ? 0 : Date.now();
+                        timeout = null;
+                        result = func.apply(context, args);
+                        if (!timeout) { context = args = null; }
+                    };
+                    return function() {
+                        var now = Date.now();
+                        // 首次执行时，如果设定了开始边界不执行选项，将上次执行时间设定为当前时间。
+                        if (!previous && options.leading === false) { previous = now; }
+                        // 延迟执行时间间隔
+                        var remaining = wait - (now - previous);
+                        context = this;
+                        args = arguments;
+                        // 延迟时间间隔remaining小于等于0，表示上次执行至此所间隔时间已经超过一个时间窗口
+                        // remaining大于时间窗口wait，表示客户端系统时间被调整过
+                        if (remaining <= 0 || remaining > wait) {
+                            clearTimeout(timeout);
+                            timeout = null;
+                            previous = now;
+                            result = func.apply(context, args);
+                            if (!timeout) { context = args = null; }
+                            //如果延迟执行不存在，且没有设定结尾边界不执行选项
+                        } else if (!timeout && options.trailing !== false) {
+                            timeout = setTimeout(later, remaining);
+                        }
+                        return result;
+                    };
+                };
+
                 // common data 
                 var viewWidth = $(window).width();
-                var wrapper = $('.J-list-wrapper');
+                var wrapper = '.J-list-wrapper';
+                var touchTarget = '.ui-layer';
                 var maxMoveX = viewWidth / 4;
                 var canMoveAreaX = viewWidth / 5; 
 
                 // deal with touchstart, and get the startX data
                 var startX;
-                $(wrapper).on('touchstart', '.inner', function(e) {
+                $(wrapper).on('touchstart', touchTarget, function(e) {
                     startX = e.touches[0].pageX;
                 });
 
                 // deal with touchmove and get some important data
-                var movemoveDelta;
+                var moveDelta;
                 var moveX;
                 var endX;
                 var moveDirection;
-                $(wrapper).on('touchmove', '.inner', function(e) {
+                $(wrapper).on('touchmove', touchTarget, function(e) {
+
                     var self = $(this);
                     var pageX = e.touches[0].pageX;
                     endX = pageX;
@@ -144,14 +207,17 @@ define([], function() {
                     } else if (moveDelta < 0 && moveDelta >= maxMoveX) {
                         moveX = maxMoveX;
                     }
-                    $(this).css('-webkit-transform', 'translateX(' + moveX + 'px)');
+                    throttle(function move() {
+                        self.css('-webkit-transform', 'translateX(' + moveX + 'px)');
+                    }, 16);
+
                 });
 
                 // deal with touchend and get some important data
                 var swipeLeftDone = false;
-                var swipeRightDoneAniName = 'a-bounceinR';
-                $(wrapper).on('touchend', '.inner', function(e) {
-                    e.preventDefault();
+                //var swipeRightDoneAniName = 'a-bounceinR';
+                $(wrapper).on('touchend', touchTarget, function() {
+                    // e.preventDefault();
                     if (endX > 0 && endX < startX) { // if swipeLeft
                         $(this).css('-webkit-transform', 'translateX('+ -maxMoveX +'px)');
                         swipeLeftDone = true;
@@ -174,6 +240,12 @@ define([], function() {
                 });
 
             })();
+
+            $('.J-list-wrapper').on('click', '.fn-layer', function() {
+                var questionId = $(this).attr('data-questionId');
+                list.deleteQuestion(questionId);
+                $(this).hide();
+            });
 
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)

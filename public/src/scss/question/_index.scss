@@ -42,12 +42,21 @@ $camera-ask-size: 2rem;
         }
     }
 
+    .landscape-tips {
+        font-size: 12px;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        bottom: 1.1rem;
+        text-align: center;
+        width: 100%;
+    }
     .text-ask {
         font-size: 16px;
         color: #fff;
         position: fixed;
         left: 0;
-        bottom: 1rem;
+        bottom: .7rem;
         text-align: center;
         width: 100%;
 
@@ -55,7 +64,6 @@ $camera-ask-size: 2rem;
 
         }
     }
-
 
 }
 

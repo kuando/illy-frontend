@@ -27,12 +27,6 @@ define([], function() {
                     });
                 }
             });
-        },
-        tipAndOpenCamera: function() {
-            avalon.vmodels.question.showAlert('请横屏拍照以便老师看清问题!', 3);
-            setTimeout(function() {
-                index.openCamera();
-            }, 3010);
         }
 
     });

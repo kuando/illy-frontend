@@ -33,7 +33,7 @@ define([], function() {
                 },
                 ajaxFail: function(res) {
                     avalon.illyError('ajax failed', res);
-                    alert("submit failed!");
+                    alert("对不起，题目上传失败, 请重试！");
                 }
             });
 
@@ -55,6 +55,9 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
+
+            avalon.vmodels.index.localImgSrc = '';
+            avalon.vmodels.form.questionText = '';
 
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
