@@ -1,15 +1,29 @@
 $item-img-max-width: .95rem;
 $item-img-height: .5rem;
+$item-height: .67rem;
 
 .question-list {
     margin: 0  0  0 .03rem;
-    
-    .item {
+
+    .list-item {
+        background-color: #fff;
         width: 100%;
         text-align: left;
-        border-bottom: 1px solid #ddd;
-        padding: .08rem .05rem;
+        position: relative;
+        height: $item-height;
+    }
+    .inner {
+        z-index: $zIndex1;
+        position: absolute;
+        // left: 0;
+        // top: 0;
+        width: 100%;
+        height: $item-height;
+        -webkit-transform: translateX(0px); /* for move with finger */
+        transform: translateX(0px);
         background-color: #fff;
+        padding: .08rem .05rem;
+        border-bottom: 1px solid #ddd;
 
         .item-img {
             width: 31%;
@@ -35,6 +49,20 @@ $item-img-height: .5rem;
                 color: $light-grey;
             }
         }
+    }
+
+    .fn-layer {
+        width: 25%;
+        height: 0.49rem;
+        margin-top: .08rem;
+        line-height: 0.5rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: center;
+        font-size: 16px;
+        background-color: #f44336;
+        color: #fff;
     }
 
 

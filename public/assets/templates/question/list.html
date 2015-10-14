@@ -1,14 +1,17 @@
 <!-- question-list start -->
-<div class="question-list-wrapper" ms-controller="list">
+<div class="question-list J-list-wrapper" ms-controller="list">
     
     <div class="question-list" ms-if="!noContent">
-        <a ms-attr-href="'#!/detail/' + item._id" class="item area" ms-repeat-item="lists">
-            <img class="item-img area" ms-attr-src="illy_resource_base + item.questionImage + '?imageView2/1/w/180/h/160/interlace/1'" ms-attr-alt="item.title" />
-            <div class="info-area">
-                <div class="questionText text-overflow">{{item.questionText}}</div>
-                <div class="created-time text-overflow">{{item.createdTime | date()}}</div>
-            </div>
-        </a>
+        <div class="list-item area" ms-repeat-item="lists">
+            <a ms-attr-href="'#!/detail/' + item._id" class="inner">
+                <img class="item-img area" ms-attr-src="illy_resource_base + item.questionImage + '?imageView2/1/w/180/h/160/interlace/1'" ms-attr-alt="item.title" />
+                <div class="info-area">
+                    <div class="questionText text-overflow">{{item.questionText}}</div>
+                    <div class="created-time text-overflow">{{item.createdTime | date()}}</div>
+                </div>
+            </a>
+            <div class="fn-layer">删除</div>
+        </div>
     </div>
 
     <div ms-if="noContent" class="noContent">暂时还没有提问过</div>

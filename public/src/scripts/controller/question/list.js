@@ -97,6 +97,84 @@ define([], function() {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
 
+            (function() {
+
+                // common data 
+                var viewWidth = $(window).width();
+                var wrapper = $('.J-list-wrapper');
+                var maxMoveX = viewWidth / 4;
+                var canMoveAreaX = viewWidth / 5; 
+
+                // deal with touchstart, and get the startX data
+                var startX;
+                $(wrapper).on('touchstart', '.inner', function(e) {
+                    startX = e.touches[0].pageX;
+                });
+
+                // deal with touchmove and get some important data
+                var movemoveDelta;
+                var moveX;
+                var endX;
+                var moveDirection;
+                $(wrapper).on('touchmove', '.inner', function(e) {
+                    var self = $(this);
+                    var pageX = e.touches[0].pageX;
+                    endX = pageX;
+                    moveDelta = pageX - startX;
+                    if (moveDelta < 0) {
+                        moveDirection = 'left';
+                    } else {
+                        moveDirection = 'right';
+                    }
+                    if (startX < canMoveAreaX) {
+                        e.preventDefault();
+                        return;
+                    }
+                    if (swipeLeftDone === false && moveDirection === 'right') {
+                        e.preventDefault();
+                        return;
+                    }
+                    if (swipeLeftDone === true && moveDirection === 'left') {
+                        e.preventDefault();
+                        return;
+                    }
+                    //var offset = self.offset().left + (viewWidth - self.offset().width);
+                    if (moveDelta < 0 && moveDelta < maxMoveX) {
+                        moveX = moveDelta;
+                    } else if (moveDelta < 0 && moveDelta >= maxMoveX) {
+                        moveX = maxMoveX;
+                    }
+                    $(this).css('-webkit-transform', 'translateX(' + moveX + 'px)');
+                });
+
+                // deal with touchend and get some important data
+                var swipeLeftDone = false;
+                var swipeRightDoneAniName = 'a-bounceinR';
+                $(wrapper).on('touchend', '.inner', function(e) {
+                    e.preventDefault();
+                    if (endX > 0 && endX < startX) { // if swipeLeft
+                        $(this).css('-webkit-transform', 'translateX('+ -maxMoveX +'px)');
+                        swipeLeftDone = true;
+                        // add swipeLeft ani
+                    } else if (endX > 0 && endX > startX && moveDelta > 40) { // swipeRight
+
+                        // add swipeRight ani
+                        //$(this).addClass(swipeRightDoneAniName);
+                        //setTimeout(function() {
+                            //$(this).removeClass(swipeRightDoneAniName);
+                        //}.bind(this), 500);
+                        
+                        $(this).css('-webkit-transform', 'translateX(0px)');
+                        swipeLeftDone = false;
+                    } else {
+                        if (swipeLeftDone === false){
+                            $(this).click();
+                        }
+                    }
+                });
+
+            })();
+
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
