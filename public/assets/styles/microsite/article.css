@@ -11,8 +11,8 @@
 .a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
-  -webkit-animation: .1s ease-in forwards;
-  animation: .1s ease-in forwards;
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
 }
 
 .a-bounceinR {

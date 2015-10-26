@@ -253,8 +253,8 @@ input[type="checkbox"], input[type="radio"] {
 .a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
-  -webkit-animation: .1s ease-in forwards;
-  animation: .1s ease-in forwards;
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
 }
 
 .a-bounceinR {
@@ -1310,8 +1310,8 @@ ul,
 .a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
-  -webkit-animation: .1s ease-in forwards;
-  animation: .1s ease-in forwards;
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
 }
 
 .a-bounceinR {
@@ -1989,8 +1989,7 @@ ul,
 .avatar-wrapper img {
   display: inline-block;
   width: 0.9rem;
-  max-height: 0.9rem;
-  height: auto;
+  height: 0.9rem;
   border-radius: 50%;
   border: 2px solid #fff;
 }

@@ -31,6 +31,13 @@ $item-height: .67rem;
             height:  $item-img-height;
         }
 
+        .default-questionImage {
+            background-image: url(#{$img-dir}/iconfont-questionImage.png);
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
         .info-area {
             width: 65%;
             display: inline-block;

@@ -99,7 +99,8 @@
                     localStorage.removeItem('illy-token-microsite'); // the only chance to remove illy-token-microsite except unbind
                     location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
                 } else {
-                    alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
+                    // alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
+                    alert("对不起，系统错误，请稍后重试!")
                 }
             }
             xhr.onerror = function () {

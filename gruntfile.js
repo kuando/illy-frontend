@@ -292,9 +292,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
             //templates: ['public/build/assets/templates'],
             dev: ['public/*.html', 'public/outer/'], // for build
             build: ['public/build/'], // for release
-            mainHtmlsDist: ['public/assets/mainHtmls/dist/'], // for dev
+            mainHtmlsDist: ['public/assets/mainHtmls/'], // for dev
             mainScriptsDist: ['public/assets/scripts/dist/'], // for dev
-            outerDist: ['public/assets/outer/dist/'] // for dev
+            outerDist: ['public/assets/outer/'] // for dev
         },
 
         // https://www.npmjs.com/package/grunt-contrib-copy

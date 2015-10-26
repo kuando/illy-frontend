@@ -1,5 +1,9 @@
 // ==================== custom project data start @include ==================== //
 
+    // 微网站特殊性导致此属性已经成一个最大加载时间限制
+    // 同时真正rendered是ajax success加个小延时，更精确!
+    global_loading_delay = 8000;
+
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");

@@ -11,6 +11,7 @@ define([], function() {
         isVisited: false,
         noContent: false,
         noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
+        defaultQuestionImage: '../assets/images/iconfont-questionImage.png',
 
         lists: [],
 
@@ -81,7 +82,7 @@ define([], function() {
                         if (item._id === questionId) {
                             list.lists.splice(i, 1);
                         }
-                    })
+                    });
                 },
                 error: function(res) {
                     avalon.illyError("question delete ajax error", res);
@@ -242,7 +243,7 @@ define([], function() {
             })();
 
             $('.J-list-wrapper').on('click', '.fn-layer', function() {
-                var questionId = $(this).attr('data-questionId');
+                var questionId = $(this).attr('data-questionid');
                 list.deleteQuestion(questionId);
                 $(this).hide();
             });

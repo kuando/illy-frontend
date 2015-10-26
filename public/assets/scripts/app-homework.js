@@ -6,7 +6,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.2'; 
+    var global_resource_version = '0.0.3'; 
 
     // project domain, by config 
     var illy_domain = 'http://testweixin.hizuoye.com';
@@ -35,8 +35,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // global config, loading timeout
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
-    // global config, view loaded with a litle delay for rendering page, time enough
-    var global_loading_delay = 3000; // ms
+    // global config, view loaded with a litle delay for avalon rendering page, time enough
+    var global_loading_delay = 300; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';
@@ -209,8 +209,6 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     
     // ==================== custom project data start @include ==================== //
-
-    global_loading_delay = 300;
 
     // rewrite: global config, always show loader when view enter 
     global_always_show_loader = true;
@@ -414,10 +412,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 }
             }
             done = true;
-        }, 96); // wait js to exec and rendered the page
+        }, 128); // wait js to exec and rendered the page
 
         if (global_loading_delay === void 0) {
-            global_loading_delay = 3000;
+            global_loading_delay = 1000;
             avalon.illyWarning('no global_loading_delay set!');
         }
 
@@ -427,7 +425,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 if (callback && typeof callback === 'function') {
                     callback();
                 }
-                avalon.illyRecord('time not enough to rendered page!');
+                avalon.illyWarning('time not enough to rendered page!');
+                alert('网络情况貌似不佳，请退出重试！');
             }
             done = true;
         }, global_loading_delay);
@@ -445,7 +444,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     root.$watch('currentRendered', function(rendered) {
         if (rendered === true) {
-            loadingEndHandler();
+            setTimeout(function() {
+                loadingEndHandler();
+            }, 16);
         }
     });
 

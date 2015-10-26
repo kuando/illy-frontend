@@ -253,8 +253,8 @@ input[type="checkbox"], input[type="radio"] {
 .a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
-  -webkit-animation: .1s ease-in forwards;
-  animation: .1s ease-in forwards;
+  -webkit-animation: .4s ease-in forwards;
+  animation: .4s ease-in forwards;
 }
 
 .a-bounceinR {
@@ -1209,6 +1209,12 @@ ul,
   max-width: 0.95rem;
   height: 0.5rem;
 }
+.list-wrapper .inner .default-questionImage {
+  background-image: url(../../../assets/images/iconfont-questionImage.png);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .list-wrapper .inner .info-area {
   width: 65%;
   display: inline-block;
@@ -1259,6 +1265,7 @@ ul,
   position: relative;
   /* to make z-index prop effect */
   background-color: #fff;
+  margin-bottom: .10rem;
 }
 .navigator-ul li {
   width: 50%;

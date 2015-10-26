@@ -4,13 +4,14 @@
     <div class="" ms-if="!noContent">
         <div class="list-item area" ms-repeat-item="lists">
             <a ms-attr-href="'#!/detail/' + item._id" class="ui-layer inner">
-                <img class="item-img area" ms-attr-src="illy_resource_base + item.questionImage + '?imageView2/1/w/180/h/160/interlace/1'" ms-attr-alt="item.title" />
+                <img ms-if="item.questionImage" class="item-img area" ms-attr-src="illy_resource_base + item.questionImage + '?imageView2/1/w/180/h/160/interlace/1'" ms-attr-alt="item.title" />
+                <div ms-if="!item.questionImage" class="item-img area default-questionImage"></div>
                 <div class="info-area">
                     <div class="questionText text-overflow">{{item.questionText}}</div>
                     <div class="created-time text-overflow">{{item.createdTime | date()}}</div>
                 </div>
             </a>
-            <div class="fn-layer" ms-attr-data-questionId="item._id">删除</div>
+            <div class="fn-layer" ms-attr-data-questionid="item._id">删除</div>
         </div>
     </div>
 

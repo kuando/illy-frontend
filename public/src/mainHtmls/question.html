@@ -11,7 +11,7 @@
     /* loading, pacman end   */
     </style>
     <!-- <link rel="stylesheet" href="assets/styles/animation.css" /> -->
-    <link rel="stylesheet" href="./assets/styles/question/question.css?v=20151008" />
+    <link rel="stylesheet" href="./assets/styles/question/question.css?v=201510261853" />
 </head>
 
 <body>
@@ -35,14 +35,14 @@
 
     // rendered and bootstrap the page
     avalon.config({
-        debug: true
+        debug: false
     });
 
     require.config({
         baseUrl: "./assets" // relative
     });
 
-    require(['./scripts/app-question.js?v=20151008'], function(app) {
+    require(['./scripts/app-question.js?v=201510261853'], function(app) {
         app && app.init && app.init();
         avalon.appInitTime = Date.now();
     })
@@ -51,8 +51,8 @@
 
 </script>
 
-<!--<script src="./assets/scripts/lib/gmu/gmu.part.js"></script>-->
 <script src="./assets/scripts/lib/zepto/1.0/zepto.js"></script>
+<!--<script src="./assets/scripts/lib/gmu/gmu.part.js"></script>-->
 <!--<script src="http://localhost:35729/livereload.js"></script>-->
 <!--<script src="http://192.168.1.105:8080/target/target-script-min.js#anonymous"></script>-->
 </html>

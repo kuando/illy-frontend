@@ -99,8 +99,8 @@ define([], function() {
                     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                     avatar.localId = localIds && localIds[0];
                     //alert('choose ' + localIds.length + ' images!');
-                    me.uploadImage();
                     me.avatar = avatar.localId; // change it now 
+                    me.uploadImage();
                 }
             });
         },

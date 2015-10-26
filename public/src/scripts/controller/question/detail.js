@@ -25,9 +25,12 @@ define([], function() {
 
         fetchData: function(questionId) {
             if (detail.visited) {
-                
                 var res = avalon.getLocalCache(cachedPrefix + detail.questionId);
-                detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                if (res.questionImage !== "") {
+                    detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                } else {
+                    detail.questionImage = '';
+                }
                 detail.questionText = res.questionText;
                 detail.createdTime = res.createdTime;
                 detail.answer = res.answer;
@@ -43,7 +46,11 @@ define([], function() {
                 },
                 dataType: "json",
                 success: function(res) {
-                    detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                    if (res.questionImage !== "") {
+                        detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                    } else {
+                        detail.questionImage = '';
+                    }
                     detail.questionText = res.questionText;
                     detail.createdTime = res.createdTime;
                     detail.answer = res.answer;

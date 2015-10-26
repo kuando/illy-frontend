@@ -55,8 +55,7 @@ position: relative;
         img {
             display: inline-block;
             width: $me-avatar-height; 
-            max-height: $me-avatar-height;
-            height: auto;
+            height: $me-avatar-height;
             border-radius: 50%;
             border: 2px solid #fff;
         }

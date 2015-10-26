@@ -43,7 +43,9 @@ define(["./mmPromise", "./mmRouter"], function() {
             params = params || {}
         params = avalon.mix(true, {}, to.params, params)
         if (to) {
-            mmState.transitionTo(from, to, params, options)
+            setTimeout(function() {
+                mmState.transitionTo(from, to, params, options)
+            }, 30);
         }
     }
     // 事件管理器

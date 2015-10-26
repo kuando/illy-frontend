@@ -1,7 +1,7 @@
 // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.2'; 
+    var global_resource_version = '0.0.3'; 
 
     // project domain, by config 
     // @@include('../../../../config/illy_domain.cfg') @@ //
@@ -28,8 +28,8 @@
     // global config, loading timeout
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
-    // global config, view loaded with a litle delay for rendering page, time enough
-    var global_loading_delay = 3000; // ms
+    // global config, view loaded with a litle delay for avalon rendering page, time enough
+    var global_loading_delay = 300; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';

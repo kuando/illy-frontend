@@ -125,10 +125,10 @@
                 }
             }
             done = true;
-        }, 96); // wait js to exec and rendered the page
+        }, 128); // wait js to exec and rendered the page
 
         if (global_loading_delay === void 0) {
-            global_loading_delay = 3000;
+            global_loading_delay = 1000;
             avalon.illyWarning('no global_loading_delay set!');
         }
 
@@ -138,7 +138,8 @@
                 if (callback && typeof callback === 'function') {
                     callback();
                 }
-                avalon.illyRecord('time not enough to rendered page!');
+                avalon.illyWarning('time not enough to rendered page!');
+                alert('网络情况貌似不佳，请退出重试！');
             }
             done = true;
         }, global_loading_delay);
@@ -156,7 +157,9 @@
 
     root.$watch('currentRendered', function(rendered) {
         if (rendered === true) {
-            loadingEndHandler();
+            setTimeout(function() {
+                loadingEndHandler();
+            }, 16);
         }
     });
 
