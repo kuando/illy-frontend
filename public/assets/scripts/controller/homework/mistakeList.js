@@ -17,14 +17,14 @@ define([], function() {
             href: './task.html'
         },
         {
-            image: slidersUrlPrefix + '/slider-mistake.png',
-            title: 'mistakeList',
-            href: '#!/mistake/list'
-        },
-        {
             image: slidersUrlPrefix + '/slider-question.png',
             title: 'ask',
-            href: '#!/mistake/list'
+            href: './question.html'
+        },
+        {
+            image: slidersUrlPrefix + '/slider-mistake.png',
+            title: 'mistakeList',
+            href: '#!/'
         }
     ];
 

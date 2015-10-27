@@ -24,7 +24,7 @@ define([], function() {
         {
             image: slidersUrlPrefix + '/slider-question.png',
             title: 'ask',
-            href: '#!/mistake/list'
+            href: './question.html'
         }
     ];
 

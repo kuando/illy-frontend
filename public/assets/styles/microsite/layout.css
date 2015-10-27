@@ -1564,6 +1564,10 @@ ul,
   background-image: url(../../../assets/images/iconfont-yuedu.png);
 }
 
+.info-area {
+  max-height: .51rem;
+  overflow: hidden;
+}
 .info-area .item-title {
   height: .25rem;
   min-height: .25rem;

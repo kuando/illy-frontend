@@ -276,6 +276,9 @@ $navigator-item-height: .44rem;
 }
 
 .info-area {
+    max-height: .51rem;
+    overflow: hidden;
+
     .item-title {
         height: .25rem;
         min-height: .25rem;
