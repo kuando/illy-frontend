@@ -45,6 +45,49 @@
         height: auto;
     }
     
+    .loading-with-dot {
+    display: inline-block;
+    width: 10px; 
+    min-height: 2px;
+    padding-right: 2px;
+    border-left: 2px solid currentColor; 
+    border-right: 2px solid currentColor;   
+    background-color: currentColor; 
+    background-clip: content-box;
+    box-sizing: border-box;
+    -webkit-animation: dot 4s infinite step-start both;
+    animation: dot 4s infinite step-start both;
+    *zoom: expression(this.innerHTML = '...'); /* IE7 */
+
+    &:before { content: '...'; } /* IE8 */
+    &::before { content: ''; }
+    }
+
+    :root .loading-with-dot { margin-left: 2px; padding-left: 2px; } /* IE9+ */
+
+    @-webkit-keyframes dot {
+        25% { border-color: transparent; background-color: transparent; }          /* zero point */
+        50% { border-right-color: transparent; background-color: transparent; }    /* one point */
+        75% { border-right-color: transparent; }                                   /* two points */
+    }
+
+    @keyframes dot {
+        25% { border-color: transparent; background-color: transparent; }          /* zero point */
+        50% { border-right-color: transparent; background-color: transparent; }    /* one point */
+        75% { border-right-color: transparent; }                                   /* two points */
+    }
+
+    .loading-text {
+        position: fixed;
+        margin: auto;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: .22rem;
+        text-align: center;
+    }
     /* rewrite area, take care */
 
     .content a {
@@ -76,6 +119,9 @@
 </head>
 
 <body>
+
+    <div class="loading-text">家校云努力奔跑中<span class="loading-with-dot"></span></div>
+
     <div ms-controller="article" class="detail">
 
         <h2 class="title">{{title}}</h2>
@@ -124,7 +170,7 @@ require.config({
     baseUrl: "./js"
 });
 
-require(['./staticArticle.js?v=20151009'], function(page) {
+require(['./staticArticle.js?v=201510272237'], function(page) {
     page && page.init && page.init();
 })
 </script>

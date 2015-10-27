@@ -156,6 +156,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
 
     var activity = avalon.define({
         $id: "activity",
+        dataDone: false,
 
         resourcePrefix: '../../assets/images',
 
@@ -315,17 +316,29 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
                     }
                     activity.CopyinfoCollect = json.infoCollect;
                     activity.theme = json.theme;
+
+                    // 数据加载完毕,留下一定渲染时间，然后准备好显示页面
+                    activity.dataDone = true;
                 }
             });
         } // end of fetch data
 
     }); // end of define
 
+    activity.$watch('dataDone', function(done) {
+        if (done) {
+            setTimeout(function() {
+                document.querySelector('.loading-text').style.display = 'none';
+                document.querySelector('.detail').style.display = 'block';
+            }, 123);
+        }
+    });
 
     return {
         init: function() {
             avalon.scan();
             activity.fetchData();
+            document.querySelector('.detail').style.display = 'none';
         }
     };
 
