@@ -84,7 +84,9 @@ define([], function() {
             var taskId = target && target.getAttribute('data-taskid');
             var taskScoreAward = target && target.getAttribute('data-taskscoreaward');
             var state = 'task.detail.' + taskList.taskTypeMap[taskType];
-            avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
+            setTimeout(function() { // TODO: rm it, hack for ios9 
+                avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
+            }, 16);
         }
 
     });

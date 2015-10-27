@@ -251,11 +251,11 @@ define(["avalon"], function(avalon) {
             if (href.indexOf(prefix) === 0 && hash !== "") {
                 event.preventDefault()
                 // mark! 201509251730, bad code but f**c apple ios9 hash delay bug
-                setTimeout(function() {
+                setTimeout(function() { // TODO, rm it, hack for ios9 location.hash bug
                     setTimeout(function() {
                         avalon.router && avalon.router.navigate(hash)
-                    }, 30);
-                }, 30);
+                    }, 16);
+                }, 0);
             }
         }
     })

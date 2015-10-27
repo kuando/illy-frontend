@@ -43,7 +43,7 @@ define(["./mmPromise", "./mmRouter"], function() {
             params = params || {}
         params = avalon.mix(true, {}, to.params, params)
         if (to) {
-            setTimeout(function() {
+            setTimeout(function() { // TODO rm it, hack for ios9 location.hash bug
                 mmState.transitionTo(from, to, params, options)
             }, 30);
         }

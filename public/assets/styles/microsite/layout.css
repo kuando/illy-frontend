@@ -1526,6 +1526,8 @@ ul,
 .list .item-img, .topN .item-img {
   width: 30%;
   margin-right: .05rem;
+  height: 0.6rem;
+  /* topN & list img height */
 }
 .list .right-area, .topN .right-area {
   width: 64%;

@@ -16,7 +16,7 @@ define([], function() {
         illy_resource_base: avalon.illyGlobal.resourceBaseUrl,
         categoriesNames: [], // cached auto nature
         categoryId: '',  // for list.html ui-state-active use
-        navBarMaskShow: false, // navbar's mask, for loading
+        navBarMaskShow: true, // navbar's mask, for loading
         report: function() {
             avalon.vmodels.site.showAlert('感谢反馈， 我们会妥善处理!', 3); 
         },
@@ -115,10 +115,19 @@ define([], function() {
     });
 
     // disabled the navigator
+    var flag = true;
     var root = avalon.vmodels.root;
     avalon.vmodels.root.$watch('currentRendered', function(rendered) {
         var state = root.currentState;
         if (state === 'list') {
+
+            // 由于目前的机制，必须在第一次强行show一下，但是依然不能抵挡第一次过快切换栏目.
+            // 后面即使再快切换，也可防御住，就是第一下... 201510261618重构
+            if (flag) {
+                avalon.vmodels.site.navBarMaskShow = true;
+                flag = false;
+            }
+
             if (rendered === false) {
                 site.navBarMaskShow = true;
             } else {

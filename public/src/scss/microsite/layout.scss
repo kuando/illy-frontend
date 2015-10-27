@@ -19,6 +19,7 @@ $item-title-color: $dark-grey;
 
 // microsite item spec size
 $title-line-height: .36rem;
+$ms-topN-img-height: .6rem;
 $ms-img-height: .80rem;
 $item_title_height: .45rem;
 
@@ -234,6 +235,7 @@ $navigator-item-height: .44rem;
     .item-img {
         width: 30%;
         margin-right: .05rem;
+        height: $ms-topN-img-height; /* topN & list img height */
     }
     .right-area {
         width: 64%;
