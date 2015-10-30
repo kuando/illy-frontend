@@ -10,7 +10,8 @@ $item-height: .67rem;
         width: 100%;
         text-align: left;
         position: relative;
-        height: $item-height;
+        height: $item-height + .01rem;
+        border-bottom: 1px solid #ddd;
     }
     .inner {
         z-index: $zIndex1;
@@ -23,7 +24,6 @@ $item-height: .67rem;
         transform: translateX(0px);
         background-color: #fff;
         padding: .08rem .05rem;
-        border-bottom: 1px solid #ddd;
 
         .item-img {
             width: 31%;

@@ -250,25 +250,26 @@ input[type="checkbox"], input[type="radio"] {
  *  created on 201509031750
  */
 /* global-animation start 弹入-从右 */
-.a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
   -webkit-animation: .4s ease-in forwards;
   animation: .4s ease-in forwards;
 }
 
+/* question list 滑动复位动画 */
 .a-bounceinR {
   -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
+  -webkit-animation: .1s ease-in forwards;
+  animation: .1s ease-in forward;
 }
 
-@-webkit-keyframes bounceinR {
+@keyframes bounceinR {
   0% {
-    opacity: 0;
+    opacity: 1;
     -webkit-transform: translateX(-40px);
   }
   60% {
-    opacity: 0;
+    opacity: 1;
     -webkit-transform: translateX(0px);
   }
   80% {
@@ -278,12 +279,22 @@ input[type="checkbox"], input[type="radio"] {
     -webkit-transform: translateX(0px);
   }
 }
-/*@keyframes bounceinR{*/
-/*0%{opacity:1;transform:translateX(-10px)}*/
-/*60%{opacity:1;transform:translateX(0)}*/
-/*80%{transform:translateX(0)}*/
-/*100%{transform:translateX(0)}*/
-/*}*/
+@-webkit-keyframes bounceinR {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(-40px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  80% {
+    -webkit-transform: translateX(0px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+  }
+}
 /* global-animation end   弹入-从右 */
 /* 弹入-从下 */
 .a-bounceinB {
@@ -1307,25 +1318,26 @@ ul,
  *  created on 201509031750
  */
 /* global-animation start 弹入-从右 */
-.a-bounceinR,
 .a-bounceoutB,
 .a-bounceinB {
   -webkit-animation: .4s ease-in forwards;
   animation: .4s ease-in forwards;
 }
 
+/* question list 滑动复位动画 */
 .a-bounceinR {
   -webkit-animation-name: bounceinR;
-  animation-name: bounceinR;
+  -webkit-animation: .1s ease-in forwards;
+  animation: .1s ease-in forward;
 }
 
-@-webkit-keyframes bounceinR {
+@keyframes bounceinR {
   0% {
-    opacity: 0;
+    opacity: 1;
     -webkit-transform: translateX(-40px);
   }
   60% {
-    opacity: 0;
+    opacity: 1;
     -webkit-transform: translateX(0px);
   }
   80% {
@@ -1335,12 +1347,22 @@ ul,
     -webkit-transform: translateX(0px);
   }
 }
-/*@keyframes bounceinR{*/
-/*0%{opacity:1;transform:translateX(-10px)}*/
-/*60%{opacity:1;transform:translateX(0)}*/
-/*80%{transform:translateX(0)}*/
-/*100%{transform:translateX(0)}*/
-/*}*/
+@-webkit-keyframes bounceinR {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(-40px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  80% {
+    -webkit-transform: translateX(0px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+  }
+}
 /* global-animation end   弹入-从右 */
 /* 弹入-从下 */
 .a-bounceinB {

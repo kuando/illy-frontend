@@ -27,7 +27,8 @@ define([], function() {
             if (detail.visited) {
                 var res = avalon.getLocalCache(cachedPrefix + detail.questionId);
                 if (res.questionImage !== "") {
-                    detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                    //detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                    detail.questionImage = resourcePrefix + res.questionImage;
                 } else {
                     detail.questionImage = '';
                 }
@@ -47,7 +48,8 @@ define([], function() {
                 dataType: "json",
                 success: function(res) {
                     if (res.questionImage !== "") {
-                        detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                        // detail.questionImage = resourcePrefix + res.questionImage + '?imageView/2/w/600/h/300';
+                        detail.questionImage = resourcePrefix + res.questionImage;
                     } else {
                         detail.questionImage = '';
                     }
@@ -65,7 +67,18 @@ define([], function() {
                     avalon.illyError("detail ajax failed" + res);
                 }
             });
-        } // end of fetch data
+        }, // end of fetch data
+        isShowingFullScreenImage: false, // 是否正在显示全屏图j
+        showFullScreenQuestionImage: function() {
+            //document.querySelector('.full-screen-img-wrapper').appendChild(document.querySelector('.questionImage > img').cloneNode());
+            //$('.detail div').hide();
+            //avalon.$('.full-screen-img-wrapper').style.display = 'block';
+            detail.isShowingFullScreenImage = true;
+        },
+        hideFullScreenQuestionImage: function() {
+            detail.isShowingFullScreenImage = false;
+            console.log(1);
+        }
 
     }); // end of define
 

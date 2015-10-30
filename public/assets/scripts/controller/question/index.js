@@ -17,14 +17,16 @@ define([], function() {
                 success: function (res) {
                     index.localImgSrc = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 
-                    wx.uploadImage({
-                        localId: String(res.localIds), // 需要上传的图片的本地ID，由chooseImage接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            index.serverId = res.serverId; // 返回图片的服务器端ID
-                            avalon.router.go('question.form');
-                        }
-                    });
+                    setTimeout(function() {
+                        wx.uploadImage({
+                            localId: String(res.localIds), // 需要上传的图片的本地ID，由chooseImage接口获得
+                            isShowProgressTips: 1, // 默认为1，显示进度提示
+                            success: function (res) {
+                                avalon.router.go('question.form');
+                                index.serverId = res.serverId; // 返回图片的服务器端ID
+                            }
+                        });
+                    }, 16);
                 }
             });
         }

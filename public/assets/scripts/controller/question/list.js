@@ -69,6 +69,19 @@ define([], function() {
             e.preventDefault();
             list.fetchData({}, true); //is concat 
         },
+        maxMoveX: 0,
+        edit: function() {
+            $('.J-list-wrapper .inner').css('-webkit-transform', 'translateX(' + -list.maxMoveX + 'px)');
+            swipeLeftDone = true;
+            avalon.vmodels.header.editShow = false;
+            avalon.vmodels.header.editDoneShow = true;
+        },
+        editDone: function() {
+            $('.J-list-wrapper .inner').css('-webkit-transform', 'translateX(0px)');
+            swipeLeftDone = false;
+            avalon.vmodels.header.editShow = true;
+            avalon.vmodels.header.editDoneShow = false;
+        },
         deleteQuestion: function(questionId) {
             $http.ajax({
                 method: 'DELETE',
@@ -96,8 +109,11 @@ define([], function() {
     }); // end of define
 
     list.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
-        if (newLength && (newLength < localLimit)) {
+        if ( newLength != void 0 && newLength < localLimit ) {
             list.btnShowMore = false;
+            if (newLength === 0) {
+                list.noContent = true;
+            }
         } else {
             list.btnShowMore = true;
         }
@@ -106,7 +122,7 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-
+            list.editDone();
         };
         // 进入视图
         $ctrl.$onEnter = function() {
@@ -123,62 +139,34 @@ define([], function() {
 
             (function() {
 
-                var throttle = function(func, wait, options) {
-                    var context, args, result;
-                    var timeout = null;
-                    // 上次执行时间点
-                    var previous = 0;
-                    if (!options) { options = {}; }
-                    // 延迟执行函数
-                    var later = function() {
-                        // 若设定了开始边界不执行选项，上次执行时间始终为0
-                        previous = options.leading === false ? 0 : Date.now();
-                        timeout = null;
-                        result = func.apply(context, args);
-                        if (!timeout) { context = args = null; }
-                    };
-                    return function() {
-                        var now = Date.now();
-                        // 首次执行时，如果设定了开始边界不执行选项，将上次执行时间设定为当前时间。
-                        if (!previous && options.leading === false) { previous = now; }
-                        // 延迟执行时间间隔
-                        var remaining = wait - (now - previous);
-                        context = this;
-                        args = arguments;
-                        // 延迟时间间隔remaining小于等于0，表示上次执行至此所间隔时间已经超过一个时间窗口
-                        // remaining大于时间窗口wait，表示客户端系统时间被调整过
-                        if (remaining <= 0 || remaining > wait) {
-                            clearTimeout(timeout);
-                            timeout = null;
-                            previous = now;
-                            result = func.apply(context, args);
-                            if (!timeout) { context = args = null; }
-                            //如果延迟执行不存在，且没有设定结尾边界不执行选项
-                        } else if (!timeout && options.trailing !== false) {
-                            timeout = setTimeout(later, remaining);
-                        }
-                        return result;
-                    };
-                };
-
                 // common data 
                 var viewWidth = $(window).width();
                 var wrapper = '.J-list-wrapper';
                 var touchTarget = '.ui-layer';
                 var maxMoveX = viewWidth / 4;
+                avalon.vmodels.list.maxMoveX = maxMoveX;
                 var canMoveAreaX = viewWidth / 5; 
 
-                // deal with touchstart, and get the startX data
                 var startX;
-                $(wrapper).on('touchstart', touchTarget, function(e) {
-                    startX = e.touches[0].pageX;
-                });
-
-                // deal with touchmove and get some important data
                 var moveDelta;
+
                 var moveX;
                 var endX;
                 var moveDirection;
+
+                var swipeLeftDone = false;
+                var isMovedEnough = 40; // 滑动多少被认为是滑动
+                var swipeRightDoneAniName = 'a-bounceinR';
+                // end of common data
+
+                // deal with touchstart, and get the startX data
+                $(wrapper).on('touchstart', touchTarget, function(e) {
+                    startX = e.touches[0].pageX;
+                    moveDelta = void 0; // reset moveDelta when touch 201510291610
+                    e.preventDefault(); // fix 安卓不触发touchend bug! 201510291546
+                });
+
+                // deal with touchmove and get some important data
                 $(wrapper).on('touchmove', touchTarget, function(e) {
 
                     var self = $(this);
@@ -190,53 +178,65 @@ define([], function() {
                     } else {
                         moveDirection = 'right';
                     }
-                    if (startX < canMoveAreaX) {
+                    if (startX < canMoveAreaX) { /* 过于左侧开始滑动，判定为不应该触发滑动 */
                         e.preventDefault();
                         return;
                     }
-                    if (swipeLeftDone === false && moveDirection === 'right') {
+                    if (swipeLeftDone === false && moveDirection === 'right') { /* 阻止直接往右滑 */
                         e.preventDefault();
                         return;
                     }
-                    if (swipeLeftDone === true && moveDirection === 'left') {
+                    if (swipeLeftDone === true && moveDirection === 'right') { /* 复位 */
+
+                        // add swipeRight ani
+                        $(this).addClass(swipeRightDoneAniName);
+                        setTimeout(function() {
+                            $(this).removeClass(swipeRightDoneAniName);
+                        }.bind(this), 200);
+
+                        $(this).css('-webkit-transform', 'translateX(0px)');
+                        return;
+                    }
+                    if (swipeLeftDone === true && moveDirection === 'left') { /* 滑动到左侧依然左滑，阻止 */
                         e.preventDefault();
                         return;
                     }
-                    //var offset = self.offset().left + (viewWidth - self.offset().width);
-                    if (moveDelta < 0 && moveDelta < maxMoveX) {
+
+                    // 取固定的移动距离且最大就是maxMoveX 
+                    if (moveDirection === 'left' && Math.abs(moveDelta) < maxMoveX) {
                         moveX = moveDelta;
-                    } else if (moveDelta < 0 && moveDelta >= maxMoveX) {
-                        moveX = maxMoveX;
+                    } else if (moveDirection === 'left' && Math.abs(moveDelta) >= maxMoveX) {
+                        moveX = -maxMoveX;
                     }
-                    throttle(function move() {
-                        self.css('-webkit-transform', 'translateX(' + moveX + 'px)');
-                    }, 66);
+
+                    // 手指跟随的关键
+                    self.css('-webkit-transform', 'translateX(' + moveX + 'px)');
 
                 });
 
                 // deal with touchend and get some important data
-                var swipeLeftDone = false;
-                //var swipeRightDoneAniName = 'a-bounceinR';
-                $(wrapper).on('touchend', touchTarget, function() {
+                $(wrapper).on('touchend', touchTarget, function() { // touch接管移动和点击
                     // e.preventDefault();
-                    if (endX > 0 && endX < startX && Math.abs(moveDelta) > 30) { // if swipeLeft
+                    if (endX > 0 && endX < startX && Math.abs(moveDelta) > isMovedEnough) { // if swipeLeft and enough
                         $(this).css('-webkit-transform', 'translateX('+ -maxMoveX +'px)');
                         swipeLeftDone = true;
                         // add swipeLeft ani
-                    } else if (endX > 0 && endX > startX && moveDelta > 40) { // swipeRight
+                    } else if (endX > 0 && endX > startX && moveDelta > isMovedEnough) { // swipeRight and enough
 
                         // add swipeRight ani
-                        //$(this).addClass(swipeRightDoneAniName);
-                        //setTimeout(function() {
-                            //$(this).removeClass(swipeRightDoneAniName);
-                        //}.bind(this), 500);
+                        $(this).addClass(swipeRightDoneAniName);
+                        setTimeout(function() {
+                            $(this).removeClass(swipeRightDoneAniName);
+                        }.bind(this), 200);
                         
                         $(this).css('-webkit-transform', 'translateX(0px)');
                         swipeLeftDone = false;
-                    } else {
+                    } else if (Math.abs(moveDelta) < 10 || moveDelta === void 0) { // key! 小于移动距离或者没移动都被认为是点击
                         if (swipeLeftDone === false){
                             $(this).click();
                         }
+                    } else { // 所有其他情况都复原位
+                        $(this).css('-webkit-transform', 'translateX(0px)');
                     }
                 });
 

@@ -5,14 +5,24 @@ define([], function() {
         headerShow: false, // for header.html
         backBtnShow: true, // for header.html
         backHomeBtnShow: true, // for header.html
+        leftBackIndexShow: false, // list和history页面专用的左侧回到首页按钮
+        editShow: false, // 编辑按钮
+        editDoneShow: false, // 编辑中的完成按钮，状态在相关页设置(list.js)
+        edit: function() {
+            avalon.vmodels.list && avalon.vmodels.list.edit && avalon.vmodels.list.edit(); /* jshint ignore:line */ 
+        },
+        editDone: function() {
+            avalon.vmodels.list && avalon.vmodels.list.editDone && avalon.vmodels.list.editDone(); /* jshint ignore:line */ 
+        },
         back: function() { // has default back and can custom it
             history.go(-1);
-        }
+        } 
     });
 
     return avalon.controller(function($ctrl) {
         // 进入视图
         $ctrl.$onEnter = function() {
+
             avalon.vmodels.root.$watch('currentState', function(currentState) {
                 if (currentState !== void 0) {
 
@@ -23,9 +33,24 @@ define([], function() {
                         header.headerShow = false;
                     }
 
+                    if (currentState === 'list') {
+                        header.editShow = true;
+                        header.leftBackIndexShow = true;
+                        header.backHomeBtnShow = false;
+                    } else if (currentState === 'history') {
+                        header.editShow = false;
+                        header.leftBackIndexShow = true;
+                        header.backHomeBtnShow = false;
+                    } else {
+                        header.editShow = false;
+                        header.leftBackIndexShow = false;
+                        header.backHomeBtnShow = true;
+                    }
+
 
                 }
             }); // end of header.currentState watcher
+
         };
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {

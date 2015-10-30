@@ -1,8 +1,0 @@
-!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
-$	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticActivity.js	/^var $ = function(selector) {$/;"	f	language:JavaScript
-activity	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticActivity.js	/^var activity = avalon.define({$/;"	v	language:JavaScript
-apiBaseUrl	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticArticle.js	/^var apiBaseUrl = 'http:\/\/api.hizuoye.com\/api\/v1\/';$/;"	v	language:JavaScript
-article	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticArticle.js	/^var article = avalon.define({$/;"	v	language:JavaScript
-copyArr	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticActivity.js	/^var copyArr = function copyArr(arr) {$/;"	f	language:JavaScript
-dataAdapter	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticActivity.js	/^var dataAdapter = function dataAdapter(source) {$/;"	f	language:JavaScript
-key	/home/xiaoxuan/workspace/illy-front/public/outer/js/staticActivity.js	/^        arr[i] = {$/;"	p	language:JavaScript	class:arr

@@ -1,21 +1,29 @@
 <div ms-controller="detail" class="detail">
 
-    <div ms-if="questionImage" class="questionImage">
+    <div ms-if="questionImage && !isShowingFullScreenImage" class="questionImage" ms-click="showFullScreenQuestionImage">
+        <img ms-attr-src="questionImage" ms-attr-alt="questionText" /> 
+        <span class="tip">看大图</span>
+    </div>
+
+    <div class="full-screen-img-wrapper yo-header" ms-if="isShowingFullScreenImage">
+        <h2 class="title">图片详情</h2>
+
+        <span class="regret" ms-click="hideFullScreenQuestionImage">返回</span>
         <img ms-attr-src="questionImage" ms-attr-alt="questionText" />
     </div>
 
-    <div class="questionText common-panel-bg">
+    <div class="questionText common-panel-bg" ms-if="!isShowingFullScreenImage">
         问题描述:<br/>
         {{questionText}} 
     </div>
 
-    <div ms-if="answer" class="answer-panel common-panel-bg">
+    <div ms-if="answer && !isShowingFullScreenImage" class="answer-panel common-panel-bg">
         <!--<i class="icon icon-teacher"></i>-->
         {{teacher.displayName}}老师的解答:<br/>
         <p class="text">{{answer | html}}</p>
     </div>
 
-    <div ms-if="!answer" class="noAnswer-tips">
+    <div ms-if="!answer && !isShowingFullScreenImage" class="noAnswer-tips">
         很快就会收到老师的解答，请耐心等待~
     </div>
 

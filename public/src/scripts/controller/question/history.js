@@ -72,8 +72,11 @@ define([], function() {
     }); // end of define
 
     history.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
-        if (newLength && (newLength < localLimit)) {
+        if ( newLength != void 0 && newLength < localLimit ) {
             history.btnShowMore = false;
+            if (newLength === 0) {
+                history.noContent = true;
+            }
         } else {
             history.btnShowMore = true;
         }
