@@ -24,6 +24,7 @@ $item-height: .67rem;
         transform: translateX(0px);
         background-color: #fff;
         padding: .08rem .05rem;
+        transition: .3s ease-in;
 
         .item-img {
             width: 31%;

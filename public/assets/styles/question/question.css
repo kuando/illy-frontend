@@ -1165,7 +1165,7 @@ ul,
 /* question index end */
 /* discription form start */
 .form {
-  min-height: 7rem;
+  min-height: 7.36rem;
   background-color: #fff;
 }
 
@@ -1214,6 +1214,7 @@ ul,
   transform: translateX(0px);
   background-color: #fff;
   padding: .08rem .05rem;
+  transition: .3s ease-in;
 }
 .list-wrapper .inner .item-img {
   width: 31%;
@@ -1235,7 +1236,7 @@ ul,
   line-height: 1.9;
   padding-left: .05rem;
 }
-.list-wrapper .inner .info-area .questionText {
+.list-wrapper .inner .info-area .questionText, .list-wrapper .inner .info-area .detail .answer-panel, .detail .list-wrapper .inner .info-area .answer-panel {
   font-size: .14rem;
   color: #333438;
 }
@@ -1295,14 +1296,23 @@ ul,
 .detail {
   text-align: left;
   line-height: 1.7;
+  min-height: 7.36rem;
+  padding: .1rem .10rem;
+  background-color: #fff;
+}
+.detail .questionText, .detail .answer-panel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  padding: .05rem 0;
 }
 .detail .questionImage {
   position: relative;
+  max-height: 1.8rem;
+  overflow: hidden;
 }
 .detail .questionImage img {
   width: 100%;
-  /*max-height: 1.8rem;*/
-  /*min-height: 1.8rem;*/
 }
 .detail .questionImage .tip {
   position: absolute;
@@ -1312,7 +1322,7 @@ ul,
   padding-right: .05rem;
 }
 .detail .full-screen-img-wrapper {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 100000;
@@ -1322,29 +1332,26 @@ ul,
   background-color: #323436;
   overflow: scroll;
 }
+.detail .full-screen-img-wrapper img {
+  width: 100%;
+}
 .detail .full-screen-img-wrapper .full-screen-title {
   font-size: 20px;
   line-height: 44px;
   color: #fff;
 }
-.detail .questionText {
-  margin-top: .1rem;
-  padding: .1rem;
-}
 .detail .answer-panel {
+  border-top: 2px solid #00abfd;
   margin-top: .1rem;
-  padding: .1rem;
 }
 .detail .common-panel-bg {
-  background-color: #fff;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
-  border-radius: 5px;
 }
 .detail .noAnswer-tips {
   padding: .1rem;
   margin-top: .1rem;
+  margin-bottom: .1rem;
   text-align: center;
   font-weight: bold;
 }

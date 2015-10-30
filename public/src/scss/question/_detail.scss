@@ -1,14 +1,24 @@
 .detail {
     text-align: left;
     line-height: 1.7;
+    min-height: $min-viewport-height;
+    padding: .1rem .10rem;
+    background-color: #fff;
+
+    .questionText {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.6;
+        padding: .05rem 0;
+    }
 
     .questionImage {
         position: relative;
+        max-height: 1.8rem;
+        overflow: hidden;
 
         img {
             width: 100%;
-            /*max-height: 1.8rem;*/
-            /*min-height: 1.8rem;*/
         }
 
         .tip {
@@ -22,7 +32,7 @@
     }
 
     .full-screen-img-wrapper {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         z-index: $zIndex7 + 1;
@@ -32,6 +42,10 @@
         background-color: $wx-bar-bgColor;
         overflow: scroll;
 
+        img {
+            width: 100%;
+        }
+
         .full-screen-title {
             font-size: 20px;
             line-height: 44px;
@@ -40,29 +54,23 @@
 
     }
 
-    .questionText {
-        margin-top: .1rem;
-        padding: .1rem;
-    }
-
     .answer-panel {
+        border-top: 2px solid $main-blue;
         margin-top: .1rem;
-        padding: .1rem;
+        @extend .questionText;
     }
 
     // 题目描述和教师解答的公共背景样式, ref: questionText, answer-panel
     .common-panel-bg {
-        background-color: #fff;
         margin-left: auto;
         margin-right: auto;
-        width: 95%;
-        border-radius: 5px;
     }
 
 
     .noAnswer-tips {
         padding: .1rem;
         margin-top: .1rem;
+        margin-bottom: .1rem;
         text-align: center;
         font-weight: bold;
     }

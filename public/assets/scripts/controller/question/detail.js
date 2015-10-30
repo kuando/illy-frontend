@@ -77,7 +77,6 @@ define([], function() {
         },
         hideFullScreenQuestionImage: function() {
             detail.isShowingFullScreenImage = false;
-            console.log(1);
         }
 
     }); // end of define

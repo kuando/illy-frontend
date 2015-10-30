@@ -8,6 +8,7 @@ define([], function() {
     var list = avalon.define({
 
         $id: "list",
+        swipeToDeleteOn: false, // 是否开启滑动删除，默认关闭，关闭原因详情看具体实现函数
         isVisited: false,
         noContent: false,
         noContentText: '还没有做过作业哦，<br/>快去完成作业，得到老师评价吧~',
@@ -19,16 +20,14 @@ define([], function() {
         offset: 0, // inner var, to fetch data with offset and limit
         noMoreData: false, // no more data
         btnShowMore: false,
-        fetchData: function(data, concat) {
+        fetchData: function(offset, concat) {
             list.isLoading = true;
 
             var limit = localLimit;
-            var offset;
-            offset = list.lists.length || 0;
+            offset = offset || 0;
 
             $http.ajax({
                 url: apiBaseUrl + "questions?state=0&limit=" + limit + "&offset=" + offset,
-                data: data,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -67,18 +66,19 @@ define([], function() {
         }, // end of fetchData
         showMore: function(e) {
             e.preventDefault();
-            list.fetchData({}, true); //is concat 
+            var offset = list.lists.length;
+            list.fetchData(offset, true); //is concat 
         },
         maxMoveX: 0,
         edit: function() {
             $('.J-list-wrapper .inner').css('-webkit-transform', 'translateX(' + -list.maxMoveX + 'px)');
-            swipeLeftDone = true;
+            //swipeLeftDone = true;
             avalon.vmodels.header.editShow = false;
             avalon.vmodels.header.editDoneShow = true;
         },
         editDone: function() {
             $('.J-list-wrapper .inner').css('-webkit-transform', 'translateX(0px)');
-            swipeLeftDone = false;
+            //swipeLeftDone = false;
             avalon.vmodels.header.editShow = true;
             avalon.vmodels.header.editDoneShow = false;
         },
@@ -109,7 +109,7 @@ define([], function() {
     }); // end of define
 
     list.lists.$watch('length', function(newLength) { // mark for avalon1.5+ change this way
-        if ( newLength != void 0 && newLength < localLimit ) {
+        if ( newLength !== void 0 && newLength < localLimit ) {
             list.btnShowMore = false;
             if (newLength === 0) {
                 list.noContent = true;
@@ -129,7 +129,12 @@ define([], function() {
 
             avalon.vmodels.result.current = 'list';
             list.isVisited = avalon.vmodels.root.currentIsVisited;
-            if (!list.isVisited) {
+            var needFetch = false;
+            if (avalon.vmodels.index !== void 0 && avalon.vmodels.index.serverId !== '') {
+                needFetch = true;
+                avalon.vmodels.index.serverId = '';
+            }
+            if (!list.isVisited || needFetch) {
                 list.fetchData();
             }
 
@@ -145,6 +150,11 @@ define([], function() {
                 var touchTarget = '.ui-layer';
                 var maxMoveX = viewWidth / 4;
                 avalon.vmodels.list.maxMoveX = maxMoveX;
+
+                // 取消滑动删除，还不成熟，打开此注释可恢复不成熟版本滑动删除，不成熟在于点击和竖方向滑动不畅
+                if (!list.swipeToDeleteOn) {
+                    return;
+                }
                 var canMoveAreaX = viewWidth / 5; 
 
                 var startX;

@@ -40,7 +40,7 @@ define([], function() {
                     } else if (currentState === 'history') {
                         header.editShow = false;
                         header.leftBackIndexShow = true;
-                        header.backHomeBtnShow = false;
+                        header.backHomeBtnShow = true;
                     } else {
                         header.editShow = false;
                         header.leftBackIndexShow = false;
