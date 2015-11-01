@@ -118,7 +118,6 @@ define([], function() {
                 detail.shareCount = localCache.shareCount;
                 detail.visitCount = localCache.visitCount;
                 detail.likeCount = localCache.like;
-                avalon.vmodels.root.currentRendered = true;
                 return; // core!!! key!!! forget this will getCache and request which is the worst way!
             }
             $http.ajax({
@@ -136,7 +135,6 @@ define([], function() {
                     detail.visitCount = json.visitCount;
                     detail.likeCount = json.like;
                     avalon.setLocalCache(cachedPrefix + detail.articleId, json);
-                    avalon.vmodels.root.currentRendered = true;
 
                     wx.onMenuShareTimeline({
                         title: detail.title, // 分享标题

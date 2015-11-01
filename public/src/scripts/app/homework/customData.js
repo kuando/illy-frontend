@@ -1,7 +1,10 @@
 // ==================== custom project data start @include ==================== //
 
     // rewrite: global config, always show loader when view enter 
-    global_always_show_loader = true;
+    // because question rendered in same page, only data change,
+    // it will splash if no loader mask the page when view in,
+    // so always show loader, just for user experience. 201511012217
+    global_always_show_loader = true; 
 
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
@@ -28,6 +31,7 @@
         namespace: 'homework', // module namespace, for global cachePrefix use
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
+        currentRendered: false, // 由$http模块ajax success函数唯一改变
         currentIsVisited: false, // boolean flag
         title: '' // for title element or actionBar use
     });

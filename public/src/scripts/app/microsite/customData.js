@@ -2,7 +2,7 @@
 
     // 微网站特殊性导致此属性已经成一个最大加载时间限制
     // 同时真正rendered是ajax success加个小延时，更精确!
-    global_loading_delay = 8000;
+    //global_loading_delay = 8000;
 
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
     if (token === null) {
@@ -31,7 +31,7 @@
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view
-        currentRendered: false,
+        currentRendered: false, // 由$http模块ajax success函数唯一改变
         title: "", // 每一页action bar的标题   
         footerInfo: 'kuando Inc',
         back: function() {

@@ -114,6 +114,9 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
 
+            // clear localCache
+            avalon.clearLocalCache('illy-question-');
+
             // question.getUserInfo();
             question.getSchoolInfo();
 

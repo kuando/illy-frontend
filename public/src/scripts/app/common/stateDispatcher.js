@@ -27,7 +27,6 @@
         },
         onBegin: function() {
             root.currentAction = 'onBegin';
-            root.currentRendered = false;
         },
         onLoad: function() { // 切换完成并成功
             root.currentAction = 'onLoad';

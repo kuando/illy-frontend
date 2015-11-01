@@ -15,7 +15,6 @@ define([], function() {
         visited: false, // first in, no cache
         fetchRemoteData: function(apiArgs, data, target) {
             if (index.visited && needCache) { 
-                avalon.vmodels.root.currentRendered = true;
                 return; 
             }
 
@@ -27,7 +26,6 @@ define([], function() {
                 data: data,
                 success: function(res) {
                     index[target] = res;
-                    avalon.vmodels.root.currentRendered = true;
                 },
                 error: function(res) {
                     avalon.illyError('ajax error', res);
@@ -67,7 +65,6 @@ define([], function() {
             
        };
         // 视图渲染后，意思是avalon.scan完成
-        //var renderedDelay;
         $ctrl.$onRendered = function() {
 
         };

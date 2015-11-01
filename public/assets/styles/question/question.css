@@ -1177,7 +1177,7 @@ ul,
   margin-top: .1rem;
   margin-left: .1rem;
   margin-right: .1rem;
-  margin-bottom: .2rem;
+  margin-bottom: .1rem;
   border-radius: 5px;
 }
 .description-input:focus {
@@ -1195,6 +1195,7 @@ ul,
 /* discription form end */
 .list-wrapper {
   margin: 0  0  0 .03rem;
+  -webkit-transform: translateZ(0);
 }
 .list-wrapper .list-item {
   background-color: #fff;
@@ -1214,6 +1215,7 @@ ul,
   transform: translateX(0px);
   background-color: #fff;
   padding: .08rem .05rem;
+  -webkit-transition: .3s ease-in;
   transition: .3s ease-in;
 }
 .list-wrapper .inner .item-img {

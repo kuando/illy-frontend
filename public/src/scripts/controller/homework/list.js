@@ -55,7 +55,6 @@ define([], function() {
         offset: 0, // inner var, to fetch data with offset and limit
         //isLoading: false, // 正在加载标记
         fetchData: function(type) {
-            //list.isLoading = true; // 正在加载标记
             $http.ajax({
                 method: "",
                 //url: "api/list.json?limit=6",
@@ -106,7 +105,6 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             
-            // avalon.vmodels.app.sliders = listSliders;
             // only show loader in the first time, add in 201508282113
             if (list.showLoader) {
                 setTimeout(function() {
@@ -118,8 +116,9 @@ define([], function() {
                 loader && (loader.style.display = 'none'); /* jshint ignore:line */
             }
             
-            // remove cache in detail ctrl
-            list.fetchData('homework');
+            if (!avalon.vmodels.root.currentIsVisited) {
+                list.fetchData('homework');
+            }
 
             if (avalon.vmodels.question !== void 0) { // fix in 20150811
                 // 可以开启做题时间统计的标记, 自己第一次进入是true，同时唯一在此处开启

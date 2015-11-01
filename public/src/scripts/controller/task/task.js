@@ -105,6 +105,7 @@ define([], function() {
         };
         // 进入视图
         $ctrl.$onEnter = function() {
+            // clear localCache
             avalon.clearLocalCache('illy-task');
             task.getUserInfo();
             task.getSchoolInfo();

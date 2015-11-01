@@ -5,6 +5,9 @@
   > Created Time: 2015年07月10日 星期五 15时34分30秒
  ******************************************************/
 
+// update 20151101 增加了业务相关的代码。。。没办法
+// line 138
+
 (function(global, factory) {
 
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -113,6 +116,7 @@
     // ajax main function
     var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail) {
 
+        avalon.vmodels.root.currentRendered = false;
         // deal with user settings
         var xhr = getXHR();
         method = method.toUpperCase();
@@ -132,6 +136,7 @@
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     success( parseJSON( xhr.responseText ) );
+                    avalon.vmodels.root.currentRendered = true; // 业务相关代码
                 } else {
                     error(parseJSON(xhr.responseText));
                 }

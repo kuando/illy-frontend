@@ -168,6 +168,8 @@ define([], function() {
         // 进入视图
         $ctrl.$onEnter = function() {
             
+            // clear old local cache
+            avalon.clearLocalCache('illy-homework-');
             app.getUserInfo();
 
         };
@@ -180,8 +182,7 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            // clear old local cache
-            avalon.clearLocalCache('illy-homework-');
+
         };
         // 指定一个avalon.scan视图的vmodels，vmodels = $ctrl.$vmodels.concat(DOM树上下文vmodels)
         $ctrl.$vmodels = [];
