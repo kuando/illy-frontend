@@ -113,33 +113,17 @@
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         };
 
-        //var done = false; // 互斥标记,callback仅执行一次
-        //setTimeout(function() {
-        //    if (!done) {
-        //        hideLoader();
-        //        if (callback && typeof callback === 'function') {
-        //            callback();
-        //        }
-        //        done = true;
-        //    }
-        //}, 128); // wait js to exec and rendered the page
-
-        if (global_loading_delay === void 0) {
-            global_loading_delay = 1000;
-            avalon.illyWarning('no global_loading_delay set!');
+        if (global_rendered_time === void 0) {
+            global_rendered_time = 1000;
+            avalon.illyWarning('no global_rendered_time set!');
         }
 
         setTimeout(function() { // for strong
-            //if (!done) {
-                hideLoader();
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-                //avalon.illyWarning('time not enough to rendered page!');
-                //alert('网络情况貌似不佳，请退出重试！');
-                //done = true;
-            //}
-        }, global_loading_delay);
+            hideLoader();
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
+        }, global_rendered_time);
 
     };
 
@@ -148,7 +132,7 @@
             loadingBeginHandler();
         }
         if ( currentAction === 'onLoad' ) {
-            if (root.currentRendered || root.currentIsVisited) {
+            if (root.currentDataDone || root.currentIsVisited) {
                 loadingEndHandler();
             }
         }
@@ -165,7 +149,7 @@
      *  对于其他模块，一般一次大的请求以后就是用数据了，或者有其他ui方面
      *  的保护(比如task模块的文章内页，进去是个遮罩，就隐藏了不好的体验)
      *  不需要这么精细，只需要给个大概的时间来渲染页面即可，可在全局配置
-     *  global_loading_delay变量来指定页面渲染时间。
+     *  global_rendered_time变量来指定页面渲染时间。
      *
      *  而且在网速快的情况下就更可以给个大概量即可。
      *
@@ -173,7 +157,7 @@
      *
      */
 
-    root.$watch('currentRendered', function(rendered) {
+    root.$watch('currentDataDone', function(rendered) {
         if (rendered === true) {
             loadingEndHandler();
         }

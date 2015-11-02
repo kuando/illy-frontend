@@ -25,7 +25,7 @@
         namespace: 'question', // module namespace, for global cachePrefix use
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
-        currentRendered: false, // 由$http模块ajax success函数唯一改变
+        currentDataDone: false, // 由$http模块函数唯一改变
         title: '',
         currentIsVisited: false, // boolean flag
     });

@@ -114,9 +114,11 @@
     };
 
     // ajax main function
-    var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail) {
+    var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail, timeout) {
 
-        avalon.vmodels.root.currentRendered = false;
+        // 全局拦截request
+        $http.requestInterceptor();
+
         // deal with user settings
         var xhr = getXHR();
         method = method.toUpperCase();
@@ -126,6 +128,7 @@
         success = success || noop;
         error = error || noop;
         ajaxFail = ajaxFail || noop;
+        timeout = (timeout || 15) * 1000;
         xhr.open(method, method === 'GET' ? parseUrl(url, data)  : url, true); // mark!!!!!!
         xhr.onreadystatechange = function() {
             //console.log(xhr);
@@ -135,20 +138,39 @@
             //}
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
+                    // 全局拦截success
+                    $http.resolveInterceptor();
+                    var msg = 'xhr ' + method + ' success in ' + url;
+                    $http.log(msg);
+                    ajaxTimer && clearTimeout(ajaxTimer); /* jshint ignore:line */
                     success( parseJSON( xhr.responseText ) );
-                    avalon.vmodels.root.currentRendered = true; // 业务相关代码
                 } else {
+                    $http.rejectInterceptor();
+                    var msg = 'xhr ' + method + ' failed in ' + url;
+                    $http.log(msg);
                     error(parseJSON(xhr.responseText));
                 }
             }
         };
         beforeSend(xhr); // useful when use
+
         //xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
         xhr.setRequestHeader('Content-Type', "application/json"); // update in 20150718
+
         setHeaders(xhr, headers);
+
         //xhr.send(method !== "GET" ? jsonToquerystring(data) : null);
         xhr.send(method !== "GET" ? JSON.stringify(data) : null); // update in 20150718
+        var ajaxTimer = setTimeout(function() {
+            xhr.abort();
+            var msg = 'xhr ' + method + ' abort when timeout in ' + timeout / 1000 + ' seconds, with url ' + url;
+            $http.log(msg);
+        }, timeout);
+
         xhr.onerror = function() {
+            $http.rejectInterceptor();
+            var msg = 'xhr ' + method + ' error in ' + url;
+            $http.log(msg);
             ajaxFail(xhr.response);
         };
 
@@ -156,14 +178,40 @@
 
     // export object
     var $http = { // dataType must be json
+
+        debug: false,
+
+        log: function(msg) {
+            if (this.debug) {
+                console.log(msg);
+            }
+        },
+
+        // 发送拦截器
+        'requestInterceptor': noop,
+
+        // 返回拦截器, 暂未支持
+        // responseInterceptor: noop,
+        
+        // resolve拦截器
+        'resolveInterceptor': noop,
+
+        // reject拦截器
+        'rejectInterceptor': noop,
+
+        // 简化的ajax GET方法
         'get': function(settings) {
-            request('GET', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
+            request('GET', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail, settings.timeout);
         },
+
+        // 简化的ajax POST方法
         'post': function(settings) {
-            request('POST', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
+            request('POST', settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail, settings.timeout);
         },
+
+        // ajax通用方法
         'ajax': function(settings) {
-            request(settings.method || "GET", settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail);
+            request(settings.method || "GET", settings.url, settings.data, settings.beforeSend, settings.headers, settings.success, settings.error, settings.ajaxFail, settings.timeout);
         }
     };
 

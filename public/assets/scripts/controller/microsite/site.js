@@ -117,7 +117,7 @@ define([], function() {
     // disabled the navigator
     var flag = true;
     var root = avalon.vmodels.root;
-    avalon.vmodels.root.$watch('currentRendered', function(rendered) {
+    avalon.vmodels.root.$watch('currentDataDone', function(rendered) {
         var state = root.currentState;
         if (state === 'list') {
 

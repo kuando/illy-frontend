@@ -184,6 +184,15 @@ define([], function() {
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
+
+            //// test for good experience of big img re-render in detail page
+            //if (!avalon.vmodels.root.currentIsVisited) {
+            //    var bigImg = avalon.$('.cover-img > img');
+            //    bigImg.style.visibility = 'hidden';
+            //    setTimeout(function() {
+            //        bigImg.style.visibility = 'visible';
+            //    }, 100);
+            //}
             
         };
         // 进入视图

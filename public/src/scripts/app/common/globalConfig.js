@@ -3,6 +3,38 @@
     // version 
     var global_resource_version = '0.0.3'; 
 
+    // $http log off
+    // $http.debug = true;
+    
+    // $http全局ajax request拦截器配置
+    $http.requestInterceptor = function() {
+        // 重置数据获取成功标记
+        avalon.vmodels.root.currentDataDone = false;
+    };
+    
+    // $http全局ajax resolve拦截器配置
+    $http.resolveInterceptor = function() {
+        // 数据获取成功
+        avalon.vmodels.root.currentDataDone = true;
+
+        // repaint the big image of the page, for better user experience
+        if (!root.currentIsVisited) {
+            var bigImage = document.querySelector('.big-image');
+            if (bigImage) {
+                bigImage.style.visibility = 'hidden';
+                setTimeout(function() {
+                    bigImage.style.visibility = 'visible';
+                }, 100);
+            }
+        }
+    };
+
+    // $http全局ajax reject拦截器配置
+    $http.rejectInterceptor = function() {
+        // 请求失败，去除最后一条页面记录，以便下次继续发起请求
+        CACHE_VISITED_PAGEID_CONTAINER.pop();
+    };
+
     // project domain, by config 
     // @@include('../../../../config/illy_domain.cfg') @@ //
     // project images base src
@@ -29,7 +61,8 @@
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for avalon rendering page, time enough
-    var global_loading_delay = 300; // ms
+    // var global_loading_delay = 30; // ms
+    var global_rendered_time = 30; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';

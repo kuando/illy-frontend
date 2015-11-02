@@ -8,6 +8,38 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // version 
     var global_resource_version = '0.0.3'; 
 
+    // $http log off
+    // $http.debug = true;
+    
+    // $http全局ajax request拦截器配置
+    $http.requestInterceptor = function() {
+        // 重置数据获取成功标记
+        avalon.vmodels.root.currentDataDone = false;
+    };
+    
+    // $http全局ajax resolve拦截器配置
+    $http.resolveInterceptor = function() {
+        // 数据获取成功
+        avalon.vmodels.root.currentDataDone = true;
+
+        // repaint the big image of the page, for better user experience
+        if (!root.currentIsVisited) {
+            var bigImage = document.querySelector('.big-image');
+            if (bigImage) {
+                bigImage.style.visibility = 'hidden';
+                setTimeout(function() {
+                    bigImage.style.visibility = 'visible';
+                }, 100);
+            }
+        }
+    };
+
+    // $http全局ajax reject拦截器配置
+    $http.rejectInterceptor = function() {
+        // 请求失败，去除最后一条页面记录，以便下次继续发起请求
+        CACHE_VISITED_PAGEID_CONTAINER.pop();
+    };
+
     // project domain, by config 
     var illy_domain = 'http://testweixin.hizuoye.com';
 
@@ -36,7 +68,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
 
     // global config, view loaded with a litle delay for avalon rendering page, time enough
-    var global_loading_delay = 300; // ms
+    // var global_loading_delay = 30; // ms
+    var global_rendered_time = 30; // ms
 
     // global config, loader className
     var global_loader_className = '.loader';
@@ -241,7 +274,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view
-        currentRendered: false, // 由$http模块ajax success函数唯一改变
+        currentDataDone: false, // 由$http模块函数唯一改变
         title: "", // 每一页action bar的标题   
         footerInfo: 'kuando Inc',
         back: function() {
@@ -409,33 +442,17 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             loader && (loader.style.display = 'none'); /* jshint ignore:line */
         };
 
-        //var done = false; // 互斥标记,callback仅执行一次
-        //setTimeout(function() {
-        //    if (!done) {
-        //        hideLoader();
-        //        if (callback && typeof callback === 'function') {
-        //            callback();
-        //        }
-        //        done = true;
-        //    }
-        //}, 128); // wait js to exec and rendered the page
-
-        if (global_loading_delay === void 0) {
-            global_loading_delay = 1000;
-            avalon.illyWarning('no global_loading_delay set!');
+        if (global_rendered_time === void 0) {
+            global_rendered_time = 1000;
+            avalon.illyWarning('no global_rendered_time set!');
         }
 
         setTimeout(function() { // for strong
-            //if (!done) {
-                hideLoader();
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-                //avalon.illyWarning('time not enough to rendered page!');
-                //alert('网络情况貌似不佳，请退出重试！');
-                //done = true;
-            //}
-        }, global_loading_delay);
+            hideLoader();
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
+        }, global_rendered_time);
 
     };
 
@@ -444,7 +461,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             loadingBeginHandler();
         }
         if ( currentAction === 'onLoad' ) {
-            if (root.currentRendered || root.currentIsVisited) {
+            if (root.currentDataDone || root.currentIsVisited) {
                 loadingEndHandler();
             }
         }
@@ -461,7 +478,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
      *  对于其他模块，一般一次大的请求以后就是用数据了，或者有其他ui方面
      *  的保护(比如task模块的文章内页，进去是个遮罩，就隐藏了不好的体验)
      *  不需要这么精细，只需要给个大概的时间来渲染页面即可，可在全局配置
-     *  global_loading_delay变量来指定页面渲染时间。
+     *  global_rendered_time变量来指定页面渲染时间。
      *
      *  而且在网速快的情况下就更可以给个大概量即可。
      *
@@ -469,7 +486,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
      *
      */
 
-    root.$watch('currentRendered', function(rendered) {
+    root.$watch('currentDataDone', function(rendered) {
         if (rendered === true) {
             loadingEndHandler();
         }

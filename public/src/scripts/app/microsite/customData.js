@@ -31,7 +31,7 @@
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view
-        currentRendered: false, // 由$http模块ajax success函数唯一改变
+        currentDataDone: false, // 由$http模块函数唯一改变
         title: "", // 每一页action bar的标题   
         footerInfo: 'kuando Inc',
         back: function() {
