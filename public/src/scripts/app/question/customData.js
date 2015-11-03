@@ -1,6 +1,6 @@
 // ==================== custom project data start @include ==================== //
 
-    global_rendered_bigImage_delay = 500;    
+    global_rendered_bigImage_delay = 400;    
 
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");

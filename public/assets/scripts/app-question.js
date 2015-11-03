@@ -41,7 +41,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     // project domain, by config 
-    var illy_domain = 'http://testweixin.hizuoye.com';
+    var illy_domain = 'http://weixin.hizuoye.com';
 
     // project images base src
     var illy_images_base_src = './assets/images';
@@ -50,7 +50,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
@@ -250,7 +250,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     
     // ==================== custom project data start @include ==================== //
 
-    global_rendered_bigImage_delay = 500;    
+    global_rendered_bigImage_delay = 400;    
 
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");

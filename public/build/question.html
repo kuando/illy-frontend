@@ -11,7 +11,7 @@
     /* loading, pacman end   */
     </style>
     <!-- <link rel="stylesheet" href="assets/styles/animation.css" /> -->
-    <link rel="stylesheet" href="./assets/styles/question/question.css?v=201510261853" />
+    <link rel="stylesheet" href="./assets/styles/question/question.css?v=0.0.4" />
 </head>
 
 <body>
@@ -42,10 +42,11 @@
         baseUrl: "./assets" // relative
     });
 
-    require(['./scripts/app-question.js?v=201510261853'], function(app) {
+    require(['./scripts/app-question.js?v=0.0.4'], function(app) {
+        // init to build the app
+        avalon.initTime = Date.now();
         app && app.init && app.init();
-        avalon.appInitTime = Date.now();
-    })
+    });
 
     var AvalonLibsBaseUrl = './lib/avalonRouter/1.5-before/'; // for children files amd-define version control
 

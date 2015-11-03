@@ -1,7 +1,7 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
     var resourcePrefix = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
