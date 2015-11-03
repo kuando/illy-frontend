@@ -5,6 +5,7 @@
 
 @import "../base/variables";
 @import "../base/animation-part";
+@import "../base/mixins/mixin.scss";
 
 .detail {
     color: hsl(0, 0%, 11%);
@@ -31,6 +32,13 @@
             padding-right: .05rem;
         }
     }
+
+    @include iphone4-screen() { 
+        .count {
+            font-size: 12px;
+        }
+    }
+
     .gap-point {
         font-size: .04rem;
         position: relative;

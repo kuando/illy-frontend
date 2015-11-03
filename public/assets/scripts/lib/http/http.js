@@ -137,16 +137,17 @@
             var msg = 'inner onreadystatechange';
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    // 全局拦截success
-                    $http.resolveInterceptor();
                     msg = 'xhr ' + method + ' success in ' + url;
                     $http.log(msg);
                     ajaxTimer && clearTimeout(ajaxTimer); /* jshint ignore:line */
                     success( parseJSON( xhr.responseText ) );
+                    // 全局拦截ajax success
+                    $http.resolveInterceptor();
                 } else {
-                    $http.rejectInterceptor();
                     msg = 'xhr ' + method + ' failed in ' + url;
                     $http.log(msg);
+                    // 全局拦截ajax error
+                    $http.rejectInterceptor();
                     error(parseJSON(xhr.responseText));
                 }
             }

@@ -34,9 +34,19 @@ define([], function() {
                     }
 
                     if (currentState === 'list') {
-                        header.editShow = true;
+                        avalon.vmodels.root.$watch('currentDataDone', function(rendered) {
+                            if (rendered) {
+                                //setTimeout(function() {
+                                    if (avalon.vmodels.list.lists.length > 0) {
+                                        header.editShow = true;
+                                        header.backHomeBtnShow = false;
+                                    } else {
+                                        header.backHomeBtnShow = true;
+                                    }
+                                //}, 0);
+                            }
+                        });
                         header.leftBackIndexShow = true;
-                        header.backHomeBtnShow = false;
                     } else if (currentState === 'history') {
                         header.editShow = false;
                         header.leftBackIndexShow = true;

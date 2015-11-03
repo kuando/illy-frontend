@@ -1533,6 +1533,10 @@ ul,
   width: 100%;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size: 0;
+  /* remove inline-block gap */
+  letter-spacing: -4px;
+  /* remove inline-block gap */
 }
 .list .item-img, .topN .item-img {
   width: 30%;
@@ -1545,6 +1549,10 @@ ul,
   display: inline-block;
   vertical-align: top;
   margin-left: .03rem;
+  overflow: hidden;
+  letter-spacing: 0;
+  max-height: .6rem;
+  /* for too much number, even all more than 10000 */
 }
 .list .created-time, .topN .created-time {
   font-size: .12rem;
@@ -1742,6 +1750,11 @@ ul,
 }
 .detail .count span {
   padding-right: .05rem;
+}
+@media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
+  .detail .count {
+    font-size: 12px;
+  }
 }
 .detail .gap-point {
   font-size: .04rem;

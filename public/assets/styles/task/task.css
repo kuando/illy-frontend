@@ -1464,6 +1464,11 @@ ul,
 .detail .count span {
   padding-right: .05rem;
 }
+@media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
+  .detail .count {
+    font-size: 12px;
+  }
+}
 .detail .gap-point {
   font-size: .04rem;
   position: relative;

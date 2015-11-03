@@ -6,6 +6,10 @@ $item-height: .67rem;
     margin: 0  0  0 .03rem;
     -webkit-transform: translateZ(0);
 
+    .noContent {
+        margin-bottom: 10px;
+    }
+
     .list-item {
         background-color: #fff;
         width: 100%;
