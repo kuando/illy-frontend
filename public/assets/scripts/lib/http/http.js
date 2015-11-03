@@ -5,9 +5,6 @@
   > Created Time: 2015年07月10日 星期五 15时34分30秒
  ******************************************************/
 
-// update 20151101 增加了业务相关的代码。。。没办法
-// line 138
-
 (function(global, factory) {
 
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -116,11 +113,12 @@
     // ajax main function
     var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail, timeout) {
 
+        var xhr = getXHR();
+
         // 全局拦截request
         $http.requestInterceptor();
 
         // deal with user settings
-        var xhr = getXHR();
         method = method.toUpperCase();
         data = data || {};
         beforeSend = beforeSend || noop;
@@ -136,17 +134,18 @@
             //if (xhr.readyState === 4 && xhr.status === 200) {
             //    success(parseJSON(xhr.responseText));
             //}
+            var msg = 'inner onreadystatechange';
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     // 全局拦截success
                     $http.resolveInterceptor();
-                    var msg = 'xhr ' + method + ' success in ' + url;
+                    msg = 'xhr ' + method + ' success in ' + url;
                     $http.log(msg);
                     ajaxTimer && clearTimeout(ajaxTimer); /* jshint ignore:line */
                     success( parseJSON( xhr.responseText ) );
                 } else {
                     $http.rejectInterceptor();
-                    var msg = 'xhr ' + method + ' failed in ' + url;
+                    msg = 'xhr ' + method + ' failed in ' + url;
                     $http.log(msg);
                     error(parseJSON(xhr.responseText));
                 }
@@ -253,6 +252,7 @@
 /** 
  *  changelog
  *  20150804 update parseUrl function
+ *  20151102 update global http interceptor and log with config
  */
 
 // usage, arguments must be full

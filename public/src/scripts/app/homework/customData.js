@@ -29,9 +29,10 @@
     var root = avalon.define({
         $id: "root", // in html or body
         namespace: 'homework', // module namespace, for global cachePrefix use
+        mainPage: 'app.list', // 项目的主页,供一些错误redirect
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
-        currentDataDone: false, // 由$http模块唯一改变
+        currentDataDone: false, // 由$http模块拦截器唯一改变
         currentIsVisited: false, // boolean flag
         title: '' // for title element or actionBar use
     });

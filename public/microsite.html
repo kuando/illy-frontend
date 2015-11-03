@@ -11,7 +11,7 @@
     /* loading, pacman end   */
     </style>
     <!-- <link rel="stylesheet" href="assets/styles/animation.css" /> -->
-    <link rel="stylesheet" href="./assets/styles/microsite/layout.css?v=201510261853" />
+    <link rel="stylesheet" href="./assets/styles/microsite/layout.css?v=0.0.4" />
 </head>
 
 <body>
@@ -43,10 +43,11 @@
         baseUrl: "./assets" // relavite
     });
 
-    require(['./scripts/app-microsite.js?v=201510261853'], function(site) {
+    require(['./scripts/app-microsite.js?v=0.0.4'], function(site) {
+        // init to build the app
+        avalon.initTime = Date.now();
         site && site.init && site.init();
-        avalon.appInitTime = Date.now();
-    })
+    });
 
     var AvalonLibsBaseUrl = './lib/avalonRouter/1.5-before/'; // for children files amd-define version control
 

@@ -14,6 +14,7 @@
 
     /**
      * illyLog
+     * 一系列可以在框架生命周期使用或者在控制台使用的快捷log方法
      *
      * @param type {String}
      * @param msg {String}
@@ -51,7 +52,7 @@
         illyLog('record', msg, res, global_recordLog_style, true);
     };
 
-    // 性能统计数据
+    // 性能统计数据,数据详细，推荐在控制台手动调用
     avalon.illyProfile = function getPerformanceTiming () { 
 
         var performance = window.performance;
@@ -107,6 +108,8 @@
         return times;
     }
 
+    // 缓存系统通用函数
+    
     /**
      * getLocalCache
      * @param itemName {String}

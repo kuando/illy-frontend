@@ -28,10 +28,11 @@
     var root = avalon.define({
         $id: "root",
         namespace: 'microsite',
+        mainPage: 'site.index', // 项目的主页,供一些错误redirect
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view
-        currentDataDone: false, // 由$http模块函数唯一改变
+        currentDataDone: false, // 由$http模块拦截器唯一改变
         title: "", // 每一页action bar的标题   
         footerInfo: 'kuando Inc',
         back: function() {

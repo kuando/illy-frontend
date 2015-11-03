@@ -1,6 +1,6 @@
 // ==================== wxsdk-config start @include ==================== //
 
-    // 挂载微信sdk到avalon以供全局调用
+    // 挂载微信sdk对象到avalon以供全局调用
     avalon.wx = wx;
 
     var uri = location.href.split("#")[0];
@@ -69,6 +69,7 @@
         }
     });
 
+    // ready后可调用通用处理
     //wx.ready(function() {
     //    // do all thing here, except user trigger functions(can put in outside)
     //    wx.checkJsApi({

@@ -1,5 +1,7 @@
 // ==================== custom project data start @include ==================== //
 
+    global_rendered_bigImage_delay = 500;    
+
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {
@@ -23,6 +25,7 @@
     var root = avalon.define({
         $id: "root", // in html or body
         namespace: 'question', // module namespace, for global cachePrefix use
+        mainPage: 'question.index', // 项目的主页,供一些错误redirect
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
         currentDataDone: false, // 由$http模块函数唯一改变

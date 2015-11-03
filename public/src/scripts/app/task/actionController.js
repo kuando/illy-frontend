@@ -1,4 +1,7 @@
 // ==================== app actionController start @include ==================== //
+
+
+    // 针对本模块做action的监听和处理
     root.$watch('currentAction', function(currentAction) {
         if (currentAction !== void 0) {
             
@@ -7,7 +10,7 @@
                 // -------------------- onError start -------------------- //
                 case 'onError':
                     avalon.log("Error!, Redirect to index!", arguments);
-                    avalon.router.go("task.list");
+                    avalon.router.go(root.mainPage);
                     break;
                 // -------------------- onError end -------------------- //
             

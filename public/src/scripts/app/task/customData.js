@@ -23,6 +23,7 @@
     var root = avalon.define({
         $id: "root", // in html or body
         namespace: 'task', // module namespace, for global cachePrefix use
+        mainPage: 'task.list', // 项目的主页,供一些错误redirect
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
         currentIsVisited: false, // boolean flag

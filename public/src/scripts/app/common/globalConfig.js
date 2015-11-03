@@ -1,7 +1,7 @@
 // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.3'; 
+    var global_resource_version = '0.0.4'; 
 
     // $http log off
     // $http.debug = true;
@@ -24,7 +24,7 @@
                 bigImage.style.visibility = 'hidden';
                 setTimeout(function() {
                     bigImage.style.visibility = 'visible';
-                }, 100);
+                }, global_rendered_bigImage_delay || 300);
             }
         }
     };
@@ -62,7 +62,11 @@
 
     // global config, view loaded with a litle delay for avalon rendering page, time enough
     // var global_loading_delay = 30; // ms
-    var global_rendered_time = 30; // ms
+    var global_rendered_time = 88; // ms
+
+    // page is reused so some old page big image will
+    // splash in new page, add a delay to better UE. 201511031600
+    var global_rendered_bigImage_delay = 300;
 
     // global config, loader className
     var global_loader_className = '.loader';

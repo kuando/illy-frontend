@@ -29,11 +29,11 @@ define([], function() {
                 },
                 error: function(res) {
                     avalon.illyError('ajax error', res);
-                    alert("submit error!");
+                    alert("对不起，题目上传失败, 请重试！");
                 },
                 ajaxFail: function(res) {
                     avalon.illyError('ajax failed', res);
-                    alert("对不起，题目上传失败, 请重试！");
+                    // alert("对不起，题目上传失败, 请重试！");
                 }
             });
 

@@ -35,6 +35,9 @@
     
     // visitedChecker component start //
     
+    // 页面访问统计容器
+    var CACHE_VISITED_PAGEID_CONTAINER = [];
+
     var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
 
         if (typeof cacheContainer === 'function') {
@@ -60,9 +63,8 @@
 
     };
 
-    // 页面访问统计容器
-    var CACHE_VISITED_PAGEID_CONTAINER = [];
     root.$watch('currentAction', function(currentAction) {
+        // 统计时机 
         if (currentAction === 'onBegin') {
             root.currentIsVisited = doIsVisitedCheck();
         }
@@ -118,7 +120,7 @@
             avalon.illyWarning('no global_rendered_time set!');
         }
 
-        setTimeout(function() { // for strong
+        setTimeout(function() { 
             hideLoader();
             if (callback && typeof callback === 'function') {
                 callback();
@@ -131,6 +133,8 @@
         if (currentAction === 'onBegin') {
             loadingBeginHandler();
         }
+
+        // deal with not wait ajax page, like get data from parent vm
         if ( currentAction === 'onLoad' ) {
             if (root.currentDataDone || root.currentIsVisited) {
                 loadingEndHandler();
@@ -139,24 +143,20 @@
     });
 
     /** 
-     *  201511011800
-     *  微网站由于太多请求，每篇文章就是一个，所以为了更好的体验
-     *  需要精准控制页面loading end 时机，于是手写了大量的状态代码
-     *  在ajax success回调里，这样不管在高低网速下都能精确loading end
-     *  但是坏处就是手写以及太多地方更改了root里的总状态量，造成隐患，
-     *  是项目的一个实验特性，效果很好。
+     * 201511031617
+     * 框架并不能支持异步数据获取情况检测，也就是ajax获取数据
+     * 的结果需要自己监听状态，然后为框架添加一个生命周期标记
+     * 命名为currentDataDone，对于不需要的页面跳转，比如从父
+     * vm获取部分数据来渲染页面也符合逻辑，并在onload就及时
+     * loadingEndHandler，整体顺畅实现整个页面生命周期管理。
      *
-     *  对于其他模块，一般一次大的请求以后就是用数据了，或者有其他ui方面
-     *  的保护(比如task模块的文章内页，进去是个遮罩，就隐藏了不好的体验)
-     *  不需要这么精细，只需要给个大概的时间来渲染页面即可，可在全局配置
-     *  global_rendered_time变量来指定页面渲染时间。
-     *
-     *  而且在网速快的情况下就更可以给个大概量即可。
-     *
-     *  最好的解决方案应该是ajax底层模块success回调来自动做状态变更？
-     *
+     * 但是，对于更细致的数据比如图片究竟是否获取完成就只能
+     * 加delay来勉强应对大多数情况了,在单页应用这种页面复用
+     * 来说，就会出现新页面相同位置保存旧页面的图片数据，有
+     * 一定的用户体验不好的地方。
      */
 
+    // ajax data done, invoking loadingEndHandler
     root.$watch('currentDataDone', function(rendered) {
         if (rendered === true) {
             loadingEndHandler();
