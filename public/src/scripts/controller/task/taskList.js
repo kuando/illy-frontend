@@ -34,14 +34,14 @@ define([], function() {
                 url: apiBaseUrl + "tasks",
                 data: data,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 success: function(lists) {
                     // mark!!! concat work?
                     concat ? taskList.lists.concat(lists) : taskList.lists = lists; /* jshint ignore:line */
                     setTimeout(function() {
                         var newLists = taskList.lists;
-                        if (newLists && newLists.length === 0) {
+                        if (newLists !== void 0 && newLists.length === 0) {
                             taskList.noContent = true;
                         }
                     }, 500); // wait for .5s

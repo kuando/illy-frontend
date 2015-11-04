@@ -70,7 +70,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'homework/' + detail.homeworkId + '/performance',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 data: {
                     _id: avalon.getVM('detail').homeworkId,

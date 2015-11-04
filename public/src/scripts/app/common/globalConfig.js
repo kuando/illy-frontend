@@ -44,6 +44,9 @@
         if (msg.indexOf('Authorization') >= 0) {
             alert('对不起，您没有Authorization，本系统仅供会员使用！');
         }
+        if (msg.indexOf('token') >= 0) {
+            alert('对不起，您的token异常，请退出重试！');
+        }
     };
 
     // project domain, by config 

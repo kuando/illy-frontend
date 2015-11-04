@@ -48,7 +48,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'tasks/' + article.taskId + '/done',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
                     avalon.vmodels.task.score = res.score;

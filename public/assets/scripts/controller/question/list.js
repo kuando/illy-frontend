@@ -29,7 +29,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + "questions?state=0&limit=" + limit + "&offset=" + offset,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(lists) {

@@ -55,7 +55,7 @@ define([], function() {
                 url: apiBaseUrl + "homework/comments?limit=" + limit + "&offset=" + offset,
                 data: data,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(lists) {

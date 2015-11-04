@@ -1878,6 +1878,9 @@ ul,
   width: 2rem;
   font-size: 16px;
 }
+.info .keyPoint {
+  white-space: pre-wrap;
+}
 .info .keyPointRecord-area {
   width: 100%;
   background-color: #fff;

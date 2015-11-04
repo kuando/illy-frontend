@@ -28,7 +28,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + 'score/rank/me',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
                     rank.displayName = res.displayName;

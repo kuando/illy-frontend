@@ -43,7 +43,7 @@ define([], function() {
                 method: 'GET',
                 url: apiBaseUrl + 'questions/' + questionId,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(res) {

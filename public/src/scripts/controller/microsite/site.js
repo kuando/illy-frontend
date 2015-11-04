@@ -24,7 +24,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + 'categories',
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 success: function(res) {
                     res.unshift({_id: 'hots', 'name': '热门文章'});
@@ -56,7 +56,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + "profile",
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(json) {

@@ -64,7 +64,7 @@ define([], function() {
                     //limit: 6
                 },
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(lists) {

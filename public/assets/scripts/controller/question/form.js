@@ -18,7 +18,7 @@ define([], function() {
                 method: 'POST',
                 url: apiBaseUrl + 'questions',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 data: {
                     questionImage: form.imgServerId,

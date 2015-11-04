@@ -126,7 +126,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'profile',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 data: {
                     displayName: me.displayName,

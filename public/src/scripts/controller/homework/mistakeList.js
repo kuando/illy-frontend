@@ -74,7 +74,7 @@ define([], function() {
                 method: "",
                 url: apiBaseUrl + "homework/mistake?limit=" + limit + '&offset=' + offset,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 success: function(res) {
                     if (showMore === true && res.length <= localLimit) {
