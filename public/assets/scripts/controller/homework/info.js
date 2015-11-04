@@ -39,7 +39,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + 'homework/' + _id,
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 dataType: 'json',
                 success: function(json) {

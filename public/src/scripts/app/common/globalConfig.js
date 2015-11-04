@@ -7,9 +7,16 @@
     // $http.debug = true;
     
     // $http全局ajax request拦截器配置
-    $http.requestInterceptor = function() {
+    $http.requestInterceptor = function(oldSettings, xhr) {
         // 重置数据获取成功标记
         avalon.vmodels.root.currentDataDone = false;
+        var global_headers = {
+            'Authorization': 'Bearer ' + token
+        };
+        var newHeaders = avalon.mix(oldSettings.headers, global_headers);
+        oldSettings.headers = newHeaders;
+
+        return oldSettings;
     };
     
     // $http全局ajax resolve拦截器配置
@@ -30,9 +37,13 @@
     };
 
     // $http全局ajax reject拦截器配置
-    $http.rejectInterceptor = function() {
+    $http.rejectInterceptor = function(msg) {
         // 请求失败，去除最后一条页面记录，以便下次继续发起请求
         CACHE_VISITED_PAGEID_CONTAINER.pop();
+
+        if (msg.indexOf('Authorization') >= 0) {
+            alert('对不起，您没有Authorization，本系统仅供会员使用！');
+        }
     };
 
     // project domain, by config 

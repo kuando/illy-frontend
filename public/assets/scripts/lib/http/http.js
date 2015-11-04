@@ -110,23 +110,41 @@
         return xhr;
     };
 
+    var argsToConfigObj = function(arr) {
+        return {
+            method: arr[0],
+            url: arr[1],
+            data: arr[2],
+            beforeSend: arr[3],
+            headers: arr[4],
+            success: arr[5],
+            error: arr[6],
+            ajaxFail: arr[7],
+            timeout: arr[8]
+        };
+    };
+
     // ajax main function
     var request = function request(method, url, data, beforeSend, headers, success, error, ajaxFail, timeout) {
 
         var xhr = getXHR();
 
-        // 全局拦截request
-        $http.requestInterceptor();
+        // settings adaptor
+        var oldSettings = argsToConfigObj(arguments);
+
+        // 全局拦截request, return new xhr settings and do something
+        var newSettings = $http.requestInterceptor(oldSettings, xhr);
 
         // deal with user settings
-        method = method.toUpperCase();
-        data = data || {};
-        beforeSend = beforeSend || noop;
-        headers = headers || {};
-        success = success || noop;
-        error = error || noop;
-        ajaxFail = ajaxFail || noop;
-        timeout = (timeout || 15) * 1000;
+        method = newSettings.method.toUpperCase();
+        data = newSettings.data || {};
+        beforeSend = newSettings.beforeSend || noop;
+        headers = newSettings.headers || {};
+        success = newSettings.success || noop;
+        error = newSettings.error || noop;
+        ajaxFail = newSettings.ajaxFail || noop;
+        timeout = (newSettings.timeout || 15) * 1000;
+
         xhr.open(method, method === 'GET' ? parseUrl(url, data)  : url, true); // mark!!!!!!
         xhr.onreadystatechange = function() {
             //console.log(xhr);
@@ -147,7 +165,7 @@
                     msg = 'xhr ' + method + ' failed in ' + url;
                     $http.log(msg);
                     // 全局拦截ajax error
-                    $http.rejectInterceptor();
+                    $http.rejectInterceptor(parseJSON(xhr.responseText));
                     error(parseJSON(xhr.responseText));
                 }
             }
@@ -253,7 +271,9 @@
 /** 
  *  changelog
  *  20150804 update parseUrl function
+ *  20151101 update source with work code, not very good...
  *  20151102 update global http interceptor and log with config
+ *  20151103 make interceptor dynamic change the xhr settings(like set headers global default)
  */
 
 // usage, arguments must be full
@@ -269,8 +289,6 @@
 //    headers: { // default Authorization Bearer 
 
 //    },
-//    cache: true, // if type get, default do it 
-//    dataType: "json", // the only type for now
 //    success: function(res) {
 //        console.log(res);
 //    },
@@ -279,6 +297,9 @@
 //    },
 //    ajaxFail: function(res) {
 //        console.error(res);
-//    }
+//    },
+//    timeout: 15, // second
+//    cache: true, // if type get, default do it 
+//    dataType: "json", // the only type for now
 //})
 
