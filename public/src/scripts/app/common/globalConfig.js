@@ -41,10 +41,10 @@
         // 请求失败，去除最后一条页面记录，以便下次继续发起请求
         CACHE_VISITED_PAGEID_CONTAINER.pop();
 
-        if (msg.indexOf('Authorization') >= 0) {
+        if (msg && msg.indexOf('Authorization') >= 0) {
             alert('对不起，您没有Authorization，本系统仅供会员使用！');
         }
-        if (msg.indexOf('token') >= 0) {
+        if (msg && msg.indexOf('token') >= 0) {
             alert('对不起，您的token异常，请退出重试！');
         }
     };

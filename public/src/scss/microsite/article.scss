@@ -35,7 +35,7 @@
 
     @include iphone4-screen() { 
         .count {
-            font-size: 12px;
+            font-size: .12rem;
         }
     }
 
@@ -107,7 +107,7 @@
         height: .44rem;
         line-height: .44rem;
         margin: 0 auto;
-        font-size: 16px;
+        font-size: .16rem;
         color: #fff;
         background-color: $main-green;
         text-align: center;
@@ -130,7 +130,7 @@
         .task-shareMask-tip-text {
             color: #fff;
             font-weight: bold;
-            font-size: 18px;
+            font-size: .18rem;
             position: absolute;
             top: .68rem;
             left: 50%;
@@ -154,7 +154,7 @@
             width: 100%;
             height: .4rem;
             color: #fff;
-            font-size: 14px;
+            font-size: .14rem;
             text-align: center;
             margin-top: .5rem;
         }

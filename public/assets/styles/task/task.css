@@ -727,7 +727,7 @@ ul,
 .ui-dialog .ui-dialog-title {
   height: .4rem;
   line-height: .5rem;
-  font-size: 18px;
+  font-size: .18rem;
   text-align: center;
   font-weight: 700;
   color: #3d4145;
@@ -739,7 +739,7 @@ ul,
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: 16px;
+  font-size: .16rem;
   padding: 0 .1rem;
   text-align: center;
   line-height: 1.5;
@@ -763,7 +763,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   color: #0079ff;
-  border: 0.01rem solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   border-bottom: 0 none;
   cursor: pointer;
 }
@@ -1113,7 +1113,7 @@ ul,
   margin-top: 50%;
   height: 1.5rem;
   position: relative;
-  padding: 30px;
+  padding: .3rem;
   text-align: center;
   -webkit-transition: top 1.2s linear;
   transition: top 1.2s linear;
@@ -1252,7 +1252,7 @@ ul,
   margin-left: -.3rem;
   text-align: center;
   width: .6rem;
-  font-size: 14px;
+  font-size: .14rem;
   color: #ED6E41;
 }
 .task-list .list-card .right-area {
@@ -1260,7 +1260,7 @@ ul,
 }
 .task-list .list-card .right-area .title {
   width: 100%;
-  font-size: 14px;
+  font-size: .14rem;
   padding-left: .05rem;
 }
 .task-list .list-card .right-area .right-bottom-area {
@@ -1291,12 +1291,12 @@ ul,
   display: inline-block;
   vertical-align: top;
   margin-top: 0.05rem;
-  border-radius: 10px;
+  border-radius: 0.1rem;
 }
 .task-list .list-card .right-area .right-bottom-area .progress-area .progress-wrapper .progress-outer .progress-inner {
   height: 0.1rem;
   background-color: #EF7549;
-  border-radius: 10px;
+  border-radius: 0.1rem;
   width: 20%;
   /* default width */
 }
@@ -1466,7 +1466,7 @@ ul,
 }
 @media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
   .detail .count {
-    font-size: 12px;
+    font-size: .12rem;
   }
 }
 .detail .gap-point {
@@ -1480,7 +1480,7 @@ ul,
 }
 .detail .cover-img img {
   width: 100%;
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
 }
 .detail .content {
@@ -1528,7 +1528,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   margin: 0 auto;
-  font-size: 16px;
+  font-size: .16rem;
   color: #fff;
   background-color: #64c400;
   text-align: center;
@@ -1550,7 +1550,7 @@ ul,
 .detail .shareMask .task-shareMask-tip-text {
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
+  font-size: .18rem;
   position: absolute;
   top: .68rem;
   left: 50%;
@@ -1572,7 +1572,7 @@ ul,
   width: 100%;
   height: .4rem;
   color: #fff;
-  font-size: 14px;
+  font-size: .14rem;
   text-align: center;
   margin-top: .5rem;
 }
@@ -1703,7 +1703,7 @@ ul,
   padding-bottom: 0.3rem;
   padding-left: .06rem;
   padding-right: .06rem;
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
   /* mall item end */
 }
@@ -1783,7 +1783,7 @@ ul,
   background-color: #f77d65;
   min-height: 1.5rem;
   position: relative;
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
   margin-top: .2rem;
 }
@@ -1814,7 +1814,7 @@ ul,
   background-size: 100%;
 }
 .rank .my-info-panel {
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
   height: 1rem;
   color: #666;
@@ -1861,7 +1861,7 @@ ul,
   margin-left: -.8rem;
 }
 .rank .rank-wrapper .rank-list {
-  max-width: 450px;
+  max-width: 4.5rem;
   width: 90%;
   margin: 0 auto;
   background-color: #fa7a7a;
@@ -2005,7 +2005,7 @@ ul,
   background: url(../../../assets/images/iconfont-updateProfile.png) no-repeat center;
   background-size: 100%;
   position: relative;
-  top: -1px;
+  top: -.01rem;
 }
 
 .avatar-wrapper {
@@ -2038,11 +2038,9 @@ ul,
 .column-wrapper .gap-line {
   display: inline-block;
   vertical-align: middle;
-  width: 1px;
+  width: .01rem;
   height: .4rem;
   background-color: #dedede;
-  /*position: relative;*/
-  /*top: 3px;*/
 }
 
 .editing-tips {
@@ -2110,11 +2108,11 @@ ul,
   text-align: right;
 }
 .update-profile-list .info-gap {
-  width: 1500px;
+  width: 15rem;
   height: .1rem;
   position: relative;
-  top: -1px;
-  left: -500px;
+  top: -.01rem;
+  left: -5rem;
   background-color: #f1f1f1;
 }
 .update-profile-list .icon {

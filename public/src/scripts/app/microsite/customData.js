@@ -1,8 +1,7 @@
 // ==================== custom project data start @include ==================== //
-
-    // 微网站特殊性导致此属性已经成一个最大加载时间限制
-    // 同时真正rendered是ajax success加个小延时，更精确!
-    //global_loading_delay = 8000;
+    
+    // rewrite for user experience, we need reset scrollBar smart, so disabled this config
+    global_always_reset_scrollbar = false;
 
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
     if (token === null) {
@@ -29,6 +28,7 @@
         $id: "root",
         namespace: 'microsite',
         mainPage: 'site.index', // 项目的主页,供一些错误redirect
+        resetConfig: ['detail'], // 配置需要每次都恢复滚动到页头的视图
         currentState: "", // spec-stateName
         currentAction: "",
         currentIsVisited: false, // useful for most child view

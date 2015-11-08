@@ -9,15 +9,15 @@ $camera-img-size: 1rem;
     min-height: 7rem;
 
     .ask-record {
-        font-size: 12px;
+        font-size: .12rem;
         color: #fff;
         padding: .03rem .08rem;
-        border-radius: 10px;
+        border-radius: .1rem;
         position: fixed;
         top: .15rem;
         right: .15rem;
         border: 1px solid #ccc;
-        letter-spacing: 3px;
+        letter-spacing: .03rem;
     }
 
     .camera-ask {
@@ -28,7 +28,7 @@ $camera-img-size: 1rem;
         @include display-center;
 
         .landscape-tips {
-            font-size: 12px;
+            font-size: .12rem;
             color: #fff;
             position: absolute;
             left: 0;
@@ -51,7 +51,7 @@ $camera-img-size: 1rem;
         }
 
         .camera-tip-text {
-            font-size: 18px;
+            font-size: .18rem;
             color: $main-blue;
             position: absolute;
             left: 50%;
@@ -62,7 +62,7 @@ $camera-img-size: 1rem;
     }
 
     .text-ask {
-        font-size: 16px;
+        font-size: .16rem;
         color: #fff;
         position: fixed;
         left: 0;

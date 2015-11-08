@@ -8,13 +8,35 @@
      *
      *  loading
      *  resetScrollbar
-     *  badNetworkHandler
+     *  badNetworkHandle
      *  setTitle
      *
      */
 
+    /** 
+     * onBegin
+     *   getCurrentState (非可见性组件)
+     *   doIsVisitedCheck (非可见性组件)
+     *   loadingBeginHandler (开始等待页面渲染)
+     *   bindBadNetworkHandler (非可见性组件)
+     *
+     * onLoad
+     *   setTitle (非可见性组件)
+     *   scrollBar.setScrollbar (非可见性组件)
+     *   loadingEndHandler (针对无异步数据获取的页面)
+     *   unbindBadNetworkHandler (非可见性组件)
+     *   pushPageState (非可见性组件)
+     *
+     * onRendered(自定义生命周期)
+     *   loadingEndHandler (针对等待异步数据获取的页面)
+     *   
+     * onBeforeUnload
+     *   updatePageState (非可见性组件)
+     */
+
     // getCurrentState component start //
     
+    // TODO: 改进来应对复杂多重嵌套后的state, 现在是约定最多三级且和vm的命名相同
     var getCurrentState = function getCurrentState() {
         var state1 = mmState.currentState.stateName.split(".")[1]; // 第二个
         var state2 = mmState.currentState.stateName.split(".")[2]; // 第三个
@@ -38,33 +60,33 @@
     // 页面访问统计容器
     var CACHE_VISITED_PAGEID_CONTAINER = [];
 
-    var doIsVisitedCheck = function doIsVisitedCheck(cacheContainer, callback) {
+    // 统一的页面key生成器
+    var generatePageId = function generatePageId() {
+        var pageId = location.href.split('!')[1];
+        return pageId;
+    };
 
-        if (typeof cacheContainer === 'function') {
-            callback = cacheContainer;
-            cacheContainer = void 0;
-        }
+    var doIsVisitedCheck = function doIsVisitedCheck(callback) {
 
-        var pageId = location.href.split("!")[1];
-        cacheContainer = cacheContainer || CACHE_VISITED_PAGEID_CONTAINER;
-        cacheContainer.push(pageId);
+        var pageId = generatePageId();
+        var container = CACHE_VISITED_PAGEID_CONTAINER;
         var isVisited = false;
-        for (var i = 0, len = cacheContainer.length - 1; i < len; i++) { // last one must be the current href, so not included(length - 1)
-            if (cacheContainer[i] === pageId) {
+        for (var i = 0, len = container.length; i < len; i++) { 
+            if (container[i].indexOf(pageId) >= 0) {
                 isVisited = true;
                 break;
             }
         }
+
         if (callback && typeof callback === 'function') {
             callback();
         }
 
-        return isVisited;
+        return isVisited; 
 
     };
 
     root.$watch('currentAction', function(currentAction) {
-        // 统计时机 
         if (currentAction === 'onBegin') {
             root.currentIsVisited = doIsVisitedCheck();
         }
@@ -167,18 +189,77 @@
      
     // resetScrollbar component start //
     
-    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+    var resetScrollbarWhenViewLoaded = function resetScrollbarWhenViewLoaded(scrollTop) {
+        scrollTop = scrollTop || 0;
+        document.body.scrollTop = scrollTop;
+        document.documentElement.scrollTop = scrollTop;
     };
 
-    if (global_always_reset_scrollbar === true) {
-        root.$watch('currentAction', function(currentAction) {
-            if (currentAction === 'onLoad') {
-                resetScrollbarWhenViewLoaded();
-            }
+    // 检查页面是否需要智能重置滚动位置, 还是直接重置到顶部
+    var checkResetScrollConfig = function(configArr, current) {
+        return configArr.some(function(item) {
+            return item === current;
         });
-    }
+    };
+
+    // 从页面信息缓存中获取当前页面滚动历史, 用于智能重置滚动位置
+    var getCurrentScrollTopRecord = function() {
+        var pageId = generatePageId();
+        if (CACHE_VISITED_PAGEID_CONTAINER.length > 0) {
+            for (var i = CACHE_VISITED_PAGEID_CONTAINER.length - 2; i >= 0; i--) { // 倒序遍历
+                if (CACHE_VISITED_PAGEID_CONTAINER[i].indexOf(pageId) >= 0) {
+                    return CACHE_VISITED_PAGEID_CONTAINER[i].split('-')[1];
+                }
+            }
+        }
+
+        return 0;
+    };
+
+    // 获取当前页面滚动高度
+    var getCurrentPageScrollTop = function() {
+        return document.body.scrollTop;
+    };
+
+    // 写入页面信息统计容器
+    var pushPageState = function() {
+        var pageId = generatePageId();
+        if (pageId !== void 0 && CACHE_VISITED_PAGEID_CONTAINER) {
+            CACHE_VISITED_PAGEID_CONTAINER.push(pageId);
+        }
+    };
+
+    // 更新页面信息统计, 在原来基础上增加离开时页面滚动情况信息
+    var updatePageState = function() {
+        var len = CACHE_VISITED_PAGEID_CONTAINER.length;
+        if (len >= 1) {
+            if (CACHE_VISITED_PAGEID_CONTAINER[len - 1].indexOf('-') < 0) { // 防止重复更新，针对$http.rejectInterceptor pop情况
+                CACHE_VISITED_PAGEID_CONTAINER[len - 1] = CACHE_VISITED_PAGEID_CONTAINER[len - 1] + '-' + getCurrentPageScrollTop();
+            }
+        }
+    };
+
+    root.$watch('currentAction', function(currentAction) {
+        if (currentAction === 'onBeforeUnload') {
+            updatePageState();
+        }
+
+        if (currentAction === 'onLoad') {
+            pushPageState(); 
+            if (global_always_reset_scrollbar === true) {
+                resetScrollbarWhenViewLoaded();
+            } else {
+                var reset = checkResetScrollConfig(root.resetConfig.$model || [], root.currentState);
+                if (!root.currentIsVisited || reset) {
+                    resetScrollbarWhenViewLoaded();
+                } else {
+                    var scrollTop = getCurrentScrollTopRecord();
+                    resetScrollbarWhenViewLoaded(scrollTop);
+                }
+            }
+        }
+    });
+
     // resetScrollbar component end // 
      
     // badNetworkHandler component start // 
@@ -187,14 +268,14 @@
     var bindBadNetworkHandler = function bindBadNetworkHandler(timeout) {
 
         // remove old handler first
-        badNetworkTimer && (clearTimeout(badNetworkTimer)); / * jshint ignore:line */
+        badNetworkTimer && (clearTimeout(badNetworkTimer)); /* jshint ignore:line */
 
         timeout = global_loading_timeout;
         var loader = global_loader_dom || document.querySelector(global_loader_className);
 
         var badNetworkTimer = setTimeout(function() {
             alert('对不起，您的网络状态暂时不佳，请稍后重试！');
-            // even can invoke the wx-sdk to close the page
+            // 直接返回的处理方式，不过也值得商榷
             history.go(-1);
             // for strong, need ()
             loader && (loader.style.display = 'none'); /* jshint ignore:line */

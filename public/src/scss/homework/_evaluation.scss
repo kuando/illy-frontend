@@ -2,8 +2,8 @@ $view-bgColor: $g_bgColor;
 
 $evaluation-right-width: 62%;
 $evaluation-left-width: 27%;
-$timeline-line-size: 2px;
-$timeline-h-line-size: 4px;
+$timeline-line-size: .02rem;
+$timeline-h-line-size: .04rem;
 $timeline-blue: #43d1d5;
 $timeline-white: #fff;
 
@@ -42,7 +42,7 @@ $timeline-white: #fff;
         }
     }
     .navigator-bar {
-        font-size: 16px;
+        font-size: .16rem;
         margin-right: -.01rem;
         overflow: hidden;
 
@@ -182,10 +182,10 @@ $timeline-white: #fff;
                 color: $timeline-blue;
 
                 .year {
-                    font-size: 12px;
+                    font-size: .12rem;
                 }
                 .date {
-                    font-size: 20px;
+                    font-size: .2rem;
                 }
             }
             .right-info {
@@ -216,7 +216,7 @@ $timeline-white: #fff;
                     font-family: "yo-font";
                 }
                 .evaluation-text {
-                    font-size: 12px;
+                    font-size: .12rem;
                     line-height: 1.7;
                     padding: .06rem;
                     border: 1px solid $timeline-blue;

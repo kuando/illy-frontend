@@ -6,7 +6,7 @@
     background-color: #fff;
 
     .questionText {
-        font-size: 16px;
+        font-size: .16rem;
         font-weight: 600;
         line-height: 1.6;
         padding: .05rem 0;
@@ -47,8 +47,8 @@
         }
 
         .full-screen-title {
-            font-size: 20px;
-            line-height: 44px;
+            font-size: .2rem;
+            line-height: .44rem;
             color: #fff;
         }
 
@@ -58,6 +58,10 @@
         border-top: 2px solid $main-blue;
         margin-top: .1rem;
         @extend .questionText;
+
+        .text {
+            font-size: .16rem;
+        }
     }
 
     // 题目描述和教师解答的公共背景样式, ref: questionText, answer-panel

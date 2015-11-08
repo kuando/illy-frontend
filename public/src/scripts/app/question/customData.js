@@ -1,5 +1,6 @@
 // ==================== custom project data start @include ==================== //
 
+    // rewrite, because images in this module is big
     global_rendered_bigImage_delay = 400;    
 
     if (token === null) {
@@ -29,8 +30,8 @@
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
         currentDataDone: false, // 由$http模块函数唯一改变
-        title: '',
         currentIsVisited: false, // boolean flag
+        title: ''
     });
 
     // ==================== custom project data end @include ==================== //

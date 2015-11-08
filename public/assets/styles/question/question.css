@@ -727,7 +727,7 @@ ul,
 .ui-dialog .ui-dialog-title {
   height: .4rem;
   line-height: .5rem;
-  font-size: 18px;
+  font-size: .18rem;
   text-align: center;
   font-weight: 700;
   color: #3d4145;
@@ -739,7 +739,7 @@ ul,
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: 16px;
+  font-size: .16rem;
   padding: 0 .1rem;
   text-align: center;
   line-height: 1.5;
@@ -763,7 +763,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   color: #0079ff;
-  border: 0.01rem solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   border-bottom: 0 none;
   cursor: pointer;
 }
@@ -1100,15 +1100,15 @@ ul,
   min-height: 7rem;
 }
 .index .ask-record {
-  font-size: 12px;
+  font-size: .12rem;
   color: #fff;
   padding: .03rem .08rem;
-  border-radius: 10px;
+  border-radius: .1rem;
   position: fixed;
   top: .15rem;
   right: .15rem;
   border: 1px solid #ccc;
-  letter-spacing: 3px;
+  letter-spacing: .03rem;
 }
 .index .camera-ask {
   width: 2rem;
@@ -1123,7 +1123,7 @@ ul,
   left: 0;
 }
 .index .camera-ask .landscape-tips {
-  font-size: 12px;
+  font-size: .12rem;
   color: #fff;
   position: absolute;
   left: 0;
@@ -1144,7 +1144,7 @@ ul,
   background-size: 100%;
 }
 .index .camera-ask .camera-tip-text {
-  font-size: 18px;
+  font-size: .18rem;
   color: #00abfd;
   position: absolute;
   left: 50%;
@@ -1153,7 +1153,7 @@ ul,
   transform: translateX(-50%);
 }
 .index .text-ask {
-  font-size: 16px;
+  font-size: .16rem;
   color: #fff;
   position: fixed;
   left: 0;
@@ -1198,7 +1198,7 @@ ul,
   -webkit-transform: translateZ(0);
 }
 .list-wrapper .noContent {
-  margin-bottom: 10px;
+  margin-bottom: .1rem;
 }
 .list-wrapper .list-item {
   background-color: #fff;
@@ -1257,13 +1257,13 @@ ul,
   right: 0;
   top: 0;
   text-align: center;
-  font-size: 16px;
+  font-size: .16rem;
   background-color: #f44336;
   color: #fff;
 }
 
 .history .done-flag {
-  font-size: 12px;
+  font-size: .12rem;
   color: #64c400;
   position: absolute;
   right: .01rem;
@@ -1306,7 +1306,7 @@ ul,
   background-color: #fff;
 }
 .detail .questionText, .detail .answer-panel {
-  font-size: 16px;
+  font-size: .16rem;
   font-weight: 600;
   line-height: 1.6;
   padding: .05rem 0;
@@ -1341,13 +1341,16 @@ ul,
   width: 100%;
 }
 .detail .full-screen-img-wrapper .full-screen-title {
-  font-size: 20px;
-  line-height: 44px;
+  font-size: .2rem;
+  line-height: .44rem;
   color: #fff;
 }
 .detail .answer-panel {
   border-top: 2px solid #00abfd;
   margin-top: .1rem;
+}
+.detail .answer-panel .text {
+  font-size: .16rem;
 }
 .detail .common-panel-bg {
   margin-left: auto;

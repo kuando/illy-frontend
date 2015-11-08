@@ -727,7 +727,7 @@ ul,
 .ui-dialog .ui-dialog-title {
   height: .4rem;
   line-height: .5rem;
-  font-size: 18px;
+  font-size: .18rem;
   text-align: center;
   font-weight: 700;
   color: #3d4145;
@@ -739,7 +739,7 @@ ul,
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: 16px;
+  font-size: .16rem;
   padding: 0 .1rem;
   text-align: center;
   line-height: 1.5;
@@ -763,7 +763,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   color: #0079ff;
-  border: 0.01rem solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   border-bottom: 0 none;
   cursor: pointer;
 }
@@ -1376,7 +1376,7 @@ ul,
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;
   background-color: #64c400;
   z-index: 9999;
 }
@@ -1423,24 +1423,6 @@ ul,
 
 /* common item end */
 /* util end */
-/*.navigator-panel {*/
-/*background-color: $categories-bgColor;*/
-/*overflow: hidden;*/
-/*.navigator-item {*/
-/*float: left;*/
-/*width: 32%;*/
-/*height: $navigator-item-height;*/
-/*line-height: $navigator-item-height;*/
-/*vertical-align: bottom;*/
-/*font-size: 14px;*/
-/*color: $dark-grey;*/
-/*.yo-ico {*/
-/*font-size: 10px;*/
-/*margin-right: .05rem;*/
-/*color: $main-green;*/
-/*}*/
-/*}*/
-/*}*/
 /* topN start */
 .topN .item-wrapper {
   border-top: 1px solid #ddd;
@@ -1460,7 +1442,7 @@ ul,
   margin-top: .15rem;
   background-color: #fff;
   padding: 0 .05rem;
-  max-width: 450px;
+  max-width: 4.5rem;
 }
 
 [avalonctrl].list {
@@ -1535,7 +1517,7 @@ ul,
   border-bottom: 1px solid #ddd;
   font-size: 0;
   /* remove inline-block gap */
-  letter-spacing: -4px;
+  letter-spacing: -.04rem;
   /* remove inline-block gap */
 }
 .list .item-img, .topN .item-img {
@@ -1753,7 +1735,7 @@ ul,
 }
 @media only screen and (min-device-width: 319px) and (max-device-height: 481px) {
   .detail .count {
-    font-size: 12px;
+    font-size: .12rem;
   }
 }
 .detail .gap-point {
@@ -1767,7 +1749,7 @@ ul,
 }
 .detail .cover-img img {
   width: 100%;
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
 }
 .detail .content {
@@ -1815,7 +1797,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   margin: 0 auto;
-  font-size: 16px;
+  font-size: .16rem;
   color: #fff;
   background-color: #64c400;
   text-align: center;
@@ -1837,7 +1819,7 @@ ul,
 .detail .shareMask .task-shareMask-tip-text {
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
+  font-size: .18rem;
   position: absolute;
   top: .68rem;
   left: 50%;
@@ -1859,7 +1841,7 @@ ul,
   width: 100%;
   height: .4rem;
   color: #fff;
-  font-size: 14px;
+  font-size: .14rem;
   text-align: center;
   margin-top: .5rem;
 }

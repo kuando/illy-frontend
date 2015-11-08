@@ -727,7 +727,7 @@ ul,
 .ui-dialog .ui-dialog-title {
   height: .4rem;
   line-height: .5rem;
-  font-size: 18px;
+  font-size: .18rem;
   text-align: center;
   font-weight: 700;
   color: #3d4145;
@@ -739,7 +739,7 @@ ul,
 }
 
 .ui-dialog .ui-dialog-content p {
-  font-size: 16px;
+  font-size: .16rem;
   padding: 0 .1rem;
   text-align: center;
   line-height: 1.5;
@@ -763,7 +763,7 @@ ul,
   height: .44rem;
   line-height: .44rem;
   color: #0079ff;
-  border: 0.01rem solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   border-bottom: 0 none;
   cursor: pointer;
 }
@@ -1508,8 +1508,8 @@ ul,
   right: .05rem;
   top: .22rem;
   background-image: url(../../../assets/images/iconfont-jiaru.png);
-  width: 24px;
-  height: 24px;
+  width: .24rem;
+  height: .24rem;
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -1858,7 +1858,7 @@ ul,
   transform: translateX(-50%);
   bottom: .1rem;
   background-color: #64c400;
-  font-size: 16px;
+  font-size: .16rem;
   color: #fff;
 }
 
@@ -1870,13 +1870,13 @@ ul,
 
 .info {
   text-align: center;
-  max-width: 450px;
+  max-width: 4.5rem;
   margin: 0 auto;
   padding-top: .4rem;
 }
 .info audio {
   width: 2rem;
-  font-size: 16px;
+  font-size: .16rem;
 }
 .info .keyPoint {
   white-space: pre-wrap;
@@ -2039,7 +2039,7 @@ ul,
   border: 2px solid #fff;
 }
 .evaluation .navigator-bar {
-  font-size: 16px;
+  font-size: .16rem;
   margin-right: -.01rem;
   overflow: hidden;
 }
@@ -2067,7 +2067,7 @@ ul,
 }
 .evaluation .h-line {
   width: 100%;
-  height: 4px;
+  height: 0.04rem;
   background-color: #43d1d5;
   position: relative;
   margin-bottom: .2rem;
@@ -2080,7 +2080,7 @@ ul,
   border-width: .18rem .18rem 0 .18rem;
   border-style: solid;
   border-color: #43d1d5 transparent transparent transparent;
-  top: 4px;
+  top: 0.04rem;
   left: 50%;
   margin-left: -.18rem;
 }
@@ -2105,7 +2105,7 @@ ul,
 }
 .evaluation .timeline-wrapper .no-evaluation-text {
   width: 80%;
-  border: 2px solid #43d1d5;
+  border: 0.02rem solid #43d1d5;
   position: relative;
   top: .3rem;
   padding: .2rem .05rem;
@@ -2116,7 +2116,7 @@ ul,
 .evaluation .h-inner-line {
   width: 22.1%;
   /* for big screen device, not too long */
-  height: 2px;
+  height: 0.02rem;
   background-color: #43d1d5;
   position: relative;
   top: -.04rem;
@@ -2149,11 +2149,11 @@ ul,
 .evaluation .timeline-inner .timeline-item:last-child {
   /* default  .timeline-item-last-light */
   padding-bottom: .3rem;
-  border-bottom: 2px solid #43d1d5;
+  border-bottom: 0.02rem solid #43d1d5;
 }
 .evaluation .timeline-inner .timeline-item-last-dark {
   padding-bottom: 0.3rem !important;
-  border-bottom: 2px solid #fff !important;
+  border-bottom: 0.02rem solid #fff !important;
 }
 .evaluation .timeline-inner .timeline-item {
   text-align: left;
@@ -2162,7 +2162,7 @@ ul,
   padding-bottom: .2rem;
 }
 .evaluation .timeline-inner .timeline-item .line {
-  width: 2px;
+  width: 0.02rem;
   height: 100%;
   /* must has value but whatever value is */
   background-color: #43d1d5;
@@ -2177,10 +2177,10 @@ ul,
   color: #43d1d5;
 }
 .evaluation .timeline-inner .timeline-item .time .year {
-  font-size: 12px;
+  font-size: .12rem;
 }
 .evaluation .timeline-inner .timeline-item .time .date {
-  font-size: 20px;
+  font-size: .2rem;
 }
 .evaluation .timeline-inner .timeline-item .right-info {
   width: 62%;
@@ -2211,7 +2211,7 @@ ul,
   font-family: "yo-font";
 }
 .evaluation .timeline-inner .timeline-item .right-info .evaluation-text {
-  font-size: 12px;
+  font-size: .12rem;
   line-height: 1.7;
   padding: .06rem;
   border: 1px solid #43d1d5;
@@ -2245,7 +2245,7 @@ ul,
   }
 
   .question-text {
-    font-size: 14px !important;
+    font-size: 0.14rem !important;
   }
 
   .bottom-checkAnswer-btn {

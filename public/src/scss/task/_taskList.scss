@@ -2,7 +2,7 @@ $taskList-left-width: 25%;
 $task-progress-height: .1rem;
 $task-progress-bgcolor: #fff;
 $task-progress-inner-bgColor: #EF7549;
-$task-progress-radius: 10px;
+$task-progress-radius: .1rem;
 $taskList-img-height: .67rem;
 
 .top-area-common {
@@ -102,7 +102,7 @@ $taskList-img-height: .67rem;
                 margin-left: -.3rem;
                 text-align: center;
                 width: .6rem;
-                font-size: 14px;
+                font-size: .14rem;
                 color: #ED6E41;
             }
         }
@@ -110,7 +110,7 @@ $taskList-img-height: .67rem;
             width: 97% - $taskList-left-width;
             .title {
                 width: 100%;
-                font-size: 14px;
+                font-size: .14rem;
                 padding-left: .05rem;
             }
             .right-bottom-area {

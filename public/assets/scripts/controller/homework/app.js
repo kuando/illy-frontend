@@ -12,29 +12,6 @@ define([], function() {
     // defaultAvatarUrl
     var defaultAvatarUrl = resourcePrefix + 'images/avatar/children/default1.png?imageView2/1/w/200/h/200';
 
-    //var slidersUrlPrefix = './assets/images';
-
-    //var listSliders = [
-    //    {
-    //        image: slidersUrlPrefix + '/hw-list-slider2.png',
-    //        title: 'mistakeList',
-    //        href: '#!/mistake/list'
-    //    }
-    //];
-
-    //var mistakeListSliders = [
-    //    {
-    //        image: slidersUrlPrefix + '/hw-list-slider1.png',
-    //        title: 'homework',
-    //        href: '#!/'
-    //    },
-    //    {
-    //        image: slidersUrlPrefix + '/hw-list-slider2.png',
-    //        title: 'homework',
-    //        href: '#!/'
-    //    }
-    //];
-
     // app ctrl take charge of everything...
     var app = avalon.define({
 
@@ -43,22 +20,6 @@ define([], function() {
         illy_domain: avalon.illyGlobal.illyDomain,
         illy_images_base: avalon.illyGlobal.imagesBaseSrc,
         illy_resource_base: avalon.illyGlobal.resourceBaseUrl,
-        //sliders: [],
-        //renderSlider: function() {
-        //    setTimeout(function() {
-        //        $('.illy-container #slider').slider({
-        //            loop: true,
-        //            ready: function() {
-        //                setTimeout(function() {
-        //                    avalon.$('.illy-container #slider').style.visibility = 'visible';
-        //                }, 16); // 1 frame
-        //            },
-        //            'done.dom': function() {
-
-        //            }
-        //        });
-        //    }, 132);
-        //},
 
         /* common start */
         appMessage: 'I am message from app ctrl',
@@ -146,23 +107,6 @@ define([], function() {
             });
         }
     });
-
-    //avalon.vmodels.root.$watch('currentState', function(newState) {
-    //    if (newState !== 'list' && newState !== 'mistakeList') { // view-only
-    //        avalon.$('.illy-container #slider').style.display = 'none';
-    //    } else {
-    //        if (newState === 'list') {
-    //            setTimeout(function() {
-    //                avalon.vmodels.app.sliders = listSliders;
-    //            }, 64);
-    //        }
-    //        if (newState === 'mistakeList') {
-    //            setTimeout(function() {
-    //                avalon.vmodels.app.sliders = mistakeListSliders;
-    //            }, 64);
-    //        }
-    //    }
-    //});
 
     return avalon.controller(function($ctrl) {
         // 进入视图

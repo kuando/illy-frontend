@@ -55,7 +55,7 @@ $navigator-item-height: .44rem;
     top: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: $main-green;
     z-index: 9999;
 }
@@ -107,27 +107,6 @@ $navigator-item-height: .44rem;
 /* common item end */
 
 /* util end */
-
-/*.navigator-panel {*/
-    /*background-color: $categories-bgColor;*/
-    /*overflow: hidden;*/
-
-    /*.navigator-item {*/
-        /*float: left;*/
-        /*width: 32%;*/
-        /*height: $navigator-item-height;*/
-        /*line-height: $navigator-item-height;*/
-        /*vertical-align: bottom;*/
-        /*font-size: 14px;*/
-        /*color: $dark-grey;*/
-
-        /*.yo-ico {*/
-            /*font-size: 10px;*/
-            /*margin-right: .05rem;*/
-            /*color: $main-green;*/
-        /*}*/
-    /*}*/
-/*}*/
 
 /* topN start */
 .topN {
@@ -232,7 +211,7 @@ $navigator-item-height: .44rem;
         text-align: left;
         border-bottom: 1px solid #ddd;
         font-size: 0; /* remove inline-block gap */
-        letter-spacing: -4px; /* remove inline-block gap */
+        letter-spacing: -.04rem; /* remove inline-block gap */
     }
     .item-img {
         width: 30%;
