@@ -1,4 +1,4 @@
-define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
+define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http.js?v=1103'], function(wx) {
 
     // global config 
     var apiBaseUrl = '// @@apiBaseUrl @@ //';

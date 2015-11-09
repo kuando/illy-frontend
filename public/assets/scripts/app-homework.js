@@ -6,7 +6,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.9';
+    var global_resource_version = '1.0.0';
 
     // $http log off
     // $http.debug = true;
@@ -55,7 +55,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     // project domain, by config 
-    var illy_domain = 'http://testweixin.hizuoye.com'; 
+    var illy_domain = 'http://weixin.hizuoye.com'; 
 
     // project images base src
     var illy_images_base_src = './assets/images';
@@ -64,7 +64,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/'; 
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/'; 
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');

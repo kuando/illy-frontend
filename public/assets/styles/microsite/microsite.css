@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*******************************************************
-> File Name: layout.scss
+> File Name: microsite.scss
 > Author: IndexXuan
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月08日 星期三 09时21分34秒
@@ -465,11 +465,7 @@ body {
 html.native-scrolling {
   /* 系统原生滚动效果 */
   height: 100%;
-<<<<<<< HEAD
   overflow-x: hidden;
-=======
-  overflow-x: hidde;
->>>>>>> feature-version-control-in-grunt
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -1097,7 +1093,6 @@ ul,
 }
 
 /* yo-btn end */
-<<<<<<< HEAD
 /* yo-header start */
 .yo-header {
   position: relative;
@@ -1194,8 +1189,6 @@ ul,
 }
 
 /* yo-header patch end */
-=======
->>>>>>> feature-version-control-in-grunt
 .site {
   min-height: 7.36rem;
 }
@@ -1576,12 +1569,8 @@ ul,
   border-bottom: 1px solid #64c400;
   padding: 0 .06rem;
   position: relative;
-<<<<<<< HEAD
   top: 1px;
   /* 兼容高分屏border， 都以px为单位 */
-=======
-  top: .01rem;
->>>>>>> feature-version-control-in-grunt
 }
 .title-line .more {
   float: right;
@@ -1603,12 +1592,8 @@ ul,
 
 .line {
   width: 100%;
-<<<<<<< HEAD
   height: 1px;
   /* 1px border */
-=======
-  height: .01rem;
->>>>>>> feature-version-control-in-grunt
   background-color: #ddd;
 }
 
@@ -1822,13 +1807,10 @@ ul,
     transform: translateY(100px);
   }
 }
-<<<<<<< HEAD
 .header-for-webapp .detail {
   margin-top: .44rem;
 }
 
-=======
->>>>>>> feature-version-control-in-grunt
 .detail {
   color: #1c1c1c;
   padding: 0 .16rem;
@@ -1874,13 +1856,10 @@ ul,
 }
 .detail .content {
   margin-top: .15rem;
-<<<<<<< HEAD
   font-size: .18rem;
   /* 继承到所有子元素 */
   line-height: 1.7;
   /* 继承到所有子元素 */
-=======
->>>>>>> feature-version-control-in-grunt
 }
 .detail .content img {
   width: 100%;
@@ -1906,12 +1885,6 @@ ul,
   margin: 0;
 }
 .detail .content p {
-<<<<<<< HEAD
-=======
-  font-size: .16rem;
-  text-indent: 2em;
-  line-height: 1.7;
->>>>>>> feature-version-control-in-grunt
   margin-bottom: .16rem;
   position: relative;
   word-break: break-all;

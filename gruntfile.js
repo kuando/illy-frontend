@@ -1,13 +1,13 @@
 'use strict'; /* jshint ignore:line */
 
 // apiBaseUrl config
-var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
 // domain config
-var domain = 'http://testweixin.hizuoye.com';
+var domain = 'http://weixin.hizuoye.com';
 
 // 静态资源版本号 config
-var staticResourceVersion = "0.9";
+var staticResourceVersion = "1.0.0";
 
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ /* jshint ignore:line */
