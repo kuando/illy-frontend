@@ -1,7 +1,7 @@
 // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.4'; 
+    var global_resource_version = '// @@version @@ //';
 
     // $http log off
     // $http.debug = true;
@@ -50,7 +50,8 @@
     };
 
     // project domain, by config 
-    // @@include('../../../../config/illy_domain.cfg') @@ //
+    var illy_domain = '// @@domain @@ //'; 
+
     // project images base src
     var illy_images_base_src = './assets/images';
 
@@ -58,7 +59,8 @@
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    // @@include('../../../../config/illy_apiBaseUrl.cfg') @@ //
+    var apiBaseUrl = '// @@apiBaseUrl @@ //'; 
+
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
 

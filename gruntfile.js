@@ -1,5 +1,14 @@
 'use strict'; /* jshint ignore:line */
 
+// apiBaseUrl config
+var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+
+// domain config
+var domain = 'http://testweixin.hizuoye.com';
+
+// 静态资源版本号 config
+var staticResourceVersion = "0.9";
+
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ /* jshint ignore:line */
     port: LIVERELOAD_PORT
@@ -126,6 +135,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
         includereplace: {
             generateMainScripts: {
                 options: {
+                    globals: {
+                        apiBaseUrl: apiBaseUrl,
+                        domain: domain,
+                        version: staticResourceVersion
+                    },
                     prefix: '// @@',
                     suffix: ' @@ //'
                 },
@@ -136,6 +150,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
             },
             generateMainHtmls: {
                 options: {
+                    globals: {
+                        apiBaseUrl: apiBaseUrl,
+                        domain: domain,
+                        version: staticResourceVersion 
+                    },
                     prefix: '<!-- @@',
                     suffix: ' @@ -->'
                 },
@@ -146,6 +165,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
             },
             generateOuter: {
                 options: {
+                    globals: {
+                        apiBaseUrl: apiBaseUrl,
+                        domain: domain,
+                        version: staticResourceVersion 
+                    },
                     prefix: '// @@',
                     suffix: ' @@ //'
                 },

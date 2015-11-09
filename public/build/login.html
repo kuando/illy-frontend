@@ -53,16 +53,6 @@
         position: relative
     }
     
-    
-    @media(-webkit-min-device-pixel-ratio:2),
-    (min-resolution:192dpi),
-    (min-resolution:2dppx) {
-        #error_tips #error_tips_content #error_icon {
-            background: url("/style/8/images/info@2x.png") no-repeat 0 0;
-            background-size: 24px 24px
-        }
-    }
-    
     .login {
         margin: 0 auto;
         padding-top: 30px
@@ -124,14 +114,6 @@
         line-height: 22px;
         margin-bottom: 20px;
         position: relative
-    }
-    
-    #q_login_logo {
-        background: url("/style/8/images/android_logo_v1.png") no-repeat -44px 0;
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        left: 0
     }
     
     #q_login_tips {
@@ -199,8 +181,7 @@ function createXHR(method, url) {
     return xhr;
 }
 
-var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
-
+var apiBaseUrl = http://testapi.hizuoye.com/api/v1/;
 var url = window.location.href;
 var re = /([?&])(openid|next)=([^?&]+)/g;
 var query = {},
