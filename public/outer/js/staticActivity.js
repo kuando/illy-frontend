@@ -2,9 +2,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/
 
     // global config 
     var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
-   
+    
     /* wxsdk start */
-
     var uri = location.href.split("#")[0];
     var url = encodeURIComponent(uri);
 

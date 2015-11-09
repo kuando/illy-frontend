@@ -11,8 +11,8 @@
     </body>
 
     <script>
-        var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
+        var apiBaseUrl = http://testapi.hizuoye.com/api/v1/;
         var url = window.location.href;
         var re = /([?&])(code|next)=([^?&]+)/g;
         var query = {}, matches;
@@ -43,13 +43,14 @@
             homework: './homework.html',
             evaluation: './homework.html#!/evaluation',
             mistake: './homework.html#!/mistake/list',
+            question: './question.html'
             me: './task.html#!/me',
             task: './task.html',
             mall: './task.html#!/mall',
             rank: './task.html#!/rank',
             unbind: './unbind.html',
-            question: './question.html'
-        }
+        };
+        
         var nextUrl = nextMap[next];
 
         var getItem = function(item) {

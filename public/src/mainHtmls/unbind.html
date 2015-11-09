@@ -53,7 +53,7 @@
     <script>
     function unbind() {
     
-        <!-- @@include("../../config/illy_apiBaseUrl.cfg") @@ -->
+        var apiBaseUrl = <!-- @@apiBaseUrl @@ -->;
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
         function createXHR(method, url) {

@@ -34,19 +34,20 @@ define([], function() {
                     }
 
                     if (currentState === 'list') {
-                        avalon.vmodels.root.$watch('currentDataDone', function(rendered) {
-                            if (rendered) {
-                                //setTimeout(function() {
-                                    if (avalon.vmodels.list.lists.length > 0) {
-                                        header.editShow = true;
-                                        header.backHomeBtnShow = false;
-                                    } else {
-                                        header.backHomeBtnShow = true;
-                                    }
-                                //}, 0);
-                            }
-                        });
+                        //avalon.vmodels.root.$watch('currentDataDone', function(rendered) {
+                        //    if (rendered && currentState === 'list') {
+                        //        if (avalon.vmodels.list.lists.length > 0) {
+                        //            console.log(currentState);
+                        //            header.editShow = true;
+                        //            header.backHomeBtnShow = false;
+                        //        } else {
+                        //            header.backHomeBtnShow = true;
+                        //        }
+                        //    }
+                        //});
                         header.leftBackIndexShow = true;
+                        header.editShow = true;
+                        header.backHomeBtnShow = false;
                     } else if (currentState === 'history') {
                         header.editShow = false;
                         header.leftBackIndexShow = true;

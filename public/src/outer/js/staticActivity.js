@@ -1,9 +1,9 @@
 define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js",  '../../assets/scripts/lib/http/http'], function(wx) {
 
     // global config 
-    // @@include('../../../config/illy_apiBaseUrl.cfg') @@ //   
+    var apiBaseUrl = '// @@apiBaseUrl @@ //';
+    
     /* wxsdk start */
-
     var uri = location.href.split("#")[0];
     var url = encodeURIComponent(uri);
 
