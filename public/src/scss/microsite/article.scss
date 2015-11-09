@@ -7,6 +7,11 @@
 @import "../base/animation-part";
 @import "../base/mixins/mixin.scss";
 
+.header-for-webapp {
+    .detail {
+        margin-top: .44rem;
+    }
+}
 .detail {
     color: hsl(0, 0%, 11%);
     padding: 0 .16rem;
@@ -58,6 +63,8 @@
 
     .content {
         margin-top: .15rem;
+        font-size: .18rem; /* 继承到所有子元素 */
+        line-height: 1.7; /* 继承到所有子元素 */
         
         img {
             width: 100%;
@@ -85,9 +92,6 @@
         }
 
         p {
-            font-size: .16rem;
-            text-indent: 2em;
-            line-height: 1.7;
             margin-bottom: .16rem;
             position: relative;
             word-break: break-all;

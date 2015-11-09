@@ -1,7 +1,7 @@
 // ==================== custom project data start @include ==================== //
 
     // rewrite, because images in this module is big
-    global_rendered_bigImage_delay = 400;    
+    global_rendered_bigImage_delay = 600;    
 
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");

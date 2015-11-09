@@ -1,7 +1,7 @@
 // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.4'; 
+    var global_resource_version = '1.0.0'; 
 
     // $http log off
     // $http.debug = true;
@@ -80,7 +80,7 @@
 
     // page is reused so some old page big image will
     // splash in new page, add a delay to better UE. 201511031600
-    var global_rendered_bigImage_delay = 300;
+    var global_rendered_bigImage_delay = 500;
 
     // global config, loader className
     var global_loader_className = '.loader';

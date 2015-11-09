@@ -58,11 +58,16 @@
     // visitedChecker component start //
     
     // 页面访问统计容器
+    // pageId + '-' + scrollTop
+    // 最终形成类似结构:['indexPage-120', 'detail/aafsjfjoidsjfi-108', 'list/safdudshfiu-90']
     var CACHE_VISITED_PAGEID_CONTAINER = [];
 
-    // 统一的页面key生成器
+    // 统一的页面key生成器, 统一有助于全局配置
     var generatePageId = function generatePageId() {
         var pageId = location.href.split('!')[1];
+        if (pageId === '/') { // 特殊化处理'/'页面, 所有页面都有'/', 导致错误
+            pageId = 'indexPage';
+        }
         return pageId;
     };
 
@@ -206,9 +211,11 @@
     var getCurrentScrollTopRecord = function() {
         var pageId = generatePageId();
         if (CACHE_VISITED_PAGEID_CONTAINER.length > 0) {
-            for (var i = CACHE_VISITED_PAGEID_CONTAINER.length - 2; i >= 0; i--) { // 倒序遍历
+            for (var i = CACHE_VISITED_PAGEID_CONTAINER.length - 2; i >= 0; i--) { // 倒序遍历, 且忽略最后一个，因为由于业务逻辑设计，最后一个就是当前，还没滚动数值后缀
                 if (CACHE_VISITED_PAGEID_CONTAINER[i].indexOf(pageId) >= 0) {
-                    return CACHE_VISITED_PAGEID_CONTAINER[i].split('-')[1];
+                    var ret = CACHE_VISITED_PAGEID_CONTAINER[i].split('-')[1];
+                    // alert(CACHE_VISITED_PAGEID_CONTAINER); // 奇怪，pc模拟测试就不正确，但是手机端实测是正确的
+                    return ret;
                 }
             }
         }

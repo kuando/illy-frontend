@@ -6,7 +6,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== global config area start, @included  ==================== //
 
     // version 
-    var global_resource_version = '0.0.4'; 
+    var global_resource_version = '1.0.0'; 
 
     // $http log off
     // $http.debug = true;
@@ -87,7 +87,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // page is reused so some old page big image will
     // splash in new page, add a delay to better UE. 201511031600
-    var global_rendered_bigImage_delay = 300;
+    var global_rendered_bigImage_delay = 500;
 
     // global config, loader className
     var global_loader_className = '.loader';
@@ -407,11 +407,16 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // visitedChecker component start //
     
     // 页面访问统计容器
+    // pageId + '-' + scrollTop
+    // 最终形成类似结构:['indexPage-120', 'detail/aafsjfjoidsjfi-108', 'list/safdudshfiu-90']
     var CACHE_VISITED_PAGEID_CONTAINER = [];
 
-    // 统一的页面key生成器
+    // 统一的页面key生成器, 统一有助于全局配置
     var generatePageId = function generatePageId() {
         var pageId = location.href.split('!')[1];
+        if (pageId === '/') { // 特殊化处理'/'页面, 所有页面都有'/', 导致错误
+            pageId = 'indexPage';
+        }
         return pageId;
     };
 
@@ -555,9 +560,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var getCurrentScrollTopRecord = function() {
         var pageId = generatePageId();
         if (CACHE_VISITED_PAGEID_CONTAINER.length > 0) {
-            for (var i = CACHE_VISITED_PAGEID_CONTAINER.length - 2; i >= 0; i--) { // 倒序遍历
+            for (var i = CACHE_VISITED_PAGEID_CONTAINER.length - 2; i >= 0; i--) { // 倒序遍历, 且忽略最后一个，因为由于业务逻辑设计，最后一个就是当前，还没滚动数值后缀
                 if (CACHE_VISITED_PAGEID_CONTAINER[i].indexOf(pageId) >= 0) {
-                    return CACHE_VISITED_PAGEID_CONTAINER[i].split('-')[1];
+                    var ret = CACHE_VISITED_PAGEID_CONTAINER[i].split('-')[1];
+                    // alert(CACHE_VISITED_PAGEID_CONTAINER); // 奇怪，pc模拟测试就不正确，但是手机端实测是正确的
+                    return ret;
                 }
             }
         }

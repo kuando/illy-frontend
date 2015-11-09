@@ -465,7 +465,7 @@ body {
 html.native-scrolling {
   /* 系统原生滚动效果 */
   height: 100%;
-  overflow-x: hidde;
+  overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }

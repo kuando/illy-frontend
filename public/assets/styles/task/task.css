@@ -465,7 +465,7 @@ body {
 html.native-scrolling {
   /* 系统原生滚动效果 */
   height: 100%;
-  overflow-x: hidde;
+  overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -1440,6 +1440,10 @@ ul,
     transform: translateY(100px);
   }
 }
+.header-for-webapp .detail {
+  margin-top: .44rem;
+}
+
 .detail {
   color: #1c1c1c;
   padding: 0 .16rem;
@@ -1485,6 +1489,10 @@ ul,
 }
 .detail .content {
   margin-top: .15rem;
+  font-size: .18rem;
+  /* 继承到所有子元素 */
+  line-height: 1.7;
+  /* 继承到所有子元素 */
 }
 .detail .content img {
   width: 100%;
@@ -1510,9 +1518,6 @@ ul,
   margin: 0;
 }
 .detail .content p {
-  font-size: .16rem;
-  text-indent: 2em;
-  line-height: 1.7;
   margin-bottom: .16rem;
   position: relative;
   word-break: break-all;

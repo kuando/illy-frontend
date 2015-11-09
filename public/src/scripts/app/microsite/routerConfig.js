@@ -14,6 +14,9 @@
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
+            "header@": { // 视图名字的语法请仔细查阅文档
+                templateUrl: "assets/templates/microsite/header.html", // 指定模板地址
+            },
             "": {
                 templateUrl: "assets/templates/microsite/site.html", // 指定模板地址
                 controllerUrl: "scripts/controller/microsite/site.js" + _v, // 指定控制器地址
