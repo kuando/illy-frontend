@@ -26,6 +26,7 @@
         mainPage: 'task.list', // 项目的主页,供一些错误redirect
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
+        resetConfig: ['activity', 'article'], // 配置需要每次都恢复滚动到页头的视图
         currentIsVisited: false, // boolean flag
         currentDataDone: false, // 由$http模块函数唯一改变
         title: '', // for title element or actionBar use

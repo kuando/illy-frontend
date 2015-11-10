@@ -68,6 +68,7 @@
         if (pageId === '/') { // 特殊化处理'/'页面, 所有页面都有'/', 导致错误
             pageId = 'indexPage';
         }
+        // console.log(CACHE_VISITED_PAGEID_CONTAINER);
         return pageId;
     };
 
@@ -256,7 +257,11 @@
             if (global_always_reset_scrollbar === true) {
                 resetScrollbarWhenViewLoaded();
             } else {
-                var reset = checkResetScrollConfig(root.resetConfig.$model || [], root.currentState);
+                var config = [];
+                if (root.resetConfig.length !== 0) {
+                    config = root.resetConfig.$model || [];
+                }
+                var reset = checkResetScrollConfig(config);
                 if (!root.currentIsVisited || reset) {
                     resetScrollbarWhenViewLoaded();
                 } else {

@@ -1,8 +1,5 @@
 // ==================== custom project data start @include ==================== //
     
-    // rewrite for user experience, we need reset scrollBar smart, so disabled this config
-    global_always_reset_scrollbar = false;
-
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");

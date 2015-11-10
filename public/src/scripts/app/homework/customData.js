@@ -6,6 +6,9 @@
     // so always show loader, just for user experience. 201511012217
     global_always_show_loader = true; 
 
+    // always reset scrollBar, not smart 
+    global_always_reset_scrollbar = true; 
+
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {

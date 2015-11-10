@@ -2009,6 +2009,10 @@ ul,
 /* activity start */
 .infoCollect-wrapper {
   text-align: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
 }
 .infoCollect-wrapper .sign-up-btn-wrapper {
   width: 100%;
@@ -2057,6 +2061,10 @@ ul,
   margin-top: .1rem;
   background-color: #F25454;
   color: #fff;
+}
+
+[avalonctrl="activity"] .pageinfo {
+  margin-bottom: .7rem;
 }
 
 /* activity end */

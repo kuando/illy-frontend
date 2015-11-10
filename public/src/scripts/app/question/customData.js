@@ -1,6 +1,6 @@
 // ==================== custom project data start @include ==================== //
 
-    // rewrite, because images in this module is big
+    // override, because images in this module is big
     global_rendered_bigImage_delay = 600;    
 
     if (token === null) {
@@ -27,6 +27,7 @@
         $id: "root", // in html or body
         namespace: 'question', // module namespace, for global cachePrefix use
         mainPage: 'question.index', // 项目的主页,供一些错误redirect
+        resetConfig: ['detail', 'form'], // 配置需要每次都恢复滚动到页头的视图
         currentState: '', // list question wrong info result...
         currentAction: '', // onBegin onLoad onBeforeUnload onUnload onError...
         currentDataDone: false, // 由$http模块函数唯一改变

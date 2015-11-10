@@ -8,7 +8,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // 变量均来源于gruntfile.js
  
     // 为加载的静态资源加运行时版本号
-    var resource_version = '1.0.0';
+    var resource_version = '1.0.1';
 
     // 模板基地址配置
     var global_templateBaseUrl = 'assets/templates/';
@@ -73,7 +73,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     // project domain, by config 
-    var illy_domain = 'http://testweixin.hizuoye.com'; 
+    var illy_domain = 'http://weixin.hizuoye.com'; 
 
     // project images base src
     var illy_images_base_src = './assets/images';
@@ -82,7 +82,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/'; 
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/'; 
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
@@ -94,7 +94,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_always_show_loader = false;
 
     // global config, always reset scrollbar when view enter
-    var global_always_reset_scrollbar = true;
+    var global_always_reset_scrollbar = false;
 
     // global config, loading timeout
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
@@ -288,6 +288,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // so always show loader, just for user experience. 201511012217
     global_always_show_loader = true; 
 
+    // always reset scrollBar, not smart 
+    global_always_reset_scrollbar = true; 
+
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
         setTimeout(function() {
@@ -435,6 +438,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         if (pageId === '/') { // 特殊化处理'/'页面, 所有页面都有'/', 导致错误
             pageId = 'indexPage';
         }
+        // console.log(CACHE_VISITED_PAGEID_CONTAINER);
         return pageId;
     };
 
@@ -623,7 +627,11 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
             if (global_always_reset_scrollbar === true) {
                 resetScrollbarWhenViewLoaded();
             } else {
-                var reset = checkResetScrollConfig(root.resetConfig.$model || [], root.currentState);
+                var config = [];
+                if (root.resetConfig.length !== 0) {
+                    config = root.resetConfig.$model || [];
+                }
+                var reset = checkResetScrollConfig(config);
                 if (!root.currentIsVisited || reset) {
                     resetScrollbarWhenViewLoaded();
                 } else {

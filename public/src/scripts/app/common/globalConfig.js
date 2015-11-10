@@ -89,7 +89,7 @@
     var global_always_show_loader = false;
 
     // global config, always reset scrollbar when view enter
-    var global_always_reset_scrollbar = true;
+    var global_always_reset_scrollbar = false;
 
     // global config, loading timeout
     var global_loading_timeout = 12000; // ms, abort the loading when timeout, then auto goback
