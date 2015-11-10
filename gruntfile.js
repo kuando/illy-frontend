@@ -8,7 +8,7 @@ var domain = 'http://weixin.hizuoye.com';
 
 // 配置整个项目静态资源版本号(全局使用且唯一此处配置, 包含css, js, templates, controllerjs)
 // 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
-var staticResourceVersion = "1.0.1";
+var staticResourceVersion = "1.0.0.0";
 
 // 项目模板文件基地址, 基本不用动
 var templateBaseUrl = 'assets/templates/';

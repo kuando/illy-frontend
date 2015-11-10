@@ -8,7 +8,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // 变量均来源于gruntfile.js
  
     // 为加载的静态资源加运行时版本号
-    var resource_version = '1.0.1';
+    var resource_version = '1.0.0.0';
 
     // 模板基地址配置
     var global_templateBaseUrl = 'assets/templates/';
