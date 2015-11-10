@@ -6,7 +6,7 @@
     > Created Time: 2015年09月24日 星期四 21时24分18秒
  ******************************************************/
 /*******************************************************
-> File Name: common.scss
+> File Name: base.scss 
 > Author: IndexXuan
 > Mail: indexxuan@gmail.com
 > Created Time: 2015年07月13日 星期一 18时38分20秒
@@ -640,7 +640,7 @@ ul,
   font-size: .14rem;
   margin: 0;
   width: 100%;
-  height: .40rem;
+  height: .44rem;
   line-height: .44rem;
   bottom: 0;
   left: 0;

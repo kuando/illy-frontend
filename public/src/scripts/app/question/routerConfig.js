@@ -1,9 +1,9 @@
 // ==================== router start @include ==================== //
 
     // for router config
-    var _v = '?v=' + global_resource_version;
-    var templateBaseUrl = 'assets/templates/' + root.namespace + '/';
-    var controllerBaseUrl = 'scripts/controller/' + root.namespace + '/';
+    var _v = '?v=' + resource_version;
+    var templateBaseUrl = global_templateBaseUrl + root.namespace + '/';
+    var controllerBaseUrl = global_controllerBaseUrl + root.namespace + '/';
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
@@ -14,6 +14,8 @@
         'detail': '解答详情'
     };
 
+    // 可借助静态编译提前填充avalon.templateCache以便减少http请求，提高加载速度
+    
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("question", { // task.js这个控制器接管整个应用控制权
         url: "/",

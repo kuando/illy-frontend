@@ -5,13 +5,13 @@
     left: 0;
     z-index: $zIndex7 + 1; /* special ... */
 }
-.navBarMask {
+.navBarMask { /* 不遮住首页按钮 */
     width: 100%;
-    height: .34rem;
+    height: $ms-navigator-height;
     position: fixed;
-    left: 0;
+    left: $navigator-home-width;
     top: 0;
-    background-color: black;
+    background-color: #000;
     opacity: .1;
     z-index: $zIndex7 + 2;
 }

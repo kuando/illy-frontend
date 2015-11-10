@@ -195,7 +195,7 @@
     };
 
     // export object
-    var $http = { // dataType must be json
+    var $http = { 
 
         debug: false,
 
@@ -263,7 +263,7 @@
     if (noGlobal === void 0) {
         window.$http = $http;
     }
-    //console.table($http);
+
     return $http;
 
 }));

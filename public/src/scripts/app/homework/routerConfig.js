@@ -1,6 +1,8 @@
 // ==================== router start @include ==================== //
 
-    var _v = '?v=' + global_resource_version;
+    var _v = '?v=' + resource_version;
+    var templateBaseUrl = global_templateBaseUrl + root.namespace + '/';
+    var controllerBaseUrl = global_controllerBaseUrl + root.namespace + '/';
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
@@ -13,18 +15,20 @@
         'evaluation': '课堂表现'
     };
 
+    // 可借助静态编译提前填充avalon.templateCache以便减少http请求，提高加载速度
+    
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("app", { // app.js这个控制器接管整个应用控制权
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制list这个view
         views: {
             //"header@": {
-                //templateUrl: "assets/templates/homework/header.html", // 指定模板地址
-                //controllerUrl: "scripts/controller/homework/header.js" + _v
+                //templateUrl: templateBaseUrl + "header.html", // 指定模板地址
+                //controllerUrl: controllerBaseUrl + "header.js" + _v
             //},
             "": {
-                templateUrl: "assets/templates/homework/app.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/app.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "app.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "app.js" + _v // 指定控制器地址
             }
         }
     })
@@ -32,8 +36,8 @@
         url: "", // list the homework and can enter to do it
         views: {
             "": {
-                templateUrl: "assets/templates/homework/list.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/list.js" + _v, // 指定控制器地址
+                templateUrl: templateBaseUrl + "list.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "list.js" + _v, // 指定控制器地址
                 viewCache: true
             }
         }
@@ -43,8 +47,8 @@
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/templates/homework/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/detail.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "detail.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "detail.js" + _v // 指定控制器地址
             }
         }
     })
@@ -52,8 +56,8 @@
         url: "detail/{homeworkId}/info", // 
         views: {
             "": {
-                templateUrl: "assets/templates/homework/info.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/info.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "info.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "info.js" + _v // 指定控制器地址
             }
         }
     })
@@ -61,8 +65,8 @@
         url: "detail/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/templates/homework/question.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/question.js" + _v, // 指定控制器地址
+                templateUrl: templateBaseUrl + "question.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "question.js" + _v, // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 }
@@ -73,8 +77,8 @@
         url: "detail/{homeworkId}/result", // 
         views: {
             "": {
-                templateUrl: "assets/templates/homework/result.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/result.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "result.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "result.js" + _v // 指定控制器地址
             }
         }
     })
@@ -83,8 +87,8 @@
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/templates/homework/mistake.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistake.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "mistake.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "mistake.js" + _v // 指定控制器地址
             }
         }
     })
@@ -92,8 +96,8 @@
         url: "mistake/list", // 
         views: {
             "": {
-                templateUrl: "assets/templates/homework/mistakeList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/mistakeList.js" + _v, // 指定控制器地址
+                templateUrl: templateBaseUrl + "mistakeList.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "mistakeList.js" + _v, // 指定控制器地址
                 viewCache: true
             }
         }
@@ -102,8 +106,8 @@
         url: "mistake/{homeworkId}/q/{questionId}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/templates/homework/wrong.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/wrong.js" + _v, // 指定控制器地址
+                templateUrl: templateBaseUrl + "wrong.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "wrong.js" + _v, // 指定控制器地址
                 ignoreChange: function(changeType) {
                     return !!changeType;
                 }
@@ -114,8 +118,8 @@
         url: "evaluation", // 
         views: {
             "": {
-                templateUrl: "assets/templates/homework/evaluation.html", // 指定模板地址
-                controllerUrl: "scripts/controller/homework/evaluation.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "evaluation.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "evaluation.js" + _v // 指定控制器地址
             }
         }
     });

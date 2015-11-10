@@ -5,13 +5,31 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     // ==================== global config area start, @included  ==================== //
 
-    // version 
-    var global_resource_version = '1.0.0';
+    // 变量均来源于gruntfile.js
+ 
+    // 为加载的静态资源加运行时版本号
+    var resource_version = '1.0.0';
 
-    // $http log off
+    // 模板基地址配置
+    var global_templateBaseUrl = 'assets/templates/';
+
+    // 控制器基地址配置
+    var global_controllerBaseUrl = 'scripts/controller/';
+
+    // $http log 开关配置, 依据运行时编译目标的模式, 强调试时打开注释即可
+    // $http.debug = true;
     $http.debug = false;
     
-    // $http全局ajax request拦截器配置
+    // override: 重写log方法, 使用本项目提供的醒目输出
+    $http.log = function(msg) {
+        if (avalon.illyInfo) {
+            avalon.illyInfo(msg);
+            return;
+        }
+        console.log(msg);
+    };
+    
+    // override: $http全局ajax request拦截器配置
     $http.requestInterceptor = function(oldSettings) { // 还有一个隐藏参数xhr对象, 尽量不要使用
         // 重置数据获取成功标记
         avalon.vmodels.root.currentDataDone = false;
@@ -24,7 +42,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         return oldSettings;
     };
     
-    // $http全局ajax resolve拦截器配置
+    // override: $http全局ajax resolve拦截器配置
     $http.resolveInterceptor = function() {
         // 数据获取成功
         avalon.vmodels.root.currentDataDone = true;
@@ -41,7 +59,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         }
     };
 
-    // $http全局ajax reject拦截器配置
+    // override: $http全局ajax reject拦截器配置
     $http.rejectInterceptor = function(msg) {
         // 请求失败，去除最后一条页面记录，以便下次继续发起请求
         CACHE_VISITED_PAGEID_CONTAINER.pop();
@@ -772,9 +790,9 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== router start @include ==================== //
 
     // for router config
-    var _v = '?v=' + global_resource_version;
-    var templateBaseUrl = 'assets/templates/' + root.namespace + '/';
-    var controllerBaseUrl = 'scripts/controller/' + root.namespace + '/';
+    var _v = '?v=' + resource_version;
+    var templateBaseUrl = global_templateBaseUrl + root.namespace + '/';
+    var controllerBaseUrl = global_controllerBaseUrl + root.namespace + '/';
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
@@ -785,6 +803,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         'detail': '解答详情'
     };
 
+    // 可借助静态编译提前填充avalon.templateCache以便减少http请求，提高加载速度
+    
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("question", { // task.js这个控制器接管整个应用控制权
         url: "/",

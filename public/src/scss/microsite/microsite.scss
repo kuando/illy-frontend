@@ -37,6 +37,13 @@ $navigator-item-height: .44rem;
 
 // layout vars end //
 
+/* 微信内部不显示action bar */
+.weChat-app {
+    .header-for-webapp {
+        display: none;
+    }
+}
+
 .site {
     min-height: $min-viewport-height;
 }

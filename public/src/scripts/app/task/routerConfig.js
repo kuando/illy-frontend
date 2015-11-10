@@ -1,6 +1,6 @@
 // ==================== router start @include ==================== //
 
-    var _v = '?v=' + global_resource_version;
+    var _v = '?v=' + resource_version;
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
@@ -12,17 +12,19 @@
         'me': '个人中心'
     };
 
+    // 可借助静态编译提前填充avalon.templateCache以便减少http请求，提高加载速度
+    
     // 定义一个全局抽象状态，用来渲染通用不会改变的视图，比如header，footer
     avalon.state("task", { // task.js这个控制器接管整个应用控制权
         url: "/",
         abstract: true, // 抽象状态，不会对应到url上, 会立即绘制index这个view
         views: {
             "": {
-                templateUrl: "assets/templates/task/task.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/task.js" + _v, // 指定控制器地址
+                templateUrl: templateBaseUrl + "task.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "task.js" + _v, // 指定控制器地址
             },
             "footer@": { // 视图名字的语法请仔细查阅文档
-                templateUrl: "assets/templates/footer.html", // 指定模板地址
+                templateUrl: templateBaseUrl + "footer.html", // 指定模板地址
             }
         }
     })
@@ -30,8 +32,8 @@
         url: "",
         views: {
             "": {
-                templateUrl: "assets/templates/task/taskList.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/taskList.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "taskList.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "taskList.js" + _v // 指定控制器地址
             }
         }
     })
@@ -39,8 +41,8 @@
         abstract: true, // 抽象状态，用法心得：总控。对复杂的情况分而治之
         views: {
             "": {
-                templateUrl: "assets/templates/task/detail.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/detail.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "detail.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "detail.js" + _v // 指定控制器地址
             }
         }
     })
@@ -48,8 +50,8 @@
         url: "article/{taskId}/score/{scoreAward}", // 
         views: {
             "": {
-                templateUrl: "assets/templates/task/article.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/article.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "article.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "article.js" + _v // 指定控制器地址
             }
         }
     })
@@ -57,8 +59,8 @@
         url: "activity/{taskId}/score/{scoreAward}", // deal with a spec question, render it for different type
         views: {
             "": {
-                templateUrl: "assets/templates/task/activity.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/activity.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "activity.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "activity.js" + _v // 指定控制器地址
             }
         }
     })
@@ -66,8 +68,8 @@
         url: "rank",
         views: {
             "": {
-                templateUrl: "assets/templates/task/rank.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/rank.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "rank.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "rank.js" + _v // 指定控制器地址
             }
         }
     })
@@ -75,8 +77,8 @@
         url: "mall",
         views: {
             "": {
-                templateUrl: "assets/templates/task/mall.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/mall.js" + _v // 指定控制器地r
+                templateUrl: templateBaseUrl + "mall.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "mall.js" + _v // 指定控制器地r
             }
         }
     })
@@ -84,8 +86,8 @@
         url: "me",
         views: {
             "": {
-                templateUrl: "assets/templates/task/me.html", // 指定模板地址
-                controllerUrl: "scripts/controller/task/me.js" + _v // 指定控制器地址
+                templateUrl: templateBaseUrl + "me.html", // 指定模板地址
+                controllerUrl: controllerBaseUrl + "me.js" + _v // 指定控制器地址
             }
         }
     });

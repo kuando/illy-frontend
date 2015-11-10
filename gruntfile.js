@@ -10,6 +10,12 @@ var domain = 'http://testweixin.hizuoye.com';
 // 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
 var staticResourceVersion = "1.0.0";
 
+// 项目模板文件基地址, 基本不用动
+var templateBaseUrl = 'assets/templates/';
+
+// 项目控制器文件基地址, 基本不用动
+var controllerBaseUrl = 'scripts/controller/';
+
 var mode = 'dev';
 process.argv.forEach(function (val, index, array) { /* jshint ignore:line */
     if (val === 'release') {
@@ -160,6 +166,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 options: {
                     globals: {
                         apiBaseUrl: apiBaseUrl,
+                        templateBaseUrl: templateBaseUrl,
+                        controllerBaseUrl: controllerBaseUrl,
                         domain: domain,
                         version: staticResourceVersion,
                         debug: mode === 'dev' ? true : false
