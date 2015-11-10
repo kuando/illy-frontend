@@ -1194,6 +1194,15 @@ ul,
   display: none;
 }
 
+.web-app .header-for-webapp {
+  position: fixed;
+  width: 100%;
+  z-index: 100099;
+}
+.web-app .illy-container {
+  margin-top: 0.4rem;
+}
+
 .site {
   min-height: 7.36rem;
 }

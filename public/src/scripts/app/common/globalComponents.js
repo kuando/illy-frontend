@@ -202,7 +202,8 @@
     };
 
     // 检查页面是否需要智能重置滚动位置, 还是直接重置到顶部
-    var checkResetScrollConfig = function(configArr, current) {
+    var checkResetScrollConfig = function(configArr) {
+        var current = root.currentState;
         return configArr.some(function(item) {
             return item === current;
         });

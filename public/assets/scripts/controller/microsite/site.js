@@ -130,6 +130,9 @@ define([], function() {
 
             if (rendered === false) {
                 site.navBarMaskShow = true;
+                setTimeout(function() {
+                    site.navBarMaskShow = false;
+                }, 10000); // 10s will hide, max time
             } else {
                 setTimeout(function() {
                     site.navBarMaskShow = false;

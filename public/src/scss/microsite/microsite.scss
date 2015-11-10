@@ -43,6 +43,16 @@ $navigator-item-height: .44rem;
         display: none;
     }
 }
+.web-app {
+    .header-for-webapp {
+        position: fixed;
+        width: 100%;
+        z-index: $zIndex7 + 100;
+    }
+    .illy-container {
+        margin-top: $ms-navigator-height;
+    }
+}
 
 .site {
     min-height: $min-viewport-height;
