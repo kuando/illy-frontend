@@ -4,10 +4,10 @@
     var global_resource_version = '// @@version @@ //';
 
     // $http log off
-    // $http.debug = true;
+    $http.debug = // @@debug @@ //;
     
     // $http全局ajax request拦截器配置
-    $http.requestInterceptor = function(oldSettings, xhr) {
+    $http.requestInterceptor = function(oldSettings) { // 还有一个隐藏参数xhr对象, 尽量不要使用
         // 重置数据获取成功标记
         avalon.vmodels.root.currentDataDone = false;
         var global_headers = {

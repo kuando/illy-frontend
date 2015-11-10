@@ -9,10 +9,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_resource_version = '1.0.0';
 
     // $http log off
-    // $http.debug = true;
+    $http.debug = false;
     
     // $http全局ajax request拦截器配置
-    $http.requestInterceptor = function(oldSettings, xhr) {
+    $http.requestInterceptor = function(oldSettings) { // 还有一个隐藏参数xhr对象, 尽量不要使用
         // 重置数据获取成功标记
         avalon.vmodels.root.currentDataDone = false;
         var global_headers = {
@@ -55,7 +55,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     };
 
     // project domain, by config 
-    var illy_domain = 'http://weixin.hizuoye.com'; 
+    var illy_domain = 'http://testweixin.hizuoye.com'; 
 
     // project images base src
     var illy_images_base_src = './assets/images';
@@ -64,7 +64,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/'; 
+    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/'; 
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');
@@ -218,7 +218,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         times.connect = t.connectEnd - t.connectStart;
 
         return times;
-    }
+    };
 
     // 缓存系统通用函数
     

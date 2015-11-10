@@ -1,13 +1,36 @@
-'use strict'; /* jshint ignore:line */
+// 一、配置区
 
-// apiBaseUrl config
-var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+// 配置使用的api基地址
+var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
-// domain config
-var domain = 'http://weixin.hizuoye.com';
+// 配置需要发布的域名(某些静态资源绝对路径需要)
+var domain = 'http://testweixin.hizuoye.com';
 
-// 静态资源版本号 config
+// 配置整个项目静态资源版本号(全局使用且唯一此处配置, 包含css, js, templates, controllerjs)
+// 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
 var staticResourceVersion = "1.0.0";
+
+var mode = 'dev';
+process.argv.forEach(function (val, index, array) { /* jshint ignore:line */
+    if (val === 'release') {
+        mode = 'production';
+    }
+});
+
+
+// 二、 提示条幅区
+
+var on = (mode === 'dev') ? 'on ! ' : 'off !';
+var modeStr = (mode === 'dev') ? '    dev    ' : 'production ';
+console.log('============================================================================='); /* jshint ignore:line */
+console.log('============================================================================='); /* jshint ignore:line */
+console.log('=======================>   start ' + modeStr + ' task !   <======================'); /* jshint ignore:line */
+console.log('===================>   avalon & $http debug is ' + on + '  <======================'); /* jshint ignore:line */
+console.log('============================================================================='); /* jshint ignore:line */
+console.log('============================================================================='); /* jshint ignore:line */
+
+
+// 三、 任务配置区
 
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ /* jshint ignore:line */
@@ -138,7 +161,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     globals: {
                         apiBaseUrl: apiBaseUrl,
                         domain: domain,
-                        version: staticResourceVersion
+                        version: staticResourceVersion,
+                        debug: mode === 'dev' ? true : false
                     },
                     prefix: '// @@',
                     suffix: ' @@ //'
@@ -153,7 +177,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     globals: {
                         apiBaseUrl: apiBaseUrl,
                         domain: domain,
-                        version: staticResourceVersion 
+                        version: staticResourceVersion,
+                        debug: mode === 'dev' ? true : false
                     },
                     prefix: '<!-- @@',
                     suffix: ' @@ -->'
@@ -168,7 +193,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     globals: {
                         apiBaseUrl: apiBaseUrl,
                         domain: domain,
-                        version: staticResourceVersion 
+                        version: staticResourceVersion,
+                        debug: mode === 'dev' ? true : false
                     },
                     prefix: '// @@',
                     suffix: ' @@ //'
@@ -436,6 +462,8 @@ module.exports = function(grunt) { /* jshint ignore:line */
     });
     // Tasks config end...
     
+// 四、 任务整合调用区
+    
     // helper task
     grunt.registerTask('buildimages', 'minify the images to build folder...', ['imagemin']);
     grunt.registerTask('buildtemplates', 'minify the templates to build folder...', ['htmlmin:templates']);
@@ -457,10 +485,13 @@ module.exports = function(grunt) { /* jshint ignore:line */
             'jshint'
         ]);
     });
-    
+
     // dev task 
     grunt.registerTask('dev', function(target) { /* jshint ignore:line */
         grunt.task.run([
+            'reGenerateMainHtmls',
+            'reGenerateMainScripts',
+            'reGenerateOuter',
             'sass',
             'connect:livereload',
             'open:dev',

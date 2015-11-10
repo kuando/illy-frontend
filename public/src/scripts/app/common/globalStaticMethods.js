@@ -106,7 +106,7 @@
         times.connect = t.connectEnd - t.connectStart;
 
         return times;
-    }
+    };
 
     // 缓存系统通用函数
     

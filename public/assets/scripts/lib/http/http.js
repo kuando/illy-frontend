@@ -133,7 +133,7 @@
         var oldSettings = argsToConfigObj(arguments);
 
         // 全局拦截request, return new xhr settings and do something
-        var newSettings = $http.requestInterceptor(oldSettings, xhr);
+        var newSettings = $http.requestInterceptor(oldSettings, xhr) || oldSettings;
 
         // deal with user settings
         method = newSettings.method.toUpperCase();
@@ -205,7 +205,7 @@
             }
         },
 
-        // 发送拦截器
+        // 发送拦截器(oldSettings, xhr)
         'requestInterceptor': noop,
 
         // 返回拦截器, 暂未支持
@@ -274,6 +274,7 @@
  *  20151101 update source with work code, not very good...
  *  20151102 update global http interceptor and log with config
  *  20151103 make interceptor dynamic change the xhr settings(like set headers global default)
+ *  20151110 fix requestInterceptor bug, if not def spec method to change oldSettings, use oldSettings itself
  */
 
 // usage, arguments must be full
