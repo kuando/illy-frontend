@@ -1,6 +1,8 @@
 // ==================== router start @include ==================== //
 
     var _v = '?v=' + resource_version;
+    var templateBaseUrl = global_templateBaseUrl + root.namespace + '/';
+    var controllerBaseUrl = global_controllerBaseUrl + root.namespace + '/';
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {

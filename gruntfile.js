@@ -1,14 +1,14 @@
 // 一、配置区
 
 // 配置使用的api基地址
-var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
 
 // 配置需要发布的域名(某些静态资源绝对路径需要)
-var domain = 'http://testweixin.hizuoye.com';
+var domain = 'http://weixin.hizuoye.com';
 
 // 配置整个项目静态资源版本号(全局使用且唯一此处配置, 包含css, js, templates, controllerjs)
 // 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
-var staticResourceVersion = "1.0.0";
+var staticResourceVersion = "1.0.1";
 
 // 项目模板文件基地址, 基本不用动
 var templateBaseUrl = 'assets/templates/';

@@ -17,7 +17,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_controllerBaseUrl = 'scripts/controller/';
 
     // $http log 开关配置, 依据运行时编译目标的模式, 强调试时打开注释即可
-    // $http.debug = true;
+    // $http.debug = false;
     $http.debug = false;
     
     // override: 重写log方法, 使用本项目提供的醒目输出
@@ -792,6 +792,8 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // ==================== router start @include ==================== //
 
     var _v = '?v=' + resource_version;
+    var templateBaseUrl = global_templateBaseUrl + root.namespace + '/';
+    var controllerBaseUrl = global_controllerBaseUrl + root.namespace + '/';
 
     // title Map， 映射各种状态的action-bar title
     var ACTIONBAR_TITLE_MAP = {
