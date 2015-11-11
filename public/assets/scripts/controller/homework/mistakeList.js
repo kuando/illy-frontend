@@ -121,7 +121,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + 'homework/mistake/' + homeworkId,
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
                     var mistake = avalon.vmodels.mistake;

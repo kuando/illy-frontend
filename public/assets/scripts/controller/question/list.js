@@ -87,7 +87,7 @@ define([], function() {
                 method: 'DELETE',
                 url: apiBaseUrl + "questions/" + questionId,
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function() {

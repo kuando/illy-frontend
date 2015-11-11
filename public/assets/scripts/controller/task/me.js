@@ -78,7 +78,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + "profile",
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(json) {
@@ -154,7 +154,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'avatar',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 data: {
                     avatar: avatar.serverId

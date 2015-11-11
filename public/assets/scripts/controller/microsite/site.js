@@ -148,8 +148,8 @@ define([], function() {
         $ctrl.$onRendered = function() {
             var renderedTime = Date.now();
             setTimeout(function() {
-                avalon.illyInfo('avalon rendered totalTime: ' , renderedTime - avalon.appInitTime);
-            }, 888);
+                avalon.illyInfo('avalon rendered totalTime: ' , renderedTime - avalon.initTime);
+            }, 1111);
         };
 
         // 仅执行一次，抓取所有栏目名，供以后使用

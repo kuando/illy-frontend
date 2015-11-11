@@ -21,7 +21,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + apiArgs + '',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 data: data,
                 success: function(res) {

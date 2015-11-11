@@ -17,11 +17,13 @@
     
     // override: 重写log方法, 使用本项目提供的醒目输出
     $http.log = function(msg) {
-        if (avalon.illyInfo) {
-            avalon.illyInfo(msg);
-            return;
+        if (this.debug) {
+            if (avalon.illyInfo) {
+                avalon.illyInfo(msg);
+                return;
+            }
+            console.log(msg);
         }
-        console.log(msg);
     };
     
     // override: $http全局ajax request拦截器配置
@@ -74,7 +76,7 @@
     var illy_images_base_src = './assets/images';
 
     // resource base url
-    var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
+    var illy_resource_base_url = '// @@resourceBaseUrl @@ //';
 
     // global apiBaseUrl
     var apiBaseUrl = '// @@apiBaseUrl @@ //'; 

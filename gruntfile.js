@@ -4,13 +4,13 @@
 // 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
 var staticResourceVersion = "1.1.1.1";
 
-// 配置使用的api基地址
-var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
-
-// 配置需要发布的域名(某些静态资源绝对路径需要)
+// 需要发布的域名(某些静态资源绝对路径需要)
 var domain = 'http://weixin.hizuoye.com';
 
-// 配置资源基地址，用于dns预解析，千万保证正确，防止资源浪费, 基本不用动
+// 使用的api基地址
+var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+
+// 全局资源的基地址，同时用于主html文件的dns预解析，千万保证正确，防止资源浪费, 基本不用动
 var dnsPrefetchUrl = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
 // 项目模板文件基地址, 基本不用动
@@ -19,6 +19,7 @@ var templateBaseUrl = 'assets/templates/';
 // 项目控制器文件基地址, 基本不用动
 var controllerBaseUrl = 'scripts/controller/';
 
+// 自动确定运行时模式　dev or production
 var mode = 'dev';
 process.argv.forEach(function (val, index, array) { /* jshint ignore:line */
     if (val === 'release') {
@@ -26,7 +27,7 @@ process.argv.forEach(function (val, index, array) { /* jshint ignore:line */
     }
 });
 
-// 二、 提示条幅区
+// 二、 TASK提示条幅区
 
 var on = (mode === 'dev') ? 'on ! ' : 'off !';
 var modeStr = (mode === 'dev') ? '    dev    ' : 'production ';
@@ -167,11 +168,12 @@ module.exports = function(grunt) { /* jshint ignore:line */
             generateMainScripts: {
                 options: {
                     globals: {
+                        version: staticResourceVersion,
+                        domain: domain,
                         apiBaseUrl: apiBaseUrl,
                         templateBaseUrl: templateBaseUrl,
                         controllerBaseUrl: controllerBaseUrl,
-                        domain: domain,
-                        version: staticResourceVersion,
+                        resourceBaseUrl: dnsPrefetchUrl,
                         debug: mode === 'dev' ? true : false
                     },
                     prefix: '// @@',
@@ -185,11 +187,11 @@ module.exports = function(grunt) { /* jshint ignore:line */
             generateMainHtmls: {
                 options: {
                     globals: {
-                        apiBaseUrl: apiBaseUrl,
-                        domain: domain,
                         version: staticResourceVersion,
-                        debug: mode === 'dev' ? true : false,
-                        dnsPrefetchUrl: dnsPrefetchUrl
+                        domain: domain,
+                        apiBaseUrl: apiBaseUrl,
+                        dnsPrefetchUrl: dnsPrefetchUrl,
+                        debug: mode === 'dev' ? true : false
                     },
                     prefix: '<!-- @@',
                     suffix: ' @@ -->'

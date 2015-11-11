@@ -22,11 +22,13 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     
     // override: 重写log方法, 使用本项目提供的醒目输出
     $http.log = function(msg) {
-        if (avalon.illyInfo) {
-            avalon.illyInfo(msg);
-            return;
+        if (this.debug) {
+            if (avalon.illyInfo) {
+                avalon.illyInfo(msg);
+                return;
+            }
+            console.log(msg);
         }
-        console.log(msg);
     };
     
     // override: $http全局ajax request拦截器配置
@@ -929,7 +931,12 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // exports 
     return {
         init: function() { // init router and bootstrap the app
+
+            // avalon take charge of everything and start to init the app
             avalon.log("init to bootstrap the app!");
+            var initTime = Date.now();
+            avalon.initTime = initTime;
+
             avalon.history.start({
                 // basepath: "/mmRouter",
                 fireAnchor: false
@@ -938,11 +945,10 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
                 //    //return href;
                 //}
             });
+
             //go!!!!!!!!!
             avalon.scan();
 
-            // APP inner performance listener start, avalon take charge of everything and start to init the app
-            avalon.appInitTime = Date.now();
         }
     }; // end of exports
 

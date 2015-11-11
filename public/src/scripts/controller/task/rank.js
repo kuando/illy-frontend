@@ -50,7 +50,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + 'score/rank/topTen',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function(res) {
                     rank.ranks = res;

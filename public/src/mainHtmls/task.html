@@ -43,7 +43,6 @@
 
     require(['./scripts/app-task.js?v=<!-- @@version @@ -->'], function(app) {
         // init to build the app
-        avalon.initTime = Date.now();
         app && app.init && app.init();
     });
 

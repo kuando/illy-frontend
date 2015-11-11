@@ -112,7 +112,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'public/activities/' + activity.activityId + '/like',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function() {
                     var likeCount = activity.likeCount || 0;
@@ -188,7 +188,7 @@ define([], function() {
                 method: 'POST',
                 url: apiBaseUrl + 'public/activities/' + activity.activityId + '/info',
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    //'Authorization': 'Bearer ' + token
                 },
                 data: dataAdapter(activity.infoCollect), // array([key1, key2]) to a array({key1: value1}, {key2, value2})
                 success: function(res) { /* jshint ignore:line */
@@ -231,7 +231,7 @@ define([], function() {
             $http.ajax({ // 获取任务详情
                 url: apiBaseUrl + "tasks/" + activity.taskId,
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(json) {

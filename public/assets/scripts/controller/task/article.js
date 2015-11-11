@@ -98,7 +98,7 @@ define([], function() {
                 method: 'PUT',
                 url: apiBaseUrl + 'public/posts/' + article.articleId + '/like',
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 success: function() {
                     var likeCount = article.likeCount || 0;
@@ -137,7 +137,7 @@ define([], function() {
             $http.ajax({
                 url: apiBaseUrl + "tasks/" + article.taskId,
                 headers: {
-                    Authorization: 'Bearer ' + token
+                    //Authorization: 'Bearer ' + token
                 },
                 dataType: "json",
                 success: function(json) {
