@@ -53,7 +53,6 @@
     };
 
     var nextUrl = nextMap[next];
-
     var getItem = function (item) {
         return localStorage.getItem(item);
     };
@@ -69,6 +68,7 @@
     if (next === 'microsite' && typeof illyTokenMicrosite === 'string') {
         location.replace(nextUrl); // pure url
     }
+    // local
     var xhr;
     if (code) {
         if (next === 'microsite') {
@@ -107,7 +107,7 @@
             // alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
             alert("对不起，系统错误，请稍后重试!")
         }
-    };
+    }
     xhr.onerror = function () {
         alert('Woops, there was an error making the request.');
     };

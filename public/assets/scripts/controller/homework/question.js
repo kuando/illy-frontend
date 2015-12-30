@@ -4,7 +4,7 @@ define([], function() {
 
     // 获取全局wx-sdk接口
     var wx = avalon.wx;
-    
+
     // 录音对象相关属性和方法, 因为wx的sdk方法都是独立作用域的回调，需要一个全局的存储对象
     var record = {
         startTime: 0,
@@ -19,7 +19,7 @@ define([], function() {
         showTimeOutLayer: function() {
             // 给个遮罩， 10秒倒计时开始, 并会自动停止录音并上传
             var timeoutMask = avalon.$('.timeout-mask');
-            //var isRecording = avalon.$('.isRecording'); 
+            //var isRecording = avalon.$('.isRecording');
             record.layerUiChange();
             // time to show
             record.remainTimeTimer = setInterval(function() {
@@ -30,18 +30,18 @@ define([], function() {
             // recover the ui when time enough, 18s is enough
             setTimeout(function() {
                 record.layerUiRecover();
-            }, 18000); 
+            }, 18000);
         },
         layerUiChange: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
-            var isRecording = avalon.$('.isRecording'); 
-            // change some ui for mask, show mask 
+            var isRecording = avalon.$('.isRecording');
+            // change some ui for mask, show mask
             timeoutMask && (timeoutMask.style.display = 'inline-block'); /* jshint ignore:line */
             isRecording && isRecording.classList.add('timeout'); /* jshint ignore:line */
         },
         layerUiRecover: function() { // inner fn of showTimeoutLayer
             var timeoutMask = avalon.$('.timeout-mask');
-            var isRecording = avalon.$('.isRecording'); 
+            var isRecording = avalon.$('.isRecording');
             var remainTimeTimer = record.remainTimeTimer;
             remainTimeTimer && clearInterval(remainTimeTimer); /* jshint ignore:line */
             timeoutMask && ( timeoutMask.innerHTML = '10' );  /* jshint ignore:line */
@@ -56,7 +56,7 @@ define([], function() {
             var recordTips = avalon.$('.record-tips');
             recordTips && ( recordTips.style.display = 'none' ); /* jshint ignore:line */
         }
-    }; 
+    };
 
     // 每一个具体的题目控制器
     var question = avalon.define({
@@ -64,13 +64,13 @@ define([], function() {
         $id: "question",
 
         /* 通信量 start */
-        homeworkId: '', 
+        homeworkId: '',
         starter: true, // start answer the question flag
         /* 通信量 end */
 
         /* state flag start */
-        isDroped: false, // drop the record question flag 
-        isRecording: false, // whether recording now, for ms-class 
+        isDroped: false, // drop the record question flag
+        isRecording: false, // whether recording now, for ms-class
         isPlaying: false, // 是否正在播放
         hasNext: false, // 是否有下一题？
         showPlayRecordBtn: false, // 是否显示播放录音按钮
@@ -112,16 +112,16 @@ define([], function() {
                     question.userAnswer = serverId; // 这才是需要往后端发送的数据,供后端下载
 
                     question.showPlayRecordBtn = true;
-                    
+
                     // 设置录音时长
-                    question.duration = record.duration; 
+                    question.duration = record.duration;
                 }
             });
 
         },
         playRecord: function() {
 
-            /** 
+            /**
              *  如果localId有，就播放，没有就提示
              */
 
@@ -135,7 +135,7 @@ define([], function() {
                 localId: localId
             });
             question.isPlaying = true;
-            
+
             //  clear first and add new another timeout
             // 同时播完应该isPlaying = false
             clearTimeout(record.playRecordTimeout);
@@ -146,7 +146,7 @@ define([], function() {
         },
         stopPlayRecord: function() {
 
-            /** 
+            /**
              *  没有localId就返回，有就停止
              */
 
@@ -170,8 +170,8 @@ define([], function() {
             avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
         },
         startRecord: function() {
-            
-            /** 
+
+            /**
              ×  首先停止录音(防止录制出错，原则上不会出现正在录音状态)
              *
              *  开始微信录音api
@@ -220,7 +220,7 @@ define([], function() {
             record.timeout && clearTimeout(record.timeout); /* jshint ignore:line  */
             var endTime = Date.now();
             record.endTime = endTime;
-            var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒 
+            var duration = ( record.endTime - record.startTime ) / 1000; // 间隔时间， 单位秒
             duration = parseInt(duration, 10) || 1;
             //record.duration = duration || 5; // for strong
             record.duration = duration; // for strong
@@ -242,11 +242,11 @@ define([], function() {
                     }
                 });
             }
-            
+
         },
         togglePlayRecord: function() {
-            
-            /** 
+
+            /**
              *  正在播放就停止
              *  不在播放就开始
              */
@@ -260,7 +260,7 @@ define([], function() {
         },
         checkAnswer: function() { // check answer and collect info for Collections
 
-            /** 
+            /**
              *  首先设置状态为正在做题，防御后退更改答案, 停止播放录音(执行呗，反正无害...)
              *  1. 如果为录音题, 做相关判断和统计
              *        点击检查答案弹出确认提示框，
@@ -295,19 +295,18 @@ define([], function() {
                     question.right = true; // right it for next
                     detailVM.audioAnswers.push({sequence: question.currentId, answer: audioAnswer});
                 }
-                
+
                 //question.localAnswers.push(record.localId); // bug fix, also need push
                 question.localAnswers.push( {localId: record.localId, duration: question.duration} ); // bug fix, also need push
                 return;
             }
             if (question.userAnswer === '') {
-                // alert("请至少给出一个答案！"); 
+                // alert("请至少给出一个答案！");
                 avalon.vmodels.app.showAlert("请至少给出一个答案！");
-                return; 
+                return;
             }
-            
             // update the right attr, question.right = null for default, 不是null说明这题做过了，直接显示答案（处理后退的）
-            if ( question.exercise && (question.exercise.answer === question.userAnswer.trim()) ) {
+            if ( question.exercise && (question.exercise.answer.trim() === question.userAnswer.trim()) ) {
                 question.right = true;
                 //alert("答对了");
             } else {
@@ -316,14 +315,15 @@ define([], function() {
                 // collect info and push to the wrongCollect
                 var radioAnswer = question.userAnswer;
                 //alert(radioAnswer);
-                detailVM.wrongCollect.push({sequence: question.currentId, answer: radioAnswer});  
+                //detailVM.wrongCollect.push({sequence: question.currentId, answer: radioAnswer});//20151230 old
+                detailVM.wrongCollect.push({sequence: question.exercise.sequence, answer: radioAnswer});//20151230 updated
             }
             question.localAnswers.push(question.userAnswer); // old-bug, 20150731
 
         }, // checkAnswer end
         submit: function() {
 
-            /** 
+            /**
              *  通知父vm提交(父vm决定提交跳转逻辑，此处简化)
              */
 
@@ -333,7 +333,7 @@ define([], function() {
         dropRecordQuestionConfirm: function() {
 
             /**
-             *  获取顶层vm app 
+             *  获取顶层vm app
              *  根据放弃标记，调用app全局确认对话框并根据选择进行响应行为
              *　　　是则添加统计信息，进入下一题或提交
              *      不是则解绑本次添加的监听，让页面什么也没有变化(其实最好的方法是重新载入本视图，不过这里就手工处理了，没啥变化)
@@ -378,12 +378,12 @@ define([], function() {
         var exercises = detailVM.exercises;
 
         // 视图渲染后，意思是avalon.scan完成
-        $ctrl.$onRendered = function(params) { 
+        $ctrl.$onRendered = function(params) {
 
             if (avalon.vmodels.question.starter) {
-                avalon.vmodels.detail.questionStartTime = Date.now(); 
+                avalon.vmodels.detail.questionStartTime = Date.now();
                 avalon.vmodels.question.starter = false; // 重置为true的时候只有到列表页,为了保险。
-            }  
+            }
 
             /* bad hack */
             //var question = avalon.$('.question');
@@ -409,7 +409,7 @@ define([], function() {
             setTimeout(function() {
                 wx.stopRecord();
             }, 200);
-            
+
             // drop the question flag
             question.isDroped = false;
 
@@ -435,7 +435,7 @@ define([], function() {
 
             // 然后双向绑定，渲染
             var id = params.questionId - 1 || 0; // for strong, url中的questionId才用的是1开始，为了易读性
-            
+
             // error, current is not url homework, maybe because backbackback...
             setTimeout(function() {
                 var currentHomeworkId = avalon.vmodels.detail.homeworkId;
@@ -447,7 +447,7 @@ define([], function() {
             }, 100);
 
             // no exercise, error go index, report reason!
-            if (exercises.length === 0) { 
+            if (exercises.length === 0) {
                 // console.log('fetch no exercise error! maybe because back from mall! or get in directly');
                 // alert('亲，过去不要执念，还是要拥抱新生活哦，回去吧, 拜拜~'); // 防止这种不该的返回或直接访问
                 location.replace('./homework.html');
@@ -455,7 +455,7 @@ define([], function() {
             }
 
             question.exercise = exercises[id]; // yes
-            
+
             // core! 双向绑定的同时还能恢复状态！ dom操作绝迹！ 20150730
             if (question.exercise.eType === 3) {
                 var localAnswerObj = question.localAnswers[question.currentId - 1] || {localId: '', duration: 0};
@@ -477,13 +477,13 @@ define([], function() {
                     //    avalon.$('.answered-text').innerHTML = question.userAnswer + '';
                     //}
                     // 重置题目对错标记
-                    question.right = (question.exercise.answer === question.userAnswer) || (question.exercise.eType === 3);
+                    question.right = (question.exercise.answer.trim() === question.userAnswer.trim()) || (question.exercise.eType === 3);
                 }, 100);
             }
 
             // play record btn, 至少一定是后退才能看到
             if ( question.localAnswers.length < question.currentId ) {
-                question.showPlayRecordBtn = false; 
+                question.showPlayRecordBtn = false;
             } else {
                 question.showPlayRecordBtn = true;
             }

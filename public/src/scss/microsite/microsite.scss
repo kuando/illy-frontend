@@ -102,7 +102,7 @@ $navigator-item-height: .44rem;
         width: 100%;
         margin-top: -.02rem;
         max-height: $item_title_height;
-        min-height: $item_title_height; 
+        min-height: $item_title_height;
         font-size: .14rem;
         word-break: break-all;
         color: $item-title-color;
@@ -173,8 +173,8 @@ $navigator-item-height: .44rem;
     h2.col-title {
         height: 100%;
         line-height: $title-line-height;
-        font-size: .16rem;          
-        color: $category-title-color; 
+        font-size: .16rem;
+        color: $category-title-color;
         border-bottom: 1px solid $main-color;
         padding: 0 .06rem;
         position: relative;
@@ -295,6 +295,6 @@ $navigator-item-height: .44rem;
 }
 /* list end */
 
-// detail 
+// detail
 @import "article";
 

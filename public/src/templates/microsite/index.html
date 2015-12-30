@@ -28,9 +28,9 @@
                 <div class="right-area">
                     <div class="created-time">{{item.created | date()}}</div>
                     <h3 class="item-title area">{{item.title}}</h3>
-                    <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
-                    <div class="count share-count"><span>分享</span>{{item.shareCount}}</div> 
-                    <div class="count like-count"><span>喜欢</span>{{item.like}}</div> 
+                    <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div>
+                    <div class="count share-count"><span>分享</span>{{item.shareCount}}</div>
+                    <div class="count like-count"><span>喜欢</span>{{item.like}}</div>
                 </div>
             </a>
         </div>
@@ -40,30 +40,33 @@
 
     <!-- categories start -->
     <div class="categories" class="area" ms-repeat-category="categories">
-        
-        <!-- title start -->
-        <div class="title-line">
-            <h2 class="col-title area">{{category.name}}</h2>
-            <a class="more" ms-attr-href="'#!/' + category._id"><i class="icon icon-more"></i> 查看更多</a>
-        </div>
-        <div class="line"></div>
-        <!-- title end -->
 
-        <!-- item start -->
-        <div class="item-wrapper">
-            <div class="item area" ms-repeat-item="category.posts">
-                <a ms-attr-href="'#!/detail/' + item._id">
-                    <img class="item-img area" ms-attr-src="illy_resource_base + item.image + '?imageView2/1/w/320/h/180/interlace/1'" ms-attr-alt="item.title" />
-                    <div class="info-area">
-                        <h3 class="item-title text-overflow area">{{item.title}}</h3>
-                        <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div> 
-                        <div class="count like-count"><span>分享</span>{{item.shareCount}}</div> 
-                        <div class="count like-count"><span>喜欢</span>{{item.like}}</div> 
-                    </div>
-                </a>
+        <!-- title start -->
+        <div ms-if="category.posts.length !== 0">
+            <div class="title-line">
+                <h2 class="col-title area">{{category.name}}</h2>
+                <a class="more" ms-attr-href="'#!/' + category._id"><i class="icon icon-more"></i> 查看更多</a>
             </div>
+            <div class="line"></div>
+            <!-- title end -->
+
+            <!-- item start -->
+            <div class="item-wrapper">
+                <div class="item area" ms-repeat-item="category.posts">
+                    <a ms-attr-href="'#!/detail/' + item._id">
+                        <img class="item-img area" ms-attr-src="illy_resource_base + item.image + '?imageView2/1/w/320/h/180/interlace/1'" ms-attr-alt="item.title" />
+                        <div class="info-area">
+                            <h3 class="item-title text-overflow area">{{item.title}}</h3>
+                            <div class="count visit-count"><span>阅读</span>{{item.visitCount}}</div>
+                            <div class="count like-count"><span>分享</span>{{item.shareCount}}</div>
+                            <div class="count like-count"><span>喜欢</span>{{item.like}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- item end -->
         </div>
-        <!-- item end -->
+
 
     </div>
     <!-- categories end -->
