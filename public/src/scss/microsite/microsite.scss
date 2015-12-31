@@ -175,8 +175,8 @@ $navigator-item-height: .44rem;
         line-height: $title-line-height;
         font-size: .16rem;
         color: $category-title-color;
-        border-bottom: 1px solid $main-color;
-        padding: 0 .06rem;
+        border-bottom: 2px solid $main-color;
+        padding: 0 .03rem;
         position: relative;
         top: 1px; /* 兼容高分屏border， 都以px为单位 */
     }
@@ -292,6 +292,12 @@ $navigator-item-height: .44rem;
 
 .show-more-btn {
 
+}
+
+.empty-tips{
+    margin-left: 0.1rem;
+    margin-top: 0.08rem;
+    margin-bottom: 0.08rem;
 }
 /* list end */
 

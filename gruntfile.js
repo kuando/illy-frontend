@@ -2,7 +2,7 @@
 
 // 配置整个项目静态资源版本号(全局使用且唯一此处配置, 包含css, js, templates, controllerjs)
 // 如果改动源码(尽量不)则手动更改相应amd-define函数引入时的版本号，推荐以日期时间作为版本号)
-var staticResourceVersion = "1.1.1.1";
+var staticResourceVersion = "1.1.1.2";
 
 // 需要发布的域名(某些静态资源绝对路径需要)
 var domain = 'http://weixin.hizuoye.com';
@@ -135,7 +135,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                 tasks: ['reGenerateOuter']
             }
 
-        }, // watch 
+        }, // watch
 
         connect: {
             options: {
@@ -146,7 +146,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
             livereload: {
                 options: {
                     middleware: function(connect) {
-                        return [ // server root path 
+                        return [ // server root path
                             mountFolder(connect, 'public'),
                             lrSnippet
                         ];
@@ -334,7 +334,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
         }, // css min, only app-build.css to min...
 
         // https://www.npmjs.com/package/grunt-contrib-imagemin
-        imagemin: { 
+        imagemin: {
             foldermin: { // target
                 files: [{
                     expand: true, // Enable dynamic expansion
@@ -450,7 +450,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
                     'spec-char-escape': true,
                     'id-unique': true,
                     'head-script-disabled': true,
-                    'style-disabled': false 
+                    'style-disabled': false
                 },
                 src: ['public/*.html', 'public/assets/templates/**/*.html']
             }
@@ -474,9 +474,9 @@ module.exports = function(grunt) { /* jshint ignore:line */
 
     });
     // Tasks config end...
-    
+
 // 四、 任务整合调用区
-    
+
     // helper task
     grunt.registerTask('buildimages', 'minify the images to build folder...', ['imagemin']);
     grunt.registerTask('buildtemplates', 'minify the templates to build folder...', ['htmlmin:templates']);
@@ -491,7 +491,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
     grunt.registerTask('copyTemplates', 'copy templates html files to assets/ ...', ['copy:templates']);
     grunt.registerTask('copyControllerJs', 'copy controller js files to assets/ ...', ['copy:controllerJs']);
 
-    // hint task 
+    // hint task
     grunt.registerTask('hint', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'htmlhint',
@@ -499,7 +499,7 @@ module.exports = function(grunt) { /* jshint ignore:line */
         ]);
     });
 
-    // dev task 
+    // dev task
     grunt.registerTask('dev', function(target) { /* jshint ignore:line */
         grunt.task.run([
             'reGenerateMainHtmls',
