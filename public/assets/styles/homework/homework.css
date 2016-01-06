@@ -1787,7 +1787,7 @@ ul,
   border: 2px solid #e50b23;
 }
 .question .answer-panel {
-  display: none;
+  /*display: none;*/
   position: fixed;
   left: 0;
   bottom: 0;

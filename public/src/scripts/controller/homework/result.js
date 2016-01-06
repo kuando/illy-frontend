@@ -20,7 +20,7 @@ define([], function() {
         $ctrl.$onEnter = function() {
 
             avalon.vmodels.detail.isDone = true;
-            //avalon.log(params); 
+            //avalon.log(params);
             var source = avalon.getPureModel('detail').result;
             result.rightAward = source.rightAward;
             result.finishedAward = source.finishedAward;
@@ -47,7 +47,7 @@ define([], function() {
         };
         // 对应的视图销毁前
         $ctrl.$onBeforeUnload = function() {
-            
+
             // clear detail exercises for trigger question cannot back
             avalon.vmodels.detail.clearLastHomeworkData();
         };

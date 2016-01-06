@@ -78,6 +78,7 @@ define([], function() {
 
         /* helper data start */
         duration: 3, // record duration
+        suggestedAnswers:[],
         localAnswers: [], // 本地保存本次作业当前所有做过的题的答案，length就是做到过哪一题了, core!!!
         /* helper data end */
 
@@ -321,6 +322,105 @@ define([], function() {
             question.localAnswers.push(question.userAnswer); // old-bug, 20150731
 
         }, // checkAnswer end
+        moveToNext: function() { // check answer and collect info for Collections
+
+            /**
+             *  首先设置状态为正在做题，防御后退更改答案, 停止播放录音(执行呗，反正无害...)
+             *  1. 如果为录音题, 做相关判断和统计
+             *        点击检查答案弹出确认提示框，
+             *           确认放弃, 则localAnswers做相关记录，同时不上传录音题信息统计(!!!not push to detailVM's audioAnswers!!!)，
+             *           取消就一切如常
+             *  2. 不是录音题
+             *        如果没做，提示并停止检查
+             *        做了检查对错, 做好相关统计，加入本地答案列表
+             */
+
+                // is doing the question
+            avalon.vmodels.detail.isDoing = true;
+
+            if (question.localAnswers.length >= question.currentId) {
+                avalon.illyError("不可更改答案!");
+                alert("不可更改答案!");
+                return;
+            }
+            question.isRecording && question.stopPlayRecord(); /* jshint ignore:line */
+            var detailVM = avalon.getVM('detail');
+            // if map3, collect info and push to the AudioCollect
+            if (question.exercise && question.exercise.eType === 3) {
+                question.stopRecord(); // checkAnswer click, means record must stop
+                // do sth to check record or not
+                // push and return. (id, answer)
+                // mark!!! set the question.userAnswer!!!!!!!!!!!!
+                var audioAnswer = question.userAnswer;
+                if (audioAnswer === '') {
+                    question.dropRecordQuestionConfirm();
+                    return;
+                } else {
+                    question.right = true; // right it for next
+                    detailVM.audioAnswers.push({sequence: question.currentId, answer: audioAnswer});
+                }
+
+                //question.localAnswers.push(record.localId); // bug fix, also need push
+                question.localAnswers.push( {localId: record.localId, duration: question.duration} ); // bug fix, also need push
+                return;
+            }
+            if (question.userAnswer === '') {
+                // alert("请至少给出一个答案！");
+                avalon.vmodels.app.showAlert("请至少给出一个答案！");
+                return;
+            }
+
+            question.localAnswers.push(question.userAnswer); // old-bug, 20150731
+
+        }, // checkAnswer end
+        nextOne: function() { // check answer and collect info for Collections
+
+            avalon.vmodels.detail.isDoing = true;
+            question.isRecording && question.stopPlayRecord(); /* jshint ignore:line */
+            var detailVM = avalon.getVM('detail');
+            if (question.exercise) {
+                if (question.exercise.eType === 3) {
+                    question.stopRecord(); // checkAnswer click, means record must stop
+                    var audioAnswer = question.userAnswer;
+                    if (audioAnswer === '') {
+                        question.dropRecordQuestionConfirm();
+                        return;
+                    } else {
+                        detailVM.audioAnswers.push({sequence: question.currentId, answer: audioAnswer});
+                    }
+                    question.localAnswers.push({localId: record.localId, duration: question.duration});
+                    question.suggestedAnswers.push({localId: record.localId, duration: question.duration});
+                } else {
+                    if (question.userAnswer === '') {
+                        avalon.vmodels.app.showAlert("请至少给出一个答案！");
+                        return;
+                    }
+                    //收集用户答案
+                    question.localAnswers.push(question.userAnswer);
+
+                    //收集正确答案
+                    if (question.exercise && question.exercise.answer) {
+                        question.suggestedAnswers.push(question.exercise.answer);
+                    }
+                }
+            }
+            if (question.hasNext) {
+                // 只处理页面跳转进入下一题
+                avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
+            }else{
+                var app = avalon.vmodels.app;
+                app.showConfirm('本次作业已完成，提交作业?');
+                app.$watch('yesOrNo', function(value) {
+                    if (value === true) {
+                        question.submit();
+                        return;
+                    }else{
+                        app.$unwatch("yesOrNo");
+                    }
+                });
+
+            }
+        }, // checkAnswer end
         submit: function() {
 
             /**
@@ -351,6 +451,7 @@ define([], function() {
                         // key!!! mark!!!
                         // avalon.vmodels.detail.$model.audioAnswers.push({exerciseId: question.currentId, answer: ''});
                         question.localAnswers.push({localId: '', duration: 0}); // bug fix, also need push
+                        question.suggestedAnswers.push({localId: '', duration: 0});
                         question.isDroped = true;
                         if (question.hasNext) {
                             question.next();

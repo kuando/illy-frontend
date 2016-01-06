@@ -15,7 +15,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
     /* mark, not good */
     margin-right: -3.5%;
 
-    @include ipad-screen(landscape) { 
+    @include ipad-screen(landscape) {
         label.item {
             width: 21.5%!important;
         }
@@ -288,7 +288,7 @@ $next_radius: $answer_panel_height / 2 + .1rem;
         border: 2px solid $main-red;
     }
     .answer-panel {
-        display: none;
+        /*display: none;*/
         position: fixed;
         left: 0;
         bottom: 0;
