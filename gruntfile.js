@@ -8,7 +8,7 @@ var staticResourceVersion = "1.1.1.2";
 var domain = 'http://weixin.hizuoye.com';
 
 // 使用的api基地址
-var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
 
 // 全局资源的基地址，同时用于主html文件的dns预解析，千万保证正确，防止资源浪费, 基本不用动
 var dnsPrefetchUrl = 'http://7rfll3.com1.z0.glb.clouddn.com/';

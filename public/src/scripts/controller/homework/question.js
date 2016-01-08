@@ -404,7 +404,7 @@ define([], function() {
                     }
                 }
             }
-            if (question.hasNext) {
+            /*if (question.hasNext) {
                 // 只处理页面跳转进入下一题
                 avalon.router.go('app.detail.question', {homeworkId: question.homeworkId, questionId: question.currentId + 1});
             }else{
@@ -419,7 +419,7 @@ define([], function() {
                     }
                 });
 
-            }
+            }*/
         }, // checkAnswer end
         submit: function() {
 
