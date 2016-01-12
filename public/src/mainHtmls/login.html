@@ -187,8 +187,8 @@
     var apiBaseUrl = '<!-- @@apiBaseUrl @@ -->';
     var url = window.location.href;
     var re = /([?&])(openid|next)=([^?&]+)/g;
-    var query = {},
-            matches;
+    var query = {};
+    var matches;
     while (matches = re.exec(url)) {
         query[matches[2]] = matches[3];
     }
@@ -197,9 +197,12 @@
     function toApp() {
         var username = document.querySelector('.username').value;
         var password = document.querySelector('.password').value;
+        if (!username || username === '' || !password || password === '') {
+            return alert('请输入用户名或密码');
+        }
         var xhr = createXHR("POST", apiBaseUrl + "public/bind");
         if (!xhr) {
-            alert('CORS not supported');
+            return alert('CORS not supported');
         }
         // Response handlers.
         xhr.onload = function () {
@@ -223,7 +226,7 @@
             alert('Woops, there was an error making the request.');
         };
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        if (openid) {
+        if (openid && openid !== null) {
             xhr.send("username=" + username + "&password=" + password + "&openid=" + openid);
         } else {
             xhr.send("username=" + username + "&password=" + password);
