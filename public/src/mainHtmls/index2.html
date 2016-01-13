@@ -71,14 +71,17 @@
         // enough auth, go anywhere
         if (typeof illyToken === 'string' && next !== 'unbind') { // enough auth, go
             location.replace(nextUrl); // pure url
+            return;
         }
 
         if (next !== 'microsite') {
             location.replace('login.html?next=' + nextUrl);
+            return;
         }
         // microsite only auth
         if (typeof illyTokenMicrosite === 'string') {
             location.replace(nextUrl); // pure url
+            return;
         }
         // local
         var xhr = createXHR("GET", apiBaseUrl + 'public/auth?school=' + school);
@@ -91,8 +94,7 @@
             if (status === 200) {
                 localStorage.setItem('illy-token-microsite', xhr.responseText);
                 location.replace(nextUrl); // pure url, included unbind
-            }
-            else if (status === 401) { // unbinded user, remove local token and go login...
+            } else if (status === 401) { // unbinded user, remove local token and go login...
                 localStorage.removeItem('illy-token');
                 localStorage.removeItem('illy-token-microsite'); // the only chance to remove illy-token-microsite except unbind
                 location.replace('login.html?next=' + nextUrl);
