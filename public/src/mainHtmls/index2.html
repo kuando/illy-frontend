@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+    //创建xhr
+    function createXHR(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+            xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        } else {
+            xhr = null;
+        }
+        return xhr;
+    }
+
+    function getItem(item) {
+        return localStorage.getItem(item);
+    }
+
+    (function () {
+        //检测是否支持本地存储
+        if (!localStorage || !localStorage.getItem) {
+            alert('不支持本地存储，请更换浏览器');
+            return
+        }
+        var apiBaseUrl = '<!-- @@apiBaseUrl @@ -->';
+        var url = window.location.href;
+        var re = /([?&])(next|school)=([^?&]+)/g;
+        var query = {};
+        var matches;
+        var next;
+        var school;
+        while (matches = re.exec(url)) {
+            query[matches[2]] = matches[3];
+        }
+        next = query.next;
+        school = query.school;
+        if (!next || !school) {
+            return alert('缺少必要信息,请联系管理员!');
+        }
+        var nextMap = {
+            microsite: './microsite.html',
+            homework: './homework.html',
+            evaluation: './homework.html#!/evaluation',
+            mistake: './homework.html#!/mistake/list',
+            question: './question.html',
+            me: './task.html#!/me',
+            task: './task.html',
+            mall: './task.html#!/mall',
+            rank: './task.html#!/rank',
+            unbind: './unbind.html'
+        };
+
+        var nextUrl = nextMap[next];
+        var illyToken = getItem('illy-token');
+        var illyTokenMicrosite = getItem('illy-token-microsite');
+
+        // enough auth, go anywhere
+        if (typeof illyToken === 'string' && next !== 'unbind') { // enough auth, go
+            location.replace(nextUrl); // pure url
+            return;
+        }
+
+        if (next !== 'microsite') {
+            location.replace('login.html?next=' + nextUrl);
+            return;
+        }
+        // microsite only auth
+        if (typeof illyTokenMicrosite === 'string') {
+            location.replace(nextUrl); // pure url
+            return;
+        }
+        // local
+        var xhr = createXHR("GET", apiBaseUrl + 'public/auth?school=' + school);
+        if (!xhr) {
+            return alert('CORS not supported');
+        }
+        // Response handlers.
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                localStorage.setItem('illy-token-microsite', xhr.responseText);
+                location.replace(nextUrl); // pure url, included unbind
+            } else if (status === 401) { // unbinded user, remove local token and go login...
+                localStorage.removeItem('illy-token');
+                localStorage.removeItem('illy-token-microsite'); // the only chance to remove illy-token-microsite except unbind
+                location.replace('login.html?next=' + nextUrl);
+            } else {
+                return alert("对不起，系统错误，请稍后重试!")
+            }
+        };
+
+        xhr.onerror = function () {
+            alert('Woops, there was an error making the request.');
+        };
+
+        xhr.send(null);
+
+    })();
+
+</script>
+</html>
+
