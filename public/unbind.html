@@ -51,8 +51,10 @@
     </body>
 
     <script>
+        localStorage.removeItem('illy-token');
+        localStorage.removeItem('illy-token-microsite'); // also need clear
     function unbind() {
-    
+
         var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
