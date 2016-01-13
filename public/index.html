@@ -62,6 +62,8 @@
     if (typeof illyToken === 'string') { // enough auth, go
         if (next !== 'unbind') { // cannot local, must http reAuth
             location.replace(nextUrl); // pure url
+        }else if(next === 'unbind'){
+            location.replace(nextUrl);
         }
     }
     // microsite only auth
@@ -105,7 +107,7 @@
             location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
         } else {
             // alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
-            alert("对不起，系统错误，请稍后重试!")
+            alert("对不起，系统错误，请稍后重试!");
         }
     }
     xhr.onerror = function () {
