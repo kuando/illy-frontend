@@ -283,7 +283,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
 
     
     // ==================== custom project data start @include ==================== //
-    
+
     token = token || localStorage.getItem('illy-token-microsite'); // just for microsite
     if (token === null) {
         alert("对不起，本系统仅供内部使用！ ERROR::no token error!");
@@ -314,7 +314,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
         currentAction: "",
         currentIsVisited: false, // useful for most child view
         currentDataDone: false, // 由$http模块拦截器唯一改变
-        title: "", // 每一页action bar的标题   
+        title: "", // 每一页action bar的标题
         footerInfo: 'kuando Inc',
         back: function() {
             history.go(-1);

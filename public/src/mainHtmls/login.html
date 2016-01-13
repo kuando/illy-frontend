@@ -10,30 +10,30 @@
     html {
         height: 100%
     }
-    
+
     body {
         font-size: 16px;
         background: #eee;
         height: 100%
     }
-    
+
     * {
         padding: 0;
         margin: 0;
         list-style: none;
         text-decoration: none
     }
-    
+
     input::-webkit-input-placeholder,
     textarea::-webkit-input-placeholder {
         color: #aaa
     }
-    
+
     input::-ms-input-placeholder,
     textarea::-ms-input-placeholder {
         color: #aaa
     }
-    
+
     input,
     textarea,
     button,
@@ -45,19 +45,19 @@
         -webkit-tap-highlight-color: transparent;
         /* remove touch outline */
     }
-    
+
     .content {
         margin: 0 auto;
         width: 320px;
         height: 500px;
         position: relative
     }
-    
+
     .login {
         margin: 0 auto;
         padding-top: 30px
     }
-    
+
     .q_login {
         margin: 0 auto;
         width: 290px;
@@ -65,7 +65,7 @@
         text-align: center;
         margin-bottom: 40px
     }
-    
+
     .inputstyle {
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
         width: 273px;
@@ -77,19 +77,19 @@
         font-size: 16px;
         -webkit-appearance: none
     }
-    
-    
+
+
     #web_login {
         width: 290px;
         margin: 0 auto
     }
-    
+
     #g_list {
         background: #fff;
         height: 89px;
         border-radius: 4px
     }
-    
+
     #go,
     #onekey {
         width: 290px;
@@ -104,18 +104,18 @@
         margin-top: 15px;
         display: block
     }
-    
+
     .tansparent {
         background: 0
     }
-    
+
     #q_login_title {
         height: 32px;
         line-height: 22px;
         margin-bottom: 20px;
         position: relative
     }
-    
+
     #q_login_tips {
         position: absolute;
         left: 30px;
@@ -141,13 +141,13 @@
     <div id="content" class="content">
         <div id="login" class="login">
             <div id="logo" class="logo"></div>
-          
+
             <div id="web_login">
                 <ul id="g_list">
-                    <li id="g_u">               
+                    <li id="g_u">
                         <input id="u" class="inputstyle username" name="username" autocomplete="off" placeholder="请输入您的账号">
                     </li>
-                    <li id="g_p">                      
+                    <li id="g_p">
                         <input id="p" class="inputstyle password" maxlength="16" type="password" name="password" autocorrect="off" placeholder="请输入您的密码">
                     </li>
                 </ul>
@@ -211,9 +211,17 @@ function toApp() {
                 location.replace(next); // pure url
             }
         } else {
+            alert('用户名或密码输入错误，请重新输入！');
+            document.querySelector('.username').value = '';
+            document.querySelector('.password').value = '';
             // alert("request state error not 200 ok" + xhr.response + "status is: " + status);
-            var error = JSON.parse(xhr.response);
-            alert(error + '!');
+            if(xhr.response){
+                var error = JSON.parse(xhr.response);
+                if(error){
+                    alert(error + '!');
+                }
+            }
+            return;
         }
     };
     xhr.onerror = function() {
