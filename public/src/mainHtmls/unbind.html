@@ -51,8 +51,10 @@
     </body>
 
     <script>
+        localStorage.removeItem('illy-token');
+        localStorage.removeItem('illy-token-microsite'); // also need clear
     function unbind() {
-    
+
         var apiBaseUrl = '<!-- @@apiBaseUrl @@ -->';
         var token = localStorage.getItem('illy-token');
         var url = window.location.href;
