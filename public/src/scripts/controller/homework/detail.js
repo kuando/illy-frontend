@@ -2,9 +2,9 @@ define([], function() {
 
     // get config, apiBaseUrl
     var apiBaseUrl = avalon.illyGlobal && avalon.illyGlobal.apiBaseUrl;
-    
+
     // get config, token
-    var token = avalon.illyGlobal.token; 
+    var token = avalon.illyGlobal.token;
 
     // override the global back method, only with btn in header
     var back = function back() {
@@ -14,13 +14,13 @@ define([], function() {
 
             detail.dropCurrentDoneComfirm();
 
-            var app = avalon.vmodels.app; 
+            var app = avalon.vmodels.app;
             app.$watch("yesOrNo", function(value) { // update in 201509301202
                 if (value === true) {
                     // avalon.router.go('app.list');
                     detail.clearCachedData();
                     return ;
-                } 
+                }
                 if (value === false) {
                     app.$unwatch("yesOrNo");
                     // not very good way
@@ -50,21 +50,26 @@ define([], function() {
         keyPointRecord: 'detail.js keyPointRecord', // 知识重点录音
         exercises: [], // 题目列表
         questionStartTime: '', // 做题开始时间
-        wrongCollect: [], // 发送给server的第二个参数，收集错题的列表
-        audioAnswers: [], // 发送给server的第三个参数，录音题列表
+        suggestedAnswers:[], //发送给server的第2个参数，收集用户给出的答案
+        localAnswers: [], // 发送给server的第3个参数，收集用户给出的答案
+        //wrongCollect: [], // 发送给server的第二个参数，收集错题的列表(已废弃)
+        audioAnswers: [], // 发送给server的第4个参数，录音题列表
         result: { // 结果面板数据集, fake data
-            rightAward: 88,
-            finishedAward: 88,
-            totalAward: 888,
-            rightCount: 15,
-            wrongCount: 0,
-            totalScore: 100
+            rightAward:     0,
+            finishedAward:  0,
+            totalAward:     0,
+            rightCount:     0,
+            wrongCount:     0,
+            totalScore:     0
         },
         submit: function() { // core!!!
-            
+
             // 统计做题时间
             var spendSeconds = ( Date.now() - avalon.vmodels.detail.questionStartTime ) / 1000;
             var IntSpendSeconds = parseInt(spendSeconds, 10) || 0;
+
+            //console.log(avalon.getVM('question').$model.suggestedAnswers);
+            //console.log(avalon.getVM('question').$model.localAnswers);
 
             $http.ajax({
                 method: 'PUT',
@@ -75,7 +80,55 @@ define([], function() {
                 data: {
                     _id: avalon.getVM('detail').homeworkId,
                     spendSeconds: IntSpendSeconds,
-                    wrongCollect: avalon.getVM('detail').$model.wrongCollect, // avoid include avalon-vm-data(like $id, $model, $event)
+                    suggestedAnswers:avalon.getVM('question').$model.suggestedAnswers, //参考答案
+                    localAnswers:avalon.getVM('question').$model.localAnswers, //用户答案
+                    audioAnswers: avalon.getVM('detail').$model.audioAnswers, //录音题答案
+                    numOfExercise: avalon.getVM('detail').exercises.length //题目数量
+                },
+                success: function(res) {
+                    var target = avalon.vmodels.detail.$model.result;
+                    target.rightAward = res.rightAward;
+                    target.finishedAward = res.finishedAward;
+                    target.totalAward = res.totalAward;
+                    target.rightCount = res.rightCount;
+                    target.wrongCount = res.wrongCount;
+                    target.totalScore = res.totalScore;
+                    // last result cache, used for result
+                    localStorage.setItem('illy-homework-last-result', JSON.stringify(res));
+                    setTimeout(function() {
+                        // go result
+                        avalon.router.go('app.detail.result', {homeworkId: detail.homeworkId});
+                    }, 16);
+                },
+                error: function(res) {
+                    avalon.illyError("submit homework error", res);
+                    alert("对不起，作业提交失败，请退出重试！");
+                    avalon.router.go('app.list'); // go list page
+                }
+            });
+        }, // end of submit
+        submitBKP: function() { // core!!!
+
+            // 统计做题时间
+            var spendSeconds = ( Date.now() - avalon.vmodels.detail.questionStartTime ) / 1000;
+            var IntSpendSeconds = parseInt(spendSeconds, 10) || 0;
+
+
+            //var questionVM = avalon.getVM('question');
+            //avalon.illyInfo(questionVM.$model.localAnswers);
+
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + 'homework/' + detail.homeworkId + '/performance',
+                headers: {
+                    //Authorization: 'Bearer ' + token
+                },
+                data: {
+                    _id: avalon.getVM('detail').homeworkId,
+                    spendSeconds: IntSpendSeconds,
+                    //wrongCollect: avalon.getVM('detail').$model.wrongCollect, // avoid include avalon-vm-data(like $id, $model, $event)
+
+                    localAnswers:avalon.getVM('question').$model.localAnswers,
                     audioAnswers: avalon.getVM('detail').$model.audioAnswers,
                     numOfExercise: avalon.getVM('detail').exercises.length
                 },
@@ -86,7 +139,7 @@ define([], function() {
                     target.totalAward = res.totalAward;
                     target.rightCount = res.rightCount;
                     target.wrongCount = res.wrongCount;
-                    target.totalScore = res.totalScore; 
+                    target.totalScore = res.totalScore;
                     // last result cache, used for result
                     localStorage.setItem('illy-homework-last-result', JSON.stringify(res));
                     setTimeout(function() {
@@ -114,8 +167,8 @@ define([], function() {
             detail.isDone = false;
             detail.isDoing = false;
         },
-        dropCurrentDoneComfirm: function() { // confirm 
-            var app = avalon.vmodels.app; 
+        dropCurrentDoneComfirm: function() { // confirm
+            var app = avalon.vmodels.app;
             app.showConfirm('您确定放弃本次作业？');
         },
         back: back,

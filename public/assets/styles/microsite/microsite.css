@@ -1,11 +1,5 @@
 @charset "UTF-8";
 /*******************************************************
-> File Name: microsite.scss
-> Author: IndexXuan
-> Mail: indexxuan@gmail.com
-> Created Time: 2015年07月08日 星期三 09时21分34秒
- ******************************************************/
-/*******************************************************
 > File Name: base.scss 
 > Author: IndexXuan
 > Mail: indexxuan@gmail.com
@@ -1581,8 +1575,8 @@ ul,
   line-height: 0.36rem;
   font-size: .16rem;
   color: #333438;
-  border-bottom: 1px solid #64c400;
-  padding: 0 .06rem;
+  border-bottom: 2px solid #64c400;
+  padding: 0 .03rem;
   position: relative;
   top: 1px;
   /* 兼容高分屏border， 都以px为单位 */
@@ -1688,6 +1682,12 @@ ul,
   margin-top: .05rem;
   font-size: .14rem;
   line-height: 1.8;
+}
+
+.empty-tips {
+  margin-left: 0.1rem;
+  margin-top: 0.08rem;
+  margin-bottom: 0.08rem;
 }
 
 /* list end */

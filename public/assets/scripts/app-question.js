@@ -8,7 +8,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     // 变量均来源于gruntfile.js
  
     // 为加载的静态资源加运行时版本号
-    var resource_version = '1.1.1.1';
+    var resource_version = '1.1.1.2';
 
     // 模板基地址配置
     var global_templateBaseUrl = 'assets/templates/';
@@ -17,7 +17,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var global_controllerBaseUrl = 'scripts/controller/';
 
     // $http log 开关配置, 依据运行时编译目标的模式, 强调试时打开注释即可
-    // $http.debug = false;
+    // $http.debug = true;
     $http.debug = false;
     
     // override: 重写log方法, 使用本项目提供的醒目输出
@@ -84,7 +84,7 @@ define(["http://res.wx.qq.com/open/js/jweixin-1.0.0.js", AvalonLibsBaseUrl + "mm
     var illy_resource_base_url = 'http://7rfll3.com1.z0.glb.clouddn.com/';
 
     // global apiBaseUrl
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/'; 
+    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/'; 
 
     // get the token and ready to cache
     var token = localStorage.getItem('illy-token');

@@ -3,11 +3,11 @@ define([], function() {
     // get config
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
-    
+
     // prefix of localStorage
     var cachedPrefix = 'illy-microsite-list-';
     // cache the view data
-    
+
     // list cache flag
     var needCache = true;
 
@@ -17,7 +17,7 @@ define([], function() {
         $id: "list",
         //currentCategoryName: '热门文章',
         visited: false, // first in, no data
-        lists: [], 
+        lists: [],
         categoryId: 111111111111111111111111,
 
         offset: 0, // inner var, to fetch data with offset and limit
@@ -33,7 +33,11 @@ define([], function() {
             if (list.visited && needCache && !concat) {
                 var articles = list.lists;
                 list.lists = avalon.getLocalCache(cachedPrefix + list.categoryId + '-' + target);
-                list.offset = list.lists.length;
+                var len = list.lists.length;
+                list.offset = len;
+                if(len === 0){
+                    list.noContent = true;
+                }
                 if (articles.length > localLimit && articles.length % localLimit < localLimit) {
                     list.noMoreData = true; // not full support, but ok
                 }
@@ -46,7 +50,7 @@ define([], function() {
                     //Authorization: 'Bearer ' + token
                 },
                 data: data,
-                success: function(res) { 
+                success: function(res) {
                     if (concat === true) {
                         list.lists = list.lists.concat(res);
                     } else {
@@ -71,7 +75,7 @@ define([], function() {
                     }
                     list.isLoading = false;
                 },
-                ajaxFail: function(res) { 
+                ajaxFail: function(res) {
                     avalon.illyError('microsite list.js ajax failed', res);
                     if (list.lists.length === 0) {
                         list.noContent = true;
@@ -114,7 +118,7 @@ define([], function() {
 
             list.categoryId = params.categoryId; // get postId
             avalon.vmodels.site.categoryId = params.categoryId; // for parent ctrl site use
-            
+
             if (list.categoryId === 'hots') { // deal with hots column
 
                 list.btnShowMore = false;

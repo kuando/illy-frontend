@@ -217,9 +217,16 @@
                     location.replace(next); // pure url
                 }
             } else {
+                alert('用户名或密码错误，请重新输入！');
+                document.querySelector('.username').value = '';
+                document.querySelector('.password').value = '';
                 // alert("request state error not 200 ok" + xhr.response + "status is: " + status);
-                var error = JSON.parse(xhr.response);
-                alert(error + '!');
+                if(xhr.response){
+                    var error = JSON.parse(xhr.response);
+                    alert(error + '!');
+                }
+                return;
+
             }
         };
         xhr.onerror = function () {

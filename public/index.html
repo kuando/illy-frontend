@@ -12,7 +12,7 @@
 
 <script>
 
-    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
     var url = window.location.href;
     var re = /([?&])(code|next|school)=([^?&]+)/g;
     var query = {}, matches;
@@ -53,7 +53,6 @@
     };
 
     var nextUrl = nextMap[next];
-
     var getItem = function (item) {
         return localStorage.getItem(item);
     };
@@ -63,12 +62,15 @@
     if (typeof illyToken === 'string') { // enough auth, go
         if (next !== 'unbind') { // cannot local, must http reAuth
             location.replace(nextUrl); // pure url
+        }else if(next === 'unbind'){
+            location.replace(nextUrl);
         }
     }
     // microsite only auth
     if (next === 'microsite' && typeof illyTokenMicrosite === 'string') {
         location.replace(nextUrl); // pure url
     }
+    // local
     var xhr;
     if (code) {
         if (next === 'microsite') {
@@ -105,9 +107,9 @@
             location.replace('login.html?openid=' + openid + '&next=' + nextUrl);
         } else {
             // alert("Error Sorry! Error: " + xhr.responseText + "status is " + status + ", url = " + url);
-            alert("对不起，系统错误，请稍后重试!")
+            alert("对不起，系统错误，请稍后重试!");
         }
-    };
+    }
     xhr.onerror = function () {
         alert('Woops, there was an error making the request.');
     };
