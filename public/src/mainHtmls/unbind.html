@@ -81,19 +81,9 @@
             }
             // Response handlers.
             xhr.onload = function () {
-                var status = xhr.status;
-                if (status === 200) { // binded user and qo next...
-                    var openid = xhr.responseText;
-                    localStorage.removeItem('illy-token');
-                    localStorage.removeItem('illy-token-microsite'); // also need clear
-                    location.replace('./login.html?openid=' + openid);
-                } else if ( status === 401) { // no way to get here now, just write here
-                    alert('账户注销失败!');
-                    localStorage.removeItem('illy-token');
-                    localStorage.removeItem('illy-token-microsite'); // also need clear
-                } else {
-                    alert("Error Sorry! Error: " + xhr.responseText + "status is " + status);
-                }
+                localStorage.removeItem('illy-token');
+                localStorage.removeItem('illy-token-microsite'); // also need clear
+                alert("注销成功，请关闭当前页面！");
             }
             xhr.onerror = function () {
                 alert('Woops, there was an error making the request.');
