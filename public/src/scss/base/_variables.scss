@@ -6,11 +6,11 @@ $font-face-src: '../../../assets/fonts/yo/1.0.0';
 // remote images lib
 $img-dir: '../../../assets/images';
 
-// $illy-container-width: 5rem; // temp drop, ipad full to display 
+// $illy-container-width: 5rem; // temp drop, ipad full to display
 
 $loader-bgColor: #fff;
 
-$g_bgColor: #f1f1f1;
+$g_bgColor: #fff;
 
 $main-color: #64c400;
 
@@ -35,7 +35,7 @@ $zIndex7: 99999;
 // global silk height
 $silk-height: .6rem;
 // fixed value for all device
-$silk-max-width: 2.94px; 
+$silk-max-width: 2.94px;
 
 $max-content-width: 4.5rem; // for big screen like ipad's content, you know not more wider more good
 $min-viewport-height: 7.36rem; // iphone6 plus's size

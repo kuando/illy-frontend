@@ -12,7 +12,7 @@
 
 <script>
 
-    var apiBaseUrl = 'http://testapi.hizuoye.com/api/v1/';
+    var apiBaseUrl = 'http://api.hizuoye.com/api/v1/';
     var url = window.location.href;
     var re = /([?&])(code|next|school)=([^?&]+)/g;
     var query = {}, matches;
@@ -60,11 +60,11 @@
     var illyTokenMicrosite = getItem('illy-token-microsite');
     // enough auth, go anywhere
     if (typeof illyToken === 'string') { // enough auth, go
-        if (next !== 'unbind') { // cannot local, must http reAuth
+        //if (next !== 'unbind') { // cannot local, must http reAuth
             location.replace(nextUrl); // pure url
-        }else if(next === 'unbind'){
-            location.replace(nextUrl);
-        }
+        //}else if(next === 'unbind'){
+            //location.replace(nextUrl);
+        //}
     }
     // microsite only auth
     if (next === 'microsite' && typeof illyTokenMicrosite === 'string') {

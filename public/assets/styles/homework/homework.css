@@ -459,7 +459,7 @@ body {
   overflow-y: auto;
   -webkit-tap-highlight-color: transparent;
   min-height: 100%;
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 html.native-scrolling {
@@ -473,7 +473,7 @@ html.native-scrolling {
 body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #fff;
   color: #333438;
   font-size: .14rem;
 }
@@ -2006,7 +2006,7 @@ ul,
 /* homework-result end */
 /* homework-evaluation start */
 .evaluation {
-  background-color: #f1f1f1;
+  background-color: #fff;
   min-height: 7.36rem;
 }
 .evaluation .profile-wrapper {
@@ -2091,7 +2091,7 @@ ul,
   height: 0px;
   border-width: .18rem .18rem 0 .18rem;
   border-style: solid;
-  border-color: #f1f1f1 transparent transparent transparent;
+  border-color: #fff transparent transparent transparent;
   top: -.02rem;
   left: 50%;
   margin-left: -.18rem;

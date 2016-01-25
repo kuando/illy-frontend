@@ -453,7 +453,7 @@ body {
   overflow-y: auto;
   -webkit-tap-highlight-color: transparent;
   min-height: 100%;
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 html.native-scrolling {
@@ -467,7 +467,7 @@ html.native-scrolling {
 body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #fff;
   color: #333438;
   font-size: .14rem;
 }
@@ -1693,7 +1693,7 @@ ul,
 /* list end */
 /**
  *  for microsite task or outer static use
- *  
+ *
  */
 /**
  *  for wxShareMask & others 
@@ -1875,6 +1875,7 @@ ul,
   /* 继承到所有子元素 */
   line-height: 1.7;
   /* 继承到所有子元素 */
+  min-height: 6rem;
 }
 .detail .content img {
   width: 100%;
