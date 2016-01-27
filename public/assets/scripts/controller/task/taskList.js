@@ -1,5 +1,5 @@
 define([], function() {
-    
+
     var apiBaseUrl = avalon.illyGlobal.apiBaseUrl;
     var token = avalon.illyGlobal.token;
 
@@ -11,7 +11,7 @@ define([], function() {
 
     // 每页大小
     var limit = 6;
-    var taskList = avalon.define({ 
+    var taskList = avalon.define({
 
         $id: "taskList",
         noContent: false, // done all the task or nothing, show tip flag
@@ -83,10 +83,29 @@ define([], function() {
             var taskType = target && target.getAttribute('data-tasktype');
             var taskId = target && target.getAttribute('data-taskid');
             var taskScoreAward = target && target.getAttribute('data-taskscoreaward');
+            var event = target && target.getAttribute('data-event');
             var state = 'task.detail.' + taskList.taskTypeMap[taskType];
-            setTimeout(function() { // TODO: rm it, hack for ios9 
+            //转向之前添加积分
+            $http.ajax({
+                method: 'PUT',
+                url: apiBaseUrl + 'tasks/' + taskId + '/done',
+                headers: {
+                    //Authorization: 'Bearer ' + token
+                },
+                success: function(res) {
+                    //avalon.vmodels.task.score = res.score;
+                    //页面转向
+                    window.location="http://testwx.hizuoye.com/event/" + event;
+
+                },
+                error: function(res) {
+                    console.log(res);
+                }
+            });
+
+            /*setTimeout(function() { // TODO: rm it, hack for ios9
                 avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
-            }, 16);
+            }, 16);*/
         }
 
     });
