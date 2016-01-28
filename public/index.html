@@ -57,19 +57,20 @@
         return localStorage.getItem(item);
     };
     var illyToken = getItem('illy-token');
-    var illyTokenMicrosite = getItem('illy-token-microsite');
+
     // enough auth, go anywhere
     if (typeof illyToken === 'string') { // enough auth, go
         //if (next !== 'unbind') { // cannot local, must http reAuth
-            location.replace(nextUrl); // pure url
+        location.replace(nextUrl); // pure url
         //}else if(next === 'unbind'){
-            //location.replace(nextUrl);
+        //location.replace(nextUrl);
         //}
     }
-    // microsite only auth
-    if (next === 'microsite' && typeof illyTokenMicrosite === 'string') {
-        location.replace(nextUrl); // pure url
+
+    if(next === 'unbind'){
+        location.replace(nextUrl);
     }
+
     // local
     var xhr;
     if (code) {
@@ -87,6 +88,7 @@
     // Response handlers.
     xhr.onload = function () {
         var status = xhr.status;
+
         if (status === 200) { // binded user and qo next...
             // location.href = next + '.html?token=' + xhr.responseText;
             if (localStorage && localStorage.getItem) {

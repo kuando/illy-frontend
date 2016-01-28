@@ -82,9 +82,10 @@ define([], function() {
             var target = arguments[0];
             var taskType = target && target.getAttribute('data-tasktype');
             var taskId = target && target.getAttribute('data-taskid');
-            var taskScoreAward = target && target.getAttribute('data-taskscoreaward');
+            //var taskScoreAward = target && target.getAttribute('data-taskscoreaward');
             var event = target && target.getAttribute('data-event');
-            var state = 'task.detail.' + taskList.taskTypeMap[taskType];
+            //var state = 'task.detail.' + taskList.taskTypeMap[taskType];
+            //alert('apiUrl' + apiBaseUrl + '/' + taskId);
             //转向之前添加积分
             $http.ajax({
                 method: 'PUT',
@@ -102,6 +103,7 @@ define([], function() {
                     console.log(res);
                 }
             });
+
 
             /*setTimeout(function() { // TODO: rm it, hack for ios9
                 avalon.router.go(state, {taskId: taskId, scoreAward: taskScoreAward});
